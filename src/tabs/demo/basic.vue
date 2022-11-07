@@ -1,0 +1,17 @@
+<template>
+  <div>
+    <ScTabs >
+      <TabPane key="1" tab="Tab 1" style="height: 200px">Content of Tab Pane 1</TabPane>
+      <TabPane key="2" tab="Tab 2" style="height: 200px">Content of Tab Pane 2</TabPane>
+    </ScTabs>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { TabPane } from 'ant-design-vue'
+import { ScTabs } from 'sc-ui'
+import "ant-design-vue/dist/antd.css"
+</script>
+
+<style lang="less">
+</style>
