@@ -6,6 +6,7 @@ import './style/index.less';
 
 import { ScSteps, ScStep } from "./steps"
 import { ScTabs } from './tabs'
+import { ScRadioGroup } from './radio'
 
 message.config({
   duration: 2, // 持续时间
@@ -15,7 +16,8 @@ message.config({
 const components = [
   ScSteps,
   ScStep,
-  ScTabs
+  ScTabs,
+  ScRadioGroup
 ]
 
 const install = (app: App) => {
@@ -33,7 +35,8 @@ export {
   install,
   ScSteps,
   ScStep,
-  ScTabs
+  ScTabs,
+  ScRadioGroup
 }
 
 export default ScUi;

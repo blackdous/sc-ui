@@ -1,7 +1,6 @@
 ---
 map:
-  path: /tabs
-realPath: src/radio/index.zh-CN.md
+  path: /radio
 ---
 
 ## 简介

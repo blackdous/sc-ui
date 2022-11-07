@@ -16,6 +16,12 @@ export const sidebar = {
       ],
     },
     {
+      text: 'Data Entry',
+      items: [
+        { text: 'Radio', link: '/en/radio/' }
+      ]
+    },
+    {
       text: 'Navigation',
       items: [
         { text: 'Steps', link: '/en/steps/' }
@@ -60,6 +66,12 @@ export const sidebar = {
       text: '导航',
       items: [
         { text: '步骤条', link: '/steps/' }
+      ]
+    },
+    {
+      text: '数据录入',
+      items: [
+        { text: '单选框', link: '/radio/' }
       ]
     },
     {

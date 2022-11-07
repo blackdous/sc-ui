@@ -1,0 +1,49 @@
+.gradient {
+  &.ant-tabs.ant-tabs-card {
+    .ant-tabs-card-bar {
+      border: none;
+      margin: 0;
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        height: 3px;
+        background: linear-gradient(135deg, #1e9ad8 0%, rgba(46, 161, 219, 0) 100%);
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -5px;
+        height: 4px;
+        filter: blur(2px);
+        background: linear-gradient(135deg, #2ea1db 0%, rgba(46, 161, 219, 0) 100%);
+      }
+      .ant-tabs-nav-container {
+        height: 32px;
+      }
+      .ant-tabs-tab {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        height: 31px;
+        line-height: 32px;
+        border: none;
+        background: @bg-color;
+        color: @tabs-btn-textColor;
+        box-shadow: 0px 0px 6px 0px #f0f3f7, 0px 4px 4px 0px rgba(35, 166, 243, 0.08);
+        &.ant-tabs-tab-active {
+          background: @tabs-btn-activeColor;
+          color: #fff;
+          box-shadow: 0px 0px 5px 0px rgba(0, 140, 211, 0.5);
+        }
+      }
+    }
+    .ant-tabs-top-content, .ant-tabs-bottom-content {
+      padding-top: 10px;
+    }
+  }
+}
