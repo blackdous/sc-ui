@@ -5,12 +5,11 @@ map:
 
 ## 简介
 
-在 (antd-design-vue/tabs)[https://antdv.com/components/tabs-cn] 基础开发的，**其他api 都相同**
+在 (antd-design-vue/radio)[https://antdv.com/components/radio-cn] 基础开发的，**其他api 都相同**
 
 <demo src="./demo/basic.vue"
   language="vue"
-  title="渐变色tab list 样式"
-  desc="新增了 styleMode, 默认值为 gradient"
+  title="API 与 Ant-design-vue的 RadioGroup api相同，新增了styleMode属性"
   >
 </demo>
 
@@ -18,11 +17,20 @@ map:
 
 <demo src="./demo/styleMode.vue"
   language="vue"
-  title="渐变色tab list 样式"
-  desc="新增了 styleMode, 默认值为 gradient"
+  title="通过scLine 修改了样式"
+  desc="新增了 styleMode, 默认值为 scLine"
+  >
+</demo>
+
+## 新增 tooltip 属性
+
+<demo src="./demo/tooltip.vue"
+  language="vue"
+  title="tooltip"
+  desc="新增了 tooltip, 默认值为 scLine"
   >
 </demo>
 
 ## steps 新增属性
 
-<API src="./components/tabs.vue" lang="zh"></API>
+<API src="./components/radioGroup.vue" lang="zh"></API>

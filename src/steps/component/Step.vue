@@ -48,11 +48,11 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<!-- <script lang="ts">
 export default {
   name: 'ScStep'
 }
-</script>
+</script> -->
 <script setup lang="ts">
 import {
   computed,

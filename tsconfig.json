@@ -29,9 +29,7 @@
         "declarationDir": "dist",
         "rootDir": ".",
         "paths": {
-            "@/*": [
-                "src/*"
-            ],
+            "/@/*": ["src/*"],
             "sc-ui": [
                 "src/index.ts"
             ]
@@ -45,7 +43,9 @@
 
         "src/index.ts",
         "types/**/*.d.ts",
-        "types/**/*.ts"
+        "types/**/*.ts",
+        
+        "types/*.d.ts"
     ],
     "exclude": [
         "node_modules",

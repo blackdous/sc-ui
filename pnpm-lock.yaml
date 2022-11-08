@@ -7,10 +7,10 @@ specifiers:
   '@commitlint/config-conventional': ^17.2.0
   '@iconify/vue': ^4.0.0
   '@pnpm/types': ^8.8.0
-  '@ruabick/md-demo-plugins': 0.2.8
-  '@ruabick/vite-plugin-gen-api-doc': ^0.2.8
-  '@ruabick/vite-plugin-gen-temp': ^0.2.8
-  '@ruabick/vitepress-demo-block': ^0.2.8
+  '@ruabick/md-demo-plugins': 0.2.9
+  '@ruabick/vite-plugin-gen-api-doc': ^0.2.9
+  '@ruabick/vite-plugin-gen-temp': 0.2.9
+  '@ruabick/vitepress-demo-block': ^0.2.9
   '@types/node': ^18.11.9
   '@typescript-eslint/eslint-plugin': ^5.33.1
   '@typescript-eslint/parser': ^5.33.1
@@ -61,10 +61,10 @@ devDependencies:
   '@commitlint/cli': 17.2.0
   '@commitlint/config-conventional': 17.2.0
   '@pnpm/types': 8.8.0
-  '@ruabick/md-demo-plugins': 0.2.8_less@4.1.3
-  '@ruabick/vite-plugin-gen-api-doc': 0.2.8_mk5g2gtn4uzmc7m7alnjzcl23m
-  '@ruabick/vite-plugin-gen-temp': 0.2.8_less@4.1.3
-  '@ruabick/vitepress-demo-block': 0.2.8
+  '@ruabick/md-demo-plugins': 0.2.9_less@4.1.3
+  '@ruabick/vite-plugin-gen-api-doc': 0.2.9_mk5g2gtn4uzmc7m7alnjzcl23m
+  '@ruabick/vite-plugin-gen-temp': 0.2.9_less@4.1.3
+  '@ruabick/vitepress-demo-block': 0.2.9
   '@types/node': 18.11.9
   '@typescript-eslint/eslint-plugin': 5.42.0_5aea5dp4n23mfv4y2mmjxole3e
   '@typescript-eslint/parser': 5.42.0_eslint@8.26.0
@@ -670,10 +670,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@ruabick/md-demo-plugins/0.2.8_less@4.1.3:
-    resolution: {integrity: sha512-ZwVAr+EhN9nnm2j/wpUC0gmFGGGuOpwNoD52WD5td1ckGpsjv+WZDC2V3H0eozA7Eap9Ux8Kg5eHsDGo1GAdMg==}
+  /@ruabick/md-demo-plugins/0.2.9_less@4.1.3:
+    resolution: {integrity: sha512-lS0fWNIO5AyKjxEt6YIGqj1lYlAgfF5JPSixY06x0RBmM1LCXnotZ51ei+RnpXkOQ+21qJed4b+Hdh2RWKt+Zw==}
     dependencies:
-      '@ruabick/utils': 0.2.8_less@4.1.3
+      '@ruabick/utils': 0.2.9_less@4.1.3
       fs-extra: 10.1.0
       markdown-it: 13.0.1
       vitepress: 1.0.0-alpha.13_less@4.1.3
@@ -690,8 +690,8 @@ packages:
       - terser
     dev: true
 
-  /@ruabick/utils/0.2.8_less@4.1.3:
-    resolution: {integrity: sha512-N23P+K2aE+XnyzeIeN4dO6BcDcnMwaVS3DHl80EIY6hRFp3gopyaVhWVxBPQ0SwH+3o0ljBjEV0XaWFtq94wmw==}
+  /@ruabick/utils/0.2.9_less@4.1.3:
+    resolution: {integrity: sha512-WIjfxBn9FOqn3nNm654J+o/KZgxijResD7u/vepYufCGi4N98TdwoJNRKspiZQ8fZWnckt+vePFaFyeekcYFHQ==}
     dependencies:
       '@vue/compiler-core': 3.2.41
       vitepress: 1.0.0-alpha.13_less@4.1.3
@@ -708,8 +708,8 @@ packages:
       - terser
     dev: true
 
-  /@ruabick/vite-plugin-gen-api-doc/0.2.8_mk5g2gtn4uzmc7m7alnjzcl23m:
-    resolution: {integrity: sha512-YChjTHNBqACDq/JHqcmAl+Ra53S+cp888yQqEshFAS00hZZkiP94RXwbhXQ5uTC281FR0rP/Ul21Tkpmb0Ca4A==}
+  /@ruabick/vite-plugin-gen-api-doc/0.2.9_mk5g2gtn4uzmc7m7alnjzcl23m:
+    resolution: {integrity: sha512-i2uKrSErJdQ37zFweZuHCe+z/5yMVbsC+Q4SXC7ofvhkRsLMa1axKKVWHMCIHF6sz3QJyeHge28oFMhmUmWC5w==}
     peerDependencies:
       vite: ^3.0.5
     peerDependenciesMeta:
@@ -717,7 +717,7 @@ packages:
         optional: true
     dependencies:
       '@babel/parser': 7.20.0
-      '@ruabick/utils': 0.2.8_less@4.1.3
+      '@ruabick/utils': 0.2.9_less@4.1.3
       '@vue/compiler-core': 3.2.41
       chalk: 5.1.2
       comment-parser: 1.3.1
@@ -742,11 +742,11 @@ packages:
       - vue
     dev: true
 
-  /@ruabick/vite-plugin-gen-temp/0.2.8_less@4.1.3:
-    resolution: {integrity: sha512-XUlr8n8WEg7dJpVx8iJWL1jLN854ID4IpV5+7EdrP1gD4jRjDQB/ydwDmF1bHTec34xtnT5goHAF2KL4ZV8pFg==}
+  /@ruabick/vite-plugin-gen-temp/0.2.9_less@4.1.3:
+    resolution: {integrity: sha512-XHLSyrG5TpLt9LCwIIJTD27OuNrh7YQJLTUDJ6ZuGr6O/9Nd3SYXoTer9vAZupf7oe8cmv4FiEXjPnSBNhi87A==}
     hasBin: true
     dependencies:
-      '@ruabick/utils': 0.2.8_less@4.1.3
+      '@ruabick/utils': 0.2.9_less@4.1.3
       chokidar: 3.5.3
       colorette: 2.0.19
       fast-glob: 3.2.12
@@ -768,8 +768,8 @@ packages:
       - terser
     dev: true
 
-  /@ruabick/vitepress-demo-block/0.2.8:
-    resolution: {integrity: sha512-B/JSOg5r9fuFVfN1y8ekj+rCih2AR2RuQrmMOU6u+S+TJRWGGiuUsK1sQ/Ye6dzQKHliIeu6Q9H0Yuqdl60F+w==}
+  /@ruabick/vitepress-demo-block/0.2.9:
+    resolution: {integrity: sha512-hLV24a4FGidBHBzGqsOLLC+ZVkxgLA8ZtLXUgWkkZIs7pMJiY9or0EsYJPlwszTRMq39F4luCOxsXpbE6/yuAw==}
     dev: true
 
   /@rushstack/node-core-library/3.53.2:

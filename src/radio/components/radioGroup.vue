@@ -11,7 +11,7 @@
 
 <script lang="ts">
 export default {
-  name: 'ScButtonGroup',
+  name: 'ScRadioGroup',
   inheritAttrs: false
 }
 </script>
@@ -26,7 +26,8 @@ export interface TabsProps {
    */
   styleMode?: string
 }
-const props = withDefaults(defineProps<TabsProps>(), {})
+const props = withDefaults(defineProps<TabsProps>(), {
+})
 const className = computed(() => {
   const classNames = props.styleMode ? [props.styleMode] : []
   return classNames

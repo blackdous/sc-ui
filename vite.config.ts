@@ -5,10 +5,6 @@ import { createVitePlugins } from './build/plugin'
 import { themeVariables } from './build/theme'
 console.log('themeVariables: ', themeVariables);
 
-function pathResolve(dir: string) {
-  return resolve(process.cwd(), '.', dir);
-}
-
 export default ({ command }: ConfigEnv): UserConfig => {
   const isBuild = command === 'build';
 
@@ -22,8 +18,8 @@ export default ({ command }: ConfigEnv): UserConfig => {
       lib: {
         entry: resolve(__dirname, './src/index.ts'),
         name: 'sc-ui',
-        // the proper extensions will be added
-        fileName: 'sc-ui',
+        formats: ['es', 'umd'],
+        fileName: (format) => `build.${format}.ts`,
       },
       rollupOptions: {
         // 确保外部化处理那些你不想打包进库的依赖

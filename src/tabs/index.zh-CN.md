@@ -9,8 +9,7 @@ map:
 
 <demo src="./demo/basic.vue"
   language="vue"
-  title="渐变色tab list 样式"
-  desc="新增了 styleMode, 默认值为 gradient"
+  title="API 与 Ant-design-vue的 Tabs api相同，新增了styleMode属性"
   >
 </demo>
 
@@ -18,7 +17,7 @@ map:
 
 <demo src="./demo/styleMode.vue"
   language="vue"
-  title="渐变色tab list 样式"
+  title="渐变色tabs button 样式"
   desc="新增了 styleMode, 默认值为 gradient"
   >
 </demo>

@@ -1,22 +1,36 @@
 /*************************** radios  **************************************/
-.ant-radio-group {
+
+.ant-radio-group-outline.ant-radio-group.scLine {
   .ant-radio-button-wrapper {
-    color: @text-color-secondary;
+    color :@text-color;
     border-color: #ebeef2;
     font-weight: 600;
     background: #fafbfc;
+    box-shadow: 0px 1px 3px 0px rgba(96, 108, 128, 0.1);
+    font-size: 12px;
+    height: 28px;
+    line-height: 27px;
+    &:last-child {
+      border-radius: 0 3px 3px 0;
+    }
+    &:first-child {
+      border-radius: 3px 0 0 3px;
+    }
   }
   .ant-radio-button-wrapper:not(:first-child)::before {
     background-color: #ebeef2;
   }
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
     border-color: fade(@primary-color, 40%);
-    background-color: #ffffff;
-    color: @color_primary;
+    background-color: @bg-color;
+    color: @primary-color;
+    &:before {
+      background-color: #d9d9d9;
+    }
   }
   .ant-radio-button-wrapper:not(.ant-radio-button-wrapper-disabled):hover {
-    color: @color_primary;
-    background-color: #ffffff;
+    color: @primary-color;
+    background-color: @bg-color;
   }
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
     background-color: fade(@primary-color, 40%);

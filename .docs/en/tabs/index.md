@@ -1,7 +1,7 @@
 ---
 map:
   path: /tabs
-realPath: src/radio/index.en-US.md
+realPath: src/tabs/index.en-US.md
 ---
 
 ## Guide

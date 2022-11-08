@@ -3,12 +3,12 @@
     <slot />
   </div>
 </template>
-<script lang="ts">
+<!-- <script lang="ts">
 export default {
   name: 'ScSteps',
   inheritAttrs: false
 }
-</script>
+</script> -->
 <script setup lang="ts">
 import { defineProps, provide, watch, ref, computed } from 'vue'
 import type { Ref } from 'vue'
