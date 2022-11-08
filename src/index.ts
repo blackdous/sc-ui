@@ -4,9 +4,9 @@ import { message } from 'ant-design-vue'
 
 import './style/index.less';
 
-import { ScSteps, ScStep } from "./steps/index"
-import { ScTabs } from './tabs/index'
-import { ScRadioGroup, ScRadioTooltipGroup } from './radio/index'
+import { ScSteps, ScStep } from "./Steps"
+import { ScTabs } from './Tabs'
+import { ScRadioGroup, ScRadioTooltipGroup } from './Radio'
 
 message.config({
   duration: 2, // 持续时间
@@ -41,6 +41,6 @@ export {
   ScRadioTooltipGroup
 }
 
-export * from './typing'
+export * from './types'
 
 export default ScUi;

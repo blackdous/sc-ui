@@ -33,4 +33,4 @@ map:
 
 ## steps 新增属性
 
-<API src="./components/radioGroup.vue" lang="zh"></API>
+<API src="./components/ScRadioGroup.vue" lang="zh"></API>

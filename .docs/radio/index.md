@@ -1,7 +1,7 @@
 ---
 map:
   path: /radio
-realPath: src/radio/index.zh-CN.md
+realPath: src/Radio/index.zh-CN.md
 ---
 
 ## 简介
@@ -34,4 +34,4 @@ realPath: src/radio/index.zh-CN.md
 
 ## steps 新增属性
 
-<API src="./components/radioGroup.vue" lang="zh"></API>
+<API src="./components/ScRadioGroup.vue" lang="zh"></API>

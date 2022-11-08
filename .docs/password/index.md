@@ -1,7 +1,7 @@
 ---
 map:
   path: /password
-realPath: src/password/index.zh-CN.md
+realPath: src/Password/index.zh-CN.md
 ---
 
 ## 简介

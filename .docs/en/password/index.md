@@ -1,7 +1,7 @@
 ---
 map:
   path: /password
-realPath: src/password/index.en-US.md
+realPath: src/Password/index.en-US.md
 ---
 
 ## Guide

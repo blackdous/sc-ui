@@ -1,7 +1,7 @@
 ---
 map:
   path: /steps
-realPath: src/steps/index.zh-CN.md
+realPath: src/Steps/index.zh-CN.md
 ---
 
 # Steps步骤条
@@ -61,8 +61,8 @@ realPath: src/steps/index.zh-CN.md
 
 ## Steps 属性
 
-<API src="./component/Steps.vue" lang="zh"></API>
+<API src="./component/ScSteps.vue" lang="zh"></API>
 
 ## Step 属性
 
-<API src="./component/Step.vue" lang="zh"></API>
+<API src="./component/ScStep.vue" lang="zh"></API>

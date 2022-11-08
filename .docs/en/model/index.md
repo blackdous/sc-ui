@@ -1,7 +1,7 @@
 ---
 map:
   path: /model
-realPath: src/model/index.en-US.md
+realPath: src/Model/index.en-US.md
 ---
 
 ## Guide

@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<script lang='ts' setup>
+<script lang='ts' setup name="ScRadioGroup">
 import { RadioGroup } from 'ant-design-vue'
 import { computed } from 'vue'
 

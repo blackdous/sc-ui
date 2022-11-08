@@ -1,5 +1,5 @@
 import { withInstall } from "../utils"
-// @ts-ignore
-import scTabs from './components/tabs.vue'
+
+import scTabs from './components/ScTabs.vue'
 
 export const ScTabs = withInstall(scTabs);

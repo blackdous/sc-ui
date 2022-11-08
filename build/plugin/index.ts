@@ -8,6 +8,7 @@ import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import viteCompression from 'vite-plugin-compression'
 import DefineOptions from 'unplugin-vue-define-options/vite'
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 import legacy from './legacy';
 import visualizerPlugin from './visualizer';
@@ -23,8 +24,12 @@ import {
 export const createVitePlugins = (isBuild: boolean) => {
 
   const vitePlugins: (PluginOption | PluginOption[])[] = [
-    vue(), 
-    dts(),
+    vue(),
+    vueSetupExtend(),
+    dts({
+      insertTypesEntry: true,
+        copyDtsFiles: false,
+    }),
     DefineOptions(),
     Components({
       resolvers: [

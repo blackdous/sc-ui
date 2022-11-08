@@ -16,7 +16,7 @@ import type { Ref } from 'vue'
 import { CHANGE_EVENT } from '../../constans/event'
 import { stepsEmits } from './type';
 // StepsPropType
-import type { StepItemState } from './Step.vue'
+import type { StepItemState } from './ScStep.vue'
 
 export interface StepsProp {
   /**

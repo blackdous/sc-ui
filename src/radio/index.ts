@@ -1,13 +1,12 @@
 import { withInstall } from "../utils"
-// @ts-ignore
-import scRadioGroup from './components/radioGroup.vue'
-// @ts-ignore
-import scRadioTooltipGroup from './components/radioTooltipGroup.vue'
 
-import type { TooltipButtonProps } from './components/radioTooltipGroup.vue'
+import scRadioGroup from './components/ScRadioGroup.vue'
+import scRadioTooltipGroup from "./components/ScRadioTooltipGroup.vue";
+import { TooltipButtonProps } from './components/types'
+
 import { ExtractPropTypes } from "vue/dist/vue";
 
 export const ScRadioGroup = withInstall(scRadioGroup);
 export const ScRadioTooltipGroup = withInstall(scRadioTooltipGroup);
 
-export declare type TooltipButtonPropsType = Partial<ExtractPropTypes<typeof TooltipButtonProps>>
+export declare type TooltipButtonPropsType = Partial<ExtractPropTypes<TooltipButtonProps>>

@@ -1,7 +1,7 @@
 ---
 map:
   path: /contextMenu
-realPath: src/contextMenu/index.zh-CN.md
+realPath: src/ContextMenu/index.zh-CN.md
 ---
 
 ## 简介

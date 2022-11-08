@@ -3,16 +3,22 @@ import { resolve } from 'path'
 import type { ConfigEnv, UserConfig } from 'vite'
 import { createVitePlugins } from './build/plugin'
 import { themeVariables } from './build/theme'
-console.log('themeVariables: ', themeVariables);
+
+function pathResolve(dir: string) {
+  return resolve(process.cwd(), '.', dir);
+}
 
 export default ({ command }: ConfigEnv): UserConfig => {
   const isBuild = command === 'build';
 
   return {
     resolve: {
-      alias: {
-        '@': `${resolve(__dirname, 'src')}`
-      }
+      alias: [
+        {
+          find: /\/@\//,
+          replacement: pathResolve('src') + '/',
+        }
+      ]
     },
     build: {
       lib: {
@@ -30,7 +36,11 @@ export default ({ command }: ConfigEnv): UserConfig => {
             vue: 'Vue',
           },
         },
-      }
+      },
+      // 传递给 @rollup/plugin-commonjs 插件的选项。
+      commonjsOptions: {},
+      // 传递给 @rollup/plugin-dynamic-import-vars 的选项。
+      dynamicImportVarsOptions: {},
     },
 
     // 调整控制台输出的级别 'info' | 'warn' | 'error' | 'silent'
@@ -53,20 +63,16 @@ export default ({ command }: ConfigEnv): UserConfig => {
         },
       },
     },
-
-    // css: {
-    //   modules: {
-    //     generateScopedName: '[name]__[local]___[hash:base64:5]',
-    //     hashPrefix: 'prefix',
-    //   },
-    //   preprocessorOptions: {
-    //     less: {
-    //       javascriptEnabled: true,
-    //       modifyVars: themeVariables,
-    //     },
-    //   },
-    // },
-
-    plugins: createVitePlugins(isBuild)
+    plugins: createVitePlugins(isBuild),
+    optimizeDeps: {
+      //@iconify/iconify：依赖是由@purge-icons/generated动态虚拟加载的，所以需要显式指定
+      include: [
+        '@vue/runtime-core',
+        '@vue/shared',
+        '@iconify/iconify',
+        // 'ant-design-vue/es/locale/zh_CN',
+        // 'ant-design-vue/es/locale/en_US',
+      ],
+    }
   }
 }

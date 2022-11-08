@@ -1,7 +1,7 @@
 ---
 map:
   path: /contextMenu
-realPath: src/contextMenu/index.en-US.md
+realPath: src/ContextMenu/index.en-US.md
 ---
 
 ## Guide
