@@ -1,4 +1,4 @@
-import { withInstall } from "../utils"
+import { withInstall } from "../../utils"
 
 import scRadioGroup from './components/ScRadioGroup.vue'
 import scRadioTooltipGroup from "./components/ScRadioTooltipGroup.vue";

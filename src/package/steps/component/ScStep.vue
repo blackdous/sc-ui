@@ -48,11 +48,11 @@
     </div>
   </div>
 </template>
-<!-- <script lang="ts">
+<script lang="ts">
 export default {
   name: 'ScStep'
 }
-</script> -->
+</script>
 <script setup lang="ts">
 import {
   computed,
@@ -68,7 +68,7 @@ import type { Ref, CSSProperties } from 'vue'
 import { Icon } from '@iconify/vue'
 
 // import { StepPropType } from './type'
-import { iconPropType } from "../../utils"
+import { iconPropType } from "/@/utils"
 
 export interface IStepsProps {
   space: number | string

@@ -1,6 +1,6 @@
 ---
 map:
-  path: /model
+  path: /alert
 ---
 
 ## 简介

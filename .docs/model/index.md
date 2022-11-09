@@ -1,7 +1,7 @@
 ---
 map:
   path: /model
-realPath: src/Model/index.zh-CN.md
+realPath: src/package/alert/index.zh-CN.md
 ---
 
 ## 简介

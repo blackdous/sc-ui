@@ -1,7 +1,7 @@
 ---
 map:
   path: /steps
-realPath: src/Steps/index.zh-CN.md
+realPath: src/package/Steps/index.zh-CN.md
 ---
 
 # Steps步骤条

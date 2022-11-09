@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
 
-import { withInstall } from "../utils"
+import { withInstall } from "../../utils"
 
 import scSteps from './component/ScSteps.vue'
 import scStep from './component/ScStep.vue'

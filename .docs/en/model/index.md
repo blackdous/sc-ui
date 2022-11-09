@@ -1,7 +1,7 @@
 ---
 map:
   path: /model
-realPath: src/Model/index.en-US.md
+realPath: src/package/alert/index.en-US.md
 ---
 
 ## Guide

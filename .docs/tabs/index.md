@@ -1,7 +1,7 @@
 ---
 map:
   path: /tabs
-realPath: src/Tabs/index.zh-CN.md
+realPath: src/package/Tabs/index.zh-CN.md
 ---
 
 ## 简介
@@ -25,4 +25,4 @@ realPath: src/Tabs/index.zh-CN.md
 
 ## steps 新增属性
 
-<API src="./components/ScTabs1.vue" lang="zh"></API>
+<API src="./components/ScTabs.vue" lang="zh"></API>

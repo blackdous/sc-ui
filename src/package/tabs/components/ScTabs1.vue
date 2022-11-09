@@ -6,6 +6,9 @@
     <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
+    <!-- <template #default="data">
+      <slot v-bind="data || {}"></slot>
+    </template> -->
   </Tabs>
 </template>
 
@@ -37,10 +40,20 @@ export default defineComponent({
   name: 'ScTabs',
   inheritAttrs: false,
   component: [Tabs],
-  setup (props:TabsProps) {
+  props: {
+    type: {
+      type: String,
+      defalut: 'card'
+    },
+    styleMode: {
+      type: String,
+      default: ''
+    }
+  },
+  setup (props:TabsProps, { attrs }) {
     console.log('props: ', props);
     const newProps = computed(() => {
-      return props;
+      return { ...attrs, ...props };
     })
     console.log('newProps: ', newProps.value);
     const className = computed(() => {

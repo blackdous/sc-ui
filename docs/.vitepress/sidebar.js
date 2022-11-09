@@ -31,6 +31,9 @@ export const sidebar = {
       text: 'Feedback',
       items: [
         {
+          text: 'Alert', link: '/en/alert/'
+        },
+        {
           text: 'Model', link: '/en/model/'
         },
         {
@@ -77,6 +80,9 @@ export const sidebar = {
     {
       text: '反馈',
       items: [
+        {
+          text: '警告提示', link: '/alert/'
+        },
         {
           text: '弹框', link: '/model/'
         },

@@ -1,7 +1,7 @@
 ---
 map:
   path: /tabs
-realPath: src/Tabs/index.en-US.md
+realPath: src/package/Tabs/index.en-US.md
 ---
 
 ## Guide
