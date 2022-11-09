@@ -4,7 +4,8 @@ import DefaultTheme from 'vitepress/theme';
 import DemoBlock from '@ruabick/vitepress-demo-block';
 import '@ruabick/vitepress-demo-block/dist/style.css';
 import './var.css';
-// import './theme.css';
+
+
 
 export default {
   ...DefaultTheme,
@@ -14,5 +15,6 @@ export default {
     // router is VitePress' custom router. `siteData` is
     // a `ref` of current site-level metadata.
     app.component('demo', DemoBlock);
+    app.provide('globalApp', app)
   },
 };

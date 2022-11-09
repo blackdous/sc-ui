@@ -1,4 +1,5 @@
 import type { App, Plugin, Component, PropType } from 'vue'
+import { EventDataNode } from './nodeType'
 
 export const withInstall = <T>(component: T, alias?: string) => {
   const comp = component as any
@@ -18,3 +19,9 @@ export const iconPropType = definePropType<string | Component>([
   Object,
   Function,
 ])
+
+export const tuple = <T extends string[]>(...args: T) => args;
+
+export const tupleNum = <T extends number[]>(...args: T) => args;
+
+export type NodeMouseEventHandler = (e: MouseEvent, node: EventDataNode) => void;

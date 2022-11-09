@@ -7,6 +7,12 @@ import './style/index.less';
 import { ScSteps, ScStep } from "./package/steps"
 import { ScTabs } from './package/tabs'
 import { ScRadioGroup, ScRadioTooltipGroup } from './package/radio'
+import { ScAlert } from './package/alert'
+
+
+import { installGlobalDireactives } from './direactives'
+import ClickOutside from './direactives/clickOutside'
+import TextCollapse from './direactives/textCollapse'
 
 message.config({
   duration: 2, // 持续时间
@@ -18,7 +24,8 @@ const components = [
   ScStep,
   ScTabs,
   ScRadioGroup,
-  ScRadioTooltipGroup
+  ScRadioTooltipGroup,
+  ScAlert
 ]
 
 const install = (app: App) => {
@@ -38,9 +45,12 @@ export {
   ScStep,
   ScTabs,
   ScRadioGroup,
-  ScRadioTooltipGroup
+  ScRadioTooltipGroup,
+  ScAlert
 }
 
 export * from './types'
+
+export { installGlobalDireactives, ClickOutside, TextCollapse }
 
 export default ScUi;

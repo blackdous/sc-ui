@@ -1,7 +1,7 @@
 ---
 map:
   path: /steps
-realPath: src/package/Steps/index.en-US.md
+realPath: src/package/steps/index.en-US.md
 ---
 
 ## Guide

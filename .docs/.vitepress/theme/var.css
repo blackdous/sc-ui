@@ -172,3 +172,11 @@
   margin-right: 8px;
   outline: 0
 }
+
+.demo-slot .ant-alert {
+  margin-bottom: 20px; 
+}
+
+.vitepress-demo {
+  margin-top: 10px;
+}

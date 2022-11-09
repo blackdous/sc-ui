@@ -1,7 +1,7 @@
 ---
 map:
   path: /radio
-realPath: src/package/Radio/index.en-US.md
+realPath: src/package/radio/index.en-US.md
 ---
 
 ## Guide

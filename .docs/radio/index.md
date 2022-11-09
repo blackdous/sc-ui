@@ -1,7 +1,7 @@
 ---
 map:
   path: /radio
-realPath: src/package/Radio/index.zh-CN.md
+realPath: src/package/radio/index.zh-CN.md
 ---
 
 ## 简介

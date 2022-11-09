@@ -1,6 +1,7 @@
 ---
 map:
   path: /alert
+realPath: src/package/alert/index.zh-CN.md
 ---
 
 # Alert 警告

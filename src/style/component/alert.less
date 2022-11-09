@@ -1,0 +1,54 @@
+.scAlert {
+  &.ant-alert {
+    border-radius: 4px;
+    padding: 10px 20px;
+    border-color: transparent;
+  }
+  .ant-alert-icon {
+    font-size: 16px;
+  }
+  &.ant-alert-with-description {
+    .ant-alert-message {
+      font-size: 14px;
+      color: @heading-color;
+    }
+    .ant-alert-icon {
+      margin-top: 2px;
+      font-size: 18px;
+    }
+    .ant-alert-close-icon {
+      padding-top: 4px;
+    }
+    .ant-alert-description {
+      font-size: 13px;
+      color: @text-color;
+    }
+  }
+  .ant-alert-close-icon {
+    color: @text-color;
+  }
+  &.ant-alert-info {
+    background-color: @alert-info;
+    &.textColor .ant-alert-message, .ant-alert-icon {
+      color: @primary-color;
+    }
+  }
+  &.ant-alert-success {
+    background-color: @alert-success;
+    &.textColor .ant-alert-message, .ant-alert-icon {
+      color: @success-color;
+    }
+  }
+  &.ant-alert-error {
+    background-color: @alert-error;
+    &.textColor .ant-alert-message, .ant-alert-icon {
+      color: @error-color;
+    }
+  }
+  &.ant-alert-warning {
+    &.textColor .ant-alert-message, .ant-alert-icon {
+      color: @warning-color;
+    }
+    background-color: @alert-warning;
+  }
+}

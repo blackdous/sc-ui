@@ -1,6 +1,6 @@
 ---
 map:
-  path: /model
+  path: /alert
 realPath: src/package/alert/index.en-US.md
 ---
 

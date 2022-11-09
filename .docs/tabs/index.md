@@ -1,7 +1,7 @@
 ---
 map:
   path: /tabs
-realPath: src/package/Tabs/index.zh-CN.md
+realPath: src/package/tabs/index.zh-CN.md
 ---
 
 ## 简介
