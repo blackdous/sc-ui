@@ -8,6 +8,7 @@ import { ScSteps, ScStep } from "./package/steps"
 import { ScTabs } from './package/tabs'
 import { ScRadioGroup, ScRadioTooltipGroup } from './package/radio'
 import { ScAlert } from './package/alert'
+import { ScModal } from './package/modal'
 
 
 import { installGlobalDireactives } from './direactives'
@@ -25,7 +26,8 @@ const components = [
   ScTabs,
   ScRadioGroup,
   ScRadioTooltipGroup,
-  ScAlert
+  ScAlert,
+  ScModal
 ]
 
 const install = (app: App) => {
@@ -46,7 +48,8 @@ export {
   ScTabs,
   ScRadioGroup,
   ScRadioTooltipGroup,
-  ScAlert
+  ScAlert,
+  ScModal
 }
 
 export * from './types'

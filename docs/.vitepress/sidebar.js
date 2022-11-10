@@ -34,7 +34,7 @@ export const sidebar = {
           text: 'Alert', link: '/en/alert/'
         },
         {
-          text: 'Model', link: '/en/model/'
+          text: 'Modal', link: '/en/modal/'
         },
         {
           text: 'contextMenu', link: '/contextMenu/'
@@ -84,7 +84,7 @@ export const sidebar = {
           text: '警告提示', link: '/alert/'
         },
         {
-          text: '弹框', link: '/model/'
+          text: '弹框', link: '/modal/'
         },
         {
           text: '鼠标右键', link: '/contextMenu/'

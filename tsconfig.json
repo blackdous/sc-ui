@@ -1,63 +1,61 @@
 {
   "compilerOptions": {
-    // "baseUrl": "./",
-    // "outDir": "dist",
-    // "sourceMap": false,
-    // "target": "ES2022",
-    // "module": "ES2022",
-    // "moduleResolution": "node",
-    // "allowJs": false,
-    // "noUnusedLocals": true,
-    // "strictNullChecks": true,
-    // "noImplicitAny": true,
-    // "noImplicitThis": true,
-    // "experimentalDecorators": true,
-    // "resolveJsonModule": true,
-    // "esModuleInterop": true,
-    // "removeComments": false,
-    // "declaration": true,
-    // "isolatedModules": true,
-    // "jsx": "preserve",
-    // "lib": [
-    //   "esnext",
-    //   "dom",
-    // ],
-    // "types": [],
-    // "skipLibCheck": true,
-    // // "files": "src/index.ts",
-    // "emitDeclarationOnly": true,
-    // "declarationDir": "dist",
-    // "rootDir": ".",
-    // ↓指定ECMAScript目标版本，esnext为最新版本
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    // ↓指定生成哪个模块系统代码，esnext为最新版本
-    "module": "esnext",
-    // ↓决定如何处理模块。
+    "baseUrl": "./",
+    "outDir": "dist",
+    "sourceMap": false,
+    "target": "ES2022",
+    "module": "ES2022",
     "moduleResolution": "node",
-    "baseUrl": ".",
-    // ↓启用所有严格类型检查选项。
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
+    "allowJs": false,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "experimentalDecorators": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "removeComments": false,
+    "declaration": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
     "lib": [
       "esnext",
-      "dom"
+      "dom",
     ],
-    "composite": true,
-    // 开启类型定义文件生成的开关
-    "noEmit": false,
-    "declaration": true,
-    // 类型定义文件生成的目标目录
-    "outDir": "types",
-    // 只emit类型定义文件，而不emit其他诸如source-map等
+    "types": [],
+    "skipLibCheck": true,
+    // "files": "src/index.ts",
     "emitDeclarationOnly": true,
+    "declarationDir": "dist",
+    "rootDir": ".",
+    // ↓指定ECMAScript目标版本，esnext为最新版本
+    // "target": "esnext",
+    // "useDefineForClassFields": true,
+    // // ↓指定生成哪个模块系统代码，esnext为最新版本
+    // "module": "esnext",
+    // // ↓决定如何处理模块。
+    // "moduleResolution": "node",
+    // "baseUrl": "./",
+    // // ↓启用所有严格类型检查选项。
+    // "strict": true,
+    // "jsx": "preserve",
+    // "sourceMap": true,
+    // "resolveJsonModule": true,
+    // "esModuleInterop": true,
+    // "lib": [
+    //   "esnext",
+    //   "dom"
+    // ],
+    // "composite": true,
+    // // 开启类型定义文件生成的开关
+    // "noEmit": false,
+    // "declaration": true,
+    // // 类型定义文件生成的目标目录
+    // "outDir": "types",
+    // // 只emit类型定义文件，而不emit其他诸如source-map等
+    // "emitDeclarationOnly": true,
     "paths": {
-      "/@/*": [
-        "src/*"
-      ],
+      "/@/*": ["src/*"],
       "sc-ui": [
         "src/index.ts"
       ]
