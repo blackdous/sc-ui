@@ -14,7 +14,6 @@ const nodeList: FlushList = new Map()
 
 const TextCollapse: ObjectDirective = {
   mounted (el: HTMLElement, binding: DirectiveBinding) {
-    // console.log('binding: ', binding.value);
     const divDom = document.createElement('div')
     const spanDom = document.createElement('span')
     spanDom.innerText = '收起'
@@ -36,7 +35,6 @@ const TextCollapse: ObjectDirective = {
     })
     el?.parentNode?.appendChild(divDom)
     if (binding.value === 'close') {
-      // @ts-ignore
       divDom.click()
     }
   },

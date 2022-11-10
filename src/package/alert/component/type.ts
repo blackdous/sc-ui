@@ -28,3 +28,5 @@ export const alertProps = () => ({
   onClose: Function as PropType<NodeMouseEventHandler>,
   textColor: { type: Boolean, default: undefined },
 });
+
+export const api = alertProps();
