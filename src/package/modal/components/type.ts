@@ -5,10 +5,12 @@ import { VueNode } from '../../../utils';
 
 type getContainerFunc = () => HTMLElement;
 export const modalProps = () => ({
+  showTooltip: { type: Boolean, default: false },
+  tooltipDes: { type: String, default: '' },
   type: String,
-  prefixCls: {
-    type: String
-  },
+  prefixCls: { type: String },
+  onCancelDisable: { type: Boolean, default: false },
+  onOkDisable: { type: Boolean, default: false },
   visible: { type: Boolean, default: true },
   confirmLoading: { type: Boolean, default: undefined },
   title: PropTypes.any,

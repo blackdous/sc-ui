@@ -12,6 +12,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 import legacy from './legacy';
 import visualizerPlugin from './visualizer';
+import windicss from './windicss';
 
 
 import {

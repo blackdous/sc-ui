@@ -6,11 +6,21 @@
     cancel-text="取消"
     ok-text="确认"
     maskClosable
+    :type="type"
   >
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>
-  <Button @click="openModal">
-    打开
+  <Button @click="() => { openModal() }">
+    info
+  </Button>
+  <Button @click="() => { type = 'success'; openModal() }">
+    success
+  </Button>
+  <Button @click="() => { type = 'warning'; openModal() }">
+    warning
+  </Button>
+  <Button @click="() => { type = 'error'; openModal() }">
+    error
   </Button>
 </template>
 
@@ -23,6 +33,7 @@ import { ScModal } from 'sc-ui'
 import "ant-design-vue/dist/antd.css"
 
 const visible: Ref<boolean> = ref(false)
+const type = ref<string>('info')
 
 const openModal = () => {
   visible.value = true

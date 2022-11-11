@@ -1,12 +1,29 @@
 <template>
   <ScModal 
     v-model:visible="visible"
-    title="Basic Modal" 
+    title="Basic Modal"
     @ok="handleOk"
     cancel-text="取消"
     ok-text="确认"
     maskClosable
   >
+    <template #footer>
+      <div class="scModal-footer">
+        <Button
+          class="scModal-footer__cancel"
+          @click="handleOk"
+        >
+          取消
+        </Button>
+        <Button
+          class="scModal-footer__cancel"
+          type="primary"
+          @click="handleOk"
+        >
+          确认
+        </Button>
+      </div>
+    </template>
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>
   <Button @click="openModal">
@@ -30,7 +47,7 @@ const openModal = () => {
 
 const handleOk = (e: MouseEvent) => {
   console.log(e);
-  visible.value = false;
+  visible.value = !visible.value;
 };
 
 </script>

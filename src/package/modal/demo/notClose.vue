@@ -6,6 +6,7 @@
     cancel-text="取消"
     ok-text="确认"
     maskClosable
+    :closable="false"
   >
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>

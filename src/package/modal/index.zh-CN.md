@@ -11,6 +11,38 @@ map:
 
 <demo src="./demo/basic.vue"
   language="vue"
-  title="API 与 Ant-design-vue的 RadioGroup api相同，新增了styleMode属性"
+  title="默认对话框"
+  >
+</demo>
+
+## 自定义title 对话框
+
+<demo src="./demo/selftHeader.vue"
+  language="vue"
+  title="自定义title 组件"
+  >
+</demo>
+
+## 无关闭按钮对话框
+
+<demo src="./demo/notClose.vue"
+  language="vue"
+  title="无关闭按钮对话框"
+  >
+</demo>
+
+## 自定义footer 对话框
+
+<demo src="./demo/selfFooter.vue"
+  language="vue"
+  title="自定义footer 对话框"
+  >
+</demo>
+
+## 有图标对话框
+
+<demo src="./demo/type.vue"
+  language="vue"
+  title="有图标对话框"
   >
 </demo>

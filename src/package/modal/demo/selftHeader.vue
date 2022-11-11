@@ -1,12 +1,14 @@
 <template>
   <ScModal 
     v-model:visible="visible"
-    title="Basic Modal" 
     @ok="handleOk"
     cancel-text="取消"
     ok-text="确认"
     maskClosable
   >
+    <template #title>
+      <div>1111111</div>
+    </template>
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>
   <Button @click="openModal">
