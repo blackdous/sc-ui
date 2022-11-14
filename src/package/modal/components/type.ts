@@ -1,9 +1,20 @@
-import type { PropType, CSSProperties } from 'vue'
+import type { PropType, CSSProperties, ComputedRef } from 'vue'
 import type { LegacyButtonType, ButtonProps } from 'ant-design-vue/es/button/buttonTypes'
 import { PropTypes } from '../../../utils/propTypes'
 import { VueNode } from '../../../utils';
+import { UseDraggableOptions } from '../../../types/draggable'
 
 type getContainerFunc = () => HTMLElement;
+export interface DraggableType {
+  x: number,
+  y: number,
+  isDragging: boolean,
+  position: {
+    x: number,
+    y: number
+  },
+  style: ComputedRef<string>
+}
 export const modalProps = () => ({
   showTooltip: { type: Boolean, default: false },
   tooltipDes: { type: String, default: '' },
@@ -11,6 +22,11 @@ export const modalProps = () => ({
   prefixCls: { type: String },
   onCancelDisable: { type: Boolean, default: false },
   onOkDisable: { type: Boolean, default: false },
+  isDraggable: { type: Boolean, default: false },
+  DragOptions: {
+    type: Object as PropType<UseDraggableOptions>
+  },
+  dragChange : Function as PropType<(draggable: DraggableType) => void>,
   visible: { type: Boolean, default: true },
   confirmLoading: { type: Boolean, default: undefined },
   title: PropTypes.any,

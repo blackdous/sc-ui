@@ -1,9 +1,7 @@
-@steps-prefix-cls: 'scStep';
-.scStep {
+@stepScope: ~'@{prefixCls}Step';
+.@{stepScope} {
   position: relative;
   flex-shrink: 1;
-
-
   &-head {
     position: relative;
     width: 100%;

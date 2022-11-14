@@ -16,6 +16,17 @@ export const sidebar = {
       ],
     },
     {
+      text: 'Data Display',
+      items: [
+        {
+          text: 'Tabs', link: '/en/tabs/'
+        },
+        {
+          text: '表格', link: '/en/table/'
+        }
+      ]
+    },
+    {
       text: 'Data Entry',
       items: [
         { text: 'Radio', link: '/en/radio/' }
@@ -48,14 +59,6 @@ export const sidebar = {
           text: 'Password', link: '/en/password/'
         }
       ]
-    },
-    {
-      text: 'Data Display',
-      items: [
-        {
-          text: 'Tabs', link: '/en/tabs/'
-        }
-      ]
     }
   ],
   '/': [
@@ -69,6 +72,17 @@ export const sidebar = {
       text: '导航',
       items: [
         { text: '步骤条', link: '/steps/' }
+      ]
+    },
+    {
+      text: '数据展示',
+      items: [
+        {
+          text: '标签页', link: '/tabs/'
+        },
+        {
+          text: '表格', link: '/table/'
+        }
       ]
     },
     {
@@ -96,14 +110,6 @@ export const sidebar = {
       items: [
         {
           text: '密码框', link: '/password/'
-        }
-      ]
-    },
-    {
-      text: '数据展示',
-      items: [
-        {
-          text: '标签页', link: '/tabs/'
         }
       ]
     }
