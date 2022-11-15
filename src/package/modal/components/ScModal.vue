@@ -6,43 +6,41 @@
     ref="modalRef"
   >
     <template #[item]="data" v-for="item in ['default']">
-      <slot :name="item" v-bind="data || {}" ></slot>
-    </template>
-    <template v-if="isSlotTitle" #title>
-      <header ref="modalTitleRef" :class="{'draggable-event': vBind?.isDraggable}">
-        <span v-if="type" :class="[prefixCls + '-status-icon']">
-          <!-- <component :is="StatusIconName"></component> -->
+      <div v-if="vBind.type" :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + vBind.type]">
+        <span v-if="type" :class="[modalPrefixCls + '-status-icon']">
           <InfoCircleFilled v-if="vBind.type === 'info'" />
           <CheckCircleFilled v-else-if="vBind.type === 'success'" />
           <ExclamationCircleFilled v-else-if="vBind.type === 'warning'" />
           <CloseCircleFilled v-else-if="vBind.type === 'error'" />
         </span>
+        <span :class="[modalPrefixCls + '-txt']">
+          {{ vBind.infoDes }}
+        </span>
+      </div>
+      <slot :name="item" v-bind="data || {}" ></slot>
+    </template>
+    <template v-if="isSlotTitle" #title>
+      <header ref="modalTitleRef" :class="{'draggable-event': vBind?.isDraggable}">
         <slot name="title"></slot>
-        <span v-if="vBind.showTooltip" :class="[prefixCls + '-tooltip']">
+        <span v-if="vBind.showTooltip" :class="[modalPrefixCls + '-tooltip']">
           <Tooltip>
             <template #title>
               {{ vBind.tooltipDes }}
             </template>
-            <question-circle-outlined :class="[prefixCls + '-tooltip__icon']" />
+            <question-circle-outlined :class="[modalPrefixCls + '-tooltip__icon']" />
           </Tooltip>
         </span>
       </header>
     </template>
     <template v-if="!isSlotTitle" #title>
       <header ref="modalTitleRef" :class="{'draggable-event': vBind?.isDraggable}">
-        <span v-if="type" :class="[prefixCls + '-status-icon']">
-          <InfoCircleFilled v-if="vBind.type === 'info'" />
-          <CheckCircleFilled v-else-if="vBind.type === 'success'" />
-          <ExclamationCircleFilled v-else-if="vBind.type === 'warning'" />
-          <CloseCircleFilled v-else-if="vBind.type === 'error'" />
-        </span>
         {{ vBind.title }}
-        <span v-if="vBind.showTooltip" :class="[prefixCls + '-tooltip']">
+        <span v-if="vBind.showTooltip" :class="[modalPrefixCls + '-tooltip']">
           <Tooltip>
             <template #title>
               {{ vBind.tooltipDes }}
             </template>
-            <question-circle-outlined :class="[prefixCls + '-tooltip__icon']" />
+            <question-circle-outlined :class="[modalPrefixCls + '-tooltip__icon']" />
           </Tooltip>
         </span>
       </header>
@@ -52,10 +50,10 @@
       <slot name="footer"> </slot>
     </template>
     <template v-if="!isSlotFooter" #footer>
-      <div :class="[prefixCls + '-footer']">
+      <div :class="footerClassName">
         <Button
           :disabled="vBind.onCancelDisable"
-          :class="[prefixCls + '-footer__cancel']"
+          :class="[modalPrefixCls + '-footer__cancel']"
           @click="closeVisable"
         >
           {{ vBind.cancelText }}
@@ -63,7 +61,7 @@
         <Button
           :disabled="vBind.onCancelDisable"
           :loading="vBind.confirmLoading"
-          :class="[prefixCls + '-footer__ok']"
+          :class="[modalPrefixCls + '-footer__ok']"
           type="primary"
           @click="vBind.onOk"
         >
@@ -88,8 +86,9 @@ import {
 } from '@ant-design/icons-vue';
 
 import { modalProps } from './type'
+import { prefixCls } from '../../../constans/event';
 
-const prefixCls = 'scModal'
+const modalPrefixCls = prefixCls + 'Modal'
 const emits = defineEmits(['update:visible', 'dragChange'])
 const vBind = defineProps(modalProps())
 
@@ -113,12 +112,27 @@ const props = computed(() => {
 const slots = useSlots()
 
 const className = computed(() => {
-  const classNames = ['scModal']
+  const classNames = [modalPrefixCls]
   if (vBind.type) {
-    classNames.push('scModal-' + vBind.type)
-    classNames.push('scModal-status')
+    classNames.push(modalPrefixCls + '-' + vBind.type)
   }
   return classNames
+})
+
+const footerClassName = computed(() => {
+  const footerClassNames = [modalPrefixCls + '-footer']
+  switch(vBind.footerAlign) {
+    case 'left':
+      footerClassNames.push('text-left')
+      break;
+    case 'right':
+      footerClassNames.push('text-right')
+      break;
+    case 'center':
+      footerClassNames.push('text-center')
+      break;
+  }
+  return footerClassNames
 })
 
 const isSlotTitle = computed(() => {

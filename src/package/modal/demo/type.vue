@@ -7,20 +7,22 @@
     ok-text="确认"
     maskClosable
     :type="type"
+    :infoDes="info"
+    footerAlign="left"
   >
-    <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
+    <div style="padding: 32px; background-color: #fff;">我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>
   <Space>
-    <Button @click="() => { type = 'info'; openModal() }">
+    <Button @click="() => { type = 'info'; openModal('infoinfoinfo') }">
       info
     </Button>
-    <Button @click="() => { type = 'success'; openModal() }">
+    <Button @click="() => { type = 'success'; openModal('successsuccesssuccess') }">
       success
     </Button>
-    <Button @click="() => { type = 'warning'; openModal() }">
+    <Button @click="() => { type = 'warning'; openModal('warningwarningwarningwarning') }">
       warning
     </Button>
-    <Button @click="() => { type = 'error'; openModal() }">
+    <Button @click="() => { type = 'error'; openModal('errorerrorerrorerror') }">
       error
     </Button>
   </Space>
@@ -36,8 +38,10 @@ import "ant-design-vue/dist/antd.css"
 
 const visible: Ref<boolean> = ref(false)
 const type = ref<string>('info')
+const info = ref<string>('infoinfoinfo')
 
-const openModal = () => {
+const openModal = (infoDes: string) => {
+  info.value = infoDes
   visible.value = true
 }
 

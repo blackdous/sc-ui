@@ -19,6 +19,7 @@ export const modalProps = () => ({
   showTooltip: { type: Boolean, default: false },
   tooltipDes: { type: String, default: '' },
   type: String,
+  infoDes: String,
   prefixCls: { type: String },
   onCancelDisable: { type: Boolean, default: false },
   onOkDisable: { type: Boolean, default: false },
@@ -27,6 +28,10 @@ export const modalProps = () => ({
     type: Object as PropType<UseDraggableOptions>
   },
   dragChange : Function as PropType<(draggable: DraggableType) => void>,
+  footerAlign: {
+    type: String,
+    default: 'center'
+  },
   visible: { type: Boolean, default: true },
   confirmLoading: { type: Boolean, default: undefined },
   title: PropTypes.any,

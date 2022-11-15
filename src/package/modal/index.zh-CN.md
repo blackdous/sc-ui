@@ -23,6 +23,14 @@ map:
   >
 </demo>
 
+## 带tooltip的 对话框
+
+<demo src="./demo/tooltip.vue"
+  language="vue"
+  title="带tooltip的 对话框"
+  >
+</demo>
+
 ## 无关闭按钮对话框
 
 <demo src="./demo/notClose.vue"
