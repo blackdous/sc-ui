@@ -15,7 +15,7 @@
           <template #title>
             {{item.tooltipDes}}
           </template>
-          {{item.label + '11111'}}
+          {{item.label}}
         </Tooltip>
       </template>
       <template v-else>
