@@ -23,7 +23,9 @@
       <header ref="modalTitleRef" :class="{'draggable-event': vBind?.isDraggable}">
         <slot name="title"></slot>
         <span v-if="vBind.showTooltip" :class="[modalPrefixCls + '-tooltip']">
-          <Tooltip>
+          <Tooltip
+            overlayClassName="scTooltip-white"
+          >
             <template #title>
               {{ vBind.tooltipDes }}
             </template>
@@ -36,7 +38,9 @@
       <header ref="modalTitleRef" :class="{'draggable-event': vBind?.isDraggable}">
         {{ vBind.title }}
         <span v-if="vBind.showTooltip" :class="[modalPrefixCls + '-tooltip']">
-          <Tooltip>
+          <Tooltip
+            overlayClassName="scTooltip-white"
+          >
             <template #title>
               {{ vBind.tooltipDes }}
             </template>

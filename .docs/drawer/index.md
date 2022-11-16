@@ -1,6 +1,7 @@
 ---
 map:
   path: /drawer
+realPath: src/package/drawer/index.zh-CN.md
 ---
 
 # Alert 警告

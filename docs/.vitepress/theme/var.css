@@ -47,7 +47,7 @@
   }
 }
 
-.vp-doc table {
+/* .vp-doc table {
   display: table;
   width: 100%;
   font-size: 15px;
@@ -76,7 +76,7 @@
 .vp-doc table td:first-child {
   font-size: 15px;
   font-weight: 600;
-}
+} */
 
 .demo {
   background-color: #fff;

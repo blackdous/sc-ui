@@ -11,7 +11,10 @@
       :disabled="item.disabled"
     >
       <template v-if="item.tooltipDis">
-        <Tooltip v-bind="item.toolOptions">
+        <Tooltip 
+          v-bind="item.toolOptions"
+          overlayClassName="scTooltip-white"
+        >
           <template #title>
             {{item.tooltipDes}}
           </template>
@@ -45,7 +48,8 @@ export interface TooltipButtonProps {
   tooltipDes?: string,
   label?: string,
   value?: string | number,
-  disabled?: boolean
+  disabled?: boolean,
+  overlayClassName?: string
 }
 
 const props = defineProps({

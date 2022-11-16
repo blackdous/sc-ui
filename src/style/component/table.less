@@ -1,5 +1,68 @@
-@tableScope: ~'@{prefixCls}Modal';
+@tableScope: ~'@{prefixCls}Table';
+@tableFilterScope: ~'@{prefixCls}TableFilter';
+@tableActionsScope: ~'@{prefixCls}Actions';
 
 .@{tableScope} {
+  padding: @padding-6;
+  .ant-table-thead > tr > th {
+    background: @table-header-bg;
+    padding: 8px 16px;
+  }
+  .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+    background: @table-td-hover;
+  }
+  .ant-table-tbody > tr > td {
+    border-bottom: 1px solid @table-border-color;
+    padding: 10px 16px;
+  }
+  .ant-table-tbody > .ant-table-row:hover > td {
+    background: @table-td-hover;
+  }
+  .ant-table-tbody > .ant-table-row-selected > td {
+    background: #f0f6ff;
+  }
+  .ant-table-thead > tr > th, .ant-table-tbody > tr > td {
+    white-space: nowrap;
+  }
+  .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td {
+    // height: 48px;
+    padding: 8px 16px;
+  }
+  .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th {
+    line-height: 24px;
+    padding: 8px 16px;
+  }
+  .ant-table-small .ant-table-selection-column {
+    width: 48px;
+    min-width: 48px;
+  }
+}
+.@{tableFilterScope} {
+  display: flex;
   
+}
+.@{tableActionsScope} {
+  .ant-btn-link:not(:last-child) {
+    padding: 4px 0;
+    & > span {
+      position: relative;
+      padding: 0 8px;
+      &::after {
+        position: absolute;
+        content: "";
+        right: 0;
+        top: 4px;
+        width: 1px;
+        height: 16px;
+        background: @table-border-color;
+      }
+    }
+  }
+}
+
+.vp-doc th, .vp-doc td {
+  border: none;
+}
+.vp-doc tr {
+  border: none;
 }

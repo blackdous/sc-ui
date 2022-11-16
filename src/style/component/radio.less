@@ -3,11 +3,11 @@
 .ant-radio-group-outline.ant-radio-group.scLine {
   .ant-radio-button-wrapper {
     color :@text-color;
-    border-color: #ebeef2;
+    border-color: @radio-button-border;
     font-weight: 600;
-    background: #fafbfc;
+    background: @radio-button-bg;
     box-shadow: 0px 1px 3px 0px rgba(96, 108, 128, 0.1);
-    font-size: 12px;
+    font-size: @font-mini;
     height: 28px;
     line-height: 27px;
     &:last-child {
@@ -18,14 +18,14 @@
     }
   }
   .ant-radio-button-wrapper:not(:first-child)::before {
-    background-color: #ebeef2;
+    background-color: @radio-button-border;
   }
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
     border-color: fade(@primary-color, 40%);
     background-color: @bg-color;
     color: @primary-color;
     &:before {
-      background-color: #d9d9d9;
+      background-color: @border-color-base;
     }
   }
   .ant-radio-button-wrapper:not(.ant-radio-button-wrapper-disabled):hover {
@@ -36,7 +36,7 @@
     background-color: fade(@primary-color, 40%);
   }
   .ant-radio-button-wrapper-disabled {
-    background: #f5f5f5;
+    background: @steps-wait-color;
     color: @disabled-color;
   }
 }

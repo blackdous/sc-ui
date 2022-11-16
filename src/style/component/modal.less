@@ -13,7 +13,7 @@
   }
   .ant-modal-header {
     padding: 0;
-    font-size: 12px;
+    font-size:@font-mini;
     color: @white-color;
     background-color: @primary-color;
     border-radius: @border-r-6 @border-r-6 0 0;
@@ -36,12 +36,12 @@
     padding-left: 4px;
   }
   .@{modalScope}-tooltip__icon {
-    font-size: 14px;
+    font-size: @font-size-base;
     color: @white-color;
   }
   .ant-modal-body {
     padding: 12px 0;
-    font-size: 14px;
+    font-size: @font-size-base;
     color: @text-color-secondary;
     font-weight: 400;
     line-height: 22px;
@@ -50,21 +50,24 @@
     }
   }
   .ant-modal-footer {
-    padding: 10px 32px 20px;
+    padding: 10px 32px 32px;
+    button + button {
+      margin-left: 16px;
+    }
   }
   .ant-modal-close-x {
     padding-top: 2px;
-    font-size: 14px;
+    font-size: @font-size-base;
     color: @white-color;
   }
-  .ant-modal-close-icon {
-    &:hover {
-      background: @icon-hover-bgColor;
-    }
-    &:active {
-      background: @icon-active-bgColor;
-    }
-  }
+  // .ant-modal-close-icon {
+  //   &:hover {
+  //     background: @icon-hover-bgColor;
+  //   }
+  //   &:active {
+  //     background: @icon-active-bgColor;
+  //   }
+  // }
   .@{modalScope}-footer__cancel {
     background: @cancel-btn-color;
     &:hover, &:active, &:link, &:focus {
@@ -89,7 +92,7 @@
   .@{modalScope}-txt {
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: @font-size-base;
     padding-left: 8px;
     vertical-align: top;
   }

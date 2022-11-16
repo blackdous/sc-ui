@@ -2,27 +2,22 @@
   <div
     :class="className"
   >
-    <slot name="createButton"></slot>
+    <div :class="[className]">
+      <slot name="createButton"></slot>
+      <slot name="mutilpBtns"></slot>
+    </div>
+    <slot name="serach"></slot>
   </div>
 </template>
 
-<script lang='ts'>
+<script lang='ts' setup>
 import { prefixCls } from '../../../constans/event'
-import { computed, defineComponent } from 'vue'
+import { computed } from 'vue'
 
-export default defineComponent({
-  name: 'TableFilter',
-  setup (props, { slots }) {
-    console.log('slots: ', slots);
-    console.log('props: ', props);
-    const className = computed(() => {
-      const classNames = [prefixCls + 'tableFilter']
-      return classNames;
-    })
-    return {
-      className
-    }
-  }
+const tableHeaderPrefixClas = prefixCls + 'tableFilter'
+const className = computed(() => {
+  const classNames = [tableHeaderPrefixClas]
+  return classNames;
 })
 
 </script>
