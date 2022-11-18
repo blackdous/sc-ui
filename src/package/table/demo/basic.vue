@@ -6,17 +6,41 @@
       :data-source="data"
       :actions-props="actionProps"
       :create-button-options="{
+        show: true,
         text: '创建'
       }"
+      :mutilp-action-options="{
+        show: true,
+        mutilpList: radioList
+      }"
+      :serach-options="{
+        show: true,
+        showSelect: true,
+        typeList: radioList,
+        customSerachFunc: serachHanle
+      }"
       @onAction="handle"
+      @createClick="createClick"
+      @mutilpChange="mutilpChangeHandle"
+      @serachClick="serachHanle"
     >
+      <!-- <template #mutilpBtns>
+        <ScRadioTooltipGroup
+          :radio-list="radioList"
+          v-model:value="vRadioModel"
+        >
+        </ScRadioTooltipGroup>
+      </template> -->
     </ScTable>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ComputedRef, reactive, ref } from 'vue'
+import { ComputedRef, reactive, ref } from 'vue'
+import type { Ref } from 'vue'
 import { ScTable } from 'sc-ui'
+
+import type { TooltipButtonPropsType } from 'sc-ui'
 import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
@@ -38,6 +62,30 @@ const columns = [
     slots: { customRender: 'action' },
   },
 ];
+
+const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
+  {
+    tooltipDis: true,
+    toolOptions: {},
+    tooltipDes: "测试tooltip",
+    label: '按钮A',
+    value: 'a'
+  },
+  {
+    tooltipDis: false,
+    toolOptions: {},
+    tooltipDes: "测试tooltip",
+    label: '按钮B',
+    value: 'b'
+  },
+  {
+    tooltipDis: true,
+    toolOptions: {},
+    tooltipDes: "测试tooltip",
+    label: '按钮C',
+    value: 'c'
+  }
+])
 
 const actionProps = ref({
   showBtn: 2,
@@ -134,6 +182,19 @@ interface Data {
 
 const handle = (data: Data) => {
   console.log('Data: ', data);
+}
+
+const createClick = (data: ComputedRef) => {
+  console.log('Data: ', data);
+}
+
+const serachHanle = (data: ComputedRef) => {
+  console.log('Data: ', data);
+}
+
+const mutilpChangeHandle = (type: ComputedRef, tableRef: ComputedRef) => {
+  console.log('tableRef: ', tableRef);
+  console.log('type: ', type);
 }
 
 </script>

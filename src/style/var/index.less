@@ -5,14 +5,14 @@
 @border-r-3: 3px;
 @border-r-6: 6px;
 
-@padding: 4px;
-@padding-2: 8px;
-@padding-3: 12px;
-@padding-4: 16px;
-@padding-5: 20px;
-@padding-6: 24px;
-@padding-7: 28px;
-@padding-8: 32px;
+@space: 4px;
+@space-2: 8px;
+@space-3: 12px;
+@space-4: 16px;
+@space-5: 20px;
+@space-6: 24px;
+@space-7: 28px;
+@space-8: 32px;
 
 @font-media: 14px;
 @font-mini: 12px;
@@ -31,11 +31,14 @@
 @disabled-color: rgba(0, 0, 0, 0.25); // 失效色
 @border-radius-base: 3px; // 组件/浮层圆角
 @border-color-base: #d9d9d9; // 边框色
+@border-pagination-color: #dcdcdc;
 @box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
 
 @border-color: #e7e7e7;
 
 @white-color: #fff;
+
+@hover-shadow: fade(@link-color, 20);
 
 @shadow-1: 0px 1px 10px rgba(0, 0, 0, 0.05), 0px 4px 5px rgba(0, 0, 0, 0.08), 0px 2px 4px -1px rgba(0, 0, 0, 0.12);
 
@@ -78,7 +81,7 @@
 
 @cancel-btn-color: #E7E7E7;
 @icon-hover-bgColor: #EEEEEE;
-@icon-active-bgColor: #DCDCDC;
+@icon-active-bgColor: @border-pagination-color;
 
 @info-bg-color: fade(@primary-color, 6%);
 @success-bg-color: fade(@success-color, 6%);
@@ -92,5 +95,8 @@
 @table-header-bg: #E8F3FF;
 @table-td-hover: #F8FAFF;
 @table-border-color: @border-color;
-
 @table-Menu-bg: #E5F3FB;
+
+//************************* select
+
+@select-hover-bg: #f3f3f3;

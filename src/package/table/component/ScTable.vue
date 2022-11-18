@@ -1,26 +1,14 @@
 <template>
   <div :class="className">
     <TableFilter
-      v-bind="{...allOptions.createButtonOptions, ...allOptions.mutilpActionOptions, ...allOptions.serachOptions} "
+      :createButtonOptions="allOptions.createButtonOptions"
+      :mutilpActionOptions="allOptions.mutilpActionOptions"
+      :serachOptions="allOptions.serachOptions"
+      @createClick="createHandle"
+      @mutilpChange="mutilpChangeHandle"
     >
-      <template v-if="!isCreateButton" #createButton>
-        <Button
-          :class="[tablePrefixCls + '-creatBtn']"
-          type="primary"
-        >
-          <PlusOutlined></PlusOutlined>
-          {{ allOptions?.createButtonOptions?.text }}
-        </Button>
-      </template>
-      <template v-else #createButton>
-        <slot name="createButton"></slot>
-      </template>
-
-      <template v-if="isMutilpBtns" #mutilpBtns>
-
-      </template>
-      <template v-else #mutilpBtns>
-        <slot name="createButton"></slot>
+      <template template #[item]="data" v-for="item in Object.keys($slots).filter(item => ['createButton', 'serach', 'mutilpBtns'].includes(item))" :key="item">
+        <slot :name="item" v-bind="data || {}"></slot>
       </template>
     </TableFilter>
     <Table
@@ -60,9 +48,8 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, useAttrs, useSlots, defineProps, ref, ComputedRef, provide, defineEmits } from 'vue'
-import { Table, Button } from 'ant-design-vue'
-import { PlusOutlined } from '@ant-design/icons-vue'
+import { computed, useAttrs, useSlots, defineProps, ref, provide, defineEmits } from 'vue'
+import { Table } from 'ant-design-vue'
 import type { PaginationProps } from 'ant-design-vue' 
 
 import { prefixCls } from '../../../constans'
@@ -77,15 +64,16 @@ const attrs = useAttrs()
 const slots = useSlots()
 
 const props = defineProps(tableProps())
-const emits = defineEmits(['onAction', 'tableChange'])
+const emits = defineEmits(['onAction', 'tableChange', 'createClick', 'mutilpChange'])
 
-const tableRef = ref<ComputedRef>()
+const tableRef = ref()
 
 provide('scTable', { tableRef, props: ref({...props, ...attrs}) })
 
 const allOptions = computed(() => {
   return {...props, ...attrs}
 })
+console.log('allOptions: ', allOptions);
 
 const {
   getPaginationInfo,
@@ -100,14 +88,6 @@ const className = computed(() => {
   return classNames
 })
 
-const isCreateButton = computed(() => {
-  return Object.keys(slots).includes('createButton')
-})
-
-const isMutilpBtns = computed(() => {
-  return Object.keys(slots).includes('mutilpBtns')
-})
-
 const isAction = computed(() => {
   return Object.keys(slots).includes('action') 
 })
@@ -115,10 +95,18 @@ const isAction = computed(() => {
 const handle = (action: string) => {
   emits('onAction', action)
 }
+
+const createHandle = () => {
+  emits('createClick', tableRef)
+}
+
 const handleTableChange = (pagination: PaginationProps, filters: Partial<string[]>, sorter: SorterResult) => {
-  // console.log(' pagination, filters, sorter: ',  pagination, filters, sorter);
   setPagination(pagination);
   emits('tableChange', pagination, filters, sorter)
+}
+
+const mutilpChangeHandle = (value: string) => {
+  emits('mutilpChange', value, tableRef)
 }
 
 </script>

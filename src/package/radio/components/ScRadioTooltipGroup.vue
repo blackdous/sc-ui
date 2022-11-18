@@ -63,7 +63,7 @@ const props = defineProps({
   }
 })
 
-const emits = defineEmits(['update:value', 'change'])
+const emits = defineEmits(['update:value', 'change', 'customChange'])
 
 const radioValue:Ref<string | number> = ref('')
 
@@ -85,10 +85,9 @@ watch(
 )
 
 const handleChange = (e: Event) => {
-  // @ts-ignore
   const currentItem = props.radioList.find((item: TooltipButtonProps) => item.value === e?.target?.value)
   // @ts-ignore
-  emits('change', e?.target?.value, currentItem)
+  emits('customChange', e?.target?.value, currentItem)
 }
 
 </script>

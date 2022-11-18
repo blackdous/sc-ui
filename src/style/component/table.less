@@ -4,7 +4,7 @@
 @tableDropdown: ~'@{prefixCls}TableDropdown';
 
 .@{tableScope} {
-  padding: @padding-6;
+  padding: @space-6;
   .ant-table-thead > tr > th {
     background: @table-header-bg;
     padding: 8px 16px;
@@ -47,7 +47,17 @@
 }
 .@{tableFilterScope} {
   display: flex;
-  padding-bottom: 16px;
+  padding-bottom: @space-4;
+  justify-content: space-between;
+  &-left {
+    div:last-child {
+      margin-left: @space-4;
+    }
+  }
+  .ant-btn-primary {
+    height: 28px;
+    padding: 0 14px;
+  }
 }
 .@{tableActionsScope} {
   height: 22px;

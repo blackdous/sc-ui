@@ -5,6 +5,7 @@ import type { ActionProps } from '../component/TableAction.vue'
 import { PaginationProps } from './types/pagination'
 import { ColumnProps, SortOrder } from "ant-design-vue/lib/table/interface"
 import type { TableRowSelection as ITableRowSelection } from 'ant-design-vue/lib/table/interface'
+import type { TooltipButtonProps } from '../../../radio/components/ScRadioTooltipGroup.vue'
 
 export interface TableCurrentDataSource<T = Recordable> {
   currentDataSource: T[];
@@ -48,13 +49,23 @@ export const createButton = () => ({
   show: { type: Boolean, default: true },
   // 展示文本
   text: { type: String, default: '创建' },
+  isDisabled: { type: Boolean, default: false },
   // iconfont
   icon: { type: String, default: '' },
-  // 按钮类型 默认'success', 'info', 'warning', 'error'
+  // 按钮类型 默认'success', 'info', 'warning', 'error', 'primary'
   type: { type: String, default: 'info' },
   createFunc: Function as PropType<(type: string, tableRef: ComputedRef) => void>
 })
-export declare type CreateButton = Partial<ExtractPropTypes<typeof createButton>>
+
+export interface CreateButton {
+  show?: boolean,
+  text?: string,
+  isDisabled?: boolean,
+  icon?: string,
+  type?: string
+}
+
+// export declare type CreateButton = ExtractPropTypes<typeof createButton>
 
 export const mutilpActionOptions = () => ({
   // 是否展示
@@ -67,7 +78,14 @@ export const mutilpActionOptions = () => ({
   // 自定义函数
   customFunc: Function as PropType<(type: string, tableRef: ComputedRef) => void>
 })
-export declare type MutilpActionOptions = Partial<ExtractPropTypes<typeof mutilpActionOptions>>
+
+export interface MutilpActionOptions {
+  show?: boolean,
+  mutilpList?: Array<TooltipButtonProps>,
+  customFunc?: (type: string, tableRef: ComputedRef) => void
+}
+
+// export declare type MutilpActionOptions = ExtractPropTypes<typeof mutilpActionOptions>
 
 
 export const serachOptions = () => ({
@@ -82,7 +100,14 @@ export const serachOptions = () => ({
   // 查询方法
   customSerachFunc: Function as PropType<(tableRef: ComputedRef) => void>
 })
-export declare type SerachOptions = Partial<ExtractPropTypes<typeof serachOptions>>
+
+export interface SerachOptions {
+  show?: boolean,
+  showSelect?: boolean,
+  typeList?: Array<{label: string, value: string}>,
+  customSerachFunc?: (tableRef: ComputedRef) => void
+}
+// export declare type SerachOptions = ExtractPropTypes<typeof serachOptions>
 
 export interface ScrollProps {
     x: number,
@@ -90,9 +115,33 @@ export interface ScrollProps {
 }
 
 export const tableProps = () => ({
-  createButtonOptions: Object as PropType<CreateButton>,
-  mutilpActionOptions: Object as PropType<MutilpActionOptions>,
-  serachOptions: Object as PropType<SerachOptions>,
+  createButtonOptions: {
+    type: Object as PropType<CreateButton>,
+    default () {
+      return {
+        show: true,
+        text: '创建',
+        type: 'primary'
+      }
+    }
+  },
+  mutilpActionOptions: {
+    type: Object as PropType<MutilpActionOptions>,
+    default () {
+      return {
+        show: true
+      }
+    }
+  },
+  serachOptions: {
+    type: Object as PropType<SerachOptions>,
+    default () {
+      return {
+        show: true,
+        showSelect: true
+      }
+    }
+  },
   actionsProps: Object as PropType<ActionProps>,
   pagination: Object as PropType<PaginationProps>,
   scroll: Object as PropType<ScrollProps>
