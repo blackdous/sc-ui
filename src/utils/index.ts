@@ -12,6 +12,10 @@ export const withInstall = <T>(component: T, alias?: string) => {
   return component as T & Plugin;
 }
 
+export const isType = (source:any, typeStr: string) => {
+  return Object.prototype.toString.call(source) === '[object ' + typeStr.toLocaleUpperCase() + ']'
+}
+
 export const definePropType = <T>(val: any): PropType<T> => val
 
 export const iconPropType = definePropType<string | Component>([

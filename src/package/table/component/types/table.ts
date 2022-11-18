@@ -2,6 +2,46 @@ import { PropType, ExtractPropTypes } from "vue"
 import type { ComputedRef } from "vue"
 //@ts-ignore
 import type { ActionProps } from '../component/TableAction.vue'
+import { PaginationProps } from './types/pagination'
+import { ColumnProps, SortOrder } from "ant-design-vue/lib/table/interface"
+import type { TableRowSelection as ITableRowSelection } from 'ant-design-vue/lib/table/interface'
+
+export interface TableCurrentDataSource<T = Recordable> {
+  currentDataSource: T[];
+}
+
+export interface TableRowSelection<T = any> extends ITableRowSelection {
+  /**
+   * 当所选行发生更改时执行的回调
+   * @type Function
+   */
+  onChange?: (selectedRowKeys: string[] | number[], selectedRows: T[]) => any;
+
+  /**
+   * 当选择/取消选择一行时执行的回调
+   * @type Function
+   */
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  onSelect?: (record: T, selected: boolean, selectedRows: Object[], nativeEvent: Event) => any;
+
+  /**
+   * 当选择/取消选择所有行时执行回调
+   * @type Function
+   */
+  onSelectAll?: (selected: boolean, selectedRows: T[], changeRows: T[]) => any;
+
+  /**
+   * 当行选择倒置时执行的回调
+   * @type Function
+   */
+  onSelectInvert?: (selectedRows: string[] | number[]) => any;
+}
+export interface SorterResult {
+  column: ColumnProps;
+  order: SortOrder;
+  field: string;
+  columnKey: string;
+}
 
 export const createButton = () => ({
   // 是否展示
@@ -44,13 +84,30 @@ export const serachOptions = () => ({
 })
 export declare type SerachOptions = Partial<ExtractPropTypes<typeof serachOptions>>
 
-// export declare type ATableProps = Partial<ExtractPropTypes<typeof aTableProps>>
+export interface ScrollProps {
+    x: number,
+    y: number
+}
 
 export const tableProps = () => ({
   createButtonOptions: Object as PropType<CreateButton>,
   mutilpActionOptions: Object as PropType<MutilpActionOptions>,
   serachOptions: Object as PropType<SerachOptions>,
-  actionsProps: Object as PropType<ActionProps>
+  actionsProps: Object as PropType<ActionProps>,
+  pagination: Object as PropType<PaginationProps>,
+  scroll: Object as PropType<ScrollProps>
 })
 
-export declare type TableProps = Partial<ExtractPropTypes<typeof tableProps>>
+export interface TableProps {
+  createButtonOptions?: CreateButton,
+  mutilpActionOptions?: MutilpActionOptions,
+  serachOptions?: SerachOptions,
+  actionsProps?: ActionProps,
+  pagination? : PaginationProps | boolean,
+  scroll: {
+    x: number,
+    y: number
+  }
+}
+
+// export declare type TableProps = Partial<ExtractPropTypes<typeof tableProps>>

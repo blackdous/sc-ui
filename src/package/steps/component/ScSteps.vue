@@ -13,7 +13,7 @@ export default {
 import { defineProps, provide, watch, ref, computed } from 'vue'
 import type { Ref } from 'vue'
 
-import { CHANGE_EVENT } from '../../../constans/event'
+import { CHANGE_EVENT } from '../../../constans'
 import { stepsEmits } from './type';
 // StepsPropType
 import type { StepItemState } from './ScStep.vue'

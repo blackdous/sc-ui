@@ -90,7 +90,7 @@ import {
 } from '@ant-design/icons-vue';
 
 import { modalProps } from './type'
-import { prefixCls } from '../../../constans/event';
+import { prefixCls } from '../../../constans';
 
 const modalPrefixCls = prefixCls + 'Modal'
 const emits = defineEmits(['update:visible', 'dragChange'])

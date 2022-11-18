@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { prefixCls } from '../../../constans/event'
+import { prefixCls } from '../../../constans'
 import { Alert } from 'ant-design-vue'
 
 import { alertProps } from './type'

@@ -5,40 +5,31 @@
       :columns="columns"
       :data-source="data"
       :actions-props="actionProps"
+      :create-button-options="{
+        text: '创建'
+      }"
+      @onAction="handle"
     >
-      <template #createButton>
-        11111
-      </template>
     </ScTable>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { computed, ComputedRef, reactive, ref } from 'vue'
 import { ScTable } from 'sc-ui'
 import "ant-design-vue/dist/antd.css"
+import '../../../style/index.less'
 
 
 type Key = string | number
 
-interface DataType {
-  key: Key;
-  name: string;
-  age: number;
-  address: string;
-}
 
 const columns = [
-  { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
-  { title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left' },
-  { title: 'Column 1', dataIndex: 'address', key: '1' },
-  { title: 'Column 2', dataIndex: 'address', key: '2' },
-  { title: 'Column 3', dataIndex: 'address', key: '3' },
-  { title: 'Column 4', dataIndex: 'address', key: '4' },
-  { title: 'Column 5', dataIndex: 'address', key: '5' },
-  { title: 'Column 6', dataIndex: 'address', key: '6' },
-  { title: 'Column 7', dataIndex: 'address', key: '7' },
-  { title: 'Column 8', dataIndex: 'address', key: '8' },
+  { title: 'Full Name', width: 110, dataIndex: 'name', key: 'name', fixed: 'left' },
+  { title: 'Age', width: 60, dataIndex: 'age', key: 'age', fixed: 'left' },
+  { title: 'Column 1', dataIndex: 'address', key: '1', width: 110 },
+  { title: 'Column 2', dataIndex: 'address', key: '2', width: 110 },
+  { title: 'Column 3', dataIndex: 'address', key: '3', width: 110 },
   {
     title: 'Action',
     key: 'operation',
@@ -88,6 +79,14 @@ const actionProps = ref({
           tooltipDes: '二级选项22222222',
         }
       ]
+    }, {
+      label: '三级选项',
+      isShow: true,
+      isDisabled: true,
+      loading: false,
+      action: '3333',
+      tooltip: true,
+      tooltipDes: '三级选项33333333',
     }
   ]
 })
@@ -104,14 +103,14 @@ const data: DataItem[] = [
     key: '1',
     name: 'John Brown',
     age: 32,
-    address: 'New York Park',
+    address: 'New London',
   },
   {
     key: '2',
     name: 'Jim Green',
     age: 40,
-    address: 'London Park',
-  },
+    address: 'London London',
+  }
 ];
 
 
@@ -122,22 +121,23 @@ const state = reactive<{
   selectedRowKeys: [], // Check here to configure the default column
   loading: false,
 });
-const hasSelected = computed(() => state.selectedRowKeys.length > 0);
 
-const start = () => {
-  state.loading = true;
-  // ajax request after empty completing
-  setTimeout(() => {
-    state.loading = false;
-    state.selectedRowKeys = [];
-  }, 1000);
-};
 const onSelectChange = (selectedRowKeys: Key[]) => {
   console.log('selectedRowKeys changed: ', selectedRowKeys);
   state.selectedRowKeys = selectedRowKeys;
 };
 
+interface Data {
+  action: string,
+  tableRef: ComputedRef
+}
+
+const handle = (data: Data) => {
+  console.log('Data: ', data);
+}
+
 </script>
 
 <style lang="less">
+@import '../../../style/index.less';
 </style>

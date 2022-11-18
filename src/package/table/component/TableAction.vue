@@ -7,6 +7,7 @@
       <Button 
         :disabled="item.isDisabled"
         type="link"
+        :loading="item.loading"
         @click="handle(item.action)"
       >
         {{ item.label }}
@@ -14,7 +15,8 @@
     </template>
     <template v-if="filterShow.length > props.showBtn">
       <Dropdown
-        placement="bottomLeft"
+        :placement="placementRef"
+        :overlayClassName="prefixCls + 'TableDropdown'"
       >
         <Button
           type="link"
@@ -34,19 +36,35 @@
                   v-for="(subItem) in item.children"
                   :key="item.label"
                   :title="item.label"
+                  :disabled="item.isDisabled"
                 >
                   <MenuItem
+                    :disabled="subItem.isDisabled"
+                    @click="handle(item.action)"
                   >
                     {{ subItem.label }}
                   </MenuItem>
                 </SubMenu>
               </template>
-              <template v-else>
-                <MenuItem
-                >
+              <MenuItem
+                :disabled="item.isDisabled"
+                @click="handle(item.action)"
+                v-else
+              >
+                <template v-if="item.isDisabled && item.tooltipDes">
+                  <Tooltip
+                    overlayClassName = 'scTooltip-white'
+                  >
+                    <template #title>
+                      {{ item.tooltipDes }}
+                    </template>
+                    {{ item.label }}
+                  </Tooltip>
+                </template>
+                <template v-else>
                   {{ item.label }}
-                </MenuItem>
-              </template>
+                </template>
+              </MenuItem>
             </template>
           </Menu>
         </template>
@@ -65,10 +83,10 @@ export default {
 
 <script lang='ts' setup>
 import { computed, defineProps, defineEmits, inject, ref, onMounted, unref } from 'vue'
-import { Button, Dropdown, Menu, MenuItem, SubMenu } from 'ant-design-vue'
+import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 
-import { prefixCls } from '../../../constans/event'
+import { prefixCls } from '../../../constans'
 
 
 export interface ActionItemProps {
@@ -96,19 +114,31 @@ const emits = defineEmits(['onAction'])
 const scTable = inject('scTable')
 
 const menuRef = ref()
+const placementRef = ref<string>('bottomLeft')
 
 onMounted(() => {
   const buttonMenu = unref(menuRef)
-  console.log('buttonMenu: ', menuRef);
   buttonMenu.addEventListener('mouseenter', () => {
     const totalHeight = window.innerHeight || document.documentElement.clientHeight;
-    console.log('totalHeight: ', totalHeight);
     const totalWidth = window.innerWidth || document.documentElement.clientWidth;
-    console.log('totalWidth: ', totalWidth);
     // 当滚动条滚动时，top, left, bottom, right时刻会发生改变。
-    const { top, right, bottom, left } = buttonMenu.getBoundingClientRect();
-    console.log('top, right, bottom, left: ', top, right, bottom, left);
-    // return (top >= 0 && left >= 0 && right <= totalWidth && bottom <= totalHeight);
+    const { top, right, bottom, left } = buttonMenu.getBoundingClientRect()
+    let placementStr:Array<string> = ['bottom', 'Left']
+    if (bottom >= totalHeight - 100) {
+      placementStr[0] = 'top'
+    }
+    if (top < 20) {
+      placementStr[0] = 'bottom'
+    }
+
+    if (left < 20) {
+      placementStr[1] = 'Right'
+    }
+    if (right >= totalWidth - 100) {
+      placementStr[1] = 'Left'
+    }
+    placementRef.value = placementStr.join('')
+    return false;
   })
 })
 
