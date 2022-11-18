@@ -8,7 +8,7 @@ import { resolve } from 'path';
 export default defineConfig({
   lang: 'zh-CN',
   lastUpdated: true,
-  base: process.env.NODE_ENV === 'production' ? '/sc-ui' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/' : '/',
   locales: {
     '/': {
       lang: 'zh-CN',
