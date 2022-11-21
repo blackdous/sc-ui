@@ -48,20 +48,47 @@
       <template v-else>
         <slot name="serach"></slot>
       </template>
-
+      <div :class="[className + '-active']">
+        <Tooltip 
+          v-if="activeOptions?.reload?.show"
+          overlayClassName="scTooltip-white"
+        >
+          <template #title v-if="activeOptions?.reload?.showTooltip">
+            {{ activeOptions?.reload.text }}
+          </template>
+          <Button
+            :disabled="activeOptions?.reload?.isDisabled"
+          >
+            <i class="iconfont icon-sync"></i>
+          </Button>
+        </Tooltip>
+        <Tooltip
+          v-if="activeOptions?.columnDialog?.show"
+          overlayClassName="scTooltip-white"
+        >
+          <template #title v-if="activeOptions?.columnDialog?.showTooltip">
+            {{ activeOptions?.columnDialog.text }}
+          </template>
+          <Button
+            :disabled="activeOptions?.columnDialog?.isDisabled"
+          >
+            <i class="iconfont icon-setting"></i>
+          </Button>
+        </Tooltip>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
 import { computed, defineComponent, PropType, ref } from 'vue'
-import { Button, Select, SelectOption } from 'ant-design-vue'
+import { Button, Select, SelectOption, Tooltip } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
-import { prefixCls } from '../../../constans'
+import { basePrefixCls } from '../../../constans'
 import { ScRadioTooltipGroup } from '../../radio'
-import { CreateButton, MutilpActionOptions, SerachOptions } from './types/table'
+import { CreateButton, MutilpActionOptions, SerachOptions, ActiveOptions, mutilpActionOptions, serachOptions } from './types/table'
 
-const tableHeaderPrefixClas = prefixCls + 'TableFilter'
+const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
 
 export const TableFilterProps = () => ({
   createButtonOptions: {
@@ -90,6 +117,23 @@ export const TableFilterProps = () => ({
         showSelect: true
       }
     }
+  },
+  activeOptions: {
+    type: Object as PropType<ActiveOptions>,
+    default () {
+      return {
+        reload: {
+          text: '刷新',
+          show: true,
+          showTooltip: true
+        },
+        columnDialog: {
+          text: '定制列',
+          show: true,
+          showTooltip: true
+        }
+      }
+    }
   }
   
 })
@@ -102,6 +146,7 @@ export default defineComponent({
     Button,
     ScRadioTooltipGroup,
     Select,
+    Tooltip,
     SelectOption,
     PlusOutlined
   },
@@ -114,7 +159,6 @@ export default defineComponent({
     const isCreateButton = computed(() => {
       return Object.keys(slots).includes('createButton')
     })
-    console.log('isCreateButton: ', isCreateButton);
 
     const isMutilpBtns = computed(() => {
       return Object.keys(slots).includes('mutilpBtns')
@@ -135,7 +179,11 @@ export default defineComponent({
     const serachOptions = computed(() => {
       return props.serachOptions
     })
-    console.log('serachOptions: ', serachOptions);
+
+    const activeOptions = computed(() => {
+      return props.activeOptions
+    })
+
     const createHandle = () => {
       emit('createClick')
     }
@@ -151,6 +199,7 @@ export default defineComponent({
       isMutilpBtns,
       className,
       serachSelectedValue,
+      activeOptions,
       createHandle,
       radioHandle
     }

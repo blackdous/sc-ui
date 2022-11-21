@@ -4,6 +4,7 @@
       :createButtonOptions="allOptions.createButtonOptions"
       :mutilpActionOptions="allOptions.mutilpActionOptions"
       :serachOptions="allOptions.serachOptions"
+      :activeOptions="allOptions.activeOptions"
       @createClick="createHandle"
       @mutilpChange="mutilpChangeHandle"
     >
@@ -36,6 +37,20 @@
           @onAction="handle"
         />
       </template>
+      <template
+        v-if="isCustomFilter"
+        #filterDropdown="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }">
+        <FilterDropDownVue
+          :filterList="column.filterList || []"
+          @filter="(item:any) => { filterDropDownClick(item, setSelectedKeys, selectedKeys, confirm, clearFilters, column) }"
+        ></FilterDropDownVue>
+      </template>
+      <template
+        #filterIcon
+        v-if="isCustomFilter"
+      >
+        <FilterFilled></FilterFilled>
+      </template>
     </Table>
   </div>
 </template>
@@ -51,20 +66,22 @@ export default {
 import { computed, useAttrs, useSlots, defineProps, ref, provide, defineEmits } from 'vue'
 import { Table } from 'ant-design-vue'
 import type { PaginationProps } from 'ant-design-vue' 
+import { FilterFilled } from '@ant-design/icons-vue'
 
-import { prefixCls } from '../../../constans'
+import { basePrefixCls } from '../../../constans'
 import TableFilter from './TableFilter.vue'
 import ScTableAction from './TableAction.vue'
+import FilterDropDownVue from './FilterDropDown.vue'
 import { tableProps, SorterResult } from './types/table'
 import { usePagination } from '../hooks/usePagination'
 
-const tablePrefixCls = prefixCls + 'Table'
+const tablePrefixCls = basePrefixCls + 'Table'
 
 const attrs = useAttrs()
 const slots = useSlots()
 
 const props = defineProps(tableProps())
-const emits = defineEmits(['onAction', 'tableChange', 'createClick', 'mutilpChange'])
+const emits = defineEmits(['onAction', 'tableChange', 'createClick', 'mutilpChange', 'filter'])
 
 const tableRef = ref()
 
@@ -100,6 +117,9 @@ const createHandle = () => {
   emits('createClick', tableRef)
 }
 
+const isCustomFilter = computed(() => {
+  return props.customFilter
+})
 const handleTableChange = (pagination: PaginationProps, filters: Partial<string[]>, sorter: SorterResult) => {
   setPagination(pagination);
   emits('tableChange', pagination, filters, sorter)
@@ -107,6 +127,12 @@ const handleTableChange = (pagination: PaginationProps, filters: Partial<string[
 
 const mutilpChangeHandle = (value: string) => {
   emits('mutilpChange', value, tableRef)
+}
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+const filterDropDownClick = (item:any, setSelectedKeys:Array<string>, selectedKeys:string, confirm: Function, clearFilters: void, column:any) => {
+  confirm();
+  emits('filter', { filterItem: item, setSelectedKeys, selectedKeys,column, clearFilters} )
 }
 
 </script>

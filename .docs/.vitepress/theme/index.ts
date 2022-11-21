@@ -16,5 +16,10 @@ export default {
     // a `ref` of current site-level metadata.
     app.component('demo', DemoBlock);
     app.provide('globalApp', app)
+
+    const linkDom = document.createElement('link');
+    linkDom.rel = 'stylesheet'
+    linkDom.href = '//at.alicdn.com/t/c/font_3690753_u7fyc5vpzx.css'
+    document.head.append(linkDom)
   },
 };

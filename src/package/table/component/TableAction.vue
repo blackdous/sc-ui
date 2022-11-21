@@ -1,5 +1,5 @@
 <template>
-  <div :class="[prefixCls + 'Actions']">
+  <div :class="[basePrefixCls + 'Actions']">
     <template
       v-for="(item) in filterShow.slice(0, props.showBtn)"
       :key="item.label"
@@ -16,7 +16,7 @@
     <template v-if="filterShow.length > props.showBtn">
       <Dropdown
         :placement="placementRef"
-        :overlayClassName="prefixCls + 'TableDropdown'"
+        :overlayClassName="basePrefixCls + 'TableDropdown'"
       >
         <Button
           type="link"
@@ -86,7 +86,7 @@ import { computed, defineProps, defineEmits, inject, ref, onMounted, unref } fro
 import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 
-import { prefixCls } from '../../../constans'
+import { basePrefixCls } from '../../../constans'
 
 
 export interface ActionItemProps {

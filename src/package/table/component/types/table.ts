@@ -114,6 +114,21 @@ export interface ScrollProps {
     y: number
 }
 
+export interface ActiveOptions {
+  reload?: {
+    text?: string,
+    show?: boolean,
+    showTooltip?: boolean,
+    isDisabled?: boolean
+  },
+  columnDialog: {
+    text?: string,
+    show?: boolean,
+    showTooltip?: boolean,
+    isDisabled?: boolean
+  }
+}
+
 export const tableProps = () => ({
   createButtonOptions: {
     type: Object as PropType<CreateButton>,
@@ -144,7 +159,16 @@ export const tableProps = () => ({
   },
   actionsProps: Object as PropType<ActionProps>,
   pagination: Object as PropType<PaginationProps>,
-  scroll: Object as PropType<ScrollProps>
+  scroll: Object as PropType<ScrollProps>,
+  customFilter: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
+  activeOptions: {
+    type: Object as PropType<ActiveOptions>
+  }
 })
 
 export interface TableProps {
@@ -156,7 +180,8 @@ export interface TableProps {
   scroll: {
     x: number,
     y: number
-  }
+  },
+  customFilter?: boolean
 }
 
 // export declare type TableProps = Partial<ExtractPropTypes<typeof tableProps>>

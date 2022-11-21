@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { prefixCls } from '../../../constans'
+import { basePrefixCls } from '../../../constans'
 import { Alert } from 'ant-design-vue'
 
 import { alertProps } from './type'
@@ -26,7 +26,7 @@ export default defineComponent({
       return {...props,...attrs}
     })
     const className = computed(() => {
-      const classNames = [prefixCls + 'Alert']
+      const classNames = [basePrefixCls + 'Alert']
       if (props.textColor) {
         classNames.push('textColor');
       }
