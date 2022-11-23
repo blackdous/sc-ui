@@ -4,8 +4,10 @@ import type { ComputedRef } from "vue"
 import type { ActionProps } from '../component/TableAction.vue'
 import { PaginationProps } from './types/pagination'
 import { ColumnProps, SortOrder } from "ant-design-vue/lib/table/interface"
+import { ColumnItem, list } from './column'
 import type { TableRowSelection as ITableRowSelection } from 'ant-design-vue/lib/table/interface'
 import type { TooltipButtonProps } from '../../../radio/components/ScRadioTooltipGroup.vue'
+import type { ModalProps } from "../../../modal"
 
 export interface TableCurrentDataSource<T = Recordable> {
   currentDataSource: T[];
@@ -104,8 +106,19 @@ export const serachOptions = () => ({
 export interface SerachOptions {
   show?: boolean,
   showSelect?: boolean,
-  typeList?: Array<{label: string, value: string}>,
-  customSerachFunc?: (tableRef: ComputedRef) => void
+  typeList?: Array<{label: string, value: string, disabled: boolean}>,
+  customSerachFunc?: (tableRef: ComputedRef) => void,
+  selectOptions?: {
+    placeholder?: string,
+    width?: string
+  },
+  inputOptions?: {
+    placeholder?: string,
+    maxlength?: number,
+    width?: string
+  }
+  // selectPlaceholder?: string,
+  // inputPlaceholder?: string
 }
 // export declare type SerachOptions = ExtractPropTypes<typeof serachOptions>
 
@@ -153,7 +166,17 @@ export const tableProps = () => ({
     default () {
       return {
         show: true,
-        showSelect: true
+        showSelect: true,
+        typeList: [],
+        selectOptions: {
+          placeholder: '请选择',
+          width: '120px'
+        },
+        inputOptions: {
+          placeholder: '请输入',
+          width: '120px',
+          maxlength: 40
+        }
       }
     }
   },
@@ -167,8 +190,32 @@ export const tableProps = () => ({
     }
   },
   activeOptions: {
-    type: Object as PropType<ActiveOptions>
-  }
+    type: Object as PropType<ActiveOptions>,
+    default () {
+      return {
+        reload: {
+          text: '刷新',
+          show: true,
+          showTooltip: true
+        },
+        columnDialog: {
+          text: '定制列',
+          show: true,
+          showTooltip: true
+        }
+      }
+    }
+  },
+  columnModalList: {
+    type: Object as PropType<Array<ColumnItem>>,
+    default () {
+      return list
+    }
+  },
+  modalOptions: {
+    type: Object as PropType<ModalProps>
+  },
+  dataSource: Array
 })
 
 export interface TableProps {
@@ -181,7 +228,8 @@ export interface TableProps {
     x: number,
     y: number
   },
-  customFilter?: boolean
+  customFilter?: boolean,
+
 }
 
 // export declare type TableProps = Partial<ExtractPropTypes<typeof tableProps>>

@@ -20,6 +20,7 @@
 
       <template v-if="!isMutilpBtns && mutilpActionOptions.show">
         <ScRadioTooltipGroup
+          v-model:value="mutilpValue"
           :radio-list="mutilpActionOptions.mutilpList"
           @change="radioHandle"
         />
@@ -33,60 +34,53 @@
         <Select
           v-model:value="serachSelectedValue"
           v-if="serachOptions.showSelect"
-          style="width: 120px"
+          :style="{width: serachOptions.selectOptions?.width || '120px'}"
           dropdownClassName="scDropdown"
+          :placeholder="serachOptions.selectOptions?.placeholder"
         >
           <SelectOption
             v-for="optionsItem in serachOptions.typeList"
             :key="optionsItem.value"
             :value="optionsItem.value"
+            :disabled:="optionsItem.disabled"
           >
             {{ optionsItem.label }}
           </SelectOption>
         </Select>
+        <InputSearch
+          v-model:value="serachVal"
+          :maxlength="serachOptions.inputOptions?.maxlength"
+          :style="{width: serachOptions.inputOptions?.width || '120px'}"
+          :placeholder="serachOptions.inputOptions?.placeholder"
+          class="scSerach"
+          @pressEnter="onSearch"
+        >
+          <template #suffix>
+            <i class="iconfont icon-sousuo"
+              @click="onSearch(serachVal)"
+            />
+          </template>
+        </InputSearch>
       </template>
       <template v-else>
         <slot name="serach"></slot>
       </template>
       <div :class="[className + '-active']">
-        <Tooltip 
-          v-if="activeOptions?.reload?.show"
-          overlayClassName="scTooltip-white"
-        >
-          <template #title v-if="activeOptions?.reload?.showTooltip">
-            {{ activeOptions?.reload.text }}
-          </template>
-          <Button
-            :disabled="activeOptions?.reload?.isDisabled"
-          >
-            <i class="iconfont icon-sync"></i>
-          </Button>
-        </Tooltip>
-        <Tooltip
-          v-if="activeOptions?.columnDialog?.show"
-          overlayClassName="scTooltip-white"
-        >
-          <template #title v-if="activeOptions?.columnDialog?.showTooltip">
-            {{ activeOptions?.columnDialog.text }}
-          </template>
-          <Button
-            :disabled="activeOptions?.columnDialog?.isDisabled"
-          >
-            <i class="iconfont icon-setting"></i>
-          </Button>
-        </Tooltip>
+        <slot name="tableActive"></slot>
       </div>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
-import { computed, defineComponent, PropType, ref } from 'vue'
-import { Button, Select, SelectOption, Tooltip } from 'ant-design-vue'
+import { computed, defineComponent, PropType, ref, defineExpose, unref } from 'vue'
+import { Button, Select, SelectOption, Tooltip, InputSearch } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
+
 import { basePrefixCls } from '../../../constans'
 import { ScRadioTooltipGroup } from '../../radio'
-import { CreateButton, MutilpActionOptions, SerachOptions, ActiveOptions, mutilpActionOptions, serachOptions } from './types/table'
+import { CreateButton, MutilpActionOptions, SerachOptions } from './types/table'
+import ColumnDialogVue from './ColumnDialog.vue'
 
 const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
 
@@ -117,25 +111,7 @@ export const TableFilterProps = () => ({
         showSelect: true
       }
     }
-  },
-  activeOptions: {
-    type: Object as PropType<ActiveOptions>,
-    default () {
-      return {
-        reload: {
-          text: '刷新',
-          show: true,
-          showTooltip: true
-        },
-        columnDialog: {
-          text: '定制列',
-          show: true,
-          showTooltip: true
-        }
-      }
-    }
   }
-  
 })
 
 export default defineComponent({
@@ -148,10 +124,15 @@ export default defineComponent({
     Select,
     Tooltip,
     SelectOption,
-    PlusOutlined
+    PlusOutlined,
+    ColumnDialogVue,
+    InputSearch
   },
   setup(props, { slots, emit }) {
     const serachSelectedValue = ref()
+    const mutilpValue = ref<string>()
+    const serachVal = ref()
+
     const isSerach = computed(() => {
       return Object.keys(slots).includes('serach') 
     })
@@ -177,11 +158,8 @@ export default defineComponent({
       return props.mutilpActionOptions
     })
     const serachOptions = computed(() => {
+      console.log('props.serachOptions: ', props.serachOptions)
       return props.serachOptions
-    })
-
-    const activeOptions = computed(() => {
-      return props.activeOptions
     })
 
     const createHandle = () => {
@@ -190,6 +168,21 @@ export default defineComponent({
     const radioHandle = (value:string) => {
       emit('mutilpChange', value)
     }
+
+    const reset = () => {
+      mutilpValue.value = ''
+      serachSelectedValue.value = ''
+      serachVal.value = ''
+    }
+
+    const onSearch = (val:string) => {
+      emit('serachClick', { value: unref(val), type: serachSelectedValue })
+    }
+
+    defineExpose({
+      reset
+    })
+
     return {
       createButtonOptions,
       mutilpActionOptions,
@@ -199,9 +192,11 @@ export default defineComponent({
       isMutilpBtns,
       className,
       serachSelectedValue,
-      activeOptions,
+      serachVal,
+      basePrefixCls,
       createHandle,
-      radioHandle
+      radioHandle,
+      onSearch
     }
   },
 })

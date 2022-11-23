@@ -21,7 +21,7 @@
       padding: 0;
     }
     header {
-      padding: 20px 20px 20px 32px;
+      padding: 21px 20px 21px 32px;
     }
     .draggable-event {
       cursor: move;
@@ -73,11 +73,18 @@
     &:hover, &:active, &:link, &:focus {
       background: @cancel-btn-color;
       border-color: @cancel-btn-color;
-      color: @text-color;
+      color: @heading-color;
+    }
+    &:hover {
+      background: @border-color-base;
+    }
+    &:active, &:link, &:focus {
+      background: @btn-active-color;
     }
   }
   .@{modalScope}-footer .@{modalScope}-footer__ok {
     background: @primary-color;
+    .btnPrimary();
   }
   &-status {
     height: 32px;

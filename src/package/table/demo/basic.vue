@@ -1,7 +1,8 @@
 <template>
   <div>
+    <!-- :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }" -->
     <ScTable 
-      :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
+      ref="scTableRef"
       :columns="columns"
       :data-source="data"
       :actions-props="actionProps"
@@ -17,20 +18,25 @@
         show: true,
         showSelect: true,
         typeList: radioList,
-        customSerachFunc: serachHanle
+        customSerachFunc: serachHanle,
+        selectOptions: {
+          placeholder: '请选择',
+          width: '120px'
+        },
+        inputOptions: {
+          placeholder: '请输入',
+          width: '120px',
+          maxlength: 40
+        }
       }"
+      :customFilter="true"
+      :columnModalList="columnList"
       @onAction="handle"
       @createClick="createClick"
       @mutilpChange="mutilpChangeHandle"
       @serachClick="serachHanle"
+      @filter="handleFilter"
     >
-      <!-- <template #mutilpBtns>
-        <ScRadioTooltipGroup
-          :radio-list="radioList"
-          v-model:value="vRadioModel"
-        >
-        </ScRadioTooltipGroup>
-      </template> -->
     </ScTable>
   </div>
 </template>
@@ -40,6 +46,8 @@ import { ComputedRef, reactive, ref } from 'vue'
 import type { Ref } from 'vue'
 import { ScTable } from 'sc-ui'
 
+import {  list as ColumnList } from '../component/types/column'
+
 import type { TooltipButtonPropsType } from 'sc-ui'
 import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
@@ -48,6 +56,10 @@ import '../../../style/index.less'
 type Key = string | number
 // const filteredInfo = ref();
 const sortedInfo = ref();
+const scTableRef = ref()
+
+const columnList = ref()
+
 // const filtered = filteredInfo.value || {};
 const sorted = sortedInfo.value || {};
 const list = ref([
@@ -107,22 +119,21 @@ const list = ref([
   }
 ])
 const columns = [
-  { title: 'Full Name', width: 110, dataIndex: 'name', key: 'name', fixed: 'left' },
-  { title: 'Age', width: 60, dataIndex: 'age', key: 'age', fixed: 'left',
+  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left',
     slots: {
       filterDropdown: 'filterDropdown',
       filterIcon: 'filterIcon'
     },
-    customFilter: true,
     filterList: list,
-    onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) },
+    onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) }
+  },
+  { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
     onFilter: (value: string, record: DataItem) => record.name.includes(value),
     sorter: (a: DataItem, b: DataItem) => a.age - b.age,
-    // sortOrder: sorted.columnKey === 'age' && sorted.order
   },
-  { title: 'Column 1', dataIndex: 'address', key: '1', width: 110 },
-  { title: 'Column 2', dataIndex: 'address', key: '2', width: 110 },
-  { title: 'Column 3', dataIndex: 'address', key: '3', width: 110 },
+  { title: 'Column 1', dataIndex: 'address', key: '1', width: 160 },
+  { title: 'Column 2', dataIndex: 'address', key: '2', width: 160 },
+  { title: 'Column 3', dataIndex: 'address', key: '3', width: 160 },
   {
     title: 'Action',
     key: 'operation',
@@ -166,6 +177,7 @@ interface DataItem {
   name: string;
   age: number;
   address: string;
+  children?: DataItem[]
 }
 
 const data: DataItem[] = [
@@ -174,12 +186,24 @@ const data: DataItem[] = [
     name: 'John Brown',
     age: 32,
     address: 'New London',
+    children: [{
+      key: '11',
+      name: 'John Brown',
+      age: 32,
+      address: 'New London',
+    }]
   },
   {
     key: '2',
     name: 'Jim Green',
     age: 40,
     address: 'London London',
+    children: [{
+      key: '21',
+      name: 'John Brown',
+      age: 32,
+      address: 'New London',
+    }]
   }
 ];
 
@@ -208,6 +232,7 @@ const handle = (data: Data) => {
 
 const createClick = (data: ComputedRef) => {
   console.log('Data: ', data);
+  columnList.value = ColumnList
 }
 
 const serachHanle = (data: ComputedRef) => {
@@ -217,6 +242,14 @@ const serachHanle = (data: ComputedRef) => {
 const mutilpChangeHandle = (type: ComputedRef, tableRef: ComputedRef) => {
   console.log('tableRef: ', tableRef);
   console.log('type: ', type);
+}
+// @ts-ignore
+const handleFilter = ({ filterItem, setSelectedKeys, selectedKeys, column, clearFilters }) => {
+  console.log('clearFilters: ', clearFilters);
+  console.log('column: ', column);
+  console.log('selectedKeys: ', selectedKeys);
+  console.log('setSelectedKeys: ', setSelectedKeys);
+  console.log('filterItem: ', filterItem);
 }
 
 </script>

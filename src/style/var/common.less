@@ -7,3 +7,33 @@
 .text-center {
   text-align: center;
 }
+
+.text-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.btnFill {
+  background: @cancel-btn-color;
+  &:hover, &:active, &:link, &:focus {
+    background: @cancel-btn-color;
+    border-color: @cancel-btn-color;
+    color: @heading-color;
+  }
+  &:hover {
+    background: @border-color-base;
+  }
+  &:active, &:link, &:focus {
+    background: @btn-active-color;
+  }
+}
+
+.btnPrimary {
+  background: @primary-color;
+  &:hover {
+    background: @btn-hover-color;
+  }
+  &:active, &:link, &:focus {
+    background: @link-color;
+  }
+}

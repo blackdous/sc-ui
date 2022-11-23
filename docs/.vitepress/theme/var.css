@@ -180,3 +180,7 @@
 .vitepress-demo {
   margin-top: 10px;
 }
+
+.VPDoc.has-aside .content-container {
+  max-width: 1000px!important;
+}

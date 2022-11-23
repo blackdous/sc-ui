@@ -1,0 +1,82 @@
+.ant-dropdown-menu {
+  border-radius: @border-r-6;
+}
+.ant-dropdown-menu-item {
+  min-width: 117px;
+  padding: 3px 8px;
+  margin: 0 6px;
+  border-radius: @border-r-3;
+}
+.ant-dropdown-menu-submenu-title {
+  .ant-dropdown-menu-item();
+  min-width: 107px;
+}
+.ant-dropdown-menu-submenu-active {
+  color: @primary-color;
+  .ant-dropdown-menu-submenu-title {
+    background: @table-td-hover;
+  }
+  .ant-dropdown-menu-title-content {
+    color: @primary-color;
+  }
+  .ant-dropdown-menu-submenu-title > span > .anticon:first-child {
+    color: @primary-color;
+  }
+}
+.ant-dropdown-menu-item-disabled {
+  cursor: not-allowed;
+}
+.ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-arrow{
+  right: 6px;
+}
+.ant-dropdown-menu-submenu-title > span > .anticon:first-child {
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 3px;
+}
+.ant-menu-vertical > .ant-menu-item, 
+.ant-menu-vertical-left > .ant-menu-item,
+.ant-menu-vertical-right > .ant-menu-item, 
+.ant-menu-inline > .ant-menu-item, 
+.ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title, 
+.ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title,
+.ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title, 
+.ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+  line-height: 22px;
+  height: auto;
+}
+.ant-menu-root, .ant-menu-submenu-popup {
+  padding: 4px 0;
+  border-radius: @border-r-6;
+  .ant-menu-item {
+    min-width: 117px;
+    padding: 3px 8px;
+    margin: 0 6px;
+    border-radius: @border-r-3;
+    &.ant-menu-item-selected {
+      background-color: @table-Menu-bg;
+      color: @primary-color;
+    }
+    &.ant-menu-item-active:not(.ant-menu-item-selected) {
+      background-color: @menu-bg-color;
+      color: @heading-color;
+    }
+  }
+}
+.ant-menu-light .ant-menu-item:hover:not(.ant-menu-item-selected), 
+.ant-menu-light .ant-menu-item-active, 
+.ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open, 
+.ant-menu-light .ant-menu-submenu-active, 
+.ant-menu-light .ant-menu-submenu-title:hover {
+  color: @heading-color;
+}
+.ant-menu-vertical .ant-menu-submenu-selected, 
+.ant-menu-vertical-left .ant-menu-submenu-selected, 
+.ant-menu-vertical-right .ant-menu-submenu-selected {
+  color: @primary-color;
+}
+.ant-menu-submenu:hover {
+  .ant-menu-title-content {
+    color: @primary-color;
+  }
+}

@@ -8,26 +8,27 @@
     background: @radio-button-bg;
     box-shadow: 0px 1px 3px 0px rgba(96, 108, 128, 0.1);
     font-size: @font-mini;
-    &:last-child {
-      border-radius: 0 3px 3px 0;
-    }
-    &:first-child {
-      border-radius: 3px 0 0 3px;
+    border-radius: @border-r-3;
+    border-left: 1px solid @radio-button-border;
+    & + .ant-radio-button-wrapper {
+      margin-left: 8px;
     }
   }
   .ant-radio-button-wrapper:not(:first-child)::before {
     background-color: @radio-button-border;
+    display: none;
   }
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
-    border-color: fade(@primary-color, 40%);
     background-color: @bg-color;
-    color: @primary-color;
+    border-color: @link-color;
+    color: @link-color;
     &:before {
       background-color: @border-color-base;
     }
   }
-  .ant-radio-button-wrapper:not(.ant-radio-button-wrapper-disabled):hover {
-    color: @primary-color;
+  .ant-radio-button-wrapper:not(.ant-radio-button-wrapper-disabled):not(.ant-radio-button-wrapper-checked):hover {
+    color: @btn-hover-color;
+    border-color: @btn-hover-color;
     background-color: @bg-color;
   }
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
