@@ -30,7 +30,7 @@
   }
   .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td {
     line-height: 22px;
-    padding: 13px 16px;
+    padding: 12px 16px;
   }
   .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th {
     line-height: 22px;
@@ -40,11 +40,14 @@
     width: 48px;
     min-width: 48px;
   }
-  .ant-pagination-item-active a {
-    color: @primary-color;
-  }
   .ant-pagination-item a {
     color: @heading-color;
+    &:hover {
+      color: @primary-color;
+    }
+  }
+  .ant-pagination-item-active a {
+    color: @primary-color;
   }
   .icon-down-circle {
     margin-right: 10px;
@@ -141,19 +144,23 @@
         padding-left: 0;
       }
     }
+    &.ant-btn-loading {
+      min-width: 60px;
+      & > span:last-child {
+        display: none;
+      }
+    }
   }
   .ant-btn-link:not(:last-child) {
-    & > span {
-      position: relative;
-      &::after {
-        position: absolute;
-        content: "";
-        right: 0;
-        top: 4px;
-        width: 1px;
-        height: 16px;
-        background: @table-border-color;
-      }
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      right: 0;
+      top: 4px;
+      width: 1px;
+      height: 16px;
+      background: @table-border-color;
     }
   }
 }

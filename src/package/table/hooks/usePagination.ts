@@ -1,5 +1,5 @@
-import type { PaginationProps } from '../component/types/pagination';
-import type { TableProps } from '../component/types/table';
+import type { PaginationProps } from '../types/pagination';
+import type { TableProps } from '../types/table';
 import { computed, unref, ref, ComputedRef, watch } from 'vue';
 import { PAGE_SIZE } from '../../../constans';
 
@@ -17,6 +17,7 @@ export function usePagination(refProps: ComputedRef<TableProps>) {
       if (!isBoolean(pagination) && pagination) {
         configRef.value = {
           ...unref(configRef),
+          // @ts-ignore
           ...(pagination ?? {}),
         };
       }
@@ -39,6 +40,7 @@ export function usePagination(refProps: ComputedRef<TableProps>) {
       showSizeChanger: true,
       // pageSizeOptions: PAGE_SIZE_OPTIONS,
       showQuickJumper: true,
+      //@ts-ignore
       ...(isBoolean(pagination) ? {} : pagination),
       ...unref(configRef),
     };

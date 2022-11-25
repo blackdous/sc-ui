@@ -32,11 +32,12 @@
     <div :class="[className + '-right']">
       <template v-if="!isSerach && serachOptions.show">
         <Select
-          v-model:value="serachSelectedValue"
+          v-model:value="selectValue"
           v-if="serachOptions.showSelect"
           :style="{width: serachOptions.selectOptions?.width || '120px'}"
           dropdownClassName="scDropdown"
           :placeholder="serachOptions.selectOptions?.placeholder"
+          :loading="serachOptions.loading"
         >
           <SelectOption
             v-for="optionsItem in serachOptions.typeList"
@@ -48,16 +49,17 @@
           </SelectOption>
         </Select>
         <InputSearch
-          v-model:value="serachVal"
+          v-model:value="textValue"
           :maxlength="serachOptions.inputOptions?.maxlength"
           :style="{width: serachOptions.inputOptions?.width || '120px'}"
           :placeholder="serachOptions.inputOptions?.placeholder"
           class="scSerach"
+          @change="updateTextValue"
           @pressEnter="onSearch"
         >
           <template #suffix>
             <i class="iconfont icon-sousuo"
-              @click="onSearch(serachVal)"
+              @click="onSearch(textValue)"
             />
           </template>
         </InputSearch>
@@ -79,12 +81,22 @@ import { PlusOutlined } from '@ant-design/icons-vue'
 
 import { basePrefixCls } from '../../../constans'
 import { ScRadioTooltipGroup } from '../../radio'
+//@ts-ignore
 import { CreateButton, MutilpActionOptions, SerachOptions } from './types/table'
 import ColumnDialogVue from './ColumnDialog.vue'
+import { any } from 'vue-types'
 
 const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
 
 export const TableFilterProps = () => ({
+  selectValue: String,
+  textValue: String,
+  selectLoading: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
   createButtonOptions: {
     type: Object as PropType<CreateButton>,
     default () {
@@ -129,9 +141,8 @@ export default defineComponent({
     InputSearch
   },
   setup(props, { slots, emit }) {
-    const serachSelectedValue = ref()
-    const mutilpValue = ref<string>()
-    const serachVal = ref()
+    const mutilpValue = ref()
+    const textValue = ref()
 
     const isSerach = computed(() => {
       return Object.keys(slots).includes('serach') 
@@ -149,6 +160,14 @@ export default defineComponent({
       return classNames;
     })
     
+    const selectValue = computed({
+      get: () => {
+        return props.selectValue
+      },
+      set: (val) => {
+        emit('update:selectValue', val)
+      }
+    })
     
     const createButtonOptions = computed(() => {
       return props.createButtonOptions
@@ -166,13 +185,23 @@ export default defineComponent({
       emit('createClick')
     }
     const radioHandle = (value:string) => {
-      emit('mutilpChange', value)
+      console.log('mutilpActionOptions: ', mutilpActionOptions);
+      const item = unref(mutilpActionOptions)?.mutilpList?.filter((item:any) => {
+        return item.value === value
+      })
+      emit('mutilpChange', item[0] || {})
     }
 
-    const reset = () => {
+    const resetSerach = () => {
+      textValue.value = ''
+    }
+
+    const resetMutilp = () => {
       mutilpValue.value = ''
-      serachSelectedValue.value = ''
-      serachVal.value = ''
+    } 
+
+    const updateTextValue = (value:string) => {
+      emit('update:textValue', value)
     }
 
     const onSearch = (val:string) => {
@@ -180,7 +209,8 @@ export default defineComponent({
     }
 
     defineExpose({
-      reset
+      resetMutilp,
+      resetSerach
     })
 
     return {
@@ -191,12 +221,13 @@ export default defineComponent({
       isCreateButton,
       isMutilpBtns,
       className,
-      serachSelectedValue,
-      serachVal,
+      selectValue,
+      textValue,
       basePrefixCls,
       createHandle,
       radioHandle,
-      onSearch
+      onSearch,
+      updateTextValue
     }
   },
 })

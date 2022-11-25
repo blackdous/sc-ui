@@ -1,12 +1,15 @@
 <template>
   <div :class="className">
     <TableFilter
-      :createButtonOptions="allOptions.createButtonOptions"
-      :mutilpActionOptions="allOptions.mutilpActionOptions"
-      :serachOptions="allOptions.serachOptions"
+      v-model:selectValue="selectValue"
+      v-model:textValue="textValue"
+      :createButtonOptions="createButtonOptions"
+      :mutilpActionOptions="mutilpOptions"
+      :serachOptions="serachOptions"
       @createClick="createHandle"
       @mutilpChange="mutilpChangeHandle"
       @serachClick="serachClickHandle"
+      ref="tableFilter"
     >
       <template
         template
@@ -50,8 +53,7 @@
       </template>
     </TableFilter>
     <Table
-      v-bind="$attrs"
-      :dataSource="allOptions.dataSource"
+      v-bind="tableBindValue"
       :pagination="getPaginationInfo"
       :scroll="{ x: allOptions?.scroll?.x || 500 }"
       size="small"
@@ -59,7 +61,6 @@
       :expand-icon="expandIconFnc"
       @change="handleTableChange"
       >
-      <!-- :expandIcon="expandIconFnc" -->
       <template
         template
         #[item]="data"
@@ -69,13 +70,13 @@
         <slot :name="item" v-bind="data || {}"></slot>
       </template>
       <template #action="{ record }">
-        <slot v-if="isAction" name="action" :record="record" />
+        <slot v-if="isAction" name="action../types/tablecord" />
         <ScTableAction
           v-else
           name="action"
           :record="record"
-          v-bind="allOptions.actionsProps"
-          @onAction="handle"
+          v-bind="actionsOptions"
+          @onAction="(action) => { handle(action, record) }"
         />
       </template>
       <template
@@ -108,19 +109,26 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, provide, defineComponent } from 'vue';
+import { computed, ref, provide, defineComponent, unref, watch } from 'vue';
 import { Table, Tooltip, Button } from 'ant-design-vue';
 import type { PaginationProps } from 'ant-design-vue';
 import { FilterFilled } from '@ant-design/icons-vue';
 
-import { basePrefixCls } from '../../../constans';
-import TableFilter from './TableFilter.vue';
-import ScTableAction from './TableAction.vue';
-import FilterDropDownVue from './FilterDropDown.vue';
-import ColumnDialogVue from './ColumnDialog.vue';
-import { tableProps, SorterResult } from './types/table';
+import { basePrefixCls } from '../../../constans'
+import TableFilter from './TableFilter.vue'
+import ScTableAction, { ActionItemProps } from './TableAction.vue'
+import FilterDropDownVue from './FilterDropDown.vue'
+import ColumnDialogVue from './ColumnDialog.vue'
+//@ts-ignore
+import { tableProps, TableProps, SorterResult } from '../types/table'
 import { usePagination } from '../hooks/usePagination';
+import { useTableExpand } from '../hooks/useTableExpand'
+import { useFilter } from '../hooks/useFIlter'
+import { useRowSelection } from '../hooks/useRowSelection'
+import { useLoading } from '../hooks/useLoading'
 import { useTable } from '../hooks/useTable'
+import { useActions } from '../hooks/useActions'
+import { isFunction } from 'lodash';
 
 const tablePrefixCls = basePrefixCls + 'Table';
 
@@ -141,22 +149,47 @@ export default defineComponent({
     FilterDropDownVue,
     ColumnDialogVue,
   },
-  setup(props, { attrs, slots, emit }) {
-    const tableRef = ref();
+  setup(props, { attrs, slots, emit, expose }) {
+    const tableRef = ref()
+    const tableFilter = ref()
+    const tableData = ref<Recordable[]>([])
+
+    const textValue = ref()
+    const selectValue = ref()
+
+    const fetchParams = ref<Recordable>({
+      tableRef: unref(tableRef),
+      mutilpValue: '',
+      search: {
+        select: selectValue,
+        text: textValue
+      },
+      filter: '',
+      selectedRowKeysRef: [],
+      columns: [],
+      pagination: {}
+    })
 
     provide('scTable', {
       tableRef,
       props: ref({ ...props, ...attrs }),
     });
+
+    const newProps = computed(() => {
+      return {
+        ...props
+      }
+    })
     const visible = ref(false);
 
     const allOptions = computed(() => {
       return { ...props, ...attrs };
     });
-    console.log('allOptions: ', allOptions);
 
     const columnList = ref(props.columnModalList);
     // console.log('columnList: ', columnList);
+
+    const { getLoading, setLoading } = useLoading(newProps);
 
     const {
       getPaginationInfo,
@@ -164,11 +197,83 @@ export default defineComponent({
       setPagination,
       // setShowPagination,
       // getShowPagination,
-    } = usePagination(allOptions);
+    } = usePagination(newProps);
 
     const {
-      expandIconFnc
-    } = useTable()
+      expandIconFnc,
+      getExpandOption, 
+      expandAll, 
+      expandRows, 
+      collapseAll,
+    } = useTableExpand(newProps, tableData, emit)
+
+    const {
+      selectedRowKeysRef,
+      getRowSelection,
+      getRowSelectionRef,
+      getSelectRows,
+      setSelectedRows,
+      clearSelectedRowKeys,
+      getSelectRowKeys,
+      deleteSelectRowByKey,
+      setSelectedRowKeys,
+    } = useRowSelection(newProps, tableData, emit)
+
+    // watch(() => selectedRowKeysRef, () =)
+
+    const {
+      createButtonOptions,
+      mutilpOptions,
+      serachOptions,
+      getSerachOptions,
+      setSerachOptions,
+      getMutilpAction,
+      setMutilpAction,
+    } = useFilter(newProps, tableRef, selectedRowKeysRef, fetchParams)
+
+    const {
+      actionsOptions
+    } = useActions(newProps, tableRef, selectedRowKeysRef)
+
+    const {
+      getDataSourceRef,
+      getDataSource,
+      getRawDataSource,
+      setTableData,
+      updateTableDataRecord,
+      deleteTableDataRecord,
+      insertTableDataRecord,
+      findTableDataRecord,
+      fetch,
+      getRowKey,
+      reload,
+      getAutoCreateKey,
+      updateTableData,
+      
+    } = useTable(
+      newProps,
+      {
+        tableData,
+        getPaginationInfo,
+        setLoading,
+        setPagination,
+        clearSelectedRowKeys,
+      },
+      emit,
+    );
+
+
+    const tableBindValue = computed(() => {
+      const dataSource = unref(getDataSourceRef);
+      fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, pagination: getPaginationInfo}
+      return {
+        columns: unref(newProps).columns,
+        rowSelection: unref(getRowSelectionRef),
+        rowKey: unref(getRowKey),
+        ...unref(getExpandOption),
+        dataSource
+      }
+    })
 
     const className = computed(() => {
       const classNames = [tablePrefixCls];
@@ -187,12 +292,16 @@ export default defineComponent({
       return Object.keys(slots).includes('tableActive');
     });
 
-    const handle = (action: string) => {
-      emit('onAction', action);
+    const handle = (action: ActionItemProps, record: any) => {
+      if (isFunction(action.action)) {
+        action.action({...unref(fetchParams), action, record})
+        return false
+      }
+      emit('onAction', {...unref(fetchParams), action, record});
     };
 
     const createHandle = () => {
-      emit('createClick', tableRef);
+      emit('createClick', {...fetchParams});
     };
 
     const isCustomFilter = computed(() => {
@@ -203,12 +312,14 @@ export default defineComponent({
       filters: Partial<string[]>,
       sorter: SorterResult,
     ) => {
+      // @ts-ignore
       setPagination(pagination);
       emit('tableChange', pagination, filters, sorter);
     };
 
-    const mutilpChangeHandle = (value: string) => {
+    const mutilpChangeHandle = (value: any) => {
       emit('mutilpChange', value, tableRef);
+      fetchParams.value = {...unref(fetchParams), mutilpValue: value}
     };
 
     // eslint-disable-next-line @typescript-eslint/ban-types
@@ -239,13 +350,47 @@ export default defineComponent({
     }
 
     const serachClickHandle = ({value, type}:any) => {
-      console.log('type: ', type);
-      console.log('value: ', value);
-
+      console.log('value, type: ', value, type);
     }
+
+    expose({
+      getLoading,
+      expandAll, 
+      expandRows, 
+      collapseAll,
+      getRowSelection,
+      getRowSelectionRef,
+      getSelectRows,
+      setSelectedRows,
+      clearSelectedRowKeys,
+      getSelectRowKeys,
+      deleteSelectRowByKey,
+      setSelectedRowKeys,
+
+      setSerachOptions,
+      getSerachOptions,
+      setMutilpAction,
+      getMutilpAction,
+
+      getDataSourceRef,
+      getDataSource,
+      getRawDataSource,
+      setTableData,
+      updateTableDataRecord,
+      deleteTableDataRecord,
+      insertTableDataRecord,
+      findTableDataRecord,
+      fetch,
+      getRowKey,
+      reload,
+      getAutoCreateKey,
+      updateTableData,
+      
+    })
 
     return {
       className,
+      
       allOptions,
       columnList,
       visible,
@@ -254,6 +399,20 @@ export default defineComponent({
       activeOptions,
       isAction,
       getPaginationInfo,
+
+      tableRef,
+      tableFilter,
+
+      tableBindValue,
+      fetchParams,
+      selectValue,
+      textValue,
+
+      mutilpOptions,
+      createButtonOptions,
+      serachOptions,
+      actionsOptions,
+
       handle,
       createHandle,
       handleModal,

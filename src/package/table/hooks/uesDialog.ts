@@ -1,5 +1,5 @@
 import { ref, watchEffect, unref } from "vue"
-import { ColumnItem } from "../component/types/column"
+import { ColumnItem } from "../types/column"
 
 export function setItem (columnList:Array<ColumnItem>, item:ColumnItem) {
   return {...columnList, item}

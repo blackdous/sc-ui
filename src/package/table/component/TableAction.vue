@@ -7,8 +7,8 @@
       <Button 
         :disabled="item.isDisabled"
         type="link"
-        :loading="item.loading"
-        @click="handle(item.action)"
+        :loading="!item.isDisabled && item.loading"
+        @click="handle(item)"
       >
         {{ item.label }}
       </Button>
@@ -40,7 +40,7 @@
                 >
                   <MenuItem
                     :disabled="subItem.isDisabled"
-                    @click="handle(item.action)"
+                    @click="handle(item)"
                   >
                     {{ subItem.label }}
                   </MenuItem>
@@ -48,7 +48,7 @@
               </template>
               <MenuItem
                 :disabled="item.isDisabled"
-                @click="handle(item.action)"
+                @click="handle(item)"
                 v-else
               >
                 <template v-if="item.isDisabled && item.tooltipDes">
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <script lang='ts' setup>
-import { computed, defineProps, defineEmits, inject, ref, onMounted, unref } from 'vue'
+import { computed, defineProps, defineEmits, ref, onMounted, unref } from 'vue'
 import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 
@@ -92,7 +92,7 @@ import { basePrefixCls } from '../../../constans'
 export interface ActionItemProps {
   label: string,
   isShow?: boolean,
-  isDisabled?: boolean,
+  isDisabled?: boolean | (() => boolean),
   loading?: boolean,
   action: string,
   tooltip?: boolean,
@@ -102,23 +102,28 @@ export interface ActionItemProps {
 
 export interface ActionProps {
   showBtn?: number,
-  actions?: Array<ActionItemProps>
+  actions?: Array<ActionItemProps>,
+  record?: any
 }
 
 const props = withDefaults(defineProps<ActionProps>(), {
   showBtn: 2
 })
 
-const emits = defineEmits(['onAction'])
 
-const scTable = inject('scTable')
+const record = computed(() => {
+  return props.record
+})
+console.log('record: ', record);
+
+const emits = defineEmits(['onAction'])
 
 const menuRef = ref()
 const placementRef = ref<string>('bottomLeft')
 
 onMounted(() => {
   const buttonMenu = unref(menuRef)
-  buttonMenu.addEventListener('mouseenter', () => {
+  buttonMenu && buttonMenu.addEventListener('mouseenter', () => {
     const totalHeight = window.innerHeight || document.documentElement.clientHeight;
     const totalWidth = window.innerWidth || document.documentElement.clientWidth;
     // 当滚动条滚动时，top, left, bottom, right时刻会发生改变。
@@ -152,7 +157,7 @@ const filterShow = computed(() => {
   }) || []
 })
 
-const handle = (action: string) => {
-  emits('onAction', { action, scTable })
+const handle = (action: ActionItemProps) => {
+  emits('onAction', action)
 }
 </script>

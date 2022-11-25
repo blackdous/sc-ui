@@ -21,7 +21,8 @@
 import { defineComponent, computed, ref } from 'vue'
 
 import ScModal from '../../modal/components/ScModal.vue'
-import { ColumnModal } from './types/column'
+// @ts-ignore
+import { ColumnModal } from '../types/column'
 import CheckoutBtnVue from './CheckoutBtn.vue'
 
 export default defineComponent({

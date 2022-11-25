@@ -1,12 +1,12 @@
-import { isFunction } from '/@/utils/is';
-import type { BasicTableProps, TableRowSelection } from '../types/table';
+import { isFunction } from '../../../utils/is';
+import type { TableProps, TableRowSelection } from '../types/table';
 import { computed, ComputedRef, nextTick, Ref, ref, toRaw, unref, watch } from 'vue';
-import { ROW_KEY } from '../const';
-import { omit } from 'lodash-es';
-import { findNodeAll } from '/@/utils/helper/treeHelper';
+import { ROW_KEY } from '../../../constans';
+import { omit } from 'lodash'
+import { findNodeAll } from '../../../utils/treeHelper'
 
 export function useRowSelection(
-  propsRef: ComputedRef<BasicTableProps>,
+  propsRef: ComputedRef<TableProps>,
   tableData: Ref<Recordable[]>,
   emit: EmitType,
 ) {
@@ -39,6 +39,7 @@ export function useRowSelection(
     () => unref(selectedRowKeysRef),
     () => {
       nextTick(() => {
+        // console.log('value: ', value);
         const { rowSelection } = unref(propsRef);
         if (rowSelection) {
           const { onChange } = rowSelection;
@@ -110,6 +111,7 @@ export function useRowSelection(
   }
 
   return {
+    selectedRowKeysRef,
     getRowSelection,
     getRowSelectionRef,
     getSelectRows,

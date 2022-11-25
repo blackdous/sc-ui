@@ -29,8 +29,9 @@
 import { CheckOutlined } from '@ant-design/icons-vue'
 import { defineComponent, ref, unref } from 'vue'
 
-import { useChecked } from '../hooks/uesDialog' 
-import { ColumnItem, ColumnModal } from './types/column'
+import { useChecked } from '../hooks/uesDialog'
+// @ts-ignore
+import { ColumnItem, ColumnModal } from '../types/column'
 
 export default defineComponent({
   name: 'CheckoutBtn',

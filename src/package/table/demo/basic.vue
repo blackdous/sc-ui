@@ -5,19 +5,20 @@
       ref="scTableRef"
       :columns="columns"
       :data-source="data"
-      :actions-props="actionProps"
+      :actionsOptions="actionProps"
       :create-button-options="{
         show: true,
         text: '创建'
       }"
-      :mutilp-action-options="{
+      :mutilp-options="{
         show: true,
         mutilpList: radioList
       }"
       :serach-options="{
         show: true,
         showSelect: true,
-        typeList: radioList,
+        // typeList: () => radioList,
+        typeList: promiseTypelist,
         customSerachFunc: serachHanle,
         selectOptions: {
           placeholder: '请选择',
@@ -29,14 +30,22 @@
           maxlength: 40
         }
       }"
+      :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
+      locale="zh"
       :customFilter="true"
       :columnModalList="columnList"
+      
+      isTreeTable
+
       @onAction="handle"
       @createClick="createClick"
       @mutilpChange="mutilpChangeHandle"
       @serachClick="serachHanle"
       @filter="handleFilter"
     >
+    <template #expandedRowRender>
+      <p>11111111111</p>
+    </template>
     </ScTable>
   </div>
 </template>
@@ -45,8 +54,8 @@
 import { ComputedRef, reactive, ref } from 'vue'
 import type { Ref } from 'vue'
 import { ScTable } from 'sc-ui'
-
-import {  list as ColumnList } from '../component/types/column'
+//@ts-ignore
+import { list as ColumnList } from '../types/column'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
 import "ant-design-vue/dist/antd.css"
@@ -66,16 +75,32 @@ const list = ref([
   {
     label: '创建快照',
     isShow: true,
+    loading: ({tableRef, selectedRowKeysRef}) => {
+      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      if (selectedRowKeysRef.length > 3) {
+        return true
+      }
+      return false
+    },
     isDisabled: false,
-    loading: false,
-    action: 'aa',
+    action: (data:any) => {
+      console.log('====================================');
+      console.log(data);
+      console.log('====================================');
+    },
     tooltip: false,
     tooltipDes: '创建快照创建快照aa',
   },
   {
     label: '续费',
     isShow: true,
-    isDisabled: false,
+    isDisabled: ({tableRef, selectedRowKeysRef}) => {
+      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      if (selectedRowKeysRef.length > 3) {
+        return true
+      }
+      return false
+    },
     loading: false,
     action: 'bb',
     tooltip: false,
@@ -85,7 +110,7 @@ const list = ref([
     label: '一级选项',
     isShow: true,
     isDisabled: false,
-    loading: false,
+    loading: true,
     action: '1111',
     tooltip: false,
     tooltipDes: '一级选项111111111',
@@ -103,7 +128,13 @@ const list = ref([
   }, {
     label: '三级选项',
     isShow: true,
-    isDisabled: true,
+    isDisabled: ({tableRef, selectedRowKeysRef}) => {
+      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      if (selectedRowKeysRef.length > 3) {
+        return true
+      }
+      return false
+    },
     loading: false,
     action: '3333',
     tooltip: true,
@@ -149,6 +180,12 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮A',
+    disabled: ({tableRef, selectedRowKeysRef}) => {
+      if (selectedRowKeysRef.length > 3) {
+        return true
+      }
+      return false
+    },
     value: 'a'
   },
   {
@@ -166,6 +203,16 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
     value: 'c'
   }
 ])
+
+const promiseTypelist = new Promise ((resolve) => {
+    setTimeout(() => {
+      resolve(radioList)
+    }, 1500)
+  }).then((data) => {
+    return data
+  }).catch(error => {
+    console.log('error: ', error);
+  })
 
 const actionProps = ref({
   showBtn: 2,
@@ -187,7 +234,7 @@ const data: DataItem[] = [
     age: 32,
     address: 'New London',
     children: [{
-      key: '11',
+      key: '3',
       name: 'John Brown',
       age: 32,
       address: 'New London',
@@ -198,15 +245,23 @@ const data: DataItem[] = [
     name: 'Jim Green',
     age: 40,
     address: 'London London',
-    children: [{
-      key: '21',
-      name: 'John Brown',
-      age: 32,
-      address: 'New London',
-    }]
-  }
+    // children: [{
+    //   key: '4',
+    //   name: 'John Brown',
+    //   age: 32,
+    //   address: 'New London',
+    // }]
+  },
 ];
 
+for(let i = 10; i < 40; i++) {
+  data.push({
+    key: i.toString(),
+    name: 'John Brown',
+    age: i,
+    address: 'New London',
+  })
+}
 
 const state = reactive<{
   selectedRowKeys: Key[];
@@ -227,6 +282,7 @@ interface Data {
 }
 
 const handle = (data: Data) => {
+  
   console.log('Data: ', data);
 }
 

@@ -55,8 +55,8 @@
 <script lang='ts'>
 import { computed, defineComponent, unref, ref } from 'vue'
 import { Dropdown, Menu, MenuItem, SubMenu } from 'ant-design-vue'
-
-import { scFilterProps, FilterItem } from './types/column'
+//@ts-ignore
+import { scFilterProps, FilterItem } from '../types/column'
 import { basePrefixCls } from '../../../constans'
 
 export default defineComponent({
@@ -64,9 +64,7 @@ export default defineComponent({
   inheritAttrs: false,
   components: { Dropdown, Menu, MenuItem, SubMenu },
   props: scFilterProps(),
-  setup (props, { attrs, emit }) {
-    console.log('attrs: ', attrs);
-    console.log('props: ', props);
+  setup (props, { emit }) {
     const visable = ref<boolean>(true)
     const filterList = computed(() => {
       return unref(props.filterList)
@@ -75,7 +73,7 @@ export default defineComponent({
       visable.value = false;
       emit('filter', item)
     }
-    console.log('filterList: ', filterList.value);
+    // console.log('filterList: ', filterList.value);
     return {
       basePrefixCls,
       filterList,
