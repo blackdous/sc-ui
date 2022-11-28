@@ -5,7 +5,7 @@ import type { TooltipProps } from 'ant-design-vue'
 //@ts-ignore
 import type { ActionProps as ActionOptions } from '../component/TableAction.vue'
 import { PaginationProps } from './pagination'
-import { ColumnItem, list } from './column'
+import { ColumnModalItem, list } from './column'
 import type { TableRowSelection as ITableRowSelection } from 'ant-design-vue/lib/table/interface'
 import type { ModalProps } from "../../modal"
 
@@ -157,14 +157,14 @@ export const serachOptions = () => ({
   // 默认查询名字
   defaultSerachText: { type: String, default: undefined },
   // 查询方法
-  customSerachFunc: Function as PropType<(tableRef: ComputedRef) => void>
+  action: Function as PropType<(fetchParams: FetchParams) => void>
 })
 
 export interface SerachOptions {
   show?: boolean,
   showSelect?: boolean,
   typeList?: (...arg: any) => Promise<any> | Array<{label: string, value: string, disabled: boolean}>,
-  customSerachFunc?: (tableRef: ComputedRef) => void,
+  action?: (fetchParams: FetchParams) => void,
   loading: boolean,
   selectOptions?: {
     placeholder?: string,
@@ -264,9 +264,9 @@ export const tableProps = () => ({
     }
   },
   columnModalList: {
-    type: Object as PropType<Array<ColumnItem>>,
+    type: Object as PropType<Array<ColumnModalItem>>,
     default () {
-      return list
+      return []
     }
   },
   modalOptions: {
@@ -316,7 +316,11 @@ export const tableProps = () => ({
  */
   rowSelection: Object as PropType<TableRowSelection>,
   // 列配置
-  columns: Object as PropType<BasicColumn[]>
+  columns: Object as PropType<BasicColumn[]>,
+  // 弹窗cancel事件
+  cancelModal: Function as PropType<(...arg: any) => void>,
+  // 弹窗okModal事件
+  okModal: Function as PropType<(...arg: any) => void>
 })
 
 export interface TableProps {
@@ -326,13 +330,12 @@ export interface TableProps {
   actionsOptions?: ActionOptions,
   customFilter?: boolean,
   activeOptions?: ActiveOptions,
-  columnModalList?: Array<ColumnItem>,
+  columnModalList?: Array<ColumnModalItem>,
   modalOptions?: ModalProps,
 
   pagination? : PaginationProps | boolean,
   scroll?: ScrollProps,
   dataSource?: Array<any>,
-
   isTreeTable: boolean,
   autoCreateKey: boolean,
   rowKey?: string | ((record: Recordable) => string),
@@ -373,7 +376,11 @@ export interface TableProps {
   */
   rowSelection?: TableRowSelection,
   // 列配置
-  columns: BasicColumn[]
+  columns: BasicColumn[],
+  // 弹窗cancel事件
+  cancelModal: (...arg: any) => void
+  // 弹窗ok事件
+  okModal: (...arg: any) => void
 }
 
 export interface FetchParams {

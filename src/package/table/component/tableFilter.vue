@@ -200,11 +200,11 @@ export default defineComponent({
     } 
 
     const updateTextValue = (value:string) => {
-      emit('update:textValue', value)
+      emit('update:textValue', unref(textValue))
     }
 
     const onSearch = (val:string) => {
-      emit('serachClick', { value: unref(val), type: serachSelectedValue })
+      emit('serachClick', { value: unref(val), type: unref(selectValue) })
     }
 
     defineExpose({

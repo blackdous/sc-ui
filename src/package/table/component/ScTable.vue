@@ -121,8 +121,10 @@
     </Table>
     <ColumnDialogVue
       v-model:visible="visible"
-      :columnList="columnList || tableBindValue.columns"
+      :columnList="columnList || getFilterColumnRef"
       @checkChange="checkedChange"
+      @cancelModal="cancelModal"
+      @okModal="okModal"
     >
     </ColumnDialogVue>
   </div>
@@ -155,6 +157,7 @@ import { useTable } from '../hooks/useTable'
 import { useActions } from '../hooks/useActions'
 import { useColumn } from '../hooks/uesColumn'
 import { isFunction } from 'lodash'
+import { Column } from '../types/column';
 
 const tablePrefixCls = basePrefixCls + 'Table';
 
@@ -191,10 +194,12 @@ export default defineComponent({
     const fetchParams = ref<Recordable>({
       tableRef,
       mutilpValue: '',
-      search: {
-        select: selectValue,
-        text: textValue
-      },
+      searchSelect: '',
+      searchText: '',
+      // serach: {
+      //   select: selectValue,
+      //   text: textValue
+      // },
       filter: '',
       selectedRowKeysRef: [],
       columns: [],
@@ -216,7 +221,8 @@ export default defineComponent({
       return { ...props, ...attrs };
     });
 
-    const columnList = ref(props.columnModalList);
+    // const columnList = ref(props.columnModalList);
+    // console.log('columnList: ', unref(columnList));
 
     const { getLoading, setLoading } = useLoading(newProps);
 
@@ -277,7 +283,6 @@ export default defineComponent({
       reload,
       getAutoCreateKey,
       updateTableData,
-      
     } = useTable(
       newProps,
       {
@@ -290,12 +295,19 @@ export default defineComponent({
       emit,
     );
 
-    const { getColumnRef } = useColumn(newProps)
+    const {
+      // getColumnRef,
+      getFilterColumnRef,
+      setFilterColumnRef,
+      setFilterColumnChecked,
+      setFilterColumnDisabled
+    } = useColumn(newProps)
+
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);
       fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, pagination: getPaginationInfo}
       return {
-        columns: toRaw(unref(getColumnRef)),
+        columns: toRaw(unref(getFilterColumnRef)),
         rowSelection: unref(getRowSelectionRef),
         rowKey: unref(getRowKey),
         ...unref(getExpandOption),
@@ -402,12 +414,35 @@ export default defineComponent({
       visible.value = !visible.value;
     };
     //@ts-ignore
-    const checkedChange = ({ keys, checkedList, list }) => {
-      console.log('keys, checkedList, list: ', keys, checkedList, list);
+    const checkedChange = ({ keys}) => {
+      console.log('keys: ', keys);
+    }
+    //@ts-ignore
+    const cancelModal = ({ keys, checkedList }) => {
+      const cancelModal = unref(newProps).cancelModal
+      if (isFunction(cancelModal)) {
+        cancelModal(keys, checkedList)
+      }
+    }
+    //@ts-ignore
+    const okModal = ({ keys, checkedList }) => {
+      visible.value = false
+      console.log('keys: ', keys);
+      setFilterColumnChecked(keys)
+      const okModal = unref(newProps).okModal
+      if (isFunction(okModal)) {
+        okModal(keys, checkedList)
+      }
     }
 
     const serachClickHandle = ({value, type}:any) => {
-      console.log('value, type: ', value, type);
+      const serach = unref(serachOptions)
+      fetchParams.value = {...unref(fetchParams), searchSelect: type, searchText: value}
+      if (isFunction(serach?.action)) {
+        serach?.action({...unref(fetchParams)})
+      } else {
+        emit('serachClick', { ...unref(fetchParams) })
+      }
     }
 
     const refresh = () => {
@@ -418,6 +453,13 @@ export default defineComponent({
         emit('refresh', { ...unref(fetchParams) })
       }
     }
+
+    // watch([() => unref(textValue), () => unref(selectValue)], ([text, select]) => {
+    //   if (text || select) {
+    //     console.log('text: ', unref(text));
+    //     console.log('select: ', unref(select));
+    //   }
+    // })
 
     onMounted(() => {
       nextTick(() => {
@@ -459,6 +501,10 @@ export default defineComponent({
       reload,
       getAutoCreateKey,
       updateTableData,
+
+      setFilterColumnRef,
+      setFilterColumnChecked,
+      setFilterColumnDisabled
       
     })
 
@@ -466,7 +512,7 @@ export default defineComponent({
       className,
       getLoading,
       allOptions,
-      columnList,
+      // columnList,
       visible,
       isRableActive,
       isCustomFilter,
@@ -487,6 +533,7 @@ export default defineComponent({
       serachOptions,
       actionsOptions,
       customComponentKey,
+      getFilterColumnRef,
 
       handle,
       createHandle,
@@ -498,7 +545,10 @@ export default defineComponent({
       expandIconFnc,
       serachClickHandle,
       getComponent,
-      refresh
+      refresh,
+      setFilterColumnRef,
+      cancelModal,
+      okModal
     };
   },
 });

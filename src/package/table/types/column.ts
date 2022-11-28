@@ -25,9 +25,9 @@ export const scFilterProps = () => ({
 })
 
 export interface ColumnModalItem {
-  label: string,
-  value: string,
-  key: string,
+  label?: string,
+  value?: string,
+  key?: string,
   disabled?: boolean,
   checked?: boolean,
 }
@@ -95,6 +95,11 @@ export interface FilterDropdownProps {
 export declare type CustomRenderFunction<T> = (record: RecordProps<T>) => VNodeChild | JSX.Element;
 
 export interface Column {
+  label?: string,
+  value?: [string, number],
+  disabled?: boolean,
+  checked?: boolean,
+  default?: boolean,
   type: {
     componentName: string,
     props: any

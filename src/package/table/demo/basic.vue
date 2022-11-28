@@ -47,7 +47,6 @@
       :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
       locale="zh"
       :customFilter="true"
-      :columnModalList="columnList"
       
       isTreeTable
 
@@ -61,6 +60,7 @@
     <template #expandedRowRender>
       <p>11111111111</p>
     </template>
+    <!-- :columnModalList="columnList" -->
     </ScTable>
   </div>
 </template>

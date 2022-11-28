@@ -8,6 +8,8 @@
     okText="确认"
     :width="604"
     maskClosable
+    :afterClose="hanleCancel"
+    @ok="handleOk"
   >
     <CheckoutBtnVue
       :columnList="columnList"
@@ -18,12 +20,17 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed, ref, unref } from 'vue'
 
 import ScModal from '../../modal/components/ScModal.vue'
-// @ts-ignore
-import { ColumnModal } from '../types/column'
+import { ColumnModal, Column } from '../types/column'
 import CheckoutBtnVue from './CheckoutBtn.vue'
+
+interface CheckParams {
+  keys: string[],
+  checkedList: Column[],
+  list: Column[],
+}
 
 export default defineComponent({
   name: 'ColumnDialog',
@@ -36,6 +43,8 @@ export default defineComponent({
   setup (props, { emit }) {
     const checkInfo = ref<string>('')
     const columnList = ref(props.columnList)
+    const curKeys = ref<string[]>()
+    const curCheckedList = ref<Column[]>()
     const visible = computed({
       get: () => {
         return props.visible
@@ -45,16 +54,26 @@ export default defineComponent({
       }
       
     })
-    //@ts-ignore
-    const handleCheck = ({ keys, checkedList, list }) => {
+    const handleCheck = ({ keys, checkedList, list }:CheckParams) => {
+      curKeys.value = keys
+      curCheckedList.value = checkedList
       checkInfo.value = (checkedList || []).length + ''
       emit('checkChange', { keys, checkedList, list })
+    }
+    const hanleCancel = () => {
+      console.log('cancelModal')
+      emit('cancelModal', { keys: unref(curKeys), checkedList: unref(curCheckedList) })
+    }
+    const handleOk = () => {
+      emit('okModal',  { keys: unref(curKeys), checkedList: unref(curCheckedList) })
     }
     return {
       visible,
       columnList,
       checkInfo,
-      handleCheck
+      handleCheck,
+      hanleCancel,
+      handleOk
     }
   }
 })

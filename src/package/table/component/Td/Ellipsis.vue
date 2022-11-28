@@ -31,7 +31,6 @@ const props = defineProps({
 const className = computed(() => {
   const names = ['tdEllipsis']
   const { column } = props
-  console.log('column: ', column);
   if (column.type.componentName === 'ellipsis') {
     names.push('ellipsisText')
   }
