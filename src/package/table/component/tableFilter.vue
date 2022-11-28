@@ -84,7 +84,6 @@ import { ScRadioTooltipGroup } from '../../radio'
 //@ts-ignore
 import { CreateButton, MutilpActionOptions, SerachOptions } from './types/table'
 import ColumnDialogVue from './ColumnDialog.vue'
-import { any } from 'vue-types'
 
 const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
 
@@ -185,7 +184,7 @@ export default defineComponent({
       emit('createClick')
     }
     const radioHandle = (value:string) => {
-      console.log('mutilpActionOptions: ', mutilpActionOptions);
+      // console.log('mutilpActionOptions: ', mutilpActionOptions);
       const item = unref(mutilpActionOptions)?.mutilpList?.filter((item:any) => {
         return item.value === value
       })

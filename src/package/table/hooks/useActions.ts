@@ -7,8 +7,8 @@ import { TableProps } from "../types/table"
 
 export function useActions (
   propsRef: ComputedRef<TableProps>,
-  tableRef: Ref<any>,
-  selectedRowKeysRef?: Ref<Recordable[]>
+  selectedRowKeysRef?: Ref<Recordable[]>,
+  fetchParams?: Ref<Recordable>
   ) {
     const actionsOptions = ref<Recordable>({})
 
@@ -20,10 +20,15 @@ export function useActions (
       const newActions = actions?.map(item => {
         if (isFunction(item.isDisabled)) {
           // @ts-ignore
-          item.isDisabled = item?.isDisabled({ tableRef: unref(tableRef), selectedRowKeysRef: unref(selectedRowKeysRef)})
+          item.isDisabled = item?.isDisabled({ selectedRowKeysRef: unref(selectedRowKeysRef), ...fetchParams })
         }
         if (isFunction(item.loading)) {
-          item.loading = item?.loading({ tableRef: unref(tableRef), selectedRowKeysRef: unref(selectedRowKeysRef)})
+          // @ts-ignore
+          item.loading = item?.loading({ selectedRowKeysRef: unref(selectedRowKeysRef), ...fetchParams})
+        }
+        if (isFunction(item.isShow)) {
+          // @ts-ignore
+          item.isShow = item?.isShow({ selectedRowKeysRef: unref(selectedRowKeysRef), ...fetchParams})
         }
         if (item.children) {
           flapSetItem(item.children)

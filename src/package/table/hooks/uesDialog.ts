@@ -39,6 +39,9 @@ export function useChecked (columnList:Array<ColumnItem>) {
   const getList = () => {
     return unref(list)
   }
+  const setList = (columnList:Array<ColumnItem>) => {
+    list.value = columnList
+  }
 
   const initChecked = (columnList: Array<ColumnItem>) => {
     const initKeys:string[] = []
@@ -65,6 +68,7 @@ export function useChecked (columnList:Array<ColumnItem>) {
     getCheckedKeys,
     getCheckedItems,
     getList,
+    setList,
     initChecked
   }
 }

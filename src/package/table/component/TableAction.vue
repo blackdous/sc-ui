@@ -1,7 +1,7 @@
 <template>
   <div :class="[basePrefixCls + 'Actions']">
     <template
-      v-for="(item) in filterShow.slice(0, props.showBtn)"
+      v-for="(item) in filterShow.slice(0, actionsOptions.showBtn)"
       :key="item.label"
     >
       <Button 
@@ -13,7 +13,7 @@
         {{ item.label }}
       </Button>
     </template>
-    <template v-if="filterShow.length > props.showBtn">
+    <template v-if="filterShow.length > actionsOptions.showBtn">
       <Dropdown
         :placement="placementRef"
         :overlayClassName="basePrefixCls + 'TableDropdown'"
@@ -28,7 +28,7 @@
         <template #overlay>
           <Menu>
             <template
-              v-for="(item) in filterShow.slice(props.showBtn)"
+              v-for="(item) in filterShow.slice(actionsOptions.showBtn)"
               :key="item.label"
             >
               <template v-if="item?.children && item?.children?.length">
@@ -40,15 +40,21 @@
                 >
                   <MenuItem
                     :disabled="subItem.isDisabled"
-                    @click="handle(item)"
                   >
-                    {{ subItem.label }}
+                    <Button
+                      type="link"
+                      class="actionBtn"
+                      :loading="subItem.loading"
+                      :disabled="subItem.isDisabled"
+                      @click="handle(subItem)"
+                    >
+                      {{ subItem.label }}
+                    </Button>
                   </MenuItem>
                 </SubMenu>
               </template>
               <MenuItem
                 :disabled="item.isDisabled"
-                @click="handle(item)"
                 v-else
               >
                 <template v-if="item.isDisabled && item.tooltipDes">
@@ -58,11 +64,27 @@
                     <template #title>
                       {{ item.tooltipDes }}
                     </template>
-                    {{ item.label }}
+                    <Button
+                      type="link"
+                      class="actionBtn"
+                      :loading="item.loading"
+                      :disabled="item.isDisabled"
+                      @click="handle(item)"
+                    >
+                      {{ item.label }}
+                    </Button>
                   </Tooltip>
                 </template>
                 <template v-else>
-                  {{ item.label }}
+                  <Button
+                    type="link"
+                    class="actionBtn"
+                    :loading="item.loading"
+                    :disabled="item.isDisabled"
+                    @click="handle(item)"
+                  >
+                    {{ item.label }}
+                  </Button>
                 </template>
               </MenuItem>
             </template>
@@ -82,16 +104,19 @@ export default {
 </script>
 
 <script lang='ts' setup>
-import { computed, defineProps, defineEmits, ref, onMounted, unref } from 'vue'
+import { computed, defineProps, defineEmits, ref, onMounted, unref, watch } from 'vue'
 import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 
 import { basePrefixCls } from '../../../constans'
+import { treeMap } from '../../../utils/treeHelper'
+import { cloneDeep, isFunction } from 'lodash'
 
 
 export interface ActionItemProps {
   label: string,
   isShow?: boolean,
+  key?: string,
   isDisabled?: boolean | (() => boolean),
   loading?: boolean,
   action: string,
@@ -103,18 +128,19 @@ export interface ActionItemProps {
 export interface ActionProps {
   showBtn?: number,
   actions?: Array<ActionItemProps>,
-  record?: any
+  record?: any,
+  fetchParams?: any
 }
 
 const props = withDefaults(defineProps<ActionProps>(), {
   showBtn: 2
 })
 
+const filterShow = ref([] as Array<ActionItemProps>)
 
-const record = computed(() => {
-  return props.record
+const actionsOptions = computed(() => {
+  return props.record?.actionsOptions || { showBtn: props.showBtn, actions: props.actions }
 })
-console.log('record: ', record);
 
 const emits = defineEmits(['onAction'])
 
@@ -147,17 +173,55 @@ onMounted(() => {
   })
 })
 
-const filterShow = computed(() => {
-  return props.actions?.filter(item => item.isShow).map(item => {
+watch([() => props.record, () => props.actions], ([prospRecord, actions]) => {
+  if (!actions || !prospRecord) {
+    return false
+  }
+  const record = cloneDeep(prospRecord)
+  // const fetchParams = cloneDeep(props.fetchParams)
+  let actionsOptions = cloneDeep(actions) as Array<ActionItemProps>
+  let list:Array<ActionItemProps> = []
+  const isCustomActionsOptions = !!record.actionsOptions
+  if (isCustomActionsOptions) {
+    list = cloneDeep(record.actionsOptions.actions)
+    // list = treeMap(actionsOptions, { children: 'children', conversion: (data:any) => {
+    //   if (isFunction(data.isDisabled)) {
+    //     // @ts-ignore
+    //     data.isDisabled = data?.isDisabled({  })
+    //   }
+    //   if (isFunction(data.loading)) {
+    //     // @ts-ignore
+    //     data.loading = data?.loading({ })
+    //   }
+    //   return data
+    // }})
+  } else {
+    list = treeMap(actionsOptions, { children: 'children', conversion: (data:any) => {
+      if (Object.keys(unref(record)).includes(data.key)) {
+        // @ts-ignore
+        data.isDisabled = record[data.key]?.disable
+        // @ts-ignore
+        data.loading = record[data.key]?.loading
+      }
+      return data
+    }})
+  }
+  filterShow.value = list?.filter(item => item.isShow).map(item => {
     if (item.isDisabled) {
       item.tooltip = true;
       item.tooltipDes = (item.tooltipDes || item.label)
     }
     return item
   }) || []
+}, {
+  deep: true,
+  immediate: true
 })
 
 const handle = (action: ActionItemProps) => {
+  if (action.isDisabled || action.loading) {
+    return false
+  }
   emits('onAction', action)
 }
 </script>

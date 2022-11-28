@@ -5,7 +5,21 @@
       ref="scTableRef"
       :columns="columns"
       :data-source="data"
+      :loading="false"
       :actionsOptions="actionProps"
+      :activeOptions="{
+        reload: {
+          text: '刷新',
+          show: true,
+          showTooltip: true,
+          action: refresh
+        },
+        columnDialog: {
+          text: '定制列',
+          show: true,
+          showTooltip: true
+        }
+      }"
       :create-button-options="{
         show: true,
         text: '创建'
@@ -42,6 +56,7 @@
       @mutilpChange="mutilpChangeHandle"
       @serachClick="serachHanle"
       @filter="handleFilter"
+      @refresh="refresh"
     >
     <template #expandedRowRender>
       <p>11111111111</p>
@@ -51,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComputedRef, reactive, ref } from 'vue'
+import { ComputedRef, reactive, ref, unref } from 'vue'
 import type { Ref } from 'vue'
 import { ScTable } from 'sc-ui'
 //@ts-ignore
@@ -82,6 +97,7 @@ const list = ref([
       }
       return false
     },
+    key: 'aa',
     isDisabled: false,
     action: (data:any) => {
       console.log('====================================');
@@ -101,6 +117,7 @@ const list = ref([
       }
       return false
     },
+    key: 'bb',
     loading: false,
     action: 'bb',
     tooltip: false,
@@ -108,9 +125,16 @@ const list = ref([
   },
   {
     label: '一级选项',
-    isShow: true,
+    isShow: ({tableRef, selectedRowKeysRef}) => {
+      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      if (selectedRowKeysRef.length > 3) {
+        return true
+      }
+      return false
+    },
     isDisabled: false,
-    loading: true,
+    loading: false,
+    key: 'cc',
     action: '1111',
     tooltip: false,
     tooltipDes: '一级选项111111111',
@@ -119,7 +143,8 @@ const list = ref([
         label: '二级选项',
         isShow: true,
         isDisabled: false,
-        loading: false,
+        loading: true,
+        key: 'dd',
         action: '2222',
         tooltip: false,
         tooltipDes: '二级选项22222222',
@@ -136,6 +161,7 @@ const list = ref([
       return false
     },
     loading: false,
+    key: 'ff',
     action: '3333',
     tooltip: true,
     tooltipDes: '三级选项33333333',
@@ -162,9 +188,24 @@ const columns = [
     onFilter: (value: string, record: DataItem) => record.name.includes(value),
     sorter: (a: DataItem, b: DataItem) => a.age - b.age,
   },
-  { title: 'Column 1', dataIndex: 'address', key: '1', width: 160 },
-  { title: 'Column 2', dataIndex: 'address', key: '2', width: 160 },
-  { title: 'Column 3', dataIndex: 'address', key: '3', width: 160 },
+  {
+    title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
+    type: {
+      componentName: 'ellipsis',
+      props: {
+        lineheigth: 2
+      }
+    }
+    // type: {
+    //   componentName: 'copy',
+    //   props: {
+    //     successTxt: 'copy 成功',
+    //     errorText: ''
+    //   }
+    // }
+  },
+  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160 },
+  { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 },
   {
     title: 'Action',
     key: 'operation',
@@ -186,7 +227,10 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
       }
       return false
     },
-    value: 'a'
+    value: 'a',
+    action: ({tableRef, selectedRowKeysRef}) => {
+      console.log('tableRef, selectedRowKeysRef: ', tableRef, selectedRowKeysRef);
+    }
   },
   {
     tooltipDis: false,
@@ -224,7 +268,9 @@ interface DataItem {
   name: string;
   age: number;
   address: string;
-  children?: DataItem[]
+  children?: DataItem[],
+  [key:string]: any
+  actionsOptions?: []
 }
 
 const data: DataItem[] = [
@@ -232,19 +278,29 @@ const data: DataItem[] = [
     key: '1',
     name: 'John Brown',
     age: 32,
-    address: 'New London',
-    children: [{
-      key: '3',
-      name: 'John Brown',
-      age: 32,
-      address: 'New London',
-    }]
+    address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd',
+    'aa': {
+      loading: true,
+      disable: false
+    },
+    // actionsOptions: unref(actionProps),
+    // children: [{
+    //   key: '3',
+    //   name: 'John Brown',
+    //   age: 32,
+    //   address: 'New London',
+    // }]
   },
   {
     key: '2',
     name: 'Jim Green',
     age: 40,
     address: 'London London',
+    'bb': {
+      loading: false,
+      disable: true
+    },
+    // actionsOptions: unref(actionProps)
     // children: [{
     //   key: '4',
     //   name: 'John Brown',
@@ -254,14 +310,14 @@ const data: DataItem[] = [
   },
 ];
 
-for(let i = 10; i < 40; i++) {
-  data.push({
-    key: i.toString(),
-    name: 'John Brown',
-    age: i,
-    address: 'New London',
-  })
-}
+// for(let i = 10; i < 40; i++) {
+//   data.push({
+//     key: i.toString(),
+//     name: 'John Brown',
+//     age: i,
+//     address: 'New London',
+//   })
+// }
 
 const state = reactive<{
   selectedRowKeys: Key[];
@@ -294,10 +350,10 @@ const createClick = (data: ComputedRef) => {
 const serachHanle = (data: ComputedRef) => {
   console.log('Data: ', data);
 }
-
-const mutilpChangeHandle = (type: ComputedRef, tableRef: ComputedRef) => {
+//@ts-ignore
+const mutilpChangeHandle = ({tableRef, selectedRowKeysRef}) => {
+  console.log('selectedRowKeysRef: ', selectedRowKeysRef);
   console.log('tableRef: ', tableRef);
-  console.log('type: ', type);
 }
 // @ts-ignore
 const handleFilter = ({ filterItem, setSelectedKeys, selectedKeys, column, clearFilters }) => {
@@ -306,6 +362,11 @@ const handleFilter = ({ filterItem, setSelectedKeys, selectedKeys, column, clear
   console.log('selectedKeys: ', selectedKeys);
   console.log('setSelectedKeys: ', setSelectedKeys);
   console.log('filterItem: ', filterItem);
+}
+// @ts-ignore
+const refresh = ({tableRef, selectedRowKeysRef}) => {
+  console.log('tableRef: ', tableRef);
+  console.log('selectedRowKeysRef: ', selectedRowKeysRef);
 }
 
 </script>

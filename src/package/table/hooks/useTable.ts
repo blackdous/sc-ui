@@ -43,6 +43,8 @@ export const useTable = (
   const dataSourceRef = ref<Recordable[]>([])
   const rawDataSourceRef = ref<Recordable>({})
 
+  const customComponentKey = ref<string[]>(['copy', 'address', 'ellipsis', 'status'])
+
   // function handleTableChange(
   //   pagination: PaginationProps,
   //   filters: Partial<Recordable<string[]>>,
@@ -350,6 +352,7 @@ export const useTable = (
     },
   )
   return {
+    customComponentKey,
     getDataSourceRef,
     getDataSource,
     getRawDataSource,

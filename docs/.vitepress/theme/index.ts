@@ -19,7 +19,7 @@ export default {
 
     const linkDom = document.createElement('link');
     linkDom.rel = 'stylesheet'
-    linkDom.href = '//at.alicdn.com/t/c/font_3690753_dtsqo6xyad8.css'
+    linkDom.href = '//at.alicdn.com/t/c/font_3690753_bjse551aluk.css'
     document.head.append(linkDom)
   },
 };

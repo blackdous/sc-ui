@@ -209,6 +209,18 @@
     display: none;
   }
 }
+.tbCopy {
+  a {
+    color: @primary-color;
+    padding-right: 6px;
+  }
+  span {
+    color: @primary-color;
+  }
+}
+.ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td.tdEllipsis {
+  line-height: 22px;
+}
 
 
 // .vp-doc uo
@@ -230,4 +242,10 @@
 }
 .vp-doc tr:nth-child(2n) {
   background-color: transparent;
+}
+.vp-doc p, .vp-doc summary {
+  margin: 0;
+}
+.vp-doc p {
+  line-height: 22px;
 }

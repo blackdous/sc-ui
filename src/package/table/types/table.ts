@@ -190,7 +190,8 @@ export interface ActiveOptions {
     text?: string,
     show?: boolean,
     showTooltip?: boolean,
-    isDisabled?: boolean
+    isDisabled?: boolean,
+    action?: Fn
   },
   columnDialog: {
     text?: string,
@@ -364,7 +365,7 @@ export interface TableProps {
    * Row's className
    * @type Function
   */
-    rowClassName?: <T>(record: TableCustomRecord<T>, index: number) => string;
+  rowClassName?: <T>(record: TableCustomRecord<T>, index: number) => string,
 
   /**
   * Row selection config
