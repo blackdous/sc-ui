@@ -1,146 +1,155 @@
 <template>
   <div :class="className">
-    <Spin :spinning="tableBindValue.loading">
-      <TableFilter
-        v-model:selectValue="selectValue"
-        v-model:textValue="textValue"
-        :createButtonOptions="createButtonOptions"
-        :mutilpActionOptions="mutilpOptions"
-        :serachOptions="serachOptions"
-        @createClick="createHandle"
-        @mutilpChange="mutilpChangeHandle"
-        @serachClick="serachClickHandle"
-        ref="tableFilter"
-      >
+    <ConfigProvider :locale="newProps.locale === 'en' ? enUS : zhCN">
+      <Spin :spinning="tableBindValue.loading" v-if="isShowFilter">
+        <TableFilter
+          v-model:selectValue="selectValue"
+          v-model:textValue="textValue"
+          :createButtonOptions="createButtonOptions"
+          :mutilpActionOptions="mutilpOptions"
+          :serachOptions="serachOptions"
+          @createClick="createHandle"
+          @mutilpChange="mutilpChangeHandle"
+          @serachClick="serachClickHandle"
+          ref="tableFilter"
+        >
+          <template
+            template
+            #[item]="data"
+            v-for="item in Object.keys($slots).filter((item) =>
+              ['createButton', 'serach', 'mutilpBtns'].includes(item)
+            )"
+            :key="item"
+          >
+            <slot :name="item" v-bind="data || {}"></slot>
+          </template>
+          <template #tableActive v-if="!isRableActive">
+            <Tooltip
+              v-if="activeOptions?.reload?.show"
+              overlayClassName="scTooltip-white"
+            >
+              <template #title v-if="activeOptions?.reload?.showTooltip">
+                {{ activeOptions?.reload.text }}
+              </template>
+              <Button
+                :disabled="activeOptions?.reload?.isDisabled"
+                @click="refresh"
+              >
+                <i class="iconfont icon-sync"></i>
+              </Button>
+            </Tooltip>
+            <Tooltip
+              v-if="activeOptions?.columnDialog?.show"
+              overlayClassName="scTooltip-white"
+            >
+              <template #title v-if="activeOptions?.columnDialog?.showTooltip">
+                {{ activeOptions?.columnDialog.text }}
+              </template>
+              <Button
+                :disabled="activeOptions?.columnDialog?.isDisabled"
+                @click="handleModal"
+              >
+                <i class="iconfont icon-setting"></i>
+              </Button>
+            </Tooltip>
+          </template>
+          <template #tableActive v-else>
+            <slot name="tableActive"></slot>
+          </template>
+        </TableFilter>
+      </Spin>
+      <Table
+        v-bind="tableBindValue"
+        :pagination="getPaginationInfo"
+        :scroll="{ x: allOptions?.scroll?.x || 500 }"
+        size="small"
+        ref="tableRef"
+        :expand-icon="expandIconFnc"
+        @change="handleTableChange"
+        >
         <template
           template
           #[item]="data"
-          v-for="item in Object.keys($slots).filter((item) =>
-            ['createButton', 'serach', 'mutilpBtns'].includes(item)
+          v-for="item in Object.keys($slots).filter(item => 
+            ![...customComponentKey, 'renderEmpty'].includes(item)
           )"
           :key="item"
         >
           <slot :name="item" v-bind="data || {}"></slot>
         </template>
-        <template #tableActive v-if="!isRableActive">
-          <Tooltip
-            v-if="activeOptions?.reload?.show"
-            overlayClassName="scTooltip-white"
-          >
-            <template #title v-if="activeOptions?.reload?.showTooltip">
-              {{ activeOptions?.reload.text }}
-            </template>
-            <Button
-              :disabled="activeOptions?.reload?.isDisabled"
-              @click="refresh"
-            >
-              <i class="iconfont icon-sync"></i>
-            </Button>
-          </Tooltip>
-          <Tooltip
-            v-if="activeOptions?.columnDialog?.show"
-            overlayClassName="scTooltip-white"
-          >
-            <template #title v-if="activeOptions?.columnDialog?.showTooltip">
-              {{ activeOptions?.columnDialog.text }}
-            </template>
-            <Button
-              :disabled="activeOptions?.columnDialog?.isDisabled"
-              @click="handleModal"
-            >
-              <i class="iconfont icon-setting"></i>
-            </Button>
-          </Tooltip>
-        </template>
-        <template #tableActive v-else>
-          <slot name="tableActive"></slot>
-        </template>
-      </TableFilter>
-    </Spin>
-    <Table
-      v-bind="tableBindValue"
-      :pagination="getPaginationInfo"
-      :scroll="{ x: allOptions?.scroll?.x || 500 }"
-      size="small"
-      ref="tableRef"
-      :expand-icon="expandIconFnc"
-      @change="handleTableChange"
-      >
-      <template
-        template
-        #[item]="data"
-        v-for="item in Object.keys($slots).filter(item => 
-          !customComponentKey.includes(item)
-        )"
-        :key="item"
-      >
-        <slot :name="item" v-bind="data || {}"></slot>
-      </template>
-      
-      <template
-        v-for="slotItem in tableBindValue.columns.filter((item) => !!item.type)"
-        #[slotItem.type.componentName]="slotProps"
-      >
-        <component
-          :is="getComponent(slotItem.type.componentName)"
-          v-bind="{ ...slotProps, tableName: slotItem.type.componentName }"
-          :key="slotItem.dataIndex"
-        />
-      </template>
-
-      <template #action="{ record }">
-        <slot v-if="isAction" slot="action" />
-        <ScTableAction
-          v-else
-          name="action"
-          :record="record"
-          :fetchParams="fetchParams"
-          v-bind="actionsOptions"
-          @onAction="(action) => { handle(action, record) }"
-        />
-      </template>
-      <template
-        v-if="isCustomFilter"
-        #filterDropdown="{
-          setSelectedKeys,
-          selectedKeys,
-          confirm,
-          clearFilters,
-          column,
-        }"
-      >
-        <FilterDropDownVue
-          :filterList="column.filterList || []"
-          @filter="(item: any) => { filterDropDownClick(item, setSelectedKeys, selectedKeys, confirm, clearFilters, column) }"
+        
+        <template
+          v-for="slotItem in tableBindValue.columns.filter((item) => !!item.type)"
+          #[slotItem.type.componentName]="slotProps"
         >
-        </FilterDropDownVue>
+          <component
+            :is="getComponent(slotItem.type.componentName)"
+            v-bind="{ ...slotProps, tableName: slotItem.type.componentName }"
+            :key="slotItem.dataIndex"
+          />
+        </template>
+
+        <template #action="{ record }">
+          <slot v-if="isAction" slot="action" />
+          <ScTableAction
+            v-else
+            name="action"
+            :record="record"
+            :fetchParams="fetchParams"
+            v-bind="actionsOptions"
+            @onAction="(action) => { handle(action, record) }"
+          />
+        </template>
+        <template
+          v-if="isCustomFilter"
+          #filterDropdown="{
+            setSelectedKeys,
+            selectedKeys,
+            confirm,
+            clearFilters,
+            column,
+          }"
+        >
+          <FilterDropDownVue
+            :filterList="column.filterList || []"
+            @filter="(item: any) => { filterDropDownClick(item, setSelectedKeys, selectedKeys, confirm, clearFilters, column) }"
+          >
+          </FilterDropDownVue>
+        </template>
+        <template #filterIcon v-if="isCustomFilter">
+          <FilterFilled></FilterFilled>
+        </template>
+      </Table>
+      <ColumnDialogVue
+        v-model:visible="visible"
+        :columnList="columnList || getFilterColumnRef"
+        @checkChange="checkedChange"
+        @cancelModal="cancelModal"
+        @okModal="okModal"
+      >
+      </ColumnDialogVue>
+      <template #renderEmpty>
+        <EmptyVue v-if="!isRenderEmpty"></EmptyVue>
+        <slot name="renderEmpty" v-else></slot>
       </template>
-      <template #filterIcon v-if="isCustomFilter">
-        <FilterFilled></FilterFilled>
-      </template>
-    </Table>
-    <ColumnDialogVue
-      v-model:visible="visible"
-      :columnList="columnList || getFilterColumnRef"
-      @checkChange="checkedChange"
-      @cancelModal="cancelModal"
-      @okModal="okModal"
-    >
-    </ColumnDialogVue>
+    </ConfigProvider>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, ref, provide, defineComponent, unref, onMounted, nextTick, toRaw } from 'vue';
-import { Table, Tooltip, Button, Spin } from 'ant-design-vue';
-import type { PaginationProps } from 'ant-design-vue';
-import { FilterFilled } from '@ant-design/icons-vue';
+import { computed, ref, provide, defineComponent, unref, onMounted, nextTick, toRaw, reactive } from 'vue'
+import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
+import type { PaginationProps } from 'ant-design-vue'
+import { FilterFilled } from '@ant-design/icons-vue'
+import enUS from 'ant-design-vue/es/locale/en_US'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
 
 import { basePrefixCls } from '../../../constans'
 import TableFilter from './TableFilter.vue'
 import ScTableAction, { ActionItemProps } from './TableAction.vue'
 import FilterDropDownVue from './FilterDropDown.vue'
 import ColumnDialogVue from './ColumnDialog.vue'
+import EmptyVue from './Empty.vue'
 //@ts-ignore
 import Address from './Td/Address.vue'
 import Copy from './Td/Copy.vue'
@@ -157,7 +166,7 @@ import { useTable } from '../hooks/useTable'
 import { useActions } from '../hooks/useActions'
 import { useColumn } from '../hooks/uesColumn'
 import { isFunction } from 'lodash'
-import { Column } from '../types/column';
+// import { Column } from '../types/column';
 
 const tablePrefixCls = basePrefixCls + 'Table';
 
@@ -181,7 +190,9 @@ export default defineComponent({
     Address,
     Copy,
     Ellipsis,
-    Status
+    Status,
+    ConfigProvider,
+    EmptyVue
   },
   setup(props, { attrs, slots, emit, expose }) {
     const tableRef = ref()
@@ -228,10 +239,10 @@ export default defineComponent({
 
     const {
       getPaginationInfo,
-      // getPagination,
       setPagination,
-      // setShowPagination,
-      // getShowPagination,
+      getPagination,
+      setShowPagination,
+      getShowPagination,
     } = usePagination(newProps);
 
     const {
@@ -328,6 +339,9 @@ export default defineComponent({
     const isAction = computed(() => {
       return Object.keys(slots).includes('action');
     });
+    const isRenderEmpty = computed(() => {
+      return Object.keys(slots).includes('empty');
+    });
 
     const isRableActive = computed(() => {
       return Object.keys(slots).includes('tableActive');
@@ -362,10 +376,12 @@ export default defineComponent({
       pagination: PaginationProps,
       filters: Partial<string[]>,
       sorter: SorterResult,
+      //@ts-ignore
+      { currentDataSource }
     ) => {
       // @ts-ignore
       setPagination(pagination);
-      emit('tableChange', pagination, filters, sorter);
+      emit('change', pagination, filters, sorter, { currentDataSource, fetchParams: unref(fetchParams)});
     };
 
     const mutilpChangeHandle = (value: any) => {
@@ -468,9 +484,14 @@ export default defineComponent({
     })
 
     expose({
-
       getLoading,
       setLoading,
+
+      setPagination,
+      getPagination,
+      setShowPagination,
+      getShowPagination,
+
       expandAll, 
       expandRows, 
       collapseAll,
@@ -509,6 +530,10 @@ export default defineComponent({
     })
 
     return {
+      enUS,
+      zhCN,
+      newProps,
+
       className,
       getLoading,
       allOptions,
@@ -518,6 +543,7 @@ export default defineComponent({
       isCustomFilter,
       activeOptions,
       isAction,
+      isRenderEmpty,
 
       getPaginationInfo,
       tableRef,

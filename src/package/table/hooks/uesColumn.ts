@@ -29,7 +29,9 @@ export function useColumn (
   const getFilterColumnRef = computed(() => {
     const columns = unref(filterColumn).map((item: Column) => {
       if (!item.default) {
+        // @ts-ignore
         item.label = item.title
+        // @ts-ignore
         item.value = item.key
         item.disabled = false
         item.checked = true
@@ -54,6 +56,7 @@ export function useColumn (
       return false
     }
     const columns = unref(columnsRef).map((item: Column) => {
+      // @ts-ignore
       item.checked = columnIds.includes(item.key)
       return item
     }).filter((item: Column) => item.checked)
@@ -65,6 +68,7 @@ export function useColumn (
       return false
     }
     const columns = unref(filterColumn).map((item: Column) => {
+      // @ts-ignore
       item.disabled = columnIds.includes(item.key)
       return item
     })

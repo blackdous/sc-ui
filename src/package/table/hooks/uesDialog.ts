@@ -1,24 +1,25 @@
 import { ref, watchEffect, unref } from "vue"
-import { ColumnItem } from "../types/column"
+import { Column } from "../types/column"
 
-export function setItem (columnList:Array<ColumnItem>, item:ColumnItem) {
+export function setItem (columnList:Array<Column>, item:Column) {
   return {...columnList, item}
 }
 
-export function useChecked (columnList:Array<ColumnItem>) {
+export function useChecked (columnList:Array<Column>) {
   const list = ref()
   const keys = ref([] as Array<string>)
-  const checkedList = ref([] as Array<ColumnItem>)
+  const checkedList = ref([] as Array<Column>)
   
-  const setItemChecked = (colItem: ColumnItem) => {
+  const setItemChecked = (colItem: Column) => {
     if (!colItem.checked) {
+      //@ts-ignore
       keys.value = [...unref(keys), colItem.key]
       checkedList.value = [...unref(checkedList), colItem]
     } else {
       keys.value = unref(keys).filter(_item => colItem.key !== _item)
       checkedList.value = unref(checkedList).filter(_item => colItem.key !== _item.key)
     }
-    list.value = unref(list).map((_item: ColumnItem) => {
+    list.value = unref(list).map((_item: Column) => {
       if (colItem.key === _item.key) {
         colItem.checked = !colItem.checked
       }
@@ -39,15 +40,16 @@ export function useChecked (columnList:Array<ColumnItem>) {
   const getList = () => {
     return unref(list)
   }
-  const setList = (columnList:Array<ColumnItem>) => {
+  const setList = (columnList:Array<Column>) => {
     list.value = columnList
   }
 
-  const initChecked = (columnList: Array<ColumnItem>) => {
+  const initChecked = (columnList: Array<Column>) => {
     const initKeys:string[] = []
-    const initChecked: ColumnItem[] = []
+    const initChecked: Column[] = []
     columnList?.forEach(item => {
       if (item.checked) {
+        //@ts-ignore
         initKeys.push(item.key)
         initChecked.push(item)
       }

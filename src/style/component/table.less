@@ -221,6 +221,29 @@
 .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td.tdEllipsis {
   line-height: 22px;
 }
+.tableEmpty {
+  min-height: 560px;
+  padding-top: 117px;
+  .tableEmpty-img {
+    text-align: center;
+    & img {
+      width: 98px;
+      height: 64px;
+      margin: 0 auto;
+    }
+  }
+  p {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    /* or 157% */
+
+    text-align: center;
+    color: fade(@color-000, 40);
+  }
+}
 
 
 // .vp-doc uo
@@ -248,4 +271,7 @@
 }
 .vp-doc .vitepress-demo p {
   line-height: 22px;
+}
+.vp-doc .vitepress-demo table {
+  overflow: hidden;
 }

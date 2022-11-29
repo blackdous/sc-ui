@@ -39,6 +39,9 @@ export function useActions (
     }
 
     function setActionOptions (Options: ActionOptions) {
+      if (!Options) {
+        return false
+      }
       const { actions } = cloneDeep(Options)
       const newActions = flapSetItem(actions as Array<ActionItemProps>)
       actionsOptions.value = { ...Options, actions: newActions }

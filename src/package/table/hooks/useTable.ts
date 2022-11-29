@@ -1,9 +1,9 @@
 import type { ComputedRef } from "vue"
-import { ref, watchEffect, unref, Ref, computed, watch, onMounted, reactive, isRef } from "vue"
+import { ref, watchEffect, unref, Ref, computed, watch, onMounted, reactive } from "vue"
 import { get, cloneDeep, merge } from 'lodash'
 
 import { FETCH_SETTING, PAGE_SIZE } from '../../../constans/index'
-import { isFunction, isBoolean, isObject } from '../../../utils/is'
+import { isFunction, isBoolean } from '../../../utils/is'
 import type { PaginationProps } from '../types/pagination'
 import { TableProps, FetchParams } from '../types/table'
 import { buildUUID } from '../../../utils/uuid'

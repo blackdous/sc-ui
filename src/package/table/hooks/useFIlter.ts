@@ -70,6 +70,10 @@ export function useFilter (
   function getSerachOptions () {
     return unref(serachOptions)
   }
+  
+  // function isShowFilter () {
+  //   return !unref(propsRef).activeOptions?.reload?.show && unref(propsRef).activeOptions?.reload?.show
+  // }
 
   watch(
     [() => selectedRowKeysRef],

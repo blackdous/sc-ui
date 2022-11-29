@@ -1,11 +1,11 @@
-import { PropType, ExtractPropTypes } from "vue"
+import { PropType, VNode } from "vue"
 import type { ComputedRef } from "vue"
 import { ColumnProps, SortOrder } from "ant-design-vue/lib/table/interface"
 import type { TooltipProps } from 'ant-design-vue'
 //@ts-ignore
 import type { ActionProps as ActionOptions } from '../component/TableAction.vue'
 import { PaginationProps } from './pagination'
-import { ColumnModalItem, list } from './column'
+import { ColumnModalItem } from './column'
 import type { TableRowSelection as ITableRowSelection } from 'ant-design-vue/lib/table/interface'
 import type { ModalProps } from "../../modal"
 
@@ -201,12 +201,18 @@ export interface ActiveOptions {
   }
 }
 
+
+export interface LocaleProps {
+  filterConfirm?: string,
+  filterReset?: string,
+  emptyText?: string | VNode
+}
 export const tableProps = () => ({
   createButtonOptions: {
     type: Object as PropType<CreateButton>,
     default () {
       return {
-        show: true,
+        show: false,
         text: '创建',
         type: 'primary'
       }
@@ -216,7 +222,7 @@ export const tableProps = () => ({
     type: Object as PropType<MutilpActionOptions>,
     default () {
       return {
-        show: true
+        show: false
       }
     }
   },
@@ -224,7 +230,7 @@ export const tableProps = () => ({
     type: Object as PropType<SerachOptions>,
     default () {
       return {
-        show: true,
+        show: false,
         showSelect: true,
         typeList: [],
         selectOptions: {
@@ -252,12 +258,12 @@ export const tableProps = () => ({
       return {
         reload: {
           text: '刷新',
-          show: true,
+          show: false,
           showTooltip: true
         },
         columnDialog: {
           text: '定制列',
-          show: true,
+          show: false,
           showTooltip: true
         }
       }
@@ -320,7 +326,20 @@ export const tableProps = () => ({
   // 弹窗cancel事件
   cancelModal: Function as PropType<(...arg: any) => void>,
   // 弹窗okModal事件
-  okModal: Function as PropType<(...arg: any) => void>
+  okModal: Function as PropType<(...arg: any) => void>,
+  langLocale: {
+    type: String,
+    default () {
+      return 'zh'
+    }
+  },
+  locale: {
+    type: Object as PropType<LocaleProps>,
+    default () {
+      return {
+      }
+    }
+  }
 })
 
 export interface TableProps {
@@ -378,9 +397,11 @@ export interface TableProps {
   // 列配置
   columns: BasicColumn[],
   // 弹窗cancel事件
-  cancelModal: (...arg: any) => void
+  cancelModal?: (...arg: any) => void
   // 弹窗ok事件
-  okModal: (...arg: any) => void
+  okModal?: (...arg: any) => void,
+  langLocale?: string,
+  locale?: LocaleProps
 }
 
 export interface FetchParams {
