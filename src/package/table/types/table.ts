@@ -101,7 +101,7 @@ export const createButton = () => ({
   icon: { type: String, default: '' },
   // 按钮类型 默认'success', 'info', 'warning', 'error', 'primary'
   type: { type: String, default: 'info' },
-  createFunc: Function as PropType<(type: string, tableRef: ComputedRef) => void>
+  action: Function as PropType<(...arg:any) => void>
 })
 
 export interface CreateButton {
@@ -109,7 +109,8 @@ export interface CreateButton {
   text?: string,
   isDisabled?: boolean,
   icon?: string,
-  type?: string
+  type?: string,
+  action?: (...arg:any) => void
 }
 
 // export declare type CreateButton = ExtractPropTypes<typeof createButton>
@@ -131,9 +132,9 @@ interface ButtonType {
   tooltipDes?: string,
   label?: string,
   value?: string | number,
-  disabled?: boolean | ((tableRef: ComputedRef) => boolean),
+  disabled?: boolean | ((...args: any) => boolean),
   overlayClassName?: string,
-  action?: string | ((tableSate: any) => void)
+  action?: string | ((...args: any) => void)
 }
 
 export interface MutilpActionOptions {
@@ -210,40 +211,40 @@ export interface LocaleProps {
 export const tableProps = () => ({
   createButtonOptions: {
     type: Object as PropType<CreateButton>,
-    default () {
-      return {
-        show: false,
-        text: '创建',
-        type: 'primary'
-      }
-    }
+    // default () {
+    //   return {
+    //     show: false,
+    //     text: '创建',
+    //     type: 'primary'
+    //   }
+    // }
   },
   mutilpOptions: {
     type: Object as PropType<MutilpActionOptions>,
-    default () {
-      return {
-        show: false
-      }
-    }
+    // default () {
+    //   return {
+    //     show: false
+    //   }
+    // }
   },
   serachOptions: {
     type: Object as PropType<SerachOptions>,
-    default () {
-      return {
-        show: false,
-        showSelect: true,
-        typeList: [],
-        selectOptions: {
-          placeholder: '请选择',
-          width: '120px'
-        },
-        inputOptions: {
-          placeholder: '请输入',
-          width: '120px',
-          maxlength: 40
-        }
-      }
-    }
+    // default () {
+    //   return {
+    //     show: true,
+    //     showSelect: true,
+    //     typeList: [],
+    //     selectOptions: {
+    //       placeholder: '请选择',
+    //       width: '120px'
+    //     },
+    //     inputOptions: {
+    //       placeholder: '请输入',
+    //       width: '120px',
+    //       maxlength: 40
+    //     }
+    //   }
+    // }
   },
   actionsOptions: Object as PropType<ActionOptions>,
   customFilter: {
@@ -254,20 +255,20 @@ export const tableProps = () => ({
   },
   activeOptions: {
     type: Object as PropType<ActiveOptions>,
-    default () {
-      return {
-        reload: {
-          text: '刷新',
-          show: false,
-          showTooltip: true
-        },
-        columnDialog: {
-          text: '定制列',
-          show: false,
-          showTooltip: true
-        }
-      }
-    }
+    // default () {
+    //   return {
+    //     reload: {
+    //       text: '刷新',
+    //       show: false,
+    //       showTooltip: true
+    //     },
+    //     columnDialog: {
+    //       text: '定制列',
+    //       show: false,
+    //       showTooltip: true
+    //     }
+    //   }
+    // }
   },
   columnModalList: {
     type: Object as PropType<Array<ColumnModalItem>>,
@@ -334,11 +335,7 @@ export const tableProps = () => ({
     }
   },
   locale: {
-    type: Object as PropType<LocaleProps>,
-    default () {
-      return {
-      }
-    }
+    type: Object as PropType<LocaleProps>
   }
 })
 

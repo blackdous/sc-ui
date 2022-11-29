@@ -1,12 +1,12 @@
 import { isFunction } from '../../../utils/is';
-import type { TableProps, TableRowSelection } from '../types/table';
+import type { TableRowSelection } from '../types/table';
 import { computed, ComputedRef, nextTick, Ref, ref, toRaw, unref, watch } from 'vue';
 import { ROW_KEY } from '../../../constans';
 import { omit } from 'lodash'
 import { findNodeAll } from '../../../utils/treeHelper'
 
 export function useRowSelection(
-  propsRef: ComputedRef<TableProps>,
+  propsRef: ComputedRef<Recordable>,
   tableData: Ref<Recordable[]>,
   emit: EmitType,
 ) {

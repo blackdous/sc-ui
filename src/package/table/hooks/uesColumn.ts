@@ -2,29 +2,35 @@ import { cloneDeep } from 'lodash'
 import { ref, Ref, unref, computed } from 'vue'
 
 import { Column } from '../types/column'
-import { isArray } from '../../../utils/is';
+import { isArray, isFunction } from '../../../utils/is';
 
 export function useColumn (
-  propsRef: Ref<Recordable>
+  propsRef: Ref<Recordable>,
+  fetchParams?: Ref<Recordable>
 ) {
-  const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<Column[]>;
-  const filterColumn = ref(unref(propsRef).columnModalList.length ? unref(propsRef).columnModalList : unref(columnsRef))
-
-  function setColumnRef (colums: Column[]) {
-    columnsRef.value = colums
-  }
-
+  const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<Column[]>
   const getColumnRef = computed(() => {
-    const columns = cloneDeep(unref(columnsRef)).map(item => {
+    const columns = unref(columnsRef).map((item) => {
       if (item.type) {
         item.slots = {
           customRender: item.type.componentName
+        }
+      }
+      if (item.filterList) {
+        if (isFunction(item.filterList)) {
+          item.filterList = item.filterList({ propsRef: unref(propsRef), fetchParams: unref(fetchParams) })
         }
       }
       return item
     })
     return columns
   })
+  const filterColumn = ref(unref(propsRef).columnModalList.length ? unref(propsRef).columnModalList : unref(getColumnRef))
+
+  function setColumnRef (colums: Column[]) {
+    columnsRef.value = colums
+  }
+
 
   const getFilterColumnRef = computed(() => {
     const columns = unref(filterColumn).map((item: Column) => {
@@ -37,18 +43,13 @@ export function useColumn (
         item.checked = true
         item.default = true
       }
-      if (item.type) {
-        item.slots = {
-          customRender: item.type.componentName
-        }
-      }
       return item
     })
     return columns
   })
 
   function setFilterColumnRef (columns: Column[]) {
-    filterColumn.value = columns
+    filterColumn.value = columns || []
   }
 
   function setFilterColumnChecked (columnIds: string[]) {
@@ -60,6 +61,7 @@ export function useColumn (
       item.checked = columnIds.includes(item.key)
       return item
     }).filter((item: Column) => item.checked)
+    console.log('columns: ', columns);
     filterColumn.value = columns
   }
 

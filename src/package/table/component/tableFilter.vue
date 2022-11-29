@@ -43,7 +43,7 @@
             v-for="optionsItem in serachOptions.typeList"
             :key="optionsItem.value"
             :value="optionsItem.value"
-            :disabled:="optionsItem.disabled"
+            :disabled:="optionsItem.disabled || optionsItem.disabled"
           >
             {{ optionsItem.label }}
           </SelectOption>
@@ -100,9 +100,6 @@ export const TableFilterProps = () => ({
     type: Object as PropType<CreateButton>,
     default () {
       return {
-        show: true,
-        text: '创建',
-        type: 'primary'
       }
     }
   },
@@ -110,7 +107,6 @@ export const TableFilterProps = () => ({
     type: Object as PropType<MutilpActionOptions>,
     default () {
       return {
-        show: true
       }
     }
   },
@@ -118,8 +114,6 @@ export const TableFilterProps = () => ({
     type: Object as PropType<SerachOptions>,
     default () {
       return {
-        show: true,
-        showSelect: true
       }
     }
   }
@@ -164,6 +158,7 @@ export default defineComponent({
         return props.selectValue
       },
       set: (val) => {
+        emit('selectChange', val)
         emit('update:selectValue', val)
       }
     })
@@ -176,7 +171,6 @@ export default defineComponent({
       return props.mutilpActionOptions
     })
     const serachOptions = computed(() => {
-      console.log('props.serachOptions: ', props.serachOptions)
       return props.serachOptions
     })
 
@@ -226,7 +220,7 @@ export default defineComponent({
       createHandle,
       radioHandle,
       onSearch,
-      updateTextValue
+      updateTextValue,
     }
   },
 })

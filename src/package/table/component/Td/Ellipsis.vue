@@ -1,6 +1,7 @@
 <template>
   <Tooltip
     overlayClassName="scTooltip-white"
+    :id="`tb_${index}_${key}_ellipsis`"
   >
     <template #title>
       {{props.text}}
@@ -25,6 +26,14 @@ const props = defineProps({
   text: {
     type: [String, Number],
     default: ''
+  },
+  index: {
+    type: Number,
+    default: 0
+  },
+  key: {
+    type: String,
+    default: 0
   }
 })
 

@@ -39,3 +39,14 @@
     color: @disabled-color;
   }
 }
+.ant-radio-checked {
+  &::after {
+    border-color: @primary-color;
+  }
+  .ant-radio-inner {
+    border-color: @primary-color;
+  }
+}
+.ant-radio-inner::after {
+  background-color: @primary-color;
+}

@@ -1,0 +1,162 @@
+<template>
+  <div>
+    <ScTable 
+      ref="scTableRef"
+      :data-source="data"
+      :columns="columns"
+      :loading="false"
+      :customFilter="true"
+      @change="handleChange"
+      @filter="handleFilter"
+      >
+    </ScTable>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { ScTable } from 'sc-ui'
+
+import "ant-design-vue/dist/antd.css"
+import '../../../style/index.less'
+
+const scTableRef = ref()
+const list = ref([
+  {
+    label: '创建快照',
+    isShow: true,
+    loading: false,
+    key: 'aa',
+    isDisabled: false,
+    action: (data:any) => {
+      console.log('====================================');
+      console.log(data);
+      console.log('====================================');
+    },
+    tooltip: false,
+    tooltipDes: '创建快照创建快照aa',
+  },
+  {
+    label: '续费',
+    isShow: true,
+    isDisabled: false,
+    key: 'bb',
+    loading: false,
+    action: 'bb',
+    tooltip: false,
+    tooltipDes: '续费续费续费续费续费'
+  }, {
+    label: '三级选项',
+    isShow: true,
+    isDisabled: false,
+    loading: false,
+    key: 'ff',
+    action: '3333',
+    tooltip: true,
+    tooltipDes: '三级选项33333333',
+  }, {
+    label: '四级选项',
+    isShow: true,
+    isDisabled: false,
+    loading: false,
+    action: '4444',
+    tooltip: false,
+    tooltipDes: '四级选项444444444',
+  }
+])
+// const promiseTypelist = new Promise ((resolve) => {
+//   setTimeout(() => {
+//     resolve(list)
+//   }, 1500)
+// }).then((data) => {
+//   return data
+// }).catch(error => {
+//   console.log('error: ', error);
+// })
+// @ts-ignore
+const columns = [
+  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', 
+    slots: {
+      filterDropdown: 'filterDropdown',
+      filterIcon: 'filterIcon'
+    },
+    filterList: () => list,
+    onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) }
+  },
+  { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
+  {
+    title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
+    type: {
+      componentName: 'ellipsis',
+      props: {
+        lineheigth: 2
+      }
+    }
+    // type: {
+    //   componentName: 'copy',
+    //   props: {
+    //     successTxt: 'copy 成功',
+    //     errorText: ''
+    //   }
+    // }
+  },
+  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160 },
+  { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
+];
+
+interface DataItem {
+  key: string;
+  name: string;
+  age: number;
+  address: string;
+  children?: DataItem[],
+  [key:string]: any
+  actionsOptions?: []
+}
+
+const data: DataItem[] = [
+  {
+    key: '2',
+    name: 'John Brown',
+    age: 32,
+    address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd',
+  },
+  {
+    key: '3',
+    name: 'Jim Green',
+    age: 40,
+    address: 'London London',
+  },
+];
+
+for(let i = 10; i < 24; i++) {
+  data.push({
+    key: i.toString(),
+    name: 'John Brown',
+    age: i,
+    address: 'New London',
+  })
+}
+
+//@ts-ignore
+const handleChange = (pagination, filters, sorter, fetchParams) => {
+  console.log('pagination, filters, sorter: ', pagination, filters, sorter, fetchParams);
+}
+
+// @ts-ignore
+const handleFilter = ({ filterItem, setSelectedKeys, selectedKeys, column, clearFilters, fetchParams, setLoading }) => {
+  console.log('setLoading: ', setLoading);
+  console.log('fetchParams: ', fetchParams);
+  console.log('clearFilters: ', clearFilters);
+  console.log('column: ', column);
+  console.log('selectedKeys: ', selectedKeys);
+  console.log('setSelectedKeys: ', setSelectedKeys);
+  console.log('filterItem: ', filterItem);
+}
+
+
+</script>
+
+<style lang="less">
+@import '../../../style/index.less';
+</style>

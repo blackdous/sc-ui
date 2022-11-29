@@ -2,11 +2,19 @@
   <div>
     <ScTable 
       ref="scTableRef"
-      :columns="columns"
       :data-source="data"
+      :columns="columns"
+      :loading="false"
+
+      :row-selection="{ 
+        selectedRowKeys: state.selectedRowKeys, 
+        onChange: onSelectChange
+      }"
+
       :create-button-options="{
         show: true,
-        text: '创建'
+        text: '创建',
+        action: createClick
       }"
       :mutilp-options="{
         show: true,
@@ -28,48 +36,23 @@
           maxlength: 40
         }
       }"
-      locale="zh"
-      
-      @createClick="createClick"
-      @mutilpChange="mutilpChangeHandle"
-      @serachClick="serachHanle"
-      @filter="handleFilter"
-      @refresh="refresh"
+
       >
     </ScTable>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ComputedRef, ref } from 'vue'
-import type { Ref } from 'vue'
+import { ref, Ref, ComputedRef, reactive } from 'vue'
 import { ScTable } from 'sc-ui'
-//@ts-ignore
-import { list as ColumnList } from '../types/column'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
+
 import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
-
-// const filteredInfo = ref();
 const scTableRef = ref()
-
-const columnList = ref()
-const columns = [
-  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
-  { title: 'Age', width: 60, dataIndex: 'age', key: 'age' },
-  { title: 'Column 1', dataIndex: 'address', key: '1', width: 160, },
-  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160 },
-  { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 },
-  // {
-  //   title: 'Action',
-  //   key: 'operation',
-  //   fixed: 'right',
-  //   width: 200,
-  //   slots: { customRender: 'action' },
-  // },
-];
+type Key = string | number
 
 const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
   {
@@ -77,9 +60,13 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮A',
-    disabled: false,
+    disabled: ({tableRef, selectedRowKeysRef}) => {
+      if (selectedRowKeysRef.length > 3) {
+        return true
+      }
+      return false
+    },
     value: 'a',
-    //@ts-ignore
     action: ({tableRef, selectedRowKeysRef}) => {
       console.log('tableRef, selectedRowKeysRef: ', tableRef, selectedRowKeysRef);
     }
@@ -99,17 +86,87 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
     value: 'c'
   }
 ])
-
+const list = ref([
+  {
+    label: '创建快照',
+    isShow: true,
+    loading: false,
+    key: 'aa',
+    value: 'aa',
+    isDisabled: false,
+    action: (data:any) => {
+      console.log('====================================');
+      console.log(data);
+      console.log('====================================');
+    },
+    tooltip: false,
+    tooltipDes: '创建快照创建快照aa',
+  },
+  {
+    label: '续费',
+    isShow: true,
+    isDisabled: false,
+    key: 'bb',
+    value: 'bb',
+    loading: false,
+    action: 'bb',
+    tooltip: false,
+    tooltipDes: '续费续费续费续费续费'
+  }, {
+    label: '三级选项',
+    isShow: true,
+    isDisabled: false,
+    loading: false,
+    key: 'ff',
+    value: 'ff',
+    action: '3333',
+    tooltip: true,
+    tooltipDes: '三级选项33333333',
+  }, {
+    label: '四级选项',
+    isShow: true,
+    isDisabled: false,
+    loading: false,
+    key: 'ee',
+    value: 'ee',
+    action: '4444',
+    tooltip: false,
+    tooltipDes: '四级选项444444444',
+  }
+])
 const promiseTypelist = new Promise ((resolve) => {
   setTimeout(() => {
-    resolve(radioList)
+    resolve(list)
   }, 1500)
 }).then((data) => {
   return data
 }).catch(error => {
   console.log('error: ', error);
 })
-
+// @ts-ignore
+const columns = [
+  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
+  { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
+  {
+    title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
+    type: {
+      componentName: 'ellipsis',
+      props: {
+        lineheigth: 2
+      }
+    }
+  },
+  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160,
+    type: {
+      componentName: 'copy',
+      props: {
+        successTxt: 'copy 成功',
+        errorText: ''
+      }
+    }
+  },
+  { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
+];
 
 interface DataItem {
   key: string;
@@ -136,23 +193,21 @@ const data: DataItem[] = [
   },
 ];
 
-for(let i = 10; i < 40; i++) {
-  data.push({
-    key: i.toString(),
-    name: 'John Brown',
-    age: i,
-    address: 'New London',
-  })
-}
+const state = reactive<{
+  selectedRowKeys: Key[];
+  loading: boolean;
+}>({
+  selectedRowKeys: [], // Check here to configure the default column
+  loading: false,
+});
 
-interface Data {
-  action: string,
-  tableRef: ComputedRef
-}
+const onSelectChange = (selectedRowKeys: Key[]) => {
+  console.log('selectedRowKeys changed: ', selectedRowKeys);
+  state.selectedRowKeys = selectedRowKeys;
+};
 
 const createClick = (data: ComputedRef) => {
   console.log('Data: ', data);
-  columnList.value = ColumnList
 }
 
 const serachHanle = (data: ComputedRef) => {
@@ -163,18 +218,14 @@ const mutilpChangeHandle = ({tableRef, selectedRowKeysRef}) => {
   console.log('selectedRowKeysRef: ', selectedRowKeysRef);
   console.log('tableRef: ', tableRef);
 }
-// @ts-ignore
-const handleFilter = ({ filterItem, setSelectedKeys, selectedKeys, column, clearFilters }) => {
-  console.log('clearFilters: ', clearFilters);
-  console.log('column: ', column);
-  console.log('selectedKeys: ', selectedKeys);
-  console.log('setSelectedKeys: ', setSelectedKeys);
-  console.log('filterItem: ', filterItem);
-}
-// @ts-ignore
-const refresh = ({tableRef, selectedRowKeysRef}) => {
-  console.log('tableRef: ', tableRef);
-  console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+
+for(let i = 10; i < 22; i++) {
+  data.push({
+    key: i.toString(),
+    name: 'John Brown',
+    age: i,
+    address: 'New London',
+  })
 }
 
 

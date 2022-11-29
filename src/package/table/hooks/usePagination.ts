@@ -1,5 +1,5 @@
 import type { PaginationProps } from '../types/pagination';
-import type { TableProps } from '../types/table';
+// import type { TableProps } from '../types/table';
 import { computed, unref, ref, ComputedRef, watch } from 'vue';
 import { PAGE_SIZE } from '../../../constans';
 
@@ -7,7 +7,7 @@ const isBoolean = (source:any) => {
   return Object.prototype.toString.call(source) === '[object Boolean]'
 }
 
-export function usePagination(refProps: ComputedRef<TableProps>) {
+export function usePagination(refProps: ComputedRef<Recordable>) {
   const configRef = ref<PaginationProps>({});
   const show = ref(true);
 

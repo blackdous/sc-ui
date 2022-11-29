@@ -337,7 +337,6 @@ interface Data {
 }
 
 const handle = (data: Data) => {
-  
   console.log('Data: ', data);
 }
 

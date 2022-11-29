@@ -73,7 +73,6 @@ export default defineComponent({
       visable.value = false;
       emit('filter', item)
     }
-    // console.log('filterList: ', filterList.value);
     return {
       basePrefixCls,
       filterList,

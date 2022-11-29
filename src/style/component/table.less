@@ -4,6 +4,10 @@
 @tableDropdown: ~'@{prefixCls}TableDropdown';
 
 .@{tableScope} {
+  .ant-table-content {
+    border-left: 1px solid #F0F0F0;
+    border-right: 1px solid #F0F0F0;
+  }
   padding: @space-6;
   .ant-table-thead > tr > th {
     height: 40px;
@@ -272,6 +276,9 @@
 .vp-doc .vitepress-demo p {
   line-height: 22px;
 }
-.vp-doc .vitepress-demo table {
-  overflow: hidden;
+.vp-doc table:not(.ant-table-fixed):not(.ant-table) {
+  overflow-x: auto;
+}
+.vp-doc .vitepress-demo ul, .vp-doc .vitepress-demo ol {
+  padding-left: 0;
 }

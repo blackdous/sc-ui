@@ -14,6 +14,7 @@ export function useChecked (columnList:Array<Column>) {
     if (!colItem.checked) {
       //@ts-ignore
       keys.value = [...unref(keys), colItem.key]
+      //@ts-ignore
       checkedList.value = [...unref(checkedList), colItem]
     } else {
       keys.value = unref(keys).filter(_item => colItem.key !== _item)

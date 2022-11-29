@@ -11,6 +11,7 @@
           @createClick="createHandle"
           @mutilpChange="mutilpChangeHandle"
           @serachClick="serachClickHandle"
+          @selectChange="handleSelectChange"
           ref="tableFilter"
         >
           <template
@@ -137,7 +138,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, provide, defineComponent, unref, onMounted, nextTick, toRaw, reactive } from 'vue'
+import { computed, ref, provide, defineComponent, unref, onMounted, nextTick, toRaw } from 'vue'
 import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
 import type { PaginationProps } from 'ant-design-vue'
 import { FilterFilled } from '@ant-design/icons-vue'
@@ -156,7 +157,7 @@ import Copy from './Td/Copy.vue'
 import Ellipsis from './Td/Ellipsis.vue'
 import Status from './Td/Status.vue'
 //@ts-ignore
-import { tableProps, TableProps, SorterResult } from '../types/table'
+import { tableProps, TableProps, SorterResult, ButtonType } from '../types/table'
 import { usePagination } from '../hooks/usePagination';
 import { useTableExpand } from '../hooks/useTableExpand'
 import { useFilter } from '../hooks/useFIlter'
@@ -266,6 +267,7 @@ export default defineComponent({
     } = useRowSelection(newProps, tableData, emit)
 
     const {
+      isShowFilter,
       createButtonOptions,
       mutilpOptions,
       serachOptions,
@@ -312,7 +314,7 @@ export default defineComponent({
       setFilterColumnRef,
       setFilterColumnChecked,
       setFilterColumnDisabled
-    } = useColumn(newProps)
+    } = useColumn(newProps, fetchParams)
 
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);
@@ -368,8 +370,25 @@ export default defineComponent({
       emit('onAction', {...unref(fetchParams), action, record});
     };
 
+    const handleSelectChange = (item: string) => {
+      const selectItem = unref(serachOptions).typeList.find((_item: ButtonType) => item === _item.value)
+      if (item) {
+        fetchParams.value = {...unref(fetchParams), selectValue: item}
+      }
+      if (isFunction(selectItem.action)) {
+        selectItem.action({...unref(fetchParams)})
+      } else {
+        emit('selectChange', {...unref(fetchParams)})
+      }
+    }
+
     const createHandle = () => {
-      emit('createClick', {...fetchParams});
+      const options = unref(createButtonOptions)
+      if (isFunction(options.action)) {
+        options.action({...unref(fetchParams)})
+      } else {
+        emit('createClick', {...unref(fetchParams)})
+      }
     };
 
     const handleTableChange = (
@@ -560,6 +579,7 @@ export default defineComponent({
       actionsOptions,
       customComponentKey,
       getFilterColumnRef,
+      isShowFilter,
 
       handle,
       createHandle,
@@ -574,7 +594,8 @@ export default defineComponent({
       refresh,
       setFilterColumnRef,
       cancelModal,
-      okModal
+      okModal,
+      handleSelectChange
     };
   },
 });

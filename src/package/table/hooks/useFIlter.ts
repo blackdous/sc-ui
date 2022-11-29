@@ -1,18 +1,22 @@
-import { ComputedRef, ref, watchEffect, unref, Ref, watch, nextTick, onMounted, isRef} from "vue"
+import { ComputedRef, ref, watchEffect, unref, Ref, watch, nextTick, onMounted, computed, toRaw} from "vue"
 import { cloneDeep } from 'lodash'
-import { TableProps, CreateButton, MutilpActionOptions, SerachOptions } from "../types/table"
+import { CreateButton, MutilpActionOptions, SerachOptions } from "../types/table"
 
 import { isFunction } from "@vueuse/core"
 export function useFilter (
-  propsRef: ComputedRef<TableProps>,
+  propsRef: ComputedRef<Recordable>,
   tableRef: Ref<any>,
   selectedRowKeysRef?: Ref<Recordable[]>
   ) {
-  const createButtonOptions = ref<Recordable>({})
+  const createButtonOptions = ref<CreateButton>({})
+  // console.log('createButtonOptions: ', createButtonOptions);
   const mutilpOptions = ref<Recordable>({})
   const serachOptions = ref<Recordable>({})
 
   function setMutilpAction (mutilpAction: MutilpActionOptions) {
+    if (!mutilpAction) {
+      return mutilpAction
+    }
     const { show, mutilpList } = cloneDeep(mutilpAction)
     if (!show) {
       mutilpOptions.value = mutilpAction
@@ -33,6 +37,9 @@ export function useFilter (
   }
 
   async function setSerachOptions (serach:SerachOptions) {
+    if (!serach) {
+      return serach
+    }
     const { show, showSelect, typeList } = serach
     if (!show) {
       serachOptions.value = serach
@@ -47,7 +54,7 @@ export function useFilter (
         newTypeList = typeList()
       }
       serachOptions.value = { ...serach, typeList: [], loading: true}
-      if (Object.prototype.toString.call(typeList)) {
+      if (Object.prototype.toString.call(typeList) === '[object Promise]') {
         // @ts-ignore
         newTypeList = await typeList
       }
@@ -71,9 +78,13 @@ export function useFilter (
     return unref(serachOptions)
   }
   
-  // function isShowFilter () {
-  //   return !unref(propsRef).activeOptions?.reload?.show && unref(propsRef).activeOptions?.reload?.show
-  // }
+  const  isShowFilter = computed(() => {
+    const isShow = (unref(propsRef)?.activeOptions?.reload?.show 
+    || unref(propsRef)?.activeOptions?.columnDialog?.show 
+    || unref(propsRef)?.mutilpOptions?.show 
+    || unref(propsRef)?.serachOptions?.show)
+    return isShow
+  })
 
   watch(
     [() => selectedRowKeysRef],
@@ -91,7 +102,7 @@ export function useFilter (
   })
 
   watchEffect(() => {
-    createButtonOptions.value = unref(propsRef).createButtonOptions as CreateButton
+    createButtonOptions.value = unref(propsRef).createButtonOptions
   })
 
   return {
@@ -102,5 +113,6 @@ export function useFilter (
     getSerachOptions,
     setMutilpAction,
     getMutilpAction,
+    isShowFilter
   }
 }

@@ -5,7 +5,20 @@
       :data-source="data"
       :columns="columns"
       :loading="false"
-      @change="handleChange"
+      :activeOptions="{
+        reload: {
+          text: '刷新',
+          show: true,
+          showTooltip: true,
+          action: refresh
+        },
+        columnDialog: {
+          text: '定制列',
+          show: true,
+          showTooltip: true
+        }
+      }"
+      @refresh="refresh"
       >
     </ScTable>
   </div>
@@ -68,7 +81,7 @@ const data: DataItem[] = [
   },
 ];
 
-for(let i = 10; i < 25; i++) {
+for(let i = 10; i < 23; i++) {
   data.push({
     key: i.toString(),
     name: 'John Brown',
@@ -77,9 +90,10 @@ for(let i = 10; i < 25; i++) {
   })
 }
 
-//@ts-ignore
-const handleChange = (pagination, filters, sorter, fetchParams) => {
-  console.log('pagination, filters, sorter: ', pagination, filters, sorter, fetchParams);
+// @ts-ignore
+const refresh = ({tableRef, selectedRowKeysRef}) => {
+  console.log('tableRef: ', tableRef);
+  console.log('selectedRowKeysRef: ', selectedRowKeysRef);
 }
 
 
