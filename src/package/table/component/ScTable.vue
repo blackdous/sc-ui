@@ -2,7 +2,7 @@
   <div :class="className">
     <!-- :locale="newProps.locale === 'en' ? enUS : zhCN" -->
     <ConfigProvider>
-      <Spin :spinning="tableBindValue.loading" v-if="isShowFilter">
+      <Spin :spinning="false" v-if="isShowFilter">
         <TableFilter
           v-model:selectValue="selectValue"
           v-model:textValue="textValue"

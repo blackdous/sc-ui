@@ -363,6 +363,7 @@ const handleFilter = ({ filterItem, setSelectedKeys, selectedKeys, column, clear
 }
 // @ts-ignore
 const refresh = ({tableRef, selectedRowKeysRef}) => {
+  scTableRef.value.setLoading(true)
   console.log('tableRef: ', tableRef);
   console.log('selectedRowKeysRef: ', selectedRowKeysRef);
 }

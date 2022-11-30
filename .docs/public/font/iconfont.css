@@ -1,0 +1,304 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3690753 */
+  src: url('iconfont.woff2?t=1669779610280') format('woff2'),
+       url('iconfont.woff?t=1669779610280') format('woff'),
+       url('iconfont.ttf?t=1669779610280') format('truetype'),
+       url('iconfont.svg?t=1669779610280#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shangchuanjindu:before {
+  content: "\e67b";
+}
+
+.icon-time-circle:before {
+  content: "\e784";
+}
+
+.icon-down-circle:before {
+  content: "\e77f";
+}
+
+.icon-up-circle:before {
+  content: "\e785";
+}
+
+.icon-delete:before {
+  content: "\e7c3";
+}
+
+.icon-file:before {
+  content: "\e7be";
+}
+
+.icon-info-circle:before {
+  content: "\e77e";
+}
+
+.icon-question-circle:before {
+  content: "\e782";
+}
+
+.icon-sync:before {
+  content: "\e786";
+}
+
+.icon-setting:before {
+  content: "\e78e";
+}
+
+.icon-edit-square:before {
+  content: "\e791";
+}
+
+.icon-file-excel:before {
+  content: "\e7b7";
+}
+
+.icon-file-pdf:before {
+  content: "\e7b8";
+}
+
+.icon-file-image:before {
+  content: "\e7b9";
+}
+
+.icon-file-markdown:before {
+  content: "\e7ba";
+}
+
+.icon-file-ppt:before {
+  content: "\e7bb";
+}
+
+.icon-file-word:before {
+  content: "\e7bc";
+}
+
+.icon-file-copy:before {
+  content: "\e7bd";
+}
+
+.icon-folder:before {
+  content: "\e7d1";
+}
+
+.icon-upload:before {
+  content: "\e7ef";
+}
+
+.icon-download:before {
+  content: "\e7f0";
+}
+
+.icon-minus-circle-fill:before {
+  content: "\e844";
+}
+
+.icon-plus-circle-fill:before {
+  content: "\e845";
+}
+
+.icon-question-circle-fill:before {
+  content: "\e846";
+}
+
+.icon-warning-circle-fill:before {
+  content: "\e848";
+}
+
+.icon-View:before {
+  content: "\e917";
+}
+
+.icon-fangda:before {
+  content: "\e67a";
+}
+
+.icon-huadongtiaoshang:before {
+  content: "\e678";
+}
+
+.icon-huadongtiaoxia:before {
+  content: "\e679";
+}
+
+.icon-anquanzu:before {
+  content: "\e677";
+}
+
+.icon-add:before {
+  content: "\e674";
+}
+
+.icon-remove:before {
+  content: "\e676";
+}
+
+.icon-zhanghulei:before {
+  content: "\e60f";
+}
+
+.icon-caiwulei:before {
+  content: "\e610";
+}
+
+.icon-beianlei:before {
+  content: "\e611";
+}
+
+.icon-Centos:before {
+  content: "\e60b";
+}
+
+.icon-Ubuntu:before {
+  content: "\e673";
+}
+
+.icon-Windows:before {
+  content: "\e675";
+}
+
+.icon-rizhiguanli:before {
+  content: "\e671";
+}
+
+.icon-wulijiagou:before {
+  content: "\e672";
+}
+
+.icon-fanghuoqiang:before {
+  content: "\e670";
+}
+
+.icon-GPU:before {
+  content: "\e66f";
+}
+
+.icon-CPU:before {
+  content: "\e66e";
+}
+
+.icon-zhanghuzhongxin:before {
+  content: "\e669";
+}
+
+.icon-caozuorizhi:before {
+  content: "\e66c";
+}
+
+.icon-RAMshenfenrenzheng:before {
+  content: "\e66d";
+}
+
+.icon-quanbuziyuan:before {
+  content: "\e668";
+}
+
+.icon-yidong:before {
+  content: "\e660";
+}
+
+.icon-mimakejian_jinshi:before {
+  content: "\e65d";
+}
+
+.icon-gongdan:before {
+  content: "\e65f";
+}
+
+.icon-xinjian:before {
+  content: "\e661";
+}
+
+.icon-xiangxia:before {
+  content: "\e662";
+}
+
+.icon-sousuo:before {
+  content: "\e663";
+}
+
+.icon-feiyongzhongxin:before {
+  content: "\e664";
+}
+
+.icon-zhongwen:before {
+  content: "\e665";
+}
+
+.icon-xiaoxi:before {
+  content: "\e666";
+}
+
+.icon-beian:before {
+  content: "\e667";
+}
+
+.icon-yingwen:before {
+  content: "\e66a";
+}
+
+.icon-bukejian:before {
+  content: "\e66b";
+}
+
+.icon-Frame:before {
+  content: "\e65b";
+}
+
+.icon-guanbi:before {
+  content: "\e65c";
+}
+
+.icon-you:before {
+  content: "\e65e";
+}
+
+.icon-duixiangcunchu:before {
+  content: "\e651";
+}
+
+.icon-danxingIP:before {
+  content: "\e652";
+}
+
+.icon-luojinshufuwuqi:before {
+  content: "\e653";
+}
+
+.icon-jiguizuping:before {
+  content: "\e654";
+}
+
+.icon-VPN:before {
+  content: "\e655";
+}
+
+.icon-shebeituoguan:before {
+  content: "\e656";
+}
+
+.icon-yunfuwuqi:before {
+  content: "\e657";
+}
+
+.icon-yunyingpan:before {
+  content: "\e658";
+}
+
+.icon-MySQLshujuku:before {
+  content: "\e659";
+}
+
+.icon-a-VPCxunizhuanyouwangluo:before {
+  content: "\e65a";
+}
+
