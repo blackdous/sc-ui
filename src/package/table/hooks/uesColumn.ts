@@ -1,4 +1,3 @@
-import { cloneDeep } from 'lodash'
 import { ref, Ref, unref, computed } from 'vue'
 
 import { Column } from '../types/column'

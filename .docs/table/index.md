@@ -17,6 +17,18 @@ realPath: src/package/table/index.zh-CN.md
   >
 </demo>
 
+### table API
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| type | { componentName: 'copy' or 'ellipsis', props: { text: string } } 用于设置组件内部提供的组件 | Object | 无 | |
+| pagination | [pagination](https://2x.antdv.com/components/pagination/) | object | 无 | |
+| scroll | { x: string, y: string } 设定滚动高度、宽度 默认滚动高度为 460px | Object | 无 |  |
+| loading | true & false 设定loading状态 | boolean | false |  |
+| locale | 'zh'&&'en' 控制表格中英文切换 | string | false |  |
+
+
+
 ## 基础组件
 
 <demo src="./demo/basic.vue"

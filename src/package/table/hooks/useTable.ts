@@ -1,6 +1,5 @@
 import type { ComputedRef } from "vue"
 import { ref, watchEffect, unref, Ref, computed, watch, onMounted, reactive } from "vue"
-import { get, cloneDeep, merge } from 'lodash'
 
 import { FETCH_SETTING, PAGE_SIZE } from '../../../constans/index'
 import { isFunction, isBoolean } from '../../../utils/is'
@@ -8,6 +7,9 @@ import type { PaginationProps } from '../types/pagination'
 import { TableProps, FetchParams } from '../types/table'
 import { buildUUID } from '../../../utils/uuid'
 import { useTimeoutFn } from '../../../hooks/useTimeoutFn'
+import cloneDeep from 'lodash/cloneDeep'
+import get from 'lodash/get'
+import merge from 'lodash/merge'
 
 interface ActionType {
   getPaginationInfo: ComputedRef<boolean | PaginationProps>;

@@ -1,6 +1,7 @@
 <template>
   <div :class="className">
-    <ConfigProvider :locale="newProps.locale === 'en' ? enUS : zhCN">
+    <!-- :locale="newProps.locale === 'en' ? enUS : zhCN" -->
+    <ConfigProvider>
       <Spin :spinning="tableBindValue.loading" v-if="isShowFilter">
         <TableFilter
           v-model:selectValue="selectValue"
@@ -59,6 +60,7 @@
           </template>
         </TableFilter>
       </Spin>
+      <!-- <FilterTagsVue></FilterTagsVue> -->
       <Table
         v-bind="tableBindValue"
         :pagination="getPaginationInfo"
@@ -142,8 +144,8 @@ import { computed, ref, provide, defineComponent, unref, onMounted, nextTick, to
 import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
 import type { PaginationProps } from 'ant-design-vue'
 import { FilterFilled } from '@ant-design/icons-vue'
-import enUS from 'ant-design-vue/es/locale/en_US'
-import zhCN from 'ant-design-vue/es/locale/zh_CN'
+// import enUS from 'ant-design-vue/es/locale/en_US'
+// import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 
 import { basePrefixCls } from '../../../constans'
 import TableFilter from './TableFilter.vue'
@@ -156,6 +158,7 @@ import Address from './Td/Address.vue'
 import Copy from './Td/Copy.vue'
 import Ellipsis from './Td/Ellipsis.vue'
 import Status from './Td/Status.vue'
+import FilterTagsVue from './FilterTags.vue'
 //@ts-ignore
 import { tableProps, TableProps, SorterResult, ButtonType } from '../types/table'
 import { usePagination } from '../hooks/usePagination';
@@ -166,7 +169,7 @@ import { useLoading } from '../hooks/useLoading'
 import { useTable } from '../hooks/useTable'
 import { useActions } from '../hooks/useActions'
 import { useColumn } from '../hooks/uesColumn'
-import { isFunction } from 'lodash'
+import isFunction from 'lodash/isFunction'
 // import { Column } from '../types/column';
 
 const tablePrefixCls = basePrefixCls + 'Table';
@@ -193,7 +196,8 @@ export default defineComponent({
     Ellipsis,
     Status,
     ConfigProvider,
-    EmptyVue
+    EmptyVue,
+    FilterTagsVue
   },
   setup(props, { attrs, slots, emit, expose }) {
     const tableRef = ref()
@@ -202,6 +206,9 @@ export default defineComponent({
 
     const textValue = ref()
     const selectValue = ref()
+    
+    const zhCN = ref({})
+    const enUS = ref({})
 
     const fetchParams = ref<Recordable>({
       tableRef,

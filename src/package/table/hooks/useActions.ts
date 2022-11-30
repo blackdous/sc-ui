@@ -1,9 +1,11 @@
-import { cloneDeep } from 'lodash'
+
 import { ComputedRef, ref, Ref, onMounted, unref, watch, nextTick } from "vue"
 
 import { isArray, isFunction } from '../../../utils/is'
 import type { ActionProps as ActionOptions, ActionItemProps } from '../component/TableAction.vue'
 // import { TableProps } from "../types/table"
+import cloneDeep from 'lodash/cloneDeep'
+// const { cloneDeep } = pkg
 
 export function useActions (
   propsRef: ComputedRef<Recordable>,

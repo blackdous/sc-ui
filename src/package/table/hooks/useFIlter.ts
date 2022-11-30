@@ -1,6 +1,6 @@
-import { ComputedRef, ref, watchEffect, unref, Ref, watch, nextTick, onMounted, computed, toRaw} from "vue"
-import { cloneDeep } from 'lodash'
+import { ComputedRef, ref, watchEffect, unref, Ref, watch, nextTick, onMounted, computed} from "vue"
 import { CreateButton, MutilpActionOptions, SerachOptions } from "../types/table"
+import cloneDeep from 'lodash/cloneDeep'
 
 import { isFunction } from "@vueuse/core"
 export function useFilter (

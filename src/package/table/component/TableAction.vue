@@ -110,7 +110,8 @@ import { EllipsisOutlined } from '@ant-design/icons-vue'
 
 import { basePrefixCls } from '../../../constans'
 import { treeMap } from '../../../utils/treeHelper'
-import { cloneDeep, isFunction } from 'lodash'
+
+import cloneDeep from 'lodash/cloneDeep'
 
 
 export interface ActionItemProps {

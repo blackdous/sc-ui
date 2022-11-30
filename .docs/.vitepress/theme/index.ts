@@ -17,9 +17,12 @@ export default {
     app.component('demo', DemoBlock);
     app.provide('globalApp', app)
 
-    const linkDom = document.createElement('link');
-    linkDom.rel = 'stylesheet'
-    linkDom.href = '//at.alicdn.com/t/c/font_3690753_bjse551aluk.css'
-    document.head.append(linkDom)
+    // if (window && document) {
+    //   const linkDom = document.createElement('link');
+    //   linkDom.rel = 'stylesheet'
+    //   linkDom.href = '//at.alicdn.com/t/c/font_3690753_bjse551aluk.css'
+    //   document.head.append(linkDom)
+    // }
+
   },
 };
