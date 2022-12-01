@@ -1,6 +1,6 @@
 import { ref, Ref, unref, computed } from 'vue'
 
-import { Column } from '../types/column'
+import { Column, FilterItem } from '../types/column'
 import { isArray, isFunction } from '../../../utils/is';
 
 export function useColumn (
@@ -12,6 +12,7 @@ export function useColumn (
     const columns = unref(columnsRef).map((item) => {
       if (item.type) {
         item.slots = {
+          ...item.slots,
           customRender: item.type.componentName
         }
       }
@@ -25,6 +26,43 @@ export function useColumn (
     return columns
   })
   const filterColumn = ref(unref(propsRef).columnModalList.length ? unref(propsRef).columnModalList : unref(getColumnRef))
+
+  const getFilterDropdownRef = computed(() => {
+    return filterColumn.value
+  })
+
+  function setFilterDropdownRef (column:Column, filterItem: FilterItem) {
+    console.log('column: ', column);
+    const columns = unref(filterColumn)
+    columns.forEach((item: Column) => {
+      if (item.dataIndex === column.dataIndex) {
+        item.filterSelected = [filterItem]
+      }
+    })
+    filterColumn.value = columns
+  }
+
+  function clearFilterDropdownRef (column: Column) {
+    const columns = unref(filterColumn)
+    columns.forEach((item: Column) => {
+      if (item.dataIndex === column.dataIndex) {
+        item.filterSelected = []
+      }
+    })
+    const className = '.' + column.dataIndex + column.key + ' ' + '.ant-menu-item'
+    const domList = document.querySelectorAll(className)
+    // console.log('domList: ', domList);
+    console.log('domList.length: ', domList.length);
+    if (domList.length) {
+      domList.forEach((domItem: any) => {
+        if (document?.classList?.includes('ant-menu-item-selected')) {
+          domItem.className = domItem.classList.filters((classStr: string) => classStr !== 'ant-menu-item-selected').split('')
+        }
+        console.log('domItem: ', domItem);
+      })
+    }
+    filterColumn.value = columns
+  }
 
   function setColumnRef (colums: Column[]) {
     columnsRef.value = colums
@@ -81,6 +119,9 @@ export function useColumn (
   return {
     getColumnRef,
     getFilterColumnRef,
+    getFilterDropdownRef,
+    setFilterDropdownRef,
+    clearFilterDropdownRef,
     setColumnRef,
     setFilterColumnRef,
     setFilterColumnChecked,

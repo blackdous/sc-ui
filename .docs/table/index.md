@@ -8,12 +8,13 @@ realPath: src/package/table/index.zh-CN.md
 
 基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件
 
-## 自定义Action列
 
-<demo src="./demo/action.vue"
+## 自定义Filter组件
+
+<demo src="./demo/filter.vue"
   language="vue"
-  title="自定义Action列"
-  desc="自定义Action列"
+  title="自定义Filter组件"
+  desc="通过slots: { filterDropdown: 'filterDropdown', filterIcon: 'filterIcon' }, filterList: list, 配置筛选组件和数据"
   >
 </demo>
 
@@ -21,13 +22,37 @@ realPath: src/package/table/index.zh-CN.md
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| type | { componentName: 'copy' or 'ellipsis', props: { text: string } } 用于设置组件内部提供的组件 | Object | 无 | |
-| pagination | [pagination](https://2x.antdv.com/components/pagination/) | object | 无 | |
-| scroll | { x: string, y: string } 设定滚动高度、宽度 默认滚动高度为 460px | Object | 无 |  |
-| loading | true & false 设定loading状态 | boolean | false |  |
-| locale | 'zh'&&'en' 控制表格中英文切换 | string | false |  |
+| customFilter | true & false 设定是否开启自定义筛选框 | boolean | false |  |
+
+### column API
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| slots | 内置组件: `{filterDropdown: 'filterDropdown', filterIcon: 'filterIcon'}` | Object | - |  |
+| filterList | 自定义筛选数组，支持 自定义方法(返回数组、参数`{propsRef, fetchParams}`)、数组 | Array | - |  |
+
+**不传上述参数就可以使用默认自带的筛选组件**
 
 
+## 其他
+
+### raido 单选table
+
+<demo src="./demo/radio.vue"
+  language="vue"
+  title="radio table表格"
+  desc="radio table表格"
+  >
+</demo>
+
+### expandedRow 展开
+
+<demo src="./demo/expandedRow.vue"
+  language="vue"
+  title="expandedRow table表格"
+  desc="expandedRow table表格"
+  >
+</demo>
 
 ## 基础组件
 
@@ -68,7 +93,6 @@ realPath: src/package/table/index.zh-CN.md
 | change       | 分页、排序、筛选变化时触发  | Function(pagination, filters, sorter, { currentDataSource, fetchParams }) |
 
 
-
 ## 带刷新&筛选column的组件
 
 **支持自定义solt组件`#tableActive`**
@@ -107,30 +131,6 @@ const activeOptions = {
 
 reload参数中的`action`方法，参数为`fetchParams`
 
-
-## 自定义Filter组件
-
-<demo src="./demo/filter.vue"
-  language="vue"
-  title="自定义Filter组件"
-  desc="通过slots: { filterDropdown: 'filterDropdown', filterIcon: 'filterIcon' }, filterList: list, 配置筛选组件和数据"
-  >
-</demo>
-
-### table API
-
-| 参数 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
-| customFilter | true & false 设定是否开启自定义筛选框 | boolean | false |  |
-
-### column API
-
-| 参数 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
-| slots | 内置组件: `{filterDropdown: 'filterDropdown', filterIcon: 'filterIcon'}` | Object | - |  |
-| filterList | 自定义筛选数组，支持 自定义方法(返回数组、参数`{propsRef, fetchParams}`)、数组 | Array | - |  |
-
-**不传上述参数就可以使用默认自带的筛选组件**
 
 
 ## 带头部操作的表格
@@ -226,6 +226,107 @@ interface ButtonType {
 | selectChange | 搜索组件中的select组件选中时的回调 | Function(fetchPrams) |
 | serachClick | 搜索组件点击搜索icon时的回调 | Function(fetchPrams) |
 
+## 自定义Action列
+
+支持自定义`solt`，slot名称`#action`
+
+<demo src="./demo/action.vue"
+  language="vue"
+  title="自定义Action列"
+  desc="自定义Action列"
+  >
+</demo>
+
+### table API
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| actionsOptions | 用于操作按钮的显示操作 | Object | 无 | |
+
+
+```ts
+interface ActionItemProps {
+  label: string,
+  isShow?: boolean | (() => boolean),
+  key?: string,
+  isDisabled?: boolean | (() => boolean),
+  loading?: boolean | (() => boolean),
+  tooltip?: boolean,
+  tooltipDes?: string,
+  children?: Array<ActionItemProps>,
+  action?: string | (() => void)
+}
+```
+
+### column API
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| slots | { customRender: 'action' } | Object | 无 | |
+| actionsOptions | 用于操作按钮的显示操作 | Object | 无 | |
+
+### 其他
+
+- `isDisabled` 支持`boolean`类型,或者传入`Fn`；参数为`fetchParams`
+- `isShow` 支持`boolean`类型,或者传入`Fn`；参数为`fetchParams`
+- `action` 支持`boolean`类型,或者传入`Fn`；参数为`fetchParams`
+- `loading` 支持`boolean`类型,或者传入`Fn`；参数为`fetchParams`
+
+`actionsOptions`支持两种来源，一种是在`table`组件上传入，可以通过`dataSource`中的数据覆盖每条的具体状态；另一种就是在`dataSource`的每条数据中传入`actionsOptions`来分别控制状态；
+
+示例代码
+
+```js
+// 传入table的 actionsOptions
+const actions = [{
+  label: '创建快照',
+  isShow: true,
+  loading: ({tableRef, selectedRowKeysRef}) => {
+    console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+    if (selectedRowKeysRef.length > 3) {
+      return true
+    }
+    return false
+  },
+  // 设定key
+  key: 'aa',
+  isDisabled: false,
+  action: (data:any) => {
+    console.log('====================================');
+    console.log(data);
+    console.log('====================================');
+  },
+  tooltip: false,
+  tooltipDes: '创建快照创建快照aa',
+}]
+
+const dataSource = [
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd',
+    // 指定key的状态
+    'aa': {
+      loading: true,
+      disable: false
+    },
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    age: 40,
+    address: 'London London',
+    // 指定key的状态
+    'bb': {
+      loading: false,
+      disable: true
+    },
+  }
+]
+
+
+```
 
 ## 汇总
 

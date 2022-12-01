@@ -1,11 +1,3 @@
-/* eslint-disable no-redeclare */
-/*
- * @Description:
- * @Author: Format-qi jsq15517589670@163.com
- * @Date: 2022-05-10 17:21:00
- * @LastEditors: Format-qi jsq15517589670@163.com
- * @LastEditTime: 2022-08-30 10:16:36
- */
 import { unref } from 'vue'
 import { createLoading } from './createLoading'
 import type { LoadingProps } from './typing'

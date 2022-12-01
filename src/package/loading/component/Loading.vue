@@ -1,10 +1,3 @@
-<!--
- * @Description:
- * @Author: Format-qi 283810417@qq.com
- * @Date: 2022-05-10 17:21:00
- * @LastEditors: 庞昭昭
- * @LastEditTime: 2022-11-04 14:44:55
--->
 <template>
   <section
     class="full-loading"

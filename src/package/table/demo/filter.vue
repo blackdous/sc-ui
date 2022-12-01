@@ -6,6 +6,7 @@
       :columns="columns"
       :loading="false"
       :customFilter="true"
+      :filterTag="true"
       @change="handleChange"
       @filter="handleFilter"
       >
@@ -86,6 +87,12 @@ const columns = [
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
+    slots: {
+      filterDropdown: 'filterDropdown',
+      filterIcon: 'filterIcon'
+    },
+    filterList: () => list,
+    onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) },
     type: {
       componentName: 'ellipsis',
       props: {
@@ -144,13 +151,9 @@ const handleChange = (pagination, filters, sorter, fetchParams) => {
 }
 
 // @ts-ignore
-const handleFilter = ({ filterItem, setSelectedKeys, selectedKeys, column, clearFilters, fetchParams, setLoading }) => {
+const handleFilter = ({ filterItem, column, setLoading }) => {
   console.log('setLoading: ', setLoading);
-  console.log('fetchParams: ', fetchParams);
-  console.log('clearFilters: ', clearFilters);
   console.log('column: ', column);
-  console.log('selectedKeys: ', selectedKeys);
-  console.log('setSelectedKeys: ', setSelectedKeys);
   console.log('filterItem: ', filterItem);
 }
 

@@ -65,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComputedRef, reactive, ref, unref } from 'vue'
+import { ComputedRef, reactive, ref } from 'vue'
 import type { Ref } from 'vue'
 import { ScTable } from 'sc-ui'
 //@ts-ignore
@@ -369,7 +369,6 @@ const refresh = ({tableRef, selectedRowKeysRef}) => {
 }
 
 const handleModalClick = () => {
-  
 }
 
 </script>

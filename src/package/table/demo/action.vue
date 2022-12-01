@@ -91,13 +91,7 @@ const list = ref([
   },
   {
     label: '一级选项',
-    isShow: ({tableRef, selectedRowKeysRef}) => {
-      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
-      if (selectedRowKeysRef.length > 3) {
-        return true
-      }
-      return false
-    },
+    isShow: true,
     isDisabled: false,
     loading: false,
     key: 'cc',
@@ -109,7 +103,7 @@ const list = ref([
         label: '二级选项',
         isShow: true,
         isDisabled: false,
-        loading: true,
+        loading: false,
         key: 'dd',
         action: '2222',
         tooltip: false,
@@ -158,12 +152,20 @@ const data: DataItem[] = [
     name: 'John Brown',
     age: 32,
     address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd',
+    'aa': {
+      loading: true,
+      disable: false
+    },
   },
   {
     key: '2',
     name: 'Jim Green',
     age: 40,
     address: 'London London',
+    'bb': {
+      loading: false,
+      disable: true
+    },
   },
 ];
 

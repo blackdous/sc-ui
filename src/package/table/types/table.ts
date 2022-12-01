@@ -1,4 +1,4 @@
-import { PropType, VNode } from "vue"
+import { PropType, VNode, VNodeChild } from "vue"
 import type { ComputedRef } from "vue"
 import { ColumnProps, SortOrder } from "ant-design-vue/lib/table/interface"
 import type { TooltipProps } from 'ant-design-vue'
@@ -9,6 +9,7 @@ import { ColumnModalItem } from './column'
 import type { TableRowSelection as ITableRowSelection } from 'ant-design-vue/lib/table/interface'
 import type { ModalProps } from "../../modal"
 
+export type SizeType = 'default' | 'middle' | 'small' | 'large';
 
 export interface FetchSetting {
   // 请求接口当前页数
@@ -210,41 +211,13 @@ export interface LocaleProps {
 }
 export const tableProps = () => ({
   createButtonOptions: {
-    type: Object as PropType<CreateButton>,
-    // default () {
-    //   return {
-    //     show: false,
-    //     text: '创建',
-    //     type: 'primary'
-    //   }
-    // }
+    type: Object as PropType<CreateButton>
   },
   mutilpOptions: {
-    type: Object as PropType<MutilpActionOptions>,
-    // default () {
-    //   return {
-    //     show: false
-    //   }
-    // }
+    type: Object as PropType<MutilpActionOptions>
   },
   serachOptions: {
-    type: Object as PropType<SerachOptions>,
-    // default () {
-    //   return {
-    //     show: true,
-    //     showSelect: true,
-    //     typeList: [],
-    //     selectOptions: {
-    //       placeholder: '请选择',
-    //       width: '120px'
-    //     },
-    //     inputOptions: {
-    //       placeholder: '请输入',
-    //       width: '120px',
-    //       maxlength: 40
-    //     }
-    //   }
-    // }
+    type: Object as PropType<SerachOptions>
   },
   actionsOptions: Object as PropType<ActionOptions>,
   customFilter: {
@@ -253,22 +226,14 @@ export const tableProps = () => ({
       return false
     }
   },
+  filterTag: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
   activeOptions: {
-    type: Object as PropType<ActiveOptions>,
-    // default () {
-    //   return {
-    //     reload: {
-    //       text: '刷新',
-    //       show: false,
-    //       showTooltip: true
-    //     },
-    //     columnDialog: {
-    //       text: '定制列',
-    //       show: false,
-    //       showTooltip: true
-    //     }
-    //   }
-    // }
+    type: Object as PropType<ActiveOptions>
   },
   columnModalList: {
     type: Object as PropType<Array<ColumnModalItem>>,
@@ -289,6 +254,10 @@ export const tableProps = () => ({
   defaultExpandAllRows: Boolean,
   defaultExpandedRowKeys: Object as PropType<string[]>,
   expandedRowKeys: Object as PropType<string[]>,
+  expandIcon: Object as PropType<Function | VNodeChild | JSX.Element>,
+  expandRowByClick: Boolean,
+  expandIconColumnIndex: Number,
+  size: String as PropType<SizeType>,
   childrenColumnName: String,
   
   // 接口请求对象
@@ -329,14 +298,18 @@ export const tableProps = () => ({
   // 弹窗okModal事件
   okModal: Function as PropType<(...arg: any) => void>,
   langLocale: {
-    type: String,
-    default () {
-      return 'zh'
-    }
+    type: Object
   },
   locale: {
     type: Object as PropType<LocaleProps>
+  },
+  indentSize: {
+    type: Number,
+    default () {
+      return 30
+    }
   }
+  
 })
 
 export interface TableProps {
@@ -345,6 +318,7 @@ export interface TableProps {
   serachOptions?: SerachOptions,
   actionsOptions?: ActionOptions,
   customFilter?: boolean,
+  filterTag?: boolean,
   activeOptions?: ActiveOptions,
   columnModalList?: Array<ColumnModalItem>,
   modalOptions?: ModalProps,
@@ -357,7 +331,12 @@ export interface TableProps {
   rowKey?: string | ((record: Recordable) => string),
   defaultExpandAllRows?: boolean,
   defaultExpandedRowKeys?: string[],
-  expandedRowKeys?: string[]
+  expandedRowKeys?: string[],
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  expandIcon?: Function | VNodeChild | JSX.Element,
+  expandRowByClick?: boolean,
+  expandIconColumnIndex?: number,
+  size?: SizeType,
   childrenColumnName?: string,
   
   // 接口请求对象
@@ -397,8 +376,9 @@ export interface TableProps {
   cancelModal?: (...arg: any) => void
   // 弹窗ok事件
   okModal?: (...arg: any) => void,
-  langLocale?: string,
-  locale?: LocaleProps
+  langLocale?: object,
+  locale?: LocaleProps,
+  indentSize: number
 }
 
 export interface FetchParams {

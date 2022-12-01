@@ -116,14 +116,14 @@ import cloneDeep from 'lodash/cloneDeep'
 
 export interface ActionItemProps {
   label: string,
-  isShow?: boolean,
+  isShow?: boolean | (() => boolean),
   key?: string,
   isDisabled?: boolean | (() => boolean),
-  loading?: boolean,
-  action: string,
+  loading?: boolean | (() => boolean),
   tooltip?: boolean,
   tooltipDes?: string,
-  children?: Array<ActionItemProps>
+  children?: Array<ActionItemProps>,
+  action?: string | (() => void)
 }
 
 export interface ActionProps {

@@ -1,7 +1,6 @@
 <template>
   <div :class="className">
-    <!-- :locale="newProps.locale === 'en' ? enUS : zhCN" -->
-    <ConfigProvider>
+    <ConfigProvider :locale="newProps.langLocale">
       <Spin :spinning="false" v-if="isShowFilter">
         <TableFilter
           v-model:selectValue="selectValue"
@@ -60,14 +59,17 @@
           </template>
         </TableFilter>
       </Spin>
-      <!-- <FilterTagsVue></FilterTagsVue> -->
+      <FilterTagsVue
+        v-if="newProps.customFilter && newProps.filterTag"
+        :columns="getFilterDropdownRef"
+        @closeTag="handleCloseTag"
+      ></FilterTagsVue>
       <Table
-        v-bind="tableBindValue"
-        :pagination="getPaginationInfo"
-        :scroll="{ x: allOptions?.scroll?.x || 500 }"
         size="small"
         ref="tableRef"
+        v-bind="tableBindValue"
         :expand-icon="expandIconFnc"
+        :scroll="{ x: allOptions?.scroll?.x || 500 }"
         @change="handleTableChange"
         >
         <template
@@ -82,7 +84,7 @@
         </template>
         
         <template
-          v-for="slotItem in tableBindValue.columns.filter((item) => !!item.type)"
+          v-for="slotItem in tableBindValue.columns.filter((item: { type: any }) => !!item.type)"
           #[slotItem.type.componentName]="slotProps"
         >
           <component
@@ -106,16 +108,14 @@
         <template
           v-if="isCustomFilter"
           #filterDropdown="{
-            setSelectedKeys,
-            selectedKeys,
             confirm,
-            clearFilters,
             column,
           }"
         >
           <FilterDropDownVue
             :filterList="column.filterList || []"
-            @filter="(item: any) => { filterDropDownClick(item, setSelectedKeys, selectedKeys, confirm, clearFilters, column) }"
+            :overlayClassName="column.dataIndex + column.key"
+            @filter="(item: any) => { filterDropDownClick(item, confirm, column) }"
           >
           </FilterDropDownVue>
         </template>
@@ -140,9 +140,8 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, provide, defineComponent, unref, onMounted, nextTick, toRaw } from 'vue'
+import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw } from 'vue'
 import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
-import type { PaginationProps } from 'ant-design-vue'
 import { FilterFilled } from '@ant-design/icons-vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
@@ -160,13 +159,14 @@ import Ellipsis from './Td/Ellipsis.vue'
 import Status from './Td/Status.vue'
 import FilterTagsVue from './FilterTags.vue'
 //@ts-ignore
-import { tableProps, TableProps, SorterResult, ButtonType } from '../types/table'
+import { tableProps, ButtonType } from '../types/table'
+import { Column } from '../types/column'
 import { usePagination } from '../hooks/usePagination';
 import { useTableExpand } from '../hooks/useTableExpand'
 import { useFilter } from '../hooks/useFIlter'
 import { useRowSelection } from '../hooks/useRowSelection'
 import { useLoading } from '../hooks/useLoading'
-import { useTable } from '../hooks/useTable'
+import { useDataSource } from '../hooks/useDataSource'
 import { useActions } from '../hooks/useActions'
 import { useColumn } from '../hooks/uesColumn'
 import isFunction from 'lodash/isFunction'
@@ -215,19 +215,11 @@ export default defineComponent({
       mutilpValue: '',
       searchSelect: '',
       searchText: '',
-      // serach: {
-      //   select: selectValue,
-      //   text: textValue
-      // },
       filter: '',
       selectedRowKeysRef: [],
       columns: [],
       pagination: {}
     })
-
-    provide('scTable', {
-      tableRef
-    });
 
     const newProps = computed(() => {
       return {
@@ -239,9 +231,6 @@ export default defineComponent({
     const allOptions = computed(() => {
       return { ...props, ...attrs };
     });
-
-    // const columnList = ref(props.columnModalList);
-    // console.log('columnList: ', unref(columnList));
 
     const { getLoading, setLoading } = useLoading(newProps);
 
@@ -291,6 +280,7 @@ export default defineComponent({
     const {
       customComponentKey,
       getDataSourceRef,
+      handleTableChange: onTableChange,
       getDataSource,
       getRawDataSource,
       setTableData,
@@ -303,7 +293,7 @@ export default defineComponent({
       reload,
       getAutoCreateKey,
       updateTableData,
-    } = useTable(
+    } = useDataSource(
       newProps,
       {
         tableData,
@@ -317,6 +307,9 @@ export default defineComponent({
 
     const {
       // getColumnRef,
+      getFilterDropdownRef,
+      setFilterDropdownRef,
+      clearFilterDropdownRef,
       getFilterColumnRef,
       setFilterColumnRef,
       setFilterColumnChecked,
@@ -327,6 +320,8 @@ export default defineComponent({
       const dataSource = unref(getDataSourceRef);
       fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, pagination: getPaginationInfo}
       return {
+        ...attrs,
+        ...unref(newProps),
         columns: toRaw(unref(getFilterColumnRef)),
         rowSelection: unref(getRowSelectionRef),
         rowKey: unref(getRowKey),
@@ -399,15 +394,17 @@ export default defineComponent({
     };
 
     const handleTableChange = (
-      pagination: PaginationProps,
-      filters: Partial<string[]>,
-      sorter: SorterResult,
-      //@ts-ignore
-      { currentDataSource }
+      ...args: any[]
+      // pagination: PaginationProps,
+      // filters: Partial<string[]>,
+      // sorter: SorterResult,
+      // //@ts-ignore
+      // { currentDataSource }
     ) => {
       // @ts-ignore
-      setPagination(pagination);
-      emit('change', pagination, filters, sorter, { currentDataSource, fetchParams: unref(fetchParams)});
+      // setPagination(pagination);
+      onTableChange.call(null, ...args)
+      emit('change', ...args);
     };
 
     const mutilpChangeHandle = (value: any) => {
@@ -422,35 +419,31 @@ export default defineComponent({
     // eslint-disable-next-line @typescript-eslint/ban-types
     const filterDropDownClick = (
       item: any,
-      setSelectedKeys: Array<string>,
-      selectedKeys: string,
       confirm: Function,
-      clearFilters: void,
       column: any,
     ) => {
-      confirm();
+      confirm()
+      setFilterDropdownRef(column, item)
       if (isFunction(item?.action)) {
         item.action({
           filterItem: item,
-          setSelectedKeys,
-          selectedKeys,
           column,
-          clearFilters,
           fetchParams: unref(fetchParams),
           setLoading
         })
       } else {
         emit('filter', {
           filterItem: item,
-          setSelectedKeys,
-          selectedKeys,
           column,
-          clearFilters,
           fetchParams: unref(fetchParams),
           setLoading
         });
       }
     };
+
+    const handleCloseTag = (column: Column) => {
+      clearFilterDropdownRef(column)
+    }
 
     const handleModal = () => {
       visible.value = !visible.value;
@@ -469,7 +462,7 @@ export default defineComponent({
     //@ts-ignore
     const okModal = ({ keys, checkedList }) => {
       visible.value = false
-      console.log('keys: ', keys);
+      // console.log('keys: ', keys);
       setFilterColumnChecked(keys)
       const okModal = unref(newProps).okModal
       if (isFunction(okModal)) {
@@ -529,6 +522,7 @@ export default defineComponent({
       getSelectRowKeys,
       deleteSelectRowByKey,
       setSelectedRowKeys,
+      clearFilterDropdownRef,
 
       setSerachOptions,
       getSerachOptions,
@@ -587,6 +581,7 @@ export default defineComponent({
       customComponentKey,
       getFilterColumnRef,
       isShowFilter,
+      getFilterDropdownRef,
 
       handle,
       createHandle,
@@ -602,7 +597,8 @@ export default defineComponent({
       setFilterColumnRef,
       cancelModal,
       okModal,
-      handleSelectChange
+      handleSelectChange,
+      handleCloseTag
     };
   },
 });

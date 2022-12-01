@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: Format-qi jsq15517589670@163.com
- * @Date: 2022-05-10 17:21:00
- * @LastEditors: Format-qi jsq15517589670@163.com
- * @LastEditTime: 2022-08-30 09:40:52
- */
 import { VNode, defineComponent } from 'vue'
 import type { LoadingProps } from './typing'
 

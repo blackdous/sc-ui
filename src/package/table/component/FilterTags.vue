@@ -1,24 +1,30 @@
 <template>
-  <Tag>
-
-  </Tag>
+  <template
+    v-for="columnItem in filterList"
+    :key="columnItem.dataIndex"
+  >
+    <Tag
+      v-for="filterItem in (columnItem.filterSelected || [])"
+      closable
+      class="tag-filter"
+      @close="onTagClose(columnItem, filterItem)"
+    >
+      {{ columnItem.title }} :  {{ filterItem.label }}
+    </Tag>
+  </template>
 </template>
 
 <script lang='ts'>
-import { defineComponent } from 'vue'
+import { defineComponent, computed, PropType } from 'vue'
 import { Tag } from 'ant-design-vue'
 
+import { Column } from '../types/column'
+
 const FilterTagsProps = () => ({
-  filteredInfo: {
-      required: true,
-      type: Object,
-      default: () => ({}),
-      deep: true
-    },
-    getColumns: {
-      required: true,
-      type: [Function, Array]
-    }
+  columns: {
+    required: true,
+    type: Array as PropType<Column[]>
+  }
 })
 
 export default defineComponent({
@@ -28,8 +34,20 @@ export default defineComponent({
   components: {
     Tag
   },
-  setup(props) {
+  setup(props, { emit }) {
+    const filterList = computed(() => {
+      return props.columns
+    })
 
+    const onTagClose = (...args: any[]) => {
+      console.log('...args: ', ...args);
+      emit('closeTag', ...args)
+    }
+
+    return {
+      filterList,
+      onTagClose
+    }
   }
 })
 </script>

@@ -5,7 +5,12 @@
       :data-source="data"
       :columns="columns"
       :loading="false"
-      :langLocale="zhCN"
+      :row-selection="{
+        type: 'radio',
+        selectedRowKeys: state.selectedRowKeys,
+        onChange: onSelectChange
+      }"
+
       @change="handleChange"
       >
     </ScTable>
@@ -13,9 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-// import enUS from 'ant-design-vue/es/locale/en_US'
-import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
+import { ref, reactive } from 'vue'
 import { ScTable } from 'sc-ui'
 
 import "ant-design-vue/dist/antd.css"
@@ -79,6 +82,19 @@ for(let i = 10; i < 25; i++) {
     address: 'New London',
   })
 }
+
+const state = reactive<{
+  selectedRowKeys: Key[];
+  loading: boolean;
+}>({
+  selectedRowKeys: [], // Check here to configure the default column
+  loading: false,
+});
+
+const onSelectChange = (selectedRowKeys: Key[]) => {
+  console.log('selectedRowKeys changed: ', selectedRowKeys);
+  state.selectedRowKeys = selectedRowKeys;
+};
 
 //@ts-ignore
 const handleChange = (pagination, filters, sorter, fetchParams) => {

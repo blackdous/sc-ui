@@ -4,7 +4,7 @@ import { ref, watchEffect, unref, Ref, computed, watch, onMounted, reactive } fr
 import { FETCH_SETTING, PAGE_SIZE } from '../../../constans/index'
 import { isFunction, isBoolean } from '../../../utils/is'
 import type { PaginationProps } from '../types/pagination'
-import { TableProps, FetchParams } from '../types/table'
+import { FetchParams, SorterResult } from '../types/table'
 import { buildUUID } from '../../../utils/uuid'
 import { useTimeoutFn } from '../../../hooks/useTimeoutFn'
 import cloneDeep from 'lodash/cloneDeep'
@@ -26,8 +26,8 @@ interface SearchState {
 
 const ROW_KEY = 'key'
 
-export const useTable = (
-  propsRef: ComputedRef<TableProps>,
+export const useDataSource = (
+  propsRef: ComputedRef<Recordable>,
   {
     getPaginationInfo,
     setPagination,
@@ -47,31 +47,31 @@ export const useTable = (
 
   const customComponentKey = ref<string[]>(['copy', 'address', 'ellipsis', 'status'])
 
-  // function handleTableChange(
-  //   pagination: PaginationProps,
-  //   filters: Partial<Recordable<string[]>>,
-  //   sorter: SorterResult,
-  // ) {
-  //   const { clearSelectOnPageChange, sortFn, filterFn } = unref(propsRef);
-  //   if (clearSelectOnPageChange) {
-  //     clearSelectedRowKeys();
-  //   }
-  //   setPagination(pagination);
+  function handleTableChange(
+    pagination: PaginationProps,
+    filters: Partial<Recordable<string[]>>,
+    sorter: SorterResult,
+  ) {
+    const { clearSelectOnPageChange, sortFn, filterFn } = unref(propsRef);
+    if (clearSelectOnPageChange) {
+      clearSelectedRowKeys();
+    }
+    setPagination(pagination);
 
-  //   const params: Recordable = {};
-  //   if (sorter && isFunction(sortFn)) {
-  //     const sortInfo = sortFn(sorter);
-  //     searchState.sortInfo = sortInfo;
-  //     params.sortInfo = sortInfo;
-  //   }
+    const params: Recordable = {};
+    if (sorter && isFunction(sortFn)) {
+      const sortInfo = sortFn(sorter);
+      searchState.sortInfo = sortInfo;
+      params.sortInfo = sortInfo;
+    }
 
-  //   if (filters && isFunction(filterFn)) {
-  //     const filterInfo = filterFn(filters);
-  //     searchState.filterInfo = filterInfo;
-  //     params.filterInfo = filterInfo;
-  //   }
-  //   fetch(params);
-  // }
+    if (filters && isFunction(filterFn)) {
+      const filterInfo = filterFn(filters);
+      searchState.filterInfo = filterInfo;
+      params.filterInfo = filterInfo;
+    }
+    fetch(params);
+  }
   
   function setTableKey(items: any[]) {
     if (!items || !Array.isArray(items)) return;
@@ -356,11 +356,12 @@ export const useTable = (
   return {
     customComponentKey,
     getDataSourceRef,
-    getDataSource,
-    getRawDataSource,
     getRowKey,
-    setTableData,
     getAutoCreateKey,
+    getDataSource,
+    handleTableChange,
+    getRawDataSource,
+    setTableData,
     fetch,
     reload,
     updateTableData,

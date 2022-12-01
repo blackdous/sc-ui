@@ -5,17 +5,18 @@
       :data-source="data"
       :columns="columns"
       :loading="false"
-      :langLocale="zhCN"
+      :indentSize="30"
       @change="handleChange"
       >
+        <!-- <template #expandedRowRender>
+          <p>11111111111</p>
+        </template> -->
     </ScTable>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-// import enUS from 'ant-design-vue/es/locale/en_US'
-import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable } from 'sc-ui'
 
 import "ant-design-vue/dist/antd.css"
@@ -24,7 +25,7 @@ import '../../../style/index.less'
 const scTableRef = ref()
 // @ts-ignore
 const columns = [
-  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
+  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name'},
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
@@ -62,6 +63,14 @@ const data: DataItem[] = [
     name: 'John Brown',
     age: 32,
     address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd',
+    children: [
+      {
+        key: '12',
+        name: 'Jim Green',
+        age: 40,
+        address: 'London London'
+      }
+    ],
   },
   {
     key: '2',

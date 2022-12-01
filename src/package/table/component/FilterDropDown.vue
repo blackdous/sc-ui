@@ -1,8 +1,9 @@
 <template>
-  <div :class="[basePrefixCls + 'filterDropDown']">
+  <div :class="[basePrefixCls + 'filterDropDown', overlayClassName]">
     <Dropdown
       :class="basePrefixCls + 'TableDropdown'"
       :visible="visable"
+      :overlayClassName="overlayClassName"
     >
       <Menu>
         <template
@@ -53,7 +54,7 @@
 </template>
 
 <script lang='ts'>
-import { computed, defineComponent, unref, ref } from 'vue'
+import { computed, defineComponent, unref, ref, watch } from 'vue'
 import { Dropdown, Menu, MenuItem, SubMenu } from 'ant-design-vue'
 //@ts-ignore
 import { scFilterProps, FilterItem } from '../types/column'
@@ -66,6 +67,9 @@ export default defineComponent({
   props: scFilterProps(),
   setup (props, { emit }) {
     const visable = ref<boolean>(true)
+    const overlayClassName = computed(() => {
+      return props.overlayClassName
+    })
     const filterList = computed(() => {
       return unref(props.filterList)
     })
@@ -77,6 +81,7 @@ export default defineComponent({
       basePrefixCls,
       filterList,
       visable,
+      overlayClassName,
       handle
     }
   }
