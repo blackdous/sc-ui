@@ -7,6 +7,7 @@
       :loading="false"
       :langLocale="zhCN"
       @change="handleChange"
+      @handleTd="handleTd"
       >
     </ScTable>
   </div>
@@ -20,6 +21,7 @@ import { ScTable } from 'sc-ui'
 
 import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
+import { link } from 'fs'
 
 const scTableRef = ref()
 // @ts-ignore
@@ -34,16 +36,25 @@ const columns = [
         lineheigth: 2
       }
     }
-    // type: {
-    //   componentName: 'copy',
-    //   props: {
-    //     successTxt: 'copy 成功',
-    //     errorText: ''
-    //   }
-    // }
   },
-  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160 },
-  { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
+  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160,
+    type: {
+      componentName: 'copy',
+      props: {
+        successTxt: 'copy 成功',
+        errorText: ''
+      }
+    }
+  },
+  { title: 'Column 3', dataIndex: 'age', key: '3', width: 160,
+  type: {
+    componentName: 'handle',
+    type: 'link',
+    props: {
+    }
+  }
+    
+  }
 ];
 
 interface DataItem {
@@ -85,6 +96,10 @@ const handleChange = (pagination, filters, sorter, fetchParams) => {
   console.log('pagination, filters, sorter: ', pagination, filters, sorter, fetchParams);
 }
 
+
+const handleTd = ({record, type}: any) => {
+  console.log('record, type: ', record, type);
+}
 
 </script>
 

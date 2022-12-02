@@ -68,8 +68,8 @@
         size="small"
         ref="tableRef"
         v-bind="tableBindValue"
-        :expand-icon="expandIconFnc"
         :scroll="{ x: allOptions?.scroll?.x || 500 }"
+        :expand-icon="expandIconFnc"
         @change="handleTableChange"
         >
         <template
@@ -91,6 +91,7 @@
             :is="getComponent(slotItem.type.componentName)"
             v-bind="{ ...slotProps, tableName: slotItem.type.componentName }"
             :key="slotItem.dataIndex"
+            v-on="{...getEvent(slotItem.type.componentName)}"
           />
         </template>
 
@@ -154,12 +155,8 @@ import ScTableAction, { ActionItemProps } from './TableAction.vue'
 import FilterDropDownVue from './FilterDropDown.vue'
 import ColumnDialogVue from './ColumnDialog.vue'
 import EmptyVue from './Empty.vue'
-//@ts-ignore
-import Address from './Td/Address.vue'
-import Copy from './Td/Copy.vue'
-import Ellipsis from './Td/Ellipsis.vue'
-import Status from './Td/Status.vue'
-import FilterTagsVue from './FilterTags.vue'
+import TdComponents from './Td'
+
 //@ts-ignore
 import { tableProps, ButtonType } from '../types/table'
 import { Column, FilterItem } from '../types/column'
@@ -193,13 +190,14 @@ export default defineComponent({
     FilterDropDownVue,
     ColumnDialogVue,
     Spin,
-    Address,
-    Copy,
-    Ellipsis,
-    Status,
     ConfigProvider,
     EmptyVue,
-    FilterTagsVue
+    ...TdComponents
+    // Address,
+    // Copy,
+    // Ellipsis,
+    // Status,
+    // FilterTagsVue
   },
   setup(props, { attrs, slots, emit, expose }) {
     const tableRef = ref()
@@ -282,7 +280,10 @@ export default defineComponent({
     const {
       customComponentKey,
       getDataSourceRef,
+      getRowKey,
+      getAutoCreateKey,
       handleTableChange: onTableChange,
+      getEvent,
       getDataSource,
       getRawDataSource,
       setTableData,
@@ -291,9 +292,7 @@ export default defineComponent({
       insertTableDataRecord,
       findTableDataRecord,
       fetch,
-      getRowKey,
       reload,
-      getAutoCreateKey,
       updateTableData,
     } = useDataSource(
       newProps,
@@ -618,7 +617,8 @@ export default defineComponent({
       cancelModal,
       okModal,
       handleSelectChange,
-      handleCloseTag
+      handleCloseTag,
+      getEvent
     };
   },
 });

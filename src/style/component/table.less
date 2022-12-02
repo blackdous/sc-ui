@@ -249,6 +249,13 @@
   }
 }
 
+.td_href {
+  color: @heading-color;
+  &.linkBtn {
+    color: @primary-color !important;
+  }
+}
+
 
 // .vp-doc uo
 .vp-doc .vitepress-demo li + li {
@@ -281,4 +288,9 @@
 }
 .vp-doc .vitepress-demo ul, .vp-doc .vitepress-demo ol {
   padding-left: 0;
+}
+
+.vp-doc .vitepress-demo a {
+  font-weight: 400;
+  color: @heading-color;
 }

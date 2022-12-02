@@ -16,6 +16,7 @@ specifiers:
   '@ruabick/vitepress-demo-block': ^0.2.9
   '@types/lodash': ^4.14.190
   '@types/node': ^18.11.9
+  '@types/webpack-env': ^1.18.0
   '@typescript-eslint/eslint-plugin': ^5.33.1
   '@typescript-eslint/parser': ^5.33.1
   '@vitejs/plugin-legacy': ^2.3.0
@@ -87,6 +88,7 @@ devDependencies:
   '@ruabick/vitepress-demo-block': 0.2.9
   '@types/lodash': 4.14.190
   '@types/node': 18.11.9
+  '@types/webpack-env': 1.18.0
   '@typescript-eslint/eslint-plugin': 5.42.0_5aea5dp4n23mfv4y2mmjxole3e
   '@typescript-eslint/parser': 5.42.0_eslint@8.26.0
   '@vitejs/plugin-legacy': 2.3.0_vite@3.2.2
@@ -1110,6 +1112,10 @@ packages:
 
   /@types/web-bluetooth/0.0.16:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
+    dev: true
+
+  /@types/webpack-env/1.18.0:
+    resolution: {integrity: sha512-56/MAlX5WMsPVbOg7tAxnYvNYMMWr/QJiIp6BxVSW3JJXUVzzOn64qW8TzQyMSqSUFM2+PVI4aUHcHOzIz/1tg==}
     dev: true
 
   /@types/yauzl/2.10.0:

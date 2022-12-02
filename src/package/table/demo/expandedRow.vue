@@ -5,7 +5,8 @@
       :data-source="data"
       :columns="columns"
       :loading="false"
-      :indentSize="30"
+      :is-tree-table="true"
+      :indentSize="20"
       @change="handleChange"
       >
         <!-- <template #expandedRowRender>

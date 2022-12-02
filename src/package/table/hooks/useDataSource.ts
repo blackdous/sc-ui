@@ -47,6 +47,19 @@ export const useDataSource = (
 
   const customComponentKey = ref<string[]>(['copy', 'address', 'ellipsis', 'status'])
 
+  const handle = (data: any) => {
+    emit('handleTd', data)
+  }
+  const handleEventComp = ['handle', 'address', 'operation']
+
+  const getEvent = (type:string) => {
+    if (handleEventComp.includes(type)) {
+      return { handle }
+    } else {
+      return {}
+    }
+  }
+
   function handleTableChange(
     pagination: PaginationProps,
     filters: Partial<Recordable<string[]>>,
@@ -358,6 +371,7 @@ export const useDataSource = (
     getDataSourceRef,
     getRowKey,
     getAutoCreateKey,
+    getEvent,
     getDataSource,
     handleTableChange,
     getRawDataSource,

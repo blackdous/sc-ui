@@ -51,6 +51,7 @@
     "@ruabick/vitepress-demo-block": "^0.2.9",
     "@types/lodash": "^4.14.190",
     "@types/node": "^18.11.9",
+    "@types/webpack-env": "^1.18.0",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
     "@vitejs/plugin-legacy": "^2.3.0",

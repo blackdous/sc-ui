@@ -22,7 +22,10 @@
       "esnext",
       "dom",
     ],
-    "types": [],
+    "types": [
+      "node",
+      "webpack-env"
+    ],
     "skipLibCheck": true,
     // "files": "src/index.ts",
     "emitDeclarationOnly": true,

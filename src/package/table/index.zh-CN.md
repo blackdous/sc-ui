@@ -8,41 +8,16 @@ map:
 基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件
 
 
-## 自定义Filter组件
+## 其他
 
-<demo src="./demo/filter.vue"
-  language="vue"
-  title="自定义Filter组件"
-  desc="通过slots: { filterDropdown: 'filterDropdown', filterIcon: 'filterIcon' }, filterList: list, 配置筛选组件和数据"
-  >
-</demo>
-
-### table API
-
-| 参数 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
-| customFilter | true & false 设定是否开启自定义筛选框 | boolean | false |  |
-
-### column API
-
-| 参数 | 说明 | 类型 | 默认值 | 版本 |
-| --- | --- | --- | --- | --- |
-| slots | 内置组件: `{filterDropdown: 'filterDropdown', filterIcon: 'filterIcon'}` | Object | - |  |
-| filterList | 自定义筛选数组，支持 自定义方法(返回数组、参数`{propsRef, fetchParams}`)、数组 | Array | - |  |
-
-**不传上述参数就可以使用默认自带的筛选组件**
-
-
-<!-- ## 其他
-
-### raido 单选table
+<!-- ### raido 单选table
 
 <demo src="./demo/radio.vue"
   language="vue"
   title="radio table表格"
   desc="radio table表格"
   >
-</demo>
+</demo> -->
 
 ### expandedRow 展开
 
@@ -53,7 +28,9 @@ map:
   >
 </demo>
 
-## 基础组件
+
+
+<!-- ## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -109,7 +86,7 @@ map:
 | --- | --- | --- | --- | --- |
 | activeOptions | 用于配置否显示`reload`、`columnDialog` 组件 | Object | 无 | |
 
-参数如下
+参数如下：
 
 
 ```js
@@ -129,10 +106,10 @@ const activeOptions = {
 ```
 
 reload参数中的`action`方法，参数为`fetchParams`
+ -->
 
 
-
-## 带头部操作的表格
+<!-- ## 带头部操作的表格
 
 <demo src="./demo/header.vue"
   language="vue"
@@ -326,6 +303,34 @@ const dataSource = [
 
 
 ```
+
+
+## 自定义Filter组件
+
+<demo src="./demo/filter.vue"
+  language="vue"
+  title="自定义Filter组件"
+  desc="通过slots: { filterDropdown: 'filterDropdown', filterIcon: 'filterIcon' }, filterList: list, 配置筛选组件和数据"
+  >
+</demo>
+
+### table API
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| customFilter | true & false 设定是否开启自定义筛选框 | boolean | false |  |
+
+### column API
+
+| 参数 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| slots | 内置组件: `{filterDropdown: 'filterDropdown', filterIcon: 'filterIcon'}` | Object | - |  |
+| filterList | 自定义筛选数组，支持 自定义方法(返回数组、参数`{propsRef, fetchParams}`)、数组 | Array | - |  |
+| filterMultiple | 用于是否开启多选 | boolean | false |  |
+| filterTag | 是否开启选中标签模式 | boolean | false |  |
+
+
+**不传上述参数就可以使用默认自带的筛选组件**
 
 ## 汇总
 
