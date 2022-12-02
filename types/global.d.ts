@@ -14,3 +14,4 @@ declare interface ViteEnv {
   VITE_USE_IMAGEMIN: boolean;
   VITE_GENERATE_UI: string;
 }
+declare type Nullable<T> = T | null;

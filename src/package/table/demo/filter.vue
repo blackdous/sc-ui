@@ -45,7 +45,29 @@ const list = ref([
     loading: false,
     action: 'bb',
     tooltip: false,
-    tooltipDes: '续费续费续费续费续费'
+    tooltipDes: '续费续费续费续费续费',
+    children: [
+      {
+        label: '二级选项1111',
+        isShow: true,
+        isDisabled: false,
+        loading: true,
+        key: 'dd',
+        action: '2222',
+        tooltip: false,
+        tooltipDes: '二级选项22222222',
+      },
+      {
+        label: '二级选项2222111',
+        isShow: true,
+        isDisabled: false,
+        loading: false,
+        key: 'ee',
+        action: '5555',
+        tooltip: true,
+        tooltipDes: '二级选项2222',
+      }
+    ]
   }, {
     label: '三级选项',
     isShow: true,
@@ -61,6 +83,7 @@ const list = ref([
     isDisabled: false,
     loading: false,
     action: '4444',
+    key: '4444',
     tooltip: false,
     tooltipDes: '四级选项444444444',
   }
@@ -81,6 +104,8 @@ const columns = [
       filterDropdown: 'filterDropdown',
       filterIcon: 'filterIcon'
     },
+    filterMultiple: true,
+    filteredValue: [],
     filterList: () => list,
     onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) }
   },
@@ -91,6 +116,7 @@ const columns = [
       filterDropdown: 'filterDropdown',
       filterIcon: 'filterIcon'
     },
+    filterMultiple: false,
     filterList: () => list,
     onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) },
     type: {
@@ -136,9 +162,9 @@ const data: DataItem[] = [
   },
 ];
 
-for(let i = 10; i < 24; i++) {
+for(let i = 10; i < 14; i++) {
   data.push({
-    key: i.toString(),
+    key: i + '',
     name: 'John Brown',
     age: i,
     address: 'New London',
@@ -151,10 +177,11 @@ const handleChange = (pagination, filters, sorter, fetchParams) => {
 }
 
 // @ts-ignore
-const handleFilter = ({ filterItem, column, setLoading }) => {
+const handleFilter = ({ items, column, setLoading, fetchParams }) => {
+  console.log('fetchParams: ', fetchParams);
+  console.log('items: ', items);
   console.log('setLoading: ', setLoading);
   console.log('column: ', column);
-  console.log('filterItem: ', filterItem);
 }
 
 

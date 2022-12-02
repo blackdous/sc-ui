@@ -4,12 +4,19 @@
     :key="columnItem.dataIndex"
   >
     <Tag
-      v-for="filterItem in (columnItem.filterSelected || [])"
+      v-if="columnItem.filterSelected?.length"
       closable
       class="tag-filter"
-      @close="onTagClose(columnItem, filterItem)"
+      @close="onTagClose(columnItem)"
     >
-      {{ columnItem.title }} :  {{ filterItem.label }}
+      {{ columnItem.title }}
+      <span
+        v-for="(filterItem, index) in (columnItem.filterSelected || [])"
+        :key="filterItem.key"
+      >
+        {{index !== 0 ? ';' : ''}}
+        {{filterItem.label }}
+      </span>
     </Tag>
   </template>
 </template>
@@ -40,7 +47,6 @@ export default defineComponent({
     })
 
     const onTagClose = (...args: any[]) => {
-      console.log('...args: ', ...args);
       emit('closeTag', ...args)
     }
 

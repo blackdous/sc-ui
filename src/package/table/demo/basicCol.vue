@@ -81,9 +81,9 @@ const data: DataItem[] = [
   },
 ];
 
-for(let i = 10; i < 23; i++) {
+for(let i = 10; i < 12; i++) {
   data.push({
-    key: i.toString(),
+    key: i + '',
     name: 'John Brown',
     age: i,
     address: 'New London',

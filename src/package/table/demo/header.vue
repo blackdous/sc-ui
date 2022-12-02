@@ -219,9 +219,9 @@ const mutilpChangeHandle = ({tableRef, selectedRowKeysRef}) => {
   console.log('tableRef: ', tableRef);
 }
 
-for(let i = 10; i < 22; i++) {
+for(let i = 10; i < 12; i++) {
   data.push({
-    key: i.toString(),
+    key: i + '',
     name: 'John Brown',
     age: i,
     address: 'New London',

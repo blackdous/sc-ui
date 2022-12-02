@@ -5,23 +5,27 @@
       :visible="visable"
       :overlayClassName="overlayClassName"
     >
-      <Menu>
+      <Menu
+        :multiple="columnOptions?.filterMultiple"
+        v-model:selected-keys="menuKeys"
+        @deselect="handleDeselect"
+        @click="handle"
+      >
         <template
           v-for="(item) in filterList"
           :key="item.label"
         >
           <template v-if="item?.children && item?.children?.length">
             <SubMenu 
-              v-for="(subItem) in item.children"
-              :key="item.label"
               :title="item.label"
               :disabled="item.isDisabled"
+              popupClassName="filterDropdown-subMenu"
             >
               <MenuItem
+                v-for="(subItem) in item.children"
                 :disabled="subItem.isDisabled"
-                @click="handle(item)"
                 :aria-label="subItem.label"
-                :key="subItem.label"
+                :key="subItem.key"
               >
                 {{ subItem.label }}
               </MenuItem>
@@ -30,9 +34,8 @@
           <MenuItem
             v-else
             :disabled="item.isDisabled"
-            :key="item.label"
-            @click="handle(item)"
-          >
+            :key="item.key"
+            >
             <template v-if="item.isDisabled && item.tooltipDes">
               <Tooltip
                 overlayClassName = 'scTooltip-white'
@@ -56,9 +59,13 @@
 <script lang='ts'>
 import { computed, defineComponent, unref, ref, watch } from 'vue'
 import { Dropdown, Menu, MenuItem, SubMenu } from 'ant-design-vue'
+import cloneDeep from 'lodash/cloneDeep'
 //@ts-ignore
 import { scFilterProps, FilterItem } from '../types/column'
 import { basePrefixCls } from '../../../constans'
+import { findNode } from '../../../utils/treeHelper'
+
+// export interface 
 
 export default defineComponent({
   name: 'ScTableFilterDropDown',
@@ -67,22 +74,50 @@ export default defineComponent({
   props: scFilterProps(),
   setup (props, { emit }) {
     const visable = ref<boolean>(true)
+    const selectedItems = ref([] as FilterItem[])
+    const menuKeys = ref()
+    const selectedKeys = computed(() => {
+      return unref(selectedItems)?.map((item: FilterItem) => item.key)
+    })
     const overlayClassName = computed(() => {
       return props.overlayClassName
     })
     const filterList = computed(() => {
-      return unref(props.filterList)
+      return props.filterList
     })
-    const handle = (item: FilterItem) => {
-      visable.value = false;
-      emit('filter', item)
+    const columnOptions = computed(() => {
+      return cloneDeep(props.column)
+    })
+    const handle = ({key}:{key: string}) => {
+      // @ts-ignore
+      const item = findNode(unref(filterList), (node:FilterItem) => node.key === key, { key: 'key' })
+      if (unref(columnOptions)?.filterMultiple) {
+        selectedItems.value = [...unref(selectedItems), item]
+      } else {
+        selectedItems.value = [item]
+      }
+      emit('filter', unref(selectedItems), unref(selectedKeys))
     }
+    const handleDeselect = ({ key }: { key: string }) => {
+      selectedItems.value = unref(selectedItems).filter((item: FilterItem) => item.key !== key)
+      emit('filter', unref(selectedItems), unref(selectedKeys))
+    }
+    watch(() => props.filterSelected, (val) => {
+      menuKeys.value = val?.map(item => item.key) || []
+      if (val?.length === 0) {
+        selectedItems.value = []
+      }
+    })
     return {
       basePrefixCls,
       filterList,
       visable,
       overlayClassName,
-      handle
+      columnOptions,
+      selectedKeys,
+      menuKeys,
+      handle,
+      handleDeselect
     }
   }
 })

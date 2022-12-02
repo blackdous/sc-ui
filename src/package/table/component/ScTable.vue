@@ -109,13 +109,15 @@
           v-if="isCustomFilter"
           #filterDropdown="{
             confirm,
-            column,
+            column
           }"
         >
           <FilterDropDownVue
             :filterList="column.filterList || []"
             :overlayClassName="column.dataIndex + column.key"
-            @filter="(item: any) => { filterDropDownClick(item, confirm, column) }"
+            :column="column"
+            :filterSelected="column.filterSelected"
+            @filter="(item: FilterItem[], keys: string[]) => { filterDropDownClick(item, keys, confirm, column) }"
           >
           </FilterDropDownVue>
         </template>
@@ -160,7 +162,7 @@ import Status from './Td/Status.vue'
 import FilterTagsVue from './FilterTags.vue'
 //@ts-ignore
 import { tableProps, ButtonType } from '../types/table'
-import { Column } from '../types/column'
+import { Column, FilterItem } from '../types/column'
 import { usePagination } from '../hooks/usePagination';
 import { useTableExpand } from '../hooks/useTableExpand'
 import { useFilter } from '../hooks/useFIlter'
@@ -215,7 +217,7 @@ export default defineComponent({
       mutilpValue: '',
       searchSelect: '',
       searchText: '',
-      filter: '',
+      filters: {},
       selectedRowKeysRef: [],
       columns: [],
       pagination: {}
@@ -418,26 +420,44 @@ export default defineComponent({
 
     // eslint-disable-next-line @typescript-eslint/ban-types
     const filterDropDownClick = (
-      item: any,
+      items: FilterItem[],
+      keys: string[],
       confirm: Function,
       column: any,
     ) => {
       confirm()
-      setFilterDropdownRef(column, item)
-      if (isFunction(item?.action)) {
-        item.action({
-          filterItem: item,
-          column,
-          fetchParams: unref(fetchParams),
-          setLoading
-        })
-      } else {
+      setFilterDropdownRef(column, items)
+      fetchParams.value = {
+        ...unref(fetchParams),
+        filters: {
+          ...unref(fetchParams).filters,
+          [column.dataIndex]: keys.length ? keys : undefined
+        }
+      }
+      if (column.filterMultiple) {
         emit('filter', {
-          filterItem: item,
+          imtes: items,
           column,
           fetchParams: unref(fetchParams),
           setLoading
         });
+      } else {
+        const item = items[0]
+        if (isFunction(item?.action)) {
+          item.action({
+            filterItem: item,
+            column,
+            fetchParams: unref(fetchParams),
+            setLoading
+          })
+        } else {
+          emit('filter', {
+            filterItem: item,
+            column,
+            fetchParams: unref(fetchParams),
+            setLoading
+          });
+        }
       }
     };
 

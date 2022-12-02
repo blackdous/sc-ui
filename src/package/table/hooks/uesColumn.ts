@@ -31,12 +31,11 @@ export function useColumn (
     return filterColumn.value
   })
 
-  function setFilterDropdownRef (column:Column, filterItem: FilterItem) {
-    console.log('column: ', column);
+  function setFilterDropdownRef (column:Column, filterItem: FilterItem[]) {
     const columns = unref(filterColumn)
     columns.forEach((item: Column) => {
       if (item.dataIndex === column.dataIndex) {
-        item.filterSelected = [filterItem]
+        item.filterSelected = filterItem
       }
     })
     filterColumn.value = columns
@@ -49,18 +48,6 @@ export function useColumn (
         item.filterSelected = []
       }
     })
-    const className = '.' + column.dataIndex + column.key + ' ' + '.ant-menu-item'
-    const domList = document.querySelectorAll(className)
-    // console.log('domList: ', domList);
-    console.log('domList.length: ', domList.length);
-    if (domList.length) {
-      domList.forEach((domItem: any) => {
-        if (document?.classList?.includes('ant-menu-item-selected')) {
-          domItem.className = domItem.classList.filters((classStr: string) => classStr !== 'ant-menu-item-selected').split('')
-        }
-        console.log('domItem: ', domItem);
-      })
-    }
     filterColumn.value = columns
   }
 

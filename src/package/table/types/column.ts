@@ -3,6 +3,7 @@ export interface FilterItem {
   label: string,
   isShow?: boolean,
   isDisabled?: boolean,
+  key?: string,
   loading?: boolean,
   action: string | ((args: any) => void),
   tooltip?: boolean,
@@ -12,7 +13,9 @@ export interface FilterItem {
 
 export const scFilterProps = () => ({
   filterList: Object as PropType<Array<FilterItem>>,
-  overlayClassName: String
+  overlayClassName: String,
+  column: Object as PropType<Column>,
+  filterSelected: Array as PropType<FilterItem[]>
 })
 
 export interface ColumnModalItem {
