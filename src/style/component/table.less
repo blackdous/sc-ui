@@ -260,7 +260,16 @@
   }
 }
 
-
+#table-fetch, #usetable {
+  & + .vitepress-demo {
+    .demo-slot {
+      padding: 0;
+    }
+    table {
+      display: table;
+    }
+  }
+}
 // .vp-doc uo
 .vp-doc .vitepress-demo li + li {
   margin-top: auto;

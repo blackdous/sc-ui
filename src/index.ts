@@ -9,7 +9,7 @@ import { ScTabs } from './package/tabs'
 import { ScRadioGroup, ScRadioTooltipGroup } from './package/radio'
 import { ScAlert } from './package/alert'
 import { ScModal } from './package/modal'
-import { ScTable } from './package/table'
+import { ScTable, useTable } from './package/table'
 
 
 import { installGlobalDireactives } from './direactives'
@@ -58,5 +58,7 @@ export {
 export * from './types'
 
 export { installGlobalDireactives, ClickOutside, TextCollapse }
+
+export { useTable }
 
 export default ScUi;

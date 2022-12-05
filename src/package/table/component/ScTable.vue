@@ -67,12 +67,12 @@
       <Table
         size="small"
         ref="tableRef"
+        :expand-icon="expandIconFnc"
         v-bind="tableBindValue"
         :scroll="{ x: allOptions?.scroll?.x || 500 }"
-        :expand-icon="expandIconFnc"
         @change="handleTableChange"
-        @expandedRowsChange="handleExpand"
         >
+        <!-- @expandedRowsChange="handleExpand" -->
         <template
           template
           #[item]="data"
@@ -130,7 +130,6 @@
       <ColumnDialogVue
         v-model:visible="visible"
         :columnList="columnList || getFilterColumnRef"
-        @checkChange="checkedChange"
         @cancelModal="cancelModal"
         @okModal="okModal"
       >
@@ -271,9 +270,7 @@ export default defineComponent({
       createButtonOptions,
       mutilpOptions,
       serachOptions,
-      getSerachOptions,
       setSerachOptions,
-      getMutilpAction,
       setMutilpAction,
     } = useFilter(newProps, tableRef, selectedRowKeysRef)
 
@@ -414,6 +411,7 @@ export default defineComponent({
       // @ts-ignore
       // setPagination(pagination);
       onTableChange.call(null, ...args)
+      // console.log('change: ', 11111);
       emit('change', ...args);
     };
 
@@ -477,9 +475,9 @@ export default defineComponent({
       visible.value = !visible.value;
     };
     //@ts-ignore
-    const checkedChange = ({ keys}) => {
-      console.log('keys: ', keys);
-    }
+    // const checkedChange = ({ keys}) => {
+    //   console.log('keys: ', keys);
+    // }
     //@ts-ignore
     const cancelModal = ({ keys, checkedList }) => {
       const cancelModal = unref(newProps).cancelModal
@@ -567,14 +565,13 @@ export default defineComponent({
       expandAll,
       expandRows,
       collapseAll,
+      
       clearFilterDropdownRef,
       setSerachOptions,
-      getSerachOptions,
       setMutilpAction,
-      getMutilpAction,
       setFilterColumnRef,
       setFilterColumnChecked,
-      setFilterColumnDisabled,
+      setFilterColumnDisabled
     };
     createTableContext({ ...tableAction, wrapRef, getBindValues: tableBindValue });
 
@@ -584,7 +581,7 @@ export default defineComponent({
       getAutoCreateKey,
       
     })
-
+    emit('register', tableAction)
     return {
       enUS,
       zhCN,
@@ -625,7 +622,6 @@ export default defineComponent({
       filterDropDownClick,
       mutilpChangeHandle,
       handleTableChange,
-      checkedChange,
       expandIconFnc,
       serachClickHandle,
       getComponent,

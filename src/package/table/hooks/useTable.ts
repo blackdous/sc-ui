@@ -1,9 +1,10 @@
-import type { TableProps, TableActionType, FetchParams, BasicColumn } from '../types/table';
-import type { PaginationProps } from '../types/pagination';
-import type { DynamicProps } from '../../../../types/utils';
-import type { WatchStopHandle } from 'vue';
-import { getDynamicProps } from '../../../utils';
-import { ref, onUnmounted, unref, watch, toRaw } from 'vue';
+import type { TableProps, TableActionType, FetchParams, BasicColumn, SerachOptions, MutilpActionOptions } from '../types/table'
+import type { Column } from '../types/column'
+import type { PaginationProps } from '../types/pagination'
+import type { DynamicProps } from '../../../../types/utils'
+import type { WatchStopHandle } from 'vue'
+import { getDynamicProps } from '../../../utils'
+import { ref, onUnmounted, unref, watch, toRaw } from 'vue'
 
 type Props = Partial<DynamicProps<TableProps>>;
 
@@ -13,6 +14,7 @@ type Props = Partial<DynamicProps<TableProps>>;
 
 export function useTable(tableProps?: Props): [
   (instance: TableActionType) => void,
+  TableActionType
   // TableActionType & {
   //   getForm: () => FormActionType;
   // },
@@ -60,9 +62,7 @@ export function useTable(tableProps?: Props): [
     return table as TableActionType;
   }
 
-  const methods: TableActionType & {
-    // getForm: () => FormActionType;
-  } = {
+  const methods: TableActionType = {
     reload: async (opt?: FetchParams) => {
       return await getTableInstance().reload(opt);
     },
@@ -112,9 +112,9 @@ export function useTable(tableProps?: Props): [
     getPaginationRef: () => {
       return getTableInstance().getPaginationRef();
     },
-    getSize: () => {
-      return toRaw(getTableInstance().getSize());
-    },
+    // getSize: () => {
+    //   return toRaw(getTableInstance().getSize());
+    // },
     updateTableData: (index: number, key: string, value: any) => {
       return getTableInstance().updateTableData(index, key, value);
     },
@@ -133,9 +133,33 @@ export function useTable(tableProps?: Props): [
     getRowSelection: () => {
       return toRaw(getTableInstance().getRowSelection());
     },
-    getCacheColumns: () => {
-      return toRaw(getTableInstance().getCacheColumns());
+    // clearFilterDropdownRef,
+    // setSerachOptions,
+    // setMutilpAction,
+    // setFilterColumnRef,
+    // setFilterColumnChecked,
+    // setFilterColumnDisabled
+    clearFilterDropdownRef: (column: Column) => {
+      return toRaw(getTableInstance().clearFilterDropdownRef(column));
     },
+    setSerachOptions: (serachOptions: SerachOptions) => {
+      return toRaw(getTableInstance().setSerachOptions(serachOptions));
+    },
+    setMutilpAction: (mutilpActionOptions: MutilpActionOptions) => {
+      return toRaw(getTableInstance().setMutilpAction(mutilpActionOptions));
+    },
+    setFilterColumnRef: (columns: Column[]) => {
+      return toRaw(getTableInstance().setFilterColumnRef(columns));
+    },
+    setFilterColumnChecked: (colKeys: string[] | number[]) => {
+      return toRaw(getTableInstance().setFilterColumnChecked(colKeys));
+    },
+    setFilterColumnDisabled: (colKeys: string[] | number[]) => {
+      return toRaw(getTableInstance().setFilterColumnDisabled(colKeys));
+    },
+    // getCacheColumns: () => {
+    //   return toRaw(getTableInstance().getCacheColumns());
+    // },
     // getForm: () => {
     //   return unref(formRef) as unknown as FormActionType;
     // },

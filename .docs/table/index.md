@@ -6,30 +6,7 @@ realPath: src/package/table/index.zh-CN.md
 
 # table 表格
 
-基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件
-
-
-## 其他
-
-### raido 单选table
-
-<demo src="./demo/radio.vue"
-  language="vue"
-  title="radio table表格"
-  desc="radio table表格"
-  >
-</demo>
-
-### expandedRow 展开
-
-<demo src="./demo/expandedRow.vue"
-  language="vue"
-  title="expandedRow table表格"
-  desc="expandedRow table表格"
-  >
-</demo>
-
-
+基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件, 部分方法是从`vben`的table上拿过来的
 
 ## 基础组件
 
@@ -69,7 +46,6 @@ realPath: src/package/table/index.zh-CN.md
 | --- | --- | --- |
 | change       | 分页、排序、筛选变化时触发  | Function(pagination, filters, sorter, { currentDataSource, fetchParams }) |
 
-
 ## 带刷新&筛选column的组件
 
 **支持自定义solt组件`#tableActive`**
@@ -88,7 +64,6 @@ realPath: src/package/table/index.zh-CN.md
 | activeOptions | 用于配置否显示`reload`、`columnDialog` 组件 | Object | 无 | |
 
 参数如下：
-
 
 ```js
 const activeOptions = {
@@ -156,16 +131,14 @@ interface ButtonType {
 }
 ```
 
-`disabled`支持函数，并且必须返回`boolean`，如果使用函数参数为`当前table参数 + tableref`。 
+`disabled`支持函数，并且必须返回`boolean`，如果使用函数参数为`当前table参数 + tableref`。
 `action`如果为`string`可以自己监听`@mutilpChange` 事件，会回传当前点击的按钮信息；如果`action`为可执行函数参数为`当前table参数 + tableref`
 
 #### 事件
 
-
 | 事件名称 | 说明   | 回调参数    |
 | --- | --- | --- |
 | mutilpChange | 点击按钮回调事件 | Function(fetchPrams) |
-
 
 ### serach 组件
 
@@ -217,7 +190,6 @@ interface ButtonType {
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | actionsOptions | 用于操作按钮的显示操作 | Object | 无 | |
-
 
 ```ts
 interface ActionItemProps {
@@ -303,6 +275,25 @@ const dataSource = [
 
 ```
 
+## 其他
+
+### raido 单选table
+
+<demo src="./demo/radio.vue"
+  language="vue"
+  title="radio table表格"
+  desc="radio table表格"
+  >
+</demo>
+
+### expandedRow 展开
+
+<demo src="./demo/expandedRow.vue"
+  language="vue"
+  title="expandedRow table表格"
+  desc="expandedRow table表格"
+  >
+</demo>
 
 ## 自定义Filter组件
 
@@ -328,8 +319,454 @@ const dataSource = [
 | filterMultiple | 用于是否开启多选 | boolean | false |  |
 | filterTag | 是否开启选中标签模式 | boolean | false |  |
 
-
 **不传上述参数就可以使用默认自带的筛选组件**
+
+## Table-fetch
+
+### 配置api
+
+<demo src="./demo/api.vue"
+  language="vue"
+  title="api table表格"
+  desc="api table表格"
+  >
+</demo>
+
+## useTable
+
+使用组件自带的 **useTable** 可以方便使用表单
+
+下面是一个使用简单表格的示例，
+
+<demo src="./demo/useTable.vue"
+  language="vue"
+  title="useTable表格"
+  desc="useTable表格"
+  >
+</demo>
+
+### Methods
+
+**clearFilterDropdownRef**
+
+类型：`(props: Partial<Column>) => void`
+
+说明: 用于清除当前列筛选的数据值
+
+**setSerachOptions**
+
+类型：`(props: Partial<SerachOptions>) => void`
+
+说明: 用于设置搜索组件配置
+
+**setMutilpAction**
+
+类型：`(props: Partial<MutilpActionOptions>) => void`
+
+说明: 用于设置单选按钮组配置
+
+**setFilterColumnRef**
+
+类型：`(props: Partial<Column>) => void`
+
+说明: 用于设置自定义列原数据
+
+**setFilterColumnChecked**
+
+类型：`(props: Partial<string[key]>) => void`
+
+说明: 用于设置自定义列选中数据
+
+**setFilterColumnDisabled**
+
+类型：`(props: Partial<string[key]>) => void`
+
+说明: 用于设置自定义列disabled状态数据
+
+**setProps**
+
+类型：`(props: Partial<BasicTableProps>) => void`
+
+说明: 用于设置表格参数
+
+**reload**
+
+类型：`(opt?: FetchParams) => Promise<void>`
+
+说明: 刷新表格
+
+**setLoading**
+
+类型：`(loading: boolean) => void`
+
+说明: 设置表格 loading 状态
+
+**getDataSource**
+
+获取表格数据
+
+类型：`<T = Recordable>() => T[]`
+
+说明: 获取表格数据
+
+**getRawDataSource**
+
+获取后端接口原始数据
+
+类型：`<T = Recordable>() => T`
+
+说明: 获取后端接口原始数据
+
+**getColumns**
+
+类型：`(opt?: GetColumnsParams) => BasicColumn[]`
+
+说明: 获取表格数据
+
+**setColumns**
+
+类型：`(columns: BasicColumn[] | string[]) => void`
+
+说明: 设置表头数据
+
+**setTableData**
+
+类型：`<T = Recordable>(values: T[]) => void`
+
+说明: 设置表格数据
+
+**setPagination**
+
+类型：`(info: Partial<PaginationProps>) => void`
+
+说明: 设置分页信息
+
+**deleteSelectRowByKey**
+
+类型：`(key: string) => void`
+
+说明: 根据 key 删除取消选中行
+
+**getSelectRowKeys**
+
+类型：`() => string[]`
+
+说明: 获取选中行的 keys
+
+**getSelectRows**
+
+类型：`<T = Recordable>() => T[]`
+
+说明: 获取选中行的 rows
+
+**clearSelectedRowKeys**
+
+类型：`() => void`
+
+说明: 清空选中行
+
+**setSelectedRowKeys**
+
+类型：`(rowKeys: string[] | number[]) => void`
+
+说明: 设置选中行
+
+**getPaginationRef**
+
+类型：`() => PaginationProps | boolean`
+
+说明: 获取当前分页信息
+
+**getShowPagination**
+
+类型：`() => boolean`
+
+说明: 获取当前是否显示分页
+
+**setShowPagination**
+
+类型：`(show: boolean) => Promise<void>`
+
+说明: 设置当前是否显示分页
+
+**getRowSelection**
+
+类型：`() => TableRowSelection<Recordable>`
+
+说明: 获取勾选框信息
+
+**updateTableData**
+
+类型：`(index: number, key: string, value: any)=>void`
+
+说明: 更新表格数据
+
+**updateTableDataRecord**
+
+类型： `(rowKey: string | number, record: Recordable) => Recordable | void`
+
+说明： 根据唯一的 `rowKey` 更新指定行的数据.可用于不刷新整个表格而局部更新数据
+
+**deleteTableDataRecord**
+
+类型： `(rowKey: string | number | string[] | number[]) => void`
+
+说明： 根据唯一的`rowKey` 动态删除指定行的数据.可用于不刷新整个表格而局部更新数据
+
+**insertTableDataRecord**
+
+类型： `(record: Recordable, index?: number) => Recordable | void`
+
+说明： 可根据传入的 `index` 值决定插入数据行的位置，不传则是顺序插入，可用于不刷新整个表格而局部更新数据
+
+**expandAll**
+
+类型：`() => void`
+
+说明: 展开树形表格
+
+**collapseAll**
+
+类型：`() => void`
+
+说明: 折叠树形表格
+
+## Props
+
+::: tip 温馨提醒
+
+- 除以下参数外，官方文档内的 props 也都支持，具体可以参考 [antv table](https://2x.antdv.com/components/table-cn/#API)
+- 注意：`defaultExpandAllRows`、`defaultExpandedRowKeys` 属性在basicTable中不受支持，并且在`antv table` v2.2.0之后也被移除。
+
+:::
+
+| 属性                    | 类型                                               | 默认值  | 可选值 | 说明                                                                                            | 版本 |
+| ----------------------- | -------------------------------------------------- | ------- | ------ | ----------------------------------------------------------------------------------------------- | ---- |
+| isTreeTable             | `boolean`                                          | `false` | -      | 是否树表                                                                                        |      |
+| api                     | `(...arg: any) => Promise<any>`                    | -       | -      | 请求接口，可以直接将`src/api内的函数直接传入`                                                   |      |
+| beforeFetch             | `(T)=>T`                                           | -       | -      | 请求之前对参数进行处理                                                                          |      |
+| afterFetch              | `(T)=>T`                                           | -       | -      | 请求之后对返回值进行处理                                                                        |      |
+| fetchSetting            | `FetchSetting`                                     | -       | -      | 接口请求配置，可以配置请求的字段和响应的字段名，见下方全局配置说明                              |      |
+| immediate               | `boolean`                                          | `true`  | -      | 组件加载后是否立即请求接口，在 api 有传的情况下，如果为 false，需要自行使用 reload 加载表格数据 |      |
+| searchInfo              | `any`                                              | -       | -      | 额外的请求参数                                                                                  |
+| columns                 | `any`                                              | -       | -      | 表单列信息 BasicColumn[]                                                                        |      |
+| dataSource              | `any[]`                                            | -       | -      | 表格数据，非 api 加载情况                                                                       |      |
+| bordered                | `boolean`                                          | `false` | -      | 是否显示表格边框                                                                                |      |
+| pagination              | `any`                                              | -       | -      | 分页信息配置，为 `false` 不显示分页                                                             |      |
+| loading                 | `boolean`                                          | `false` | -      | 表格 loading 状态                                                                               |      |
+| scroll                  | `any`                                              | -       | -      | 参考官方文档 scroll                                                                             |      |
+| createButton                  | `CreateButton`                                              | -       | -      |  头部创建按钮                                                                             |      |
+| mutilpActionOptions                  | `MutilpActionOptions`                                              | -       | -      |  用于展示单选按钮组                                                                           |      |
+| serachOptions                  | `SerachOptions`                                              | -       | -      |   头部搜索组件配置数据                                                                        |      |
+| activeOptions                  | `ActiveOptions`                                              | -       | -      |   用于配置是否显示刷新、自定列按钮                                                                     |      |
+| actionsOptions                  | `ActionsOptions`                                              | -       | -      |   用于全局配置操作列数据；会被record 上的 数据覆盖                                                     |      |
+| columnModalList                  | `ColumnModalList`                                              | -       | -      |   用于配置自定义数据源                                                    |      |
+| customFilter                  | `boolean`                                              | -       | -      |   是否显示自定义筛选组件；数据源来源于`column.typelist`                                            |   `false`   |
+| filterTag                  | `boolean`                                              | `true`     | -      |   是否显示筛选列选中的tag标签                                            |      |
+| langLocale                  | `Pagintion lang`                                           | -     | -      |   用于配置table组件的 语言包；语言包来之`and-design-vue`；                                          |      |
+| isTreeTable                  | `boolean`                                              | `false`     | -      |   是否是树状结构                                            |      |
+
+
+### CreateButton
+
+```ts
+
+export interface CreateButton {
+  // 是否显示
+  show?: boolean,
+  // 显示文字
+  text?: string,
+  // 是否可用
+  isDisabled?: boolean,
+  // icon?: string,
+  // type?: string,
+  // 绑定的方法
+  action?: (...arg:any) => void
+}
+```
+
+### MutilpActionOptions
+
+```ts
+  interface ButtonType {
+    // 是否显示tooltip
+    tooltipDis?: boolean,
+    // tooltip配置
+    toolOptions?: TooltipProps,
+    // tooltip title 显示内容
+    tooltipDes?: string,
+    // button 显示内容
+    label?: string,
+    // button 选中
+    value?: string | number,
+    // button 是否可用
+    disabled?: boolean | ((...args: any) => boolean),
+    // tooltip 自定义样式
+    overlayClassName?: string,
+    // 点击按钮后触发的事件 或 执行action 方法
+    action?: string | ((...args: any) => void)
+  }
+
+  export interface MutilpActionOptions {
+    // 是否显示 单选按钮组
+    show?: boolean,
+    mutilpList?: Array<ButtonType>,
+    [key:string]: any
+  }
+```
+
+### serachOptions
+
+```ts
+
+export interface SerachOptions {
+  // 是否显示搜索组件
+  show?: boolean,
+  // 是否显示select 组件
+  showSelect?: boolean,
+  // select 数据来源，数组|普通方法|promise
+  typeList?: (...arg: any) => Promise<any> | Array<{label: string, value: string, disabled: boolean}>,
+  // 点击搜索方法执行action函数
+  action?: (fetchParams: FetchParams) => void,
+  // select loading状态
+  loading: boolean,
+  // select 站位字符串、宽度
+  selectOptions?: {
+    placeholder?: string,
+    width?: string
+  },
+  // input 站位字符串、宽度、最大输入长度、是否出现清空按钮
+  inputOptions?: {
+    placeholder?: string,
+    maxlength?: number,
+    width?: string,
+    allowClear?: boolean
+  }
+}
+```
+
+### ActiveOptions
+
+```ts
+export interface ActiveOptions {
+  reload?: {
+    // tooltip 显示 文字
+    text?: string,
+    // 是否显示
+    show?: boolean,
+    // 是否显示 tooltip
+    showTooltip?: boolean,
+    // 点击事件是否可用
+    isDisabled?: boolean,
+    // 自定义方法，点击按钮执行action方法，如果不传，刷新当前页面
+    action?: Fn
+  },
+  columnDialog: {
+    // tooltip 显示 文字
+    text?: string,
+    // 是否显示
+    show?: boolean,
+    // 是否显示 tooltip
+    showTooltip?: boolean,
+    // 点击事件是否可用
+    isDisabled?: boolean
+  }
+}
+```
+
+### ActionsOptions
+
+```ts
+  export interface ActionItemProps {
+    // 显示的文字
+    label: string,
+    // 是否显示
+    isShow?: boolean | (() => boolean),
+    // key用于区分
+    key?: string,
+    // 是否可点击
+    isDisabled?: boolean | (() => boolean),
+    // 当前按钮loading状态
+    loading?: boolean | (() => boolean),
+    // 是否显示tooltip
+    tooltip?: boolean,
+    // tooltip显示文字
+    tooltipDes?: string,
+    // 嵌套结构
+    children?: Array<ActionItemProps>,
+    // 点击要监听的事件或要执行的方法
+    action?: string | (() => void)
+  }
+
+  export interface ActionProps {
+    // 默认展示2个按钮，其他按钮收缩
+    showBtn?: number,
+    // 按钮组数据
+    actions?: Array<ActionItemProps>,
+    // 当前行数据
+    record?: any
+  }
+```
+
+## Column
+
+除 参考官方 [Column 配置](https://2x.antdv.com/components/table-cn/#Column)外，扩展以下参数
+
+| 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
+| ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
+| filterList      | `FilterItem[]`                                                 | -   | -      | 每列筛选的数据源 |
+| filterSelected      | `FilterItem[]`                                                 | -   | -      | 每列已经筛选的数据项 |
+| type      | `Type`                                                 | -   | `address | copy | ellipsis | handle`      | 每列使用内置组件配置 |
+
+
+### Type
+
+```ts
+  type: {
+    // 使用的组件名 address | copy | ellipsis | handle
+    componentName: string,
+    props: any
+  },
+```
+
+
+## 事件
+
+::: tip 温馨提醒
+
+除以下事件外，官方文档内的 event 也都支持，具体可以参考 [antv table](https://2x.antdv.com/components/table-cn/#API)
+
+:::
+
+| 事件             | 回调参数                                | 说明                                |
+| ---------------- | --------------------------------------- | ----------------------------------- |
+| fetch-success    | `Function({items,total})`               | 接口请求成功后触发                  |
+| fetch-error      | `Function(error)`                       | 错误信息                            |
+| selection-change | `Function({keys，rows})`                | 勾选事件触发                        |
+| on-action | `Function({...FetchParams, record, acitonItem})`                | 操作列点击事件触发                       |
+| create-click | `Function({...FetchParams})`                | 头部创建按钮点击触发                 |
+| mutilp-change | `Function({...FetchParams, mutilpItem})`                | 头部按钮组点击触发                       |
+| serach-click | `Function({...FetchParams})`                | 头部点击搜索icon触发                     |
+| filter | `Function({...FetchParams})`                | 点击筛选事件触发                       |
+
+
+## Slots
+
+::: tip 温馨提醒
+
+除以下参数外，官方文档内的 slot 也都支持，具体可以参考 [antv table](https://2x.antdv.com/components/table-cn/#API)
+
+:::
+'createButton', 'serach', 'mutilpBtns'
+
+| 名称              | 说明             |  版本  |
+| ----------------- | ---------------- | -- |
+| createButton        | 表格顶部左侧创建按钮|  |
+| mutilpBtns           | 表格顶部左侧侧区域 |  |
+| serach | 表格顶部右侧区域 搜索组件      |  |
+| tableActive | 表格顶部右侧区域 刷新、自定义列组件      |  |
+| EmptyVue | 表格空数据状态组件     |  |
+
 
 ## 汇总
 

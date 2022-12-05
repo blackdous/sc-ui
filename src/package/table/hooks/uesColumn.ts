@@ -91,7 +91,6 @@ export function useColumn (
       item.checked = columnIds.includes(item.key)
       return item
     }).filter((item: Column) => item.checked)
-    console.log('columns: ', columns);
     filterColumn.value = columns
   }
 
@@ -104,7 +103,7 @@ export function useColumn (
       item.disabled = columnIds.includes(item.key)
       return item
     })
-    setFilterColumnRef(columns)
+    filterColumn.value = columns
   }
 
 

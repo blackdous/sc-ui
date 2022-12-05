@@ -2,11 +2,18 @@
   <div>
     <ScTable 
       ref="scTableRef"
-      :data-source="data"
       :columns="columns"
       :loading="false"
-      @change="handleChange"
-      >
+      :api="demoListApi"
+      :activeOptions="{
+        reload: {
+          text: '刷新',
+          show: true,
+          showTooltip: true
+        }
+      }"
+    >
+      <!-- :data-source="data" -->
     </ScTable>
   </div>
 </template>
@@ -14,6 +21,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ScTable } from 'sc-ui'
+
+import { demoListApi } from './tableData'
 
 import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'

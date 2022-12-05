@@ -1,5 +1,6 @@
+import { Column } from './../../../../dist/src/package/table/types/column.d';
 import { PropType, VNode, VNodeChild } from "vue"
-import type { ComputedRef } from "vue"
+// import type { ComputedRef } from "vue"
 import { ColumnProps, SortOrder } from "ant-design-vue/lib/table/interface"
 import type { TooltipProps } from 'ant-design-vue'
 //@ts-ignore
@@ -7,7 +8,7 @@ import type { ActionProps as ActionOptions } from '../component/TableAction.vue'
 import { PaginationProps } from './pagination'
 import { ColumnModalItem } from './column'
 import type { TableRowSelection as ITableRowSelection } from 'ant-design-vue/lib/table/interface'
-import type { ModalProps } from "../../modal"
+// import type { ModalProps } from "../../modal"
 
 export type SizeType = 'default' | 'middle' | 'small' | 'large';
 
@@ -122,9 +123,7 @@ export const mutilpActionOptions = () => ({
   // 操作列表
   mutilpList: {
     type: Array as PropType<Array<ButtonType>>
-  },
-  // 自定义函数
-  customFunc: Function as PropType<(type: string, tableRef: ComputedRef) => void>
+  }
 })
 
 interface ButtonType {
@@ -141,7 +140,6 @@ interface ButtonType {
 export interface MutilpActionOptions {
   show?: boolean,
   mutilpList?: Array<ButtonType>,
-  customFunc?: (type: string, tableRef: ComputedRef) => void,
   [key:string]: any
 }
 
@@ -242,10 +240,15 @@ export const tableProps = () => ({
       return []
     }
   },
-  modalOptions: {
-    type: Object as PropType<ModalProps>
+  // modalOptions: {
+  //   type: Object as PropType<ModalProps>
+  // },
+  bordered: {
+    type: Boolean,
+    default () {
+      return false
+    }
   },
-
   pagination: Object as PropType<PaginationProps>,
   scroll: Object as PropType<ScrollProps>,
   dataSource: Array,
@@ -272,7 +275,12 @@ export const tableProps = () => ({
   // 请求接口配置
   fetchSetting: Object as PropType<Partial<FetchSetting>>,
   // 立即请求接口
-  immediate: Boolean,
+  immediate: {
+    type: Boolean,
+    default () {
+      return true
+    }
+  },
   // 在开起搜索表单的时候，如果没有数据是否显示表格
   emptyDataIsShowTable: Boolean,
   // 额外的请求参数
@@ -286,6 +294,40 @@ export const tableProps = () => ({
   * @type Function
   */
   rowClassName: Function as PropType<<T>(record: TableCustomRecord<T>, index: number) => string>,
+
+  /**
+   * `table-layout` attribute of table element
+   * `fixed` when header/columns are fixed, or using `column.ellipsis`
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout
+   * @version 1.5.0
+   */
+  tableLayout: String as PropType<'auto' | 'fixed' | string>,
+  showHeader: {
+  type: Boolean,
+  default () {
+    return true
+  }
+  },
+  /**
+  * Set props on per header row
+  * @type Function
+  */
+  customHeaderRow: Function as PropType<(column: ColumnProps, index: number) => object>,
+  /**
+ * Set props on per row
+ * @type Function
+ */
+  customRow: Function as PropType<(record: any, index: number) => object>,
+  /**
+ * Row selection config
+ * @type object
+ */
+  /**
+  * Table footer renderer
+  * @type Function | VNodeChild
+  */
+  footer: [Function, Object] as PropType<Function | VNodeChild | JSX.Element>,
 
   /**
  * Row selection config
@@ -322,8 +364,8 @@ export interface TableProps {
   filterTag?: boolean,
   activeOptions?: ActiveOptions,
   columnModalList?: Array<ColumnModalItem>,
-  modalOptions?: ModalProps,
-
+  // modalOptions?: ModalProps,
+  bordered?: boolean,
   pagination? : PaginationProps | boolean,
   scroll?: ScrollProps,
   dataSource?: Array<any>,
@@ -367,9 +409,34 @@ export interface TableProps {
   rowClassName?: <T>(record: TableCustomRecord<T>, index: number) => string,
 
   /**
+   * `table-layout` attribute of table element
+   * `fixed` when header/columns are fixed, or using `column.ellipsis`
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout
+   * @version 1.5.0
+   */
+  tableLayout?: 'auto' | 'fixed' | string,
+  showHeader?: boolean,
+  /**
+   * Set props on per header row
+   * @type Function
+   */
+  customHeaderRow?: (column: ColumnProps, index: number) => object,
+  /**
+  * Set props on per row
+  * @type Function
+  */
+  customRow?: (record: any, index: number) => object;
+  /**
   * Row selection config
   * @type object
   */
+  /**
+   * Table footer renderer
+   * @type Function | VNodeChild
+   */
+  footer?: Function | VNodeChild | JSX.Element,
+
   rowSelection?: TableRowSelection,
   // 列配置
   columns: BasicColumn[],
@@ -424,6 +491,12 @@ export interface TableActionType {
   updateTableData: (index: number, key: string, value: any) => Recordable;
   setShowPagination: (show: boolean) => Promise<void>;
   getShowPagination: () => boolean;
+  clearFilterDropdownRef: (column: Column) => void,
+  setSerachOptions: (serachOptions: SerachOptions) => void,
+  setMutilpAction: (mutilpActionOptions: MutilpActionOptions) => void,
+  setFilterColumnRef: (columns: Column[]) => void,
+  setFilterColumnChecked: (colKeys: string[] | number[]) => void,
+  setFilterColumnDisabled: (colKeys: string[] | number[]) => void,
 }
 
 

@@ -129,8 +129,7 @@ export interface ActionItemProps {
 export interface ActionProps {
   showBtn?: number,
   actions?: Array<ActionItemProps>,
-  record?: any,
-  fetchParams?: any
+  record?: any
 }
 
 const props = withDefaults(defineProps<ActionProps>(), {
@@ -179,7 +178,6 @@ watch([() => props.record, () => props.actions], ([prospRecord, actions]) => {
     return false
   }
   const record = cloneDeep(prospRecord)
-  // const fetchParams = cloneDeep(props.fetchParams)
   let actionsOptions = cloneDeep(actions) as Array<ActionItemProps>
   let list:Array<ActionItemProps> = []
   const isCustomActionsOptions = !!record.actionsOptions
