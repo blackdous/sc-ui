@@ -104,8 +104,8 @@ const columns = [
       filterDropdown: 'filterDropdown',
       filterIcon: 'filterIcon'
     },
+    filtered: true,
     filterMultiple: true,
-    filteredValue: [],
     filterList: () => list,
     onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) }
   },

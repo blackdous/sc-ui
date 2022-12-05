@@ -36,17 +36,19 @@
         customSerachFunc: serachHanle,
         selectOptions: {
           placeholder: '请选择',
-          width: '120px'
+          width: '80px'
         },
         inputOptions: {
           placeholder: '请输入',
-          width: '120px',
-          maxlength: 40
+          width: '160px',
+          maxlength: 40,
+          allowClear: true
         }
       }"
       :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
       locale="zh"
       :customFilter="true"
+      :filterTag="true"
       
       @onAction="handle"
       @createClick="createClick"
@@ -170,6 +172,7 @@ const list = ref([
     isDisabled: false,
     loading: false,
     action: '4444',
+    key: '4444',
     tooltip: false,
     tooltipDes: '四级选项444444444',
   }
@@ -181,6 +184,7 @@ const columns = [
       filterIcon: 'filterIcon'
     },
     filterList: list,
+    filtered: true,
     onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) }
   },
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age',

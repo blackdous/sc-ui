@@ -5,10 +5,10 @@
       :data-source="data"
       :columns="columns"
       :loading="false"
-      :langLocale="zhCN"
       @change="handleChange"
       @handleTd="handleTd"
       >
+      <!-- :langLocale="zhCN" -->
     </ScTable>
   </div>
 </template>
@@ -16,12 +16,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
-import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
+// import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable } from 'sc-ui'
 
 import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
-import { link } from 'fs'
 
 const scTableRef = ref()
 // @ts-ignore

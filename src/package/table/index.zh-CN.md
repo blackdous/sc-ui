@@ -10,14 +10,14 @@ map:
 
 ## 其他
 
-<!-- ### raido 单选table
+### raido 单选table
 
 <demo src="./demo/radio.vue"
   language="vue"
   title="radio table表格"
   desc="radio table表格"
   >
-</demo> -->
+</demo>
 
 ### expandedRow 展开
 
@@ -30,7 +30,7 @@ map:
 
 
 
-<!-- ## 基础组件
+## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -106,10 +106,8 @@ const activeOptions = {
 ```
 
 reload参数中的`action`方法，参数为`fetchParams`
- -->
 
-
-<!-- ## 带头部操作的表格
+## 带头部操作的表格
 
 <demo src="./demo/header.vue"
   language="vue"
@@ -339,4 +337,4 @@ const dataSource = [
   title="table头部操作按钮"
   desc="table头部操作按钮"
   >
-</demo> -->
+</demo>

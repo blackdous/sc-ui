@@ -1,5 +1,5 @@
 <template>
-  <div :class="className">
+  <div ref="wrapRef" :class="className">
     <ConfigProvider :locale="newProps.langLocale">
       <Spin :spinning="false" v-if="isShowFilter">
         <TableFilter
@@ -71,6 +71,7 @@
         :scroll="{ x: allOptions?.scroll?.x || 500 }"
         :expand-icon="expandIconFnc"
         @change="handleTableChange"
+        @expandedRowsChange="handleExpand"
         >
         <template
           template
@@ -122,8 +123,8 @@
           >
           </FilterDropDownVue>
         </template>
-        <template #filterIcon v-if="isCustomFilter">
-          <FilterFilled></FilterFilled>
+        <template #filterIcon="{column}" v-if="isCustomFilter">
+          <FilterFilled :style="{ color: column.filtered && column?.filterSelected?.length ? '#008CD3' : 'rgba(0, 0, 0, 0.2)' }" :class="[ column.filtered && column?.filterSelected?.length ? 'filtered' : 'notFilter' ]"></FilterFilled>
         </template>
       </Table>
       <ColumnDialogVue
@@ -155,10 +156,11 @@ import ScTableAction, { ActionItemProps } from './TableAction.vue'
 import FilterDropDownVue from './FilterDropDown.vue'
 import ColumnDialogVue from './ColumnDialog.vue'
 import EmptyVue from './Empty.vue'
+import FilterTagsVue from './FilterTags.vue'
 import TdComponents from './Td'
 
 //@ts-ignore
-import { tableProps, ButtonType } from '../types/table'
+import { tableProps, TableProps, ButtonType, TableActionType } from '../types/table'
 import { Column, FilterItem } from '../types/column'
 import { usePagination } from '../hooks/usePagination';
 import { useTableExpand } from '../hooks/useTableExpand'
@@ -168,6 +170,7 @@ import { useLoading } from '../hooks/useLoading'
 import { useDataSource } from '../hooks/useDataSource'
 import { useActions } from '../hooks/useActions'
 import { useColumn } from '../hooks/uesColumn'
+import { createTableContext } from '../hooks/useTableContext'
 import isFunction from 'lodash/isFunction'
 // import { Column } from '../types/column';
 
@@ -192,15 +195,16 @@ export default defineComponent({
     Spin,
     ConfigProvider,
     EmptyVue,
+    FilterTagsVue,
     ...TdComponents
     // Address,
     // Copy,
     // Ellipsis,
     // Status,
-    // FilterTagsVue
   },
   setup(props, { attrs, slots, emit, expose }) {
     const tableRef = ref()
+    const wrapRef = ref()
     const tableFilter = ref()
     const tableData = ref<Recordable[]>([])
 
@@ -209,6 +213,8 @@ export default defineComponent({
     
     const zhCN = ref({})
     const enUS = ref({})
+
+    const innerPropsRef = ref<Partial<TableProps>>();
 
     const fetchParams = ref<Recordable>({
       tableRef,
@@ -222,9 +228,7 @@ export default defineComponent({
     })
 
     const newProps = computed(() => {
-      return {
-        ...props
-      }
+      return { ...props, ...unref(innerPropsRef) } as TableProps;
     })
     const visible = ref(false);
 
@@ -308,6 +312,7 @@ export default defineComponent({
 
     const {
       // getColumnRef,
+      getColumns,
       getFilterDropdownRef,
       setFilterDropdownRef,
       clearFilterDropdownRef,
@@ -354,6 +359,10 @@ export default defineComponent({
     const isCustomFilter = computed(() => {
       return props.customFilter;
     });
+
+    function setProps(props: Partial<TableProps>) {
+        innerPropsRef.value = { ...unref(innerPropsRef), ...props };
+      }
 
     const getComponent = (type:string) => {
       // 预设组件
@@ -501,11 +510,19 @@ export default defineComponent({
 
     const refresh = () => {
       const refresh = unref(activeOptions)
+      if (unref(newProps).api) {
+        reload()
+        return false
+      }
       if (isFunction(refresh?.reload?.action)) {
         refresh?.reload?.action({ ...unref(fetchParams) })
       } else {
         emit('refresh', { ...unref(fetchParams) })
       }
+    }
+
+    const handleExpand = (expandedRows:any) => {
+      console.log('expandedRows: ', expandedRows);
     }
 
     // watch([() => unref(textValue), () => unref(selectValue)], ([text, select]) => {
@@ -521,50 +538,50 @@ export default defineComponent({
       })
     })
 
-    expose({
-      getLoading,
-      setLoading,
-
-      setPagination,
-      getPagination,
-      setShowPagination,
-      getShowPagination,
-
-      expandAll, 
-      expandRows, 
-      collapseAll,
-      getRowSelection,
-      getRowSelectionRef,
+    const tableAction: TableActionType = {
+      reload,
       getSelectRows,
       setSelectedRows,
       clearSelectedRowKeys,
       getSelectRowKeys,
       deleteSelectRowByKey,
-      setSelectedRowKeys,
-      clearFilterDropdownRef,
-
-      setSerachOptions,
-      getSerachOptions,
-      setMutilpAction,
-      getMutilpAction,
-
-      getDataSourceRef,
-      getDataSource,
-      getRawDataSource,
+      setPagination,
       setTableData,
       updateTableDataRecord,
       deleteTableDataRecord,
       insertTableDataRecord,
       findTableDataRecord,
-      fetch,
-      getRowKey,
-      reload,
-      getAutoCreateKey,
+      setSelectedRowKeys,
+      setLoading,
+      getDataSource,
+      getRawDataSource,
+      setProps,
+      getRowSelection,
+      getPaginationRef: getPagination,
+      // @ts-ignore
+      getColumns,
+      emit,
       updateTableData,
-
+      setShowPagination,
+      getShowPagination,
+      expandAll,
+      expandRows,
+      collapseAll,
+      clearFilterDropdownRef,
+      setSerachOptions,
+      getSerachOptions,
+      setMutilpAction,
+      getMutilpAction,
       setFilterColumnRef,
       setFilterColumnChecked,
-      setFilterColumnDisabled
+      setFilterColumnDisabled,
+    };
+    createTableContext({ ...tableAction, wrapRef, getBindValues: tableBindValue });
+
+    expose({
+      ...tableAction,
+      fetch,
+      getAutoCreateKey,
       
     })
 
@@ -618,7 +635,8 @@ export default defineComponent({
       okModal,
       handleSelectChange,
       handleCloseTag,
-      getEvent
+      getEvent,
+      handleExpand
     };
   },
 });

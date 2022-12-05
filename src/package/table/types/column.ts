@@ -97,6 +97,7 @@ export interface Column {
   filterList?: Array<FilterItem>,
   filterTag?: boolean,
   filterSelected?: Array<FilterItem>,
+  flag?: string,
   type: {
     componentName: string,
     props: any

@@ -156,10 +156,10 @@ export const serachOptions = () => ({
   // select选择框数据
   typeList: [Promise, Array],
   loading: { type: Boolean, default: false },
-  // 默认查询名字
-  defaultSerachText: { type: String, default: undefined },
   // 查询方法
-  action: Function as PropType<(fetchParams: FetchParams) => void>
+  action: Function as PropType<(fetchParams: FetchParams) => void>,
+  selectOptions: Object as PropType<{placeholder: string, width: string}>,
+  inputOptions: Object as PropType<{placeholder: string, maxlength: number, width: string, allowClear: boolean}>
 })
 
 export interface SerachOptions {
@@ -175,7 +175,8 @@ export interface SerachOptions {
   inputOptions?: {
     placeholder?: string,
     maxlength?: number,
-    width?: string
+    width?: string,
+    allowClear?: boolean
   }
   // selectPlaceholder?: string,
   // inputPlaceholder?: string
@@ -229,7 +230,7 @@ export const tableProps = () => ({
   filterTag: {
     type: Boolean,
     default () {
-      return false
+      return true
     }
   },
   activeOptions: {
@@ -386,6 +387,43 @@ export interface FetchParams {
   page?: number;
   sortInfo?: Recordable;
   filterInfo?: Recordable;
+}
+
+export interface GetColumnsParams {
+  ignoreIndex?: boolean;
+  ignoreAction?: boolean;
+  sort?: boolean;
+}
+
+export interface TableActionType {
+  reload: (opt?: FetchParams) => Promise<void>;
+  setSelectedRows: (rows: Recordable[]) => void;
+  getSelectRows: <T = Recordable>() => T[];
+  clearSelectedRowKeys: () => void;
+  expandAll: () => void;
+  expandRows: (keys: string[] | number[]) => void;
+  collapseAll: () => void;
+  getSelectRowKeys: () => string[];
+  deleteSelectRowByKey: (key: string) => void;
+  setPagination: (info: Partial<PaginationProps>) => void;
+  setTableData: <T = Recordable>(values: T[]) => void;
+  updateTableDataRecord: (rowKey: string | number, record: Recordable) => Recordable | void;
+  deleteTableDataRecord: (rowKey: string | number | string[] | number[]) => void;
+  insertTableDataRecord: (record: Recordable, index?: number) => Recordable | void;
+  findTableDataRecord: (rowKey: string | number) => Recordable | void;
+  getColumns: (opt?: GetColumnsParams) => BasicColumn[];
+  setColumns: (columns: BasicColumn[] | string[]) => void;
+  getDataSource: <T = Recordable>() => T[];
+  getRawDataSource: <T = Recordable>() => T;
+  setLoading: (loading: boolean) => void;
+  setProps: (props: Partial<TableProps>) => void;
+  setSelectedRowKeys: (rowKeys: string[] | number[]) => void;
+  getPaginationRef: () => PaginationProps | boolean;
+  getRowSelection: () => TableRowSelection<Recordable>;
+  emit?: EmitType;
+  updateTableData: (index: number, key: string, value: any) => Recordable;
+  setShowPagination: (show: boolean) => Promise<void>;
+  getShowPagination: () => boolean;
 }
 
 
