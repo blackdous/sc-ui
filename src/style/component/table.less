@@ -122,8 +122,11 @@
         & > i {
           cursor: pointer;
         }
-        & > span {
+        & > .anticon-search {
           display: none;
+        }
+        & > .anticon-close-circle {
+          color: @text-color;
         }
       }
     }
@@ -194,6 +197,7 @@
 .ant-table-thead > tr > th .anticon-filter, .ant-table-thead > tr > th .ant-table-filter-icon {
   right: auto;
   color: fade(@color-000, 20%);
+  text-align: left;
 }
 // .ant-table-thead > tr > th 
 

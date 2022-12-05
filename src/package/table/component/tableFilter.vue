@@ -56,6 +56,7 @@
           class="scSerach"
           @change="updateTextValue"
           @pressEnter="onSearch"
+          :allowClear="true"
         >
           <template #suffix>
             <i class="iconfont icon-sousuo"

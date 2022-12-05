@@ -6,7 +6,7 @@
       :columns="columns"
       :loading="false"
       :is-tree-table="true"
-      :indentSize="20"
+      :indentSize="0"
       @change="handleChange"
       >
         <!-- <template #expandedRowRender>

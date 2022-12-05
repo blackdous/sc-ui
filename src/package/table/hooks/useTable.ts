@@ -1,31 +1,29 @@
-import type { BasicTableProps, TableActionType, FetchParams, BasicColumn } from '../types/table';
+import type { TableProps, TableActionType, FetchParams, BasicColumn } from '../types/table';
 import type { PaginationProps } from '../types/pagination';
-import type { DynamicProps } from '/#/utils';
-import type { FormActionType } from '/@/components/BzForm';
+import type { DynamicProps } from '../../../../types/utils';
 import type { WatchStopHandle } from 'vue';
-import { getDynamicProps } from '/@/utils';
+import { getDynamicProps } from '../../../utils';
 import { ref, onUnmounted, unref, watch, toRaw } from 'vue';
-import { error } from '/@/utils/log';
 
-type Props = Partial<DynamicProps<BasicTableProps>>;
+type Props = Partial<DynamicProps<TableProps>>;
 
-type UseTableMethod = TableActionType & {
-  getForm: () => FormActionType;
-};
+// type UseTableMethod = TableActionType & {
+//   getForm: () => FormActionType;
+// };
 
 export function useTable(tableProps?: Props): [
-  (instance: TableActionType, formInstance: UseTableMethod) => void,
-  TableActionType & {
-    getForm: () => FormActionType;
-  },
+  (instance: TableActionType) => void,
+  // TableActionType & {
+  //   getForm: () => FormActionType;
+  // },
 ] {
   const tableRef = ref<Nullable<TableActionType>>(null);
   const loadedRef = ref<Nullable<boolean>>(false);
-  const formRef = ref<Nullable<UseTableMethod>>(null);
+  // const formRef = ref<Nullable<UseTableMethod>>(null);
 
   let stopWatch: WatchStopHandle;
 
-  function register(instance: TableActionType, formInstance: UseTableMethod) {
+  function register(instance: TableActionType) {
     onUnmounted(() => {
       tableRef.value = null;
       loadedRef.value = null;
@@ -34,7 +32,7 @@ export function useTable(tableProps?: Props): [
     if (unref(loadedRef) && instance === unref(tableRef)) return;
 
     tableRef.value = instance;
-    formRef.value = formInstance;
+    // formRef.value = formInstance;
     tableProps && instance.setProps(getDynamicProps(tableProps));
     loadedRef.value = true;
 
@@ -55,7 +53,7 @@ export function useTable(tableProps?: Props): [
   function getTableInstance(): TableActionType {
     const table = unref(tableRef);
     if (!table) {
-      error(
+      console.error(
         'The table instance has not been obtained yet, please make sure the table is presented when performing the table operation!',
       );
     }
@@ -63,12 +61,12 @@ export function useTable(tableProps?: Props): [
   }
 
   const methods: TableActionType & {
-    getForm: () => FormActionType;
+    // getForm: () => FormActionType;
   } = {
     reload: async (opt?: FetchParams) => {
       return await getTableInstance().reload(opt);
     },
-    setProps: (props: Partial<BasicTableProps>) => {
+    setProps: (props: Partial<TableProps>) => {
       getTableInstance().setProps(props);
     },
     setSelectedRows: (rows: Recordable[]) => {
@@ -138,9 +136,9 @@ export function useTable(tableProps?: Props): [
     getCacheColumns: () => {
       return toRaw(getTableInstance().getCacheColumns());
     },
-    getForm: () => {
-      return unref(formRef) as unknown as FormActionType;
-    },
+    // getForm: () => {
+    //   return unref(formRef) as unknown as FormActionType;
+    // },
     setShowPagination: async (show: boolean) => {
       getTableInstance().setShowPagination(show);
     },

@@ -1,7 +1,13 @@
-import { ref, Ref, unref, computed } from 'vue'
+import { ref, Ref, unref, computed, toRaw } from 'vue'
 
 import { Column, FilterItem } from '../types/column'
 import { isArray, isFunction } from '../../../utils/is';
+
+export interface GetColumnsParams {
+  ignoreIndex?: boolean;
+  ignoreAction?: boolean;
+  sort?: boolean;
+}
 
 export function useColumn (
   propsRef: Ref<Recordable>,
@@ -102,11 +108,26 @@ export function useColumn (
   }
 
 
+  function getColumns(opt?: GetColumnsParams) {
+    const { ignoreIndex, ignoreAction } = opt || {};
+    let columns = toRaw(unref(getColumnRef));
+    if (ignoreIndex) {
+      columns = columns.filter((item) => item.flag !== 'INDEX');
+    }
+    if (ignoreAction) {
+      columns = columns.filter((item) => item.flag !== 'ACTION');
+    }
+
+    return columns;
+  }
+
+
 
   return {
     getColumnRef,
     getFilterColumnRef,
     getFilterDropdownRef,
+    getColumns,
     setFilterDropdownRef,
     clearFilterDropdownRef,
     setColumnRef,

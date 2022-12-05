@@ -1,4 +1,4 @@
-import type { App, Plugin, Component, PropType, VNode } from 'vue'
+import { App, Plugin, Component, PropType, VNode, unref } from 'vue'
 import { EventDataNode } from './nodeType'
 
 export const withInstall = <T>(component: T, alias?: string) => {
@@ -32,3 +32,13 @@ export type NodeMouseEventHandler = (e: MouseEvent, node: EventDataNode) => void
 
 declare type VNodeChildAtom = VNode | string | number | boolean | null | undefined | void;
 export type VueNode = VNodeChildAtom | VNodeChildAtom[] | JSX.Element;
+
+export function getDynamicProps<T, U>(props: T): Partial<U> {
+  const ret: Recordable = {};
+  // @ts-ignore
+  Object.keys(props).map((key) => {
+    ret[key] = unref((props as Recordable)[key]);
+  });
+
+  return ret as Partial<U>;
+}
