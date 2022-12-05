@@ -1,19 +1,18 @@
 import type { PluginOption } from 'vite';
 
-import vue from '@vitejs/plugin-vue'
-import dts from 'vite-plugin-dts'
+import vue from '@vitejs/plugin-vue';
+import dts from 'vite-plugin-dts';
 // @ts-ignore
-import Components from 'unplugin-vue-components/vite'
+import Components from 'unplugin-vue-components/vite';
 // @ts-ignore
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
-import viteCompression from 'vite-plugin-compression'
-import DefineOptions from 'unplugin-vue-define-options/vite'
-import vueSetupExtend from 'vite-plugin-vue-setup-extend'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import viteCompression from 'vite-plugin-compression';
+import DefineOptions from 'unplugin-vue-define-options/vite';
+import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 
 import legacy from './legacy';
 import visualizerPlugin from './visualizer';
 import windicss from './windicss';
-
 
 import {
   VITE_APP_ANALYZE,
@@ -22,31 +21,44 @@ import {
   VITE_APP_LEGACY,
 } from '../constant';
 
+export const ssrTransformCustomDir = () => {
+  return {
+    props: [],
+    needRuntime: true,
+  };
+};
 export const createVitePlugins = (isBuild: boolean) => {
-
   const vitePlugins: (PluginOption | PluginOption[])[] = [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          directiveTransforms: {
+            'text-collapse': ssrTransformCustomDir,
+          },
+        },
+      },
+    }),
     vueSetupExtend(),
     dts({
       insertTypesEntry: true,
-        copyDtsFiles: false,
+      copyDtsFiles: false,
     }),
     DefineOptions(),
     Components({
       resolvers: [
         AntDesignVueResolver({
-          importStyle: 'less'
-        })
+          importStyle: 'less',
+        }),
       ],
       dts: true,
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-    })
-  ]
+    }),
+  ];
   // vitePlugins.push();
   // legacy
   VITE_APP_LEGACY && isBuild && vitePlugins.push(legacy());
 
-   // visualizer
+  // visualizer
   VITE_APP_ANALYZE && vitePlugins.push(visualizerPlugin());
   if (isBuild) {
     // gzip
@@ -58,4 +70,4 @@ export const createVitePlugins = (isBuild: boolean) => {
       );
   }
   return vitePlugins;
-}
+};
