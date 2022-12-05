@@ -230,7 +230,7 @@ export const tableProps = () => ({
   filterTag: {
     type: Boolean,
     default () {
-      return false
+      return true
     }
   },
   activeOptions: {

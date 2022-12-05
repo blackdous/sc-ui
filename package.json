@@ -5,6 +5,7 @@
   "files": [
     "src"
   ],
+  "type": "module",
   "module": "./dist/build.es.ts",
   "main": "./dist/build.umd.ts",
   "typings": "./dist/index.d.ts",
