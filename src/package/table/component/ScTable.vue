@@ -63,15 +63,17 @@
         v-if="newProps.customFilter && newProps.filterTag"
         :columns="getFilterDropdownRef"
         @closeTag="handleCloseTag"
-      ></FilterTagsVue>
+        @closeAll="handleCloseAll"
+      >
+      </FilterTagsVue>
       <Table
         size="small"
         ref="tableRef"
         :expand-icon="expandIconFnc"
         v-bind="tableBindValue"
-        :scroll="{ x: allOptions?.scroll?.x || 500 }"
         @change="handleTableChange"
-        >
+      >
+        <!-- :scroll="{ y: newProps?.scroll?.y || 500}" -->
         <!-- @expandedRowsChange="handleExpand" -->
         <template
           template
@@ -126,6 +128,11 @@
         <template #filterIcon="{column}" v-if="isCustomFilter">
           <FilterFilled :style="{ color: column.filtered && column?.filterSelected?.length ? '#008CD3' : 'rgba(0, 0, 0, 0.2)' }" :class="[ column.filtered && column?.filterSelected?.length ? 'filtered' : 'notFilter' ]"></FilterFilled>
         </template>
+        <template #itemRender="{ type, originalElement }">
+          <a v-if="type === 'prev'">Previous</a>
+          <a v-else-if="type === 'next'">Next</a>
+          <renderVNode v-else :vnode="originalElement"></renderVNode>
+        </template>
       </Table>
       <ColumnDialogVue
         v-model:visible="visible"
@@ -159,7 +166,7 @@ import FilterTagsVue from './FilterTags.vue'
 import TdComponents from './Td'
 
 //@ts-ignore
-import { tableProps, TableProps, ButtonType, TableActionType } from '../types/table'
+import { tableProps, TableProps, ButtonType, TableActionType, SorterResult, PaginationProps } from '../types/table'
 import { Column, FilterItem } from '../types/column'
 import { usePagination } from '../hooks/usePagination';
 import { useTableExpand } from '../hooks/useTableExpand'
@@ -223,7 +230,8 @@ export default defineComponent({
       filters: {},
       selectedRowKeysRef: [],
       columns: [],
-      pagination: {}
+      pagination: {},
+      sorter: {}
     })
 
     const newProps = computed(() => {
@@ -305,15 +313,18 @@ export default defineComponent({
         clearSelectedRowKeys,
       },
       emit,
+      fetchParams
     );
 
     const {
       // getColumnRef,
-      getColumns,
+      getFilterColumnRef,
       getFilterDropdownRef,
+      getFetchFilter,
+      getColumns,
       setFilterDropdownRef,
       clearFilterDropdownRef,
-      getFilterColumnRef,
+      clearFilterAllDropdownRef,
       setFilterColumnRef,
       setFilterColumnChecked,
       setFilterColumnDisabled
@@ -401,18 +412,16 @@ export default defineComponent({
     };
 
     const handleTableChange = (
-      ...args: any[]
-      // pagination: PaginationProps,
-      // filters: Partial<string[]>,
-      // sorter: SorterResult,
-      // //@ts-ignore
+      pagination: PaginationProps,
+      filters: Partial<{[key:string]: any}>,
+      sorter: SorterResult,
+      // @ts-ignore
       // { currentDataSource }
     ) => {
-      // @ts-ignore
-      // setPagination(pagination);
-      onTableChange.call(null, ...args)
-      // console.log('change: ', 11111);
-      emit('change', ...args);
+      fetchParams.value = {...unref(fetchParams), pagination, sorter}
+      console.log('pagination, unref(getFetchFilter), sorter: ', pagination, unref(getFetchFilter), sorter);
+      onTableChange.call(null, pagination, unref(getFetchFilter), sorter)
+      emit('change', pagination, unref(getFetchFilter), sorter)
     };
 
     const mutilpChangeHandle = (value: any) => {
@@ -440,6 +449,7 @@ export default defineComponent({
           [column.dataIndex]: keys.length ? keys : undefined
         }
       }
+      handleTableChange(unref(fetchParams).pagination, unref(getFetchFilter), unref(fetchParams).sorter)
       if (column.filterMultiple) {
         emit('filter', {
           imtes: items,
@@ -469,6 +479,12 @@ export default defineComponent({
 
     const handleCloseTag = (column: Column) => {
       clearFilterDropdownRef(column)
+      handleTableChange(unref(fetchParams).pagination, unref(getFetchFilter), unref(fetchParams).sorter)
+    }
+
+    const handleCloseAll = () => {
+      clearFilterAllDropdownRef()
+      handleTableChange(unref(fetchParams).pagination, unref(getFetchFilter), unref(fetchParams).sorter)
     }
 
     const handleModal = () => {
@@ -504,6 +520,7 @@ export default defineComponent({
       } else {
         emit('serachClick', { ...unref(fetchParams) })
       }
+      handleTableChange(unref(fetchParams).pagination, unref(getFetchFilter), unref(fetchParams).sorter)
     }
 
     const refresh = () => {
@@ -616,6 +633,8 @@ export default defineComponent({
       isShowFilter,
       getFilterDropdownRef,
 
+      
+      handleCloseAll,
       handle,
       createHandle,
       handleModal,

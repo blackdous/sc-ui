@@ -1,6 +1,6 @@
 import type { PaginationProps } from '../types/pagination';
 // import type { TableProps } from '../types/table';
-import { computed, unref, ref, ComputedRef, watch } from 'vue';
+import { computed, unref, ref, ComputedRef, watch, h } from 'vue';
 import { PAGE_SIZE } from '../../../constans';
 
 const isBoolean = (source:any) => {
@@ -37,6 +37,16 @@ export function usePagination(refProps: ComputedRef<Recordable>) {
       size: 'default',
       defaultPageSize: PAGE_SIZE,
       showTotal: (total) => `共 ${total} 条`,
+      itemRender: ({type, originalElement}) => {
+        if (type === 'prev') {
+          return h('i', { class: 'iconfont icon-you' })
+        } else if (type === 'next') {
+          return h('i', { class: 'iconfont icon-you' })
+        } else {
+          return originalElement
+        }
+  
+      },
       showSizeChanger: true,
       // pageSizeOptions: PAGE_SIZE_OPTIONS,
       showQuickJumper: true,

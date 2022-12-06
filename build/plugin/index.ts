@@ -2,6 +2,7 @@ import type { PluginOption } from 'vite';
 
 import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
+import vueJsx from "@vitejs/plugin-vue-jsx";
 // @ts-ignore
 import Components from 'unplugin-vue-components/vite';
 // @ts-ignore
@@ -38,6 +39,7 @@ export const createVitePlugins = (isBuild: boolean) => {
         },
       },
     }),
+    vueJsx(),
     vueSetupExtend(),
     dts({
       insertTypesEntry: true,

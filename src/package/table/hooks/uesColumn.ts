@@ -57,6 +57,26 @@ export function useColumn (
     filterColumn.value = columns
   }
 
+  function clearFilterAllDropdownRef () {
+    const columns = unref(filterColumn)
+    columns.forEach((item: Column) => {
+      item.filterSelected = []
+    })
+    filterColumn.value = columns
+  }
+
+  const getFetchFilter = computed(() => {
+    const filter = {}
+    const columns = unref(filterColumn)
+    columns.forEach((item: Column) => {
+      if (item.filterSelected?.length) {
+        // @ts-ignore
+        filter[item.dataIndex] = item.filterSelected?.map(item => item.key)
+      }
+    })
+    return filter
+  })
+
   function setColumnRef (colums: Column[]) {
     columnsRef.value = colums
   }
@@ -126,9 +146,11 @@ export function useColumn (
     getColumnRef,
     getFilterColumnRef,
     getFilterDropdownRef,
+    getFetchFilter,
     getColumns,
     setFilterDropdownRef,
     clearFilterDropdownRef,
+    clearFilterAllDropdownRef,
     setColumnRef,
     setFilterColumnRef,
     setFilterColumnChecked,

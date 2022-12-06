@@ -7,7 +7,7 @@ map:
 
 基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件, 部分方法是从`vben`的table上拿过来的
 
-## 基础组件
+<!-- ## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -331,7 +331,7 @@ const dataSource = [
   >
 </demo>
 
-## useTable
+ ## useTable
 
 使用组件自带的 **useTable** 可以方便使用表单
 
@@ -715,7 +715,9 @@ export interface ActiveOptions {
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
 | filterList      | `FilterItem[]`                                                 | -   | -      | 每列筛选的数据源 |
 | filterSelected      | `FilterItem[]`                                                 | -   | -      | 每列已经筛选的数据项 |
-| type      | `Type`                                                 | -   | `address | copy | ellipsis | handle`      | 每列使用内置组件配置 |
+| type      | `Type`                                                 | -   | `address 、 copy 、 ellipsis | handle`      | 每列使用内置组件配置 |
+| filtered      | boolean                                           | -   |   -    | 选中之后filtericon 会高亮 |
+| filterMultiple      | boolean                                           | -   |   -    | filter是否可以多选 |
 
 
 ### Type
@@ -765,7 +767,7 @@ export interface ActiveOptions {
 | serach | 表格顶部右侧区域 搜索组件      |  |
 | tableActive | 表格顶部右侧区域 刷新、自定义列组件      |  |
 | EmptyVue | 表格空数据状态组件     |  |
-
+ -->
 
 ## 汇总
 

@@ -4,10 +4,10 @@
 @tableDropdown: ~'@{prefixCls}TableDropdown';
 
 .@{tableScope} {
-  .ant-table-content {
-    border-left: 1px solid #F0F0F0;
-    border-right: 1px solid #F0F0F0;
-  }
+  // table {
+  //   border-left: 1px solid #F0F0F0;
+  //   border-right: 1px solid #F0F0F0;
+  // }
   padding: @space-6;
   .ant-table-thead > tr > th {
     height: 40px;
@@ -21,6 +21,12 @@
     height: 48px;
     border-bottom: 1px solid @table-border-color;
     box-sizing: border-box;
+    &:first-child {
+      border-left: 1px solid #F0F0F0;
+    }
+    &:last-child {
+      border-right: 1px solid #F0F0F0;
+    }
   }
   .ant-table-tbody > .ant-table-row:hover > td {
     background: @table-td-hover;
@@ -44,15 +50,9 @@
     width: 48px;
     min-width: 48px;
   }
-  .ant-pagination-item a {
-    color: @heading-color;
-    &:hover {
-      color: @primary-color;
-    }
-  }
-  .ant-pagination-item-active a {
-    color: @primary-color;
-  }
+  // .ant-pagination-item-active a {
+  //   color: @primary-color;
+  // }
   .icon-down-circle {
     margin-right: 10px;
     cursor: pointer;
@@ -303,7 +303,7 @@
   padding-left: 0;
 }
 
-.vp-doc .vitepress-demo a {
-  font-weight: 400;
-  color: @heading-color;
-}
+// .vp-doc .vitepress-demo a {
+//   font-weight: 400;
+//   color: @heading-color;
+// }

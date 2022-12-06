@@ -4,8 +4,9 @@
     <ScTable 
       ref="scTableRef"
       :columns="columns"
-      :data-source="data"
       :loading="false"
+      :api="demoListApi"
+      :before-fetch="beforeFetch"
       :actionsOptions="actionProps"
       :activeOptions="{
         reload: {
@@ -72,6 +73,7 @@ import type { Ref } from 'vue'
 import { ScTable } from 'sc-ui'
 //@ts-ignore
 import { list as ColumnList } from '../types/column'
+import { demoListApi } from './tableData'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
 import "ant-design-vue/dist/antd.css"
@@ -338,6 +340,12 @@ const onSelectChange = (selectedRowKeys: Key[]) => {
 interface Data {
   action: string,
   tableRef: ComputedRef
+}
+
+const beforeFetch = (params: any, tableParams: any) => {
+  console.log('tableParams: ', tableParams);
+  console.log('params: ', params);
+  return params
 }
 
 const handle = (data: Data) => {

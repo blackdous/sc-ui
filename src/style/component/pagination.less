@@ -6,12 +6,6 @@
   font-size: 14px;
   color: @text-color;
 }
-.ant-pagination-item-active {
-  border-color: @primary-color;
-  a {
-    color: @primary-color;
-  }
-}
 .ant-pagination-options-quick-jumper {
   height: 30px;
   line-height: 30px;
@@ -22,6 +16,47 @@
     }
   }
 }
+.ant-pagination-item {
+  a {
+    color: @heading-color;
+    &:hover {
+      color: @primary-color;
+    }
+  }
+  &:focus, &:hover {
+    border-color: @primary-color;
+    color: @primary-color;
+  }
+}
+.ant-pagination-item-active {
+  border-color: @primary-color;
+  background-color: @primary-color;
+  a {
+    color: @white-color;
+  }
+  &:focus, &:hover {
+    // border-color: @primary-color;
+    a {
+      color: @white-color;
+    }
+  }
+}
+.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis,
+.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis {
+  color: @heading-color;
+}
 .ant-table-pagination {
   white-space: nowrap;
+  .ant-pagination-prev {
+    i {
+      display: block;
+      transform: rotate(180deg);
+      color: inherit;
+    }
+  }
+  .ant-pagination-disabled {
+    i {
+      color: fade(@color-000, 26%);
+    }
+  }
 }

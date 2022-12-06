@@ -249,6 +249,11 @@ export const tableProps = () => ({
       return false
     }
   },
+  // 自定义排序方法
+  sortFn: Function as PropType<(sortInfo: SorterResult) => any>,
+  // 排序方法
+  filterFn: Function as PropType<(data: Partial<Recordable<string[]>>) => any>,
+  
   pagination: Object as PropType<PaginationProps>,
   scroll: Object as PropType<ScrollProps>,
   dataSource: Array,
@@ -366,6 +371,10 @@ export interface TableProps {
   columnModalList?: Array<ColumnModalItem>,
   // modalOptions?: ModalProps,
   bordered?: boolean,
+  // 自定义排序方法
+  sortFn?: (sortInfo: SorterResult) => any;
+  // 排序方法
+  filterFn?: (data: Partial<Recordable<string[]>>) => any;
   pagination? : PaginationProps | boolean,
   scroll?: ScrollProps,
   dataSource?: Array<any>,

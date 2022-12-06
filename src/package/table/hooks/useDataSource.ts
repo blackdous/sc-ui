@@ -36,6 +36,7 @@ export const useDataSource = (
     tableData,
   }: ActionType,
   emit: EmitType,
+  fetchParams: ComputedRef<Recordable>
 ) => {
 
   const searchState = reactive<SearchState>({
@@ -44,6 +45,9 @@ export const useDataSource = (
   });
   const dataSourceRef = ref<Recordable[]>([])
   const rawDataSourceRef = ref<Recordable>({})
+
+  const pagination = ref<Recordable>({})
+  const sorter = ref<Recordable>({})
 
   const customComponentKey = ref<string[]>(['copy', 'address', 'ellipsis', 'status'])
 
@@ -293,7 +297,7 @@ export const useDataSource = (
         opt?.filterInfo ?? {},
       );
       if (beforeFetch && isFunction(beforeFetch)) {
-        params = (await beforeFetch(params)) || params;
+        params = (await beforeFetch(params, unref(fetchParams))) || params;
       }
 
       const res = await api(params);
@@ -371,6 +375,8 @@ export const useDataSource = (
     getDataSourceRef,
     getRowKey,
     getAutoCreateKey,
+    pagination,
+    sorter,
     getEvent,
     getDataSource,
     handleTableChange,

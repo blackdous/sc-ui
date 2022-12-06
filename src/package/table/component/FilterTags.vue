@@ -1,24 +1,27 @@
 <template>
-  <template
-    v-for="columnItem in filterList"
-    :key="columnItem.dataIndex"
-  >
-    <Tag
-      v-if="columnItem.filterSelected?.length"
-      closable
-      class="tag-filter"
-      @close="onTagClose(columnItem)"
+  <div class="disFlex">
+    <template
+      v-for="columnItem in filterList"
+      :key="columnItem.dataIndex"
     >
-      {{ columnItem.title }}
-      <span
-        v-for="(filterItem, index) in (columnItem.filterSelected || [])"
-        :key="filterItem.key"
+      <Tag
+        v-if="columnItem.filterSelected?.length"
+        closable
+        class="tag-filter"
+        @close="onTagClose(columnItem)"
       >
-        {{index !== 0 ? ';' : ''}}
-        {{filterItem.label }}
-      </span>
-    </Tag>
-  </template>
+        {{ columnItem.title }}
+        <span
+          v-for="(filterItem, index) in (columnItem.filterSelected || [])"
+          :key="filterItem.key"
+        >
+          {{index !== 0 ? ';' : ''}}
+          {{filterItem.label }}
+        </span>
+      </Tag>
+    </template>
+    <span v-if="isFilter" class="clearAll" @click="closeAll">清除</span>
+  </div>
 </template>
 
 <script lang='ts'>
@@ -49,10 +52,20 @@ export default defineComponent({
     const onTagClose = (...args: any[]) => {
       emit('closeTag', ...args)
     }
+    const closeAll = (...args: any[]) => {
+      emit('closeAll', ...args)
+    }
+
+    const isFilter = computed(() => {
+      const flag = Boolean(props.columns?.find((item) => item.filterSelected?.length))
+      return flag
+    })
 
     return {
       filterList,
-      onTagClose
+      isFilter,
+      onTagClose,
+      closeAll
     }
   }
 })
