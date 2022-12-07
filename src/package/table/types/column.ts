@@ -98,6 +98,7 @@ export interface Column {
   filterTag?: boolean,
   filterSelected?: Array<FilterItem>,
   flag?: string,
+  handle?: (column: Column, record: any) => void | Promise<any>, 
   type: {
     componentName: string,
     props: any

@@ -83,7 +83,7 @@ const activeOptions = {
 
 reload参数中的`action`方法，参数为`fetchParams`
 
-## 带头部操作的表格
+<!-- ## 带头部操作的表格
 
 <demo src="./demo/header.vue"
   language="vue"
@@ -718,7 +718,7 @@ export interface ActiveOptions {
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
 | filterList      | `FilterItem[]`                                                 | -   | -      | 每列筛选的数据源 |
 | filterSelected      | `FilterItem[]`                                                 | -   | -      | 每列已经筛选的数据项 |
-| type      | `Type`                                                 | -   | `address 、 copy 、 ellipsis | handle`      | 每列使用内置组件配置 |
+| type      | `Type`                                                 | -   | `status 、 copy 、 ellipsis 、handle`      | 每列使用内置组件配置 |
 | filtered      | boolean                                           | -   |   -    | 选中之后filtericon 会高亮 |
 | filterMultiple      | boolean                                           | -   |   -    | filter是否可以多选 |
 
@@ -779,4 +779,4 @@ export interface ActiveOptions {
   title="table头部操作按钮"
   desc="table头部操作按钮"
   >
-</demo>
+</demo> -->

@@ -184,3 +184,40 @@
 .VPDoc.has-aside .content-container {
   max-width: 1000px!important;
 }
+
+.vp-doc .vitepress-demo li + li {
+  margin-top: auto;
+}
+
+.vp-doc .vitepress-demo table {
+  margin: 0;
+}
+.vp-doc .vitepress-demo th {
+  font-size: 14px;
+}
+.vp-doc .vitepress-demo th, .vp-doc  .vitepress-demo td {
+  border: none;
+}
+.vp-doc .vitepress-demo tr {
+  border: none;
+}
+.vp-doc .vitepress-demo tr:nth-child(2n) {
+  background-color: transparent;
+}
+.vp-doc .vitepress-demo p, .vp-doc .vitepress-demo summary {
+  margin: 0;
+}
+.vp-doc .vitepress-demo p {
+  line-height: 22px;
+}
+.vp-doc table:not(.ant-table-fixed):not(.ant-table) {
+  overflow-x: auto;
+}
+.vp-doc .vitepress-demo ul, .vp-doc .vitepress-demo ol {
+  padding-left: 0;
+}
+
+.vp-doc .vitepress-demo a {
+  font-weight: 400;
+  color: #000;
+}

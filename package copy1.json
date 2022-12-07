@@ -1,6 +1,6 @@
 {
-  "version": "0.0.7",
-  "name": "@blackdou/sc-ui",
+  "version": "0.0.3",
+  "name": "@sincerecloud/sc-ui",
   "description": "vue3 ui ant-design-vue",
   "module": "./build.es.ts",
   "main": "./build.umd.ts",

@@ -2,14 +2,14 @@
   <span>
     <a
       v-if="text"
-      :id="`tb_btn_${index}_${column.type.type}`"
-      :class="['td_href', linkClass]"
-      @click="handle({ record, type: column.type, column })"
+      :id="id"
+      :class="['td_href']"
+      @click="handle"
     >
       {{ text }}
       <i
-        v-if="column.icon"
-        :class="['iconfont', column.icon]"
+        v-if="newProps.column.icon"
+        :class="['iconfont', newProps.column.icon]"
       ></i>
     </a>
     <span
@@ -20,9 +20,9 @@
   </span>
 </template>
 
-<script setup lang="ts">
-import { defineProps, defineEmits, computed } from 'vue'
-const props = defineProps({
+<script lang="ts">
+import { computed, defineComponent, ref, unref } from 'vue'
+const props = () => ({
   column: {
     type: Object,
     default: () => ({})
@@ -41,18 +41,37 @@ const props = defineProps({
   }
 })
 
-// const clickFlag = ref<boolean>(false)
+export default defineComponent({
+  name: 'Handle',
+  inheritAttrs: false,
+  props: props(),
+  setup (props, { emit }) {
+    const isHandle = ref(false)
+    const newProps = computed(() => {
+      return props
+    })
+    // console.log('newProps: ', unref(newProps));
+    const id = computed(() => {
+      return `tb_btn_${unref(newProps).index}_${unref(newProps).column?.componentName}_${unref(newProps).record.key}`
+    })
+    const handle = async () => {
+      const newId = unref(id)
+      const dom = document.querySelector(`#${newId}`) as HTMLElement
+      dom.className = dom.className + ' linkBtn'
+      if (unref(newProps)?.column?.handle) {
+        // @ts-ignore
+        await props?.column?.handle(unref(newProps)?.column, unref(newProps)?.record)
+        isHandle.value = true
+      }
+      emit('handle', { column: unref(newProps).column, record: unref(newProps)?.record})
+    }
 
-const linkClass = computed(() => {
-  let className = ''
-  if (props.column.type.type === 'link') {
-    className = 'linkBtn'
+    return {
+      id,
+      newProps,
+      handle
+    }
   }
-  return className
 })
-const emits = defineEmits(['handle'])
 
-const handle = (data:any) => {
-  emits('handle', data)
-}
 </script>

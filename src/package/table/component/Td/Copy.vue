@@ -32,9 +32,14 @@ const props = defineProps({
   }
 })
 
-const copyText = (source: [string, number]) => {
+const copyText = async (source: [string, number]) => {
   const { copy, copied } = useClipboard()
+  // @ts-ignore
   copy(source)
+  if (props?.column?.handle) {
+    await props?.column?.handle()
+  }
+  
   if (copied) {
     message.success({
       content: props.column?.type.props.successTxt

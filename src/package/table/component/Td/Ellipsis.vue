@@ -4,23 +4,23 @@
     :id="`tb_${index}_${key}_ellipsis`"
   >
     <template #title>
-      {{props.text}}
+      {{newProps.text}}
     </template>
-    <div class="tdEllipsisCon">
+    <div class="tdEllipsisCon" @click="handle">
       <p 
         :class="className"
-        :style="{width: props.column.width - 32 + 'px', '-webkit-line-clamp': props.column.type.props.lineheigth}"
+        :style="{width: newProps.column.width - 32 + 'px', '-webkit-line-clamp': newProps.column.type.props.lineheigth}"
       >
-        {{props.text}}
+        {{newProps.text}}
       </p>
     </div>
   </Tooltip>
 </template>
 
-<script lang='ts' setup>
-import { defineProps, computed } from 'vue'
+<script lang='ts'>
+import { computed, defineComponent } from 'vue'
 import { Tooltip } from 'ant-design-vue'
-const props = defineProps({
+const props = () =>({
   column: {
     type: Object,
     default: () => ({})
@@ -38,14 +38,40 @@ const props = defineProps({
     default: 0
   }
 })
+export default defineComponent({
+  name: 'Ellipsis',
+  inheritAttrs: false,
+  props: props(),
+  components: {
+    Tooltip
+  },
+  setup (props) {
+    const handle = async () => {
+      if (props?.column?.handle) {
+        await props?.column?.handle()
+      }
+    }
+    
+    const className = computed(() => {
+      const names = ['tdEllipsis']
+      const { column } = props
+      if (column.type.componentName === 'ellipsis') {
+        names.push('ellipsisText')
+      }
+      return names
+    })
 
-const className = computed(() => {
-  const names = ['tdEllipsis']
-  const { column } = props
-  if (column.type.componentName === 'ellipsis') {
-    names.push('ellipsisText')
+    const newProps = computed(() => {
+      return props
+    })
+
+    return {
+      handle,
+      newProps,
+      className
+    }
   }
-  return names
 })
+
 
 </script>
