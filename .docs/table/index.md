@@ -640,7 +640,8 @@ export interface SerachOptions {
   },
   // input 站位字符串、宽度、最大输入长度、是否出现清空按钮
   inputOptions?: {
-    placeholder?: string,
+    // 支持函数 参数如当前选中select
+    placeholder?: string | (selectItem) => string,
     maxlength?: number,
     width?: string,
     allowClear?: boolean
