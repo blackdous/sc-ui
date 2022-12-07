@@ -18,52 +18,54 @@
         <slot name="createButton"></slot>
       </template>
 
-      <template v-if="!isMutilpBtns && mutilpActionOptions.show">
+      <template v-if="!isMutilpBtns && multipleActionOptions.show">
         <ScRadioTooltipGroup
-          v-model:value="mutilpValue"
-          :radio-list="mutilpActionOptions.mutilpList"
+          v-model:value="multipleValue"
+          :options="multipleActionOptions.options"
           @change="radioHandle"
         />
       </template>
       <template v-else>
-        <slot name="mutilpBtns"></slot>
+        <slot name="multipleBtns"></slot>
       </template>
     </div>
     <div :class="[className + '-right']">
       <template v-if="!isSerach && serachOptions.show">
-        <Select
-          v-model:value="selectValue"
-          v-if="serachOptions.showSelect"
-          :style="{width: serachOptions.selectOptions?.width || '120px'}"
-          dropdownClassName="scDropdown"
-          :placeholder="serachOptions.selectOptions?.placeholder"
-          :loading="serachOptions.loading"
-        >
-          <SelectOption
-            v-for="optionsItem in serachOptions.typeList"
-            :key="optionsItem.value"
-            :value="optionsItem.value"
-            :disabled:="optionsItem.disabled || optionsItem.disabled"
+        <InputGroup>
+          <Select
+            v-model:value="selectValue"
+            v-if="serachOptions.showSelect"
+            :style="{width: serachOptions.selectOptions?.width || '120px'}"
+            dropdownClassName="scDropdown"
+            :placeholder="serachOptions.selectOptions?.placeholder"
+            :loading="serachOptions.loading"
           >
-            {{ optionsItem.label }}
-          </SelectOption>
-        </Select>
-        <InputSearch
-          v-model:value="textValue"
-          :maxlength="serachOptions.inputOptions?.maxlength"
-          :style="{width: serachOptions.inputOptions?.width || '120px'}"
-          :placeholder="serachOptions.inputOptions?.placeholder"
-          class="scSerach"
-          @change="updateTextValue"
-          @search="onSearch"
-          :allowClear="true"
-        >
-          <template #suffix>
-            <i class="iconfont icon-sousuo"
-              @click="onSearch(textValue)"
-            />
-          </template>
-        </InputSearch>
+            <SelectOption
+              v-for="optionsItem in serachOptions.typeList"
+              :key="optionsItem.value"
+              :value="optionsItem.value"
+              :disabled:="optionsItem.disabled || optionsItem.disabled"
+            >
+              {{ optionsItem.label }}
+            </SelectOption>
+          </Select>
+          <InputSearch
+            v-model:value="textValue"
+            :maxlength="serachOptions.inputOptions?.maxlength"
+            :style="{width: serachOptions.inputOptions?.width || '120px'}"
+            :placeholder="serachOptionsRef.inputOptions?.placeholder"
+            class="scSerach"
+            @change="updateTextValue"
+            @search="onSearch"
+            :allowClear="true"
+          >
+            <template #suffix>
+              <i class="iconfont icon-sousuo"
+                @click="onSearch(textValue)"
+              />
+            </template>
+          </InputSearch>
+        </InputGroup>
       </template>
       <template v-else>
         <slot name="serach"></slot>
@@ -76,15 +78,17 @@
 </template>
 
 <script lang='ts'>
-import { computed, defineComponent, PropType, ref, defineExpose, unref } from 'vue'
-import { Button, Select, SelectOption, Tooltip, InputSearch } from 'ant-design-vue'
+import { computed, defineComponent, PropType, ref, defineExpose, unref, watch, isRef } from 'vue'
+import { Button, Select, SelectOption, Tooltip, InputSearch, InputGroup } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
+import cloneDeep from 'lodash/cloneDeep'
 
 import { basePrefixCls } from '../../../constans'
 import { ScRadioTooltipGroup } from '../../radio'
 //@ts-ignore
 import { CreateButton, MutilpActionOptions, SerachOptions } from './types/table'
 import ColumnDialogVue from './ColumnDialog.vue'
+import { isFunction } from '../../../utils/is'
 
 const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
 
@@ -104,7 +108,7 @@ export const TableFilterProps = () => ({
       }
     }
   },
-  mutilpActionOptions: {
+  multipleActionOptions: {
     type: Object as PropType<MutilpActionOptions>,
     default () {
       return {
@@ -132,11 +136,14 @@ export default defineComponent({
     SelectOption,
     PlusOutlined,
     ColumnDialogVue,
-    InputSearch
+    InputSearch,
+    InputGroup
   },
   setup(props, { slots, emit }) {
-    const mutilpValue = ref()
+    const multipleValue = ref()
     const textValue = ref()
+    const serachOptionsRef = ref()
+    const selectedItem = ref()
 
     const isSerach = computed(() => {
       return Object.keys(slots).includes('serach') 
@@ -147,8 +154,9 @@ export default defineComponent({
     })
 
     const isMutilpBtns = computed(() => {
-      return Object.keys(slots).includes('mutilpBtns')
+      return Object.keys(slots).includes('multipleBtns')
     })
+
     const className = computed(() => {
       const classNames = [tableHeaderPrefixClas]
       return classNames;
@@ -156,9 +164,16 @@ export default defineComponent({
     
     const selectValue = computed({
       get: () => {
-        return props.selectValue
+        const { typeList } = props.serachOptions || {}
+        let defaultValue = undefined
+        if (!props.selectValue && typeList) {
+          defaultValue = typeList[0]?.value
+          selectedItem.value = typeList[0]
+        }
+        return props.selectValue || defaultValue
       },
       set: (val) => {
+        selectedItem.value = unref(serachOptions)?.typeList?.find((item: any)=> item.value === val)
         emit('selectChange', val)
         emit('update:selectValue', val)
       }
@@ -168,10 +183,28 @@ export default defineComponent({
       return props.createButtonOptions
     })
     
-    const mutilpActionOptions = computed(() => {
-      return props.mutilpActionOptions
+    const multipleActionOptions = computed(() => {
+      return props.multipleActionOptions
     })
+
+    const updateSerachOptions = (serachOptions: SerachOptions) => {
+      const cloneSerachOptions = cloneDeep(serachOptions)
+      if (cloneSerachOptions) {
+        const newSerachOptions = {
+          ...serachOptions
+        }
+        if (newSerachOptions.inputOptions?.placeholder) {
+          if (isFunction(newSerachOptions.inputOptions.placeholder)) {
+            newSerachOptions.inputOptions.placeholder = newSerachOptions.inputOptions.placeholder(unref(selectedItem))
+          }
+        }
+        serachOptionsRef.value = newSerachOptions
+      }
+    }
     const serachOptions = computed(() => {
+      if (props.serachOptions) {
+        updateSerachOptions(cloneDeep(props.serachOptions))
+      }
       return props.serachOptions
     })
 
@@ -179,10 +212,10 @@ export default defineComponent({
       emit('createClick')
     }
     const radioHandle = (value:string) => {
-      const item = unref(mutilpActionOptions)?.mutilpList?.filter((item:any) => {
+      const item = unref(multipleActionOptions)?.options?.filter((item:any) => {
         return item.value === value
       })
-      emit('mutilpChange', item[0] || {})
+      emit('multipleChange', item[0] || {})
     }
 
     const resetSerach = () => {
@@ -190,7 +223,7 @@ export default defineComponent({
     }
 
     const resetMutilp = () => {
-      mutilpValue.value = ''
+      multipleValue.value = ''
     } 
 
     const updateTextValue = (value:string) => {
@@ -208,8 +241,9 @@ export default defineComponent({
 
     return {
       createButtonOptions,
-      mutilpActionOptions,
+      multipleActionOptions,
       serachOptions,
+      serachOptionsRef,
       isSerach,
       isCreateButton,
       isMutilpBtns,

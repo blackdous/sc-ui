@@ -117,17 +117,16 @@ export interface CreateButton {
 
 // export declare type CreateButton = ExtractPropTypes<typeof createButton>
 
-export const mutilpActionOptions = () => ({
+export const multipleActionOptions = () => ({
   // 是否展示
   show: { type: Boolean, default: true },
   // 操作列表
-  mutilpList: {
+  options: {
     type: Array as PropType<Array<ButtonType>>
   }
 })
 
 interface ButtonType {
-  tooltipDis?: boolean,
   toolOptions?: TooltipProps,
   tooltipDes?: string,
   label?: string,
@@ -139,11 +138,11 @@ interface ButtonType {
 
 export interface MutilpActionOptions {
   show?: boolean,
-  mutilpList?: Array<ButtonType>,
+  options?: Array<ButtonType>,
   [key:string]: any
 }
 
-// export declare type MutilpActionOptions = ExtractPropTypes<typeof mutilpActionOptions>
+// export declare type MutilpActionOptions = ExtractPropTypes<typeof multipleActionOptions>
 
 
 export const serachOptions = () => ({
@@ -157,7 +156,7 @@ export const serachOptions = () => ({
   // 查询方法
   action: Function as PropType<(fetchParams: FetchParams) => void>,
   selectOptions: Object as PropType<{placeholder: string, width: string}>,
-  inputOptions: Object as PropType<{placeholder: string, maxlength: number, width: string, allowClear: boolean}>
+  inputOptions: Object as PropType<{placeholder: (key:string) => string | string, maxlength: number, width: string, allowClear: boolean}>
 })
 
 export interface SerachOptions {
@@ -168,18 +167,16 @@ export interface SerachOptions {
   loading: boolean,
   selectOptions?: {
     placeholder?: string,
-    width?: string
+    width?: string,
+    defaultValue: string
   },
   inputOptions?: {
-    placeholder?: string,
+    placeholder?: (key:string) => string | string,
     maxlength?: number,
     width?: string,
     allowClear?: boolean
   }
-  // selectPlaceholder?: string,
-  // inputPlaceholder?: string
 }
-// export declare type SerachOptions = ExtractPropTypes<typeof serachOptions>
 
 export interface ScrollProps {
     x: number,
@@ -190,14 +187,12 @@ export interface ActiveOptions {
   reload?: {
     text?: string,
     show?: boolean,
-    showTooltip?: boolean,
     isDisabled?: boolean,
     action?: Fn
   },
   download?: {
     text?: string,
     show?: boolean,
-    showTooltip?: boolean,
     isDisabled?: boolean,
     action?: Fn,
     href?: string
@@ -205,7 +200,6 @@ export interface ActiveOptions {
   columnDialog?: {
     text?: string,
     show?: boolean,
-    showTooltip?: boolean,
     isDisabled?: boolean
   }
 }
@@ -218,9 +212,15 @@ export interface LocaleProps {
 }
 export const tableProps = () => ({
   createButtonOptions: {
-    type: Object as PropType<CreateButton>
+    type: Object as PropType<CreateButton>,
+    default () {
+      return {
+        show: true,
+        text: '创建'
+      }
+    }
   },
-  mutilpOptions: {
+  multipleOptions: {
     type: Object as PropType<MutilpActionOptions>
   },
   serachOptions: {
@@ -274,7 +274,12 @@ export const tableProps = () => ({
   expandIcon: Object as PropType<Function | VNodeChild | JSX.Element>,
   expandRowByClick: Boolean,
   expandIconColumnIndex: Number,
-  size: String as PropType<SizeType>,
+  size: {
+    type: String as PropType<SizeType>,
+    default () {
+      return 'middle'
+    }
+  },
   childrenColumnName: String,
   
   // 接口请求对象
@@ -370,7 +375,7 @@ export const tableProps = () => ({
 
 export interface TableProps {
   createButtonOptions?: CreateButton,
-  mutilpOptions?: MutilpActionOptions,
+  multipleOptions?: MutilpActionOptions,
   serachOptions?: SerachOptions,
   actionsOptions?: ActionOptions,
   customFilter?: boolean,
@@ -510,7 +515,7 @@ export interface TableActionType {
   getShowPagination: () => boolean;
   clearFilterDropdownRef: (column: Column) => void,
   setSerachOptions: (serachOptions: SerachOptions) => void,
-  setMutilpAction: (mutilpActionOptions: MutilpActionOptions) => void,
+  setMutilpAction: (multipleActionOptions: MutilpActionOptions) => void,
   setFilterColumnRef: (columns: Column[]) => void,
   setFilterColumnChecked: (colKeys: string[] | number[]) => void,
   setFilterColumnDisabled: (colKeys: string[] | number[]) => void,

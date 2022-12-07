@@ -6,10 +6,10 @@
           v-model:selectValue="selectValue"
           v-model:textValue="textValue"
           :createButtonOptions="createButtonOptions"
-          :mutilpActionOptions="mutilpOptions"
+          :multipleActionOptions="multipleOptions"
           :serachOptions="serachOptions"
           @createClick="createHandle"
-          @mutilpChange="mutilpChangeHandle"
+          @multipleChange="multipleChangeHandle"
           @serachClick="serachClickHandle"
           @selectChange="handleSelectChange"
           ref="tableFilter"
@@ -18,7 +18,7 @@
             template
             #[item]="data"
             v-for="item in Object.keys($slots).filter((item) =>
-              ['createButton', 'serach', 'mutilpBtns'].includes(item)
+              ['createButton', 'serach', 'multipleBtns'].includes(item)
             )"
             :key="item"
           >
@@ -29,7 +29,7 @@
               v-if="activeOptions?.reload?.show"
               overlayClassName="scTooltip-white"
             >
-              <template #title v-if="activeOptions?.reload?.showTooltip">
+              <template #title v-if="activeOptions?.reload?.text">
                 {{ activeOptions?.reload.text }}
               </template>
               <Button
@@ -43,7 +43,7 @@
               v-if="activeOptions?.columnDialog?.show"
               overlayClassName="scTooltip-white"
             >
-              <template #title v-if="activeOptions?.columnDialog?.showTooltip">
+              <template #title v-if="activeOptions?.columnDialog?.text">
                 {{ activeOptions?.columnDialog.text }}
               </template>
               <Button
@@ -57,7 +57,7 @@
               v-if="activeOptions?.download?.show"
               overlayClassName="scTooltip-white"
             >
-              <template #title v-if="activeOptions?.download?.showTooltip">
+              <template #title v-if="activeOptions?.download?.text">
                 {{ activeOptions?.download.text }}
               </template>
               <Button
@@ -142,11 +142,6 @@
         <template #filterIcon="{column}" v-if="isCustomFilter">
           <FilterFilled :style="{ color: column.filtered && column?.filterSelected?.length ? '#008CD3' : 'rgba(0, 0, 0, 0.2)' }" :class="[ column.filtered && column?.filterSelected?.length ? 'filtered' : 'notFilter' ]"></FilterFilled>
         </template>
-        <template #itemRender="{ type, originalElement }">
-          <a v-if="type === 'prev'">Previous</a>
-          <a v-else-if="type === 'next'">Next</a>
-          <renderVNode v-else :vnode="originalElement"></renderVNode>
-        </template>
       </Table>
       <ColumnDialogVue
         v-model:visible="visible"
@@ -197,7 +192,7 @@ import isFunction from 'lodash/isFunction'
 const tablePrefixCls = basePrefixCls + 'Table';
 
 // const props = defineProps(tableProps())
-// const emits = defineEmits(['onAction', 'tableChange', 'createClick', 'mutilpChange', 'filter'])
+// const emits = defineEmits(['onAction', 'tableChange', 'createClick', 'multipleChange', 'filter'])
 
 export default defineComponent({
   name: 'ScTable',
@@ -238,11 +233,12 @@ export default defineComponent({
 
     const fetchParams = ref<Recordable>({
       tableRef,
-      mutilpValue: '',
+      multipleValue: '',
       searchSelect: '',
       searchText: '',
       filters: {},
       selectedRowKeysRef: [],
+      selectedRowRef: [],
       columns: [],
       pagination: {},
       sorter: {}
@@ -277,6 +273,7 @@ export default defineComponent({
 
     const {
       selectedRowKeysRef,
+      selectedRowRef,
       getRowSelection,
       getRowSelectionRef,
       getSelectRows,
@@ -286,15 +283,15 @@ export default defineComponent({
       deleteSelectRowByKey,
       setSelectedRowKeys,
     } = useRowSelection(newProps, tableData, emit)
-
+    
     const {
       isShowFilter,
       createButtonOptions,
-      mutilpOptions,
+      multipleOptions,
       serachOptions,
       setSerachOptions,
       setMutilpAction,
-    } = useFilter(newProps, tableRef, selectedRowKeysRef)
+    } = useFilter(newProps, selectedRowKeysRef, fetchParams)
 
     const {
       actionsOptions
@@ -346,7 +343,7 @@ export default defineComponent({
 
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);
-      fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, pagination: getPaginationInfo}
+      fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, selectedRowRef, pagination: getPaginationInfo}
       return {
         ...attrs,
         ...unref(newProps),
@@ -437,12 +434,12 @@ export default defineComponent({
       emit('change', pagination, unref(getFetchFilter), sorter)
     };
 
-    const mutilpChangeHandle = (value: any) => {
-      fetchParams.value = {...unref(fetchParams), mutilpValue: value}
+    const multipleChangeHandle = (value: any) => {
+      fetchParams.value = {...unref(fetchParams), multipleValue: value}
       if (isFunction(value.action)) {
         value.action(unref(fetchParams))
       } else {
-        emit('mutilpChange', { ...unref(fetchParams) });
+        emit('multipleChange', { ...unref(fetchParams) });
       }
     };
 
@@ -643,7 +640,7 @@ export default defineComponent({
       selectValue,
       textValue,
 
-      mutilpOptions,
+      multipleOptions,
       createButtonOptions,
       serachOptions,
       actionsOptions,
@@ -658,7 +655,7 @@ export default defineComponent({
       createHandle,
       handleModal,
       filterDropDownClick,
-      mutilpChangeHandle,
+      multipleChangeHandle,
       handleTableChange,
       expandIconFnc,
       serachClickHandle,

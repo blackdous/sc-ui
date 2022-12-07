@@ -145,8 +145,8 @@ export function useTable(tableProps?: Props): [
     setSerachOptions: (serachOptions: SerachOptions) => {
       return toRaw(getTableInstance().setSerachOptions(serachOptions));
     },
-    setMutilpAction: (mutilpActionOptions: MutilpActionOptions) => {
-      return toRaw(getTableInstance().setMutilpAction(mutilpActionOptions));
+    setMutilpAction: (multipleActionOptions: MutilpActionOptions) => {
+      return toRaw(getTableInstance().setMutilpAction(multipleActionOptions));
     },
     setFilterColumnRef: (columns: Column[]) => {
       return toRaw(getTableInstance().setFilterColumnRef(columns));

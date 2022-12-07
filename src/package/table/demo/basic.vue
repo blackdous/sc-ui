@@ -4,24 +4,41 @@
       ref="scTableRef"
       :data-source="data"
       :columns="columns"
+      size="small"
       :loading="false"
       @change="handleChange"
-      @handleTd="handleTd"
       >
       <!-- :langLocale="zhCN" -->
+      <template #copy1="{text, record, index, column}">
+        <!-- {{text}} -->
+        <!-- {{record}} -->
+        <!-- {{index}} -->
+        <!-- {{column}} -->
+        <Copy v-bind="{text, record, index, column}">
+          <template #text>
+            1111
+          </template>
+        </Copy>
+      </template>
     </ScTable>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
-import { ScTable } from 'sc-ui'
+import { ScTable, Copy } from 'sc-ui'
 
 import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
+// const globalApp = inject('globalApp')
+// globalApp.component('copy1', Copy1)
+
+const handleTd = ({column, record}: any) => {
+  console.log('record, type: ', column, record);
+}
 const scTableRef = ref()
 // @ts-ignore
 const columns = [
@@ -37,21 +54,24 @@ const columns = [
     }
   },
   { title: 'Column 2', dataIndex: 'age', key: '2', width: 160,
-    type: {
-      componentName: 'copy',
-      props: {
-        successTxt: 'copy 成功',
-        errorText: ''
-      }
+    // type: {
+    //   componentName: 'copy',
+    //   props: {
+    //     successTxt: 'copy 成功',
+    //     errorText: ''
+    //   }
+    // }
+    slots: {
+      customRender: 'copy1'
     }
   },
   { title: 'Column 3', dataIndex: 'age', key: '3', width: 160,
-  type: {
-    componentName: 'handle',
-    type: 'link',
-    props: {
-    }
-  }
+    type: {
+      componentName: 'handle',
+      props: {
+      }
+    },
+    handle: handleTd
     
   }
 ];
@@ -96,9 +116,6 @@ const handleChange = (pagination, filters, sorter, fetchParams) => {
 }
 
 
-const handleTd = ({record, type}: any) => {
-  console.log('record, type: ', record, type);
-}
 
 </script>
 

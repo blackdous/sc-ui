@@ -3,7 +3,7 @@
     <a
       v-if="text"
       :id="id"
-      :class="['td_href']"
+      :class="['td_href', linkClass]"
       @click="handle"
     >
       {{ text }}
@@ -52,15 +52,23 @@ export default defineComponent({
     })
     // console.log('newProps: ', unref(newProps));
     const id = computed(() => {
-      return `tb_btn_${unref(newProps).index}_${unref(newProps).column?.componentName}_${unref(newProps).record.key}`
+      return `tb_btn_${unref(newProps).index}_${unref(newProps).column?.type?.componentName}_${unref(newProps).record.key}`
+    })
+
+    const linkClass = computed(() => {
+      let className = ''
+      if (unref(newProps).column.handle) {
+        className = 'linkBtn'
+      }
+      return className
     })
     const handle = async () => {
-      const newId = unref(id)
-      const dom = document.querySelector(`#${newId}`) as HTMLElement
-      dom.className = dom.className + ' linkBtn'
+      // const newId = unref(id)
+      // const dom = document.querySelector(`#${newId}`) as HTMLElement
+      // dom.className = dom.className + ' linkBtn'
       if (unref(newProps)?.column?.handle) {
         // @ts-ignore
-        await props?.column?.handle(unref(newProps)?.column, unref(newProps)?.record)
+        await props?.column?.handle({ column: unref(newProps).column, record: unref(newProps)?.record})
         isHandle.value = true
       }
       emit('handle', { column: unref(newProps).column, record: unref(newProps)?.record})
@@ -68,6 +76,7 @@ export default defineComponent({
 
     return {
       id,
+      linkClass,
       newProps,
       handle
     }

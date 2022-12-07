@@ -25,6 +25,10 @@ const props = () =>({
     type: Object,
     default: () => ({})
   },
+  record: {
+    type: Object,
+    default: () => ({})
+  },
   text: {
     type: [String, Number],
     default: ''

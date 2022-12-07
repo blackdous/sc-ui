@@ -16,9 +16,9 @@
         text: '创建',
         action: createClick
       }"
-      :mutilp-options="{
+      :multiple-options="{
         show: true,
-        mutilpList: radioList
+        options: radioList
       }"
       :serach-options="{
         show: true,
@@ -56,7 +56,6 @@ type Key = string | number
 
 const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
   {
-    tooltipDis: true,
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮A',
@@ -72,14 +71,12 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
     }
   },
   {
-    tooltipDis: false,
     toolOptions: {},
-    tooltipDes: "测试tooltip",
+    tooltipDes: '',
     label: '按钮B',
     value: 'b'
   },
   {
-    tooltipDis: true,
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮C',
@@ -214,7 +211,7 @@ const serachHanle = (data: ComputedRef) => {
   console.log('Data: ', data);
 }
 //@ts-ignore
-const mutilpChangeHandle = ({tableRef, selectedRowKeysRef}) => {
+const multipleChangeHandle = ({tableRef, selectedRowKeysRef}) => {
   console.log('selectedRowKeysRef: ', selectedRowKeysRef);
   console.log('tableRef: ', tableRef);
 }

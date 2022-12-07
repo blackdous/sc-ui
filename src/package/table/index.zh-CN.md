@@ -7,7 +7,7 @@ map:
 
 基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件, 部分方法是从`vben`的table上拿过来的
 
-## 基础组件
+<!-- ## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -82,7 +82,7 @@ const activeOptions = {
 
 reload参数中的`action`方法，参数为`fetchParams`
 
-<!-- ## 带头部操作的表格
+## 带头部操作的表格
 
 <demo src="./demo/header.vue"
   language="vue"
@@ -108,14 +108,14 @@ reload参数中的`action`方法，参数为`fetchParams`
 | --- | --- | --- |
 | createClick | 点击按钮回调事件 | Function(fetchPrams) |
 
-### mutilpBtns 组件
+### multipleBtns 组件
 
-**组件支持`solt`传入(`mutilpBtns`)**
+**组件支持`solt`传入(`multipleBtns`)**
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | show | 是否显示 | boolean | 无 | |
-| mutilpList | 展示文本 | ButtonType[] | 无 | |
+| options | 展示文本 | ButtonType[] | 无 | |
 
 ```ts
 interface ButtonType {
@@ -131,13 +131,13 @@ interface ButtonType {
 ```
 
 `disabled`支持函数，并且必须返回`boolean`，如果使用函数参数为`当前table参数 + tableref`。
-`action`如果为`string`可以自己监听`@mutilpChange` 事件，会回传当前点击的按钮信息；如果`action`为可执行函数参数为`当前table参数 + tableref`
+`action`如果为`string`可以自己监听`@multipleChange` 事件，会回传当前点击的按钮信息；如果`action`为可执行函数参数为`当前table参数 + tableref`
 
 #### 事件
 
 | 事件名称 | 说明   | 回调参数    |
 | --- | --- | --- |
-| mutilpChange | 点击按钮回调事件 | Function(fetchPrams) |
+| multipleChange | 点击按钮回调事件 | Function(fetchPrams) |
 
 ### serach 组件
 
@@ -557,7 +557,7 @@ const dataSource = [
 | loading                 | `boolean`                                          | `false` | -      | 表格 loading 状态                                                                               |      |
 | scroll                  | `any`                                              | -       | -      | 参考官方文档 scroll                                                                             |      |
 | createButton                  | `CreateButton`                                              | -       | -      |  头部创建按钮                                                                             |      |
-| mutilpActionOptions                  | `MutilpActionOptions`                                              | -       | -      |  用于展示单选按钮组                                                                           |      |
+| multipleActionOptions                  | `MutilpActionOptions`                                              | -       | -      |  用于展示单选按钮组                                                                           |      |
 | serachOptions                  | `SerachOptions`                                              | -       | -      |   头部搜索组件配置数据                                                                        |      |
 | activeOptions                  | `ActiveOptions`                                              | -       | -      |   用于配置是否显示刷新、自定列按钮                                                                     |      |
 | actionsOptions                  | `ActionsOptions`                                              | -       | -      |   用于全局配置操作列数据；会被record 上的 数据覆盖                                                     |      |
@@ -611,7 +611,7 @@ export interface CreateButton {
   export interface MutilpActionOptions {
     // 是否显示 单选按钮组
     show?: boolean,
-    mutilpList?: Array<ButtonType>,
+    options?: Array<ButtonType>,
     [key:string]: any
   }
 ```
@@ -748,7 +748,7 @@ export interface ActiveOptions {
 | selection-change | `Function({keys，rows})`                | 勾选事件触发                        |
 | on-action | `Function({...FetchParams, record, acitonItem})`                | 操作列点击事件触发                       |
 | create-click | `Function({...FetchParams})`                | 头部创建按钮点击触发                 |
-| mutilp-change | `Function({...FetchParams, mutilpItem})`                | 头部按钮组点击触发                       |
+| multiple-change | `Function({...FetchParams, multipleItem})`                | 头部按钮组点击触发                       |
 | serach-click | `Function({...FetchParams})`                | 头部点击搜索icon触发                     |
 | filter | `Function({...FetchParams})`                | 点击筛选事件触发                       |
 
@@ -760,15 +760,15 @@ export interface ActiveOptions {
 除以下参数外，官方文档内的 slot 也都支持，具体可以参考 [antv table](https://2x.antdv.com/components/table-cn/#API)
 
 :::
-'createButton', 'serach', 'mutilpBtns'
+'createButton', 'serach', 'multipleBtns'
 
 | 名称              | 说明             |  版本  |
 | ----------------- | ---------------- | -- |
 | createButton        | 表格顶部左侧创建按钮|  |
-| mutilpBtns           | 表格顶部左侧侧区域 |  |
+| multipleBtns           | 表格顶部左侧侧区域 |  |
 | serach | 表格顶部右侧区域 搜索组件      |  |
 | tableActive | 表格顶部右侧区域 刷新、自定义列组件      |  |
-| EmptyVue | 表格空数据状态组件     |  |
+| EmptyVue | 表格空数据状态组件     |  | -->
 
 
 ## 汇总
@@ -778,4 +778,4 @@ export interface ActiveOptions {
   title="table头部操作按钮"
   desc="table头部操作按钮"
   >
-</demo> -->
+</demo>

@@ -4,21 +4,21 @@
 @tableDropdown: ~'@{prefixCls}TableDropdown';
 
 .@{tableScope} {
-  // table {
-  //   border-left: 1px solid #F0F0F0;
-  //   border-right: 1px solid #F0F0F0;
-  // }
   padding: @space-6;
   .ant-table-thead > tr > th {
     height: 40px;
     background: @table-header-bg;
     padding: 8px 16px;
   }
+  .ant-table-small {
+    .ant-table-thead > tr > th {
+      height: 36px;
+    }
+  }
   .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
     background: @table-td-hover;
   }
   .ant-table-tbody > tr > td {
-    // height: 48px;
     border-bottom: 1px solid @table-border-color;
     box-sizing: border-box;
     padding:12px 16px;
@@ -35,25 +35,33 @@
   .ant-table-tbody > .ant-table-row-selected > td {
     background: #f0f6ff;
   }
-  // .ant-table-tbody > tr > td
   .ant-table-thead > tr > th {
     white-space: nowrap;
   }
-  .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td {
+  .ant-table.ant-table-middle > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td {
     line-height: 22px;
     padding: 12px 16px;
   }
-  .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th {
+  .ant-table.ant-table-middle > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th {
     line-height: 22px;
     padding: 8px 16px;
+  }
+  .ant-table-middle .ant-table-selection-column {
+    width: 48px;
+    min-width: 48px;
+  }
+  .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td {
+    line-height: 22px;
+    padding: 6px 16px;
+  }
+  .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-thead > tr > th {
+    line-height: 22px;
+    padding: 6px 16px;
   }
   .ant-table-small .ant-table-selection-column {
     width: 48px;
     min-width: 48px;
   }
-  // .ant-pagination-item-active a {
-  //   color: @primary-color;
-  // }
   .icon-down-circle {
     margin-right: 10px;
     cursor: pointer;
@@ -80,6 +88,7 @@
   display: flex;
   padding-bottom: @space-4;
   justify-content: space-between;
+  white-space: nowrap;
   &-left {
     div:last-child {
       margin-left: @space-2;
@@ -205,7 +214,6 @@
   color: fade(@color-000, 20%);
   text-align: left;
 }
-// .ant-table-thead > tr > th 
 
 .ant-menu-vertical > .ant-menu-item, 
 .ant-menu-vertical-left > .ant-menu-item, 
@@ -224,23 +232,13 @@
   }
 }
 .tbCopy {
-  a {
+  span.anticon-copy {
     color: @primary-color;
+  }
+  &-prefix {
     padding-right: 6px;
   }
-  span {
-    color: @primary-color;
-  }
 }
-// .tdEllipsisCon {
-//   height: 70px;
-// }
-// .tdEllipsis {
-//   margin: 16px 0;
-// }
-// .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td.tdEllipsis {
-//   line-height: 22px;
-// }
 .ellipsisText {
   line-break: 22px;
 }
@@ -261,8 +259,6 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 22px;
-    /* or 157% */
-
     text-align: center;
     color: fade(@color-000, 40);
   }

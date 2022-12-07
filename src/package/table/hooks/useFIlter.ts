@@ -5,35 +5,34 @@ import cloneDeep from 'lodash/cloneDeep'
 import { isFunction } from "@vueuse/core"
 export function useFilter (
   propsRef: ComputedRef<Recordable>,
-  tableRef: Ref<any>,
-  selectedRowKeysRef?: Ref<Recordable[]>
+  selectedRowKeysRef?: Ref<Recordable[]>,
+  fetchParams?: Ref<Recordable>
   ) {
   const createButtonOptions = ref<CreateButton>({})
-  // console.log('createButtonOptions: ', createButtonOptions);
-  const mutilpOptions = ref<Recordable>({})
+  const multipleOptions = ref<Recordable>({})
   const serachOptions = ref<Recordable>({})
 
-  function setMutilpAction (mutilpAction: MutilpActionOptions) {
-    if (!mutilpAction) {
-      return mutilpAction
+  function setMutilpAction (multipleAction: MutilpActionOptions) {
+    if (!multipleAction) {
+      return multipleAction
     }
-    const { show, mutilpList } = cloneDeep(mutilpAction)
+    const { show, options } = cloneDeep(multipleAction)
     if (!show) {
-      mutilpOptions.value = mutilpAction
+      multipleOptions.value = multipleAction
       return false
     }
-    const newmMutilpList = mutilpList?.map(item => {
+    const newmMutilpList = options?.map(item => {
       if (isFunction(item.disabled)) {
         // @ts-ignore
-        item.disabled = item?.disabled({ tableRef: unref(tableRef), selectedRowKeysRef: unref(selectedRowKeysRef)})
+        item.disabled = item?.disabled({selectedRowKeysRef: unref(selectedRowKeysRef), ...unref(fetchParams)})
       }
       return item
     })
-    mutilpOptions.value = { show, mutilpList: newmMutilpList }
+    multipleOptions.value = { show, options: newmMutilpList }
   }
 
   function getMutilpAction () {
-    return unref(mutilpOptions)
+    return unref(multipleOptions)
   }
 
   async function setSerachOptions (serach:SerachOptions) {
@@ -81,7 +80,7 @@ export function useFilter (
   const  isShowFilter = computed(() => {
     const isShow = (unref(propsRef)?.activeOptions?.reload?.show 
     || unref(propsRef)?.activeOptions?.columnDialog?.show 
-    || unref(propsRef)?.mutilpOptions?.show 
+    || unref(propsRef)?.multipleOptions?.show 
     || unref(propsRef)?.serachOptions?.show)
     return isShow
   })
@@ -90,14 +89,14 @@ export function useFilter (
     [() => selectedRowKeysRef],
     () => {
       nextTick(() => {
-        setMutilpAction(unref(propsRef).mutilpOptions as MutilpActionOptions)
+        setMutilpAction(unref(propsRef).multipleOptions as MutilpActionOptions)
       })
     },
     { deep: true }
   )
 
   onMounted(() => {
-    setMutilpAction(unref(propsRef).mutilpOptions as MutilpActionOptions)
+    setMutilpAction(unref(propsRef).multipleOptions as MutilpActionOptions)
     setSerachOptions(unref(propsRef).serachOptions as SerachOptions)
   })
 
@@ -107,7 +106,7 @@ export function useFilter (
 
   return {
     createButtonOptions,
-    mutilpOptions,
+    multipleOptions,
     serachOptions,
     setSerachOptions,
     getSerachOptions,

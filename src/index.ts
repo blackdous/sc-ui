@@ -9,7 +9,7 @@ import { ScTabs } from './package/tabs'
 import { ScRadioGroup, ScRadioTooltipGroup } from './package/radio'
 import { ScAlert } from './package/alert'
 import { ScModal } from './package/modal'
-import { ScTable, useTable } from './package/table'
+import { ScTable, useTable, Copy } from './package/table'
 
 
 import { installGlobalDireactives } from './direactives'
@@ -29,7 +29,8 @@ const components = [
   ScRadioTooltipGroup,
   ScAlert,
   ScModal,
-  ScTable
+  ScTable,
+  Copy
 ]
 
 const install = (app: App) => {
@@ -52,7 +53,8 @@ export {
   ScRadioTooltipGroup,
   ScAlert,
   ScModal,
-  ScTable
+  ScTable,
+  Copy
 }
 
 export * from './types'

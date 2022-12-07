@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ScRadioTooltipGroup v-model:value="value1" :radioList="radioList">
+    <ScRadioTooltipGroup v-model:value="value1" :options="radioList">
     </ScRadioTooltipGroup>
   </div>
 </template>
@@ -17,21 +17,18 @@ const value1 = ref<string>('a')
 
 const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
   {
-    tooltipDis: true,
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮A',
     value: 'a'
   },
   {
-    tooltipDis: false,
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮B',
     value: 'b'
   },
   {
-    tooltipDis: true,
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮C',

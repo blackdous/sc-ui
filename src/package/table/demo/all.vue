@@ -4,6 +4,7 @@
     <ScTable 
       ref="scTableRef"
       :columns="columns"
+      rowKey="id"
       :loading="false"
       :api="demoListApi"
       :before-fetch="beforeFetch"
@@ -27,13 +28,9 @@
           href: ''
         }
       }"
-      :create-button-options="{
+      :multiple-options="{
         show: true,
-        text: '创建'
-      }"
-      :mutilp-options="{
-        show: true,
-        mutilpList: radioList
+        options: radioList
       }"
       :serach-options="{
         show: true,
@@ -46,7 +43,7 @@
           width: '80px'
         },
         inputOptions: {
-          placeholder: '请输入',
+          placeholder: handle,
           width: '160px',
           maxlength: 40,
           allowClear: true
@@ -59,7 +56,7 @@
       
       @onAction="handle"
       @createClick="createClick"
-      @mutilpChange="mutilpChangeHandle"
+      @multipleChange="multipleChangeHandle"
       @serachClick="serachHanle"
       @filter="handleFilter"
       @refresh="refresh"
@@ -74,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComputedRef, reactive, ref } from 'vue'
+import { ComputedRef, reactive, ref, unref } from 'vue'
 import type { Ref } from 'vue'
 import { ScTable } from 'sc-ui'
 //@ts-ignore
@@ -228,30 +225,23 @@ const columns = [
 
 const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
   {
-    tooltipDis: true,
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮A',
-    disabled: ({tableRef, selectedRowKeysRef}) => {
-      if (selectedRowKeysRef.length > 3) {
-        return true
-      }
-      return false
-    },
+    disabled: false,
     value: 'a',
-    action: ({tableRef, selectedRowKeysRef}) => {
+    action: ({tableRef, selectedRowKeysRef, selectedRowRef}) => {
+      console.log('selectedRowRef: ', selectedRowRef);
       console.log('tableRef, selectedRowKeysRef: ', tableRef, selectedRowKeysRef);
     }
   },
   {
-    tooltipDis: false,
     toolOptions: {},
-    tooltipDes: "测试tooltip",
+    tooltipDes: "",
     label: '按钮B',
     value: 'b'
   },
   {
-    tooltipDis: true,
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮C',
@@ -261,7 +251,7 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
 
 const promiseTypelist = new Promise ((resolve) => {
     setTimeout(() => {
-      resolve(radioList)
+      resolve(unref(radioList))
     }, 1500)
   }).then((data) => {
     return data
@@ -356,6 +346,7 @@ const beforeFetch = (params: any, tableParams: any) => {
 
 const handle = (data: Data) => {
   console.log('Data: ', data);
+  return '请输入  data'
 }
 
 const createClick = (data: ComputedRef) => {
@@ -367,7 +358,7 @@ const serachHanle = (data: ComputedRef) => {
   console.log('Data: ', data);
 }
 //@ts-ignore
-const mutilpChangeHandle = ({tableRef, selectedRowKeysRef}) => {
+const multipleChangeHandle = ({tableRef, selectedRowKeysRef}) => {
   console.log('selectedRowKeysRef: ', selectedRowKeysRef);
   console.log('tableRef: ', tableRef);
 }

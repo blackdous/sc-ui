@@ -1,24 +1,36 @@
 <template>
   <div
-    v-if="!!text"
+    v-if="!!newProps.text"
     :id="`tb_btn_${index}_copy`"
     class="tbCopy"
-    @click="copyText(text)"
   >
-    <a class="mr-8">{{ text }}</a>
-    <CopyOutlined />
+    <span
+      class="tbCopy-prefix"
+      @click="handle"
+    >
+      <slot name="text" v-if="isCopyPrefix">
+      </slot>
+      <span v-else>
+        {{ newProps.text }}
+      </span>
+    </span>
+    <CopyOutlined @click="copyText" />
   </div>
   <div v-else>--</div>
 </template>
 
-<script setup lang="ts">
-import { defineProps } from 'vue'
+<script lang="ts">
+import { defineComponent, computed, nextTick, unref } from 'vue'
 import { CopyOutlined } from '@ant-design/icons-vue'
 import { useClipboard } from '@vueuse/core'
 import { message } from 'ant-design-vue'
 
-const props = defineProps({
+const props = () => ({
   column: {
+    type: Object,
+    default: () => ({})
+  },
+  record: {
     type: Object,
     default: () => ({})
   },
@@ -32,18 +44,48 @@ const props = defineProps({
   }
 })
 
-const copyText = async (source: [string, number]) => {
-  const { copy, copied } = useClipboard()
-  // @ts-ignore
-  copy(source)
-  if (props?.column?.handle) {
-    await props?.column?.handle()
-  }
-  
-  if (copied) {
-    message.success({
-      content: props.column?.type.props.successTxt
+export default defineComponent({
+  name: 'Copy',
+  inheritAttrs: false,
+  props: props(),
+  components: {
+    CopyOutlined
+  },
+  setup (props, { slots }) {
+    const newProps = computed(() => {
+      return props
     })
+    const isCopyPrefix = computed(() => {
+      return Object.keys(slots).includes('text');
+    }) 
+    const { copy, copied } = useClipboard({
+      legacy: true
+    })
+    const copyText = () => {
+      nextTick(() => {
+        copy(String(unref(newProps).text))
+        if (copied) {
+          message.success({
+            content: props.column?.type.props.successTxt
+          })
+        }
+      })
+    }
+
+    const handle = async () => {
+      if (props?.column?.handle) {
+        await props?.column?.handle()
+      }
+    }
+    
+    return {
+      isCopyPrefix,
+      newProps,
+      copyText,
+      // copy,
+      handle
+    }
   }
-}
+})
+
 </script>

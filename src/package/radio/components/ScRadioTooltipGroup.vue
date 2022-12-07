@@ -5,12 +5,12 @@
     @change="handleChange"
   >
     <RadioButton
-      v-for="item in props.radioList"
+      v-for="item in props.options"
       :key="item.value"
       :value="item.value"
       :disabled="item.disabled"
     >
-      <template v-if="item.tooltipDis">
+      <template v-if="item.tooltipDes">
         <Tooltip 
           v-bind="item.toolOptions"
           overlayClassName="scTooltip-white"
@@ -43,7 +43,6 @@ import type { TooltipProps } from 'ant-design-vue'
 import ScRadioGroup from './ScRadioGroup.vue'
 
 export interface TooltipButtonProps {
-  tooltipDis?: boolean,
   toolOptions?: TooltipProps,
   tooltipDes?: string,
   label?: string,
@@ -57,7 +56,7 @@ const props = defineProps({
     type: [String, Number],
     default: ''
   },
-  radioList: {
+  options: {
     type: Array<TooltipButtonProps>,
     default: () => []
   }
@@ -85,7 +84,7 @@ watch(
 )
 
 const handleChange = (e: Event) => {
-  const currentItem = props.radioList.find((item: TooltipButtonProps) => item.value === e?.target?.value)
+  const currentItem = props.options.find((item: TooltipButtonProps) => item.value === e?.target?.value)
   // @ts-ignore
   emits('customChange', e?.target?.value, currentItem)
 }
