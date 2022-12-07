@@ -6,12 +6,14 @@
     <template #title>
       {{props.text}}
     </template>
-    <p 
-      :class="className"
-      :style="{width: props.column.width - 32 + 'px', '-webkit-line-clamp': props.column.type.props.lineheigth}"
-    >
-      {{props.text}}
-    </p>
+    <div class="tdEllipsisCon">
+      <p 
+        :class="className"
+        :style="{width: props.column.width - 32 + 'px', '-webkit-line-clamp': props.column.type.props.lineheigth}"
+      >
+        {{props.text}}
+      </p>
+    </div>
   </Tooltip>
 </template>
 

@@ -7,7 +7,7 @@ map:
 
 基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件, 部分方法是从`vben`的table上拿过来的
 
-<!-- ## 基础组件
+## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -542,7 +542,9 @@ const dataSource = [
 | 属性                    | 类型                                               | 默认值  | 可选值 | 说明                                                                                            | 版本 |
 | ----------------------- | -------------------------------------------------- | ------- | ------ | ----------------------------------------------------------------------------------------------- | ---- |
 | isTreeTable             | `boolean`                                          | `false` | -      | 是否树表                                                                                        |      |
-| api                     | `(...arg: any) => Promise<any>`                    | -       | -      | 请求接口，可以直接将`src/api内的函数直接传入`                                                   |      |
+| api                     | `(...arg: any) => Promise<any>`                    | -       | -      | 请求接口，可以直接将`src/api内的函数直接传入`     
+| sortFn                  | `(sortInfo: SorterResult<any>) => any`             | -       | -      | 自定义排序方法。见下方全局配置说明   **如果使用api，必须要配置sortFn 方法 **                                                         |      |
+| filterFn                | `(sortInfo: Partial<Recordable<string[]>>) => any` | -       | -      | 自定义过滤方法。见下方全局配置说明   **如果使用api，必须要配置filterFn 方法 **                                          |      |
 | beforeFetch             | `(T)=>T`                                           | -       | -      | 请求之前对参数进行处理                                                                          |      |
 | afterFetch              | `(T)=>T`                                           | -       | -      | 请求之后对返回值进行处理                                                                        |      |
 | fetchSetting            | `FetchSetting`                                     | -       | -      | 接口请求配置，可以配置请求的字段和响应的字段名，见下方全局配置说明                              |      |
@@ -767,7 +769,7 @@ export interface ActiveOptions {
 | serach | 表格顶部右侧区域 搜索组件      |  |
 | tableActive | 表格顶部右侧区域 刷新、自定义列组件      |  |
 | EmptyVue | 表格空数据状态组件     |  |
- -->
+
 
 ## 汇总
 

@@ -8,8 +8,6 @@ realPath: src/package/alert/index.zh-CN.md
 
 警告条用于承载需要用户注意的信息。
 
-# 组件类型
-
 ## 基础警告
 
 <demo src="./demo/basic.vue"

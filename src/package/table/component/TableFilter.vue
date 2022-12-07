@@ -55,7 +55,7 @@
           :placeholder="serachOptions.inputOptions?.placeholder"
           class="scSerach"
           @change="updateTextValue"
-          @pressEnter="onSearch"
+          @search="onSearch"
           :allowClear="true"
         >
           <template #suffix>
@@ -179,7 +179,6 @@ export default defineComponent({
       emit('createClick')
     }
     const radioHandle = (value:string) => {
-      // console.log('mutilpActionOptions: ', mutilpActionOptions);
       const item = unref(mutilpActionOptions)?.mutilpList?.filter((item:any) => {
         return item.value === value
       })

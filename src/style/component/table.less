@@ -18,9 +18,10 @@
     background: @table-td-hover;
   }
   .ant-table-tbody > tr > td {
-    height: 48px;
+    // height: 48px;
     border-bottom: 1px solid @table-border-color;
     box-sizing: border-box;
+    padding:12px 16px;
     &:first-child {
       border-left: 1px solid #F0F0F0;
     }
@@ -134,6 +135,11 @@
   &-active {
     margin-left: 8px;
   }
+  .ant-btn {
+    &:hover, &:active {
+      color: @primary-color;
+    }
+  }
 }
 .@{tableActionsScope} {
   height: 22px;
@@ -226,8 +232,17 @@
     color: @primary-color;
   }
 }
-.ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td.tdEllipsis {
-  line-height: 22px;
+// .tdEllipsisCon {
+//   height: 70px;
+// }
+// .tdEllipsis {
+//   margin: 16px 0;
+// }
+// .ant-table.ant-table-small > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td.tdEllipsis {
+//   line-height: 22px;
+// }
+.ellipsisText {
+  line-break: 22px;
 }
 .tableEmpty {
   min-height: 560px;

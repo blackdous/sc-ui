@@ -1,9 +1,9 @@
 <template>
   <div>
-    <ScAlert message="Info Text" type="info" textColor/>
-    <ScAlert message="Success Text" type="success" textColor />
-    <ScAlert message="Warning Text" type="warning" textColor/>
-    <ScAlert message="Error Text" type="error" textColor/>
+    <ScAlert message="Info Text" type="info" textColor showIcon/>
+    <ScAlert message="Success Text" type="success" textColor showIcon />
+    <ScAlert message="Warning Text" type="warning" textColor showIcon/>
+    <ScAlert message="Error Text" type="error" textColor showIcon/>
   </div>
 </template>
 

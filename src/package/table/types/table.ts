@@ -1,5 +1,5 @@
-import { Column } from './../../../../dist/src/package/table/types/column.d';
 import { PropType, VNode, VNodeChild } from "vue"
+import { Column } from "./column"
 // import type { ComputedRef } from "vue"
 import { ColumnProps, SortOrder } from "ant-design-vue/lib/table/interface"
 import type { TooltipProps } from 'ant-design-vue'
@@ -194,7 +194,15 @@ export interface ActiveOptions {
     isDisabled?: boolean,
     action?: Fn
   },
-  columnDialog: {
+  download?: {
+    text?: string,
+    show?: boolean,
+    showTooltip?: boolean,
+    isDisabled?: boolean,
+    action?: Fn,
+    href?: string
+  },
+  columnDialog?: {
     text?: string,
     show?: boolean,
     showTooltip?: boolean,
@@ -253,7 +261,7 @@ export const tableProps = () => ({
   sortFn: Function as PropType<(sortInfo: SorterResult) => any>,
   // 排序方法
   filterFn: Function as PropType<(data: Partial<Recordable<string[]>>) => any>,
-  
+
   pagination: Object as PropType<PaginationProps>,
   scroll: Object as PropType<ScrollProps>,
   dataSource: Array,

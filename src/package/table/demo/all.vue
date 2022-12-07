@@ -19,6 +19,12 @@
           text: '定制列',
           show: true,
           showTooltip: true
+        },
+        download: {
+          text: '下载',
+          show: true,
+          showTooltip: true,
+          href: ''
         }
       }"
       :create-button-options="{

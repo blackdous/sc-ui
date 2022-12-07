@@ -53,6 +53,20 @@
                 <i class="iconfont icon-setting"></i>
               </Button>
             </Tooltip>
+            <Tooltip
+              v-if="activeOptions?.download?.show"
+              overlayClassName="scTooltip-white"
+            >
+              <template #title v-if="activeOptions?.download?.showTooltip">
+                {{ activeOptions?.download.text }}
+              </template>
+              <Button
+                :disabled="activeOptions?.download?.isDisabled"
+                @click="handleDownload"
+              >
+                <i class="iconfont icon-download"></i>
+              </Button>
+            </Tooltip>
           </template>
           <template #tableActive v-else>
             <slot name="tableActive"></slot>
@@ -419,7 +433,6 @@ export default defineComponent({
       // { currentDataSource }
     ) => {
       fetchParams.value = {...unref(fetchParams), pagination, sorter}
-      console.log('pagination, unref(getFetchFilter), sorter: ', pagination, unref(getFetchFilter), sorter);
       onTableChange.call(null, pagination, unref(getFetchFilter), sorter)
       emit('change', pagination, unref(getFetchFilter), sorter)
     };
@@ -490,10 +503,17 @@ export default defineComponent({
     const handleModal = () => {
       visible.value = !visible.value;
     };
-    //@ts-ignore
-    // const checkedChange = ({ keys}) => {
-    //   console.log('keys: ', keys);
-    // }
+
+    const handleDownload = () => {
+      const actives = unref(activeOptions)
+      if (actives?.download?.href) {
+        window.location.href = actives?.download?.href
+        return false
+      }
+      if (isFunction(actives?.download?.action)) {
+        actives?.download?.action({...unref(fetchParams)})
+      }
+    }
     //@ts-ignore
     const cancelModal = ({ keys, checkedList }) => {
       const cancelModal = unref(newProps).cancelModal
@@ -504,7 +524,6 @@ export default defineComponent({
     //@ts-ignore
     const okModal = ({ keys, checkedList }) => {
       visible.value = false
-      // console.log('keys: ', keys);
       setFilterColumnChecked(keys)
       const okModal = unref(newProps).okModal
       if (isFunction(okModal)) {
@@ -645,6 +664,7 @@ export default defineComponent({
       serachClickHandle,
       getComponent,
       refresh,
+      handleDownload,
       setFilterColumnRef,
       cancelModal,
       okModal,

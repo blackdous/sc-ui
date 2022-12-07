@@ -61,7 +61,6 @@ export default defineComponent({
       emit('checkChange', { keys, checkedList, list })
     }
     const hanleCancel = () => {
-      console.log('cancelModal')
       emit('cancelModal', { keys: unref(curKeys), checkedList: unref(curCheckedList) })
     }
     const handleOk = () => {
