@@ -10,6 +10,7 @@ import { ScAlert } from './package/alert'
 import { ScModal } from './package/modal'
 import { ScTable, useTable, Copy } from './package/table'
 import { ScLoading, useLoading } from './package/loading'
+import { ScButton } from './package/button'
 
 
 import { installGlobalDirectives } from './directives'
@@ -32,7 +33,8 @@ const components = [
   ScModal,
   ScTable,
   Copy,
-  ScLoading
+  ScLoading,
+  ScButton
 ]
 
 const install = (app: App) => {
@@ -57,7 +59,8 @@ export {
   ScModal,
   ScTable,
   Copy,
-  ScLoading
+  ScLoading,
+  ScButton
 }
 
 export * from './types'

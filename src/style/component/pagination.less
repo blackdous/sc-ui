@@ -44,13 +44,13 @@
 .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis {
   color: @heading-color;
 }
-.ant-table-pagination {
+.ant-pagination {
   white-space: nowrap;
   .ant-pagination-prev {
-    i {
+    i.icon-you {
       display: block;
       transform: rotate(180deg);
-      color: inherit;
+      // color: inherit;
     }
   }
   .ant-pagination-disabled {
@@ -58,4 +58,17 @@
       color: fade(@color-000, 26%);
     }
   }
+}
+.ant-pagination.mini .ant-pagination-item:not(.ant-pagination-item-active) {
+  border-color: @border-pagination-color;
+  &:hover, &:focus, &:active {
+    color: @primary-color;
+    border-color: @primary-color;
+  }
+}
+.ant-pagination.mini .ant-pagination-item {
+  margin-left: 8px;
+}
+.ant-pagination.mini .ant-pagination-options-quick-jumper input {
+  height: auto;
 }

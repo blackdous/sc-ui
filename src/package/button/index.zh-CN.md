@@ -5,4 +5,8 @@ map:
 
 ## 简介
 
-在 (antd-design-vue)[https://antdv.com/docs/vue/introduce-cn]的基础上进行二次封装组件
+<demo src="./demo/basic.vue"
+  language="vue"
+  title="loading"
+  >
+</demo>

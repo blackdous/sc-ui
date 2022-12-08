@@ -42,7 +42,9 @@ export const sidebar = {
     {
       text: 'Navigation',
       items: [
-        { text: 'Steps', link: '/en/steps/' }
+        { text: 'Steps', link: '/en/steps/' },
+        { text: 'Pagination', link: '/en/pagination/' },
+        { text: 'Dropdown', link: '/en/dropdown/' }
       ]
     },
     {
@@ -85,7 +87,9 @@ export const sidebar = {
     {
       text: '导航',
       items: [
-        { text: '步骤条', link: '/steps/' }
+        { text: '步骤条', link: '/steps/' },
+        { text: '分页', link: '/pagination/' },
+        { text: '下拉菜单', link: '/dropdown/' }
       ]
     },
     {

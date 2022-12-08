@@ -1,7 +1,7 @@
 ---
 map:
-  path: /alert
-realPath: src/package/drawer/index.en-US.md
+  path: /pagination
+realPath: src/package/pagination/index.en-US.md
 ---
 
 ## Guide

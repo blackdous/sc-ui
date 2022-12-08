@@ -2,14 +2,18 @@
   <div ref="wrapEl"
     v-loading="loadingRef"
   >
-    <Alert message="组件方式" />
+    <h3>
+      组件方式
+    </h3>
     <Button class="my-16 mr-16" type="primary" @click="openCompFullLoading">
       全屏 Loading
     </Button>
     <Button class="my-16" type="primary" @click="openCompAbsolute"> 容器内 Loading </Button>
     <ScLoading :loading="loading" :absolute="absolute" :theme="theme" :background="background" :tip="tip" />
 
-    <Alert message="函数方式" />
+    <h3>
+      函数方式
+    </h3>
 
     <Button class="my-16 mr-16" type="primary" @click="openFnFullLoading">
       全屏 Loading
@@ -18,7 +22,9 @@
       容器内 Loading
     </Button>
 
-    <Alert message="指令方式" />
+    <h3>
+      指令方式
+    </h3>
     <Button class="my-16 mr-16" type="primary" @click="openDirectiveLoading">
       打开指令Loading
     </Button>
@@ -29,6 +35,9 @@
 import { defineComponent, ref, toRefs, reactive, inject } from 'vue'
 import { Alert, Button } from 'ant-design-vue'
 import { useLoading, ScLoading, installGlobalDirectives } from 'sc-ui'
+
+import "ant-design-vue/dist/antd.css"
+import '../../../style/index.less'
 
 export default defineComponent({
   components: { Alert, Button, ScLoading },

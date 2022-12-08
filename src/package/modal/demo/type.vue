@@ -8,7 +8,6 @@
     maskClosable
     :type="type"
     :infoDes="info"
-    footerAlign="left"
   >
     <div style="padding: 32px; background-color: #fff;">我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>

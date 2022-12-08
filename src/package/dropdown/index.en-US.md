@@ -1,7 +1,6 @@
 ---
 map:
-  path: /alert
-realPath: src/package/drawer/index.en-US.md
+  path: /dropdown
 ---
 
 ## Guide
