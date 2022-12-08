@@ -1,6 +1,6 @@
 import { iconPropType } from "/@/utils"
 
-import { CHANGE_EVENT } from "../../../constans"
+import { CHANGE_EVENT } from "../../../constant"
 import { isNumber } from '@vueuse/core';
 
 export interface StepsProp {

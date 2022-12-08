@@ -1,11 +1,12 @@
 <template>
   <span @click="handle">
-    {{ !!newProps.text ? '--' : newProps.column.statusChange(newProps.text) }}
+    {{ isEmptyText(newProps.text) ? '--' : newProps.column.statusChange(newProps.text) }}
   </span>
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { isEmptyText } from '../../../../utils/is'
 
 const props = () =>({
   column: {
@@ -39,6 +40,7 @@ export default defineComponent({
 
     return {
       newProps,
+      isEmptyText,
       handle
     }
   }

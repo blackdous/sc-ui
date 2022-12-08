@@ -139,9 +139,9 @@ interface ButtonType {
 | --- | --- | --- |
 | multipleChange | 点击按钮回调事件 | Function(fetchPrams) |
 
-### serach 组件
+### search 组件
 
-**组件支持`solt`传入(`serach`)**
+**组件支持`solt`传入(`search`)**
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -164,14 +164,14 @@ interface ButtonType {
 
 `typeLise` 支持数组、普通函数、promise函数
 `select`组件选中，执行`action`方法，参数`fetachParams`; 选中事件可以监听`selectChange`事件
-`action`事件，点击函数执行函数，也可以通过`serachClick`事件监听
+`action`事件，点击函数执行函数，也可以通过`searchClick`事件监听
 
 #### 事件
 
 | 事件名称 | 说明   | 回调参数    |
 | --- | --- | --- |
 | selectChange | 搜索组件中的select组件选中时的回调 | Function(fetchPrams) |
-| serachClick | 搜索组件点击搜索icon时的回调 | Function(fetchPrams) |
+| searchClick | 搜索组件点击搜索icon时的回调 | Function(fetchPrams) |
 
 ## 自定义Action列
 
@@ -352,9 +352,9 @@ const dataSource = [
 
 说明: 用于清除当前列筛选的数据值
 
-**setSerachOptions**
+**setSearchOptions**
 
-类型：`(props: Partial<SerachOptions>) => void`
+类型：`(props: Partial<SearchOptions>) => void`
 
 说明: 用于设置搜索组件配置
 
@@ -381,6 +381,12 @@ const dataSource = [
 类型：`(props: Partial<string[key]>) => void`
 
 说明: 用于设置自定义列disabled状态数据
+
+**clearFilter**
+
+类型：`() => void`
+
+说明: 用于清除头部状态
 
 **setProps**
 
@@ -559,7 +565,7 @@ const dataSource = [
 | scroll                  | `any`                                              | -       | -      | 参考官方文档 scroll                                                                             |      |
 | createButton                  | `CreateButton`                                              | -       | -      |  头部创建按钮                                                                             |      |
 | multipleActionOptions                  | `MutilpActionOptions`                                              | -       | -      |  用于展示单选按钮组                                                                           |      |
-| serachOptions                  | `SerachOptions`                                              | -       | -      |   头部搜索组件配置数据                                                                        |      |
+| searchOptions                  | `SearchOptions`                                              | -       | -      |   头部搜索组件配置数据                                                                        |      |
 | activeOptions                  | `ActiveOptions`                                              | -       | -      |   用于配置是否显示刷新、自定列按钮                                                                     |      |
 | actionsOptions                  | `ActionsOptions`                                              | -       | -      |   用于全局配置操作列数据；会被record 上的 数据覆盖                                                     |      |
 | columnModalList                  | `ColumnModalList`                                              | -       | -      |   用于配置自定义数据源                                                    |      |
@@ -617,11 +623,11 @@ export interface CreateButton {
   }
 ```
 
-### serachOptions
+### searchOptions
 
 ```ts
 
-export interface SerachOptions {
+export interface SearchOptions {
   // 是否显示搜索组件
   show?: boolean,
   // 是否显示select 组件
@@ -657,8 +663,6 @@ export interface ActiveOptions {
     text?: string,
     // 是否显示
     show?: boolean,
-    // 是否显示 tooltip
-    showTooltip?: boolean,
     // 点击事件是否可用
     isDisabled?: boolean,
     // 自定义方法，点击按钮执行action方法，如果不传，刷新当前页面
@@ -669,11 +673,20 @@ export interface ActiveOptions {
     text?: string,
     // 是否显示
     show?: boolean,
-    // 是否显示 tooltip
-    showTooltip?: boolean,
     // 点击事件是否可用
     isDisabled?: boolean
-  }
+  },
+  download?: {
+    // tooltip 显示 文字
+    text?: string,
+    // 是否显示
+    show?: boolean,
+     // 点击事件是否可用
+    isDisabled?: boolean,
+    // 自定义方法，点击按钮执行action方法，如果不传，href有值直接执行
+    action?: Fn,
+    href?: string
+  },
 }
 ```
 
@@ -722,6 +735,7 @@ export interface ActiveOptions {
 | type      | `Type`                                                 | -   | `status 、 copy 、 ellipsis 、handle`      | 每列使用内置组件配置 |
 | filtered      | boolean                                           | -   |   -    | 选中之后filtericon 会高亮 |
 | filterMultiple      | boolean                                           | -   |   -    | filter是否可以多选 |
+| titleType      | `TitleType`                                           | -   |   `describe`、 `unit` | 头部内置自定义组件 |
 
 
 ### Type
@@ -731,9 +745,25 @@ export interface ActiveOptions {
     // 使用的组件名 address | copy | ellipsis | handle
     componentName: string,
     props: any
-  },
+  }
 ```
 
+### TitleType
+
+```ts
+  titleType: {
+    // 使用的组件名 `describe`、 `unit`
+    componentName: string,
+    props: {
+      // 设置column 名称
+      text: 'columnName',
+      // tooltip提示框
+      describe: '',
+      // 单位
+      unit: ''
+    }
+  }
+```
 
 ## 事件
 
@@ -751,7 +781,7 @@ export interface ActiveOptions {
 | on-action | `Function({...FetchParams, record, acitonItem})`                | 操作列点击事件触发                       |
 | create-click | `Function({...FetchParams})`                | 头部创建按钮点击触发                 |
 | multiple-change | `Function({...FetchParams, multipleItem})`                | 头部按钮组点击触发                       |
-| serach-click | `Function({...FetchParams})`                | 头部点击搜索icon触发                     |
+| search-click | `Function({...FetchParams})`                | 头部点击搜索icon触发                     |
 | filter | `Function({...FetchParams})`                | 点击筛选事件触发                       |
 
 
@@ -762,13 +792,13 @@ export interface ActiveOptions {
 除以下参数外，官方文档内的 slot 也都支持，具体可以参考 [antv table](https://2x.antdv.com/components/table-cn/#API)
 
 :::
-'createButton', 'serach', 'multipleBtns'
+'createButton', 'search', 'multipleBtns'
 
 | 名称              | 说明             |  版本  |
 | ----------------- | ---------------- | -- |
 | createButton        | 表格顶部左侧创建按钮|  |
 | multipleBtns           | 表格顶部左侧侧区域 |  |
-| serach | 表格顶部右侧区域 搜索组件      |  |
+| search | 表格顶部右侧区域 搜索组件      |  |
 | tableActive | 表格顶部右侧区域 刷新、自定义列组件      |  |
 | EmptyVue | 表格空数据状态组件     |  | 
 

@@ -32,12 +32,12 @@
         show: true,
         options: radioList
       }"
-      :serach-options="{
+      :search-options="{
         show: true,
         showSelect: true,
         // typeList: () => radioList,
         typeList: promiseTypelist,
-        customSerachFunc: serachHanle,
+        customSearchFunc: searchHanle,
         selectOptions: {
           placeholder: '请选择',
           width: '80px'
@@ -57,7 +57,7 @@
       @onAction="handle"
       @createClick="createClick"
       @multipleChange="multipleChangeHandle"
-      @serachClick="serachHanle"
+      @searchClick="searchHanle"
       @filter="handleFilter"
       @refresh="refresh"
       >
@@ -354,7 +354,7 @@ const createClick = (data: ComputedRef) => {
   columnList.value = ColumnList
 }
 
-const serachHanle = (data: ComputedRef) => {
+const searchHanle = (data: ComputedRef) => {
   console.log('Data: ', data);
 }
 //@ts-ignore

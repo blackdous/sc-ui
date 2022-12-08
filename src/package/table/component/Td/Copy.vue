@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!!newProps.text"
+    v-if="isEmptyText(newProps.text)"
     :id="`tb_btn_${index}_copy`"
     class="tbCopy"
   >
@@ -24,6 +24,7 @@ import { defineComponent, computed, nextTick, unref } from 'vue'
 import { CopyOutlined } from '@ant-design/icons-vue'
 import { useClipboard } from '@vueuse/core'
 import { message } from 'ant-design-vue'
+import { isEmptyText } from '../../../../utils/is'
 
 const props = () => ({
   column: {
@@ -82,6 +83,7 @@ export default defineComponent({
       isCopyPrefix,
       newProps,
       copyText,
+      isEmptyText,
       // copy,
       handle
     }

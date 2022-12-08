@@ -108,7 +108,7 @@ import { computed, defineProps, defineEmits, ref, onMounted, unref, watch } from
 import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 
-import { basePrefixCls } from '../../../constans'
+import { basePrefixCls } from '../../../constant'
 import { treeMap } from '../../../utils/treeHelper'
 
 import cloneDeep from 'lodash/cloneDeep'

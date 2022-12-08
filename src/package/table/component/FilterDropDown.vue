@@ -62,7 +62,7 @@ import { Dropdown, Menu, MenuItem, SubMenu } from 'ant-design-vue'
 import cloneDeep from 'lodash/cloneDeep'
 //@ts-ignore
 import { scFilterProps, FilterItem } from '../types/column'
-import { basePrefixCls } from '../../../constans'
+import { basePrefixCls } from '../../../constant'
 import { findNode } from '../../../utils/treeHelper'
 
 // export interface 

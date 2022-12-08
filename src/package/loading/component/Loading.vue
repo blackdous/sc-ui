@@ -18,10 +18,10 @@
 import { h, PropType, VNode } from 'vue'
 import { defineComponent } from 'vue'
 import { Spin } from 'ant-design-vue'
-import { SizeEnum } from '@/enums/sizeEnum'
+import { SizeEnum } from '../../../enums/sizeEnum'
 
 export default defineComponent({
-  name: 'BzLoading',
+  name: 'ScLoading',
   components: { Spin },
   props: {
     tip: {

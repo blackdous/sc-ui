@@ -99,7 +99,11 @@ export interface Column {
   filterSelected?: Array<FilterItem>,
   flag?: string,
   handle?: (column: Column, record: any) => void | Promise<any>, 
-  type: {
+  type?: {
+    componentName: string,
+    props: any
+  },
+  titleType?: {
     componentName: string,
     props: any
   },

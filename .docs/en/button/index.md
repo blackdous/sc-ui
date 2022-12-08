@@ -1,7 +1,7 @@
 ---
 map:
-  path: /alert
-realPath: src/package/alert/index.en-US.md
+  path: /button
+realPath: src/package/loading/index.en-US.md
 ---
 
 ## Guide

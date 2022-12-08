@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { basePrefixCls } from '../../../constans'
+import { basePrefixCls } from '../../../constant'
 import { Alert } from 'ant-design-vue'
 
 import { alertProps } from './type'

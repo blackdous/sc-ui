@@ -1,4 +1,4 @@
-import type { TableProps, TableActionType, FetchParams, BasicColumn, SerachOptions, MutilpActionOptions } from '../types/table'
+import type { TableProps, TableActionType, FetchParams, BasicColumn, SearchOptions, MutilpActionOptions } from '../types/table'
 import type { Column } from '../types/column'
 import type { PaginationProps } from '../types/pagination'
 import type { DynamicProps } from '../../../../types/utils'
@@ -134,7 +134,7 @@ export function useTable(tableProps?: Props): [
       return toRaw(getTableInstance().getRowSelection());
     },
     // clearFilterDropdownRef,
-    // setSerachOptions,
+    // setSearchOptions,
     // setMutilpAction,
     // setFilterColumnRef,
     // setFilterColumnChecked,
@@ -142,8 +142,8 @@ export function useTable(tableProps?: Props): [
     clearFilterDropdownRef: (column: Column) => {
       return toRaw(getTableInstance().clearFilterDropdownRef(column));
     },
-    setSerachOptions: (serachOptions: SerachOptions) => {
-      return toRaw(getTableInstance().setSerachOptions(serachOptions));
+    setSearchOptions: (searchOptions: SearchOptions) => {
+      return toRaw(getTableInstance().setSearchOptions(searchOptions));
     },
     setMutilpAction: (multipleActionOptions: MutilpActionOptions) => {
       return toRaw(getTableInstance().setMutilpAction(multipleActionOptions));

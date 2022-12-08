@@ -10,10 +10,6 @@
       >
       <!-- :langLocale="zhCN" -->
       <template #copy1="{text, record, index, column}">
-        <!-- {{text}} -->
-        <!-- {{record}} -->
-        <!-- {{index}} -->
-        <!-- {{column}} -->
         <Copy v-bind="{text, record, index, column}">
           <template #text>
             1111
@@ -25,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, inject } from 'vue'
+import { ref } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy } from 'sc-ui'
@@ -45,22 +41,29 @@ const columns = [
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
   {
-    title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
+    dataIndex: 'address', key: '1', width: 160,
     type: {
       componentName: 'ellipsis',
       props: {
         lineheigth: 2
       }
+    },
+    titleType: {
+      componentName: 'describe',
+      props: {
+        text: 'Column 1',
+        describe: '提示内容'
+      }
     }
   },
-  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160,
-    // type: {
-    //   componentName: 'copy',
-    //   props: {
-    //     successTxt: 'copy 成功',
-    //     errorText: ''
-    //   }
-    // }
+  { dataIndex: 'age', key: '2', width: 160,
+    titleType: {
+      componentName: 'unit',
+      props: {
+        text: 'Column 2',
+        unit: '(元)'
+      }
+    },
     slots: {
       customRender: 'copy1'
     }

@@ -1,7 +1,7 @@
 import type { ComputedRef } from "vue"
 import { ref, watchEffect, unref, Ref, computed, watch, onMounted, reactive } from "vue"
 
-import { FETCH_SETTING, PAGE_SIZE } from '../../../constans/index'
+import { FETCH_SETTING, PAGE_SIZE } from '../../../constant/index'
 import { isFunction, isBoolean } from '../../../utils/is'
 import type { PaginationProps } from '../types/pagination'
 import { FetchParams, SorterResult } from '../types/table'
@@ -48,8 +48,6 @@ export const useDataSource = (
 
   const pagination = ref<Recordable>({})
   const sorter = ref<Recordable>({})
-
-  const customComponentKey = ref<string[]>(['copy', 'address', 'ellipsis', 'status'])
 
   const handle = (data: any) => {
     emit('handleTd', data)
@@ -371,7 +369,6 @@ export const useDataSource = (
     },
   )
   return {
-    customComponentKey,
     getDataSourceRef,
     getRowKey,
     getAutoCreateKey,

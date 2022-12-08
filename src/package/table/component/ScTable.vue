@@ -1,16 +1,19 @@
 <template>
   <div ref="wrapRef" :class="className">
-    <ConfigProvider :locale="newProps.langLocale">
+    <ConfigProvider 
+      :locale="newProps.langLocale"
+      :transformCellText="({ text }) => isEmptyText(text) ? text : '--'"
+    >
       <Spin :spinning="false" v-if="isShowFilter">
         <TableFilter
           v-model:selectValue="selectValue"
           v-model:textValue="textValue"
           :createButtonOptions="createButtonOptions"
           :multipleActionOptions="multipleOptions"
-          :serachOptions="serachOptions"
+          :searchOptions="searchOptions"
           @createClick="createHandle"
           @multipleChange="multipleChangeHandle"
-          @serachClick="serachClickHandle"
+          @searchClick="searchClickHandle"
           @selectChange="handleSelectChange"
           ref="tableFilter"
         >
@@ -18,13 +21,13 @@
             template
             #[item]="data"
             v-for="item in Object.keys($slots).filter((item) =>
-              ['createButton', 'serach', 'multipleBtns'].includes(item)
+              ['createButton', 'search', 'multipleBtns'].includes(item)
             )"
             :key="item"
           >
             <slot :name="item" v-bind="data || {}"></slot>
           </template>
-          <template #tableActive v-if="!isRableActive">
+          <template #tableActive v-if="!isTableActive">
             <Tooltip
               v-if="activeOptions?.reload?.show"
               overlayClassName="scTooltip-white"
@@ -83,8 +86,8 @@
       <Table
         size="small"
         ref="tableRef"
-        :expand-icon="expandIconFnc"
         v-bind="tableBindValue"
+        :expand-icon="expandIconFnc"
         @change="handleTableChange"
       >
         <!-- :scroll="{ y: newProps?.scroll?.y || 500}" -->
@@ -93,7 +96,7 @@
           template
           #[item]="data"
           v-for="item in Object.keys($slots).filter(item => 
-            ![...customComponentKey, 'renderEmpty'].includes(item)
+            ![...customComponentKey, ...customComponentHeaderKey, 'renderEmpty'].includes(item)
           )"
           :key="item"
         >
@@ -101,14 +104,26 @@
         </template>
         
         <template
-          v-for="slotItem in tableBindValue.columns.filter((item: { type: any }) => !!item.type)"
+          v-for="slotItem in tableBindValue.columns.filter((item:any) => !!item.type)"
           #[slotItem.type.componentName]="slotProps"
         >
           <component
-            :is="getComponent(slotItem.type.componentName)"
+            :is="getTypeComponent(slotItem.type.componentName)"
             v-bind="{ ...slotProps, tableName: slotItem.type.componentName }"
             :key="slotItem.dataIndex"
             v-on="{...getEvent(slotItem.type.componentName)}"
+          />
+        </template>
+
+        <template
+          v-for="slotItem in tableBindValue.columns.filter((item:any) => !!item.titleType)"
+          #[slotItem.titleType.componentName]="slotProps"
+        >
+          <component
+            :is="getTitleComponent(slotItem.titleType.componentName)"
+            v-bind="{ ...slotProps, ...slotItem.titleType.props, column: slotItem, tableName: slotItem.titleType.componentName }"
+            :key="slotItem.dataIndex"
+            v-on="{...getEvent(slotItem.titleType.componentName)}"
           />
         </template>
 
@@ -145,7 +160,7 @@
       </Table>
       <ColumnDialogVue
         v-model:visible="visible"
-        :columnList="columnList || getFilterColumnRef"
+        :columnList="newProps.columnFilterList || getFilterColumnRef"
         @cancelModal="cancelModal"
         @okModal="okModal"
       >
@@ -162,10 +177,9 @@
 import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw } from 'vue'
 import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
 import { FilterFilled } from '@ant-design/icons-vue'
-// import enUS from 'ant-design-vue/es/locale/en_US'
-// import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 
-import { basePrefixCls } from '../../../constans'
+import { isEmptyText } from '../../../utils/is'
+import { basePrefixCls } from '../../../constant'
 import TableFilter from './TableFilter.vue'
 import ScTableAction, { ActionItemProps } from './TableAction.vue'
 import FilterDropDownVue from './FilterDropDown.vue'
@@ -173,6 +187,7 @@ import ColumnDialogVue from './ColumnDialog.vue'
 import EmptyVue from './Empty.vue'
 import FilterTagsVue from './FilterTags.vue'
 import TdComponents from './Td'
+import THComponents from './Th'
 
 //@ts-ignore
 import { tableProps, TableProps, ButtonType, TableActionType, SorterResult, PaginationProps } from '../types/table'
@@ -187,7 +202,6 @@ import { useActions } from '../hooks/useActions'
 import { useColumn } from '../hooks/uesColumn'
 import { createTableContext } from '../hooks/useTableContext'
 import isFunction from 'lodash/isFunction'
-// import { Column } from '../types/column';
 
 const tablePrefixCls = basePrefixCls + 'Table';
 
@@ -211,11 +225,8 @@ export default defineComponent({
     ConfigProvider,
     EmptyVue,
     FilterTagsVue,
-    ...TdComponents
-    // Address,
-    // Copy,
-    // Ellipsis,
-    // Status,
+    ...TdComponents,
+    ...THComponents
   },
   setup(props, { attrs, slots, emit, expose }) {
     const tableRef = ref()
@@ -248,10 +259,6 @@ export default defineComponent({
       return { ...props, ...unref(innerPropsRef) } as TableProps;
     })
     const visible = ref(false);
-
-    const allOptions = computed(() => {
-      return { ...props, ...attrs };
-    });
 
     const { getLoading, setLoading } = useLoading(newProps);
 
@@ -288,9 +295,10 @@ export default defineComponent({
       isShowFilter,
       createButtonOptions,
       multipleOptions,
-      serachOptions,
-      setSerachOptions,
+      searchOptions,
+      setSearchOptions,
       setMutilpAction,
+      clearAll,
     } = useFilter(newProps, selectedRowKeysRef, fetchParams)
 
     const {
@@ -298,7 +306,6 @@ export default defineComponent({
     } = useActions(newProps, selectedRowKeysRef, fetchParams)
 
     const {
-      customComponentKey,
       getDataSourceRef,
       getRowKey,
       getAutoCreateKey,
@@ -328,11 +335,14 @@ export default defineComponent({
     );
 
     const {
-      // getColumnRef,
+      customComponentKey,
+      customComponentHeaderKey,
       getFilterColumnRef,
       getFilterDropdownRef,
       getFetchFilter,
       getColumns,
+      getTypeComponent,
+      getTitleComponent,
       setFilterDropdownRef,
       clearFilterDropdownRef,
       clearFilterAllDropdownRef,
@@ -343,7 +353,7 @@ export default defineComponent({
 
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);
-      fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, selectedRowRef, pagination: getPaginationInfo}
+      fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, selectedRowRef, setLoading, pagination: getPaginationInfo}
       return {
         ...attrs,
         ...unref(newProps),
@@ -372,7 +382,7 @@ export default defineComponent({
       return Object.keys(slots).includes('empty');
     });
 
-    const isRableActive = computed(() => {
+    const isTableActive = computed(() => {
       return Object.keys(slots).includes('tableActive');
     });
     const isCustomFilter = computed(() => {
@@ -383,16 +393,6 @@ export default defineComponent({
         innerPropsRef.value = { ...unref(innerPropsRef), ...props };
       }
 
-    const getComponent = (type:string) => {
-      // 预设组件
-      if (unref(customComponentKey).includes(type)) {
-        return type.charAt(0).toLocaleUpperCase() + type.slice(1)
-      } else {
-        // 不识别组件
-        return type
-      }
-    }
-
     const handle = (action: ActionItemProps, record: any) => {
       if (isFunction(action.action)) {
         action.action({...unref(fetchParams), action, record})
@@ -402,7 +402,7 @@ export default defineComponent({
     };
 
     const handleSelectChange = (item: string) => {
-      const selectItem = unref(serachOptions).typeList.find((_item: ButtonType) => item === _item.value)
+      const selectItem = unref(searchOptions).typeList.find((_item: ButtonType) => item === _item.value)
       if (item) {
         fetchParams.value = {...unref(fetchParams), selectValue: item}
       }
@@ -443,11 +443,10 @@ export default defineComponent({
       }
     };
 
-    // eslint-disable-next-line @typescript-eslint/ban-types
     const filterDropDownClick = (
       items: FilterItem[],
       keys: string[],
-      confirm: Function,
+      confirm: Fn,
       column: any,
     ) => {
       confirm()
@@ -528,13 +527,13 @@ export default defineComponent({
       }
     }
 
-    const serachClickHandle = ({value, type}:any) => {
-      const serach = unref(serachOptions)
+    const searchClickHandle = ({value, type}:any) => {
+      const search = unref(searchOptions)
       fetchParams.value = {...unref(fetchParams), searchSelect: type, searchText: value}
-      if (isFunction(serach?.action)) {
-        serach?.action({...unref(fetchParams)})
+      if (isFunction(search?.action)) {
+        search?.action({...unref(fetchParams)})
       } else {
-        emit('serachClick', { ...unref(fetchParams) })
+        emit('searchClick', { ...unref(fetchParams) })
       }
       handleTableChange(unref(fetchParams).pagination, unref(getFetchFilter), unref(fetchParams).sorter)
     }
@@ -555,13 +554,6 @@ export default defineComponent({
     const handleExpand = (expandedRows:any) => {
       console.log('expandedRows: ', expandedRows);
     }
-
-    // watch([() => unref(textValue), () => unref(selectValue)], ([text, select]) => {
-    //   if (text || select) {
-    //     console.log('text: ', unref(text));
-    //     console.log('select: ', unref(select));
-    //   }
-    // })
 
     onMounted(() => {
       nextTick(() => {
@@ -599,8 +591,9 @@ export default defineComponent({
       expandRows,
       collapseAll,
       
+      clearFilter: clearAll,
       clearFilterDropdownRef,
-      setSerachOptions,
+      setSearchOptions,
       setMutilpAction,
       setFilterColumnRef,
       setFilterColumnChecked,
@@ -622,10 +615,8 @@ export default defineComponent({
 
       className,
       getLoading,
-      allOptions,
-      // columnList,
       visible,
-      isRableActive,
+      isTableActive,
       isCustomFilter,
       activeOptions,
       isAction,
@@ -642,14 +633,15 @@ export default defineComponent({
 
       multipleOptions,
       createButtonOptions,
-      serachOptions,
+      searchOptions,
       actionsOptions,
       customComponentKey,
+      customComponentHeaderKey,
       getFilterColumnRef,
       isShowFilter,
       getFilterDropdownRef,
 
-      
+      isEmptyText,
       handleCloseAll,
       handle,
       createHandle,
@@ -658,8 +650,9 @@ export default defineComponent({
       multipleChangeHandle,
       handleTableChange,
       expandIconFnc,
-      serachClickHandle,
-      getComponent,
+      searchClickHandle,
+      getTypeComponent,
+      getTitleComponent,
       refresh,
       handleDownload,
       setFilterColumnRef,

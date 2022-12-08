@@ -145,7 +145,7 @@ export interface MutilpActionOptions {
 // export declare type MutilpActionOptions = ExtractPropTypes<typeof multipleActionOptions>
 
 
-export const serachOptions = () => ({
+export const searchOptions = () => ({
   // 是否展示
   show: { type: Boolean, default: true },
   // 是否显示select
@@ -159,7 +159,7 @@ export const serachOptions = () => ({
   inputOptions: Object as PropType<{placeholder: (key:string) => string | string, maxlength: number, width: string, allowClear: boolean}>
 })
 
-export interface SerachOptions {
+export interface SearchOptions {
   show?: boolean,
   showSelect?: boolean,
   typeList?: (...arg: any) => Promise<any> | Array<{label: string, value: string, disabled: boolean}>,
@@ -223,8 +223,8 @@ export const tableProps = () => ({
   multipleOptions: {
     type: Object as PropType<MutilpActionOptions>
   },
-  serachOptions: {
-    type: Object as PropType<SerachOptions>
+  searchOptions: {
+    type: Object as PropType<SearchOptions>
   },
   actionsOptions: Object as PropType<ActionOptions>,
   customFilter: {
@@ -242,7 +242,7 @@ export const tableProps = () => ({
   activeOptions: {
     type: Object as PropType<ActiveOptions>
   },
-  columnModalList: {
+  columnFilterList: {
     type: Object as PropType<Array<ColumnModalItem>>,
     default () {
       return []
@@ -376,12 +376,12 @@ export const tableProps = () => ({
 export interface TableProps {
   createButtonOptions?: CreateButton,
   multipleOptions?: MutilpActionOptions,
-  serachOptions?: SerachOptions,
+  searchOptions?: SearchOptions,
   actionsOptions?: ActionOptions,
   customFilter?: boolean,
   filterTag?: boolean,
   activeOptions?: ActiveOptions,
-  columnModalList?: Array<ColumnModalItem>,
+  columnFilterList?: Array<ColumnModalItem>,
   // modalOptions?: ModalProps,
   bordered?: boolean,
   // 自定义排序方法
@@ -514,7 +514,7 @@ export interface TableActionType {
   setShowPagination: (show: boolean) => Promise<void>;
   getShowPagination: () => boolean;
   clearFilterDropdownRef: (column: Column) => void,
-  setSerachOptions: (serachOptions: SerachOptions) => void,
+  setSearchOptions: (searchOptions: SearchOptions) => void,
   setMutilpAction: (multipleActionOptions: MutilpActionOptions) => void,
   setFilterColumnRef: (columns: Column[]) => void,
   setFilterColumnChecked: (colKeys: string[] | number[]) => void,

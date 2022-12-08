@@ -1,12 +1,12 @@
 <template>
   <span>
     <a
-      v-if="text"
+      v-if="isEmptyText(newProps.text)"
       :id="id"
       :class="['td_href', linkClass]"
       @click="handle"
     >
-      {{ text }}
+      {{ newProps.text }}
       <i
         v-if="newProps.column.icon"
         :class="['iconfont', newProps.column.icon]"
@@ -22,6 +22,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, unref } from 'vue'
+import { isEmptyText } from '../../../../utils/is'
+
 const props = () => ({
   column: {
     type: Object,
@@ -78,6 +80,7 @@ export default defineComponent({
       id,
       linkClass,
       newProps,
+      isEmptyText,
       handle
     }
   }

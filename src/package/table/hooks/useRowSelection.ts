@@ -1,7 +1,7 @@
 import { isFunction } from '../../../utils/is';
 import type { TableRowSelection } from '../types/table';
 import { computed, ComputedRef, nextTick, Ref, ref, toRaw, unref, watch } from 'vue';
-import { ROW_KEY } from '../../../constans';
+import { ROW_KEY } from '../../../constant';
 import omit from 'lodash/omit'
 import { findNodeAll } from '../../../utils/treeHelper'
 

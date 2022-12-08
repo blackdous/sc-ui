@@ -16,6 +16,13 @@ export const sidebar = {
       ],
     },
     {
+      text: 'General',
+      items: [
+        { text: 'Button', link: '/en/button/' },
+        { text: 'Loading', link: '/en/loading/' }
+      ]
+    },
+    {
       text: 'Data Display',
       items: [
         {
@@ -67,6 +74,13 @@ export const sidebar = {
       items: [
         { text: '简介', link: '/' },
       ],
+    },
+    {
+      text: '通用',
+      items: [
+        { text: '按钮', link: '/button/' },
+        { text: '加载动画', link: '/loading/' }
+      ]
     },
     {
       text: '导航',

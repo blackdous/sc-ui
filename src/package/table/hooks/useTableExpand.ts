@@ -40,7 +40,6 @@ export const useTableExpand = (
   }
 
   function expandRows(keys: string[]) {
-    // use row ID expands the specified table row
     const { isTreeTable } = unref(propsRef);
     if (!isTreeTable) return;
     expandedRowKeys.value = [...expandedRowKeys.value, ...keys];
@@ -66,18 +65,20 @@ export const useTableExpand = (
   const expandIconFnc = (props:any) => {
     const {record, expanded, onExpand } = props;
     const { isTreeTable } = unref(propsRef);
-    if (record?.children?.length > 0 && isTreeTable) {
-      return h('i', {
-        class: `iconfont ${expanded ? 'icon-up-circle' : 'icon-down-circle'}`,
-        onClick: (event: Event) => {
-          onExpand(record, event);
-        }
-      })
-    } else {
-      return h('span', {
-        class: `ant-table-row-expand-icon ant-table-row-spaced`
-      })
-
+    if (isTreeTable) {
+      if (record?.children?.length > 0) {
+        return h('i', {
+          class: `iconfont ${expanded ? 'icon-up-circle' : 'icon-down-circle'}`,
+          onClick: (event: Event) => {
+            onExpand(record, event);
+          }
+        })
+      } else {
+        return h('span', {
+          class: `ant-table-row-expand-icon ant-table-row-spaced`
+        })
+  
+      }
     }
   }
   return {

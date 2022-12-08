@@ -4,6 +4,13 @@ export function is(val: unknown, type: string) {
   return toString.call(val) === `[object ${type}]`;
 }
 
+export function isEmptyText <T = string> (text: T): boolean{
+  if (text === null || text === undefined || text === '') {
+    return false
+  }
+  return true
+}
+
 export function isDef<T = unknown>(val?: T): val is T {
   return typeof val !== 'undefined';
 }

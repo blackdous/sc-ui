@@ -30,18 +30,18 @@
       </template>
     </div>
     <div :class="[className + '-right']">
-      <template v-if="!isSerach && serachOptions.show">
+      <template v-if="!isSearch && searchOptions.show">
         <InputGroup>
           <Select
             v-model:value="selectValue"
-            v-if="serachOptions.showSelect"
-            :style="{width: serachOptions.selectOptions?.width || '120px'}"
+            v-if="searchOptions.showSelect"
+            :style="{width: searchOptions.selectOptions?.width || '120px'}"
             dropdownClassName="scDropdown"
-            :placeholder="serachOptions.selectOptions?.placeholder"
-            :loading="serachOptions.loading"
+            :placeholder="searchOptions.selectOptions?.placeholder"
+            :loading="searchOptions.loading"
           >
             <SelectOption
-              v-for="optionsItem in serachOptions.typeList"
+              v-for="optionsItem in searchOptions.typeList"
               :key="optionsItem.value"
               :value="optionsItem.value"
               :disabled:="optionsItem.disabled || optionsItem.disabled"
@@ -51,10 +51,10 @@
           </Select>
           <InputSearch
             v-model:value="textValue"
-            :maxlength="serachOptions.inputOptions?.maxlength"
-            :style="{width: serachOptions.inputOptions?.width || '120px'}"
-            :placeholder="serachOptionsRef.inputOptions?.placeholder"
-            class="scSerach"
+            :maxlength="searchOptions.inputOptions?.maxlength"
+            :style="{width: searchOptions.inputOptions?.width || '120px'}"
+            :placeholder="searchOptionsRef.inputOptions?.placeholder"
+            class="scSearch"
             @change="updateTextValue"
             @search="onSearch"
             :allowClear="true"
@@ -68,7 +68,7 @@
         </InputGroup>
       </template>
       <template v-else>
-        <slot name="serach"></slot>
+        <slot name="search"></slot>
       </template>
       <div :class="[className + '-active']">
         <slot name="tableActive"></slot>
@@ -78,15 +78,15 @@
 </template>
 
 <script lang='ts'>
-import { computed, defineComponent, PropType, ref, defineExpose, unref, watch, isRef } from 'vue'
+import { computed, defineComponent, PropType, ref, defineExpose, unref } from 'vue'
 import { Button, Select, SelectOption, Tooltip, InputSearch, InputGroup } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
 import cloneDeep from 'lodash/cloneDeep'
 
-import { basePrefixCls } from '../../../constans'
+import { basePrefixCls } from '../../../constant'
 import { ScRadioTooltipGroup } from '../../radio'
 //@ts-ignore
-import { CreateButton, MutilpActionOptions, SerachOptions } from './types/table'
+import { CreateButton, MutilpActionOptions, SearchOptions } from './types/table'
 import ColumnDialogVue from './ColumnDialog.vue'
 import { isFunction } from '../../../utils/is'
 
@@ -115,8 +115,8 @@ export const TableFilterProps = () => ({
       }
     }
   },
-  serachOptions: {
-    type: Object as PropType<SerachOptions>,
+  searchOptions: {
+    type: Object as PropType<SearchOptions>,
     default () {
       return {
       }
@@ -142,11 +142,11 @@ export default defineComponent({
   setup(props, { slots, emit }) {
     const multipleValue = ref()
     const textValue = ref()
-    const serachOptionsRef = ref()
+    const searchOptionsRef = ref()
     const selectedItem = ref()
 
-    const isSerach = computed(() => {
-      return Object.keys(slots).includes('serach') 
+    const isSearch = computed(() => {
+      return Object.keys(slots).includes('search') 
     })
 
     const isCreateButton = computed(() => {
@@ -164,7 +164,7 @@ export default defineComponent({
     
     const selectValue = computed({
       get: () => {
-        const { typeList } = props.serachOptions || {}
+        const { typeList } = props.searchOptions || {}
         let defaultValue = undefined
         if (!props.selectValue && typeList) {
           defaultValue = typeList[0]?.value
@@ -173,7 +173,7 @@ export default defineComponent({
         return props.selectValue || defaultValue
       },
       set: (val) => {
-        selectedItem.value = unref(serachOptions)?.typeList?.find((item: any)=> item.value === val)
+        selectedItem.value = unref(searchOptions)?.typeList?.find((item: any)=> item.value === val)
         emit('selectChange', val)
         emit('update:selectValue', val)
       }
@@ -187,25 +187,25 @@ export default defineComponent({
       return props.multipleActionOptions
     })
 
-    const updateSerachOptions = (serachOptions: SerachOptions) => {
-      const cloneSerachOptions = cloneDeep(serachOptions)
-      if (cloneSerachOptions) {
-        const newSerachOptions = {
-          ...serachOptions
+    const updateSearchOptions = (searchOptions: SearchOptions) => {
+      const cloneSearchOptions = cloneDeep(searchOptions)
+      if (cloneSearchOptions) {
+        const newSearchOptions = {
+          ...searchOptions
         }
-        if (newSerachOptions.inputOptions?.placeholder) {
-          if (isFunction(newSerachOptions.inputOptions.placeholder)) {
-            newSerachOptions.inputOptions.placeholder = newSerachOptions.inputOptions.placeholder(unref(selectedItem))
+        if (newSearchOptions.inputOptions?.placeholder) {
+          if (isFunction(newSearchOptions.inputOptions.placeholder)) {
+            newSearchOptions.inputOptions.placeholder = newSearchOptions.inputOptions.placeholder(unref(selectedItem))
           }
         }
-        serachOptionsRef.value = newSerachOptions
+        searchOptionsRef.value = newSearchOptions
       }
     }
-    const serachOptions = computed(() => {
-      if (props.serachOptions) {
-        updateSerachOptions(cloneDeep(props.serachOptions))
+    const searchOptions = computed(() => {
+      if (props.searchOptions) {
+        updateSearchOptions(cloneDeep(props.searchOptions))
       }
-      return props.serachOptions
+      return props.searchOptions
     })
 
     const createHandle = () => {
@@ -218,33 +218,40 @@ export default defineComponent({
       emit('multipleChange', item[0] || {})
     }
 
-    const resetSerach = () => {
+    const resetSearch = () => {
       textValue.value = ''
+      selectValue.value = ''
     }
 
     const resetMutilp = () => {
       multipleValue.value = ''
     } 
 
+    const clearAll = () => {
+      resetMutilp()
+      resetMutilp()
+    }
+
     const updateTextValue = (value:string) => {
       emit('update:textValue', unref(textValue))
     }
 
     const onSearch = (val:string) => {
-      emit('serachClick', { value: unref(val), type: unref(selectValue) })
+      emit('searchClick', { value: unref(val), type: unref(selectValue) })
     }
 
     defineExpose({
       resetMutilp,
-      resetSerach
+      resetSearch,
+      clearAll
     })
 
     return {
       createButtonOptions,
       multipleActionOptions,
-      serachOptions,
-      serachOptionsRef,
-      isSerach,
+      searchOptions,
+      searchOptionsRef,
+      isSearch,
       isCreateButton,
       isMutilpBtns,
       className,

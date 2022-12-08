@@ -1,16 +1,17 @@
-import { ComputedRef, ref, watchEffect, unref, Ref, watch, nextTick, onMounted, computed} from "vue"
-import { CreateButton, MutilpActionOptions, SerachOptions } from "../types/table"
+import { ComputedRef, ref, watchEffect, isRef, unref, Ref, watch, nextTick, onMounted, computed} from "vue"
+import { CreateButton, MutilpActionOptions, SearchOptions } from "../types/table"
 import cloneDeep from 'lodash/cloneDeep'
 
 import { isFunction } from "@vueuse/core"
 export function useFilter (
   propsRef: ComputedRef<Recordable>,
   selectedRowKeysRef?: Ref<Recordable[]>,
-  fetchParams?: Ref<Recordable>
+  fetchParams?: Ref<Recordable>,
+  tableFilter?: ComputedRef<Recordable>
   ) {
   const createButtonOptions = ref<CreateButton>({})
   const multipleOptions = ref<Recordable>({})
-  const serachOptions = ref<Recordable>({})
+  const searchOptions = ref<Recordable>({})
 
   function setMutilpAction (multipleAction: MutilpActionOptions) {
     if (!multipleAction) {
@@ -31,17 +32,23 @@ export function useFilter (
     multipleOptions.value = { show, options: newmMutilpList }
   }
 
+  function clearAll () {
+    if (isRef(tableFilter)) {
+      unref(tableFilter).clearAll()
+    }
+  }
+
   function getMutilpAction () {
     return unref(multipleOptions)
   }
 
-  async function setSerachOptions (serach:SerachOptions) {
-    if (!serach) {
-      return serach
+  async function setSearchOptions (search:SearchOptions) {
+    if (!search) {
+      return search
     }
-    const { show, showSelect, typeList } = serach
+    const { show, showSelect, typeList } = search
     if (!show) {
-      serachOptions.value = serach
+      searchOptions.value = search
       return false;
     }
     let newTypeList = []
@@ -52,7 +59,7 @@ export function useFilter (
         // @ts-ignore
         newTypeList = typeList()
       }
-      serachOptions.value = { ...serach, typeList: [], loading: true}
+      searchOptions.value = { ...search, typeList: [], loading: true}
       if (Object.prototype.toString.call(typeList) === '[object Promise]') {
         // @ts-ignore
         newTypeList = await typeList
@@ -70,18 +77,18 @@ export function useFilter (
       //   )
       // }
     }
-    serachOptions.value = { ...serach, typeList: newTypeList, loading: false}
+    searchOptions.value = { ...search, typeList: newTypeList, loading: false}
   }
 
-  function getSerachOptions () {
-    return unref(serachOptions)
+  function getSearchOptions () {
+    return unref(searchOptions)
   }
   
   const  isShowFilter = computed(() => {
     const isShow = (unref(propsRef)?.activeOptions?.reload?.show 
     || unref(propsRef)?.activeOptions?.columnDialog?.show 
     || unref(propsRef)?.multipleOptions?.show 
-    || unref(propsRef)?.serachOptions?.show)
+    || unref(propsRef)?.searchOptions?.show)
     return isShow
   })
 
@@ -97,7 +104,7 @@ export function useFilter (
 
   onMounted(() => {
     setMutilpAction(unref(propsRef).multipleOptions as MutilpActionOptions)
-    setSerachOptions(unref(propsRef).serachOptions as SerachOptions)
+    setSearchOptions(unref(propsRef).searchOptions as SearchOptions)
   })
 
   watchEffect(() => {
@@ -107,11 +114,12 @@ export function useFilter (
   return {
     createButtonOptions,
     multipleOptions,
-    serachOptions,
-    setSerachOptions,
-    getSerachOptions,
+    searchOptions,
+    isShowFilter,
+    setSearchOptions,
+    getSearchOptions,
     setMutilpAction,
     getMutilpAction,
-    isShowFilter
+    clearAll
   }
 }

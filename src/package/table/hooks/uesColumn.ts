@@ -1,7 +1,7 @@
 import { ref, Ref, unref, computed, toRaw } from 'vue'
 
 import { Column, FilterItem } from '../types/column'
-import { isArray, isFunction } from '../../../utils/is';
+import { isArray, isFunction } from '../../../utils/is'
 
 export interface GetColumnsParams {
   ignoreIndex?: boolean;
@@ -13,13 +13,21 @@ export function useColumn (
   propsRef: Ref<Recordable>,
   fetchParams?: Ref<Recordable>
 ) {
+  const customComponentKey = ref<string[]>(['copy', 'address', 'ellipsis', 'status'])
+  const customComponentHeaderKey = ref<string[]>(['describe', 'unit'])
   const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<Column[]>
   const getColumnRef = computed(() => {
     const columns = unref(columnsRef).map((item) => {
-      if (item.type) {
+      if (item?.type?.componentName) {
         item.slots = {
           ...item.slots,
           customRender: item.type.componentName
+        }
+      }
+      if (item?.titleType?.componentName) {
+        item.slots = {
+          ...item.slots,
+          title: item.titleType.componentName
         }
       }
       if (item.filterList) {
@@ -31,7 +39,7 @@ export function useColumn (
     })
     return columns
   })
-  const filterColumn = ref(unref(propsRef).columnModalList.length ? unref(propsRef).columnModalList : unref(getColumnRef))
+  const filterColumn = ref(unref(propsRef).columnFilterList.length ? unref(propsRef).columnFilterList : unref(getColumnRef))
 
   const getFilterDropdownRef = computed(() => {
     return filterColumn.value
@@ -98,6 +106,25 @@ export function useColumn (
     return columns
   })
 
+  const getTypeComponent = (type:string) => {
+    // 预设组件
+    if (unref(customComponentKey).includes(type)) {
+      return type.charAt(0).toLocaleUpperCase() + type.slice(1)
+    } else {
+      // 不识别组件
+      return type
+    }
+  }
+  const getTitleComponent = (type:string) => {
+    // 预设组件
+    if (unref(customComponentHeaderKey).includes(type)) {
+      return type.charAt(0).toLocaleUpperCase() + type.slice(1)
+    } else {
+      // 不识别组件
+      return type
+    }
+  }
+
   function setFilterColumnRef (columns: Column[]) {
     filterColumn.value = columns || []
   }
@@ -147,6 +174,10 @@ export function useColumn (
     getFilterColumnRef,
     getFilterDropdownRef,
     getFetchFilter,
+    customComponentKey,
+    customComponentHeaderKey,
+    getTypeComponent,
+    getTitleComponent,
     getColumns,
     setFilterDropdownRef,
     clearFilterDropdownRef,

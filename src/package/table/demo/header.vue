@@ -20,12 +20,12 @@
         show: true,
         options: radioList
       }"
-      :serach-options="{
+      :search-options="{
         show: true,
         showSelect: true,
         // typeList: () => radioList,
         typeList: promiseTypelist,
-        customSerachFunc: serachHanle,
+        customSearchFunc: searchHanle,
         selectOptions: {
           placeholder: '请选择',
           width: '120px'
@@ -207,7 +207,7 @@ const createClick = (data: ComputedRef) => {
   console.log('Data: ', data);
 }
 
-const serachHanle = (data: ComputedRef) => {
+const searchHanle = (data: ComputedRef) => {
   console.log('Data: ', data);
 }
 //@ts-ignore

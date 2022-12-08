@@ -1,7 +1,7 @@
 import type { PaginationProps } from '../types/pagination';
 // import type { TableProps } from '../types/table';
 import { computed, unref, ref, ComputedRef, watch, h } from 'vue';
-import { PAGE_SIZE } from '../../../constans';
+import { PAGE_SIZE } from '../../../constant';
 
 const isBoolean = (source:any) => {
   return Object.prototype.toString.call(source) === '[object Boolean]'
