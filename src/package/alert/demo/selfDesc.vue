@@ -13,8 +13,7 @@
         <InfoCircleFilled/>
       </template>
       <template #description>
-        <!-- v-textCollapse="'close'" -->
-        <div>
+        <div v-textCollapse="'close'">
           1. 小程序云服务器有奖内测中，即刻成为产品体验官 <br/>
           2. 云服务器限时秒杀，首购1C1G仅需99元/年， 还有多款配置供您选择! <br/>
           3. 小程序云服务器有奖内测中，即刻成为产品体验官 <br/>
@@ -29,7 +28,7 @@
 
 <script setup lang="ts">
 import { inject } from 'vue'
-import { ScAlert, installGlobalDireactives } from 'sc-ui'
+import { ScAlert, installGlobalDirectives } from 'sc-ui'
 import { InfoCircleFilled } from '@ant-design/icons-vue';
 import { Button } from 'ant-design-vue';
 import "ant-design-vue/dist/antd.css"
@@ -39,7 +38,7 @@ const gotoLink = () => {
 
 const globalApp = inject('globalApp')
 // @ts-ignore
-installGlobalDireactives(globalApp)
+installGlobalDirectives(globalApp)
 </script>
 
 <style lang="less">

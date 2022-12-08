@@ -1,6 +1,5 @@
 import type { App } from 'vue'
 import { message } from 'ant-design-vue'
-// import 'ant-design-vue/dist/antd.css'
 
 import './style/index.less';
 
@@ -10,11 +9,13 @@ import { ScRadioGroup, ScRadioTooltipGroup } from './package/radio'
 import { ScAlert } from './package/alert'
 import { ScModal } from './package/modal'
 import { ScTable, useTable, Copy } from './package/table'
+import { ScLoading, useLoading } from './package/loading'
 
 
-import { installGlobalDireactives } from './direactives'
-import ClickOutside from './direactives/clickOutside'
-import TextCollapse from './direactives/textCollapse'
+import { installGlobalDirectives } from './directives'
+import ClickOutside from './directives/clickOutside'
+import TextCollapse from './directives/textCollapse'
+import LoadingDirective from './directives/loading'
 
 message.config({
   duration: 2, // 持续时间
@@ -30,7 +31,8 @@ const components = [
   ScAlert,
   ScModal,
   ScTable,
-  Copy
+  Copy,
+  ScLoading
 ]
 
 const install = (app: App) => {
@@ -54,13 +56,14 @@ export {
   ScAlert,
   ScModal,
   ScTable,
-  Copy
+  Copy,
+  ScLoading
 }
 
 export * from './types'
 
-export { installGlobalDireactives, ClickOutside, TextCollapse }
+export { installGlobalDirectives as installGlobalDirectives, ClickOutside, TextCollapse, LoadingDirective }
 
-export { useTable }
+export { useTable, useLoading }
 
 export default ScUi;

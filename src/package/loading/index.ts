@@ -1,5 +1,5 @@
 import { withInstall } from "../../utils/index"
-import scLoading from './src/Loading.vue'
+import scLoading from './component/Loading.vue'
 
 export const ScLoading = withInstall(scLoading)
 

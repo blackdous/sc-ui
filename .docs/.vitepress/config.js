@@ -5,6 +5,13 @@ import { genApiDoc } from '@ruabick/vite-plugin-gen-api-doc';
 import { sidebar } from './sidebar.js';
 import { resolve } from 'path';
 
+export const ssrTransformCustomDir = () => {
+  return {
+    props: [],
+    needRuntime: true,
+  };
+};
+
 export default defineConfig({
   lang: 'zh-CN',
   lastUpdated: true,
@@ -37,7 +44,17 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/sc-ui' },
     ],
   },
-  vue: {},
+  vue: {
+    template: {
+      ssr: true,
+      compilerOptions: {
+        directiveTransforms: {
+          textCollapse: ssrTransformCustomDir,
+          loading: ssrTransformCustomDir,
+        },
+      },
+    },
+  },
   vite: {
     plugins: [genTemp(), genApiDoc()],
     resolve: {
