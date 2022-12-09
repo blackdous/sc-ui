@@ -1,8 +1,8 @@
 <template>
   <div>
     <ScSteps :active="active" finish-status="success">
-      <ScStep title="step 1" />
-      <ScStep title="step 2" status="error"/>
+      <ScStep title="step 1" description="222222"/>
+      <ScStep title="step 2" status="error" description="1111"/>
       <ScStep title="Step 3"/>
     </ScSteps>
     <Button style="margin-top: 12px" @click="next">Next step</Button>

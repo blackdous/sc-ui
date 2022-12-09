@@ -160,7 +160,7 @@
       </Table>
       <ColumnDialogVue
         v-model:visible="visible"
-        :columnList="newProps.columnFilterList || getFilterColumnRef"
+        :columnList="getFilterColumnRef"
         @cancelModal="cancelModal"
         @okModal="okModal"
       >

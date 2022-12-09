@@ -20,24 +20,20 @@
     &.is-error {
       color: @steps-error-color;
       // background-color: @steps-error-color;
+      .scStep-icon {
+        border: none;
+        font-size: 24px;
+        box-shadow: 0px 2px 5px 0px rgba(245,63,63,0.5);
+        border-radius: 20px;
+      }
     }
     &.is-success {
       color: @steps-success-color;
       // background-color: @steps-success-color;
-    }
-    &.is-success {
       .scStep-icon {
         border: none;
-        font-size: 26px;
+        font-size: 24px;
         box-shadow: 0px 2px 5px 0px rgba(35,166,243,0.5);
-        border-radius: 20px;
-      }
-    }
-    &.is-error {
-      .scStep-icon {
-        border: none;
-        font-size: 26px;
-        box-shadow: 0px 2px 5px 0px rgba(245,63,63,0.5);
         border-radius: 20px;
       }
     }
@@ -58,7 +54,6 @@
     transition: 0.15s ease-out;
     &.is-text {
       border-radius: 50%;
-      border: 2px solid;
       border-color: inherit;
     }
     &.is-icon {
@@ -69,8 +64,8 @@
 
   &-line {
     position: absolute;
-    border-color: inherit;
-    background-color: @steps-line-color;
+    border-color: @steps-process-color;;
+    background-color: @steps-process-color;
   }
 
   &:last-of-type {
@@ -108,7 +103,7 @@
   }
 
   &-title {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 38px;
 
     &.is-process {
@@ -124,7 +119,7 @@
       // background-color: @steps-finish-color;
     }
     &.is-error {
-      color: @steps-error-color;
+      // color: @steps-error-color;
       // background-color: @steps-error-color;
     }
     &.is-success {
@@ -135,11 +130,11 @@
 
   &-description {
     padding-right: 10%;
-    margin-top: -5px;
+    // margin-top: -5px;
     font-size: 12px;
     line-height: 20px;
     font-weight: normal;
-
+    color: @text-color;
     &.is-process {
       color: @steps-process-color;
       // background-color: @steps-process-color;
@@ -153,51 +148,25 @@
       // background-color: @steps-finish-color;
     }
     &.is-error {
-      color: @steps-error-color;
+      // color: @steps-error-color;
       // background-color: @steps-error-color;
     }
     &.is-success {
-      color: @steps-success-color;
+      // color: @steps-success-color;
       // background-color: @steps-success-color;
     }
   }
 
-  &.is-horizontal {
-    display: inline-block;
-    .scStep-line {
-      height: 2px;
-      top: 11px;
-      left: 0;
-      right: 0;
-    }
-  }
+  // &.is-horizontal {
+    // display: inline-block;
+    // .scStep-line {
+    //   height: 2px;
+    //   top: 11px;
+    //   left: 0;
+    //   right: 0;
+    // }
+  // }
 
-  &.is-vertical {
-    display: flex;
-    .scStep-head {
-      flex-grow: 0;
-      width: 24px;
-    }
-    .scStep-main {
-      padding-left: 10px;
-      flex-grow: 1;
-    }
-    .scStep-title {
-      line-height: 24px;
-      padding-bottom: 8px;
-    }
-    .scStep-line {
-      width: 2px;
-      top: 0;
-      bottom: 0;
-      left: 11px;
-    }
-    .scStep-icon {
-      &.is-icon {
-        width: 24px;
-      }
-    }
-  }
   &.is-center {
     .scStep-head {
       text-align: center;
@@ -214,7 +183,8 @@
       right: -50%;
     }
   }
-  &.simple {
+  // &.
+  &.simple, &.is-horizontal, &.is-horizontal{
     display: flex;
     align-items: center;
 
@@ -240,7 +210,7 @@
       background: transparent;
       width: 26px;
       height: 26px;
-      font-size: 26px;
+      font-size: 24px;
       vertical-align: middle;
     }
 
@@ -265,8 +235,13 @@
     }
     .scStep-title {
       font-size: 14px;
-      line-height: 20px;
+      font-family: PingFang SC-Regular, PingFang SC;
+      font-weight: 400;
+      line-height: 26px;
       &.is-success {
+        color: @steps-process-color;
+      }
+      &.is-error {
         color: @steps-process-color;
       }
     }
@@ -281,31 +256,114 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      &::before,
-      &::after {
-        content: '';
-        display: inline-block;
-        position: absolute;
-        height: 10px;
-        width: 1px;
-        background-color: @steps-process-color;
-        // background: 
-      }
-
-      &::before {
-        transform: rotate(-45deg) translateY(-2px);
-        transform-origin: 0 0;
-      }
-
-      &::after {
-        transform: rotate(45deg) translateY(4px);
-        transform-origin: 100% 100%;
-      }
     }
     &:last-of-type {
       .scStep-arrow {
         display: none;
+      }
+    }
+  }
+  .@{stepScope}-head:not(.is-success):not(.is-wait) {
+    .@{stepScope}__icon-inner {
+      font-size: 22px;
+    }
+  }
+  &.is-horizontal, &.is-vertical {
+    .scStep-main {
+      .scStep-arrow {
+        position: relative;
+      }
+      .scStep-line {
+        width: calc(100% - 32px);
+      }
+      &.is-success {
+        .scStep-line-inner {
+          border-color: @steps-success-color;
+        }
+        .scStep-line {
+          background: @steps-success-color;
+        }
+      }
+      &.is-error {
+        .scStep-line-inner {
+          border-color: @steps-error-color;
+        }
+        .scStep-line {
+          background: @steps-error-color;
+        }
+      }
+    }
+    .scStep-head:not(.is-error):not(.is-success):not(.is-wait) {
+      .scStep-icon:not(.is-icon) {
+        font-size: 16px;
+        box-shadow: 0px 2px 5px 0px rgba(35,166,243,0.5);
+        border-radius: 50%;
+        color: @bg-color;
+        .@{stepScope}__icon-inner {
+          width: 22px;
+          height: 22px;
+          background: @steps-success-color;
+          border-radius: 50%;
+          line-height: 22px;
+          font-size: 16px;
+        }
+      }
+    }
+    .scStep-head {
+      &.is-wait {
+        .scStep-icon:not(.is-icon) {
+          font-size: 16px;
+          border-radius: 50%;
+          color: @bg-color;
+          .@{stepScope}__icon-inner {
+            width: 22px;
+            height: 22px;
+            background: @steps-wait-color;
+            border-radius: 50%;
+            line-height: 22px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+  &.is-vertical {
+    display: flex;
+    .scStep-head {
+      flex-grow: 0;
+      width: 24px;
+      &.is-success {
+        .scStep-line {
+          background: @steps-success-color;
+          border-color: @steps-success-color;
+        }
+      }
+      &.is-error {
+        .scStep-line {
+          background: @steps-success-color;
+          border-color: @steps-success-color;
+        }
+      }
+    }
+    .scStep-main {
+      padding-left: 10px;
+      flex-grow: 1;
+    }
+    .scStep-title {
+      line-height: 24px;
+    }
+    .scStep-description {
+      color: @text-color;
+    }
+    .scStep-line {
+      width: 2px;
+      top: 40px;
+      bottom: 16px;
+      left: 11px;
+    }
+    .scStep-icon {
+      &.is-icon {
+        width: 24px;
       }
     }
   }

@@ -1,5 +1,15 @@
 <template>
   <div>
+    <Button
+      @click="handleChecked"
+    >
+      设置默认选中列
+    </Button>
+    <Button
+    @click="handleDisabled"
+    >
+      设置不可取消列disabled值
+    </Button>
     <ScTable 
       ref="scTableRef"
       :data-source="data"
@@ -25,8 +35,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, unref, nextTick } from 'vue'
 import { ScTable } from 'sc-ui'
+import { Button } from 'ant-design-vue'
 
 import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
@@ -43,7 +54,9 @@ const columns = [
       props: {
         lineheigth: 2
       }
-    }
+    },
+    disabled: true,
+    // notShowFilter: true
     // type: {
     //   componentName: 'copy',
     //   props: {
@@ -52,7 +65,7 @@ const columns = [
     //   }
     // }
   },
-  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160 },
+  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160, checked: false },
   { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
 ];
 
@@ -95,6 +108,19 @@ const refresh = ({tableRef, selectedRowKeysRef}) => {
   console.log('tableRef: ', tableRef);
   console.log('selectedRowKeysRef: ', selectedRowKeysRef);
 }
+
+const handleChecked = () => {
+  const { setFilterColumnChecked } = unref(scTableRef)
+  setFilterColumnChecked(['name', 'age'])
+}
+
+const handleDisabled = (e) => {
+  console.log('e: ', e);
+}
+nextTick(() => {
+  const { setFilterColumnDisabled } = unref(scTableRef)
+  setFilterColumnDisabled(['name'])
+})
 
 
 </script>

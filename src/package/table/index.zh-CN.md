@@ -331,7 +331,7 @@ const dataSource = [
   >
 </demo>
 
- ## useTable
+## useTable
 
 使用组件自带的 **useTable** 可以方便使用表单
 
@@ -735,9 +735,20 @@ export interface ActiveOptions {
 | type      | `Type`                                                 | -   | `status 、 copy 、 ellipsis 、handle`      | 每列使用内置组件配置 |
 | filtered      | boolean                                           | -   |   -    | 选中之后filtericon 会高亮 |
 | filterMultiple      | boolean                                           | -   |   -    | filter是否可以多选 |
+| notShowFilter      | boolean                                           | -   |   -    | 是否在自定义列中显示 |
 | titleType      | `TitleType`                                           | -   |   `describe`、 `unit` | 头部内置自定义组件 |
 
 
+### filterType
+
+```js
+  interface FilterType {
+    label?: string, // column title 字段
+    value?: [string, number], column dataIndex 字段
+    disabled?: boolean, 是否可选字段
+    checked?: boolean, 
+  }
+```
 ### Type
 
 ```ts

@@ -93,6 +93,8 @@ export interface Column {
   value?: [string, number],
   disabled?: boolean,
   checked?: boolean,
+  // 是否显示在自定义列中
+  notShowFilter?: boolean,
   default?: boolean,
   filterList?: Array<FilterItem>,
   filterTag?: boolean,

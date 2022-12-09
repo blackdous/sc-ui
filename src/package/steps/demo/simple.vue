@@ -2,7 +2,7 @@
   <div>
     <ScSteps :space="180" simple>
       <ScStep title="Done" status="success" />
-      <ScStep title="Processing" status="wait" />
+      <ScStep title="Processing" status="error" />
       <ScStep title="Step 3" status="wait"/>
     </ScSteps>
   </div>

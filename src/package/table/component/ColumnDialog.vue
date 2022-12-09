@@ -8,7 +8,7 @@
     okText="确认"
     :width="604"
     maskClosable
-    :afterClose="hanleCancel"
+    :afterClose="handleCancel"
     @ok="handleOk"
   >
     <CheckoutBtnVue
@@ -60,7 +60,7 @@ export default defineComponent({
       checkInfo.value = (checkedList || []).length + ''
       emit('checkChange', { keys, checkedList, list })
     }
-    const hanleCancel = () => {
+    const handleCancel = () => {
       emit('cancelModal', { keys: unref(curKeys), checkedList: unref(curCheckedList) })
     }
     const handleOk = () => {
@@ -71,7 +71,7 @@ export default defineComponent({
       columnList,
       checkInfo,
       handleCheck,
-      hanleCancel,
+      handleCancel,
       handleOk
     }
   }

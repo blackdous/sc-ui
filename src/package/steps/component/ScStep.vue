@@ -4,9 +4,6 @@
     :style="style"
   >
     <div :class="['scStep-head', currentStatus ? 'is-' + currentStatus + ' is-status' : '']">
-      <div v-if="!isSimple" class="scStep-line">
-        <i class="scStep-line-inner" :style="lineStyle"></i>
-      </div>
       <div :class="['scStep-icon', props.icon || $slots.icon ? 'is-icon' : 'is-text' ]">
         <!-- @slot 自定义图标 -->
         <slot name="icon">
@@ -34,17 +31,33 @@
           </div> -->
         </slot>
       </div>
+      <div :class="['scStep-arrow']" v-if="!isSimple && isVertical">
+        <i v-if="isSimple" class="iconfont icon-you"></i>
+        <div v-else-if="!isSimple && isVertical" class="scStep-line">
+          <i class="scStep-line-inner" :style="lineStyle"></i>
+        </div>
+        <!-- <i v-else class="scStep-line-inner" :style="lineStyle"></i> -->
+      </div>
     </div>
     <div :class="['scStep-main', currentStatus ? 'is-' + currentStatus + ' is-status' : '']">
-      <div :class="['scStep-title', currentStatus ? 'is-' + currentStatus  + ' is-status' : '']">
-        <!-- @slot 自定义标题 -->
-        <slot name="title">{{ title }}</slot>
+      <div :class="['scStep-info']">
+        <div :class="['scStep-title', currentStatus ? 'is-' + currentStatus  + ' is-status' : '']">
+          <!-- @slot 自定义标题 -->
+          <slot name="title">{{ title }}</slot>
+        </div>
+        <div :class="['scStep-description', currentStatus ? 'is-' + currentStatus  + ' is-status' : '']">
+          <!-- @slot 自定义描述文案 -->
+          <slot name="description">{{ description }}</slot>
+        </div>
       </div>
-      <div v-if="isSimple" :class="['scStep-arrow']" />
-      <div v-else :class="['scStep-description', currentStatus ? 'is-' + currentStatus  + ' is-status' : '']">
-        <!-- @slot 自定义描述文案 -->
-        <slot name="description">{{ description }}</slot>
+      <div :class="['scStep-arrow']">
+        <i v-if="isSimple" class="iconfont icon-you"></i>
+        <div v-else-if="!isSimple && !isVertical " class="scStep-line">
+          <i class="scStep-line-inner" :style="lineStyle"></i>
+        </div>
+        <!-- <i v-else class="scStep-line-inner" :style="lineStyle"></i> -->
       </div>
+      <!-- <div ></div> -->
     </div>
   </div>
 </template>
@@ -226,7 +239,7 @@ const calcProgress = (status: string) => {
   }
   style.borderWidth = step && !isSimple.value ? '1px' : 0
   style[parent.props.direction === 'vertical' ? 'height' : 'width'] = `${step}%`
-  lineStyle.value = style
+  lineStyle.value = ''
 }
 
 const updateStatus = (activeIndex: number) => {

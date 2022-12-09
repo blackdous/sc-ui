@@ -1,4 +1,5 @@
 import { ref, Ref, unref, computed, toRaw } from 'vue'
+import cloneDeep from 'lodash/cloneDeep'
 
 import { Column, FilterItem } from '../types/column'
 import { isArray, isFunction } from '../../../utils/is'
@@ -91,18 +92,23 @@ export function useColumn (
 
 
   const getFilterColumnRef = computed(() => {
-    const columns = unref(filterColumn).map((item: Column) => {
+    const columns = cloneDeep(unref(filterColumn)).map((item: Column) => {
       if (!item.default) {
         // @ts-ignore
         item.label = item.title
         // @ts-ignore
-        item.value = item.key
-        item.disabled = false
-        item.checked = true
+        item.value = item.dataIndex
+        item.disabled = item.disabled || false
+        if (item.checked === false) {
+          item.checked = false
+        } else {
+          item.checked = true
+        }
         item.default = true
       }
       return item
     })
+    // console.log('columns: ', columns);
     return columns
   })
 

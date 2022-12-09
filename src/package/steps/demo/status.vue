@@ -2,7 +2,11 @@
   <div>
     <ScSteps :space="200" :active="1" finish-status="success">
       <ScStep title="step 1" />
-      <ScStep title="step 2" />
+      <ScStep>
+        <template #title>
+          111
+        </template>
+      </ScStep>
       <ScStep title="Step 3"/>
     </ScSteps>
   </div>
