@@ -25,18 +25,16 @@ export const sidebar = {
     {
       text: 'Data Display',
       items: [
-        {
-          text: 'Tabs', link: '/en/tabs/'
-        },
-        {
-          text: '表格', link: '/en/table/'
-        }
+        { text: 'Tabs', link: '/en/tabs/' },
+        { text: 'Table', link: '/en/table/' },
+        { text: 'Tooltip', link: '/en/tooltip/' }
       ]
     },
     {
       text: 'Data Entry',
       items: [
-        { text: 'Radio', link: '/en/radio/' }
+        { text: 'Radio', link: '/en/radio/' },
+        { text: 'Input', link: '/en/input/' }
       ]
     },
     {
@@ -50,23 +48,15 @@ export const sidebar = {
     {
       text: 'Feedback',
       items: [
-        {
-          text: 'Alert', link: '/en/alert/'
-        },
-        {
-          text: 'Modal', link: '/en/modal/'
-        },
-        {
-          text: 'contextMenu', link: '/contextMenu/'
-        }
+        { text: 'Alert', link: '/en/alert/' },
+        { text: 'Modal', link: '/en/modal/' },
+        { text: 'contextMenu', link: '/contextMenu/' }
       ]
     },
     {
       text: 'From',
       items: [
-        {
-          text: 'Password', link: '/en/password/'
-        }
+        { text: 'Password', link: '/en/password/' }
       ]
     }
   ],
@@ -95,40 +85,30 @@ export const sidebar = {
     {
       text: '数据展示',
       items: [
-        {
-          text: '标签页', link: '/tabs/'
-        },
-        {
-          text: '表格', link: '/table/'
-        }
+        { text: '标签页', link: '/tabs/' },
+        { text: '表格', link: '/table/' },
+        { text: '文字提示', link: '/tooltip/' }
       ]
     },
     {
       text: '数据录入',
       items: [
-        { text: '单选框', link: '/radio/' }
+        { text: '单选框', link: '/radio/' },
+        { text: '输入框', link: '/input/' },
       ]
     },
     {
       text: '反馈',
       items: [
-        {
-          text: '警告提示', link: '/alert/'
-        },
-        {
-          text: '弹框', link: '/modal/'
-        },
-        {
-          text: '鼠标右键', link: '/contextMenu/'
-        }
+        { text: '警告提示', link: '/alert/' },
+        { text: '弹框', link: '/modal/' },
+        { text: '鼠标右键', link: '/contextMenu/' }
       ]
     },
     {
       text: '表单',
       items: [
-        {
-          text: '密码框', link: '/password/'
-        }
+        { text: '密码框', link: '/password/' }
       ]
     }
   ],

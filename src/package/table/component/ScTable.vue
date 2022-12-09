@@ -535,7 +535,9 @@ export default defineComponent({
       } else {
         emit('searchClick', { ...unref(fetchParams) })
       }
-      handleTableChange(unref(fetchParams).pagination, unref(getFetchFilter), unref(fetchParams).sorter)
+      if (unref(newProps).api) {
+        handleTableChange(unref(fetchParams).pagination, unref(getFetchFilter), unref(fetchParams).sorter)
+      }
     }
 
     const refresh = () => {

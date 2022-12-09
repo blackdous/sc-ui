@@ -4,6 +4,7 @@ import { genTemp } from '@ruabick/vite-plugin-gen-temp';
 import { genApiDoc } from '@ruabick/vite-plugin-gen-api-doc';
 import { sidebar } from './sidebar.js';
 import { resolve } from 'path';
+import { themeVariables } from '../../build/theme/index.js';
 
 export const ssrTransformCustomDir = () => {
   return {
@@ -60,6 +61,14 @@ export default defineConfig({
     resolve: {
       alias: {
         'sc-ui': resolve('./src/'),
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        less: {
+          modifyVars: themeVariables,
+          javascriptEnabled: true
+        },
       },
     },
   },

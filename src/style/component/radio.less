@@ -1,22 +1,19 @@
 /*************************** radios  **************************************/
 
-.ant-radio-group-outline.ant-radio-group.scLine {
-  .ant-radio-button-wrapper {
-    color :@text-color;
-    border-color: @border-color-base;
-    font-weight: 600;
-    background: @bg-color;
-    box-shadow: 0px 1px 3px 0px rgba(96, 108, 128, 0.1);
-    font-size: @font-mini;
-    border-radius: @border-r-3;
-    border-left: 1px solid @border-color-base;
-    & + .ant-radio-button-wrapper {
-      margin-left: 8px;
+.ant-radio-group-outline.ant-radio-group {
+  &.scLine {
+    .ant-radio-button-wrapper {
+      border-left: 1px solid @border-color-base;
+      border-radius: @border-r-3;
+      border-color: @border-color-base;
+      & + .ant-radio-button-wrapper {
+        margin-left: 8px;
+      }
     }
-  }
-  .ant-radio-button-wrapper:not(:first-child)::before {
-    background-color: @radio-button-border;
-    display: none;
+    .ant-radio-button-wrapper:not(:first-child)::before {
+      background-color: @radio-button-border;
+      display: none;
+    }
   }
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
     background-color: @bg-color;
@@ -26,13 +23,21 @@
       background-color: @border-color-base;
     }
   }
+  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
+    background-color: @primary-color;
+  }
+  .ant-radio-button-wrapper {
+    color :@text-color;
+    font-weight: 600;
+    background: @bg-color;
+    box-shadow: 0px 1px 3px 0px rgba(96, 108, 128, 0.1);
+    font-size: @font-mini;
+    border-color: @radio-button-border;
+  }
   .ant-radio-button-wrapper:not(.ant-radio-button-wrapper-disabled):not(.ant-radio-button-wrapper-checked):hover {
     color: @primary-color;
     border-color: @radio-button-border;
     background-color: @bg-color;
-  }
-  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
-    background-color: fade(@primary-color, 40%);
   }
   .ant-radio-button-wrapper-disabled {
     background: @steps-wait-color;
@@ -47,6 +52,14 @@
     border-color: @primary-color;
   }
 }
+.ant-radio-wrapper:hover .ant-radio, 
+.ant-radio:hover .ant-radio-inner, 
+.ant-radio-input:focus + .ant-radio-inner {
+  border-color: @primary-color;
+}
 .ant-radio-inner::after {
   background-color: @primary-color;
+}
+.ant-radio-disabled .ant-radio-inner {
+  border-color: @icon-hover-bgColor !important;
 }

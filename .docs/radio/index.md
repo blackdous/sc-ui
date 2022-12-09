@@ -4,17 +4,45 @@ map:
 realPath: src/package/radio/index.zh-CN.md
 ---
 
-## 简介
+# Radio 单选框
 
 在 (antd-design-vue/radio)[https://antdv.com/components/radio-cn] 基础开发的，**其他api 都相同**
 
-<demo src="./demo/basic.vue"
+## 组件类型
+
+### 基础单选框
+
+<demo src="./demo/radiobtn.vue"
   language="vue"
-  title="API 与 Ant-design-vue的 RadioGroup api相同，新增了styleMode属性"
+  title="基础单选框"
   >
 </demo>
 
-## 新增 styleMode 属性
+### 按钮单选框
+
+<demo src="./demo/basic.vue"
+  language="vue"
+  title="按钮单选框"
+  >
+</demo>
+
+### 单选组合框
+
+<demo src="./demo/radiogroup.vue"
+  language="vue"
+  title="按钮单选框"
+  >
+</demo>
+
+## 组件状态
+
+<demo src="./demo/radiostatus.vue"
+  language="vue"
+  title="组件状态"
+  >
+</demo>
+
+### 新增 styleMode 属性
 
 <demo src="./demo/styleMode.vue"
   language="vue"
@@ -23,7 +51,7 @@ realPath: src/package/radio/index.zh-CN.md
   >
 </demo>
 
-## 新增 tooltip 属性
+### 新增 tooltip 属性
 
 <demo src="./demo/tooltip.vue"
   language="vue"
@@ -32,6 +60,6 @@ realPath: src/package/radio/index.zh-CN.md
   >
 </demo>
 
-## steps 新增属性
+## ScRadioGroup 新增属性
 
 <API src="./components/ScRadioGroup.vue" lang="zh"></API>
