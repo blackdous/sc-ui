@@ -1,6 +1,6 @@
 # sc-ui
 
-ant-design-vue vue3 ts ui 
+ant-design-vue vue3 ts ui
 
 [文档地址](http://sc-ui.voneyun.com/)
 
