@@ -36,6 +36,7 @@
           maxlength: 40
         }
       }"
+      @change="handleChange"
 
       >
     </ScTable>
@@ -197,6 +198,10 @@ const state = reactive<{
   selectedRowKeys: [], // Check here to configure the default column
   loading: false,
 });
+
+const handleChange = (data:any) => {
+  console.log('data: ', data);
+}
 
 const onSelectChange = (selectedRowKeys: Key[]) => {
   console.log('selectedRowKeys changed: ', selectedRowKeys);
