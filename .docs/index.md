@@ -4,10 +4,11 @@ map:
 realPath: src/__docs__/index.zh-CN.md
 ---
 
-## 简介
+# sc-ui
 
-在 [antd-design-vue](https://antdv.com/docs/vue/introduce-cn)的基础上进行二次封装组件
-ant-design-vue vue3 ts ui 
+ant-design-vue vue3 ts ui
+
+[文档地址](http://sc-ui.voneyun.com/)
 
 ## 引入 ant-design-vue
 

@@ -1,0 +1,92 @@
+.ant-input, .ant-input-affix-wrapper {
+  border-radius: @border-r-3;
+  border-color: @border-color-base;
+  padding: 4px 8px;
+  &:hover, &:focus, &:active {
+    border-color: @primary-color;
+  }
+  &.isSuccess {
+    border-color: @success-color;
+    // &:hover, &:focus, &:active {
+    // }
+    &:focus {
+      box-shadow: 0 0 0 2px fade(@success-color, 20%);
+    }
+  }
+  &.isWarning {
+    border-color: @warning-color;
+    // &:hover, &:focus, &:active {
+    // }
+    &:focus {
+      box-shadow: 0 0 0 2px fade(@warning-color, 20%);
+    }
+  }
+  &.isError {
+    border-color: @error-color;
+    // &:hover, &:focus, &:active {
+    // }
+    &:focus {
+      box-shadow: 0 0 0 2px fade(@error-color, 20%);
+    }
+  }
+  &[disabled] {
+    background: @disabled-bg-color;
+  }
+}
+.ant-input-textarea-show-count {
+  position: relative;
+  &::after {
+    position: absolute;
+    right: 10px;
+    bottom: 2px;
+    font-size: 14px;
+    font-family: PingFang SC-Regular, PingFang SC;
+    font-weight: 400;
+    line-height: 22px;
+    color: @text-color-secondary;
+  }
+}
+.ant-input-group-addon {
+  font-size: 14px;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: @heading-color;
+  background: @icon-hover-bgColor;
+  padding: 0 12px;
+}
+.ant-input-clear-icon {
+  font-size: 14px;
+  color: @text-color-secondary;
+  &:hover {
+    color: @text-color-secondary;
+  }
+}
+.ant-input-affix-wrapper {
+  padding: 4px 4px 4px 8px;
+  border-radius: @border-r-3;
+  // &:hover, &:focus, &:active {
+  //   border-color: @primary-color;
+  // }
+}
+.input-describe {
+  font-size: 12px;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: @text-color-secondary;
+  line-height: 20px;
+}
+.ant-input-lg {
+  font-size: 16px;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  padding: 6px 12px;
+  height: 40px;
+}
+
+.ant-input-sm {
+  font-size: 12px;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  padding: 0 12px;
+  font-size: 12px;
+}

@@ -1,0 +1,84 @@
+@inputNumberScope: ~'@{prefixCls}InputNumber';
+.@{inputNumberScope} {
+  display: flex;
+  .ant-btn {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    padding: 0;
+    border-color: @border-color-base;
+    .iconfont {
+      font-size: 18px;
+      color: @heading-color;
+    }
+  }
+  .ant-btn[disabled], .ant-btn[disabled]:hover, .ant-btn[disabled]:focus, .ant-btn[disabled]:active {
+    background: @disabled-bg-color;
+    i {
+      color: @disabled-color;
+    }
+  }
+  .ant-input-number {
+    height: 32px;
+    line-height: 32px;
+    margin: 0 4px;
+  }
+  &.large {
+    .ant-btn {
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      font-size: 16px;
+    }
+    .ant-input-number {
+      height: 40px;
+      line-height: 40px;
+      .ant-input-number-input {
+        height: 40px;
+      }
+    }
+  }
+  &.small {
+    .ant-btn {
+      height: 24px;
+      width: 24px;
+      line-height: 24px;
+      font-size: 12px;
+    }
+    .ant-input-number {
+      height: 24px;
+      line-height: 24px;
+      .ant-input-number-input {
+        height: 24px;
+      }
+    }
+  
+  }
+  &.bothSides {
+    .ant-input-number-handler-wrap {
+      display: none;
+    }
+  }
+  &.internal {
+    .scInputNumber-btn {
+      display: none;
+    }
+  }
+}
+.ant-input-number {
+  border-color: @border-color-base;
+  border-radius: @border-r-3;
+  &:not(.ant-input-number-disabled):hover, &:not(.ant-input-number-disabled):focus, &:not(.ant-input-number-disabled):active {
+    border-color: @primary-color;
+  }
+}
+.ant-input-number-disabled {
+  background: @disabled-bg-color;
+}
+.ant-input-number-handler-down {
+  border-color: @border-color-base;
+}
+.ant-input-number-handler:hover .ant-input-number-handler-up-inner, 
+.ant-input-number-handler:hover .ant-input-number-handler-down-inner {
+  color: @primary-color;
+}

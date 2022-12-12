@@ -96,9 +96,10 @@ const list = ref([
   {
     label: '创建快照',
     isShow: true,
-    loading: ({tableRef, selectedRowKeysRef}) => {
+    loading: ({tableRef, selectedRowKeysRef, record}) => {
+      console.log('record: ', record);
       console.log('selectedRowKeysRef: ', selectedRowKeysRef);
-      if (selectedRowKeysRef.length > 3) {
+      if (record.id === '8') {
         return true
       }
       return false

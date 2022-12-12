@@ -14,6 +14,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import legacy from './legacy';
 import visualizerPlugin from './visualizer';
 import windicss from './windicss';
+import copy from './copy';
 
 import {
   VITE_APP_ANALYZE,
@@ -39,6 +40,7 @@ export const createVitePlugins = (isBuild: boolean) => {
         },
       },
     }),
+    copy(),
     vueJsx(),
     vueSetupExtend(),
     dts({
@@ -54,7 +56,7 @@ export const createVitePlugins = (isBuild: boolean) => {
       ],
       dts: true,
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-    }),
+    })
   ];
   // vitePlugins.push();
   // legacy

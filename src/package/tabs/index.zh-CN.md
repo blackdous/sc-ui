@@ -24,4 +24,4 @@ map:
 
 ## steps 新增属性
 
-<API src="./components/ScTabs.vue" lang="zh"></API>
+<API src="./component/ScTabs.vue" lang="zh"></API>

@@ -21,6 +21,12 @@
   text-shadow: none;
   box-shadow: none;
 }
+.ant-btn:not([disabled]):not(.ant-btn-link):hover,
+.ant-btn:not([disabled]):not(.ant-btn-link):focus,
+.ant-btn:not([disabled]):not(.ant-btn-link):active {
+  color: @primary-color;
+  border-color: @primary-color;
+}
 .ant-btn-link {
   color: @primary-color;
   &.actionBtn {

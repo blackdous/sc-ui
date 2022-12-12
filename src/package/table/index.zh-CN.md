@@ -813,6 +813,86 @@ export interface ActiveOptions {
 | tableActive | 表格顶部右侧区域 刷新、自定义列组件      |  |
 | EmptyVue | 表格空数据状态组件     |  | 
 
+## 组件
+
+| 名称              | 说明             |  版本  |
+| ----------------- | ---------------- | -- |
+| ScTable        | 主表格组件 |  |
+|  Copy         | 用于定制copy 组件 |  |
+| TableActions | 用于定制操作列组件 , 传入表格solt名字为`action`    |  |
+
+```ts
+// Copy 组件需要的参数
+const props = () => ({
+  column: {
+    type: Object,
+    default: () => ({})
+  },
+  record: {
+    type: Object,
+    default: () => ({})
+  },
+  index: {
+    type: Number,
+    default: 0
+  },
+  text: {
+    type: [String, Number],
+    default: ''
+  }
+})
+```
+
+```ts
+export interface ActionItemProps {
+  label: string,
+  isShow?: boolean | (() => boolean),
+  key?: string,
+  isDisabled?: boolean | (() => boolean),
+  loading?: boolean | (() => boolean),
+  tooltip?: boolean,
+  tooltipDes?: string,
+  children?: Array<ActionItemProps>,
+  action?: string | (() => void)
+}
+
+// TableActions 组件需要的参数
+export interface ActionProps {
+  // 显示几个btn，其他btn隐藏
+  showBtn?: number,
+  // 操作按钮数据
+  actions?: Array<ActionItemProps>,
+  // 当前列数据
+  record?: any,
+  // 当前表格储存的参数
+  fetchParams?: any
+}
+```
+
+```ts
+  export interface fetchParams {
+    // 内部table(ant-design-table 的 table实例)表格实例
+    tableRef,
+    // 头部单选按钮组 选中的值
+    multipleValue: string,
+    // 搜索组件 select选中的值
+    searchSelect: string,
+    // 搜索组件 input输入的值
+    searchText: string,
+    // 列筛选的字段
+    filters: {},
+    // 多选或者单选选中的行数据只有key
+    selectedRowKeysRef: [],
+    // 多选或者单选选中的行数据
+    selectedRowRef: [],
+    // 当前列数据源
+    columns: [],
+    // 分页状态
+    pagination: {},
+    // 列排序状态
+    sorter: {}
+  }
+```
 
 ## 汇总
 

@@ -8,9 +8,11 @@ import { ScTabs } from './package/tabs'
 import { ScRadioGroup, ScRadioTooltipGroup } from './package/radio'
 import { ScAlert } from './package/alert'
 import { ScModal } from './package/modal'
-import { ScTable, useTable, Copy } from './package/table'
+import { ScTable, useTable, Copy, TableActionVue } from './package/table'
 import { ScLoading, useLoading } from './package/loading'
 import { ScButton } from './package/button'
+import { ScInputNumber } from './package/inputNumber'
+
 
 
 import { installGlobalDirectives } from './directives'
@@ -33,8 +35,10 @@ const components = [
   ScModal,
   ScTable,
   Copy,
+  TableActionVue,
   ScLoading,
-  ScButton
+  ScButton,
+  ScInputNumber
 ]
 
 const install = (app: App) => {
@@ -59,8 +63,10 @@ export {
   ScModal,
   ScTable,
   Copy,
+  TableActionVue,
   ScLoading,
-  ScButton
+  ScButton,
+  ScInputNumber
 }
 
 export * from './types'

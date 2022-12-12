@@ -22,7 +22,7 @@
 <script lang='ts'>
 import { defineComponent, computed, ref, unref } from 'vue'
 
-import ScModal from '../../modal/components/ScModal.vue'
+import ScModal from '../../modal/component/ScModal.vue'
 import { ColumnModal, Column } from '../types/column'
 import CheckoutBtnVue from './CheckoutBtn.vue'
 

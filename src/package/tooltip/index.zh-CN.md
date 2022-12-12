@@ -22,3 +22,7 @@ map:
   title="组件出现位置"
   >
 </demo>
+
+## api
+
+新增`overlayClassName="notArrow"`样式，用于显示无箭头提示框

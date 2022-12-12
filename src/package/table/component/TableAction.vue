@@ -5,8 +5,8 @@
       :key="item.label"
     >
       <Button 
-        :disabled="item.isDisabled"
         type="link"
+        :disabled="item.isDisabled"
         :loading="!item.isDisabled && item.loading"
         @click="handle(item)"
       >
@@ -109,6 +109,7 @@ import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-v
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 
 import { basePrefixCls } from '../../../constant'
+import { isArray, isFunction } from '../../../utils/is'
 import { treeMap } from '../../../utils/treeHelper'
 
 import cloneDeep from 'lodash/cloneDeep'
@@ -129,7 +130,8 @@ export interface ActionItemProps {
 export interface ActionProps {
   showBtn?: number,
   actions?: Array<ActionItemProps>,
-  record?: any
+  record?: any,
+  fetchParams?: any
 }
 
 const props = withDefaults(defineProps<ActionProps>(), {
@@ -140,6 +142,10 @@ const filterShow = ref([] as Array<ActionItemProps>)
 
 const actionsOptions = computed(() => {
   return props.record?.actionsOptions || { showBtn: props.showBtn, actions: props.actions }
+})
+
+const fetchParams = computed(() => {
+  return props.fetchParams
 })
 
 const emits = defineEmits(['onAction'])
@@ -173,6 +179,32 @@ onMounted(() => {
   })
 })
 
+function flapSetItem (actions: Array<ActionItemProps>) {
+  if (!isArray(actions)) {
+    return actions
+  }
+  // @ts-ignore
+  const newActions = actions?.map(item => {
+    if (isFunction(item.isDisabled)) {
+      // @ts-ignore
+      item.isDisabled = item?.isDisabled({ ...unref(fetchParams), record: props.record })
+    }
+    if (isFunction(item.loading)) {
+      // @ts-ignore
+      item.loading = item?.loading({ ...unref(fetchParams), record: props.record})
+    }
+    if (isFunction(item.isShow)) {
+      // @ts-ignore
+      item.isShow = item?.isShow({ ...unref(fetchParams), record: props.record})
+    }
+    if (item.children) {
+      flapSetItem(item.children)
+    }
+    return item
+  })
+  return newActions
+}
+
 watch([() => props.record, () => props.actions], ([prospRecord, actions]) => {
   if (!actions || !prospRecord) {
     return false
@@ -182,7 +214,7 @@ watch([() => props.record, () => props.actions], ([prospRecord, actions]) => {
   let list:Array<ActionItemProps> = []
   const isCustomActionsOptions = !!record.actionsOptions
   if (isCustomActionsOptions) {
-    list = cloneDeep(record.actionsOptions.actions)
+    list = flapSetItem(cloneDeep(record.actionsOptions.actions))
     // list = treeMap(actionsOptions, { children: 'children', conversion: (data:any) => {
     //   if (isFunction(data.isDisabled)) {
     //     // @ts-ignore
@@ -195,7 +227,7 @@ watch([() => props.record, () => props.actions], ([prospRecord, actions]) => {
     //   return data
     // }})
   } else {
-    list = treeMap(actionsOptions, { children: 'children', conversion: (data:any) => {
+    list = treeMap(flapSetItem(cloneDeep(actionsOptions)), { children: 'children', conversion: (data:any) => {
       if (Object.keys(unref(record)).includes(data.key)) {
         // @ts-ignore
         data.isDisabled = record[data.key]?.disable

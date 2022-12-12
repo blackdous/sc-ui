@@ -25,4 +25,4 @@ realPath: src/package/tabs/index.zh-CN.md
 
 ## steps 新增属性
 
-<API src="./components/ScTabs.vue" lang="zh"></API>
+<API src="./component/ScTabs.vue" lang="zh"></API>
