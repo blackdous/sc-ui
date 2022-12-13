@@ -1,6 +1,6 @@
 <template>
   <div :class="[baseClass, newProps.mode, newProps.disabled ? 'isDisabled' : '', newProps.size]">
-    <Button
+    <!-- <Button
       :class="[baseClass+'-btn']"
       @click="changeVal('reduce')"
       :disabled="newProps.disabled || buttonDis || minDisabled"
@@ -15,14 +15,13 @@
       :max="max"
       v-bind="$attrs"
     />
-      <!-- @keydown.enter.prevent="handlePressEnter" -->
     <Button
       :class="[baseClass+'-btn']"
       @click="changeVal('add')"
       :disabled="newProps.disabled || buttonDis || maxDisabled"
     >
       <i class="iconfont icon-add"></i>
-    </Button>
+    </Button> -->
   </div>
 </template>
 
@@ -41,80 +40,14 @@ export default defineComponent({
     InputNumber,
     Button,
   },
-  setup(props, { emit, attrs, slots }) {
-
-    const baseClass = basePrefixCls + 'InputNumber'
-    const buttonDis = computed(() => {
-      return attrs.disabled
-    })
-    const text = ref(0)
-
-    const maxDisabled = computed(() => {
-      return text.value >= props.max
-    })
-    const minDisabled = computed(() => {
-      return text.value <= props.min
-    })
-
+  setup(props, { emit, attrs }) {
+    const baseClass = basePrefixCls + 'Select'
     const newProps = computed(() => {
       return props
     })
-
-    watch(
-      () => props.value,
-      (val) => {
-        if (val < props.min) {
-          text.value = props.min
-          return
-        }
-        if (val > props.max) {
-          text.value = props.max
-          return
-        }
-        text.value = val
-      },
-      { deep: true, immediate: true }
-    )
-
-    watch(
-      () => text.value,
-      (val) => {
-        emit('update:value', val)
-        emit('change', val)
-      },
-      { deep: true }
-    )
-
-    const changeVal = (type: any) => {
-      if (type === 'add') {
-        text.value += props.step || 1
-        if (text.value > props.max) {
-          text.value = props.max
-        }
-      } else {
-        text.value -= props.step || 1
-        if (text.value < props.min) {
-          text.value = props.min
-        }
-      }
-    }
-
-    // const handlePressEnter = (e:KeyboardEvent) => {
-    //   if (e.keyCode === 13) {
-    //     emit('pressEnter', text.value)
-    //   }
-    //   return false
-    // }
-
     return {
       baseClass,
-      text,
-      newProps,
-      buttonDis,
-      maxDisabled,
-      minDisabled,
-      changeVal,
-      // handlePressEnter
+      newProps
     }
   }
 })

@@ -31,7 +31,7 @@ const columns = [
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
     type: {
-      componentName: 'ellipsis',
+      componentName: 'tdEllipsis',
       props: {
         lineheigth: 2
       }

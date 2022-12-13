@@ -87,7 +87,7 @@ export default defineComponent({
     {
       title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
       type: {
-        componentName: 'ellipsis',
+        componentName: 'tdEllipsis',
         props: {
           lineheigth: 2
         }
@@ -95,7 +95,7 @@ export default defineComponent({
     },
     { title: 'Column 2', dataIndex: 'age', key: '2', width: 160,
       type: {
-        componentName: 'copy',
+        componentName: 'tdCopy',
         props: {
           successTxt: 'copy 成功',
           errorText: ''
@@ -104,7 +104,7 @@ export default defineComponent({
     },
     { title: 'Column 3', dataIndex: 'age', key: '3', width: 160,
     type: {
-      componentName: 'handle',
+      componentName: 'tdHandle',
       type: 'link',
       props: {
       }

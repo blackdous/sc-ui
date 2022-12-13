@@ -23,7 +23,7 @@ const props = () =>({
   }
 })
 export default defineComponent({
-  name: 'Status',
+  name: 'TdStatus',
   inheritAttrs: false,
   props: props(),
   setup (props) {

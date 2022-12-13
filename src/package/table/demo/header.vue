@@ -148,7 +148,7 @@ const columns = [
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
     type: {
-      componentName: 'ellipsis',
+      componentName: 'tdEllipsis',
       props: {
         lineheigth: 2
       }
@@ -156,7 +156,7 @@ const columns = [
   },
   { title: 'Column 2', dataIndex: 'age', key: '2', width: 160,
     type: {
-      componentName: 'copy',
+      componentName: 'tdCopy',
       props: {
         successTxt: 'copy 成功',
         errorText: ''

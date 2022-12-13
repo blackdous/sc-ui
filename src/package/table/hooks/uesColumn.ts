@@ -14,8 +14,8 @@ export function useColumn (
   propsRef: Ref<Recordable>,
   fetchParams?: Ref<Recordable>
 ) {
-  const customComponentKey = ref<string[]>(['copy', 'address', 'ellipsis', 'status'])
-  const customComponentHeaderKey = ref<string[]>(['describe', 'unit'])
+  const customComponentKey = ref<string[]>(['tdCopy', 'tdHandle', 'tdEllipsis', 'tdStatus'])
+  const customComponentHeaderKey = ref<string[]>(['thDescribe', 'thUnit'])
   const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<Column[]>
   const getColumnRef = computed(() => {
     const columns = unref(columnsRef).map((item) => {
@@ -38,6 +38,7 @@ export function useColumn (
       }
       return item
     })
+    console.log('columns: ', columns);
     return columns
   })
   const filterColumn = ref(unref(propsRef).columnFilterList.length ? unref(propsRef).columnFilterList : unref(getColumnRef))

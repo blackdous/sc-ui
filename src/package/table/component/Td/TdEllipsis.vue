@@ -49,7 +49,7 @@ const props = () =>({
   }
 })
 export default defineComponent({
-  name: 'Ellipsis',
+  name: 'TdEllipsis',
   inheritAttrs: false,
   props: props(),
   components: {
@@ -65,7 +65,7 @@ export default defineComponent({
     const className = computed(() => {
       const names = ['tdEllipsis']
       const { column } = props
-      if (column.type.componentName === 'ellipsis') {
+      if (column.type.componentName === 'tdEllipsis') {
         names.push('ellipsisText')
       }
       return names

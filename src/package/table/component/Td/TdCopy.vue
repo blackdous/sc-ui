@@ -46,7 +46,7 @@ const props = () => ({
 })
 
 export default defineComponent({
-  name: 'Copy',
+  name: 'TdCopy',
   inheritAttrs: false,
   props: props(),
   components: {

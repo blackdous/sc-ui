@@ -16,6 +16,11 @@
           </template>
         </Copy>
       </template>
+      <template #status1="{text}">
+        <span>
+          {{text}}1111
+        </span>
+      </template>
     </ScTable>
   </div>
 </template>
@@ -39,17 +44,21 @@ const scTableRef = ref()
 // @ts-ignore
 const columns = [
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
-  { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
+  { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
+    slots: {
+      customRender: 'status1'
+    }
+  },
   {
     dataIndex: 'address', key: '1', width: 160,
     type: {
-      componentName: 'ellipsis',
+      componentName: 'tdEllipsis',
       props: {
         lineheigth: 2
       }
     },
     titleType: {
-      componentName: 'describe',
+      componentName: 'thDescribe',
       props: {
         text: 'Column 1',
         describe: '提示内容'
@@ -58,7 +67,7 @@ const columns = [
   },
   { dataIndex: 'age', key: '2', width: 160,
     titleType: {
-      componentName: 'unit',
+      componentName: 'thUnit',
       props: {
         text: 'Column 2',
         unit: '(元)'
@@ -70,7 +79,7 @@ const columns = [
   },
   { title: 'Column 3', dataIndex: 'age', key: '3', width: 160,
     type: {
-      componentName: 'handle',
+      componentName: 'tdHandle',
       props: {
       }
     },

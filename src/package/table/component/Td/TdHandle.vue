@@ -44,7 +44,7 @@ const props = () => ({
 })
 
 export default defineComponent({
-  name: 'Handle',
+  name: 'TdHandle',
   inheritAttrs: false,
   props: props(),
   setup (props, { emit }) {

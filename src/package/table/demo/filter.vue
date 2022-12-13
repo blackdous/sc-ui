@@ -120,7 +120,7 @@ const columns = [
     filterList: () => list,
     onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) },
     type: {
-      componentName: 'ellipsis',
+      componentName: 'tdEllipsis',
       props: {
         lineheigth: 2
       }
