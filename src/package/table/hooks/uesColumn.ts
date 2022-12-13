@@ -38,7 +38,6 @@ export function useColumn (
       }
       return item
     })
-    console.log('columns: ', columns);
     return columns
   })
   const filterColumn = ref(unref(propsRef).columnFilterList.length ? unref(propsRef).columnFilterList : unref(getColumnRef))
@@ -91,6 +90,20 @@ export function useColumn (
     columnsRef.value = colums
   }
 
+  function getRowClassName(record: any, index: number) {
+    const { rowClassName } = unref(propsRef);
+    const classNames: string[] = [];
+    if (record.disabled) {
+      classNames.push('table-disabled')
+    }
+    if (record?.children?.length) {
+      classNames.push('table-expandedRow')
+    }
+    if (rowClassName && isFunction(rowClassName)) {
+      classNames.push(rowClassName(record, index));
+    }
+    return classNames.filter((cls) => !!cls).join(' ');
+  }
 
   const getFilterColumnRef = computed(() => {
     const columns = cloneDeep(unref(filterColumn)).map((item: Column) => {
@@ -183,6 +196,7 @@ export function useColumn (
     getFetchFilter,
     customComponentKey,
     customComponentHeaderKey,
+    getRowClassName,
     getTypeComponent,
     getTitleComponent,
     getColumns,

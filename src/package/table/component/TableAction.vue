@@ -4,7 +4,25 @@
       v-for="(item) in filterShow.slice(0, actionsOptions.showBtn)"
       :key="item.label"
     >
+      <Tooltip
+        v-if="item.tooltipDes"
+        overlayClassName = 'scTooltip-white'
+        :disabled="item.isDisabled"
+      >
+        <template #title>
+          {{ item.tooltipDes }}
+        </template>
+        <Button 
+          type="link"
+          :disabled="item.isDisabled"
+          :loading="!item.isDisabled && item.loading"
+          @click="handle(item)"
+        >
+          {{ item.label }}
+        </Button>
+      </Tooltip>
       <Button 
+        v-else
         type="link"
         :disabled="item.isDisabled"
         :loading="!item.isDisabled && item.loading"
@@ -17,7 +35,8 @@
       <Dropdown
         :placement="placementRef"
         :overlayClassName="basePrefixCls + 'TableDropdown'"
-      >
+        >
+        <!-- :visible="true" -->
         <Button
           type="link"
         >
@@ -57,7 +76,7 @@
                 :disabled="item.isDisabled"
                 v-else
               >
-                <template v-if="item.isDisabled && item.tooltipDes">
+                <template v-if="item.tooltipDes">
                   <Tooltip
                     overlayClassName = 'scTooltip-white'
                   >
@@ -237,13 +256,7 @@ watch([() => props.record, () => props.actions], ([prospRecord, actions]) => {
       return data
     }})
   }
-  filterShow.value = list?.filter(item => item.isShow).map(item => {
-    if (item.isDisabled) {
-      item.tooltip = true;
-      item.tooltipDes = (item.tooltipDes || item.label)
-    }
-    return item
-  }) || []
+  filterShow.value = list?.filter(item => item.isShow)
 }, {
   deep: true,
   immediate: true

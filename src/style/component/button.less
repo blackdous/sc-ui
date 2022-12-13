@@ -21,19 +21,21 @@
   text-shadow: none;
   box-shadow: none;
 }
-.ant-btn:not([disabled]):not(.ant-btn-link):hover,
-.ant-btn:not([disabled]):not(.ant-btn-link):focus,
-.ant-btn:not([disabled]):not(.ant-btn-link):active {
-  color: @primary-color;
-  border-color: @primary-color;
-}
+// .ant-btn:not([disabled]):not(.ant-btn-link):not(.ant-btn-primary):hover,
+// .ant-btn:not([disabled]):not(.ant-btn-link):not(.ant-btn-primary):focus,
+// .ant-btn:not([disabled]):not(.ant-btn-link):not(.ant-btn-primary):active {
+//   color: @primary-color;
+//   border-color: @primary-color;
+// }
 .ant-btn-link {
   color: @primary-color;
   &.actionBtn {
     text-align: left;
-    color: @heading-color;
     height: auto;
     padding: 0;
+  }
+  &:not([disabled]).actionBtn {
+    color: @heading-color;
   }
 }
 

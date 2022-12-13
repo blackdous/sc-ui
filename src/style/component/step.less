@@ -23,7 +23,7 @@
       .scStep-icon {
         border: none;
         font-size: 24px;
-        box-shadow: 0px 2px 5px 0px rgba(245,63,63,0.5);
+        box-shadow: 0px 2px 3px 0px rgba(245,63,63,0.5);
         border-radius: 20px;
       }
     }
@@ -33,7 +33,7 @@
       .scStep-icon {
         border: none;
         font-size: 24px;
-        box-shadow: 0px 2px 5px 0px rgba(35,166,243,0.5);
+        box-shadow: 0px 2px 3px 0px rgba(35,166,243, 0.5);
         border-radius: 20px;
       }
     }
@@ -191,16 +191,16 @@
     .scStep-head {
       width: auto;
       font-size: 0;
-      padding-right: 10px;
+      padding-right: 8px;
       &.is-success {
         .scStep-icon {
-          box-shadow: 0px 2px 5px 0px rgba(35,166,243,0.5);
+          box-shadow: 0px 2px 3px 0px rgba(35,166,243,0.5);
           border-radius: 20px 20px 20px 20px;
         }
       }
       &.is-error {
         .scStep-icon {
-          box-shadow: 0px 2px 5px 0px rgba(245,63,63,0.5);
+          box-shadow: 0px 2px 3px 0px rgba(245,63,63,0.5);
           border-radius: 20px 20px 20px 20px;
         }
       }
@@ -256,6 +256,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      i {
+        color: @text-color-secondary;
+      }
     }
     &:last-of-type {
       .scStep-arrow {
@@ -275,28 +278,31 @@
       }
       .scStep-line {
         width: calc(100% - 32px);
+        background: @text-color-secondary;
+        border-color: @text-color-secondary;
+        height: 2px;
       }
-      &.is-success {
-        .scStep-line-inner {
-          border-color: @steps-success-color;
-        }
-        .scStep-line {
-          background: @steps-success-color;
-        }
-      }
-      &.is-error {
-        .scStep-line-inner {
-          border-color: @steps-error-color;
-        }
-        .scStep-line {
-          background: @steps-error-color;
-        }
-      }
+      // &.is-success {
+      //   // .scStep-line-inner {
+      //   //   border-color: @steps-success-color;
+      //   // }
+      //   // .scStep-line {
+      //   //   background: @steps-success-color;
+      //   // }
+      // }
+      // &.is-error {
+      //   .scStep-line-inner {
+      //     border-color: @steps-error-color;
+      //   }
+      //   .scStep-line {
+      //     background: @steps-error-color;
+      //   }
+      // }
     }
     .scStep-head:not(.is-error):not(.is-success):not(.is-wait) {
       .scStep-icon:not(.is-icon) {
         font-size: 16px;
-        box-shadow: 0px 2px 5px 0px rgba(35,166,243,0.5);
+        box-shadow: 0px 2px 3px 0px rgba(35,166,243,0.5);
         border-radius: 50%;
         color: @bg-color;
         .@{stepScope}__icon-inner {
@@ -332,18 +338,18 @@
     .scStep-head {
       flex-grow: 0;
       width: 24px;
-      &.is-success {
-        .scStep-line {
-          background: @steps-success-color;
-          border-color: @steps-success-color;
-        }
-      }
-      &.is-error {
-        .scStep-line {
-          background: @steps-success-color;
-          border-color: @steps-success-color;
-        }
-      }
+      // &.is-success {
+      //   // .scStep-line {
+      //   //   background: @steps-success-color;
+      //   //   border-color: @steps-success-color;
+      //   // }
+      // }
+      // &.is-error {
+      //   .scStep-line {
+      //     background: @steps-success-color;
+      //     border-color: @steps-success-color;
+      //   }
+      // }
     }
     .scStep-main {
       padding-left: 10px;
@@ -360,6 +366,8 @@
       top: 40px;
       bottom: 16px;
       left: 11px;
+      background: @text-color-secondary;
+      border-color: @text-color-secondary;
     }
     .scStep-icon {
       &.is-icon {

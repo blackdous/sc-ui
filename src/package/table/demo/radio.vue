@@ -5,12 +5,7 @@
       :data-source="data"
       :columns="columns"
       :loading="false"
-      :row-selection="{
-        type: 'radio',
-        selectedRowKeys: state.selectedRowKeys,
-        onChange: onSelectChange
-      }"
-
+      :row-selection="rowSelection"
       @change="handleChange"
       >
     </ScTable>
@@ -18,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { ScTable } from 'sc-ui'
 
 import "ant-design-vue/dist/antd.css"
@@ -27,7 +22,15 @@ import '../../../style/index.less'
 const scTableRef = ref()
 // @ts-ignore
 const columns = [
-  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
+  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'
+    // type: {
+    //   componentName: 'tdEllipsis',
+    //   props: {
+    //     lineheigth: 2,
+    //     className: 'notArrow'
+    //   }
+    // }
+  },
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
@@ -71,6 +74,7 @@ const data: DataItem[] = [
     name: 'Jim Green',
     age: 40,
     address: 'London London',
+    disabled: true
   },
 ];
 
@@ -82,6 +86,20 @@ for(let i = 10; i < 15; i++) {
     address: 'New London',
   })
 }
+
+
+const rowSelection = computed(() => {
+  return {
+    selectedRowKeys: state.selectedRowKeys,
+    onChange: onSelectChange,
+    getCheckboxProps: (record:any) => {
+      const props = {
+        disabled: record.disabled
+      }
+      return props
+    }
+  };
+})
 
 const state = reactive<{
   selectedRowKeys: Key[];

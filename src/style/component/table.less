@@ -15,8 +15,11 @@
       height: 36px;
     }
   }
-  .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
+  .ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected):not(.table-disabled) > td {
     background: @table-td-hover;
+  }
+  .ant-table-tbody > tr.table-disabled:hover  td {
+    background: @steps-wait-color!important;
   }
   .ant-table-tbody > tr > td {
     border-bottom: 1px solid @table-border-color;
@@ -148,7 +151,7 @@
   &-active {
     margin-left: 8px;
   }
-  .ant-btn {
+  .ant-btn:not(.ant-btn-primary) {
     &:hover, &:active {
       color: @primary-color;
     }
@@ -156,14 +159,37 @@
 }
 .@{tableActionsScope} {
   height: 22px;
+  > span + .ant-btn-link { 
+    position: relative;
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: 4px;
+      width: 1px;
+      height: 16px;
+      background: @table-border-color;
+    }
+  }
   .ant-btn-link {
     padding: 0;
     height: 22px;
     box-sizing: border-box;
   }
+  & > span {
+    padding: 0 0 0 6px;
+    .ant-btn-link {
+      padding: 0;
+      height: 22px;
+      box-sizing: border-box;
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+  }
   .ant-btn-link {
     & > span {
-      padding: 0 8px;
+      padding: 0 8px 0 6px;
     }
     &:first-child {
       & > span {
@@ -272,6 +298,11 @@
   color: @heading-color;
   &.linkBtn {
     color: @primary-color !important;
+  }
+}
+.table-disabled {
+  td {
+    background: @steps-wait-color;
   }
 }
 

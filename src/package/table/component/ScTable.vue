@@ -87,6 +87,7 @@
         size="small"
         ref="tableRef"
         v-bind="tableBindValue"
+        :rowClassName="getRowClassName"
         :expand-icon="expandIconFnc"
         @change="handleTableChange"
       >
@@ -340,6 +341,7 @@ export default defineComponent({
       getFilterColumnRef,
       getFilterDropdownRef,
       getFetchFilter,
+      getRowClassName,
       getColumns,
       getTypeComponent,
       getTitleComponent,
@@ -643,6 +645,7 @@ export default defineComponent({
       isShowFilter,
       getFilterDropdownRef,
 
+      getRowClassName,
       isEmptyText,
       handleCloseAll,
       handle,

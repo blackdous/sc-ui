@@ -1,7 +1,6 @@
 <template>
   <Tooltip
-    v-if="isEmptyText(newProps.text)"
-    overlayClassName="scTooltip-white"
+    :overlayClassName="newProps.column.type.props.className"
     :id="`tb_${index}_${key}_ellipsis`"
   >
     <template #title>
@@ -16,15 +15,12 @@
       </p>
     </div>
   </Tooltip>
-  <span v-else>
-    {{ '--' }}
-  </span>
 </template>
 
 <script lang='ts'>
 import { computed, defineComponent } from 'vue'
 import { Tooltip } from 'ant-design-vue'
-import { isEmptyText } from '../../../../utils/is'
+// import { isEmptyText } from '../../../../utils/is'
 
 const props = () =>({
   column: {
@@ -79,7 +75,7 @@ export default defineComponent({
       newProps,
       className,
       handle,
-      isEmptyText
+      // isEmptyText
     }
   }
 })

@@ -70,7 +70,6 @@ const list = ref([
       console.log(data);
       console.log('====================================');
     },
-    tooltip: false,
     tooltipDes: '创建快照创建快照aa',
   },
   {
@@ -86,7 +85,6 @@ const list = ref([
     key: 'bb',
     loading: false,
     action: 'bb',
-    tooltip: false,
     tooltipDes: '续费续费续费续费续费'
   },
   {
@@ -96,7 +94,6 @@ const list = ref([
     loading: false,
     key: 'cc',
     action: '1111',
-    tooltip: false,
     tooltipDes: '一级选项111111111',
     children: [
       {
@@ -106,16 +103,15 @@ const list = ref([
         loading: false,
         key: 'dd',
         action: '2222',
-        tooltip: false,
         tooltipDes: '二级选项22222222',
       }
     ]
   }, {
     label: '三级选项',
     isShow: true,
-    isDisabled: ({tableRef, selectedRowKeysRef}) => {
-      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
-      if (selectedRowKeysRef.length > 3) {
+    isDisabled: ({record}) => {
+      console.log('record: ', record);
+      if (record.key === '17') {
         return true
       }
       return false
@@ -124,14 +120,13 @@ const list = ref([
     key: 'ff',
     action: '3333',
     tooltip: true,
-    tooltipDes: '三级选项33333333',
+    tooltipDes: '',
   }, {
     label: '四级选项',
     isShow: true,
     isDisabled: false,
     loading: false,
     action: '4444',
-    tooltip: false,
     tooltipDes: '四级选项444444444',
   }
 ])

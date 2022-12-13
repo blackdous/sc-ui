@@ -34,7 +34,7 @@
       <div :class="['scStep-arrow']" v-if="!isSimple && isVertical">
         <i v-if="isSimple" class="iconfont icon-you"></i>
         <div v-else-if="!isSimple && isVertical" class="scStep-line">
-          <i class="scStep-line-inner" :style="lineStyle"></i>
+          <!-- <i class="scStep-line-inner" :style="lineStyle"></i> -->
         </div>
         <!-- <i v-else class="scStep-line-inner" :style="lineStyle"></i> -->
       </div>
@@ -53,7 +53,7 @@
       <div :class="['scStep-arrow']">
         <i v-if="isSimple" class="iconfont icon-you"></i>
         <div v-else-if="!isSimple && !isVertical " class="scStep-line">
-          <i class="scStep-line-inner" :style="lineStyle"></i>
+          <!-- <i class="scStep-line-inner" :style="lineStyle"></i> -->
         </div>
         <!-- <i v-else class="scStep-line-inner" :style="lineStyle"></i> -->
       </div>

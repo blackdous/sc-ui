@@ -28,11 +28,11 @@
         customSearchFunc: searchHanle,
         selectOptions: {
           placeholder: '请选择',
-          width: '120px'
+          width: '100px'
         },
         inputOptions: {
           placeholder: '请输入',
-          width: '120px',
+          width: '200px',
           maxlength: 40
         }
       }"
