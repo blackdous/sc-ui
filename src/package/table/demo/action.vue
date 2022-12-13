@@ -99,7 +99,13 @@ const list = ref([
       {
         label: '二级选项',
         isShow: true,
-        isDisabled: false,
+        isDisabled: ({record}) => {
+          console.log('record: ', record);
+          if (record.key === '17') {
+            return true
+          }
+          return false
+        },
         loading: false,
         key: 'dd',
         action: '2222',

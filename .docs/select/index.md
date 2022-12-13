@@ -4,49 +4,13 @@ map:
 realPath: src/package/select/index.zh-CN.md
 ---
 
-# InputNumber 数字输入框
-
-数字输入框由增加、减少按钮、数值输入组成。每次点击增加按钮（或减少按钮），数字增长（或减少）的量是恒定的。
+# Select 选择器
 
 ## 组件类型
 
-### 双侧调整数字输入框
+### 单选选择器
 
-<demo src="./demo/bothSides.vue"
-  language="vue"
-  title="双侧调整数字输入框"
-  desc="双侧调整数字输入框"
-  >
-</demo>
 
-### 右侧调整数字输入框
-
-<demo src="./demo/internal.vue"
-  language="vue"
-  title="右侧调整数字输入框"
-  desc="右侧调整数字输入框"
-  >
-</demo>
-
-## 组件大小
-
-**双侧调整数字输入框（提供小、中（默认）、大 3 种尺寸，高度分别为24px、32px和40px**
-
-<demo src="./demo/bothSidesSize.vue"
-  language="vue"
-  title="双侧调整数字输入框组件大小"
-  desc="双侧调整数字输入框组件大小"
-  >
-</demo>
-
-**右侧调整数字输入框（提供小、中（默认）、大 3 种尺寸，高度分别为24px、32px和40px**
-
-<demo src="./demo/internalSize.vue"
-  language="vue"
-  title="右侧调整数字输入框组件大小"
-  desc="右侧调整数字输入框组件大小"
-  >
-</demo>
 
 <!-- ## Api
 
