@@ -21,6 +21,8 @@ npm i @sincerecloud/sc-ui -D
 
 ```js
 import '@sincerecloud/sc-ui/style.css'
+// 或者 直接引入less文件
+import '@sincerecloud/sc-ui/style/index.less'
 ```
 
 本项目也支持按需加载
