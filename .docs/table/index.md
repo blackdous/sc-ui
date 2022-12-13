@@ -120,7 +120,6 @@ reload参数中的`action`方法，参数为`fetchParams`
 
 ```ts
 interface ButtonType {
-  tooltipDis?: boolean,
   toolOptions?: TooltipProps,
   tooltipDes?: string,
   label?: string,
@@ -153,7 +152,6 @@ interface ButtonType {
 
 ```ts
   export interface ButtonProps {
-    tooltipDis?: boolean,
     toolOptions?: TooltipProps,
     tooltipDes?: string,
     label?: string,
@@ -198,7 +196,6 @@ interface ActionItemProps {
   key?: string,
   isDisabled?: boolean | (() => boolean),
   loading?: boolean | (() => boolean),
-  tooltip?: boolean,
   tooltipDes?: string,
   children?: Array<ActionItemProps>,
   action?: string | (() => void)
@@ -243,7 +240,6 @@ const actions = [{
     console.log(data);
     console.log('====================================');
   },
-  tooltip: false,
   tooltipDes: '创建快照创建快照aa',
 }]
 
@@ -596,8 +592,6 @@ export interface CreateButton {
 
 ```ts
   interface ButtonType {
-    // 是否显示tooltip
-    tooltipDis?: boolean,
     // tooltip配置
     toolOptions?: TooltipProps,
     // tooltip title 显示内容
@@ -703,8 +697,6 @@ export interface ActiveOptions {
     isDisabled?: boolean | (() => boolean),
     // 当前按钮loading状态
     loading?: boolean | (() => boolean),
-    // 是否显示tooltip
-    tooltip?: boolean,
     // tooltip显示文字
     tooltipDes?: string,
     // 嵌套结构
@@ -850,7 +842,6 @@ export interface ActionItemProps {
   key?: string,
   isDisabled?: boolean | (() => boolean),
   loading?: boolean | (() => boolean),
-  tooltip?: boolean,
   tooltipDes?: string,
   children?: Array<ActionItemProps>,
   action?: string | (() => void)
