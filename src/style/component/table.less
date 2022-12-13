@@ -305,6 +305,24 @@
     background: @steps-wait-color;
   }
 }
+.table-sortUp, .table-sortDown {
+  position: absolute;
+  display: none;
+  padding: 5px 8px;
+  line-height: 22px;
+  color: @heading-color;
+  background: @bg-color;
+  border-radius: @border-r-3;
+  transform: translateX(110%);
+}
+.table-sortUp {
+  right: 0;
+  top: -8px;
+}
+.table-sortDown {
+  right: 0;
+  top: -17px;
+}
 
 #table-fetch, #usetable {
   & + .vitepress-demo {

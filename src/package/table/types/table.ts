@@ -220,6 +220,30 @@ export const tableProps = () => ({
       }
     }
   },
+  upTitle: {
+    type: String,
+    default () {
+      return '点击升序'
+    }
+  },
+  downTitle: {
+    type: String,
+    default () {
+      return '点击降序'
+    }
+  },
+  cancelUpTitle: {
+    type: String,
+    default () {
+      return '点击取消升序'
+    }
+  },
+  cancelDownTitle: {
+    type: String,
+    default () {
+      return '点击取消降序'
+    }
+  },
   multipleOptions: {
     type: Object as PropType<MutilpActionOptions>
   },
@@ -374,6 +398,8 @@ export const tableProps = () => ({
 })
 
 export interface TableProps {
+  upTitle: string,
+  downTitle: string,
   createButtonOptions?: CreateButton,
   multipleOptions?: MutilpActionOptions,
   searchOptions?: SearchOptions,

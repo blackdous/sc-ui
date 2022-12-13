@@ -47,7 +47,9 @@ const columns = [
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
     slots: {
       customRender: 'status1'
-    }
+    },
+    onFilter: (value: string, record: DataItem) => record.name.includes(value),
+    sorter: (a: DataItem, b: DataItem) => a.age - b.age,
   },
   {
     dataIndex: 'address', key: '1', width: 160,
@@ -63,7 +65,9 @@ const columns = [
         text: 'Column 1',
         describe: '提示内容'
       }
-    }
+    },
+    onFilter: (value: string, record: DataItem) => record.name.includes(value),
+    sorter: (a: DataItem, b: DataItem) => a.age - b.age,
   },
   { dataIndex: 'age', key: '2', width: 160,
     titleType: {

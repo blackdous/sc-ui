@@ -84,6 +84,7 @@
       >
       </FilterTagsVue>
       <Table
+        :id="uuid"
         size="small"
         ref="tableRef"
         v-bind="tableBindValue"
@@ -180,6 +181,7 @@ import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
 import { FilterFilled } from '@ant-design/icons-vue'
 
 import { isEmptyText } from '../../../utils/is'
+import { buildUUID } from '../../../utils/uuid'
 import { basePrefixCls } from '../../../constant'
 import TableFilter from './TableFilter.vue'
 import ScTableAction, { ActionItemProps } from './TableAction.vue'
@@ -240,6 +242,8 @@ export default defineComponent({
     
     const zhCN = ref({})
     const enUS = ref({})
+
+    const uuid = 'sc' + buildUUID()
 
     const innerPropsRef = ref<Partial<TableProps>>();
 
@@ -341,6 +345,7 @@ export default defineComponent({
       getFilterColumnRef,
       getFilterDropdownRef,
       getFetchFilter,
+      showSortTitle,
       getRowClassName,
       getColumns,
       getTypeComponent,
@@ -352,7 +357,7 @@ export default defineComponent({
       setFilterColumnChecked,
       setFilterColumnDisabled
     } = useColumn(newProps, fetchParams)
-
+    showSortTitle(newProps, uuid)
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);
       fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, selectedRowRef, setLoading, pagination: getPaginationInfo}
@@ -616,6 +621,7 @@ export default defineComponent({
       enUS,
       zhCN,
       newProps,
+      uuid,
 
       className,
       getLoading,
