@@ -1,53 +1,156 @@
 <template>
-  <div :class="[baseClass, newProps.mode, newProps.disabled ? 'isDisabled' : '', newProps.size]">
-    <!-- <Button
-      :class="[baseClass+'-btn']"
-      @click="changeVal('reduce')"
-      :disabled="newProps.disabled || buttonDis || minDisabled"
-      :size="newProps.size"
-    >
-      <i class="iconfont icon-remove"></i>
-    </Button>
-    <InputNumber
-      v-model:value="text"
-      :disabled="newProps.disabled"
-      :min="min"
-      :max="max"
-      v-bind="$attrs"
-    />
-    <Button
-      :class="[baseClass+'-btn']"
-      @click="changeVal('add')"
-      :disabled="newProps.disabled || buttonDis || maxDisabled"
-    >
-      <i class="iconfont icon-add"></i>
-    </Button> -->
-  </div>
+  <Select
+    :class="[baseClass, uuid]"
+    v-bind="$attrs"
+    v-model:value="value"
+    :disabled="newProps.disabled"
+    :dropdownClassName="dropdownClassName"
+    v-on="$listeners"
+    @change="handleChange"
+  >
+    <template #[item]="data" v-for="item in Object.keys($slots).filter(item => item !== 'suffixIcon')" :key="item">
+      <slot :name="item" v-bind="data || {}"></slot>
+    </template> 
+    <template v-if="newProps.optionMode === 'checkbox'" #dropdownRender>
+      <CheckboxGroup
+        v-model:value="checkboxValue"
+      >
+        <div 
+          v-for="item in checkboxOptions"
+          :class="item.className"
+        >
+          <div class="ant-select-item-option-content">
+            <Checkbox
+              v-bind="item"
+            >
+              {{item.label || item.value}}
+            </Checkbox>
+          </div>
+        </div>
+      </CheckboxGroup>
+    </template>
+
+    <template #suffixIcon>
+      <i 
+        v-if="!isSuffixIcon"
+        class="iconfont icon-you" 
+      />
+      <slot v-else slot="suffixIcon" />
+    </template>
+    <template #clearIcon>
+      <CloseCircleFilled class="clearSelect" v-if="!isClearIcon" />
+      <span v-else class="clearSelect">
+        <slot  slot="clearIcon">
+        </slot>
+      </span>
+    </template>
+
+
+  </Select>
 </template>
 
 <script lang="ts" >
 
-import { ref, watch, computed, defineComponent } from 'vue'
-import { InputNumber, Button } from 'ant-design-vue'
+import { computed, defineComponent, ref, unref, onMounted, watchEffect } from 'vue'
+import { Select, CheckboxGroup, Checkbox } from 'ant-design-vue'
+import { CloseCircleFilled } from '@ant-design/icons-vue'
 import { basePrefixCls } from '../../../constant'
+import { buildUUID } from '../../../utils/uuid'
 import { props } from './type'
 
 export default defineComponent({
   name: 'ScSelect',
-  inheritAttrs: false,
+  // inheritAttrs: false,
   props: props(),
   components: {
-    InputNumber,
-    Button,
+    Select,
+    CheckboxGroup,
+    Checkbox,
+    CloseCircleFilled,
   },
-  setup(props, { emit, attrs }) {
+  setup(props, { emit, slots, attrs }) {
     const baseClass = basePrefixCls + 'Select'
+
+    const initValue = computed(() => props.value)
+    const value = ref(unref(initValue))
     const newProps = computed(() => {
       return props
     })
+    const checkboxValue = ref(unref(initValue))
+
+    const uuid = 'sc' + buildUUID()
+
+    if (unref(newProps)?.optionMode === 'checkbox') {
+      watchEffect(() => {
+        if (checkboxValue.value?.length > value.value?.length) {
+          emit('change', checkboxValue.value)
+        }
+        value.value = checkboxValue.value
+        emit('value:update',  value.value)
+      })
+    }
+
+    const checkboxOptions = computed(() => {
+      // @ts-ignore
+      return attrs?.options?.map((item:any) => {
+        const checkboxUnref = unref(checkboxValue)
+         // @ts-ignore
+        if (checkboxUnref?.includes(item.value)) {
+          item.className = ['ant-select-item', 'ant-select-item-option', 'ant-select-item-option-selected']
+        } else {
+          item.className = ['ant-select-item', 'ant-select-item-option']
+        }
+        return item
+      })
+    })
+
+    const handleChange = (val) => {
+      // console.log('val: ', val);
+      checkboxValue.value = val
+    }
+    
+    const dropdownClassName = computed(() => {
+      const dropdownClass = []
+      if (attrs.size) {
+        dropdownClass.push('dropdown-' + attrs.size)
+      }
+      if (attrs.dropdownClassName) {
+        dropdownClass.push(attrs.dropdownClassName)
+      }
+      return dropdownClass.join(' ')
+    })
+
+    const isSuffixIcon = computed(() => {
+      return Object.keys(slots).includes('suffixIcon')
+    })
+
+    const isClearIcon = computed(() => {
+      return Object.keys(slots).includes('clearIcon')
+    })
+
+    onMounted(() => {
+      const dom = document.querySelector(`.${uuid}`) as HTMLElement
+      dom && dom.addEventListener('mousedown', (event) => {
+        const parent = event?.target?.parentNode?.parentNode
+        if (Array.from(parent.classList).includes('clearSelect')) {
+          checkboxValue.value = undefined
+          // value.value = []
+          emit('allowClear', value.value)
+        }
+      })
+    })
+    
     return {
+      uuid,
       baseClass,
-      newProps
+      newProps,
+      value,
+      isSuffixIcon,
+      isClearIcon,
+      dropdownClassName,
+      checkboxValue,
+      checkboxOptions,
+      handleChange
     }
   }
 })

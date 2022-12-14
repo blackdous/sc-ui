@@ -544,6 +544,8 @@ const dataSource = [
 | isTreeTable             | `boolean`                                          | `false` | -      | 是否树表                                                                                        |      |
 | upTitle             | `string`                                          | `点击升序` | -      | 升序按钮hover时显示的文字                                                                                        |      |
 | downTitle             | `string`                                          | `点击降序` | -      | 降序按钮hover时显示的文字                                                                                        |      |
+| cancelUpTitle             | `string`                                          | `点击取消升序` | -      | 已升序按钮hover时显示的文字                                                                                        |      |
+| cancelDownTitle             | `string`                                          | `点击去取消降序` | -      | 已降序按钮hover时显示的文字                                                                                        |      |
 | size             | `middle、small`                                          | `middle` | -      | 表格大小                                                                                       |      |
 | api                     | `(...arg: any) => Promise<any>`                    | -       | -      | 请求接口，可以直接将`src/api内的函数直接传入`     
 | sortFn                  | `(sortInfo: SorterResult<any>) => any`             | -       | -      | 自定义排序方法。见下方全局配置说明   **如果使用api，必须要配置sortFn 方法 **                                                         |      |
@@ -728,7 +730,7 @@ export interface ActiveOptions {
 | filtered      | boolean                                           | -   |   -    | 选中之后filtericon 会高亮 |
 | filterMultiple      | boolean                                           | -   |   -    | filter是否可以多选 |
 | notShowFilter      | boolean                                           | -   |   -    | 是否在自定义列中显示 |
-| titleType      | `TitleType`                                           | -   |   `thDescribe`、 `thUnit` | 头部内置自定义组件 |
+| titleType      | `TitleType`                                           | -   |   `thDescribe`、 `thUnit` | 头部内置自定义组件(**如需使用多个 请把componentName命名为 thDescribe1、thDescribe2 依次递增**) |
 |  slots      |   `customRender`、  `title`                                     | -   |   - | `customRender`不要和`tdStatus 、 tdCopy 、 tdEllipsis 、tdHandle` 重名； `title` 不要和 `thDescribe`、 `thUnit` 重名 |
 
 

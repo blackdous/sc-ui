@@ -44,15 +44,23 @@ const scTableRef = ref()
 // @ts-ignore
 const columns = [
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
-  { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
+  { 
+    width: 60,
+    dataIndex: 'age', 
+    key: 'age1',
     slots: {
       customRender: 'status1'
     },
-    onFilter: (value: string, record: DataItem) => record.name.includes(value),
-    sorter: (a: DataItem, b: DataItem) => a.age - b.age,
+    titleType: {
+      componentName: 'thDescribe',
+      props: {
+        text: 'Column 2',
+        describe: '提示内容'
+      }
+    },
   },
   {
-    dataIndex: 'address', key: '1', width: 160,
+    dataIndex: 'address', key: 'address', width: 160,
     type: {
       componentName: 'tdEllipsis',
       props: {
@@ -60,7 +68,7 @@ const columns = [
       }
     },
     titleType: {
-      componentName: 'thDescribe',
+      componentName: 'thDescribe1',
       props: {
         text: 'Column 1',
         describe: '提示内容'
@@ -69,11 +77,11 @@ const columns = [
     onFilter: (value: string, record: DataItem) => record.name.includes(value),
     sorter: (a: DataItem, b: DataItem) => a.age - b.age,
   },
-  { dataIndex: 'age', key: '2', width: 160,
+  { dataIndex: 'age2', key: 'age2', width: 160,
     titleType: {
-      componentName: 'thUnit',
+      componentName: 'thUnit3',
       props: {
-        text: 'Column 2',
+        text: 'Column 2111',
         unit: '(元)'
       }
     },
@@ -81,10 +89,17 @@ const columns = [
       customRender: 'copy1'
     }
   },
-  { title: 'Column 3', dataIndex: 'age', key: '3', width: 160,
+  {  dataIndex: 'age3', key: 'age3', width: 160,
     type: {
       componentName: 'tdHandle',
       props: {
+      }
+    },
+    titleType: {
+      componentName: 'thDescribe2',
+      props: {
+        text: 'Column 6',
+        describe: 'Column 6'
       }
     },
     handle: handleTd

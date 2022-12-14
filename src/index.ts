@@ -12,7 +12,7 @@ import { ScTable, useTable, Copy, TableActionVue } from './package/table'
 import { ScLoading, useLoading } from './package/loading'
 import { ScButton } from './package/button'
 import { ScInputNumber } from './package/inputNumber'
-
+import { ScSelect } from './package/select'
 
 
 import { installGlobalDirectives } from './directives'
@@ -38,7 +38,8 @@ const components = [
   TableActionVue,
   ScLoading,
   ScButton,
-  ScInputNumber
+  ScInputNumber,
+  ScSelect
 ]
 
 const install = (app: App) => {
@@ -66,7 +67,8 @@ export {
   TableActionVue,
   ScLoading,
   ScButton,
-  ScInputNumber
+  ScInputNumber,
+  ScSelect
 }
 
 export * from './types'

@@ -213,6 +213,34 @@ export function useColumn (
     return columns
   })
 
+  const thColumn = computed(() => {
+    const newColumn = cloneDeep(unref(getFilterColumnRef).filter((item:Column) => !!item.titleType))
+    // let countComponent = {
+    //   unit: 0,
+    //   describe: 0
+    // }
+    // const aanewColumn = cloneDeep(newColumn).map((item: Column) => {
+    //   if (item?.titleType?.componentName === 'thUnit') {
+    //     if (countComponent.unit !== 0) {
+    //       item.slots.title += countComponent.unit
+    //       item.titleType.componentName += countComponent.unit
+    //     }
+    //     countComponent.unit += 1
+    //   }
+    //   if (item?.titleType?.componentName === 'thDescribe') {
+    //     if (countComponent.describe !== 0) {
+    //       item.slots.title += countComponent.describe
+    //       item.titleType.componentName += countComponent.describe
+    //     }
+    //     countComponent.describe += 1
+    //   }
+    //   return item
+    // })
+    // console.log('aanewColumn: ', aanewColumn);
+    // console.log('newColumn: ', newColumn);
+    return newColumn
+  })
+
   const getTypeComponent = (type:string) => {
     // 预设组件
     if (unref(customComponentKey).includes(type)) {
@@ -279,6 +307,7 @@ export function useColumn (
   return {
     getColumnRef,
     getFilterColumnRef,
+    thColumn,
     getFilterDropdownRef,
     getFetchFilter,
     customComponentKey,

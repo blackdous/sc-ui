@@ -1,23 +1,48 @@
+@selectScope: ~'@{prefixCls}Select';
 .ant-select:not(.ant-pagination-options-size-changer) {
   &.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-    // height: 28px;
-    padding: 0 16px 0 8px;
+    padding: 0 28px 0 8px;
   }
-  // &.ant-select-single .ant-select-selector .ant-select-selection-item, .ant-select-single .ant-select-selector .ant-select-selection-placeholder {
-  //   line-height: 26px;
-  // }
-  &.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
-    border-color: @primary-color;
-    box-shadow: 0 0 0 2px @hover-shadow;
+
+  &.ant-select:not(.ant-select-disabled):hover {
+    .ant-select-selector {
+      border-color: @primary-color;
+    }
+    .ant-select-arrow {
+      .icon-you {
+        color: @primary-color;
+      }
+    }
+  }
+  &.ant-select:not(.ant-select-disabled):focus {
+    .ant-select-selector {
+      border-color: @primary-color;
+      box-shadow: 0 0 0 2px @hover-shadow;
+    }
+    .ant-select-arrow {
+      .icon-you {
+        color: @primary-color;
+      }
+    }
+  }
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) {
+    .ant-select-selector {
+      .ant-select-selector {
+        border-color: @primary-color;
+        box-shadow: 0 0 0 2px @hover-shadow;
+      }
+      .ant-select-arrow {
+        .icon-you {
+          color: @primary-color;
+        }
+      }
+    }
   }
 }
 .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
   border-color: @primary-color;
   box-shadow: 0 0 0 2px @hover-shadow;
 }
-// .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-//   height: 30px;
-// }
 .ant-select-arrow {
   top: 50%;
   right: 16px;
@@ -28,22 +53,94 @@
   padding: 6px;
   border-radius: @border-r-6;
 }
-.ant-select-item {
-  min-height: 28px;
-  padding: 3px 8px;
-  border-radius: @border-r-3;
-  & + .ant-select-item {
-    margin-top: 2px;
+.ant-select-dropdown {
+  padding: 6px 0!important;
+  border-radius: @border-r-6!important;
+  .ant-select-item {
+    min-height: 28px;
+    padding: 3px 8px;
+    margin: 0 6px;
+    border-radius: @border-r-3;
+    color: @heading-color;
+    & + .ant-select-item {
+      margin-top: 2px;
+    }
+  }
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background-color: @table-Menu-bg;
+    color: @primary-color;
+  }
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled):not(.ant-select-item-option-selected) {
+    background-color: @select-hover-bg;
+  }
+  .ant-select-item:not(.ant-select-item-option-disabled):not(.ant-select-item-option-selected) {
+    &:active {
+      background-color: @active-bg;
+    }
+    &:hover {
+      background-color: @select-hover-bg;
+    }
+  }
+  .ant-select-dropdown-content {
+    .ant-checkbox-group {
+      width: 100%;
+      .ant-checkbox-wrapper {
+        width: 100%;
+      }
+    }
+    .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+      .ant-checkbox-wrapper-checked {
+        color: @primary-color;
+      }
+    }
+  }
+  .ant-select-item-option-disabled {
+    color: @disabled-color;
+  }
+  &.dropdown-large {
+    .ant-select-item {
+      font-size: 16px;
+      padding:7px 8px;
+    }
+  }
+  &.dropdown-small {
+    .ant-select-item {
+      font-size: 12px;
+      min-height: 22px;
+      padding:0 8px;
+    }
   }
 }
-.ant-select-item-option-active:not(.ant-select-item-option-disabled) {
-  background-color: @select-hover-bg;
+.ant-select {
+  &.ant-select-multiple {
+    .ant-select-selection-item {
+      background: @active-bg;
+      padding-inline-end: 8px;
+      color: @heading-color;
+      border-radius: @border-r-3;
+    }
+    .ant-select-selection-item-content {
+      margin-right: 8px;
+    }
+  }
 }
-.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background-color: @table-Menu-bg;
-  color: @primary-color;
-}
-.ant-select-dropdown {
-  padding: 6px;
-  border-radius: @border-r-6;
+
+.@{selectScope} {
+  &.ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    background: @disabled-bg-color;
+  }
+  &.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-color: @border-color-base;
+  }
+  .ant-select-arrow {
+    .icon-you {
+      font-size: 16px;
+      display: block;
+      transform: rotate(90deg) translateX(-4px);
+    }
+  }
+  .clearSelect {
+    position: absolute;
+    z-index: 2;
+  }
 }

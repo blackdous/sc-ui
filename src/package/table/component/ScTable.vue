@@ -117,15 +117,13 @@
           />
         </template>
 
-        <template
-          v-for="slotItem in tableBindValue.columns.filter((item:any) => !!item.titleType)"
-          #[slotItem.titleType.componentName]="slotProps"
-        >
+        <template 
+          v-for="(slotItem) in thColumn" 
+          #[slotItem.titleType.componentName]>
           <component
             :is="getTitleComponent(slotItem.titleType.componentName)"
-            v-bind="{ ...slotProps, ...slotItem.titleType.props, column: slotItem, tableName: slotItem.titleType.componentName }"
-            :key="slotItem.dataIndex"
-            v-on="{...getEvent(slotItem.titleType.componentName)}"
+            v-bind="{...slotItem.titleType.props }"
+            :key="slotItem.key"
           />
         </template>
 
@@ -345,6 +343,7 @@ export default defineComponent({
       getFilterColumnRef,
       getFilterDropdownRef,
       getFetchFilter,
+      thColumn,
       showSortTitle,
       getRowClassName,
       getColumns,
@@ -570,6 +569,10 @@ export default defineComponent({
       })
     })
 
+    // const aa = [{ "width":60,"dataIndex":"age","key":"age","slots":{"customRender":"status1","title":"thDescribe"},"titleType":{"componentName":"thDescribe","props":{"text":"Column 2","describe":"提示内容"}},"value":"age","disabled":false,"checked":true,"default":true},{"dataIndex":"address","key":"1","width":160,"type":{"componentName":"tdEllipsis","props":{"lineheigth":2}},"titleType":{"componentName":"thDescribe","props":{"text":"Column 1","describe":"提示内容"}},"slots":{"customRender":"tdEllipsis","title":"thDescribe"},"value":"address","disabled":false,"checked":true,"default":true},{"dataIndex":"age","key":"2","width":160,"titleType":{"componentName":"thUnit","props":{"text":"Column 2","unit":"(元)"}},"slots":{"customRender":"copy1","title":"thUnit"},"value":"age","disabled":false,"checked":true,"default":true}]
+
+    // console.log(unref(tableBindValue).columns.filter((item:any) => !!item.titleType))
+
     const tableAction: TableActionType = {
       reload,
       getSelectRows,
@@ -648,6 +651,7 @@ export default defineComponent({
       customComponentKey,
       customComponentHeaderKey,
       getFilterColumnRef,
+      thColumn,
       isShowFilter,
       getFilterDropdownRef,
 
