@@ -51,3 +51,6 @@ map:
   >
 </demo>
 
+## API
+
+参考官方 [Switch 配置](https://2x.antdv.com/components/switch-cn#API)

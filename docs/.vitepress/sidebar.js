@@ -35,6 +35,7 @@ export const sidebar = {
       items: [
         { text: 'Radio', link: '/en/radio/' },
         { text: 'Input', link: '/en/input/' },
+        { text: 'Checkbox', link: '/en/checkbox/' },
         { text: 'InputNumber', link: '/en/inputNumber/' },
         { text: 'Select', link: '/en/select/' },
         { text: 'Switch', link: '/en/switch/' }
@@ -98,6 +99,7 @@ export const sidebar = {
       items: [
         { text: '单选框', link: '/radio/' },
         { text: '输入框', link: '/input/' },
+        { text: '复选框', link: '/checkbox/' },
         { text: '数字输入框', link: '/inputNumber/' },
         { text: '选择器', link: '/select/' },
         { text: '开关', link: '/switch/' }
