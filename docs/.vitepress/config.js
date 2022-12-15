@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress';
 import { applyPlugins } from '@ruabick/md-demo-plugins';
 import { genTemp } from '@ruabick/vite-plugin-gen-temp';
 import { genApiDoc } from '@ruabick/vite-plugin-gen-api-doc';
+import vueJsx from "@vitejs/plugin-vue-jsx";
 import { sidebar } from './sidebar.js';
 import { resolve } from 'path';
 import { themeVariables } from '../../build/theme/index.js';
@@ -57,7 +58,7 @@ export default defineConfig({
     },
   },
   vite: {
-    plugins: [genTemp(), genApiDoc()],
+    plugins: [genTemp(), genApiDoc(),vueJsx()],
     resolve: {
       alias: {
         'sc-ui': resolve('./src/'),

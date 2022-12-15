@@ -49,7 +49,6 @@ import { ScTable } from 'sc-ui'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
 
-import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
 const scTableRef = ref()

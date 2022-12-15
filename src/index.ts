@@ -13,6 +13,8 @@ import { ScLoading, useLoading } from './package/loading'
 import { ScButton } from './package/button'
 import { ScInputNumber } from './package/inputNumber'
 import { ScSelect } from './package/select'
+import { ScSwitch } from './package/switch'
+import { useContextMenu } from './package/contextMenu'
 
 
 import { installGlobalDirectives } from './directives'
@@ -39,7 +41,8 @@ const components = [
   ScLoading,
   ScButton,
   ScInputNumber,
-  ScSelect
+  ScSelect,
+  ScSwitch
 ]
 
 const install = (app: App) => {
@@ -68,13 +71,18 @@ export {
   ScLoading,
   ScButton,
   ScInputNumber,
-  ScSelect
+  ScSelect,
+  ScSwitch
 }
 
 export * from './types'
 
 export { installGlobalDirectives as installGlobalDirectives, ClickOutside, TextCollapse, LoadingDirective }
 
-export { useTable, useLoading }
+export { 
+  useTable, 
+  useLoading,
+  useContextMenu
+}
 
 export default ScUi;

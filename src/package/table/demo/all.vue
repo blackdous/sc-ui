@@ -79,7 +79,6 @@ import { list as ColumnList } from '../types/column'
 import { demoListApi } from './tableData'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
-import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
 

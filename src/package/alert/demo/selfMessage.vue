@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { ScAlert } from 'sc-ui'
 import { Button } from 'ant-design-vue'
-import "ant-design-vue/dist/antd.css"
+import "../../../style/index.less"
 
 const gotoLink = () => {
   window.open('https://www.baidu.com', '_blank')

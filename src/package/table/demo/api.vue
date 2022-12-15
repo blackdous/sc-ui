@@ -24,7 +24,6 @@ import { ScTable } from 'sc-ui'
 
 import { demoListApi } from './tableData'
 
-import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
 const scTableRef = ref()

@@ -40,8 +40,8 @@ export const createVitePlugins = (isBuild: boolean) => {
         },
       },
     }),
-    copy(),
     vueJsx(),
+    copy(),
     vueSetupExtend(),
     dts({
       insertTypesEntry: true,

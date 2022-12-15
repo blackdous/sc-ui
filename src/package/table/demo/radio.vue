@@ -16,7 +16,6 @@
 import { ref, reactive, computed } from 'vue'
 import { ScTable } from 'sc-ui'
 
-import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
 const scTableRef = ref()

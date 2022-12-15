@@ -5,10 +5,9 @@
     v-model:value="value"
     :disabled="newProps.disabled"
     :dropdownClassName="dropdownClassName"
-    v-on="$listeners"
     @change="handleChange"
   >
-    <template #[item]="data" v-for="item in Object.keys($slots).filter(item => item !== 'suffixIcon')" :key="item">
+    <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
       <slot :name="item" v-bind="data || {}"></slot>
     </template> 
     <template v-if="newProps.optionMode === 'checkbox'" #dropdownRender>

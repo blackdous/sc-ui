@@ -20,6 +20,12 @@ const PropTypes = createTypes({
 
 PropTypes.extend([
   {
+    name: 'looseBool',
+    getter: true,
+    type: Boolean,
+    default: undefined,
+  },
+  {
     name: 'style',
     getter: true,
     type: [String, Object],

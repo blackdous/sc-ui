@@ -7,8 +7,7 @@
 
 <script setup lang="ts">
 import { ScAlert } from 'sc-ui'
-import "ant-design-vue/dist/antd.css"
-
+import '../../../style/index.less'
 </script>
 
 <style lang="less">

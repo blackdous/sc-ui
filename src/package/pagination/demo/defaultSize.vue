@@ -13,7 +13,6 @@
 <script lang="ts">
 import { defineComponent, ref, h } from 'vue'
 import { Pagination } from 'ant-design-vue'
-import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
 export default defineComponent({

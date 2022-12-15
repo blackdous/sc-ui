@@ -11,7 +11,7 @@ import { ScRadioTooltipGroup } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import "ant-design-vue/dist/antd.css"
+import '../../../style/index.less'
 
 const value1 = ref<string>('a')
 

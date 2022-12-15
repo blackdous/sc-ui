@@ -1,0 +1,31 @@
+.ant-switch {
+  min-width: 36px;
+  height: 20px;
+  line-height: 18px;
+  background-color: @switch-bg-color;
+  &::after {
+    width: 16px;
+    height: 16px;
+  }
+  &.ant-switch-checked {
+    background-color: @primary-color;
+  }
+  &-large {
+    min-width: 44px;
+    height: 24px;
+    line-height: 22px;
+    &::after {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &-small {
+    min-width: 28px;
+    height: 16px;
+    line-height: 14px;
+    &::after {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}

@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { RadioGroup, Radio } from 'ant-design-vue'
 import { ref } from 'vue'
-import "ant-design-vue/dist/antd.css"
+import '../../../style/index.less'
 
 const value = ref<number>(1)
 </script>

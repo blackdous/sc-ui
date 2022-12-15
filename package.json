@@ -38,8 +38,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@ant-design/colors": "^6.0.0",
-    "@ant-design/icons-vue": "^6.1.0",
+    "@ant-design/icons-vue": "6.0.0",
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
     "@pnpm/types": "^8.8.0",
@@ -104,10 +103,14 @@
     "windicss": "^3.5.6"
   },
   "dependencies": {
+    "@ant-design/icons-svg": "^4.2.1",
     "@iconify/vue": "^4.0.0",
     "ant-design-vue": "2.2.8",
     "deepmerge": "^4.2.2",
     "patch-vue-directive-ssr": "^0.0.1"
+  },
+  "husky": {
+    "pre-commit": "yarn build && yarn site:build"
   },
   "engines": {
     "node": ">= 16.14"

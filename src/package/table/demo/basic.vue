@@ -31,7 +31,6 @@ import { ref } from 'vue'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy } from 'sc-ui'
 
-import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
 // const globalApp = inject('globalApp')

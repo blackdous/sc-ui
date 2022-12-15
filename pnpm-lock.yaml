@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@ant-design/colors': ^6.0.0
-  '@ant-design/icons-vue': ^6.1.0
+  '@ant-design/icons-svg': ^4.2.1
+  '@ant-design/icons-vue': 6.0.0
   '@commitlint/cli': ^17.2.0
   '@commitlint/config-conventional': ^17.2.0
   '@iconify/vue': ^4.0.0
@@ -71,14 +71,14 @@ specifiers:
   windicss: ^3.5.6
 
 dependencies:
+  '@ant-design/icons-svg': 4.2.1
   '@iconify/vue': 4.0.0_vue@3.2.25
   ant-design-vue: 2.2.8_vue@3.2.25
   deepmerge: 4.2.2
   patch-vue-directive-ssr: 0.0.1
 
 devDependencies:
-  '@ant-design/colors': 6.0.0
-  '@ant-design/icons-vue': 6.1.0_vue@3.2.25
+  '@ant-design/icons-vue': 6.0.0_vue@3.2.25
   '@commitlint/cli': 17.2.0
   '@commitlint/config-conventional': 17.2.0
   '@pnpm/types': 8.8.0
@@ -262,13 +262,32 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
+  /@ant-design/colors/5.1.1:
+    resolution: {integrity: sha512-Txy4KpHrp3q4XZdfgOBqLl+lkQIc3tEvHXOimRN1giX1AEC7mGtyrO9p8iRGJ3FLuVMGa2gNEzQyghVymLttKQ==}
+    dependencies:
+      '@ctrl/tinycolor': 3.4.1
+    dev: true
+
   /@ant-design/colors/6.0.0:
     resolution: {integrity: sha512-qAZRvPzfdWHtfameEGP2Qvuf838NhergR35o+EuVyB5XvSA98xod5r4utvi4TJ3ywmevm290g9nsCG5MryrdWQ==}
     dependencies:
       '@ctrl/tinycolor': 3.4.1
+    dev: false
 
   /@ant-design/icons-svg/4.2.1:
     resolution: {integrity: sha512-EB0iwlKDGpG93hW8f85CTJTs4SvMX7tt5ceupvhALp1IF44SeUFOMhKUOYqpsoYWQKAOuTRDMqn75rEaKDp0Xw==}
+
+  /@ant-design/icons-vue/6.0.0_vue@3.2.25:
+    resolution: {integrity: sha512-pQglbNH1b/KzpqM6C/U29xNt46c8f+OMAThyCGhDBGVNzzzPjI4v0U7Qyipc0SfPlYt7oPIXIuhMGhFQGGnbbg==}
+    peerDependencies:
+      vue: '>=3.0.3'
+    dependencies:
+      '@ant-design/colors': 5.1.1
+      '@ant-design/icons-svg': 4.2.1
+      '@types/lodash': 4.14.190
+      lodash: 4.17.21
+      vue: 3.2.25
+    dev: true
 
   /@ant-design/icons-vue/6.1.0_vue@3.2.25:
     resolution: {integrity: sha512-EX6bYm56V+ZrKN7+3MT/ubDkvJ5rK/O2t380WFRflDcVFgsvl3NLH7Wxeau6R8DbrO5jWR6DSTC3B6gYFp77AA==}
@@ -278,6 +297,7 @@ packages:
       '@ant-design/colors': 6.0.0
       '@ant-design/icons-svg': 4.2.1
       vue: 3.2.25
+    dev: false
 
   /@antfu/utils/0.5.2:
     resolution: {integrity: sha512-CQkeV+oJxUazwjlHD0/3ZD08QWKuGQkhnrKo3e6ly5pd48VUpXbb77q0xMU4+vc2CkJnDS02Eq/M9ugyX20XZA==}

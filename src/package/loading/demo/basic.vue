@@ -36,7 +36,6 @@ import { defineComponent, ref, toRefs, reactive, inject } from 'vue'
 import { Alert, Button } from 'ant-design-vue'
 import { useLoading, ScLoading, installGlobalDirectives } from 'sc-ui'
 
-import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
 export default defineComponent({

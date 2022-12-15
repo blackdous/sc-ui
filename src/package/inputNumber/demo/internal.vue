@@ -24,7 +24,6 @@
 import { ref } from 'vue'
 // import { Input } from 'ant-design-vue'
 import { ScInputNumber } from 'sc-ui'
-import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
 const inputValueRef = ref()

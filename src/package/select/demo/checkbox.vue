@@ -17,7 +17,6 @@
 <script lang='ts' setup>
 import { ref } from 'vue'
 import { ScSelect } from 'sc-ui'
-import "ant-design-vue/dist/antd.css"
 import '../../../style/index.less'
 
 const value = ref(['a1'])
