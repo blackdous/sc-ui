@@ -1,3 +1,4 @@
+import { VNodeChild, PropType } from 'vue'
 export const props = () => ({
   value: Number,
   disabled: {
@@ -7,5 +8,6 @@ export const props = () => ({
     }
   },
   // 'checkbox'
-  optionMode: String
+  optionMode: String,
+  prefixIcon: Object as PropType<VNodeChild>
 })

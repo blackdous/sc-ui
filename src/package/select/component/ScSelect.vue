@@ -1,51 +1,54 @@
 <template>
-  <Select
-    :class="[baseClass, uuid]"
-    v-bind="$attrs"
-    v-model:value="value"
-    :disabled="newProps.disabled"
-    :dropdownClassName="dropdownClassName"
-    @change="handleChange"
-  >
-    <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
-      <slot :name="item" v-bind="data || {}"></slot>
-    </template> 
-    <template v-if="newProps.optionMode === 'checkbox'" #dropdownRender>
-      <CheckboxGroup
-        v-model:value="checkboxValue"
-      >
-        <div 
-          v-for="item in checkboxOptions"
-          :class="item.className"
+  <div :class="[baseClass, uuid, isPrefixIcon ? 'is-prefix' : '']">
+    <Select
+      :class="[isPrefixIcon ? 'is-prefix' : '']"
+      v-bind="$attrs"
+      v-model:value="value"
+      :disabled="newProps.disabled"
+      :dropdownClassName="dropdownClassName"
+      @change="handleChange"
+    >
+      <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
+        <slot :name="item" v-bind="data || {}"></slot>
+      </template> 
+      <template v-if="newProps.optionMode === 'checkbox'" #dropdownRender>
+        <CheckboxGroup
+          v-model:value="checkboxValue"
         >
-          <div class="ant-select-item-option-content">
-            <Checkbox
-              v-bind="item"
-            >
-              {{item.label || item.value}}
-            </Checkbox>
+          <div 
+            v-for="item in checkboxOptions"
+            :class="item.className"
+          >
+            <div class="ant-select-item-option-content">
+              <Checkbox
+                v-bind="item"
+              >
+                {{item.label || item.value}}
+              </Checkbox>
+            </div>
           </div>
-        </div>
-      </CheckboxGroup>
-    </template>
-
-    <template #suffixIcon>
-      <i 
-        v-if="!isSuffixIcon"
-        class="iconfont icon-you" 
-      />
-      <slot v-else slot="suffixIcon" />
-    </template>
-    <template #clearIcon>
-      <CloseCircleFilled class="clearSelect" v-if="!isClearIcon" />
-      <span v-else class="clearSelect">
-        <slot  slot="clearIcon">
-        </slot>
-      </span>
-    </template>
-
-
-  </Select>
+        </CheckboxGroup>
+      </template>
+  
+      <template #suffixIcon>
+        <i 
+          v-if="!isSuffixIcon"
+          class="iconfont icon-you" 
+        />
+        <slot v-else slot="suffixIcon" />
+      </template>
+      <template #clearIcon>
+        <CloseCircleFilled class="clearSelect" v-if="!isClearIcon" />
+        <span v-else class="clearSelect">
+          <slot  slot="clearIcon">
+          </slot>
+        </span>
+      </template>
+    </Select>
+    <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
+      <slot name="prefixIcon"></slot>
+    </span>
+  </div>
 </template>
 
 <script lang="ts" >
@@ -55,6 +58,7 @@ import { Select, CheckboxGroup, Checkbox } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 import { basePrefixCls } from '../../../constant'
 import { buildUUID } from '../../../utils/uuid'
+import { findParentDom } from '../../../utils/domHelper'
 import { props } from './type'
 
 export default defineComponent({
@@ -123,6 +127,10 @@ export default defineComponent({
       return Object.keys(slots).includes('suffixIcon')
     })
 
+    const isPrefixIcon = computed(() => {
+      return Object.keys(slots).includes('prefixIcon')
+    })
+
     const isClearIcon = computed(() => {
       return Object.keys(slots).includes('clearIcon')
     })
@@ -130,8 +138,9 @@ export default defineComponent({
     onMounted(() => {
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
       dom && dom.addEventListener('mousedown', (event) => {
-        const parent = event?.target?.parentNode?.parentNode
-        if (Array.from(parent.classList).includes('clearSelect')) {
+        const aa = findParentDom(event.target, 5, (dom) => { return String(dom.className).includes('clearSelect') ? dom : false })
+        // const parent = event?.target?.parentNode?.parentNode
+        if (aa) {
           checkboxValue.value = undefined
           // value.value = []
           emit('allowClear', value.value)
@@ -145,6 +154,7 @@ export default defineComponent({
       newProps,
       value,
       isSuffixIcon,
+      isPrefixIcon,
       isClearIcon,
       dropdownClassName,
       checkboxValue,

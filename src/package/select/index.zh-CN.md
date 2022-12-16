@@ -5,7 +5,7 @@ map:
 
 # Select 选择器
 
-## 组件类型
+<!-- ## 组件类型
 
 ### 单选选择器
 
@@ -21,7 +21,7 @@ map:
   language="vue"
   title="组件大小"
   >
-</demo>
+</demo> -->
 
 ## 标签选择器状态
 
@@ -30,6 +30,15 @@ map:
   title="标签选择器状态"
   >
 </demo>
+
+## PrefixIcon slot
+
+<demo src="./demo/prefix.vue"
+  language="vue"
+  title="PrefixIcon slot"
+  >
+</demo>
+
 
 ## Api
 

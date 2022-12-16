@@ -1,5 +1,5 @@
 {
-  "version": "0.0.15",
+  "version": "0.0.17",
   "name": "@sincerecloud/sc-ui",
   "description": "vue3 ui ant-design-vue",
   "module": "./build.es.ts",
@@ -13,6 +13,10 @@
     "./style.css": {
       "import": "./style.css",
       "require": "./style.css"
+    },
+    "./style/index.less": {
+      "import": "./style/index.less",
+      "require": "./style/index.less"
     }
   },
   "scripts": {
