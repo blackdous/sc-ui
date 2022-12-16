@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg">
     <ScTabs type="card" styleMode="gradient">
       <TabPane key="1" tab="Tab 1" style="height: 100px">Content of Tab Pane 1</TabPane>
       <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
@@ -14,4 +14,7 @@ import '../../../style/index.less'
 </script>
 
 <style lang="less">
+.bg {
+  // background: #e5e5e5;
+}
 </style>

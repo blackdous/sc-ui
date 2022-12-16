@@ -33,6 +33,34 @@
       文字按钮
     </ScButton>
   </div>
+  <div class="mt20">
+    <ScButton status="info">
+      填充按钮
+    </ScButton>
+    <ScButton status="error">
+      描边按钮
+    </ScButton>
+    <ScButton status="warning">
+      文字按钮
+    </ScButton>
+    <ScButton status="success">
+      文字按钮
+    </ScButton>
+  </div>
+  <div class="mt20">
+    <ScButton status="info" disabled>
+      填充按钮
+    </ScButton>
+    <ScButton status="error" disabled>
+      描边按钮
+    </ScButton>
+    <ScButton status="warning" disabled>
+      文字按钮
+    </ScButton>
+    <ScButton status="success" disabled>
+      文字按钮
+    </ScButton>
+  </div>
 </template>
 
 <script lang="ts">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ScSteps :space="180" simple>
+    <ScSteps :space="36" simple>
       <ScStep title="Done" status="success" />
       <ScStep title="Processing" status="error" />
       <ScStep title="Step 3" status="wait"/>
@@ -11,3 +11,9 @@
 <script setup lang="ts">
 import { ScSteps, ScStep } from 'sc-ui'
 </script>
+
+<style scoped>
+/* div {
+  width: 240px;
+} */
+</style>

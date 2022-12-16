@@ -17,19 +17,47 @@
     </ScButton>
   </div>
   <div class="mt20">
-    <ScButton type="primary" disabled>
+    <ScButton type="primary" :loading="true">
       填充按钮
     </ScButton>
-    <ScButton status="info" disabled>
+    <ScButton status="info" :loading="true">
       填充按钮
     </ScButton>
-    <ScButton disabled>
+    <ScButton :loading="true">
       描边按钮
     </ScButton>
-    <ScButton type="text" disabled>
+    <ScButton type="text" :loading="true">
       文字按钮
     </ScButton>
-    <ScButton type="link" disabled>
+    <ScButton type="link" :loading="true">
+      文字按钮
+    </ScButton>
+  </div>
+  <div class="mt20">
+    <ScButton status="info">
+      填充按钮
+    </ScButton>
+    <ScButton status="error">
+      描边按钮
+    </ScButton>
+    <ScButton status="warning">
+      文字按钮
+    </ScButton>
+    <ScButton status="success">
+      文字按钮
+    </ScButton>
+  </div>
+  <div class="mt20">
+    <ScButton status="info" :loading="true">
+      填充按钮
+    </ScButton>
+    <ScButton status="error" :loading="true">
+      描边按钮
+    </ScButton>
+    <ScButton status="warning" :loading="true">
+      文字按钮
+    </ScButton>
+    <ScButton status="success" :loading="true">
       文字按钮
     </ScButton>
   </div>

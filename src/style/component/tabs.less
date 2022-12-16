@@ -1,5 +1,9 @@
 
-.ant-tabs.ant-tabs-card {
+.ant-tabs.ant-tabs-card.gradient {
+  .ant-tabs-nav-scroll {
+    height: 36px;
+    padding-top: 4px;
+  }
   .ant-tabs-card-bar {
     border: none;
     margin: 0;
@@ -27,6 +31,7 @@
       height: 33px;
     }
     .ant-tabs-tab {
+      position: relative;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
       height: 32px;
@@ -36,11 +41,28 @@
       border: none;
       background: @bg-color;
       color: @tabs-btn-textColor;
-      box-shadow: 0px 0px 6px 0px @tabs-btn-bg, 0px 4px 4px 0px rgba(35, 166, 243, 0.1);
+      box-shadow: @shadow-color;
       &.ant-tabs-tab-active {
         background: @tabs-btn-activeColor;
         color: #fff;
-        box-shadow: 0px 0px 5px 0px rgba(0, 140, 211, 0.5);
+        box-shadow: @primary-shadow;
+        // box-shadow: @tabs-card-shadow;
+        &:first-child {
+          margin-left: 4px;
+        }
+        // margin: 4px 4px 0 2px;
+        &::after {
+          position: absolute;
+          content: '';
+          top: -4px;
+          left: -4px;
+          right: -4px;
+          bottom: 0;
+          box-shadow: @shadow-color;
+          border-radius: 8px 8px 0 0;
+          z-index: 10;
+          // z-index: ;
+        }
       }
     }
   }

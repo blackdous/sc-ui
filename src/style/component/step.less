@@ -22,19 +22,37 @@
       // background-color: @steps-error-color;
       .scStep-icon {
         border: none;
-        font-size: 24px;
-        box-shadow: 0px 2px 3px 0px rgba(245,63,63,0.5);
+        font-size: 26px;
+        position: relative;
+        box-shadow: @error-shadow;
         border-radius: 20px;
+        &::after {
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 100%;
+          box-shadow: @shadow-color;
+        }
       }
     }
     &.is-success {
       color: @steps-success-color;
       // background-color: @steps-success-color;
       .scStep-icon {
+        position: relative;
         border: none;
-        font-size: 24px;
-        box-shadow: 0px 2px 3px 0px rgba(35,166,243, 0.5);
+        font-size: 26px;
+        box-shadow: @primary-shadow;
         border-radius: 20px;
+        background: transparent;
+        &::after {
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          box-shadow: @shadow-color;
+        }
       }
     }
   }
@@ -183,7 +201,16 @@
       right: -50%;
     }
   }
-  // &.
+  &.simple {
+    flex-basis: auto!important;
+    padding-left: 30px;
+    .scStep-arrow {
+      padding-left: 30px;
+    }
+    &:first-child {
+      padding-left: 0;
+    }
+  }
   &.simple, &.is-horizontal, &.is-horizontal{
     display: flex;
     align-items: center;
@@ -194,14 +221,32 @@
       padding-right: 8px;
       &.is-success {
         .scStep-icon {
-          box-shadow: 0px 2px 3px 0px rgba(35,166,243,0.5);
-          border-radius: 20px 20px 20px 20px;
+          position: relative;
+          box-shadow: @primary-shadow;
+          border-radius: 20px;
+          &::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: @shadow-color;
+          }
         }
       }
       &.is-error {
         .scStep-icon {
-          box-shadow: 0px 2px 3px 0px rgba(245,63,63,0.5);
-          border-radius: 20px 20px 20px 20px;
+          position: relative;
+          box-shadow: @error-shadow;
+          border-radius: 20px;
+          &::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: @shadow-color;
+          }
         }
       }
     }
@@ -210,7 +255,7 @@
       background: transparent;
       width: 26px;
       height: 26px;
-      font-size: 24px;
+      font-size: 26px;
       vertical-align: middle;
     }
 
@@ -302,8 +347,17 @@
     .scStep-head:not(.is-error):not(.is-success):not(.is-wait) {
       .scStep-icon:not(.is-icon) {
         font-size: 16px;
-        box-shadow: 0px 2px 3px 0px rgba(35,166,243,0.5);
-        border-radius: 50%;
+        position: relative;
+        box-shadow: @primary-shadow;
+        border-radius: 20px;
+        &::after {
+          position: absolute;
+          content: '';
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          box-shadow: @shadow-color;
+        }
         color: @bg-color;
         .@{stepScope}__icon-inner {
           width: 22px;

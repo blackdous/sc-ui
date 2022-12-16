@@ -1,5 +1,22 @@
 <template>
   <div>
+    <ScButton type="primary" size="small">
+      填充按钮
+    </ScButton>
+    <ScButton status="info" size="small">
+      填充按钮
+    </ScButton>
+    <ScButton size="small">
+      描边按钮
+    </ScButton>
+    <ScButton type="text" size="small">
+      文字按钮
+    </ScButton>
+    <ScButton type="link" size="small">
+      文字按钮
+    </ScButton>
+  </div>
+  <div class="mt20">
     <ScButton type="primary">
       填充按钮
     </ScButton>
@@ -17,19 +34,19 @@
     </ScButton>
   </div>
   <div class="mt20">
-    <ScButton type="primary" disabled>
+    <ScButton type="primary" size="large">
       填充按钮
     </ScButton>
-    <ScButton status="info" disabled>
+    <ScButton status="info" size="large">
       填充按钮
     </ScButton>
-    <ScButton disabled>
+    <ScButton size="large">
       描边按钮
     </ScButton>
-    <ScButton type="text" disabled>
+    <ScButton type="text" size="large">
       文字按钮
     </ScButton>
-    <ScButton type="link" disabled>
+    <ScButton type="link" size="large">
       文字按钮
     </ScButton>
   </div>

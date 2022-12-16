@@ -1,16 +1,30 @@
 <template>
   <Button
-    :class="className"
+    v-bind="getBindValue" :class="getButtonClass" @click="onClick"
   >
+    <template #icon v-if="isIcon">
+      <span class="scButton-icon">
+        <slot name="icon"></slot>
+      </span>
+    </template>
+    <template #default="data">
+      <slot v-bind="data || {}"></slot>
+    </template>
+    <!-- <template #icon v-if="isIcon">
+      <span class="scButton-icon">
+        <slot name="icon"></slot>
+      </span>
+    </template> -->
   </Button>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed, unref } from 'vue'
 import { Button } from 'ant-design-vue'
 
 import { basePrefixCls } from '../../../constant'
 import { buttonProps } from '../type'
+  import { useAttrs } from '../../../hooks/useAttrs'
 
 export default defineComponent({
   name: 'ScButton',
@@ -19,12 +33,30 @@ export default defineComponent({
   components: {
     Button
   },
-  setup (props) {
-    const className = [basePrefixCls]
-    console.log('props: ', props)
+  setup (props, { slots }) {
+    const attrs = useAttrs({ excludeDefaultKeys: false });
+    const getButtonClass = computed(() => {
+      const { status, disabled, type } = props;
+      return [
+        basePrefixCls + 'button',
+        type || status ? '' : 'is-default', 
+        {
+          [`ant-btn-${status}`]: !!status,
+          [`is-disabled`]: disabled,
+        },
+      ];
+    });
+
+    const getBindValue = computed(() => ({ ...unref(attrs), ...props }));
+
+    const isIcon = computed(() => {
+      return Object.keys(slots).includes('icon')
+    })
     return {
-      className
-    }
+      getButtonClass,
+      getBindValue,
+      isIcon
+    };
   }
 })
 </script>

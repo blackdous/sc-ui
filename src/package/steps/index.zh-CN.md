@@ -11,7 +11,7 @@ map:
 
 <demo src="./demo/simple.vue"
   language="vue"
-  desc="设置simple 属性即可实现, wait 是未完成状态，sucess 为完成状态">
+  desc="设置simple 属性即可实现, wait 是未完成状态，success 为完成状态">
 </demo>
 
 ## 基础用法
@@ -31,14 +31,6 @@ map:
   language="vue"
   desc="也可以使用 `title` 具名插槽，可以用`slot` 的方式来取代属性的设置， 在本文档最后的列表中有所有的插槽可供参考.">
 </demo>
-
-<!-- ## 居中的步骤条
-
-<demo src="./demo/center.vue"
-  language="vue"
-  title="标题和描述可以居中。"
-  >
-</demo> -->
 
 ## 带图标的步骤条
 
