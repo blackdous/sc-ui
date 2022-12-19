@@ -6,7 +6,7 @@ realPath: src/package/select/index.zh-CN.md
 
 # Select 选择器
 
-<!-- ## 组件类型
+## 组件类型
 
 ### 单选选择器
 
@@ -22,7 +22,7 @@ realPath: src/package/select/index.zh-CN.md
   language="vue"
   title="组件大小"
   >
-</demo> -->
+</demo>
 
 ## 标签选择器状态
 

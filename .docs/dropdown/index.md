@@ -18,3 +18,11 @@ realPath: src/package/dropdown/index.zh-CN.md
   >
 </demo>
 
+### 基础下拉菜单
+
+<demo src="./demo/prefix.vue"
+  language="vue"
+  title="带icon"
+  >
+</demo>
+

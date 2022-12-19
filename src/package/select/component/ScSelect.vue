@@ -1,5 +1,8 @@
 <template>
   <div :class="[baseClass, uuid, isPrefixIcon ? 'is-prefix' : '']">
+    <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
+      <slot name="prefixIcon"></slot>
+    </span>
     <Select
       :class="[isPrefixIcon ? 'is-prefix' : '']"
       v-bind="$attrs"
@@ -45,9 +48,6 @@
         </span>
       </template>
     </Select>
-    <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
-      <slot name="prefixIcon"></slot>
-    </span>
   </div>
 </template>
 

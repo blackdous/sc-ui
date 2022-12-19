@@ -1,7 +1,8 @@
 import type { App } from 'vue'
 import { message } from 'ant-design-vue'
 
-import './style/index.less';
+// import './style/index.less';
+import './style/index'
 
 import { ScSteps, ScStep } from "./package/steps"
 import { ScTabs } from './package/tabs'
@@ -15,6 +16,7 @@ import { ScInputNumber } from './package/inputNumber'
 import { ScSelect } from './package/select'
 import { ScSwitch } from './package/switch'
 import { useContextMenu } from './package/contextMenu'
+import { ScDropDown } from './package/dropdown'
 
 
 import { installGlobalDirectives } from './directives'
@@ -42,7 +44,8 @@ const components = [
   ScButton,
   ScInputNumber,
   ScSelect,
-  ScSwitch
+  ScSwitch,
+  ScDropDown
 ]
 
 const install = (app: App) => {
@@ -72,7 +75,8 @@ export {
   ScButton,
   ScInputNumber,
   ScSelect,
-  ScSwitch
+  ScSwitch,
+  ScDropDown
 }
 
 export * from './types'

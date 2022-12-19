@@ -13,6 +13,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 
 import legacy from './legacy';
 import visualizerPlugin from './visualizer';
+// import transformLess from './transformLess';
 import windicss from './windicss';
 import copy from './copy';
 
@@ -40,6 +41,7 @@ export const createVitePlugins = (isBuild: boolean) => {
         },
       },
     }),
+    // transformLess(),
     vueJsx(),
     copy(),
     vueSetupExtend(),

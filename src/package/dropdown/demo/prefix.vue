@@ -1,9 +1,12 @@
 <template>
   <div class="text-center">
-    <ScDropDown
+    <Dropdown
       :visible="true"
     >
       <Button>
+        <template #icon>
+          <i class="iconfont icon-add"></i>
+        </template>
         填充按钮
       </Button>
       <template #overlay>
@@ -71,14 +74,13 @@
             </template>
           </Menu>
         </template>
-    </ScDropDown>
+    </Dropdown>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { Dropdown, Menu, SubMenu, MenuItem, Button } from 'ant-design-vue'
-import { ScDropDown } from 'sc-ui'
 import '../../../style/index.less'
 
 export default defineComponent({
@@ -89,8 +91,7 @@ export default defineComponent({
     Menu,
     SubMenu,
     MenuItem,
-    Button,
-    ScDropDown
+    Button
   },
   setup() {
     const valueRef = ref()
