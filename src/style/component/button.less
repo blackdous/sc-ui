@@ -201,6 +201,31 @@
   }
 }
 
+.ant-btn-shadow {
+  position: relative;
+  background-color: @shadow-bg-color;
+  border: none;
+  color: @white-color;
+  box-shadow: @primary-shadow;
+  &::after {
+    position: absolute;
+    content: '';
+    left: -4px;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: inherit;
+    box-shadow: @shadow-color;
+    z-index: 1;
+  }
+  &:hover, &:active, &:focus {
+    background-color: @shadow-bg-color;
+    border: none;
+    color: @white-color;
+    box-shadow: @primary-shadow;
+  }
+}
+
 .ant-btn-link {
   color: @primary-color;
   &.actionBtn {

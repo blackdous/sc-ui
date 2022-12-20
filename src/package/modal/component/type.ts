@@ -18,6 +18,12 @@ export interface DraggableType {
 export const modalProps = () => ({
   showTooltip: { type: Boolean, default: false },
   tooltipDes: { type: String, default: '' },
+  //显示取消按钮
+  showCancelBtn: { type: Boolean, default: true },
+  //显示确认按钮
+  showOkBtn: { type: Boolean, default: true },
+  afterClose: Function as PropType<() => Promise<VueNode>>,
+  closeFunc: Function as PropType<() => Promise<boolean>>,
   type: String,
   infoDes: String,
   prefixCls: { type: String },
@@ -41,7 +47,7 @@ export const modalProps = () => ({
   onCancel: Function as PropType<(e: MouseEvent) => void>,
   'onUpdate:visible': Function as PropType<(visible: boolean) => void>,
   onChange: Function as PropType<(visible: boolean) => void>,
-  afterClose: Function as PropType<() => void>,
+  // afterClose: Function as PropType<() => void>,
   centered: { type: Boolean, default: undefined },
   width: {
     type: [String, Number],

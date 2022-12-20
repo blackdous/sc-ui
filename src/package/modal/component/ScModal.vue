@@ -19,6 +19,7 @@
       </div>
       <slot :name="item" v-bind="data || {}" ></slot>
     </template>
+    
     <template v-if="isSlotTitle" #title>
       <header ref="modalTitleRef" :class="{'draggable-event': vBind?.isDraggable}">
         <slot name="title"></slot>
@@ -58,7 +59,7 @@
         <Button
           :disabled="vBind.onCancelDisable"
           :class="[modalPrefixCls + '-footer__cancel']"
-          @click="closeVisable"
+          @click="closeVisible"
         >
           {{ vBind.cancelText }}
         </Button>
@@ -72,6 +73,20 @@
           {{vBind.okText}}
         </Button>
       </div>
+    </template>
+
+    <template #closeIcon>
+      <i 
+        class="iconfont icon-guanbi" v-if="!isClose"
+        @click="closeVisible"
+      >
+      </i>
+      <span 
+        v-else
+        @click="closeVisible"
+      >
+        <slot name="closeIcon"></slot>
+      </span>
     </template>
   </Modal>
 </template>
@@ -90,7 +105,8 @@ import {
 } from '@ant-design/icons-vue';
 
 import { modalProps } from './type'
-import { basePrefixCls } from '../../../constant';
+import { basePrefixCls } from '../../../constant'
+import { isFunction } from '../../../utils/is';
 
 const modalPrefixCls = basePrefixCls + 'Modal'
 const emits = defineEmits(['update:visible', 'dragChange'])
@@ -147,7 +163,18 @@ const isSlotFooter = computed(() => {
   return Object.keys(slots).includes('footer')
 })
 
-const closeVisable = () => {
+const isClose = computed(() => {
+  return Object.keys(slots).includes('closeIcon')
+})
+
+const closeVisible = async (e: Event) => {
+  e?.stopPropagation();
+  if (vBind.closeFunc && isFunction(vBind.closeFunc)) {
+    const isClose: boolean = await vBind.closeFunc();
+    // visibleRef.value = !isClose;
+    emits('update:visible', isClose)
+    return;
+  }
   emits('update:visible', false)
 }
 

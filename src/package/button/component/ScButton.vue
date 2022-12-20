@@ -1,6 +1,8 @@
 <template>
   <Button
-    v-bind="getBindValue" :class="getButtonClass" @click="onClick"
+    v-bind="getBindValue"
+    :class="getButtonClass"
+    @click="onClick"
   >
     <template #icon v-if="isIcon">
       <span class="scButton-icon">

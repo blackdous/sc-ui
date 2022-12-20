@@ -72,6 +72,7 @@ realPath: src/package/modal/index.zh-CN.md
 | showTooltip | title是否显示tooltip | boolean | 无 |  |
 | tooltipDes | tooltip显示的内容，结合showTooltip 使用 | string | 无 |  |
 | type | 'info'、'warning'、'success'、'error' | string | 无 |  |
+| closeFunc | 用于关闭之前使用，支持promise; return 一个 boolean 为 true | Function、promise | 无 |  |
 | onCancelDisable | 默认Cancel按钮是否可用 | boolean | 无 |  |
 | onOkDisable | 默认onOkDisable按钮是否可用 | boolean | 无 |  |
 | isDraggable | 是否可拖拽 | boolean | 无 |  |

@@ -16,6 +16,15 @@ realPath: src/package/button/index.zh-CN.md
   >
 </demo>
 
+### shadow按钮
+
+<demo src="./demo/shadow.vue"
+  language="vue"
+  title="shadow按钮"
+  round
+  >
+</demo>
+
 ### 图标按钮
 
 <demo src="./demo/icon.vue"
@@ -83,3 +92,4 @@ realPath: src/package/button/index.zh-CN.md
 | 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
 | status      | string                                              | -  | 'error', 'warning', 'success', 'info'      |  用于有状态的按钮 |
+| type      | string                                              | -  | primary', 'ghost', 'dashed', 'link', 'text', 'default', 'shadow'      |  用于改变按钮模式；新增'shadow' 模式 |
