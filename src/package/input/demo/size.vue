@@ -1,32 +1,32 @@
 <template>
   <div class="w400">
-    <Input
+    <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueLargeRef"
       size="large"
     >
-    </Input>
+    </ScInput>
   </div>
   <div class="w400">
-    <Input
+    <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueRef"
     >
-    </Input>
+    </ScInput>
   </div>
   <div class="w400">
-    <Input
+    <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueSmallRef"
       size="small"
     >
-    </Input>
+    </ScInput>
   </div>
 </template>
 
 <script lang='ts' setup>
 import { ref } from 'vue'
-import { Input } from 'ant-design-vue'
+import { ScInput } from 'sc-ui'
 import '../../../style/index.less'
 
 const inputValueLargeRef = ref('')

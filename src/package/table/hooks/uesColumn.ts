@@ -1,4 +1,4 @@
-import { ref, Ref, unref, computed, toRaw, onMounted, nextTick } from 'vue'
+import { ref, Ref, unref, computed, toRaw, onMounted, nextTick, watch, watchEffect } from 'vue'
 import cloneDeep from 'lodash/cloneDeep'
 
 import { Column, FilterItem } from '../types/column'
@@ -17,8 +17,9 @@ export function useColumn (
   const customComponentKey = ref<string[]>(['tdCopy', 'tdHandle', 'tdEllipsis', 'tdStatus'])
   const customComponentHeaderKey = ref<string[]>(['thDescribe', 'thUnit'])
   const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<Column[]>
-  const getColumnRef = computed(() => {
-    const columns = unref(columnsRef).map((item) => {
+  const getColumnRef = ref()
+  const adapterColumnFunc = (columns: Column[]) => {
+    const newColumns = columns?.map((item) => {
       if (item?.type?.componentName) {
         item.slots = {
           ...item.slots,
@@ -38,14 +39,19 @@ export function useColumn (
       }
       return item
     })
-    return columns
-  })
+    getColumnRef.value = newColumns
+    return newColumns
+  }
   const filterColumn = ref(unref(propsRef).columnFilterList.length ? unref(propsRef).columnFilterList : unref(getColumnRef))
-
+  adapterColumnFunc(unref(columnsRef))
   const getFilterDropdownRef = computed(() => {
     return filterColumn.value
   })
-
+  watchEffect(() => {
+    columnsRef.value = propsRef.value.columns
+    filterColumn.value = propsRef.value.columns
+    adapterColumnFunc(unref(columnsRef))
+  })
   function setFilterDropdownRef (column:Column, filterItem: FilterItem[]) {
     const columns = unref(filterColumn)
     columns.forEach((item: Column) => {
@@ -86,8 +92,8 @@ export function useColumn (
     return filter
   })
 
-  function setColumnRef (colums: Column[]) {
-    columnsRef.value = colums
+  function setColumnRef (columns: Column[]) {
+    columnsRef.value = columns
   }
 
   function getRowClassName(record: any, index: number) {

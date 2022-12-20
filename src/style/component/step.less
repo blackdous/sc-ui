@@ -24,13 +24,18 @@
         border: none;
         font-size: 26px;
         position: relative;
-        box-shadow: @error-shadow;
-        border-radius: 20px;
+        width: 30px;
+        height: 30px;
+        i.iconfont {
+          box-shadow: @error-shadow;
+          border-radius: 50%;
+        }
+        border-radius: 50%;
         &::after {
           position: absolute;
           content: '';
-          width: 100%;
-          height: 100%;
+          width: 110%;
+          height: 110%;
           box-shadow: @shadow-color;
         }
       }
@@ -42,14 +47,20 @@
         position: relative;
         border: none;
         font-size: 26px;
-        box-shadow: @primary-shadow;
-        border-radius: 20px;
+        width: 30px;
+        height: 30px;
+        // box-shadow: @primary-shadow;
+        i.iconfont {
+          box-shadow: @primary-shadow;
+          border-radius: 50%;
+        }
+        border-radius: 50%;
         background: transparent;
         &::after {
           position: absolute;
           content: '';
-          width: 100%;
-          height: 100%;
+          width: 110%;
+          height: 110%;
           border-radius: 50%;
           box-shadow: @shadow-color;
         }
@@ -64,8 +75,8 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     font-size: 14px;
     box-sizing: border-box;
     background: @bg-color;
@@ -76,6 +87,9 @@
     }
     &.is-icon {
       width: 40px;
+      font-size: 26px;
+    }
+    .iconfont {
       font-size: 26px;
     }
   }
@@ -222,28 +236,35 @@
       &.is-success {
         .scStep-icon {
           position: relative;
-          box-shadow: @primary-shadow;
+          i.iconfont {
+            box-shadow: @primary-shadow;
+            border-radius: 50%;
+          }
           border-radius: 20px;
           &::after {
             position: absolute;
             content: '';
-            width: 100%;
-            height: 100%;
+            width: 110%;
+            height: 110%;
             border-radius: 50%;
             box-shadow: @shadow-color;
+            z-index: 1;
           }
         }
       }
       &.is-error {
         .scStep-icon {
           position: relative;
-          box-shadow: @error-shadow;
+          i.iconfont {
+            box-shadow: @error-shadow;
+            border-radius: 50%;
+          }
           border-radius: 20px;
           &::after {
             position: absolute;
             content: '';
-            width: 100%;
-            height: 100%;
+            width: 110%;
+            height: 110%;
             border-radius: 50%;
             box-shadow: @shadow-color;
           }
@@ -253,8 +274,8 @@
 
     .scStep-icon {
       background: transparent;
-      width: 26px;
-      height: 26px;
+      width: 30px;
+      height: 30px;
       font-size: 26px;
       vertical-align: middle;
     }
@@ -313,7 +334,7 @@
   }
   .@{stepScope}-head:not(.is-success):not(.is-wait) {
     .@{stepScope}__icon-inner {
-      font-size: 22px;
+      font-size: 26px;
     }
   }
   &.is-horizontal, &.is-vertical {
@@ -348,23 +369,25 @@
       .scStep-icon:not(.is-icon) {
         font-size: 16px;
         position: relative;
-        box-shadow: @primary-shadow;
         border-radius: 20px;
+        width: 30px;
+        height: 30px;
         &::after {
           position: absolute;
           content: '';
-          width: 100%;
-          height: 100%;
+          width: 110%;
+          height: 110%;
           border-radius: 50%;
           box-shadow: @shadow-color;
         }
         color: @bg-color;
         .@{stepScope}__icon-inner {
-          width: 22px;
-          height: 22px;
+          width: 26px;
+          height: 26px;
           background: @steps-success-color;
+          box-shadow: @primary-shadow;
           border-radius: 50%;
-          line-height: 22px;
+          line-height: 26px;
           font-size: 16px;
         }
       }
@@ -391,7 +414,7 @@
     display: flex;
     .scStep-head {
       flex-grow: 0;
-      width: 24px;
+      width: 30px;
       // &.is-success {
       //   // .scStep-line {
       //   //   background: @steps-success-color;

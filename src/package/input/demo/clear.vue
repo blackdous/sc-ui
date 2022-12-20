@@ -1,21 +1,24 @@
 <template>
   <div class="w400">
-    <Input
+    <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueRef"
       :allow-clear="true"
+      @allowClear="handleClear"
     >
-    </Input>
+    </ScInput>
   </div>
 </template>
 
 <script lang='ts' setup>
 import { ref } from 'vue'
-import { Input } from 'ant-design-vue'
+import { ScInput } from 'sc-ui';
 import '../../../style/index.less'
 
 const inputValueRef = ref('')
-
+const handleClear = (val:string) => {
+  console.log('val: ', val);
+}
 </script>
 
 <style scoped>

@@ -1,19 +1,17 @@
 <template>
   <div class="w400">
-    <Input
+    <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueRef"
+      describe="额外提示语，文字过多时输入框宽度折行"
     >
-    </Input>
-    <p class="input-describe">
-      额外提示语，文字过多时输入框宽度折行
-    </p>
+    </ScInput>
   </div>
 </template>
 
 <script lang='ts' setup>
 import { ref } from 'vue'
-import { Input } from 'ant-design-vue'
+import { ScInput } from 'sc-ui'
 import '../../../style/index.less'
 
 const inputValueRef = ref('')

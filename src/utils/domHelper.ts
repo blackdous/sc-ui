@@ -24,7 +24,7 @@ export function findParentDom<T = any> (
     }
   }
   if (currentDom.parentNode) {
-    return recursion(currentDom.parentNode, ++count)
+    return recursion(currentDom, ++count)
   } else {
     return currentDom
   }

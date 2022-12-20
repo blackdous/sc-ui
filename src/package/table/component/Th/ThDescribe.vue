@@ -50,7 +50,6 @@ export default defineComponent({
     const propsRef = computed(() => {
       return props
     })
-    console.log('propsRef: ', unref(propsRef));
     return {
       propsRef,
       preFixClass

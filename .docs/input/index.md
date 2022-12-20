@@ -88,7 +88,16 @@ realPath: src/package/input/index.zh-CN.md
 
 ## api
 
-功能上没有变化，新增了class 直接可以使用
+除 参考官方 [Input 配置](https://2x.antdv.com/components/input-cn#API)外，扩展以下参数
 
-`type`相关的class `isSuccess` 、`isWarning`、`isError` 对应实例 **主题状态**
-`describe`相关的class `input-describe` 对应实例 **带额外内容提示**
+| 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
+| ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
+| describe      | string、slot = describe                                             | -  |  -      |  用于显示文本框的描述文字 |
+
+## 事件
+
+事件与官方 [Input 事件](https://2x.antdv.com/components/Input-cn#API) 相同
+
+| 事件名称 | 说明                                 | 回调参数    |
+| -------- | ------------------------------------ | ----------- |
+| allowClear   | 点击清除按钮时触发 | function(e) |

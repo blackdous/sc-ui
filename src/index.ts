@@ -17,6 +17,7 @@ import { ScSelect } from './package/select'
 import { ScSwitch } from './package/switch'
 import { useContextMenu } from './package/contextMenu'
 import { ScDropDown } from './package/dropdown'
+import { ScInput } from './package/input'
 
 
 import { installGlobalDirectives } from './directives'
@@ -45,7 +46,8 @@ const components = [
   ScInputNumber,
   ScSelect,
   ScSwitch,
-  ScDropDown
+  ScDropDown,
+  ScInput
 ]
 
 const install = (app: App) => {
@@ -76,7 +78,8 @@ export {
   ScInputNumber,
   ScSelect,
   ScSwitch,
-  ScDropDown
+  ScDropDown,
+  ScInput
 }
 
 export * from './types'

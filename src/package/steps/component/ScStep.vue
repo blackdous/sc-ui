@@ -7,26 +7,28 @@
       <div :class="['scStep-icon', props.icon || $slots.icon ? 'is-icon' : 'is-text' ]">
         <!-- @slot 自定义图标 -->
         <slot name="icon">
-          <!-- {{ props.icon + '' + currentStatus + '' + isSimple}} -->
-          <Icon v-if="props.icon" :class="['scStep__icon-inner']" :icon="props.icon" />
-          <Icon
-            v-else-if="currentStatus === 'success'"
-            :class="['scStep__icon-inner', 'success']"
-            icon="ep:success-filled"
-          />
-          <Icon
-          v-else-if="currentStatus === 'error'"
-          :class="['scStep__icon-inner', 'error']"
-          icon="fluent-mdl2:status-error-full"
-          />
+          <!-- <Icon v-if="props.icon" :class="['scStep__icon-inner']" :icon="props.icon" /> -->
+          <i v-if="props.icon"
+            :class="['scStep__icon-inner', props.icon]" >
+          </i>
+          <i v-else-if="currentStatus === 'success'"
+            :class="['scStep__icon-inner', 'success', 'iconfont', 'icon-success']" >
+          </i>
+          <i v-else-if="currentStatus === 'error'"
+            :class="['scStep__icon-inner', 'success', 'iconfont', 'icon-error-fill']" >
+          </i>
           <div v-else-if="!isSimple" :class="['scStep__icon-inner']">
             {{ index + 1 }}
           </div>
-          <Icon
+
+          <i v-else-if="isSimple"
+            :class="['scStep__icon-inner', 'error', 'iconfont', 'icon-success']" >
+          </i>
+          <!-- <Icon
           v-else-if="isSimple"
           :class="['scStep__icon-inner', 'error']"
           icon="ep:success-filled"
-          />
+          /> -->
           <!-- <div v-else-if="isSimple">
           </div> -->
         </slot>
@@ -78,7 +80,7 @@ import {
   watch
 } from 'vue'
 import type { Ref, CSSProperties } from 'vue'
-import { Icon } from '@iconify/vue'
+// import { Icon } from '@iconify/vue'
 
 // import { StepPropType } from './type'
 import { iconPropType } from "/@/utils"

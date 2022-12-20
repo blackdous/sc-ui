@@ -1,9 +1,9 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3690753 */
-  src: url('iconfont.woff2?t=1669779610280') format('woff2'),
-       url('iconfont.woff?t=1669779610280') format('woff'),
-       url('iconfont.ttf?t=1669779610280') format('truetype'),
-       url('iconfont.svg?t=1669779610280#iconfont') format('svg');
+  src: url('iconfont.woff2?t=1671515665586') format('woff2'),
+       url('iconfont.woff?t=1671515665586') format('woff'),
+       url('iconfont.ttf?t=1671515665586') format('truetype'),
+       url('iconfont.svg?t=1671515665586#iconfont') format('svg');
 }
 
 .iconfont {
@@ -12,6 +12,42 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-success:before {
+  content: "\e67e";
+}
+
+.icon-error-fill:before {
+  content: "\ed4f";
+}
+
+.icon-a-Exclude1:before {
+  content: "\e603";
+}
+
+.icon-a-Union1:before {
+  content: "\e602";
+}
+
+.icon-caret-down:before {
+  content: "\e8ec";
+}
+
+.icon-caret-up:before {
+  content: "\e8ed";
+}
+
+.icon-caret-right:before {
+  content: "\e8ee";
+}
+
+.icon-caret-left:before {
+  content: "\e8ef";
+}
+
+.icon-zhanghaoguanli:before {
+  content: "\e67c";
 }
 
 .icon-shangchuanjindu:before {
@@ -120,14 +156,6 @@
 
 .icon-fangda:before {
   content: "\e67a";
-}
-
-.icon-huadongtiaoshang:before {
-  content: "\e678";
-}
-
-.icon-huadongtiaoxia:before {
-  content: "\e679";
 }
 
 .icon-anquanzu:before {

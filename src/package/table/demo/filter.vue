@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, unref } from 'vue'
 import { ScTable } from 'sc-ui'
 
 import '../../../style/index.less'
@@ -97,7 +97,7 @@ const list = ref([
 //   console.log('error: ', error);
 // })
 // @ts-ignore
-const columns = [
+const columns = ref([
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', 
     slots: {
       filterDropdown: 'filterDropdown',
@@ -134,7 +134,17 @@ const columns = [
   },
   { title: 'Column 2', dataIndex: 'age', key: '2', width: 160 },
   { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
-];
+]);
+
+setTimeout(() => {
+  columns.value = unref(columns).map((item, index) => {
+    // item.filterList = []
+    if (index === 0) {
+      item.filterList = unref(list).slice(0, 1)
+    }
+    return item
+  })
+}, 2000)
 
 interface DataItem {
   key: string;

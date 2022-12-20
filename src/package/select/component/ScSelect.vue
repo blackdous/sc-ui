@@ -138,11 +138,9 @@ export default defineComponent({
     onMounted(() => {
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
       dom && dom.addEventListener('mousedown', (event) => {
-        const aa = findParentDom(event.target, 5, (dom) => { return String(dom.className).includes('clearSelect') ? dom : false })
-        // const parent = event?.target?.parentNode?.parentNode
-        if (aa) {
+        const isParent = findParentDom(event.target, 5, (dom) => { return String(dom.className).includes('clearSelect') ? dom : false })
+        if (isParent) {
           checkboxValue.value = undefined
-          // value.value = []
           emit('allowClear', value.value)
         }
       })

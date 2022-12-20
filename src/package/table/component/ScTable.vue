@@ -174,7 +174,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw } from 'vue'
+import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw, watch } from 'vue'
 import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
 import { FilterFilled } from '@ant-design/icons-vue'
 
@@ -237,7 +237,7 @@ export default defineComponent({
 
     const textValue = ref()
     const selectValue = ref()
-    
+
     const zhCN = ref({})
     const enUS = ref({})
 
@@ -261,6 +261,7 @@ export default defineComponent({
     const newProps = computed(() => {
       return { ...props, ...unref(innerPropsRef) } as TableProps;
     })
+    
     const visible = ref(false);
 
     const { getLoading, setLoading } = useLoading(newProps);
@@ -344,6 +345,7 @@ export default defineComponent({
       getFilterDropdownRef,
       getFetchFilter,
       thColumn,
+      adapterColumnFunc,
       showSortTitle,
       getRowClassName,
       getColumns,
