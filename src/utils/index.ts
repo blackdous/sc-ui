@@ -1,5 +1,7 @@
 import { App, Plugin, Component, PropType, VNode, unref } from 'vue'
+import cloneDeep from 'lodash/cloneDeep'
 import { EventDataNode } from './nodeType'
+import { isObject } from './is'
 
 export const withInstall = <T>(component: T, alias?: string) => {
   const comp = component as any
@@ -14,6 +16,15 @@ export const withInstall = <T>(component: T, alias?: string) => {
 
 export const isType = (source:any, typeStr: string) => {
   return Object.prototype.toString.call(source) === '[object ' + typeStr.toLocaleUpperCase() + ']'
+}
+
+export function deepMerge<T = any>(src: any = {}, target: any = {}): T {
+  let key: string;
+  const res: any = cloneDeep(src);
+  for (key in target) {
+    res[key] = isObject(res[key]) ? deepMerge(res[key], target[key]) : (res[key] = target[key]);
+  }
+  return res;
 }
 
 export const definePropType = <T>(val: any): PropType<T> => val
@@ -42,3 +53,13 @@ export function getDynamicProps<T, U>(props: T): Partial<U> {
 
   return ret as Partial<U>;
 }
+
+export * from './domHelper'
+export * from './error'
+export * from './is'
+export * from './log'
+export * from './nodeType'
+export * from './propTypes'
+export * from './style'
+export * from './treeHelper'
+export * from './uuid'

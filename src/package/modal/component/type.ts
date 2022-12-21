@@ -1,4 +1,4 @@
-import type { PropType, CSSProperties, ComputedRef } from 'vue'
+import type { PropType, CSSProperties, ComputedRef, ExtractPropTypes } from 'vue'
 import type { LegacyButtonType, ButtonProps } from 'ant-design-vue/es/button/buttonTypes'
 import { PropTypes } from '../../../utils/propTypes'
 import { VueNode } from '../../../utils';
@@ -38,7 +38,7 @@ export const modalProps = () => ({
     type: String,
     default: 'center'
   },
-  visible: { type: Boolean, default: true },
+  visible: { type: Boolean, default: false },
   confirmLoading: { type: Boolean, default: undefined },
   title: PropTypes.any,
   closable: { type: Boolean, default: undefined },
@@ -83,3 +83,32 @@ export const modalProps = () => ({
   focusTriggerAfterClose: { type: Boolean, default: undefined },
   modalRender: Function as PropType<(arg: { originVNode: VueNode }) => VueNode>,
 });
+
+
+export declare type ModalProps = Partial<ExtractPropTypes<typeof modalProps>> 
+
+export interface ModalMethods {
+  setModalProps: (props: Partial<ModalProps>) => void;
+  emitVisible?: (visible: boolean, uid: number) => void;
+  redoModalHeight?: () => void;
+}
+
+export type RegisterFn = (modalMethods: ModalMethods, uuid?: string) => void;
+
+export interface ReturnMethods extends ModalMethods {
+  openModal: <T = any>(props?: boolean, data?: T, openOnSet?: boolean) => void;
+  closeModal: () => void;
+  getVisible?: ComputedRef<boolean>;
+}
+
+export interface ReturnInnerMethods extends ModalMethods {
+  closeModal: () => void;
+  changeLoading: (loading: boolean) => void;
+  changeOkLoading: (loading: boolean) => void;
+  getVisible?: ComputedRef<boolean>;
+  redoModalHeight: () => void;
+}
+
+export type UseModalReturnType = [RegisterFn, ReturnMethods];
+
+export type UseModalInnerReturnType = [RegisterFn, ReturnInnerMethods];

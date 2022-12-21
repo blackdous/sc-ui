@@ -6,7 +6,7 @@
       :disabled="newProps.disabled || buttonDis || minDisabled"
       :size="newProps.size"
     >
-      <i class="iconfont icon-remove"></i>
+      <i class="sc-ui sc-remove"></i>
     </Button>
     <InputNumber
       v-model:value="text"
@@ -21,7 +21,7 @@
       @click="changeVal('add')"
       :disabled="newProps.disabled || buttonDis || maxDisabled"
     >
-      <i class="iconfont icon-add"></i>
+      <i class="sc-ui sc-add"></i>
     </Button>
   </div>
 </template>

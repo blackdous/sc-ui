@@ -1,9 +1,9 @@
-import type { ExtractPropTypes } from "vue";
 import { withInstall } from "../../utils"
 
 import scModal from './component/ScModal.vue'
-import { modalProps} from "./component/type"
 
-export const ScModal = withInstall(scModal);
-export declare type ModalProps = Partial<ExtractPropTypes<typeof modalProps>> 
+export const ScModal = withInstall(scModal)
+export { useModalContext } from './hooks/useModalContext'
+export { useModal, useModalInner } from './hooks/useModal'
+
 export * from './component/type'

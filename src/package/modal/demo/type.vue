@@ -9,7 +9,7 @@
     :type="type"
     :infoDes="info"
   >
-    <div style="padding: 32px; background-color: #fff;">我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
+    <div style="background-color: #fff;">我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>
   <Space>
     <Button @click="() => { type = 'info'; openModal('infoinfoinfo') }">

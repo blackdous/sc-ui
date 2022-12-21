@@ -60,7 +60,7 @@
             :allowClear="true"
           >
             <template #suffix>
-              <i class="iconfont icon-sousuo"
+              <i class="sc-ui sc-sousuo"
                 @click="onSearch(textValue)"
               />
             </template>

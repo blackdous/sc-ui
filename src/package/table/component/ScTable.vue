@@ -39,7 +39,7 @@
                 :disabled="activeOptions?.reload?.isDisabled"
                 @click="refresh"
               >
-                <i class="iconfont icon-sync"></i>
+                <i class="sc-ui sc-sync"></i>
               </Button>
             </Tooltip>
             <Tooltip
@@ -53,7 +53,7 @@
                 :disabled="activeOptions?.columnDialog?.isDisabled"
                 @click="handleModal"
               >
-                <i class="iconfont icon-setting"></i>
+                <i class="sc-ui sc-setting"></i>
               </Button>
             </Tooltip>
             <Tooltip
@@ -67,7 +67,7 @@
                 :disabled="activeOptions?.download?.isDisabled"
                 @click="handleDownload"
               >
-                <i class="iconfont icon-download"></i>
+                <i class="sc-ui sc-download"></i>
               </Button>
             </Tooltip>
           </template>

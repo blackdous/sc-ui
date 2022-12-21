@@ -2,24 +2,24 @@
   <div>
     <ScButton type="primary">
       <template #icon>
-        <i class="iconfont icon-add"></i>
+        <i class="sc-ui sc-add"></i>
       </template>
       填充按钮
     </ScButton>
     <ScButton>
       <template #icon>
-        <i class="iconfont icon-upload"></i>
+        <i class="sc-ui sc-upload"></i>
       </template>
       描边按钮
     </ScButton>
     <ScButton type="icon">
       <template #icon>
-        <i class="iconfont icon-upload"></i>
+        <i class="sc-ui sc-upload"></i>
       </template>
     </ScButton>
     <ScButton type="icon">
       <template #icon>
-        <i class="iconfont icon-delete"></i>
+        <i class="sc-ui sc-delete"></i>
       </template>
     </ScButton>
   </div>

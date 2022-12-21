@@ -9,7 +9,7 @@
       {{ newProps.text }}
       <i
         v-if="newProps.column.icon"
-        :class="['iconfont', newProps.column.icon]"
+        :class="['sc-ui', newProps.column.icon]"
       ></i>
     </a>
     <span

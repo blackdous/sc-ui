@@ -15,15 +15,23 @@ map:
   >
 </demo>
 
-## 自定义title 对话框
+<!-- ## 自定义title 对话框
 
 <demo src="./demo/selftHeader.vue"
   language="vue"
   title="自定义title 组件"
   >
+</demo> -->
+
+## useModal 对话框
+
+<demo src="./demo/useModal/index.vue"
+  language="vue"
+  title="useModal 对话框"
+  >
 </demo>
 
-## 带tooltip的 对话框
+<!-- ## 带tooltip的 对话框
 
 <demo src="./demo/tooltip.vue"
   language="vue"
@@ -45,7 +53,7 @@ map:
   language="vue"
   title="自定义footer 对话框"
   >
-</demo>
+</demo> -->
 
 ## 有图标对话框
 

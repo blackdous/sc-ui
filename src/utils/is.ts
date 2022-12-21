@@ -88,9 +88,9 @@ export function isWindow(val: any): val is Window {
   return typeof window !== 'undefined' && is(val, 'Window');
 }
 
-export function isElement(val: unknown): val is Element {
-  return isObject(val) && !!val.tagName;
-}
+// export function isElement(val: unknown): val is Element {
+//   return isObject(val) && !!val.tagName;
+// }
 
 export function isMap(val: unknown): val is Map<any, any> {
   return is(val, 'Map');
@@ -104,4 +104,11 @@ export function isUrl(path: string): boolean {
   // eslint-disable-next-line no-useless-escape
   const reg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
   return reg.test(path);
+}
+
+export const isStringNumber = (val: string): boolean => {
+  if (!isString(val)) {
+    return false
+  }
+  return !Number.isNaN(Number(val))
 }

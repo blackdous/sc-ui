@@ -13,7 +13,7 @@
       <template #title>
         {{propsRef.describe}}
       </template>
-      <i class="iconfont icon-question-circle-fill"></i>
+      <i class="sc-ui sc-question-circle-fill"></i>
     </Tooltip>
   </span>
 </template>

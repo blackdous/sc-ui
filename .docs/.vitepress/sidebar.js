@@ -13,13 +13,15 @@ export const sidebar = {
       text: 'SC-UI',
       items: [
         { text: 'Guide', link: '/en/' },
+        { text: 'theme', link: '/en/theme/' },
       ],
     },
     {
       text: 'General',
       items: [
         { text: 'Button', link: '/en/button/' },
-        { text: 'Loading', link: '/en/loading/' }
+        { text: 'Loading', link: '/en/loading/' },
+        { text: 'Scrollbar', link: '/en/scrollbar/' },
       ]
     },
     {
@@ -69,13 +71,15 @@ export const sidebar = {
       text: 'SC-UI',
       items: [
         { text: '简介', link: '/' },
+        { text: '主题变量', link: '/theme/' },
       ],
     },
     {
       text: '通用',
       items: [
         { text: '按钮', link: '/button/' },
-        { text: '加载动画', link: '/loading/' }
+        { text: '加载动画', link: '/loading/' },
+        { text: '滚动条', link: '/scrollbar/' },
       ]
     },
     {

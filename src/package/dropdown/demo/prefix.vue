@@ -5,7 +5,7 @@
     >
       <Button>
         <template #icon>
-          <i class="iconfont icon-add"></i>
+          <i class="sc-ui sc-add"></i>
         </template>
         填充按钮
       </Button>

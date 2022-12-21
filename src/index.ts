@@ -8,7 +8,7 @@ import { ScSteps, ScStep } from "./package/steps"
 import { ScTabs } from './package/tabs'
 import { ScRadioGroup, ScRadioTooltipGroup } from './package/radio'
 import { ScAlert } from './package/alert'
-import { ScModal } from './package/modal'
+import { ScModal, useModalContext, useModal, useModalInner } from './package/modal'
 import { ScTable, useTable, Copy, TableActionVue } from './package/table'
 import { ScLoading, useLoading } from './package/loading'
 import { ScButton } from './package/button'
@@ -18,6 +18,7 @@ import { ScSwitch } from './package/switch'
 import { useContextMenu } from './package/contextMenu'
 import { ScDropDown } from './package/dropdown'
 import { ScInput } from './package/input'
+import { ScScrollbar } from './package/scrollbar'
 
 
 import { installGlobalDirectives } from './directives'
@@ -47,7 +48,8 @@ const components = [
   ScSelect,
   ScSwitch,
   ScDropDown,
-  ScInput
+  ScInput,
+  ScScrollbar
 ]
 
 const install = (app: App) => {
@@ -79,7 +81,8 @@ export {
   ScSelect,
   ScSwitch,
   ScDropDown,
-  ScInput
+  ScInput,
+  ScScrollbar
 }
 
 export * from './types'
@@ -89,7 +92,10 @@ export { installGlobalDirectives as installGlobalDirectives, ClickOutside, TextC
 export { 
   useTable, 
   useLoading,
-  useContextMenu
+  useContextMenu,
+  useModal, 
+  useModalInner,
+  useModalContext
 }
 
 export default ScUi;

@@ -99,7 +99,7 @@ export const createButton = () => ({
   // 展示文本
   text: { type: String, default: '创建' },
   isDisabled: { type: Boolean, default: false },
-  // iconfont
+  // sc-ui
   icon: { type: String, default: '' },
   // 按钮类型 默认'success', 'info', 'warning', 'error', 'primary'
   type: { type: String, default: 'info' },
