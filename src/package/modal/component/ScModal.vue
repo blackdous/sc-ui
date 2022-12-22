@@ -21,24 +21,12 @@
       </div>
     </template>
     
-    <template v-if="isSlotTitle" #title>
+    <template #title>
       <header ref="modalTitleRef" :class="{'draggable-event': props?.isDraggable}">
-        <slot name="title"></slot>
-        <span v-if="props.showTooltip" :class="[modalPrefixCls + '-tooltip']">
-          <Tooltip
-            overlayClassName="scTooltip-white"
-          >
-            <template #title>
-              {{ props.tooltipDes }}
-            </template>
-            <question-circle-outlined :class="[modalPrefixCls + '-tooltip__icon']" />
-          </Tooltip>
+        <slot name="title" v-if="isSlotTitle"></slot>
+        <span v-else>
+          {{ props.title }}
         </span>
-      </header>
-    </template>
-    <template v-if="!isSlotTitle" #title>
-      <header ref="modalTitleRef" :class="{'draggable-event': props?.isDraggable}">
-        {{ props.title }}
         <span v-if="props.showTooltip" :class="[modalPrefixCls + '-tooltip']">
           <Tooltip
             overlayClassName="scTooltip-white"
@@ -52,11 +40,9 @@
       </header>
     </template>
 
-    <template v-if="isSlotFooter" #footer>
-      <slot name="footer"> </slot>
-    </template>
-    <template v-if="!isSlotFooter" #footer>
-      <div :class="footerClassName">
+    <template  #footer>
+      <div :class="footerClassName" v-if="!isSlotFooter">
+        <slot name="insertFooter"></slot>
         <Button
           :disabled="props.onCancelDisable"
           :class="[modalPrefixCls + '-footer__cancel']"
@@ -74,6 +60,7 @@
           {{props.okText}}
         </Button>
       </div>
+      <slot v-else name="footer"> </slot>
     </template>
 
     <template #closeIcon>
@@ -95,8 +82,10 @@
 <script lang='ts' setup>
 import { computed, defineProps, useSlots, useAttrs,defineEmits, ref, watchEffect, watch, unref, getCurrentInstance } from 'vue'
 // import type { CSSProperties } from 'vue'
-import { useDraggable } from '@vueuse/core';
+// import { useDraggable } from '@vueuse/core';
+import { useModalDraggable } from '../hooks/useModalDraggable'
 import { Modal, Button, Tooltip } from 'ant-design-vue'
+import { ScScrollbar } from '../../scrollbar';
 import {
   QuestionCircleOutlined,
   InfoCircleFilled,
@@ -114,7 +103,6 @@ const modalPrefixCls = basePrefixCls + 'Modal'
 const emits = defineEmits(['update:visible', 'dragChange', 'register', 'visible-change'])
 const attrs = useAttrs()
 const vBind = defineProps(modalProps())
-console.log('vBind: ', vBind);
 
 const visibleRef = ref(false)
 const propsRef = ref<Partial<ModalProps> | null>(null);
@@ -122,7 +110,7 @@ const propsRef = ref<Partial<ModalProps> | null>(null);
 const props = computed(() => {
   return {
     ...vBind,
-    propsRef
+    ...propsRef.value
   }
 })
 
@@ -153,7 +141,7 @@ const slots = useSlots()
 const className = computed(() => {
   const classNames = [modalPrefixCls]
   if (vBind.type) {
-    classNames.push(modalPrefixCls + '-' + vBind.type)
+    classNames.push(modalPrefixCls + '-container-' + vBind.type)
   }
   return classNames
 })
@@ -204,6 +192,7 @@ const closeVisible = async (e: Event) => {
 function setModalProps(props: Partial<ModalProps>): void {
   // Keep the last setModalProps
   propsRef.value = deepMerge(unref(propsRef) || ({} as any), props);
+  console.log('propsRef: ', propsRef);
   if (Reflect.has(props, 'visible')) {
     visibleRef.value = !!props.visible;
   }
@@ -219,65 +208,13 @@ if (instance) {
   emits('register', modalMethods, instance.uid);
 }
 
-const modalTitleRef = ref<HTMLElement>()
-const modalRef = ref<HTMLElement>()
-const { x, y, isDragging, style, position } = useDraggable(modalTitleRef, vBind.DragOptions)
-const startX = ref<number>(0)
-const startY = ref<number>(0);
-const startedDrag = ref(false);
-const transformX = ref(0);
-const transformY = ref(0);
-const preTransformX = ref(0);
-const preTransformY = ref(0);
-const dragRect = ref({ left: 0, right: 0, top: 0, bottom: 0 });
-watch([x, y], () => {
-  if (!startedDrag.value) {
-    startX.value = x.value;
-    startY.value = y.value;
-    const bodyRect = document.body.getBoundingClientRect();
-    const titleRect = modalTitleRef?.value?.getBoundingClientRect();
-    // @ts-ignore
-    dragRect.value.right = bodyRect.width - titleRect?.width;
-    // @ts-ignore
-    dragRect.value.bottom = bodyRect.height - titleRect?.height;
-    preTransformX.value = transformX.value;
-    preTransformY.value = transformY.value;
-  }
-  startedDrag.value = true;
-});
-watch(isDragging, () => {
-  if (!isDragging) {
-    startedDrag.value = false;
-  }
-});
-
 watchEffect(() => {
   visibleRef.value = !!unref(vBind).visible;
-});
-
-watchEffect(() => {
-  if (startedDrag.value) {
-    transformX.value =
-      preTransformX.value +
-      Math.min(Math.max(dragRect.value.left, x.value), dragRect.value.right) -
-      startX.value;
-    transformY.value =
-      preTransformY.value +
-      Math.min(Math.max(dragRect.value.top, y.value), dragRect.value.bottom) -
-      startY.value;
-    if (modalTitleRef.value && vBind.isDraggable && vBind.visible) {
-      const modalTitleDom = unref(modalTitleRef)?.parentNode?.parentNode?.parentNode
-      // @ts-ignore
-      modalTitleDom.style.transform = `translate(${transformX.value}px, ${transformY.value}px)`
-      emits('dragChange', { x, y, isDragging, style, position })
-    }
-  }
 });
 
 watch(
   () => unref(visibleRef),
   (v) => {
-    console.log('v: ', v);
     emits('visible-change', v);
     emits('update:visible', v);
     instance && modalMethods.emitVisible?.(v, instance.uid);
@@ -287,5 +224,7 @@ watch(
   },
 );
 
+const modalTitleRef = ref<HTMLElement>()
+useModalDraggable(modalTitleRef, visibleRef, props, emits)
 
 </script>

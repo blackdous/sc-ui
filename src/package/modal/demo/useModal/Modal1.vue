@@ -5,29 +5,33 @@
     @register="register"
     title="Modal Title"
     @visible-change="handleShow"
+    style="top: 20px"
   >
-    <!-- <template #insertFooter>
+    <template #insertFooter>
       <ScButton type="primary" danger @click="setLines" :disabled="loading"
         >点我更新内容</ScButton
       >
-    </template> -->
+    </template>
     <template v-if="loading">
       <div class="empty-tips">加载中，稍等3秒……</div>
     </template>
     <template v-if="!loading">
-      <ul>
-        <li v-for="index in lines" :key="index">加载完成{{ index }}！</li>
-      </ul>
+      <ScScrollbar minHeight="100px" maxHeight="300px">
+        <ul>
+          <li v-for="index in lines" :key="index">加载完成{{ index }}！</li>
+        </ul>
+      </ScScrollbar>
     </template>
   </ScModal>
 </template>
 <script lang="ts">
   import { defineComponent, ref, watch } from 'vue';
-  import { useModalInner, ScModal, ScButton } from 'sc-ui';
+  import { useModalInner, ScModal, ScButton, ScScrollbar } from 'sc-ui';
   export default defineComponent({
     components: {
       ScModal,
-      ScButton
+      ScButton,
+      ScScrollbar
     },
     setup() {
       const loading = ref(true);
@@ -42,7 +46,6 @@
       );
 
       function handleShow(visible: boolean) {
-        console.log('visible: ', visible);
         if (visible) {
           loading.value = true;
           setModalProps({ loading: true, confirmLoading: true });

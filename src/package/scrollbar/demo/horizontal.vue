@@ -1,6 +1,8 @@
 <template>
-  <ScScrollbar height="400px" always>
-    <p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>
+  <ScScrollbar>
+    <div class="scrollbar-flex-content">
+      <p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>
+    </div>
   </ScScrollbar>
 </template>
 
@@ -11,18 +13,23 @@ import { ScScrollbar } from 'sc-ui'
 </script>
 
 <style scoped lang="less">
+.scrollbar-flex-content {
+  display: flex;
+}
 .scrollbar-demo-item {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100px;
   height: 50px;
-  margin: 10px;
+  margin: 10px!important;
   text-align: center;
   border-radius: 4px;
   background: #ecf5ff;
   color: #409eff;
   & + & {
-    margin-top: 10px;
+    margin-left: 10px;
   }
 }
 </style>

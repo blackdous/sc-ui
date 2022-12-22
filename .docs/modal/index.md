@@ -16,13 +16,13 @@ realPath: src/package/modal/index.zh-CN.md
   >
 </demo>
 
-<!-- ## 自定义title 对话框
+## 自定义title 对话框
 
 <demo src="./demo/selftHeader.vue"
   language="vue"
   title="自定义title 组件"
   >
-</demo> -->
+</demo>
 
 ## useModal 对话框
 
@@ -32,7 +32,7 @@ realPath: src/package/modal/index.zh-CN.md
   >
 </demo>
 
-<!-- ## 带tooltip的 对话框
+## 带tooltip的 对话框
 
 <demo src="./demo/tooltip.vue"
   language="vue"
@@ -83,7 +83,7 @@ realPath: src/package/modal/index.zh-CN.md
 | closeFunc | 用于关闭之前使用，支持promise; return 一个 boolean 为 true | Function、promise | 无 |  |
 | onCancelDisable | 默认Cancel按钮是否可用 | boolean | 无 |  |
 | onOkDisable | 默认onOkDisable按钮是否可用 | boolean | 无 |  |
-| isDraggable | 是否可拖拽 | boolean | 无 |  |
+| isDraggable | 是否可拖拽 | boolean | true |  |
 | DragOptions | 使用的@vueuse/core 的 useDraggable，可传入初始值 | [UseDraggableOptions](https://vueuse.org/core/usedraggable/#type-declarations) | 无 |  |
 | dragChange | 拖拽时的一些属性x, y, style, position | [useDraggable](https://vueuse.org/core/usedraggable/#type-declarations) | 无 |  |
 | onCancelDisable | Modal 完全关闭后的回调 | function | 无 |  |

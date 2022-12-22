@@ -1,13 +1,18 @@
 <template>
-  <ScScrollbar height="400px" always>
-    <p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>
+  <ScScrollbar max-height="400px">
+    <p v-for="item in list" :key="item" class="scrollbar-demo-item">{{ item }}</p>
   </ScScrollbar>
 </template>
 
 <script lang="ts" setup>
-
+import { ref } from 'vue'
 import { ScScrollbar } from 'sc-ui'
+const list = ref(2)
 
+const timer = setTimeout(() => {
+  list.value = 25
+  clearTimeout(timer)
+}, 3500)
 </script>
 
 <style scoped lang="less">

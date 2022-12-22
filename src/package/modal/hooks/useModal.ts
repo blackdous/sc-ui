@@ -74,7 +74,6 @@ export function useModal(): UseModalReturnType {
     },
 
     openModal: <T = any>(visible = true, data?: T, openOnSet = true): void => {
-      console.log('visible: ', visible);
       getInstance()?.setModalProps({
         visible: visible,
       });

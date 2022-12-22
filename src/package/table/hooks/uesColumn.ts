@@ -151,22 +151,6 @@ export function useColumn (
           item.addEventListener('mouseout', () => {
             spanDownDom.style.display = 'none'
           })
-                    // item.addEventListener('click', (event: Event) => {
-          //   const dom = String(event?.target?.parentNode?.className).indexOf('anticon-caret-down') > -1 ? event?.target?.parentNode : event?.target?.parentNode?.parentNode
-          //   const lastChild = upDom[index].children[1]
-          //   lastChild.innerText = upTitle
-          //   if (dom.className.indexOf('on') > -1) {
-          //     const lastChild = dom.children[1]
-          //     if (lastChild && lastChild.className.indexOf('table-sortDown') > -1) {
-          //       lastChild.innerText = cancelDownTitle
-          //     }
-          //   } else {
-          //     const lastChild = dom.children[1]
-          //     if (lastChild && lastChild.className.indexOf('table-sortDown') > -1) {
-          //       lastChild.innerText = downTitle
-          //     }
-          //   }
-          // })
         })
         Array.from(sortDom).forEach((item: HTMLElement, index: number) => {
           let clickCount = 0;

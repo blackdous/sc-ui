@@ -29,7 +29,7 @@ export const modalProps = () => ({
   prefixCls: { type: String },
   onCancelDisable: { type: Boolean, default: false },
   onOkDisable: { type: Boolean, default: false },
-  isDraggable: { type: Boolean, default: false },
+  isDraggable: { type: Boolean, default: true },
   DragOptions: {
     type: Object as PropType<UseDraggableOptions>
   },
@@ -54,9 +54,9 @@ export const modalProps = () => ({
     default: '480px'
   },
   footer: PropTypes.any,
-  okText: PropTypes.any,
+  okText: { type: String, default: '确定' },
   okType: String as PropType<LegacyButtonType>,
-  cancelText: PropTypes.any,
+  cancelText: { type: String, default: '取消' },
   icon: PropTypes.any,
   maskClosable: { type: Boolean, default: true },
   forceRender: { type: Boolean, default: undefined },

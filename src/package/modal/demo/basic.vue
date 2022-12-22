@@ -1,12 +1,14 @@
 <template>
   <ScModal 
     v-model:visible="visible"
-    title="Basic Modal" 
+    title="Basic Modal"
+    destroyOnClose
     @ok="handleOk"
     cancel-text="取消"
     ok-text="确认"
     maskClosable
-  >
+    >
+    <!-- @dragChange="handleDrag" -->
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>
   <Button @click="openModal">
@@ -21,6 +23,7 @@ import type { Ref } from 'vue'
 import { Button } from 'ant-design-vue'
 import { ScModal } from 'sc-ui'
 import '../../../style/index.less'
+import { DraggableType } from '../component/type'
 
 const visible: Ref<boolean> = ref(false)
 
@@ -32,6 +35,11 @@ const handleOk = (e: MouseEvent) => {
   console.log(e);
   visible.value = false;
 };
+
+const handleDrag = (dragRect:DraggableType) => {
+  console.log('dragRect: ', dragRect);
+
+}
 
 </script>
 

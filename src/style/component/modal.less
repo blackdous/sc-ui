@@ -17,9 +17,6 @@
     color: @white-color;
     background-color: @primary-color;
     border-radius: @border-r-6 @border-r-6 0 0;
-    // & + .ant-modal-body {
-    //   padding: 0;
-    // }
     header {
       padding: 21px 20px 21px 32px;
     }
@@ -40,7 +37,10 @@
     color: @white-color;
   }
   .@{modalScope}-content {
-    padding: 32px 0;
+    padding: 32px 0 0;
+  }
+  .@{modalScope}-footer {
+    padding: 10px 32px 32px;
   }
   .ant-modal-body {
     padding: 0 32px;
@@ -48,12 +48,9 @@
     color: @text-color-secondary;
     font-weight: 400;
     line-height: 22px;
-    // & > div:not(.scModal-status) {
-    //   padding: 32px;
-    // }
   }
   .ant-modal-footer {
-    padding: 10px 32px 32px;
+    padding: 0;
     button + button {
       margin-left: 16px;
     }
@@ -63,14 +60,6 @@
     font-size: @font-size-base;
     color: @white-color;
   }
-  // .ant-modal-close-icon {
-  //   &:hover {
-  //     background: @icon-hover-bgColor;
-  //   }
-  //   &:active {
-  //     background: @icon-active-bgColor;
-  //   }
-  // }
   .@{modalScope}-footer__cancel {
     background: @cancel-btn-color;
     &:hover, &:active, &:link, &:focus {

@@ -71,6 +71,7 @@ const style = computed<StyleValue>(() => {
   const style: CSSProperties = {}
   if (props.height) style.height = addUnit(props.height)
   if (props.maxHeight) style.maxHeight = addUnit(props.maxHeight)
+  if (props.minHeight) style.minHeight = addUnit(props.minHeight)
   return [props.wrapStyle, style]
 })
 

@@ -19,6 +19,7 @@
     },
     setup() {
       const [register, { closeModal, setModalProps }] = useModalInner();
+      console.log('setModalProps: ', setModalProps);
       return {
         register,
         closeModal,
