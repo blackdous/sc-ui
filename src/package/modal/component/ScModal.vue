@@ -85,7 +85,6 @@ import { computed, defineProps, useSlots, useAttrs,defineEmits, ref, watchEffect
 // import { useDraggable } from '@vueuse/core';
 import { useModalDraggable } from '../hooks/useModalDraggable'
 import { Modal, Button, Tooltip } from 'ant-design-vue'
-import { ScScrollbar } from '../../scrollbar';
 import {
   QuestionCircleOutlined,
   InfoCircleFilled,

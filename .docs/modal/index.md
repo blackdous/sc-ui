@@ -64,6 +64,14 @@ realPath: src/package/modal/index.zh-CN.md
   >
 </demo>
 
+## status对话框
+
+<demo src="./demo/status.vue"
+  language="vue"
+  title="status对话框"
+  >
+</demo>
+
 ## 可拖拽的
 
 <demo src="./demo/draggable.vue"
@@ -72,6 +80,146 @@ realPath: src/package/modal/index.zh-CN.md
   >
 </demo>
 
+## useModal使用
+
+用于外部组件调用
+
+### useModal 用于操作组件
+
+```ts
+const [register, { openModal, setModalProps }] = useModal();
+```
+
+### register
+
+`register` 用于注册 `useModal`，如果需要使用 `useModal` 提供的 `api`，必须将 `register` 传入组件的 `onRegister`。
+
+原理其实很简单，就是 vue 的组件子传父通信，内部通过 `emit("register"，instance)` 实现。
+
+同时独立出去的组件需要将 `attrs` 绑定到 `BasicModal` 上面。
+
+```vue
+<template>
+  <BasicModal v-bind="$attrs"></BasicModal>
+</template>
+
+```
+
+### openModal
+
+用于打开/关闭弹窗
+
+```ts
+  // true/false: 打开关闭弹窗
+  // data: 传递到子组件的数据
+  openModal(true, data);
+```
+
+### closeModal
+
+用于关闭弹窗
+
+```ts
+  closeModal();
+```
+
+### setModalProps
+
+用于更改 modal 的 props 参数因为 modal 内容独立成组件，如果在外部页面需要更改 props 可能比较麻烦，所以提供 `setModalProps` 方便更改内部 modal 的 props
+
+```ts
+setModalProps(props);
+```
+
+### useModalInner
+
+用于独立的 Modal 内部调用
+
+```vue
+<template>
+  <ScModal
+    @register="register"
+    title="Modal Title"
+    :helpMessage="['提示1', '提示2']"
+    :okButtonProps="{ disabled: true }"
+  >
+    <ScButton type="primary" @click="closeModal" class="mr-2"> 从内部关闭弹窗 </ScButton>
+    <ScButton type="primary" @click="setModalProps"> 从内部修改title </ScButton>
+  </ScModal>
+</template>
+<script lang="ts">
+  import { defineComponent } from 'vue';
+  import { useModalInner, ScModal, ScButton } from 'sc-ui';
+  export default defineComponent({
+    components: {
+      ScModal,
+      ScButton
+    },
+    setup() {
+      const [register, { closeModal, setModalProps }] = useModalInner();
+      console.log('setModalProps: ', setModalProps);
+      return {
+        register,
+        closeModal,
+        setModalProps: () => {
+          setModalProps({ title: 'Modal New Title' });
+        },
+      };
+    },
+  });
+</script>
+
+```
+
+#### useModalInner用于操作独立组件
+
+```ts
+const [register, { closeModal, setModalProps }] = useModalInner(callback);
+```
+
+#### callback
+
+```ts
+type: (data:any)=>void
+```
+
+回调函数用于接收 openModal 第二个参数传递的值
+
+```ts
+useModal((data: any) => {
+  console.log(data);
+});
+
+```
+
+#### closeModal
+
+用于关闭弹窗
+
+```ts
+  closeModal();
+```
+
+#### changeOkLoading
+
+用于修改确认按钮的 `loading` 状态
+
+```ts
+changeOkLoading(true);
+```
+
+#### changeLoading
+
+用于修改 modal 的 `loading` 状态
+
+```ts
+// true or false
+changeLoading(true);
+```
+
+#### setModalProps
+
+用于更改 modal 的 props 参数因为 modal 内容独立成组件，如果在外部页面需要更改 props 可能比较麻烦，所以提供 `setModalProps` 方便更改内部 modal 的 props
 
 ## API
 
