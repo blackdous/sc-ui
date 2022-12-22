@@ -12,17 +12,17 @@
             :class="['scStep__icon-inner', props.icon]" >
           </i>
           <i v-else-if="currentStatus === 'success'"
-            :class="['scStep__icon-inner', 'success', 'sc-ui', 'icon-success']" >
+            :class="['scStep__icon-inner', 'success', 'sc-ui', 'sc-success']" >
           </i>
           <i v-else-if="currentStatus === 'error'"
-            :class="['scStep__icon-inner', 'success', 'sc-ui', 'icon-error-fill']" >
+            :class="['scStep__icon-inner', 'success', 'sc-ui', 'sc-error-fill']" >
           </i>
           <div v-else-if="!isSimple" :class="['scStep__icon-inner']">
             {{ index + 1 }}
           </div>
 
           <i v-else-if="isSimple"
-            :class="['scStep__icon-inner', 'error', 'sc-ui', 'icon-success']" >
+            :class="['scStep__icon-inner', 'error', 'sc-ui', 'sc-success']" >
           </i>
           <!-- <Icon
           v-else-if="isSimple"
@@ -34,7 +34,7 @@
         </slot>
       </div>
       <div :class="['scStep-arrow']" v-if="!isSimple && isVertical">
-        <i v-if="isSimple" class="sc-ui icon-you"></i>
+        <i v-if="isSimple" class="sc-ui sc-you"></i>
         <div v-else-if="!isSimple && isVertical" class="scStep-line">
           <!-- <i class="scStep-line-inner" :style="lineStyle"></i> -->
         </div>
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div :class="['scStep-arrow']">
-        <i v-if="isSimple" class="sc-ui icon-you"></i>
+        <i v-if="isSimple" class="sc-ui sc-you"></i>
         <div v-else-if="!isSimple && !isVertical " class="scStep-line">
           <!-- <i class="scStep-line-inner" :style="lineStyle"></i> -->
         </div>

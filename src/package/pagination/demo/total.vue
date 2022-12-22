@@ -31,9 +31,9 @@ export default defineComponent({
       showTotal: (total:string) => `共 ${total} 条`,
       itemRender: ({type, originalElement}:any) => {
         if (type === 'prev') {
-          return h('i', { class: 'sc-ui icon-you' })
+          return h('i', { class: 'sc-ui sc-you' })
         } else if (type === 'next') {
-          return h('i', { class: 'sc-ui icon-you' })
+          return h('i', { class: 'sc-ui sc-you' })
         } else {
           return originalElement
         }

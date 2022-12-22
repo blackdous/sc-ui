@@ -126,13 +126,13 @@
 .pdb16 {
   padding-bottom: 16px;
 }
-.anticon-copy {
+.action-copy {
   cursor: pointer;
 }
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
   height: 8px;
 }
 
@@ -143,8 +143,11 @@
 
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
-  width: 10px;
+  width: 6px;
   border-radius: 10px;
   // box-shadow: inset 0 0 6px rgb(245, 245, 245);
   background-color: rgba(0, 0, 0, 0.1);
+  // background-color: #0003;
+  // border-radius: 10px;
+  transition: all .2s ease-in-out;
 }

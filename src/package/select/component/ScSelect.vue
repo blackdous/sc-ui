@@ -36,7 +36,7 @@
       <template #suffixIcon>
         <i 
           v-if="!isSuffixIcon"
-          class="sc-ui icon-you" 
+          class="sc-ui sc-you" 
         />
         <slot v-else slot="suffixIcon" />
       </template>

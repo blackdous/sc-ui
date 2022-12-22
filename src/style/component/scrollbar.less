@@ -4,6 +4,10 @@
   overflow: hidden;
   position: relative;
   height: 100%;
+  --sc-scrollbar-opacity: .3;
+  --sc-scrollbar-bg-color: #909399;
+  --sc-scrollbar-hover-opacity: .5;
+  --sc-scrollbar-hover-bg-color: #909399;
   &-wrap {
     overflow: auto;
     height: 100%;
@@ -42,5 +46,13 @@
     height: 0;
     cursor: pointer;
     border-radius: inherit;
+    background-color: var(--sc-scrollbar-bg-color, var(--sc-text-color-secondary));
+    transition: var(--sc-transition-duration) background-color;
+    opacity: var(--sc-scrollbar-opacity, .3);
   }
+  // ::-webkit-scrollbar-thumb {
+  //   background-color: #0003;
+  //   border-radius: 10px;
+  //   transition: all .2s ease-in-out;
+  // }
 }
