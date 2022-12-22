@@ -3,7 +3,7 @@
     <div
       v-show="always || visible"
       ref="instance"
-      :class="[baseClass + '-thumb', bar.key ? 'is' + bar.key : '']"
+      :class="[baseClass + '-bar', bar.key ? 'is-' + bar.key : '']"
       @mousedown="clickTrackHandler"
     >
       <div
