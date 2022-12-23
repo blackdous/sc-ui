@@ -38,12 +38,14 @@
 
 @btn-active-color: #a6a6a6;
 @border-color: #e7e7e7;
+@tabs-shadow-bgColor: #F5F5F5;
+@btn-light-color: #23A6F3;
 @white-color: #fff;
 @hover-shadow: fade(@link-color, 20);
 
 @disabled-bg-color: #EEEEEE; // 禁选颜色
 
-@shadow-color: 0px 4px 4px rgb(35 166 243 / 8%), 0px 0px 6px #f0f3f7;
+@shadow-color: 0px 4px 4px rgb(35 166 243 / 8%), 0px 0px 6px #e4e8ed;
 
 @primary-shadow: 0px 0px 8px rgba(0, 140, 211, 0.5); // 祖逖渐变色
 
@@ -51,7 +53,7 @@
 
 //************************** steps
 // steps-wait-color
-@steps-wait-color: #F5F5F5;
+@steps-wait-color: @tabs-shadow-bgColor;
 // steps-process-color
 @steps-process-color: #000000;
 // steps-process-color
@@ -123,7 +125,7 @@
 @btn-column-color: #f5fbfd;
 @btn-primary-disabled: #BEDAFF;
 @btn-info-bg: #e7e7e7;
-@shadow-bg-color: #23A6F3;
+@shadow-bg-color: @btn-light-color;
 
 // @btn-primary-disabled: #BEDAFF;
 

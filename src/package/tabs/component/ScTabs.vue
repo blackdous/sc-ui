@@ -26,7 +26,7 @@ export interface TabsProps {
    */
   type?: string,
   /**
-   * styleMode 可选值 `gradient`
+   * styleMode 可选值 `gradient`、`shadow`
    */
   styleMode?: string
 }

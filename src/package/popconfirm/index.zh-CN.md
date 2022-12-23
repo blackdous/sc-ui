@@ -50,12 +50,3 @@ map:
 | type      | string                                              | -  |  'primary', 'success', 'warning', 'error', 'default'      | 用于操作icon更改演示 |
 | isShowIcon      | boolean                                              |  true  |  -      | 是否显示props.icon；不影响 #icon 传入的 icon |
 | describe      | string                                              | -  |  -      | 显示描述性文字 |
-
-
-## 事件
-
-事件与官方 [Select 事件](https://2x.antdv.com/components/select-cn#API) 相同
-
-| 事件名称 | 说明                                 | 回调参数    |
-| -------- | ------------------------------------ | ----------- |
-| allowClear   | 点击清除按钮时触发 | function(e) |

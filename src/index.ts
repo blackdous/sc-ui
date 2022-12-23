@@ -20,6 +20,7 @@ import { ScDropDown } from './package/dropdown'
 import { ScInput } from './package/input'
 import { ScScrollbar } from './package/scrollbar'
 import { ScPopconfirm } from './package/popconfirm'
+import { ScCascader } from './package/cascader'
 
 
 import { installGlobalDirectives } from './directives'
@@ -51,7 +52,8 @@ const components = [
   ScDropDown,
   ScInput,
   ScScrollbar,
-  ScPopconfirm
+  ScPopconfirm,
+  ScCascader
 ]
 
 const install = (app: App) => {
@@ -85,7 +87,8 @@ export {
   ScDropDown,
   ScInput,
   ScScrollbar,
-  ScPopconfirm
+  ScPopconfirm,
+  ScCascader
 }
 
 export * from './types'

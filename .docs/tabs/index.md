@@ -14,15 +14,28 @@ realPath: src/package/tabs/index.zh-CN.md
   >
 </demo>
 
-## 新增 styleMode 属性
+## 新增styleMode属性为gradient
 
 <demo src="./demo/styleMode.vue"
   language="vue"
   title="渐变色tabs button 样式"
-  desc="新增了 styleMode, 默认值为 gradient"
+  desc="新增了 styleMode, 默认值为 gradient；只有在`type='card'` 时生效"
   >
 </demo>
 
-## steps 新增属性
+## 新增styleMode属性为shadow
 
-<API src="./component/ScTabs.vue" lang="zh"></API>
+<demo src="./demo/shadow.vue"
+  language="vue"
+  title="渐变色tabs button 样式"
+  desc="新增了 styleMode, 默认值为 shadow；只有在`type='card'` 时生效"
+  >
+</demo>
+
+## Api
+
+除 参考官方 [tabs 配置](https://2x.antdv.com/components/tabs-cn#API)外，扩展以下参数
+
+| 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
+| ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
+| styleMode      | string                                             | -  |  'gradient', 'shadow'      | styleMode 只有在 `type='card'` 时生效 |

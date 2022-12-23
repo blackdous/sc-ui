@@ -1,6 +1,6 @@
 ---
 map:
-  path: /select
+  path: /cascader
 realPath: src/package/cascader/index.zh-CN.md
 ---
 

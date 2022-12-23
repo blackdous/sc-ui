@@ -8,7 +8,7 @@ realPath: src/__docs__/index.zh-CN.md
 
 ant-design-vue vue3 ts ui
 
-[文档地址](http://sc-ui.voneyun.com/)
+[文档地址 v0.0.25](http://sc-ui.voneyun.com/)
 
 ## 引入 ant-design-vue
 

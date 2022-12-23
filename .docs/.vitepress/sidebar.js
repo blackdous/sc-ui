@@ -40,7 +40,8 @@ export const sidebar = {
         { text: 'Checkbox', link: '/en/checkbox/' },
         { text: 'InputNumber', link: '/en/inputNumber/' },
         { text: 'Select', link: '/en/select/' },
-        { text: 'Switch', link: '/en/switch/' }
+        { text: 'Switch', link: '/en/switch/' },
+        { text: 'Cascader', link: '/en/cascader/' },
       ]
     },
     {
@@ -107,7 +108,8 @@ export const sidebar = {
         { text: '复选框', link: '/checkbox/' },
         { text: '数字输入框', link: '/inputNumber/' },
         { text: '选择器', link: '/select/' },
-        { text: '开关', link: '/switch/' }
+        { text: '开关', link: '/switch/' },
+        { text: '级联选择', link: '/cascader/' },
       ]
     },
     {

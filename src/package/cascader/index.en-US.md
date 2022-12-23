@@ -1,7 +1,6 @@
 ---
 map:
-  path: /select
-realPath: src/package/cascader/index.en-US.md
+  path: /cascader
 ---
 
 ## Guide

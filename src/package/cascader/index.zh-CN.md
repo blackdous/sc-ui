@@ -1,7 +1,6 @@
 ---
 map:
-  path: /select
-realPath: src/package/cascader/index.zh-CN.md
+  path: /cascader
 ---
 
 # Select 选择器
