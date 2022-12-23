@@ -183,10 +183,14 @@ export function useColumn (
   }
 
   const getFilterColumnRef = computed(() => {
+    console.log('filterColumn: ', filterColumn);
     const columns = cloneDeep(unref(filterColumn)).map((item: Column) => {
       if (!item.default) {
         // @ts-ignore
         item.label = item.title
+        if (item.titleType) {
+          item.label = item.titleType.props.text
+        }
         // @ts-ignore
         item.value = item.dataIndex
         item.disabled = item.disabled || false

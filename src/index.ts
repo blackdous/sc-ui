@@ -19,6 +19,7 @@ import { useContextMenu } from './package/contextMenu'
 import { ScDropDown } from './package/dropdown'
 import { ScInput } from './package/input'
 import { ScScrollbar } from './package/scrollbar'
+import { ScPopconfirm } from './package/popconfirm'
 
 
 import { installGlobalDirectives } from './directives'
@@ -49,7 +50,8 @@ const components = [
   ScSwitch,
   ScDropDown,
   ScInput,
-  ScScrollbar
+  ScScrollbar,
+  ScPopconfirm
 ]
 
 const install = (app: App) => {
@@ -82,7 +84,8 @@ export {
   ScSwitch,
   ScDropDown,
   ScInput,
-  ScScrollbar
+  ScScrollbar,
+  ScPopconfirm
 }
 
 export * from './types'

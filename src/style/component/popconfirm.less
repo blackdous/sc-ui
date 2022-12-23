@@ -1,0 +1,83 @@
+@PopconfirmScope: ~'@{prefixCls}Popconfirm';
+@PopType: ~'@{PopconfirmScope}-type';
+.ant-popover {
+  .ant-popover-content {
+    min-width: 160px;
+    max-width: 360px;
+  }
+  .ant-popover-inner {
+    border-radius: @border-r-6;
+    border: 1px solid @border-color-base;
+  }
+  .ant-popover-inner-content {
+    padding: 16px;
+  }
+  .ant-popover-message {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    padding-top: 0;
+    padding-bottom: 16px;
+    color: @heading-color;
+    & > .anticon {
+      top: 4px;
+    }
+  }
+}
+.@{PopconfirmScope} {
+  &-icon {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    .@{PopType} {
+      transform: rotate(180deg);
+    }
+  }
+  &-warning {
+    color: @warning-color
+  }
+  &-error {
+    color: @error-color
+  }
+  &-success {
+    color: @success-color
+  }
+  &-primary {
+    color: @primary-color
+  }
+  &-describe {
+    margin-top: 8px;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: @text-color;
+    word-break: break-all;
+  }
+}
+.ant-popover-buttons {
+  .ant-btn:first-child {
+    background: @btn-info-bg;
+    border-color: @btn-info-bg;
+    &:hover {
+      background: @border-color-base;
+      border-color: @border-color-base;
+      color: @heading-color;
+    }
+    &:focus,
+    &:active,
+    &:link {
+      color: @heading-color;
+      background: @btn-active-color;
+      border-color: @btn-active-color;
+    }
+  }
+}
+.empty-icon {
+  & + .ant-popover-message-title {
+    padding-left: 0;
+  }
+}

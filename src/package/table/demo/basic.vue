@@ -6,6 +6,25 @@
       :columns="columns"
       size="small"
       :loading="loading"
+      :activeOptions="{
+        reload: {
+          text: '刷新',
+          show: true,
+          showTooltip: true,
+          action: refresh
+        },
+        columnDialog: {
+          text: '定制列',
+          show: true,
+          showTooltip: true
+        },
+        download: {
+          text: '下载',
+          show: true,
+          showTooltip: true,
+          href: ''
+        }
+      }"
       @change="handleChange"
       >
       <!-- :langLocale="zhCN" -->
