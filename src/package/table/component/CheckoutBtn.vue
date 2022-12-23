@@ -20,6 +20,9 @@
         class="colBtn-item-text"
       >
         {{ item.label }}
+        <span class="colBtn-item-describe" v-if="item.describe">
+          {{ item.describe }}
+        </span>
       </span>
     </span>
   </div>
@@ -31,7 +34,7 @@ import { defineComponent, ref, unref } from 'vue'
 
 import { useChecked } from '../hooks/uesDialog'
 // @ts-ignore
-import { ColumnItem, ColumnModal } from '../types/column'
+import { FilterItem, ColumnModal } from '../types/column'
 
 export default defineComponent({
   name: 'CheckoutBtn',
@@ -42,13 +45,13 @@ export default defineComponent({
   props: ColumnModal(),
   setup (props, { emit }) {
     const list = ref(props.columnList)
-    const checkedList = ref([] as Array<ColumnItem>)
-    const { setItemChecked, getCheckedItems } = useChecked(props.columnList as Array<ColumnItem>)
+    const checkedList = ref([] as Array<FilterItem>)
+    const { setItemChecked, getCheckedItems } = useChecked(props.columnList as Array<FilterItem>)
     checkedList.value = getCheckedItems()
 
     emit('change', { checkedList: unref(checkedList)})
 
-    const handleCheck = (item:ColumnItem) => {
+    const handleCheck = (item:FilterItem) => {
       if (item.disabled) {
         return false
       }

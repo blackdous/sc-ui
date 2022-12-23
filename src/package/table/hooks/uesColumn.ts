@@ -183,13 +183,14 @@ export function useColumn (
   }
 
   const getFilterColumnRef = computed(() => {
-    console.log('filterColumn: ', filterColumn);
+    // console.log('filterColumn: ', filterColumn, cloneDeep(unref(filterColumn)));
     const columns = cloneDeep(unref(filterColumn)).map((item: Column) => {
       if (!item.default) {
         // @ts-ignore
         item.label = item.title
         if (item.titleType) {
           item.label = item.titleType.props.text
+          item.describe =  item.titleType.componentName.indexOf('thUnit') > -1 ? item.titleType.props.unit : ''
         }
         // @ts-ignore
         item.value = item.dataIndex

@@ -42,7 +42,10 @@ export default defineComponent({
   props: ColumnModal(),
   setup (props, { emit }) {
     const checkInfo = ref<string>('')
-    const columnList = ref(props.columnList)
+    // const columnList = ref(props.columnList)
+    const columnList = computed(() => {
+      return props.columnList
+    })
     const curKeys = ref<string[]>()
     const curCheckedList = ref<Column[]>()
     const visible = computed({

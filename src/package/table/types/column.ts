@@ -1,6 +1,8 @@
 import { PropType, VNodeChild } from "vue"
 export interface FilterItem {
   label: string,
+  value?: string,
+  describe?: string,
   isShow?: boolean,
   isDisabled?: boolean,
   key?: string,
@@ -8,7 +10,8 @@ export interface FilterItem {
   action: string | ((args: any) => void),
   tooltip?: boolean,
   tooltipDes?: string,
-  children?: Array<FilterItem>
+  children?: Array<FilterItem>,
+  [key:string]: any
 }
 
 export const scFilterProps = () => ({
