@@ -4,7 +4,9 @@ map:
 realPath: src/package/loading/index.zh-CN.md
 ---
 
-## 简介
+# Loading 加载中
+
+在网络较慢或数据较多时，表示数据正在加载的状态
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -16,7 +18,23 @@ realPath: src/package/loading/index.zh-CN.md
 - `useLoading` 方法
 - `v-loading` 指令
 
-### Props
+## 组件类型
+
+<demo src="./demo/simple.vue"
+  language="vue"
+  title="组件类型"
+  >
+</demo>
+
+## 组件大小
+
+<demo src="./demo/size.vue"
+  language="vue"
+  title="组件大小"
+  >
+</demo>
+
+## Props
 
 | 属性 | 类型 | 默认值 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |

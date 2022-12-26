@@ -48,7 +48,7 @@ export default defineComponent({
       loading: false,
       // theme: 'dark',
       // background: 'rgba(111,111,111,.7)',
-      // tip: '加载中...',
+      tip: '加载中...',
     });
 
     const globalApp = inject('globalApp')
@@ -56,13 +56,13 @@ export default defineComponent({
     installGlobalDirectives(globalApp)
 
     const [openFullLoading, closeFullLoading] = useLoading({
-      // tip: '加载中...',
+      tip: '加载中...',
     });
 
     const [openWrapLoading, closeWrapLoading] = useLoading({
       target: wrapEl,
       props: {
-        // tip: '加载中...',
+        tip: '加载中...',
         absolute: true,
       },
     });

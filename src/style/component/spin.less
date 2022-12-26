@@ -1,0 +1,61 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.ant-spin {
+  color: @primary-color;
+  .ant-spin-dot {
+    font-size: 26px;
+  }
+  &.ant-spin-show-text {
+    display: flex;
+    .ant-spin-text {
+      padding-left: 6px;
+      line-height: 26px;
+    }
+  }
+}
+.ant-spin-lg {
+  .ant-spin-dot {
+    font-size: 36px;
+  }
+  &.ant-spin-show-text {
+    .ant-spin-text {
+      font-size: 16px;
+      padding-left: 10px;
+      line-height: 36px;
+    }
+  }
+}
+.ant-spin-sm {
+  .ant-spin-dot {
+    font-size: 16px;
+  }
+  &.ant-spin-show-text {
+    .ant-spin-text {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+}
+.loading-transition {
+  position: relative;
+  background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @primary-color 360deg);
+  border-radius: 50%;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 66%;
+    height: 66%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: @bg-color;
+    border-radius: 50%;
+  }
+  animation: spin 1s linear infinite;
+}

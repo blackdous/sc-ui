@@ -19,7 +19,7 @@ import { h, PropType, VNode } from 'vue'
 import { defineComponent } from 'vue'
 import { Spin } from 'ant-design-vue'
 import { SizeEnum } from '../../../enums/sizeEnum'
-import loadGif from '../../../assets/gif/loading.gif'
+// import loadGif from '../../../assets/gif/loading.gif'
 
 export default defineComponent({
   name: 'ScLoading',
@@ -31,7 +31,7 @@ export default defineComponent({
     },
     size: {
       type: String as PropType<SizeEnum>,
-      default: SizeEnum.LARGE,
+      default: SizeEnum.DEFAULT,
       validator: (v: SizeEnum): boolean => {
         return [SizeEnum.DEFAULT, SizeEnum.SMALL, SizeEnum.LARGE].includes(v)
       }
@@ -53,7 +53,7 @@ export default defineComponent({
     },
     indicator: {
       type: Object as PropType<VNode>,
-      default: h('img', { src: loadGif, style: { width: '92px', height: '136px' } })
+      default: h('span', { class: 'loading-transition'})
     }
   }
 })
