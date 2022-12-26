@@ -41,6 +41,15 @@ map:
   >
 </demo>
 
+## okBeforeFun函数、
+
+<demo src="./demo/beforeFunc.vue"
+  language="vue"
+  title="okBeforeFun函数、"
+  >
+</demo>
+
+
 ## Api
 
 除 参考官方 [Popconfirm 配置](https://2x.antdv.com/components/popconfirm-cn#API)外，扩展以下参数
@@ -50,3 +59,5 @@ map:
 | type      | string                                              | -  |  'primary', 'success', 'warning', 'error', 'default'      | 用于操作icon更改演示 |
 | isShowIcon      | boolean                                              |  true  |  -      | 是否显示props.icon；不影响 #icon 传入的 icon |
 | describe      | string                                              | -  |  -      | 显示描述性文字 |
+| okBeforeFun      | function                                              | -  |  -      | 用于点击确认按钮前执行，返回boolean，用于关闭pop；支持异步函数 |
+| cancelBeforeFun      | function                                              | -  |  -      | 用于点击取消按钮前执行，返回boolean，用于关闭；支持异步函数  |

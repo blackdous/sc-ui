@@ -5,7 +5,7 @@
   >
     <template 
       #[item]="data" 
-      v-for="item in Object.keys($slots).filter(_item => !['icon', 'title'].includes(_item))"
+      v-for="item in Object.keys($slots).filter(_item => !['icon', 'title', 'okText'].includes(_item))"
       :key="item"
     >
       <slot :name="item" v-bind="data || {}"></slot>
@@ -35,6 +35,23 @@
         </p>
       </div>
     </template>
+    <template #okText>
+      <span @click="handleOkText">
+        <slot name="title" v-if="isOkText">
+        </slot>
+        <span v-else>
+          {{ getProps.okText }}
+        </span>
+      </span>
+    </template>
+    <template #cancelText>
+      <span @click="handleCancelText">
+        <slot name="title" v-if="isCancelText"></slot>
+        <span v-else>
+          {{ getProps.cancelText }}
+        </span>
+      </span>
+    </template>
   </Popconfirm>
 </template>
 
@@ -45,6 +62,7 @@ import { Popconfirm } from 'ant-design-vue'
 import { ScButton } from '../../button'
 import { PopconfirmProps } from './type'
 import { basePrefixCls } from '../../../constant'
+import { isFunction } from '../../../utils'
 
 export default defineComponent({
   name: 'ScPopconfirm',
@@ -94,6 +112,27 @@ export default defineComponent({
       return Object.keys(slots).includes('cancelText')
     })
 
+    const handleOkText = async (e:Event) => {
+      e.stopPropagation();
+      if (isFunction(getProps.value?.okBeforeFun)) {
+        const isClose = await getProps.value?.okBeforeFun()
+        visibleRef.value = isClose
+        return
+      }
+      visibleRef.value = false
+    }
+
+    const handleCancelText = async (e:Event) => {
+      console.log('e: ', e);
+      e.stopPropagation();
+      if (isFunction(getProps.value?.cancelBeforeFun)) {
+        const isClose = await getProps.value?.cancelBeforeFun()
+        visibleRef.value = isClose
+        return
+      }
+      visibleRef.value = false
+    }
+
     watch(() => visibleRef, (val) => {
       emit('update:visible', val)
     })
@@ -103,7 +142,9 @@ export default defineComponent({
         ...unref(getProps),
         ...attrs,
         visible: unref(visibleRef),
-        title: undefined
+        title: undefined,
+        okText: undefined,
+        cancelText: undefined
       }
     })
     return {
@@ -115,7 +156,9 @@ export default defineComponent({
       isOkText,
       isCancelText,
       visibleRef,
-      handleVisibleChange
+      handleVisibleChange,
+      handleOkText,
+      handleCancelText
     }
   }
 })
