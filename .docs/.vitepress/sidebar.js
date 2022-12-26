@@ -49,7 +49,8 @@ export const sidebar = {
       items: [
         { text: 'Steps', link: '/en/steps/' },
         { text: 'Pagination', link: '/en/pagination/' },
-        { text: 'Dropdown', link: '/en/dropdown/' }
+        { text: 'Dropdown', link: '/en/dropdown/' },
+        { text: 'Breadcrumb', link: '/en/breadcrumb/' }
       ]
     },
     {
@@ -89,7 +90,8 @@ export const sidebar = {
       items: [
         { text: '步骤条', link: '/steps/' },
         { text: '分页', link: '/pagination/' },
-        { text: '下拉菜单', link: '/dropdown/' }
+        { text: '下拉菜单', link: '/dropdown/' },
+        { text: '面包屑', link: '/breadcrumb/' }
       ]
     },
     {

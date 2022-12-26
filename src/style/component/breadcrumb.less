@@ -1,0 +1,29 @@
+.ant-breadcrumb {
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: @text-color-secondary;
+  & > span:last-child {
+    color: @heading-color;
+    font-weight: bold;
+  }
+  .ant-breadcrumb-separator {
+    margin: 0 4px;
+    width: 16px;
+    display: inline-block;
+    text-align: center;
+  }
+  .ant-breadcrumb-overlay-link {
+    cursor: pointer;
+    &:hover, &:active, &:focus {
+      color: @primary-color;
+    }
+  }
+  a {
+    &:hover, &:active, &:focus {
+      color: @primary-color;
+    }
+  }
+}

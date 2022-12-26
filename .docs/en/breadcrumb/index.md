@@ -1,7 +1,7 @@
 ---
 map:
-  path: /alert
-realPath: src/package/drawer/index.en-US.md
+  path: /breadcrumb
+realPath: src/package/breadcrumb/index.en-US.md
 ---
 
 ## Guide

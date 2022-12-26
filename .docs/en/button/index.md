@@ -1,7 +1,7 @@
 ---
 map:
   path: /button
-realPath: src/package/button/index.en-US.md
+realPath: src/package/loading/index.en-US.md
 ---
 
 ## Guide
