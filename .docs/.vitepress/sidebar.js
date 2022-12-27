@@ -59,7 +59,8 @@ export const sidebar = {
         { text: 'Alert', link: '/en/alert/' },
         { text: 'Modal', link: '/en/modal/' },
         { text: 'ContextMenu', link: '/en/contextMenu/' },
-        { text: 'Popconfirm', link: '/en/popconfirm/' }
+        { text: 'Popconfirm', link: '/en/popconfirm/' },
+        { text: 'Message', link: '/en/message/' }
       ]
     },
     {
@@ -120,7 +121,8 @@ export const sidebar = {
         { text: '警告提示', link: '/alert/' },
         { text: '弹框', link: '/modal/' },
         { text: '鼠标右键', link: '/contextMenu/' },
-        { text: '气泡确认框', link: '/popconfirm/' }
+        { text: '气泡确认框', link: '/popconfirm/' },
+        { text: '全局提示', link: '/message/' },
       ]
     },
     {

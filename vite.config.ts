@@ -3,6 +3,8 @@ import { resolve } from 'path'
 import type { ConfigEnv, UserConfig } from 'vite'
 import { createVitePlugins } from './build/plugin'
 import { themeVariables } from './build/theme'
+import autoprefixer from 'autoprefixer'
+import postcssFlexbugsFixes from 'postcss-flexbugs-fixes'
 
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir);
@@ -56,6 +58,18 @@ export default ({ command }: ConfigEnv): UserConfig => {
           modifyVars: themeVariables,
           javascriptEnabled: true
         },
+      },
+      postcss: {
+        plugins: [
+          autoprefixer({
+            overrideBrowserslist: [
+              "last 2 version",
+              "> 2%"
+            ],
+            grid: true,
+          }),
+          postcssFlexbugsFixes()
+        ],
       },
     },
     plugins: createVitePlugins(isBuild),

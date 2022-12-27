@@ -22,7 +22,7 @@ import { ScScrollbar } from './package/scrollbar'
 import { ScPopconfirm } from './package/popconfirm'
 import { ScCascader } from './package/cascader'
 import { ScBreadcrumb } from './package/breadcrumb'
-
+import { useMessage } from './hooks'
 
 import { installGlobalDirectives } from './directives'
 import ClickOutside from './directives/clickOutside'
@@ -104,7 +104,8 @@ export {
   useContextMenu,
   useModal, 
   useModalInner,
-  useModalContext
+  useModalContext,
+  useMessage
 }
 
 export default ScUi;

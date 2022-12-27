@@ -46,16 +46,8 @@
   position: relative;
   background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @primary-color 360deg);
   border-radius: 50%;
-  &::after {
-    content: '';
-    position: absolute;
-    width: 66%;
-    height: 66%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: @bg-color;
-    border-radius: 50%;
-  }
+  mask: radial-gradient(transparent, transparent 49%, #000 0px);
+  -webkit-mask: radial-gradient(transparent, transparent 49%, #000 0px);
+  -moz-mask: radial-gradient(transparent, transparent 49%, #000 0px);
   animation: spin 1s linear infinite;
 }
