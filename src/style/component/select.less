@@ -65,7 +65,8 @@
   border-radius: @border-r-6!important;
   .ant-select-item {
     min-height: 28px;
-    padding: 3px 8px;
+    line-height: 28px;
+    padding: 0 8px;
     margin: 0 6px;
     border-radius: @border-r-3;
     color: @heading-color;
@@ -107,13 +108,16 @@
   &.dropdown-large {
     .ant-select-item {
       font-size: 16px;
-      padding:7px 8px;
+      padding:0 8px;
+      min-height: 40px;
+      line-height: 40px;
     }
   }
   &.dropdown-small {
     .ant-select-item {
       font-size: 12px;
       min-height: 22px;
+      line-height: 22px;
       padding:0 8px;
     }
   }
@@ -131,7 +135,24 @@
     }
   }
 }
-
+.selectDropdown {
+  .ant-select-item:last-child {
+    height: var(--lastChild-height);
+    min-height: var(--lastChild-height);
+  }
+  &.ant-select-dropdown {
+    .ant-select-item:last-child {
+      margin-top: 0;
+      overflow: hidden;
+      font-size: 0;
+      .ant-select-item-option-content {
+        height: var(--lastChild-height);
+        line-height: var(--lastChild-height);
+        overflow: hidden;
+      }
+    }
+  }
+}
 .@{selectScope} {
   &.ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
     background: @disabled-bg-color;

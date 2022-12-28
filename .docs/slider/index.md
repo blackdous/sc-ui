@@ -14,3 +14,11 @@ realPath: src/package/slider/index.zh-CN.md
   language="vue"
   >
 </demo>
+
+## 带tooltip
+
+<demo src="./demo/tooltip.vue"
+  language="vue"
+  >
+</demo>
+

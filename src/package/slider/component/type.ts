@@ -1,6 +1,18 @@
 import { TooltipProp } from 'vue-slider-component'
-// import { PropTypes } from '../../../utils'
-import { PropType } from 'vue'
+import { PropType, VNode } from 'vue'
+
+export interface TooltipInfo {
+  bgColor?: string;
+  desc?: string;
+  color?: string;
+  Icon?: string | VNode;
+  dotLabel?: string;
+  label?: string;
+}
+
+export interface TooltipInfos {
+  [key:string]: TooltipInfo
+}
 
 export const Props = () => ({
   tooltip: {
@@ -32,5 +44,11 @@ export const Props = () => ({
   unit: {
     type: [Number, String],
     default: 'Mbps'
+  },
+  tooltipInfos: {
+    type:  Object as PropType<TooltipInfos>,
+    default: () => {
+      return []
+    }
   }
 })

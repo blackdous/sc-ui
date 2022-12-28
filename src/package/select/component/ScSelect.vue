@@ -1,17 +1,18 @@
 <template>
-  <div :class="[baseClass, uuid, isPrefixIcon ? 'is-prefix' : '']">
+  <div :class="[baseClass, uuid, isPrefixIcon ? 'is-prefix' : '']" :style="{'--lastChild-height': lastChildHeight}">
     <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
       <slot name="prefixIcon"></slot>
     </span>
     <Select
       :class="[isPrefixIcon ? 'is-prefix' : '']"
-      v-bind="$attrs"
+      v-bind="vBind"
       v-model:value="value"
       :disabled="newProps.disabled"
       :dropdownClassName="dropdownClassName"
       @change="handleChange"
+      @dropdownVisibleChange="dropdownVisibleChange"
     >
-      <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
+      <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon', 'default'].includes(item))" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
       </template> 
       <template v-if="newProps.optionMode === 'checkbox'" #dropdownRender>
@@ -47,19 +48,25 @@
           </slot>
         </span>
       </template>
+      <template #default>
+        <slot name="default"></slot>
+        <SelectOption value="" :style="{minHeight: lastChildHeight, height: lastChildHeight}"></SelectOption>
+      </template>
     </Select>
   </div>
 </template>
 
 <script lang="ts" >
 
-import { computed, defineComponent, ref, unref, onMounted, watchEffect } from 'vue'
-import { Select, CheckboxGroup, Checkbox } from 'ant-design-vue'
+import { computed, defineComponent, ref, unref, onMounted, watchEffect, nextTick } from 'vue'
+import { Select, CheckboxGroup, Checkbox, SelectOption } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
+import cloneDeep from 'lodash/cloneDeep'
+
 import { basePrefixCls } from '../../../constant'
-import { buildUUID } from '../../../utils/uuid'
-import { findParentDom } from '../../../utils/domHelper'
-import { props } from './type'
+import { buildUUID } from '../../../utils'
+import { findParentDom, pxToRem } from '../../../utils/domHelper'
+import { props, SizePx } from './type'
 
 export default defineComponent({
   name: 'ScSelect',
@@ -68,6 +75,7 @@ export default defineComponent({
   components: {
     Select,
     CheckboxGroup,
+    SelectOption,
     Checkbox,
     CloseCircleFilled,
   },
@@ -76,13 +84,28 @@ export default defineComponent({
 
     const initValue = computed(() => props.value)
     const value = ref(unref(initValue))
+    const lastChildHeight = ref('0')
     const newProps = computed(() => {
       return props
     })
     const checkboxValue = ref(unref(initValue))
 
     const uuid = 'sc' + buildUUID()
-
+    const vBind = computed(() => {
+      let newOptions = cloneDeep(attrs.options)
+      if (newOptions) {
+        newOptions?.push({value: ''})
+      }
+      return {
+        ...unref(newProps),
+        ...attrs,
+        options: newOptions,
+        dropdownStyle: {
+          ...(attrs.dropdownStyle || {}),
+          '--lastChild-height': unref(lastChildHeight)
+        }
+      }
+    })
     if (unref(newProps)?.optionMode === 'checkbox') {
       watchEffect(() => {
         if (checkboxValue.value?.length > value.value?.length) {
@@ -107,13 +130,12 @@ export default defineComponent({
       })
     })
 
-    const handleChange = (val) => {
-      // console.log('val: ', val);
+    const handleChange = (val:any) => {
       checkboxValue.value = val
     }
     
     const dropdownClassName = computed(() => {
-      const dropdownClass = []
+      const dropdownClass = ['dropdown' + uuid, 'selectDropdown']
       if (attrs.size) {
         dropdownClass.push('dropdown-' + attrs.size)
       }
@@ -134,6 +156,27 @@ export default defineComponent({
     const isClearIcon = computed(() => {
       return Object.keys(slots).includes('clearIcon')
     })
+
+    const dropdownVisibleChange = (val: boolean) => {
+      if (!val) {
+        return false
+      }
+      nextTick(() => {
+        const timer = setTimeout(() => {
+          const dropdownItemContainer = document.querySelector(`.dropdown${uuid} .rc-virtual-list-holder > div`)
+          if (dropdownItemContainer) {
+            const preHeight = parseInt(dropdownItemContainer?.style?.height || 0) / SizePx[attrs.size || 'default']
+            lastChildHeight.value = pxToRem(preHeight * 0.18)
+            // lastChildHeight.value = preHeight * 0.18 + 'px'
+            if (!preHeight) {
+              return false
+            }
+          }
+          clearTimeout(timer)
+  
+        }, 300)
+      })
+    }
 
     onMounted(() => {
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
@@ -157,7 +200,10 @@ export default defineComponent({
       dropdownClassName,
       checkboxValue,
       checkboxOptions,
-      handleChange
+      lastChildHeight,
+      vBind,
+      handleChange,
+      dropdownVisibleChange
     }
   }
 })
