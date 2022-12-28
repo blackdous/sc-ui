@@ -95,72 +95,10 @@ const columns = [
     },
     onFilter: (value: string, record: DataItem) => record.name.includes(value),
     sorter: (a: DataItem, b: DataItem) => a.age - b.age,
-  },
-  // { dataIndex: 'age2', key: 'age2', width: 160,
-  //   titleType: {
-  //     componentName: 'thUnit3',
-  //     props: {
-  //       text: 'Column 2111',
-  //       unit: '(元)'
-  //     }
-  //   },
-  //   slots: {
-  //     customRender: 'copy1'
-  //   }
-  // },
-  // {  dataIndex: 'age3', key: 'age3', width: 160,
-  //   type: {
-  //     componentName: 'tdHandle',
-  //     props: {
-  //     }
-  //   },
-  //   titleType: {
-  //     componentName: 'thDescribe2',
-  //     props: {
-  //       text: 'Column 6',
-  //       describe: 'Column 6'
-  //     }
-  //   },
-  //   handle: handleTd
-    
-  // }
+  }
 ];
 
 setTimeout(() => {
-  // columns.value = unref(columns).map((item, index) => {
-  //   if (index === 2) {
-  //     item.titleType.props.describe = '提示内容提示内容提示内容提示内容'
-  //   }
-  //   return item
-  // })
-  // unref(columns).push({ dataIndex: 'age2', key: 'age2', width: 160,
-  //   titleType: {
-  //     componentName: 'thUnit3',
-  //     props: {
-  //       text: 'Column 2111',
-  //       unit: '(元)'
-  //     }
-  //   },
-  //   slots: {
-  //     customRender: 'copy1'
-  //   }
-  // })
-  // unref(columns).push({  dataIndex: 'age3', key: 'age3', width: 160,
-  //   type: {
-  //     componentName: 'tdHandle',
-  //     props: {
-  //     }
-  //   },
-  //   titleType: {
-  //     componentName: 'thDescribe2',
-  //     props: {
-  //       text: 'Column 6',
-  //       describe: 'Column 6'
-  //     }
-  //   },
-  //   handle: handleTd
-    
-  // })
   columns.push({ dataIndex: 'age2', key: 'age2', width: 160,
     titleType: {
       componentName: 'thUnit3',

@@ -83,7 +83,15 @@ export default defineComponent({
       return props.overlayClassName
     })
     const filterList = computed(() => {
-      return props.filterList
+      return props.filterList?.map((item: FilterItem) => {
+        if (item.text) {
+          item.label = item.text
+        }
+        if (item.value) {
+          item.key = item.value
+        }
+        return item
+      })
     })
     const columnOptions = computed(() => {
       return cloneDeep(props.column)

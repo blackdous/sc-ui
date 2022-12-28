@@ -23,6 +23,7 @@ import { ScPopconfirm } from './package/popconfirm'
 import { ScCascader } from './package/cascader'
 import { ScBreadcrumb } from './package/breadcrumb'
 import { useMessage } from './hooks'
+import { ScSlider } from './package/slider'
 
 import { installGlobalDirectives } from './directives'
 import ClickOutside from './directives/clickOutside'
@@ -55,7 +56,8 @@ const components = [
   ScScrollbar,
   ScPopconfirm,
   ScCascader,
-  ScBreadcrumb
+  ScBreadcrumb,
+  ScSlider
 ]
 
 const install = (app: App) => {
@@ -91,7 +93,8 @@ export {
   ScScrollbar,
   ScPopconfirm,
   ScCascader,
-  ScBreadcrumb
+  ScBreadcrumb,
+  ScSlider
 }
 
 export * from './types'

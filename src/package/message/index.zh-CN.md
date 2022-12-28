@@ -22,3 +22,25 @@ map:
   language="vue"
   >
 </demo>
+
+## useMessage
+
+```ts
+
+interface Options {
+  type?: NoticeType;
+  content?: VNode | string;
+  duration?: number;
+  onClose?: () => void;
+  icon?: VNode;
+}
+
+// 导出useMessage
+import { useMessage } from 'sc-ui'
+const { createCloseMessage } = useMessage;
+createCloseMessage(Options)
+```
+
+可以通过`createCloseMessage` 创建带关闭按钮的 `message`组件
+
+`message.loading`动画可以通过`icon: h('span', { class: 'loading-transition' })`配置更换为最新的***loading动画*

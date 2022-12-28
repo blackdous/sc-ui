@@ -42,6 +42,7 @@ export const sidebar = {
         { text: 'Select', link: '/en/select/' },
         { text: 'Switch', link: '/en/switch/' },
         { text: 'Cascader', link: '/en/cascader/' },
+        { text: 'Slider', link: '/en/slider/' },
       ]
     },
     {
@@ -113,6 +114,7 @@ export const sidebar = {
         { text: '选择器', link: '/select/' },
         { text: '开关', link: '/switch/' },
         { text: '级联选择', link: '/cascader/' },
+        { text: '滑动输入条', link: '/slider/' },
       ]
     },
     {

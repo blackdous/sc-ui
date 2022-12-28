@@ -31,7 +31,7 @@ export interface TabsProps {
   styleMode?: string
 }
 const props = withDefaults(defineProps<TabsProps>(), {
-  type: ''
+  styleMode: 'gradient'
 })
 const className = computed(() => {
   const classNames = props.styleMode ? [props.styleMode] : []

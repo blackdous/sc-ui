@@ -17,14 +17,14 @@
   }
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
     background-color: @bg-color;
-    border-color: @link-color;
+    border-color: fade(@primary-color, 40%);
     color: @primary-color;
     &:before {
       background-color: @border-color-base;
     }
   }
   .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
-    background-color: @primary-color;
+    background-color: fade(@primary-color, 40%);
   }
   .ant-radio-button-wrapper {
     color :@text-color;
