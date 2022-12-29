@@ -1,8 +1,8 @@
 import { VNode, isVNode, h } from "vue"
 
 type IconType = string | VNode
+
 export const getIcon = (Icon:IconType) => {
-  console.log('isVNode(Icon): ', Icon, isVNode(Icon));
   if (!Icon) {
     return
   }

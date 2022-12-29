@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "20113493",
+      "name": "bxs-gift",
+      "font_class": "icon-gift",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    },
+    {
       "icon_id": "21823918",
       "name": "success",
       "font_class": "success",

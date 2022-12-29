@@ -1,5 +1,5 @@
 import { TooltipProp } from 'vue-slider-component'
-import { PropType, VNode } from 'vue'
+import { PropType, VNode, ExtractPropTypes } from 'vue'
 
 export interface TooltipInfo {
   bgColor?: string;
@@ -8,6 +8,15 @@ export interface TooltipInfo {
   Icon?: string | VNode;
   dotLabel?: string;
   label?: string;
+  marker?: {
+    markerColor?: string;
+    icon?: string | VNode;
+    label?: string;
+  };
+}
+
+export interface InputNumberOptions {
+  placeholder?: string
 }
 
 export interface TooltipInfos {
@@ -41,14 +50,23 @@ export const Props = () => ({
     type: [Number, String],
     default: 480
   },
+  dotWidth: {
+    type: [Number, String],
+    default: 60
+  },
   unit: {
     type: [Number, String],
     default: 'Mbps'
   },
-  tooltipInfos: {
+  infos: {
     type:  Object as PropType<TooltipInfos>,
     default: () => {
       return []
     }
-  }
+  },
+  customMarker: Boolean,
+  showMinMaxMarker: Boolean,
+  inputNumberOptions: Object as PropType<InputNumberOptions>
 })
+
+export declare type SliderProps = Partial<ExtractPropTypes<typeof Props>>

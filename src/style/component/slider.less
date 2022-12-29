@@ -1,28 +1,39 @@
 @alertScope: ~'@{prefixCls}Slider';
-.@{alertScope}-container {
-  position: relative;
-  padding: 0 5%;
-  &::before {
-    content: '';
-    position: absolute;
-    left: 1px;
-    bottom: 1px;
-    width: 10%;
-    height: 10px;
-    background-color: @primary-color;
-    border-radius: 15px 0 0 15px;
+.@{alertScope} {
+  &-main {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
   }
-  &::after {
-    content: '';
-    position: absolute;
-    right: 1px;
-    bottom: 1px;
-    width: 10%;
-    height: 10px;
-    background-color: @slider-bg-color;
-    border-radius: 0 15px 15px 0;
+  &-container {
+    position: relative;
+    padding: 0 10px;
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      width: 10px;
+      height: 10px;
+      background-color: @primary-color;
+      border-radius: 15px 0 0 15px;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 1px;
+      width: 10px;
+      height: 10px;
+      background-color: @slider-bg-color;
+      border-radius: 0 15px 15px 0;
+    }
+    & + .scInputNumber {
+      margin-left: 34px;
+    }
   }
 }
+
 .@{alertScope}, .vue-slider {
   overflow: inherit;
   .vue-slider-dot {
@@ -41,7 +52,6 @@
   .sc-dot-wrapper {
     height: 24px;
     background: #fff;
-    // transform: translate(50%, 0);
     border-radius: 11px;
     transition: all 0.3s;
     cursor: pointer;
@@ -53,7 +63,6 @@
     align-items: center;
     padding: 0 6px;
     height: 24px;
-    min-width: 60px;
     background-color: @slider-dot-bg;
     box-shadow: @primary-shadow;
     color: @white-color;
@@ -61,6 +70,7 @@
     border-radius: 20px;
     text-align: center;
     white-space: nowrap;
+    box-sizing: border-box;
     &::after {
       position: absolute;
       content: '';
@@ -94,5 +104,31 @@
   .vue-slider-mark:first-child .vue-slider-mark-step, 
   .vue-slider-mark:last-child .vue-slider-mark-step {
     display: block;
+  }
+  &-tooltip {
+    display: flex;
+    &__title {
+      padding-left: 6px;
+    }
+  }
+  .vue-slider-mark-label {
+    color: @slider-marker-color;
+  }
+  &-marker__text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    padding-left: 4px;
+  }
+  &-marker__icon {
+    display: inline-flex;
+    & > i {
+      font-size: 10px;
+    }
+    & > img {
+      width: 10px;
+    }
   }
 }

@@ -4,14 +4,10 @@
       :data="data"
       :infos="tooltipInfos"
       v-model:value="valueRef"
-      data-value="id"
-      data-label="id"
       unit="个月"
       :customMarker="true"
       @change="handleChange"
     >
-      <!-- :showMinMaxMarker="true" -->
-      <!-- data-label="id" -->
     </ScSlider>
   </div>
 </template>
@@ -30,16 +26,7 @@ const handleChange = (val:string) => {
   console.log('val: ', val);
 }
 
-const data = [
-  {"id":"1"},
-  {"id":"2"},
-  {"id":"3"},
-  {"id":"4"},
-  {"id":"5"},
-  {"id":"6"},
-  {"id":"7"},
-  {"id":"12"},
-]
+const data = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '12': 12}
 // const marks = [{"label":"A"},{"label":"B"},{"label":"C"},{"label":"D"},{"label":"E"},{"label":"F"},{"label":"G"}]
 // const marks1 = {"1":{"label":"A", icon: h('i', { class: 'sc-ui sc-gift' })},"2":{"label":"B", icon: 'https://iph.href.lu/16x16'},"3":{"label":"C"},"4":{"label":"D"},"5":{"label":"E"},"6":{"label":"F"},"7":{"label":"G", icon: h('i', { class: 'sc-ui sc-gift' }), markerColor: 'rgb(252, 117, 66)'}}
 

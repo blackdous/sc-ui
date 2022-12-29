@@ -1,66 +1,105 @@
 <template>
-  <div 
-    :class="[baseClass+'-container']"
-    :style="{ 'width': pxToRem(newProps?.wrapperWidth) }"
+  <div
+    :class="[baseClass+'-main']"
   >
-    <VueSlider
-      v-bind="vBindValue"
-      v-model="valueRef"
+    <div 
+      :class="[baseClass+'-container']"
+      :style="{ 'width': pxToRem(newProps?.wrapperWidth) }"
     >
-      <template 
-        #[item]="data" 
-        v-for="item in Object.keys($slots).filter((_item) => !['dot', 'label'].includes(_item))"
-        :key="item"
+      <VueSlider
+        v-bind="vBindValue"
+        v-model="valueRef"
       >
-        <slot :name="item" v-bind="data || {}"></slot>
-      </template> 
-      <template v-slot:dot="{ value, focus }">
-        <Tooltip
-          :color="newProps?.tooltipInfos[value]?.bgColor"
+        <template 
+          #[item]="data" 
+          v-for="item in Object.keys($slots).filter((_item) => !['dot', 'label'].includes(_item))"
+          :key="item"
         >
-          <template #title
-            v-if="newProps?.tooltipInfos[value]?.desc"
+          <slot :name="item" v-bind="data || {}"></slot>
+        </template> 
+        <template v-slot:dot="{ value, focus }" v-if="!isDot">
+          <Tooltip
+            :color="infos[value]?.bgColor"
           >
-            <div 
-              :class="[baseClass+'-tooltip']"
-              :style="{ color: newProps?.tooltipInfos[value]?.color }"
+            <template #title
+              v-if="infos[value]?.desc"
             >
-              {{getIcon(newProps?.tooltipInfos[value]?.Icon)}}
-              <p>
-                {{ newProps?.tooltipInfos[value]?.desc }}
-              </p>
-            </div>
-          </template>
-          <div class="sc-dot-wrapper">
-            <div :class="['sc-dot', { focus }]">
-              <slot
-                name="dot"
-                :value="value"
-                :focus="focus"
+              <div 
+                :class="[baseClass+'-tooltip']"
+                :style="{ color: infos[value]?.color }"
+              >
+                <component :is="getIcon(infos[value]?.Icon)"></component>
+                <p
+                :class="[baseClass+'-tooltip__title']"
                 >
-                <span 
-                  v-if="newProps?.tooltipInfos[value]?.dotLabel || newProps?.tooltipInfos[value]?.dotLabel"
-                >
-                  {{ newProps?.tooltipInfos[value]?.dotLabel || newProps?.tooltipInfos[value]?.dotLabel }}
-                </span>
-                <span v-else>
-                  {{ value }} {{ unit }}
-                </span>
-              </slot>
+                  {{ infos[value]?.desc }}
+                </p>
+              </div>
+            </template>
+            <div class="sc-dot-wrapper"
+              :style="{
+                'min-width': pxToRem(newProps?.dotWidth)
+              }"
+            >
+              <div :class="['sc-dot', { focus }]">
+                <slot
+                  name="dot"
+                  :value="value"
+                  :focus="focus"
+                  >
+                  <span 
+                    v-if="infos[value]?.dotLabel || infos[value]?.label || infos.marker?.label"
+                  >
+                    {{ infos[value]?.dotLabel || infos[value]?.label || infos.marker?.label}}
+                  </span>
+                  <span v-else>
+                    {{ value }} {{ newProps.unit }}
+                  </span>
+                </slot>
+              </div>
             </div>
-          </div>
-        </Tooltip>
-      </template>
-      <template #label="{ label, active }">
-        <slot
-          name="label"
-          :label="label"
-          :active="active"
-        ></slot>
-      </template>
+          </Tooltip>
+        </template>
+        <template v-slot:dot="{ value, focus }">
+          <slot
+            name="dot"
+            :value="value"
+            :focus="focus"
+            >
+          </slot>
+        </template>
+        <template v-slot:label="{ label, active }">
+          <slot
+            name="label"
+            :label="label"
+            :active="active"
+          >
+            <div
+              v-if="!isLabel && !newProps.showMinMaxMarker && newProps.customMarker"
+              :class="['vue-slider-mark-label', 'custom-label', active ? 'vue-slider-mark-label-active' : '']"
+              :style="{ color: infos[label]?.marker?.markerColor }"
+            >
+              <span :class="[baseClass + '-marker__icon']">
+                <component v-if="infos[label]?.marker?.icon" :is="getIcon(infos[label]?.marker?.icon)"></component>
+              </span>
+              <span :class="[baseClass + '-marker__text']">
+                {{ infos[label]?.marker?.label }}
+              </span>
+            </div>
+          </slot>
+        </template>
+      </VueSlider>
+    </div>
+    <ScInputNumber
+      v-if="newProps.inputNumberOptions"
+      :placeholder="newProps?.inputNumberOptions.placeholder"
+      v-model:value="valueRef"
+      :min="newProps.min"
+      :max="newProps.max"
+    >
+      <!-- @pressEnter="handleChange" -->
 
-
-    </VueSlider>
+    </ScInputNumber>
   </div>
 </template>
 
@@ -68,10 +107,11 @@
 import { defineComponent, computed, unref, ref, watch, watchEffect, isVNode, h } from 'vue'
 import VueSlider from 'vue-slider-component'
 import { Tooltip } from 'ant-design-vue'
+import { ScInputNumber } from '../../inputNumber'
 
 import 'vue-slider-component/theme/default.css'
 import { basePrefixCls } from '../../../constant'
-import { pxToRem } from '../../../utils'
+import { pxToRem, buildUUID } from '../../../utils'
 import { Props } from './type'
 import { getIcon } from '../hooks/index'
 
@@ -81,21 +121,46 @@ export default defineComponent({
   props: Props(),
   components: {
     VueSlider,
-    Tooltip
+    Tooltip,
+    ScInputNumber
   },
   setup (props, { slots, attrs, emit }) {
     const valueRef = ref()
-
+    const uuid = basePrefixCls + buildUUID()
     const baseClass = basePrefixCls+'Slider'
-    console.log('baseClass: ', baseClass);
 
     const newProps = computed(() => {
       return {
         ...props
       }
     })
+
+    const infos = computed(() => {
+      return unref(newProps).infos
+    })
+
+    const marks = computed(() => {
+      const { showMinMaxMarker } =  unref(newProps)
+      if (showMinMaxMarker) {
+        const { min, max, unit } = unref(newProps)
+        
+        return {
+          [min]: {
+            label: min + unit
+          },
+          [max]: {
+            label: max + unit
+          }
+        }
+      }
+      return undefined
+    })
+
     const vBindValue = computed(() => {
+      const { customMarker } =  unref(newProps)
       return {
+        marks: customMarker ? undefined : unref(marks),
+        lazy: true,
         ...unref(newProps),
         ...attrs,
         class: [baseClass],
@@ -114,7 +179,6 @@ export default defineComponent({
       valueRef.value = props.value
     })
 
-
     const isDot = computed(() => {
       return Object.keys(slots).includes('slot')
     })
@@ -130,6 +194,8 @@ export default defineComponent({
       isDot,
       isLabel,
       valueRef,
+      uuid,
+      infos,
       pxToRem,
       isVNode,
       getIcon
