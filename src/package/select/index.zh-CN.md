@@ -43,6 +43,7 @@ map:
 
 除 参考官方 [Select 配置](https://2x.antdv.com/components/select-cn#API)外，扩展以下参数
 
+
 | 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
 | optionMode      | string                                              | -  |  `checkbox`      |  如果使用`optionMode`属性 `#dropdownRender` slot 将无效|

@@ -26,16 +26,19 @@ export default ({ command }: ConfigEnv): UserConfig => {
       },
       rollupOptions: {
         // 确保外部化处理那些你不想打包进库的依赖
-        external: ['vue'],
+        external: ['vue', 'vue-slider-component'],
         output: {
           // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
           globals: {
             vue: 'Vue',
+            vueSlider: 'VueSlider'
           },
         },
       },
       // 传递给 @rollup/plugin-commonjs 插件的选项。
-      commonjsOptions: {},
+      commonjsOptions: {
+        esmExternals: true 
+      },
       // 传递给 @rollup/plugin-dynamic-import-vars 的选项。
       dynamicImportVarsOptions: {},
     },
@@ -81,7 +84,7 @@ export default ({ command }: ConfigEnv): UserConfig => {
         '@iconify/iconify',
         // 'ant-design-vue/es/locale/zh_CN',
         // 'ant-design-vue/es/locale/en_US',
-      ],
+      ]
     }
   }
 }

@@ -109,8 +109,10 @@ import { Tooltip } from 'ant-design-vue'
 import { ScInputNumber } from '../../inputNumber'
 
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
-import 'vue-slider-component/dist-css/vue-slider-component.css'
-import 'vue-slider-component/theme/default.css'
+
+// console.log(process.env.BUILD)
+// import VueSlider from 'vue-slider-component'
+// import 'vue-slider-component/theme/default.css'
 import { basePrefixCls } from '../../../constant'
 import { pxToRem, buildUUID } from '../../../utils'
 import { Props } from './type'
