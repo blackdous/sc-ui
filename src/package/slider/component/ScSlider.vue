@@ -105,10 +105,11 @@
 
 <script lang='ts'>
 import { defineComponent, computed, unref, ref, watch, watchEffect, isVNode, h } from 'vue'
-import VueSlider from 'vue-slider-component'
 import { Tooltip } from 'ant-design-vue'
 import { ScInputNumber } from '../../inputNumber'
 
+import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
+import 'vue-slider-component/dist-css/vue-slider-component.css'
 import 'vue-slider-component/theme/default.css'
 import { basePrefixCls } from '../../../constant'
 import { pxToRem, buildUUID } from '../../../utils'

@@ -1,9 +1,9 @@
 <template>
-  <div :class="[baseClass, uuid, isPrefixIcon ? 'is-prefix' : '']">
+  <div :class="[baseClass, uuid, isPrefixIcon ? 'is-prefix' : '', newProps.disabled ? 'is-disabled' : '']">
     <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
       <slot name="prefixIcon"></slot>
     </span>
-    <Select
+    <Cascader
       :class="[isPrefixIcon ? 'is-prefix' : '']"
       v-bind="$attrs"
       v-model:value="value"
@@ -14,30 +14,13 @@
       <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
       </template> 
-      <template v-if="newProps.optionMode === 'checkbox'" #dropdownRender>
-        <CheckboxGroup
-          v-model:value="checkboxValue"
-        >
-          <div 
-            v-for="item in checkboxOptions"
-            :class="item.className"
-          >
-            <div class="ant-select-item-option-content">
-              <Checkbox
-                v-bind="item"
-              >
-                {{item.label || item.value}}
-              </Checkbox>
-            </div>
-          </div>
-        </CheckboxGroup>
-      </template>
   
       <template #suffixIcon>
-        <i 
-          v-if="!isSuffixIcon"
-          class="sc-ui sc-you" 
-        />
+        <span v-if="!isSuffixIcon">
+          <i 
+            class="sc-ui sc-xiangxia" 
+          />
+        </span>
         <slot v-else slot="suffixIcon" />
       </template>
       <template #clearIcon>
@@ -47,14 +30,14 @@
           </slot>
         </span>
       </template>
-    </Select>
+    </Cascader>
   </div>
 </template>
 
 <script lang="ts" >
 
-import { computed, defineComponent, ref, unref, onMounted, watchEffect } from 'vue'
-import { Select, CheckboxGroup, Checkbox } from 'ant-design-vue'
+import { computed, defineComponent, ref, unref, onMounted } from 'vue'
+import { Cascader, CheckboxGroup, Checkbox } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 import { basePrefixCls } from '../../../constant'
 import { buildUUID } from '../../../utils/uuid'
@@ -62,17 +45,17 @@ import { findParentDom } from '../../../utils/domHelper'
 import { props } from './type'
 
 export default defineComponent({
-  name: 'ScSelect',
+  name: 'ScCascader',
   // inheritAttrs: false,
   props: props(),
   components: {
-    Select,
+    Cascader,
     CheckboxGroup,
     Checkbox,
     CloseCircleFilled,
   },
   setup(props, { emit, slots, attrs }) {
-    const baseClass = basePrefixCls + 'Select'
+    const baseClass = basePrefixCls + 'Cascader'
 
     const initValue = computed(() => props.value)
     const value = ref(unref(initValue))
@@ -82,30 +65,6 @@ export default defineComponent({
     const checkboxValue = ref(unref(initValue))
 
     const uuid = 'sc' + buildUUID()
-
-    if (unref(newProps)?.optionMode === 'checkbox') {
-      watchEffect(() => {
-        if (checkboxValue.value?.length > value.value?.length) {
-          emit('change', checkboxValue.value)
-        }
-        value.value = checkboxValue.value
-        emit('value:update',  value.value)
-      })
-    }
-
-    const checkboxOptions = computed(() => {
-      // @ts-ignore
-      return attrs?.options?.map((item:any) => {
-        const checkboxUnref = unref(checkboxValue)
-         // @ts-ignore
-        if (checkboxUnref?.includes(item.value)) {
-          item.className = ['ant-select-item', 'ant-select-item-option', 'ant-select-item-option-selected']
-        } else {
-          item.className = ['ant-select-item', 'ant-select-item-option']
-        }
-        return item
-      })
-    })
 
     const handleChange = (val) => {
       // console.log('val: ', val);
@@ -155,8 +114,6 @@ export default defineComponent({
       isPrefixIcon,
       isClearIcon,
       dropdownClassName,
-      checkboxValue,
-      checkboxOptions,
       handleChange
     }
   }

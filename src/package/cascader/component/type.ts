@@ -1,13 +1,11 @@
 import { VNodeChild, PropType } from 'vue'
 export const props = () => ({
-  value: Number,
+  value: Array as PropType<string[] | number[]>,
   disabled: {
     type: Boolean,
     default () {
       return false
     }
   },
-  // 'checkbox'
-  optionMode: String,
   prefixIcon: Object as PropType<VNodeChild>
 })
