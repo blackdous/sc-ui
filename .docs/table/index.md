@@ -543,6 +543,9 @@ const dataSource = [
 | 属性                    | 类型                                               | 默认值  | 可选值 | 说明                                                                                            | 版本 |
 | ----------------------- | -------------------------------------------------- | ------- | ------ | ----------------------------------------------------------------------------------------------- | ---- |
 | isTreeTable             | `boolean`                                          | `false` | -      | 是否树表                                                                                        |      |
+| filterLeftStyle             | `Object`                                          | - | -      | 用于设置filterLeft 模块样式                                                                                        |      |
+| filterRightStyle             | `Object`                                          | - | -      | 用于设置filterRight 模块样式                                                                                        |      |
+| isTreeTable             | `boolean`                                          | `false` | -      | 是否树表                                                                                        |      |
 | upTitle             | `string`                                          | `点击升序` | -      | 升序按钮hover时显示的文字                                                                                        |      |
 | downTitle             | `string`                                          | `点击降序` | -      | 降序按钮hover时显示的文字                                                                                        |      |
 | cancelUpTitle             | `string`                                          | `点击取消升序` | -      | 已升序按钮hover时显示的文字                                                                                        |      |

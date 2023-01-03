@@ -2,17 +2,20 @@
   <div>
     <ScLoading
       :loading="loadingRef"
+      :is-full-page="false"
     >
     </ScLoading>
     <ScLoading
       :loading="loadingRef1"
       tip="加载中..."
       :indicator="null"
+      :is-full-page="false"
     >
     </ScLoading>
     <ScLoading
       :loading="loadingRef2"
       tip="加载中..."
+      :is-full-page="false"
     >
     </ScLoading>
     <ScButton

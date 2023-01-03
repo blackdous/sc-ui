@@ -7,7 +7,7 @@
   import { useAttrs } from '../../../hooks'
   import { basePrefixCls } from '../../../constant'
   import { defineComponent, computed, ref, unref, toRefs } from 'vue'
-  import get from 'lodash'
+  import get from 'lodash/get'
   import CollapseContainer from './CollapseContainer.vue'
 
   declare type CollapseContainerProps = Partial<ExtractPropTypes<typeof CollapseContainer>> 
@@ -17,7 +17,7 @@
     title: { type: String, default: '' },
     size: {
       type: String,
-      validator: (v) => ['small', 'default', 'middle', undefined].includes(v),
+      validator: (v:string) => ['small', 'default', 'middle', undefined].includes(v),
       default: 'small',
     },
     bordered: { type: Boolean, default: true },
@@ -45,7 +45,6 @@
     setup(props, { slots, emit }) {
       const propsRef = ref<Partial<DescriptionProps> | null>(null);
 
-      // const { prefixCls } = useDesign('description');
       const prefixCls = basePrefixCls + 'description'
       const attrs = useAttrs();
 
@@ -73,7 +72,7 @@
       /**
        * @description: Get configuration Collapse
        */
-       const getCollapseOptions = computed((): CollapseContainerProps => {
+      const getCollapseOptions = computed((): CollapseContainerProps => {
         return {
           // Cannot be expanded by default
           canExpand: false,
@@ -108,6 +107,8 @@
 
       function renderItem() {
         const { schema, data } = unref(getProps);
+        console.log('data: ', data);
+        console.log('schema: ', schema);
         return unref(schema)
           .map((item) => {
             const { render, field, span, show, contentMinWidth } = item;
@@ -115,7 +116,6 @@
             if (show && isFunction(show) && !show(data)) {
               return null;
             }
-
             const getContent = () => {
               const _data = unref(getProps)?.data;
               if (!_data) {
@@ -161,11 +161,11 @@
           return content;
         }
 
-        const { canExpand, helpMessage } = unref(getCollapseOptions);
+        const { canExpand, describe } = unref(getCollapseOptions);
         const { title } = unref(getMergeProps);
 
         return (
-          <CollapseContainer title={title} canExpan={canExpand} helpMessage={helpMessage}>
+          <CollapseContainer title={title} canExpan={canExpand} describe={describe}>
             {{
               default: () => content,
               action: () => getSlot(slots, 'action'),
@@ -183,3 +183,15 @@
     },
   });
 </script>
+<style lang="less">
+// .vp-doc table {
+//   display: table;
+// }
+// .vp-doc th, .vp-doc td {
+//   background-color: transparent;
+//   padding: 0 0 8px 0;
+// }
+// .vp-doc .vitepress-demo table {
+//   margin: 0;
+// }
+</style>

@@ -2,11 +2,13 @@
   <div>
     <ScDescription
       title="基础示例"
-      :collapseOptions="{ canExpand: true, helpMessage: 'help me' }"
-      :column="3"
+      :collapseOptions="{ canExpand: true, describe: 'help me' }"
+      :column="4"
       :data="mockData"
       :schema="schema"
-    >
+      layout="vertical"
+      :bordered="false"
+      >
 
     </ScDescription>
   </div>
@@ -54,5 +56,6 @@ const mockData: Recordable = {
   ];
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+
 </style>

@@ -28,6 +28,7 @@ export function useLoading(
   } else {
     props = opt as Partial<LoadingProps>
   }
+  console.log('target: ', target);
 
   const instance = createLoading(props, undefined, true)
 

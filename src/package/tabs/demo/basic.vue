@@ -7,6 +7,14 @@
       <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
     </ScTabs>
   </div>
+  <div class="mt20">
+    <ScTabs
+      type="card"
+    >
+      <TabPane key="1" tab="Tab 1" style="height: 100px">Content of Tab Pane 1</TabPane>
+      <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
+    </ScTabs>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -15,5 +23,8 @@ import { ScTabs } from 'sc-ui'
 import '../../../style/index.less'
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+.mt20 {
+  margin-top: 20px;
+}
 </style>

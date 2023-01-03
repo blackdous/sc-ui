@@ -1,23 +1,28 @@
-<!--
- * @Description: 
- * @Author: Format-qi 283810417@qq.com
- * @Date: 2022-06-25 15:47:35
- * @LastEditors: Format-qi 283810417@qq.com
- * @LastEditTime: 2022-06-25 16:15:15
--->
 <template>
   <div :class="prefixCls">
-    <!-- <div class="" v-bind="props" :show="show" @expand="handleExpand">
-      <template #title>
-        <slot name="title"></slot>
-      </template>
-      <template #action>
+    <div :class="[prefixCls + '-header']">
+      <div :class="[prefixCls+'-title']" v-if="!isTitle">
+        {{ newProps.title }}
+        <Tooltip
+          v-if="newProps.describe"
+          :title="newProps.describe"
+        >
+          <i class="sc-ui sc-question-circle"></i>
+        </Tooltip>
+      </div>
+      <slot name="title"></slot>
+      <div :class="`${prefixCls}-action`">
         <slot name="action"></slot>
-      </template>
-    </div> -->
+        <i
+          v-if="newProps.canExpan"
+          :class="['sc-ui', 'sc-xiangxia', show ? '' : 'arrow-up']"
+          @click="() => { handleExpand(!show) }"
+        ></i>
+      </div>
+    </div>
 
     <div class="p-8">
-      <CollapseTransition :enable="canExpan">
+      <CollapseTransition :enable="newProps.canExpan">
         <Skeleton v-if="loading" :active="loading" />
         <div :class="`${prefixCls}__body`" v-else v-show="show">
           <slot></slot>
@@ -31,10 +36,10 @@
 </template>
 <script lang="ts">
   import type { PropType } from 'vue'
-  import { ref, defineComponent } from 'vue'
-  import isNil from 'lodash'
+  import { ref, defineComponent, computed } from 'vue'
+  import isNil from 'lodash/isNil'
   // component
-  import { Skeleton } from 'ant-design-vue'
+  import { Skeleton, Tooltip } from 'ant-design-vue'
   import CollapseTransition from './CollapseTransition.vue'
   import { triggerWindowResize } from '../../../utils'
   import { basePrefixCls } from '../../../constant'
@@ -53,8 +58,8 @@
       /**
        * Warm reminder on the right side of the title
        */
-      helpMessage: {
-        type: [Array, String] as PropType<string[] | string>,
+      describe: {
+        type: [String] as PropType<string>,
         default: '',
       },
       /**
@@ -69,11 +74,13 @@
     },
     components: {
       Skeleton,
-      CollapseTransition
+      CollapseTransition,
+      Tooltip
     },
-    setup(props, { expose }) {
+    setup(props, { slots, expose }) {
       const show = ref(true)
       const prefixCls = basePrefixCls + 'Collapse-container'
+
       /**
        * @description: Handling development events
        */
@@ -84,12 +91,22 @@
           useTimeoutFn(triggerWindowResize, 200)
         }
       }
+      const newProps = computed(() => {
+        console.log('props: ', props);
+        return props
+      })
+      
+      const isTitle = computed(() => {
+        return Object.keys(slots).includes('title')
+      })
 
       expose({
         handleExpand,
       });
 
       return {
+        isTitle,
+        newProps,
         prefixCls,
         show,
         handleExpand

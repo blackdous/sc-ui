@@ -2,18 +2,15 @@
   <div>
     <ScLoading
       :loading="loadingRef"
-      tip="加载中..."
       size="small"
     >
     </ScLoading>
     <ScLoading
       :loading="loadingRef1"
-      tip="加载中..."
     >
     </ScLoading>
     <ScLoading
       :loading="loadingRef2"
-      tip="加载中..."
       size="large"
     >
     </ScLoading>
@@ -46,7 +43,7 @@ const handleClick = () => {
   loadingRef.value = !loadingRef.value
   setTimeout(() => {
     loadingRef.value = false
-  }, 1500)
+  }, 150000)
 }
 const handleClick1 = () => {
   loadingRef1.value = !loadingRef1.value

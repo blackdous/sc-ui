@@ -9,7 +9,7 @@
       全屏 Loading
     </Button>
     <Button class="my-16" type="primary" @click="openCompAbsolute"> 容器内 Loading </Button>
-    <ScLoading :loading="loading" :absolute="absolute" :theme="theme" :background="background" :tip="tip" />
+    <ScLoading :loading="loading" :absolute="absolute" :theme="theme" :isFullPage="isFullPage" :background="background" :tip="tip" />
 
     <h3>
       函数方式
@@ -41,14 +41,15 @@ import '../../../style/index.less'
 export default defineComponent({
   components: { Alert, Button, ScLoading },
   setup () {
-    const wrapEl = ref<ElRef>(null);
+    const wrapEl = ref<ElRef>();
     const loadingRef = ref(false);
     const compState = reactive({
       absolute: false,
       loading: false,
+      isFullPage: true
       // theme: 'dark',
       // background: 'rgba(111,111,111,.7)',
-      tip: '加载中...',
+      // tip: '加载中...',
     });
 
     const globalApp = inject('globalApp')
@@ -56,31 +57,33 @@ export default defineComponent({
     installGlobalDirectives(globalApp)
 
     const [openFullLoading, closeFullLoading] = useLoading({
-      tip: '加载中...',
+      // tip: '加载中...',
     });
 
     const [openWrapLoading, closeWrapLoading] = useLoading({
       target: wrapEl,
       props: {
-        tip: '加载中...',
+        // tip: '加载中...',
+        isFullPage: false,
         absolute: true,
       },
     });
 
-    function openLoading(absolute: boolean) {
+    function openLoading(absolute: boolean, isFullPage: boolean) {
       compState.absolute = absolute;
       compState.loading = true;
+      compState.isFullPage = isFullPage
       setTimeout(() => {
         compState.loading = false;
       }, 2000);
     }
 
     function openCompFullLoading() {
-      openLoading(false);
+      openLoading(false, true);
     }
 
     function openCompAbsolute() {
-      openLoading(true);
+      openLoading(true, false);
     }
 
     function openFnFullLoading() {

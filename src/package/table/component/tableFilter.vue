@@ -2,7 +2,11 @@
   <div
     :class="className"
   >
-    <div :class="[className + '-left']">
+    <div 
+      v-if="isShowLeftFilter" 
+      :class="[className + '-left', isShowLeftFilter && !isShowRightFilter ?'isOnlyLeft' : '']" 
+      :style="newProps.filterLeftStyle"
+    >
       <template v-if="!isCreateButton && createButtonOptions.show">
         <Button
           v-show="createButtonOptions.show"
@@ -29,7 +33,11 @@
         <slot name="multipleBtns"></slot>
       </template>
     </div>
-    <div :class="[className + '-right']">
+    <div
+      v-if="isShowRightFilter" 
+      :class="[className + '-right', !isShowLeftFilter && isShowRightFilter ?'isOnlyRight' : '']"
+      :style="newProps.filterLeftStyle"
+    >
       <template v-if="!isSearch && searchOptions.show">
         <InputGroup>
           <Select
@@ -78,7 +86,7 @@
 </template>
 
 <script lang='ts'>
-import { computed, defineComponent, PropType, ref, defineExpose, unref } from 'vue'
+import { computed, defineComponent, PropType, ref, defineExpose, unref, CSSProperties } from 'vue'
 import { Button, Select, SelectOption, Tooltip, InputSearch, InputGroup } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
 import cloneDeep from 'lodash/cloneDeep'
@@ -95,6 +103,18 @@ const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
 export const TableFilterProps = () => ({
   selectValue: String,
   textValue: String,
+  filterLeftStyle: {
+    type: Object as PropType<CSSProperties>,
+      default () {
+        return {}
+      }
+  },
+  filterRightStyle: {
+    type: Object as PropType<CSSProperties>,
+      default () {
+        return {}
+      }
+  },
   selectLoading: {
     type: Boolean,
     default () {
@@ -145,6 +165,11 @@ export default defineComponent({
     const searchOptionsRef = ref()
     const selectedItem = ref()
 
+
+    const newProps = computed(() => {
+      return props
+    })
+
     const isSearch = computed(() => {
       return Object.keys(slots).includes('search') 
     })
@@ -155,6 +180,24 @@ export default defineComponent({
 
     const isMutilpBtns = computed(() => {
       return Object.keys(slots).includes('multipleBtns')
+    })
+
+    const isShowLeftFilter = computed(() => {
+      return (
+        props?.createButtonOptions?.show ||
+        unref(isCreateButton) ||
+        props?.multipleActionOptions?.show ||
+        unref(isMutilpBtns)
+      )
+    })
+
+    const isShowRightFilter = computed(() => {
+      console.log('Object.keys(slots).includes', slots, Object.keys(slots).includes('search'));
+      return (
+        props?.searchOptions?.show ||
+        unref(isSearch) ||
+        Object.keys(slots).includes('tableActive')
+      )
     })
 
     const className = computed(() => {
@@ -258,6 +301,9 @@ export default defineComponent({
       selectValue,
       textValue,
       basePrefixCls,
+      isShowLeftFilter,
+      isShowRightFilter,
+      newProps,
       createHandle,
       radioHandle,
       onSearch,

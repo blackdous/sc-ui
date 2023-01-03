@@ -4,78 +4,80 @@
       :locale="newProps.langLocale"
       :transformCellText="({ text }) => isEmptyText(text) ? text : '--'"
     >
-      <Spin :spinning="false" v-if="isShowFilter">
-        <TableFilter
-          v-model:selectValue="selectValue"
-          v-model:textValue="textValue"
-          :createButtonOptions="createButtonOptions"
-          :multipleActionOptions="multipleOptions"
-          :searchOptions="searchOptions"
-          @createClick="createHandle"
-          @multipleChange="multipleChangeHandle"
-          @searchClick="searchClickHandle"
-          @selectChange="handleSelectChange"
-          ref="tableFilter"
+      <TableFilter
+        v-if="isShowFilter"
+        v-model:selectValue="selectValue"
+        v-model:textValue="textValue"
+        :createButtonOptions="createButtonOptions"
+        :isActiveFilter="isActiveFilter"
+        :filterLeftStyle="newProps.filterLeftStyle"
+        :filterRightStyle="newProps.filterRightStyle"
+        :multipleActionOptions="multipleOptions"
+        :searchOptions="searchOptions"
+        @createClick="createHandle"
+        @multipleChange="multipleChangeHandle"
+        @searchClick="searchClickHandle"
+        @selectChange="handleSelectChange"
+        ref="tableFilter"
+      >
+        <template
+          template
+          #[item]="data"
+          v-for="item in Object.keys($slots).filter((item) =>
+            ['createButton', 'search', 'multipleBtns'].includes(item)
+          )"
+          :key="item"
         >
-          <template
-            template
-            #[item]="data"
-            v-for="item in Object.keys($slots).filter((item) =>
-              ['createButton', 'search', 'multipleBtns'].includes(item)
-            )"
-            :key="item"
+          <slot :name="item" v-bind="data || {}"></slot>
+        </template>
+        <template #tableActive v-if="!isTableActive">
+          <Tooltip
+            v-if="activeOptions?.reload?.show"
+            overlayClassName="scTooltip-white"
           >
-            <slot :name="item" v-bind="data || {}"></slot>
-          </template>
-          <template #tableActive v-if="!isTableActive">
-            <Tooltip
-              v-if="activeOptions?.reload?.show"
-              overlayClassName="scTooltip-white"
+            <template #title v-if="activeOptions?.reload?.text">
+              {{ activeOptions?.reload.text }}
+            </template>
+            <Button
+              :disabled="activeOptions?.reload?.isDisabled"
+              @click="refresh"
             >
-              <template #title v-if="activeOptions?.reload?.text">
-                {{ activeOptions?.reload.text }}
-              </template>
-              <Button
-                :disabled="activeOptions?.reload?.isDisabled"
-                @click="refresh"
-              >
-                <i class="sc-ui sc-sync"></i>
-              </Button>
-            </Tooltip>
-            <Tooltip
-              v-if="activeOptions?.columnDialog?.show"
-              overlayClassName="scTooltip-white"
+              <i class="sc-ui sc-sync"></i>
+            </Button>
+          </Tooltip>
+          <Tooltip
+            v-if="activeOptions?.columnDialog?.show"
+            overlayClassName="scTooltip-white"
+          >
+            <template #title v-if="activeOptions?.columnDialog?.text">
+              {{ activeOptions?.columnDialog.text }}
+            </template>
+            <Button
+              :disabled="activeOptions?.columnDialog?.isDisabled"
+              @click="handleModal"
             >
-              <template #title v-if="activeOptions?.columnDialog?.text">
-                {{ activeOptions?.columnDialog.text }}
-              </template>
-              <Button
-                :disabled="activeOptions?.columnDialog?.isDisabled"
-                @click="handleModal"
-              >
-                <i class="sc-ui sc-setting"></i>
-              </Button>
-            </Tooltip>
-            <Tooltip
-              v-if="activeOptions?.download?.show"
-              overlayClassName="scTooltip-white"
+              <i class="sc-ui sc-setting"></i>
+            </Button>
+          </Tooltip>
+          <Tooltip
+            v-if="activeOptions?.download?.show"
+            overlayClassName="scTooltip-white"
+          >
+            <template #title v-if="activeOptions?.download?.text">
+              {{ activeOptions?.download.text }}
+            </template>
+            <Button
+              :disabled="activeOptions?.download?.isDisabled"
+              @click="handleDownload"
             >
-              <template #title v-if="activeOptions?.download?.text">
-                {{ activeOptions?.download.text }}
-              </template>
-              <Button
-                :disabled="activeOptions?.download?.isDisabled"
-                @click="handleDownload"
-              >
-                <i class="sc-ui sc-download"></i>
-              </Button>
-            </Tooltip>
-          </template>
-          <template #tableActive v-else>
-            <slot name="tableActive"></slot>
-          </template>
-        </TableFilter>
-      </Spin>
+              <i class="sc-ui sc-download"></i>
+            </Button>
+          </Tooltip>
+        </template>
+        <template #tableActive v-else>
+          <slot name="tableActive"></slot>
+        </template>
+      </TableFilter>
       <FilterTagsVue
         v-if="newProps.customFilter && newProps.filterTag"
         :columns="getFilterDropdownRef"
@@ -297,6 +299,7 @@ export default defineComponent({
     
     const {
       isShowFilter,
+      isActiveFilter,
       createButtonOptions,
       multipleOptions,
       searchOptions,
@@ -632,6 +635,7 @@ export default defineComponent({
       getLoading,
       visible,
       isTableActive,
+      isActiveFilter,
       isCustomFilter,
       activeOptions,
       isAction,

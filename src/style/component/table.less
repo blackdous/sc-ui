@@ -111,14 +111,28 @@
     .ant-input-group {
       flex: 0 0 200px;
     }
+    &.isOnlyRight {
+      width: 100%;
+      .ant-input-group {
+        flex: auto;
+      }
+    }
+    &.isOnlyLeft {
+      width: 100%;
+      .ant-input-group {
+        flex: auto;
+      }
+    }
     .ant-btn {
       line-height: 22px;
       padding: 4px 7px;
       border-color: @border-color-base;
-      & + .ant-btn {
+      &:not(.ant-btn-primary) {
         margin-left: 8px;
       }
-      &:focus, &:visited, &:link {
+      // & + .ant-btn {
+      // }
+      &:not(.ant-btn-primary):focus, &:not(.ant-btn-primary):visited, &:not(.ant-btn-primary):link {
         border-color: @primary-color;
         color: @primary-color;
       }
@@ -156,7 +170,6 @@
   &-active {
     display: flex;
     flex: 1;
-    margin-left: 8px;
   }
   .ant-btn:not(.ant-btn-primary) {
     &:hover, &:active {

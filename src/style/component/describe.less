@@ -1,0 +1,59 @@
+@CollapseScope: ~'@{prefixCls}Collapse-container';
+
+.@{CollapseScope} {
+  padding: 28px 23px 32px;
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  &-title {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: @heading-color;
+    .sc-question-circle {
+      color: @primary-color;
+    }
+  }
+  &-action {
+    .sc-xiangxia {
+      display: inline-block;
+      padding: 5px 10px;
+      cursor: pointer;
+      transform: rotate(0);
+      transition: all 0.5s;
+      &.arrow-up {
+        transform: rotate(-180deg);
+        transition: all 0.5s;
+      }
+    }
+  }
+  .ant-descriptions-item-label {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: @text-color-secondary;
+    &::after {
+      display: none;
+    }
+  }
+  .ant-descriptions-item-content {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: @heading-color;
+  }
+  .ant-descriptions-small .ant-descriptions-row > th {
+    padding-bottom: 4px;
+  }
+  .ant-descriptions-small .ant-descriptions-row > td {
+    padding-bottom: 18px;
+  }
+}

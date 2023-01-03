@@ -1,4 +1,4 @@
-import { PropType, VNode, VNodeChild } from "vue"
+import { PropType, VNode, VNodeChild, CSSProperties } from "vue"
 import { Column } from "./column"
 // import type { ComputedRef } from "vue"
 import { ColumnProps, SortOrder } from "ant-design-vue/lib/table/interface"
@@ -211,6 +211,8 @@ export interface LocaleProps {
   emptyText?: string | VNode
 }
 export const tableProps = () => ({
+  filterLeftStyle: Object as PropType<CSSProperties>,
+  filterRightStyle: Object as PropType<CSSProperties>,
   createButtonOptions: {
     type: Object as PropType<CreateButton>,
     default () {
@@ -398,6 +400,8 @@ export const tableProps = () => ({
 })
 
 export interface TableProps {
+  filterLeftStyle: CSSProperties,
+  filterRightStyle: CSSProperties,
   upTitle: string,
   downTitle: string,
   createButtonOptions?: CreateButton,

@@ -84,11 +84,24 @@ export function useFilter (
     return unref(searchOptions)
   }
   
-  const  isShowFilter = computed(() => {
+  const isShowFilter = computed(() => {
     const isShow = (unref(propsRef)?.activeOptions?.reload?.show 
-    || unref(propsRef)?.activeOptions?.columnDialog?.show 
+    || unref(propsRef)?.activeOptions?.columnDialog?.show
+    || unref(propsRef)?.activeOptions?.download?.show
     || unref(propsRef)?.multipleOptions?.show 
     || unref(propsRef)?.searchOptions?.show)
+    return isShow
+  })
+
+  // const isShowLeftFilter = computed(() => {
+  //   const isShow = (unref(propsRef)?.createButtonOptions?.show
+  //   || unref(propsRef)?.multipleOptions?.show )
+  //   return isShow
+  // })
+  const isActiveFilter = computed(() => {
+    const isShow = (unref(propsRef)?.activeOptions?.reload?.show 
+    || unref(propsRef)?.activeOptions?.columnDialog?.show
+    || unref(propsRef)?.activeOptions?.download?.show)
     return isShow
   })
 
@@ -116,6 +129,7 @@ export function useFilter (
     multipleOptions,
     searchOptions,
     isShowFilter,
+    isActiveFilter,
     setSearchOptions,
     getSearchOptions,
     setMutilpAction,

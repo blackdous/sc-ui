@@ -6,6 +6,25 @@
       :columns="columns"
       size="small"
       :loading="loading"
+      :create-button-options="{
+        show: false
+      }"
+      :search-options="{
+        show: true,
+        showSelect: true,
+        // typeList: () => radioList,
+        typeList: promiseTypelist,
+        customSearchFunc: searchHanle,
+        selectOptions: {
+          placeholder: '请选择',
+          width: '100px'
+        },
+        inputOptions: {
+          placeholder: '请输入',
+          width: '200px',
+          maxlength: 40
+        }
+      }"
       :activeOptions="{
         reload: {
           text: '刷新',
