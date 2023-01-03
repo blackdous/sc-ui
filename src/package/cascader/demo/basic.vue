@@ -3,7 +3,6 @@
     <ScCascader
       v-model:value="value"
       :options="options"
-      style="width: 280px"
       @change="handleChange"
     >
       
@@ -12,7 +11,6 @@
   <div class="mt20">
     <ScCascader
       v-model:value="value"
-      style="width: 280px"
       disabled
     >
     </ScCascader>
