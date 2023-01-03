@@ -1,0 +1,58 @@
+<template>
+  <div>
+    <ScDescription
+      title="基础示例"
+      :collapseOptions="{ canExpand: true, helpMessage: 'help me' }"
+      :column="3"
+      :data="mockData"
+      :schema="schema"
+    >
+
+    </ScDescription>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ScDescription } from 'sc-ui'
+import '../../../style/index.less'
+
+const mockData: Recordable = {
+    username: 'test',
+    nickName: 'VB',
+    age: '123',
+    phone: '15695909xxx',
+    email: '190848757@qq.com',
+    addr: '厦门市思明区',
+    sex: '男',
+    certy: '3504256199xxxxxxxxx',
+    tag: 'orange',
+  };
+  const schema: DescItem[] = [
+    {
+      field: 'username',
+      label: '用户名',
+    },
+    {
+      field: 'nickName',
+      label: '昵称',
+      render: (curVal, data) => {
+        return `${data.username}-${curVal}`;
+      },
+    },
+    {
+      field: 'phone',
+      label: '联系电话',
+    },
+    {
+      field: 'email',
+      label: '邮箱',
+    },
+    {
+      field: 'addr',
+      label: '地址',
+    },
+  ];
+</script>
+
+<style lang="less">
+</style>

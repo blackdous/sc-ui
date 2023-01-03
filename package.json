@@ -112,6 +112,7 @@
     "ant-design-vue": "2.2.8",
     "deepmerge": "^4.2.2",
     "patch-vue-directive-ssr": "^0.0.1",
+    "resize-observer-polyfill": "^1.5.1",
     "vue-slider-component": "4.1.0-beta.7"
   },
   "husky": {

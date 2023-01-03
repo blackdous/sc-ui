@@ -29,7 +29,8 @@ export const sidebar = {
       items: [
         { text: 'Tabs', link: '/en/tabs/' },
         { text: 'Table', link: '/en/table/' },
-        { text: 'Tooltip', link: '/en/tooltip/' }
+        { text: 'Tooltip', link: '/en/tooltip/' },
+        { text: 'Description', link: '/description/' },
       ]
     },
     {
@@ -101,7 +102,8 @@ export const sidebar = {
       items: [
         { text: '标签页', link: '/tabs/' },
         { text: '表格', link: '/table/' },
-        { text: '文字提示', link: '/tooltip/' }
+        { text: '文字提示', link: '/tooltip/' },
+        { text: '描述列表', link: '/description/' },
       ]
     },
     {
