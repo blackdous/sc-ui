@@ -2,6 +2,7 @@
   <div class="mt20">
     <ScCascader
       v-model:value="value"
+      :defaultValue="['zhejiang', 'hangzhou', 'xihu']"
       :options="options"
       @change="handleChange"
     >
@@ -58,7 +59,7 @@ import { ref } from 'vue'
 import { ScCascader } from 'sc-ui'
 import '../../../style/index.less'
 
-const value = ref([])
+const value = ref()
 const value1 = ref([])
 
 const handleChange = (val:string) => {

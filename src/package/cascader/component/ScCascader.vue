@@ -5,11 +5,10 @@
     </span>
     <Cascader
       :class="[isPrefixIcon ? 'is-prefix' : '']"
-      v-bind="$attrs"
-      v-model:value="value"
+      v-bind="vBind"
+      v-model="value"
       :disabled="newProps.disabled"
       :dropdownClassName="dropdownClassName"
-      @change="handleChange"
     >
       <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
@@ -36,12 +35,11 @@
 
 <script lang="ts" >
 
-import { computed, defineComponent, ref, unref, onMounted } from 'vue'
+import { computed, defineComponent, ref, unref } from 'vue'
 import { Cascader, CheckboxGroup, Checkbox } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 import { basePrefixCls } from '../../../constant'
 import { buildUUID } from '../../../utils/uuid'
-import { findParentDom } from '../../../utils/domHelper'
 import { props } from './type'
 
 export default defineComponent({
@@ -57,19 +55,27 @@ export default defineComponent({
   setup(props, { emit, slots, attrs }) {
     const baseClass = basePrefixCls + 'Cascader'
 
-    const initValue = computed(() => props.value)
-    const value = ref(unref(initValue))
+    // const initValue = computed(() => props.value)
+    const value = computed({
+      get: () => {
+        return props.value
+      },
+      set: (val) => {
+        emit('update:value', val)
+      }
+    })
     const newProps = computed(() => {
       return props
     })
-    const checkboxValue = ref(unref(initValue))
+
+    const vBind = computed(() => {
+      return {
+        ...unref(newProps),
+        ...attrs
+      }
+    })
 
     const uuid = 'sc' + buildUUID()
-
-    const handleChange = (val) => {
-      // console.log('val: ', val);
-      checkboxValue.value = val
-    }
     
     const dropdownClassName = computed(() => {
       const dropdownClass = []
@@ -93,28 +99,18 @@ export default defineComponent({
     const isClearIcon = computed(() => {
       return Object.keys(slots).includes('clearIcon')
     })
-
-    onMounted(() => {
-      const dom = document.querySelector(`.${uuid}`) as HTMLElement
-      dom && dom.addEventListener('mousedown', (event) => {
-        const isParent = findParentDom(event.target, 5, (dom) => { return String(dom.className).includes('clearSelect') ? dom : false })
-        if (isParent) {
-          checkboxValue.value = undefined
-          emit('allowClear', value.value)
-        }
-      })
-    })
     
     return {
       uuid,
       baseClass,
       newProps,
       value,
+      vBind,
       isSuffixIcon,
       isPrefixIcon,
       isClearIcon,
       dropdownClassName,
-      handleChange
+      // handleChange
     }
   }
 })
