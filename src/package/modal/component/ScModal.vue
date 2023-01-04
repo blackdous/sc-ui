@@ -141,6 +141,7 @@ const className = computed(() => {
   const classNames = [modalPrefixCls]
   if (vBind.type) {
     classNames.push(modalPrefixCls + '-container-' + vBind.type)
+    classNames.push(modalPrefixCls + '-container-status')
   }
   return classNames
 })
