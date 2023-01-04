@@ -1,35 +1,39 @@
 <template>
-  <div class="w400">
+  <div>
     <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueRef"
+      width-size="l"
       describe="额外提示语，文字过多时输入框宽度折行"
     >
     </ScInput>
   </div>
-  <div class="w400">
+  <div>
     <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueSuccessRef"
       type="success"
+      width-size="l"
       describe="额外提示语，文字过多时输入框宽度折行"
     >
     </ScInput>
   </div>
-  <div class="w400">
+  <div>
     <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueWarningRef"
       type="warning"
+      width-size="l"
       describe="额外提示语，文字过多时输入框宽度折行"
     >
     </ScInput>
   </div>
-  <div class="w400">
+  <div>
     <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueErrorRef"
       type="error"
+      width-size="l"
       describe="额外提示语，文字过多时输入框宽度折行"
     >
     </ScInput>

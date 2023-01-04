@@ -43,7 +43,7 @@ const handleClick = () => {
   loadingRef.value = !loadingRef.value
   setTimeout(() => {
     loadingRef.value = false
-  }, 150000)
+  }, 1500)
 }
 const handleClick1 = () => {
   loadingRef1.value = !loadingRef1.value

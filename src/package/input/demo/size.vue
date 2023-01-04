@@ -6,19 +6,54 @@
       size="large"
     >
     </ScInput>
-  </div>
-  <div class="w400">
     <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueRef"
     >
     </ScInput>
-  </div>
-  <div class="w400">
     <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueSmallRef"
       size="small"
+    >
+    </ScInput>
+  </div>
+  <div class="mt20">
+    <ScInput
+      placeholder="请输入内容 widthSize xl"
+      v-model:value="inputValueLargeRef"
+      width-size="xl"
+    >
+    </ScInput>
+  </div>
+  <div class="mt20">
+    <ScInput
+      placeholder="请输入内容 widthSize l"
+      v-model:value="inputValueLargeRef"
+      width-size="l"
+    >
+    </ScInput>
+  </div>
+  <div class="mt20">
+    <ScInput
+      placeholder="请输入内容 widthSize md"
+      v-model:value="inputValueLargeRef"
+      width-size="md"
+    >
+    </ScInput>
+  </div>
+  <div class="mt20">
+    <ScInput
+      placeholder="请输入内容 widthSize x"
+      v-model:value="inputValueLargeRef"
+    >
+    </ScInput>
+  </div>
+  <div class="mt20">
+    <ScInput
+      placeholder="请输入内容 widthSize xs"
+      v-model:value="inputValueLargeRef"
+      width-size="xs"
     >
     </ScInput>
   </div>
@@ -35,11 +70,19 @@ const inputValueSmallRef = ref('')
 
 </script>
 
-<style scoped>
-.w400 {
+<style scoped lang="less">
+.scInput {
+  & + & {
+    margin-left: 20px;
+  }
+}
+.mt20 {
+  margin-top: 20px;
+}
+/* .w400 {
   width: 400px;
 }
 .w400 + .w400 {
   margin-top: 20px;
-}
+} */
 </style>

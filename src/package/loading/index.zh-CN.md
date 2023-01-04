@@ -38,6 +38,7 @@ map:
 | 属性 | 类型 | 默认值 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
 | tip | `string` | - | - | 加载文本 |
+| isFullPage | `boolean` | `true` | - | 为`true`加载图片为`loading.gif`;`false`时为显示loading动画 |
 | size | `default, small , large` | `default` | - | 大小 |
 | absolute | `boolean` | false | - | 绝对定位，为 `false` 时可以全屏 |
 | loading | `boolean` | - | - | 当前加载状态 |

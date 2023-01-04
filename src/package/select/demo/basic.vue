@@ -2,7 +2,6 @@
   <div class="mt20">
     <ScSelect
       v-model:value="value"
-      style="width: 280px"
       @change="handleChange"
     >
       <SelectOption
@@ -17,7 +16,6 @@
   <div class="mt20">
     <ScSelect
       v-model:value="value"
-      style="width: 280px"
       :options="list"
       @change="handleChange"
     >
@@ -26,7 +24,6 @@
   <div class="mt20">
     <ScSelect
       v-model:value="value"
-      style="width: 280px"
       disabled
     >
       <SelectOption value="jack">Jack</SelectOption>

@@ -1,7 +1,7 @@
 @cascaderScope: ~'@{prefixCls}Cascader';
 .ant-cascader-menus {
   .ant-cascader-menu-item {
-    min-width: 268px;
+    min-width: calc(@input-x-width - 12px);
     min-height: 28px;
     line-height: 28px;
     padding: 0 8px;
@@ -34,7 +34,7 @@
   }
 }
 .ant-cascader-picker {
-  min-width: 280px;
+  min-width: @input-x-width;
   &.is-prefix {
     .ant-cascader-picker-label {
       padding: 0 20px 0 32px;
@@ -56,6 +56,28 @@ div.ant-cascader-menu {
   border-radius: @border-r-6;
 }
 .@{cascaderScope} {
+  max-width: @input-x-width;
+  width: @input-x-width;
+  &-xs {
+    width: @input-xs-width;
+    max-width: @input-xs-width;
+  }
+  &-x {
+    width: @input-x-width;
+    max-width: @input-x-width;
+  }
+  &-md {
+    width: @input-md-width;
+    max-width: @input-md-width;
+  }
+  &-l {
+    width: @input-l-width;
+    max-width: @input-l-width;
+  }
+  &-xl {
+    width: @input-xl-width;
+    max-width: @input-xl-width;
+  }
   &.is-prefix {
     position: relative;
   }

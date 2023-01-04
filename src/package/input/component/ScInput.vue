@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[baseClass]"
+    :class="[baseClass, vBind.widthSize ? baseClass + '-' + vBind.widthSize : '']"
     :id="uuid"
   >
     <Input

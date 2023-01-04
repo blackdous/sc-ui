@@ -2,7 +2,6 @@
   <div class="mt20">
     <ScSelect
       v-model:value="value"
-      style="width: 280px"
       :options="options"
       mode="tags"
       placeholder="请选择"

@@ -1,5 +1,5 @@
 <template>
-  <div :class="[baseClass, uuid, isPrefixIcon ? 'is-prefix' : '', newProps.disabled ? 'is-disabled' : '']">
+  <div :class="[baseClass, uuid, newProps.widthSize ? baseClass + '-' + newProps.widthSize : '', isPrefixIcon ? 'is-prefix' : '', newProps.disabled ? 'is-disabled' : '']">
     <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
       <slot name="prefixIcon"></slot>
     </span>

@@ -7,6 +7,10 @@ export const props = () => ({
       return false
     }
   },
+  widthSize: {
+    type: String,
+    validator: (v:string) => ['l', 'xs', 'x', 'md', 'xl'].includes(v)
+  },
   // 'checkbox'
   optionMode: String,
   prefixIcon: Object as PropType<VNodeChild>

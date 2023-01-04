@@ -3,7 +3,6 @@
     <ScCascader
       v-model:value="value"
       :options="options"
-      style="width: 280px"
       @change="handleChange"
     >
       <template #prefixIcon>
@@ -20,7 +19,6 @@
     <ScCascader
       v-model:value="value"
       :options="options"
-      style="width: 280px"
       @change="handleChange"
       disabled
     >
@@ -38,7 +36,6 @@
     <ScCascader
       v-model:value="value1"
       :options="options"
-      style="width: 280px"
       :show-search="{ filter }"
       @change="handleChange"
       @allowClear="handleAllowClear"

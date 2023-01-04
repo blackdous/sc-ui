@@ -1,5 +1,5 @@
 <template>
-  <div class="w400">
+  <div>
     <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueRef"

@@ -128,6 +128,7 @@ div.ant-select-dropdown {
   }
 }
 .ant-select {
+  // min-width: 216px;
   &.ant-select-multiple {
     .ant-select-selection-item {
       background: @active-bg;
@@ -159,6 +160,32 @@ div.ant-select-dropdown {
   }
 }
 .@{selectScope} {
+  display: inline-block;
+  max-width: 216px;
+  width: 216px;
+  .ant-select {
+    width: 100%;
+  }
+  &-xs {
+    width: @input-xs-width;
+    max-width: @input-xs-width;
+  }
+  &-x {
+    width: @input-x-width;
+    max-width: @input-x-width;
+  }
+  &-md {
+    width: @input-md-width;
+    max-width: @input-md-width;
+  }
+  &-l {
+    width: @input-l-width;
+    max-width: @input-l-width;
+  }
+  &-xl {
+    width: @input-xl-width;
+    max-width: @input-xl-width;
+  }
   &.ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
     background: @disabled-bg-color;
   }

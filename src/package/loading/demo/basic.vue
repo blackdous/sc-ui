@@ -68,6 +68,7 @@ export default defineComponent({
         absolute: true,
       },
     });
+    
 
     function openLoading(absolute: boolean, isFullPage: boolean) {
       compState.absolute = absolute;
@@ -117,6 +118,7 @@ export default defineComponent({
       loadingRef,
       openDirectiveLoading,
       ...toRefs(compState),
+      wrapEl
     }
   }
 })

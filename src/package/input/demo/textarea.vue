@@ -1,12 +1,12 @@
 <template>
-  <div class="w400">
+  <div>
     <Textarea
       placeholder="请输入内容"
       v-model:value="inputValueRef"
     >
     </Textarea>
   </div>
-  <div class="w400">
+  <div>
     <Textarea
       placeholder="请输入内容"
       showCount
@@ -32,6 +32,9 @@ const inputValueLengthRef = ref('')
   width: 400px;
 }
 .w400 + .w400 {
+  margin-top: 20px;
+}
+div + div {
   margin-top: 20px;
 }
 </style>

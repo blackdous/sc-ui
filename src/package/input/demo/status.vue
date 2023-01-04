@@ -1,12 +1,12 @@
 <template>
-  <div class="w400">
+  <div>
     <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueRef"
     >
     </ScInput>
   </div>
-  <div class="w400">
+  <div>
     <ScInput
       placeholder="请输入内容"
       v-model:value="inputValueDisabledRef"
@@ -31,6 +31,9 @@ const inputValueDisabledRef = ref('')
   width: 400px;
 }
 .w400 + .w400 {
+  margin-top: 20px;
+}
+div + div {
   margin-top: 20px;
 }
 </style>

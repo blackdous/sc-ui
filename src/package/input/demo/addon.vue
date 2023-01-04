@@ -1,10 +1,11 @@
 <template>
-  <div class="w400">
+  <div>
     <ScInput
       addon-before="前缀内容"
       placeholder="请输入内容"
       v-model:value="inputValueRef"
       addon-after="后缀内容"
+      width-size="l"
     >
     </ScInput>
   </div>

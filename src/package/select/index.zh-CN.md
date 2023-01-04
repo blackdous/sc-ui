@@ -47,7 +47,8 @@ map:
 | 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
 | optionMode      | string                                              | -  |  `checkbox`      |  如果使用`optionMode`属性 `#dropdownRender` slot 将无效|
-
+| prefixIcon      | slot                                            | -  |  -      |  支持自定义slot传入，通过`template='prefixIcon'` 来使用|
+| widthSize      | string                                            | `x`  |  `'l', 'xs', 'x', 'md', 'xl'`      |  控制select 宽度|
 
 ## 事件
 

@@ -3,7 +3,6 @@
     <div class="ml20">
       <ScSelect
         v-model:value="value"
-        style="width: 120px"
         :options="options"
       >
         <template #prefixIcon>
