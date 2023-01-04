@@ -37,6 +37,9 @@
     border-color: @success-color;
     // &:hover, &:focus, &:active {
     // }
+    &.ant-input-affix-wrapper-focused {
+      box-shadow: 0 0 0 2px fade(@success-color, 20%);
+    }
     &:focus {
       box-shadow: 0 0 0 2px fade(@success-color, 20%);
     }
@@ -45,6 +48,9 @@
     border-color: @warning-color;
     // &:hover, &:focus, &:active {
     // }
+    &.ant-input-affix-wrapper-focused {
+      box-shadow: 0 0 0 2px fade(@warning-color, 20%);
+    }
     &:focus {
       box-shadow: 0 0 0 2px fade(@warning-color, 20%);
     }
@@ -53,6 +59,9 @@
     border-color: @error-color;
     // &:hover, &:focus, &:active {
     // }
+    &.ant-input-affix-wrapper-focused {
+      box-shadow: 0 0 0 2px fade(@error-color, 20%);
+    }
     &:focus {
       box-shadow: 0 0 0 2px fade(@error-color, 20%);
     }

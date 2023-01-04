@@ -156,7 +156,14 @@ export const searchOptions = () => ({
   // 查询方法
   action: Function as PropType<(fetchParams: FetchParams) => void>,
   selectOptions: Object as PropType<{placeholder: string, width: string}>,
-  inputOptions: Object as PropType<{placeholder: (key:string) => string | string, maxlength: number, width: string, allowClear: boolean}>
+  inputOptions: Object as PropType<{
+    placeholder: (key:string) => string | string,
+    validator: (key:string) => string | string,
+    validatorTrigger: 'all' | 'search' | 'change',
+    maxlength: number, 
+    width: string, 
+    allowClear: boolean
+  }>
 })
 
 export interface SearchOptions {
@@ -172,6 +179,8 @@ export interface SearchOptions {
   },
   inputOptions?: {
     placeholder?: (key:string) => string | string,
+    validator?: (key:string) => string | string,
+    validatorTrigger?: 'all' | 'search' | 'change',
     maxlength?: number,
     width?: string,
     allowClear?: boolean

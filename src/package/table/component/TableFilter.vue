@@ -4,7 +4,7 @@
   >
     <div 
       v-if="isShowLeftFilter" 
-      :class="[className + '-left', isShowLeftFilter && !isShowRightFilter ?'isOnlyLeft' : '']" 
+      :class="[className + '-left', isShowLeftFilter && !isShowRightFilter ? 'isOnlyLeft' : '']" 
       :style="newProps.filterLeftStyle"
     >
       <template v-if="!isCreateButton && createButtonOptions.show">
@@ -35,7 +35,7 @@
     </div>
     <div
       v-if="isShowRightFilter" 
-      :class="[className + '-right', !isShowLeftFilter && isShowRightFilter ?'isOnlyRight' : '']"
+      :class="[className + '-right', !isShowLeftFilter && isShowRightFilter ? 'isOnlyRight' : '']"
       :style="newProps.filterLeftStyle"
     >
       <template v-if="!isSearch && searchOptions.show">
@@ -57,22 +57,25 @@
               {{ optionsItem.label }}
             </SelectOption>
           </Select>
-          <InputSearch
-            v-model:value="textValue"
-            :maxlength="searchOptions.inputOptions?.maxlength"
-            :style="{width: searchOptions.inputOptions?.width || '120px'}"
-            :placeholder="searchOptionsRef.inputOptions?.placeholder"
-            class="scSearch"
-            @change="updateTextValue"
-            @search="onSearch"
-            :allowClear="true"
-          >
-            <template #suffix>
-              <i class="sc-ui sc-sousuo"
-                @click="onSearch(textValue)"
-              />
-            </template>
-          </InputSearch>
+          <div class="scSearchInput">
+            <InputSearch
+              v-model:value="textValue"
+              :maxlength="searchOptions.inputOptions?.maxlength"
+              :style="{width: searchOptions.inputOptions?.width || '120px'}"
+              :placeholder="searchOptionsRef.inputOptions?.placeholder"
+              :class="['scSearch', !validatorResult.result ? 'isError' : '']"
+              @change="updateTextValue"
+              @search="onSearch"
+              :allowClear="true"
+            >
+              <template #suffix>
+                <i class="sc-ui sc-sousuo"
+                  @click="onSearch(textValue)"
+                />
+              </template>
+            </InputSearch>
+            <p v-if="!validatorResult.result" class="input-describe">{{validatorResult.tip}}</p>
+          </div>
         </InputGroup>
       </template>
       <template v-else>
@@ -96,7 +99,7 @@ import { ScRadioTooltipGroup } from '../../radio'
 //@ts-ignore
 import { CreateButton, MutilpActionOptions, SearchOptions } from './types/table'
 import ColumnDialogVue from './ColumnDialog.vue'
-import { isFunction } from '../../../utils/is'
+import { isFunction, deepMerge } from '../../../utils'
 
 const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
 
@@ -165,6 +168,11 @@ export default defineComponent({
     const searchOptionsRef = ref()
     const selectedItem = ref()
 
+    const validatorResult = ref({
+      result: true,
+      tip: ''
+    })
+
 
     const newProps = computed(() => {
       return props
@@ -217,6 +225,7 @@ export default defineComponent({
       },
       set: (val) => {
         selectedItem.value = unref(searchOptions)?.typeList?.find((item: any)=> item.value === val)
+        textValue.value = ''
         emit('selectChange', val)
         emit('update:selectValue', val)
       }
@@ -231,10 +240,12 @@ export default defineComponent({
     })
 
     const updateSearchOptions = (searchOptions: SearchOptions) => {
-      const cloneSearchOptions = cloneDeep(searchOptions)
+      const cloneSearchOptions = deepMerge({inputOptions: {
+        validatorTrigger: 'all'
+      }}, cloneDeep(searchOptions))
       if (cloneSearchOptions) {
         const newSearchOptions = {
-          ...searchOptions
+          ...cloneSearchOptions
         }
         if (newSearchOptions.inputOptions?.placeholder) {
           if (isFunction(newSearchOptions.inputOptions.placeholder)) {
@@ -275,11 +286,51 @@ export default defineComponent({
       resetMutilp()
     }
 
-    const updateTextValue = (value:string) => {
+    const validatorInputValue = () => {
+      const { inputOptions } = unref(searchOptionsRef)
+      if (inputOptions?.validator) {
+        if (isFunction(inputOptions?.validator)) {
+          const { result, tip } = inputOptions.validator(unref(selectedItem), unref(textValue))
+          validatorResult.value = {
+            result,
+            tip
+          }
+        }
+      }
+    }
+
+    const updateTextValue = () => {
+      const { inputOptions } = unref(searchOptionsRef)
+      if (['all', 'change'].includes(inputOptions?.validatorTrigger)) {
+        if (unref(textValue)) {
+          validatorInputValue()
+        } else {
+          validatorResult.value = {
+            result: true,
+            tip: ''
+          }
+        }
+      }
       emit('update:textValue', unref(textValue))
     }
 
     const onSearch = (val:string) => {
+      const { inputOptions } = unref(searchOptionsRef)
+      if (['all', 'search'].includes(inputOptions?.validatorTrigger)) {
+        if (unref(textValue)) {
+          validatorInputValue()
+        } else {
+          validatorResult.value = {
+            result: true,
+            tip: ''
+          }
+        }
+      }
+      const { result } = unref(validatorResult)
+      // console.log('result: ', result);
+      if (!result) {
+        return false
+      }
       emit('searchClick', { value: unref(val), type: unref(selectValue) })
     }
 
@@ -304,6 +355,7 @@ export default defineComponent({
       isShowLeftFilter,
       isShowRightFilter,
       newProps,
+      validatorResult,
       createHandle,
       radioHandle,
       onSearch,

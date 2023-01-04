@@ -45,7 +45,7 @@
     setup(props, { slots, emit }) {
       const propsRef = ref<Partial<DescriptionProps> | null>(null);
 
-      const prefixCls = basePrefixCls + 'description'
+      const prefixCls = basePrefixCls + 'Description'
       const attrs = useAttrs();
 
       // Custom title component: get title
@@ -107,8 +107,6 @@
 
       function renderItem() {
         const { schema, data } = unref(getProps);
-        console.log('data: ', data);
-        console.log('schema: ', schema);
         return unref(schema)
           .map((item) => {
             const { render, field, span, show, contentMinWidth } = item;

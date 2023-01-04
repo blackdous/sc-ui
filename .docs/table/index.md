@@ -647,6 +647,10 @@ export interface SearchOptions {
   inputOptions?: {
     // 支持函数 参数如当前选中select
     placeholder?: string | (selectItem) => string,
+    // 新增 validator 函数用于 校验当前input 中的值；参数1 选中typeList的某一项的值 参数2 输入的内容；返回值1 result 校验结果 返回值2 tip 提示内容
+    validator: (selectItem:typeList[item], value:string) => { result: boolean, tip: string },
+    // validator 触发时机，value 值修改 `change`; 点击 search icon 为 `search`; 两者都要 `all`
+    validatorTrigger: 'all' | 'search' | 'change',
     maxlength?: number,
     width?: string,
     allowClear?: boolean

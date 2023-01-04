@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import { h } from 'vue'
 import { ScDescription } from 'sc-ui'
 import '../../../style/index.less'
 
@@ -38,7 +39,7 @@ const mockData: Recordable = {
       field: 'nickName',
       label: '昵称',
       render: (curVal, data) => {
-        return `${data.username}-${curVal}`;
+        return h('span', { class: '' }, [curVal + '--' + data.username, h('i', { class: 'sc-ui sc-file-copy' })])
       },
     },
     {

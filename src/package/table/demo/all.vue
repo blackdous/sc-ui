@@ -44,6 +44,8 @@
         },
         inputOptions: {
           placeholder: handle,
+          validator: validatorFunc,
+          validatorTrigger: 'search',
           width: '160px',
           maxlength: 40,
           allowClear: true
@@ -347,6 +349,15 @@ const beforeFetch = (params: any, tableParams: any) => {
 const handle = (data: Data) => {
   console.log('Data: ', data);
   return '请输入  data'
+}
+
+const validatorFunc = (selectType: Data, value: string) => {
+  // console.log('value: ', value);
+  // console.log('selectType: ', selectType);
+  if (selectType.value === 'b' && (/[^\d]/g.test(value))) {
+    return { result: false, tip: '请输入数字' }
+  }
+  return { result: true, tip: '' }
 }
 
 const createClick = (data: ComputedRef) => {

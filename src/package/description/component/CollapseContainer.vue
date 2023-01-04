@@ -21,14 +21,12 @@
       </div>
     </div>
 
-    <div class="p-8">
-      <CollapseTransition :enable="newProps.canExpan">
-        <Skeleton v-if="loading" :active="loading" />
-        <div :class="`${prefixCls}__body`" v-else v-show="show">
-          <slot></slot>
-        </div>
-      </CollapseTransition>
-    </div>
+    <CollapseTransition :enable="newProps.canExpan">
+      <Skeleton v-if="loading" :active="loading" />
+      <div :class="`${prefixCls}__body`" v-else v-show="show">
+        <slot></slot>
+      </div>
+    </CollapseTransition>
     <div :class="`${prefixCls}__footer`" v-if="$slots.footer">
       <slot name="footer"></slot>
     </div>
