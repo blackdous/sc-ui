@@ -310,6 +310,7 @@ const dataSource = [
 | --- | --- | --- | --- | --- |
 | slots | 内置组件: `{filterDropdown: 'filterDropdown', filterIcon: 'filterIcon'}` | Object | - |  |
 | filterList | 自定义筛选数组，支持 自定义方法(返回数组、参数`{propsRef, fetchParams}`)、数组 | Array | - |  |
+| filterLoading | 用于定义filterList 加载状态 | false | - |  |
 | filterMultiple | 用于是否开启多选 | boolean | false |  |
 | filterTag | 是否开启选中标签模式 | boolean | false |  |
 

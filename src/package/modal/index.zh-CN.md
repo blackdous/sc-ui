@@ -15,7 +15,7 @@ map:
   >
 </demo>
 
-<!-- ## 自定义title 对话框
+## 自定义title 对话框
 
 <demo src="./demo/selftHeader.vue"
   language="vue"
@@ -218,7 +218,7 @@ changeLoading(true);
 
 #### setModalProps
 
-用于更改 modal 的 props 参数因为 modal 内容独立成组件，如果在外部页面需要更改 props 可能比较麻烦，所以提供 `setModalProps` 方便更改内部 modal 的 props -->
+用于更改 modal 的 props 参数因为 modal 内容独立成组件，如果在外部页面需要更改 props 可能比较麻烦，所以提供 `setModalProps` 方便更改内部 modal 的 props
 
 ## API
 
