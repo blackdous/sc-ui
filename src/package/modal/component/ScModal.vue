@@ -2,6 +2,7 @@
   <Modal
     :class="className"
     v-bind="getBindValue"
+    v-model:visible="visibleRef"
     ref="modalRef"
   >
     <template #[item]="data" v-for="item in ['default']">
@@ -79,8 +80,8 @@
   </Modal>
 </template>
 
-<script lang='ts' setup>
-import { computed, defineProps, useSlots, useAttrs,defineEmits, ref, watchEffect, watch, unref, getCurrentInstance } from 'vue'
+<script lang='ts'>
+import { defineComponent, computed, ref, watchEffect, watch, unref, getCurrentInstance } from 'vue'
 // import type { CSSProperties } from 'vue'
 // import { useDraggable } from '@vueuse/core';
 import { useModalDraggable } from '../hooks/useModalDraggable'
@@ -98,133 +99,163 @@ import { basePrefixCls } from '../../../constant'
 import { isFunction } from '../../../utils/is';
 import { deepMerge } from '../../../utils'
 
-const modalPrefixCls = basePrefixCls + 'Modal'
-const emits = defineEmits(['update:visible', 'dragChange', 'register', 'visible-change'])
-const attrs = useAttrs()
-const vBind = defineProps(modalProps())
+export default defineComponent({
+  name: 'ScModal',
+  inheritAttrs: false,
+  props: modalProps(),
+  components: {
+    Modal,
+    Button,
+    Tooltip,
+    QuestionCircleOutlined,
+    InfoCircleFilled,
+    CheckCircleFilled,
+    ExclamationCircleFilled,
+    CloseCircleFilled
+  },
+  setup (props, { slots, attrs, emit}) {
+    const modalPrefixCls = basePrefixCls + 'Modal'
+    // const emit = defineemit(['update:visible', 'dragChange', 'register', 'visible-change', 'cancel'])
+    const vBind = computed(() => {
+      return props
+    })
 
-const visibleRef = ref(false)
-const propsRef = ref<Partial<ModalProps> | null>(null);
+    const visibleRef = ref(false)
+    const propsRef = ref<Partial<ModalProps> | null>(null);
 
-const props = computed(() => {
-  return {
-    ...vBind,
-    ...propsRef.value
-  }
-})
-
-const getBindValue = computed((): Recordable => {
-  const filterKey =  ['title', 'footer', 'cancelButtonProps', 'okButtonProps','cancelText', 'okText']
-  const newProps = Object.entries(vBind).reduce((pre, next) => {
-    if (filterKey.includes(next[0])) {
+    const curProps = computed(() => {
       return {
-        ...pre
+        ...vBind,
+        ...propsRef.value
       }
-    } else {
-      return {
-        ...pre,
-        [next[0]]: next[1]
+    })
+    const getBindValue = computed((): Recordable => {
+      const filterKey =  ['title', 'footer', 'cancelButtonProps', 'okButtonProps','cancelText', 'okText']
+      const newProps = Object.entries(unref(curProps)).reduce((pre, next) => {
+        if (filterKey.includes(next[0])) {
+          return {
+            ...pre
+          }
+        } else {
+          return {
+            ...pre,
+            [next[0]]: next[1]
+          }
+        }
+      }, {})
+      const attr = {
+        ...attrs,
+        ...newProps,
+        visible: unref(visibleRef),
+      };
+      return attr
+    });
+
+    const className = computed(() => {
+      const classNames = [modalPrefixCls]
+      if (unref(vBind).type) {
+        classNames.push(modalPrefixCls + '-container-' + unref(vBind).type)
+        classNames.push(modalPrefixCls + '-container-status')
+      }
+      return classNames
+    })
+
+    const footerClassName = computed(() => {
+      const footerClassNames = [modalPrefixCls + '-footer']
+      switch(unref(vBind).footerAlign) {
+        case 'left':
+          footerClassNames.push('text-left')
+          break;
+        case 'right':
+          footerClassNames.push('text-right')
+          break;
+        case 'center':
+          footerClassNames.push('text-center')
+          break;
+      }
+      return footerClassNames
+    })
+
+    const isSlotTitle = computed(() => {
+      return Object.keys(slots).includes('title')
+    })
+
+    const isSlotFooter = computed(() => {
+      return Object.keys(slots).includes('footer')
+    })
+
+    const isClose = computed(() => {
+      return Object.keys(slots).includes('closeIcon')
+    })
+
+    const closeVisible = async (e: Event) => {
+      e?.stopPropagation();
+      if (unref(vBind).closeFunc && isFunction(unref(vBind).closeFunc)) {
+        const isClose: boolean = await unref(vBind).closeFunc();
+        emit('update:visible', isClose)
+        visibleRef.value = isClose
+        return;
+      }
+      emit('cancel', false)
+      visibleRef.value = false
+      emit('update:visible', false)
+    }
+
+    /**
+     * @description: 设置modal参数
+    */
+    function setModalProps(props: Partial<ModalProps>): void {
+      // Keep the last setModalProps
+      propsRef.value = deepMerge(unref(propsRef) || ({} as any), props);
+      if (Reflect.has(props, 'visible')) {
+        visibleRef.value = !!unref(vBind).visible;
       }
     }
-  }, {})
-  const attr = {
-    ...attrs,
-    ...newProps,
-    visible: unref(visibleRef),
-  };
-  return attr
-});
 
-const slots = useSlots()
+    const modalMethods: ModalMethods = {
+      setModalProps,
+      emitVisible: undefined
+    };
 
-const className = computed(() => {
-  const classNames = [modalPrefixCls]
-  if (vBind.type) {
-    classNames.push(modalPrefixCls + '-container-' + vBind.type)
-    classNames.push(modalPrefixCls + '-container-status')
-  }
-  return classNames
-})
+    const instance = getCurrentInstance();
+    if (instance) {
+      emit('register', modalMethods, instance.uid);
+    }
 
-const footerClassName = computed(() => {
-  const footerClassNames = [modalPrefixCls + '-footer']
-  switch(vBind.footerAlign) {
-    case 'left':
-      footerClassNames.push('text-left')
-      break;
-    case 'right':
-      footerClassNames.push('text-right')
-      break;
-    case 'center':
-      footerClassNames.push('text-center')
-      break;
-  }
-  return footerClassNames
-})
+    watchEffect(() => {
+      // console.log('props.visible: ', props.visible);
+      // console.log('unref(vBind).visible: ', unref(vBind).visible);
+      visibleRef.value = !!(unref(vBind).visible);
+    });
 
-const isSlotTitle = computed(() => {
-  return Object.keys(slots).includes('title')
-})
+    watch(
+      () => unref(visibleRef),
+      (v) => {
+        console.log('v: ', v);
+        emit('visible-change', v);
+        emit('update:visible', v);
+        instance && modalMethods.emitVisible?.(v, instance.uid);
+      },
+      {
+        immediate: false,
+      },
+    );
 
-const isSlotFooter = computed(() => {
-  return Object.keys(slots).includes('footer')
-})
-
-const isClose = computed(() => {
-  return Object.keys(slots).includes('closeIcon')
-})
-
-const closeVisible = async (e: Event) => {
-  e?.stopPropagation();
-  if (vBind.closeFunc && isFunction(vBind.closeFunc)) {
-    const isClose: boolean = await vBind.closeFunc();
-    emits('update:visible', isClose)
-    visibleRef.value = isClose
-    return;
-  }
-  visibleRef.value = false
-  emits('update:visible', false)
-}
-
-/**
- * @description: 设置modal参数
-*/
-function setModalProps(props: Partial<ModalProps>): void {
-  // Keep the last setModalProps
-  propsRef.value = deepMerge(unref(propsRef) || ({} as any), props);
-  console.log('propsRef: ', propsRef);
-  if (Reflect.has(props, 'visible')) {
-    visibleRef.value = !!props.visible;
-  }
-}
-
-const modalMethods: ModalMethods = {
-  setModalProps,
-  emitVisible: undefined
-};
-
-const instance = getCurrentInstance();
-if (instance) {
-  emits('register', modalMethods, instance.uid);
-}
-
-watchEffect(() => {
-  visibleRef.value = !!unref(vBind).visible;
-});
-
-watch(
-  () => unref(visibleRef),
-  (v) => {
-    emits('visible-change', v);
-    emits('update:visible', v);
-    instance && modalMethods.emitVisible?.(v, instance.uid);
+    // const modalTitleRef = ref<HTMLElement>()
+    // useModalDraggable(modalTitleRef, visibleRef, props, emit)
+    
+    return {
+      className,
+      getBindValue,
+      isClose,
+      isSlotTitle,
+      isSlotFooter,
+      footerClassName,
+      props: vBind,
+      modalPrefixCls,
+      visibleRef,
+      closeVisible
+    }
   },
-  {
-    immediate: false,
-  },
-);
-
-const modalTitleRef = ref<HTMLElement>()
-useModalDraggable(modalTitleRef, visibleRef, props, emits)
-
+})
 </script>
