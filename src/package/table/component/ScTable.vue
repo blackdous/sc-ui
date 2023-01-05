@@ -152,6 +152,7 @@
             :filterList="column.filterList || []"
             :overlayClassName="column.dataIndex + column.key"
             :column="column"
+            :filterLoading="column.filterLoading"
             :filterSelected="column.filterSelected"
             @filter="(item: FilterItem[], keys: string[]) => { filterDropDownClick(item, keys, confirm, column) }"
           >
@@ -232,7 +233,7 @@ export default defineComponent({
     ...TdComponents,
     ...THComponents
   },
-  emits: ['change', 'register'],
+  emits: ['register', 'onAction', 'searchClick', 'onAction', 'createClick', 'selectChange', 'multipleChange', 'refresh', 'filter'],
   setup(props, { attrs, slots, emit, expose }) {
     const tableRef = ref()
     const wrapRef = ref()
@@ -444,7 +445,7 @@ export default defineComponent({
     ) => {
       fetchParams.value = {...unref(fetchParams), pagination, sorter}
       onTableChange.call(null, pagination, unref(getFetchFilter), sorter)
-      emit('change', pagination, unref(getFetchFilter), sorter)
+      // emit('change', pagination, unref(getFetchFilter), sorter)
     };
 
     const multipleChangeHandle = (value: any) => {

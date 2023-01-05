@@ -2,6 +2,7 @@
 @tableFilterScope: ~'@{prefixCls}TableFilter';
 @tableActionsScope: ~'@{prefixCls}Actions';
 @tableDropdown: ~'@{prefixCls}TableDropdown';
+@tableFilterDropdown: ~'@{prefixCls}filterDropDown';
 
 .@{tableScope} {
   padding: @space-6;
@@ -80,6 +81,15 @@
     cursor: pointer;
     margin-right: 10px;
     color: @primary-color;
+  }
+}
+.scfilterDropDown {
+  &.isLoading {
+    display: flex;
+    min-width: 117px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
   }
 }
 .ant-table-scroll-position-right .ant-table-cell-fix-right-first:after, 
@@ -305,8 +315,8 @@
   line-break: 22px;
 }
 .tableEmpty {
-  min-height: 160px;
-  padding-top: 40%;
+  min-height: 260px;
+  padding-top: 45px;
   .tableEmpty-img {
     text-align: center;
     & img {

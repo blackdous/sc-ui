@@ -7,7 +7,7 @@ export interface FilterItem {
   isDisabled?: boolean,
   key?: string,
   loading?: boolean,
-  action: string | ((args: any) => void),
+  action?: string | ((args: any) => void),
   tooltip?: boolean,
   tooltipDes?: string,
   children?: Array<FilterItem>,
@@ -18,7 +18,13 @@ export const scFilterProps = () => ({
   filterList: Object as PropType<Array<FilterItem>>,
   overlayClassName: String,
   column: Object as PropType<Column>,
-  filterSelected: Array as PropType<FilterItem[]>
+  filterSelected: Array as PropType<FilterItem[]>,
+  filterLoading: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  }
 })
 
 export interface ColumnModalItem {
@@ -92,6 +98,7 @@ export interface FilterDropdownProps {
 export declare type CustomRenderFunction<T> = (record: RecordProps<T>) => VNodeChild | JSX.Element;
 
 export interface Column {
+  filterLoading?: boolean,
   label?: string,
   value?: [string, number],
   disabled?: boolean,

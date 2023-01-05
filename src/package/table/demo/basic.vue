@@ -9,6 +9,7 @@
       :create-button-options="{
         show: false
       }"
+      :pagination="false"
       :search-options="{
         show: true,
         showSelect: true,

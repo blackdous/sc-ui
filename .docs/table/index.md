@@ -17,7 +17,7 @@ realPath: src/package/table/index.zh-CN.md
   >
 </demo>
 
-<!-- ### 新增相关APi
+### 新增相关APi
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -903,4 +903,4 @@ export interface ActionProps {
   title="table头部操作按钮"
   desc="table头部操作按钮"
   >
-</demo> -->
+</demo>

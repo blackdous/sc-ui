@@ -99,24 +99,29 @@ const list = ref([
 // @ts-ignore
 const columns = ref([
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', 
-    slots: {
-      filterDropdown: 'filterDropdown',
-      filterIcon: 'filterIcon'
-    },
+    // slots: {
+    //   filterDropdown: 'filterDropdown',
+    //   filterIcon: 'filterIcon'
+    // },
     filtered: true,
     filterMultiple: true,
     filterList: () => list,
+    filterLoading: true,
     onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) }
   },
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
-    slots: {
-      filterDropdown: 'filterDropdown',
-      filterIcon: 'filterIcon'
-    },
-    filterMultiple: false,
-    filterList: () => list,
+    // slots: {
+    //   filterDropdown: 'filterDropdown',
+    //   filterIcon: 'filterIcon'
+    // },
+    // filterMultiple: false,
+    // filterList: () => list,
+    // filters: list,
+    filters: [{ text: 'aaa', value: 'aa1' }],
+    filtered: true,
+    filterMultiple: true,
     onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) },
     type: {
       componentName: 'tdEllipsis',
@@ -141,10 +146,11 @@ setTimeout(() => {
     // item.filterList = []
     if (index === 0) {
       item.filterList = unref(list).slice(0, 1)
+      item.filterLoading = false
     }
     return item
   })
-}, 2000)
+}, 5000)
 
 interface DataItem {
   key: string;

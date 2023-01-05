@@ -36,7 +36,28 @@ export function useColumn (
         if (isFunction(item.filterList)) {
           item.filterList = item.filterList({ propsRef: unref(propsRef), fetchParams: unref(fetchParams) })
         }
+        item.slots = {
+          ...item.slots,
+          filterDropdown: 'filterDropdown',
+            filterIcon: 'filterIcon'
+        }
       }
+      if (!item.filterList && item.filters && item.filters?.length) {
+        item.filterList = item.filters.map(item => {
+          return {
+            label: item.text,
+            // value: item.value,
+            key: item.value
+          }
+        })
+        item.slots = {
+          ...item.slots,
+          filterDropdown: 'filterDropdown',
+            filterIcon: 'filterIcon'
+        }
+      }
+      // console.log('item: ', item);
+      // item.filters = []
       return item
     })
     getColumnRef.value = newColumns
