@@ -7,8 +7,8 @@
       :loading="false"
       :actionsOptions="actionProps"
       @change="handleChange"
-      @onAction="handleAction"
       >
+      <!-- @onAction="handleAction" -->
     </ScTable>
   </div>
 </template>
@@ -123,8 +123,11 @@ const list = ref([
     },
     loading: false,
     key: 'ff',
-    action: '3333',
+    // action: '3333',
     tooltipDes: '1111111',
+    action: (data) => {
+      console.log('data: ', data);
+    }
   }, {
     label: '四级选项',
     isShow: true,

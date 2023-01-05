@@ -89,7 +89,7 @@
 </template>
 
 <script lang='ts'>
-import { computed, defineComponent, PropType, ref, defineExpose, unref, CSSProperties } from 'vue'
+import { computed, defineComponent, PropType, ref, unref, CSSProperties } from 'vue'
 import { Button, Select, SelectOption, Tooltip, InputSearch, InputGroup } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
 import cloneDeep from 'lodash/cloneDeep'
@@ -162,7 +162,7 @@ export default defineComponent({
     InputSearch,
     InputGroup
   },
-  setup(props, { slots, emit }) {
+  setup(props, { slots, emit, expose }) {
     const multipleValue = ref()
     const textValue = ref()
     const searchOptionsRef = ref()
@@ -226,6 +226,10 @@ export default defineComponent({
       set: (val) => {
         selectedItem.value = unref(searchOptions)?.typeList?.find((item: any)=> item.value === val)
         textValue.value = ''
+        validatorResult.value = {
+          result: true,
+          tip: ''
+        }
         emit('selectChange', val)
         emit('update:selectValue', val)
       }
@@ -334,7 +338,7 @@ export default defineComponent({
       emit('searchClick', { value: unref(val), type: unref(selectValue) })
     }
 
-    defineExpose({
+    expose({
       resetMutilp,
       resetSearch,
       clearAll

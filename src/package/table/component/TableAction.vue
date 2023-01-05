@@ -263,6 +263,7 @@ watch([() => props.record, () => props.actions], ([prospRecord, actions]) => {
 })
 
 const handle = (action: ActionItemProps) => {
+  console.log('action: ', action);
   if (action.isDisabled || action.loading) {
     return false
   }

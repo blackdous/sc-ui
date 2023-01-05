@@ -115,6 +115,7 @@
             :is="getTypeComponent(slotItem.type.componentName)"
             v-bind="{ ...slotProps, tableName: slotItem.type.componentName }"
             :key="slotItem.dataIndex"
+            
             v-on="{...getEvent(slotItem.type.componentName)}"
           />
         </template>
@@ -231,6 +232,7 @@ export default defineComponent({
     ...TdComponents,
     ...THComponents
   },
+  emits: ['change', 'register'],
   setup(props, { attrs, slots, emit, expose }) {
     const tableRef = ref()
     const wrapRef = ref()

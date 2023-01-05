@@ -1,7 +1,7 @@
 <template>
   <Tooltip
     :overlayClassName="newProps.column.type.props.className"
-    :id="`tb_${index}_${key}_ellipsis`"
+    :id="`tb_${String(index)}_${key}_ellipsis`"
   >
     <template #title>
       {{newProps.text}}
@@ -36,11 +36,11 @@ const props = () =>({
     default: ''
   },
   index: {
-    type: Number,
+    type: [String, Number],
     default: 0
   },
   key: {
-    type: String,
+    type: [String, Number],
     default: 0
   }
 })

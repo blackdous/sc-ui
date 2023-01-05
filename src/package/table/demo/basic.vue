@@ -59,6 +59,16 @@
           {{text}}1111
         </span>
       </template>
+      <template #tableActive>
+        <Tooltip>
+          <template #title>
+            aaaaaa
+          </template>
+          <span>
+            11111
+          </span>
+        </Tooltip>
+      </template>
     </ScTable>
   </div>
 </template>
@@ -68,6 +78,8 @@ import { ref, unref } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy } from 'sc-ui'
+import type { TooltipButtonPropsType } from 'sc-ui'
+import { Tooltip } from 'ant-design-vue'
 
 import '../../../style/index.less'
 
@@ -146,6 +158,15 @@ setTimeout(() => {
     handle: handleTd
     
   })
+  columns.push({  dataIndex: 'age4', key: 'age4', width: 160,
+    titleType: {
+      componentName: 'thDescribe3',
+      props: {
+        text: 'Column 7',
+        describe: 'Column 7'
+      }
+    }
+  })
   loading.value = true
   console.log('add end');
 
@@ -153,6 +174,42 @@ setTimeout(() => {
     loading.value = false
   }, 1000)
 }, 2000)
+
+const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
+  {
+    toolOptions: {},
+    tooltipDes: "测试tooltip",
+    label: '按钮A',
+    disabled: false,
+    value: 'a',
+    action: ({tableRef, selectedRowKeysRef, selectedRowRef}) => {
+      console.log('selectedRowRef: ', selectedRowRef);
+      console.log('tableRef, selectedRowKeysRef: ', tableRef, selectedRowKeysRef);
+    }
+  },
+  {
+    toolOptions: {},
+    tooltipDes: "",
+    label: '按钮B',
+    value: 'b'
+  },
+  {
+    toolOptions: {},
+    tooltipDes: "测试tooltip",
+    label: '按钮C',
+    value: 'c'
+  }
+])
+
+const promiseTypelist = new Promise ((resolve) => {
+    setTimeout(() => {
+      resolve(unref(radioList))
+    }, 1500)
+  }).then((data) => {
+    return data
+  }).catch(error => {
+    console.log('error: ', error);
+  })
 
 interface DataItem {
   key: string;
@@ -187,10 +244,20 @@ for(let i = 10; i < 11; i++) {
     address: 'New London',
   })
 }
+// @ts-ignore
+const refresh = ({tableRef, selectedRowKeysRef}) => {
+  scTableRef.value.setLoading(true)
+  console.log('tableRef: ', tableRef);
+  console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+}
 
 //@ts-ignore
 const handleChange = (pagination, filters, sorter, fetchParams) => {
   console.log('pagination, filters, sorter: ', pagination, filters, sorter, fetchParams);
+}
+
+const searchHanle = (data) => {
+  console.log('data: ', data);
 }
 
 
