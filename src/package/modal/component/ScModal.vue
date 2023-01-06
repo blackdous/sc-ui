@@ -6,16 +6,16 @@
     ref="modalRef"
   >
     <template #[item]="data" v-for="item in ['default']">
-      <div v-if="props.type" :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + props.type]">
+      <div v-if="curProps.type" :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + curProps.type]">
         <span v-if="props.type" :class="[modalPrefixCls + '-status-icon']">
-          <InfoCircleFilled v-if="props.type === 'info'" />
-          <CheckCircleFilled v-else-if="props.type === 'success'" />
-          <ExclamationCircleFilled v-else-if="props.type === 'warning'" />
-          <CloseCircleFilled v-else-if="props.type === 'error'" />
+          <InfoCircleFilled v-if="curProps.type === 'info'" />
+          <CheckCircleFilled v-else-if="curProps.type === 'success'" />
+          <ExclamationCircleFilled v-else-if="curProps.type === 'warning'" />
+          <CloseCircleFilled v-else-if="curProps.type === 'error'" />
         </span>
-        <span :class="[modalPrefixCls + '-txt']">
-          {{ props.infoDes }}
-        </span>
+        <p :class="[modalPrefixCls + '-txt']">
+          {{ curProps.infoDes }}
+        </p>
       </div>
       <div :class="[modalPrefixCls + '-content']">
         <slot :name="item" v-bind="data || {}" ></slot>
@@ -23,17 +23,17 @@
     </template>
     
     <template #title>
-      <header ref="modalTitleRef" :class="{'draggable-event': props?.isDraggable}">
+      <header ref="modalTitleRef" :class="{'draggable-event': curProps?.isDraggable}">
         <slot name="title" v-if="isSlotTitle"></slot>
         <span v-else>
-          {{ props.title }}
+          {{ curProps.title }}
         </span>
-        <span v-if="props.showTooltip" :class="[modalPrefixCls + '-tooltip']">
+        <span v-if="curProps.showTooltip" :class="[modalPrefixCls + '-tooltip']">
           <Tooltip
             overlayClassName="scTooltip-white"
           >
             <template #title>
-              {{ props.tooltipDes }}
+              {{ curProps.tooltipDes }}
             </template>
             <question-circle-outlined :class="[modalPrefixCls + '-tooltip__icon']" />
           </Tooltip>
@@ -45,20 +45,20 @@
       <div :class="footerClassName" v-if="!isSlotFooter">
         <slot name="insertFooter"></slot>
         <Button
-          :disabled="props.onCancelDisable"
+          :disabled="curProps.onCancelDisable"
           :class="[modalPrefixCls + '-footer__cancel']"
           @click="closeVisible"
         >
-          {{ props.cancelText }}
+          {{ curProps.cancelText }}
         </Button>
         <Button
-          :disabled="props.onCancelDisable"
-          :loading="props.confirmLoading"
+          :disabled="curProps.onCancelDisable"
+          :loading="curProps.confirmLoading"
           :class="[modalPrefixCls + '-footer__ok']"
           type="primary"
-          @click="props.onOk"
+          @click="curProps.onOk"
         >
-          {{props.okText}}
+          {{curProps.okText}}
         </Button>
       </div>
       <slot v-else name="footer"> </slot>
@@ -81,7 +81,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, ref, watchEffect, watch, unref, getCurrentInstance } from 'vue'
+import { defineComponent, computed, ref, watchEffect, watch, unref, nextTick, getCurrentInstance } from 'vue'
 // import type { CSSProperties } from 'vue'
 // import { useDraggable } from '@vueuse/core';
 import { useModalDraggable } from '../hooks/useModalDraggable'
@@ -121,11 +121,11 @@ export default defineComponent({
     })
 
     const visibleRef = ref(false)
-    const propsRef = ref<Partial<ModalProps> | null>(null);
+    const propsRef = ref();
 
     const curProps = computed(() => {
       return {
-        ...vBind,
+        ...unref(vBind),
         ...propsRef.value
       }
     })
@@ -144,8 +144,8 @@ export default defineComponent({
         }
       }, {})
       const attr = {
-        ...attrs,
         ...newProps,
+        ...attrs,
         visible: unref(visibleRef),
       };
       return attr
@@ -207,8 +207,9 @@ export default defineComponent({
     function setModalProps(props: Partial<ModalProps>): void {
       // Keep the last setModalProps
       propsRef.value = deepMerge(unref(propsRef) || ({} as any), props);
+      // console.log('propsRef: ', propsRef);
       if (Reflect.has(props, 'visible')) {
-        visibleRef.value = !!unref(vBind).visible;
+        visibleRef.value = !!props?.visible;
       }
     }
 
@@ -223,26 +224,31 @@ export default defineComponent({
     }
 
     watchEffect(() => {
-      // console.log('props.visible: ', props.visible);
-      // console.log('unref(vBind).visible: ', unref(vBind).visible);
       visibleRef.value = !!(unref(vBind).visible);
     });
 
+    const modalTitleRef = ref()
     watch(
       () => unref(visibleRef),
       (v) => {
-        console.log('v: ', v);
         emit('visible-change', v);
         emit('update:visible', v);
         instance && modalMethods.emitVisible?.(v, instance.uid);
+        if (v) {
+          const timer = setTimeout(() => {
+            nextTick(() => {
+              useModalDraggable(modalTitleRef, visibleRef, vBind, emit)
+              clearTimeout(timer)
+            })
+          }, 300)
+        }
       },
       {
         immediate: false,
       },
     );
-
-    // const modalTitleRef = ref<HTMLElement>()
-    // useModalDraggable(modalTitleRef, visibleRef, props, emit)
+    // onMounted(() => {
+    // })
     
     return {
       className,
@@ -254,6 +260,8 @@ export default defineComponent({
       props: vBind,
       modalPrefixCls,
       visibleRef,
+      modalTitleRef,
+      curProps,
       closeVisible
     }
   },

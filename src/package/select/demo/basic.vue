@@ -24,14 +24,16 @@
   <div class="mt20">
     <ScSelect
       v-model:value="value"
-      disabled
     >
-      <SelectOption value="jack">Jack</SelectOption>
-      <SelectOption value="jack1">Jack1</SelectOption>
-      <SelectOption value="jack2">Jack2</SelectOption>
-      <SelectOption value="jack3">Jack3</SelectOption>
-      <SelectOption value="jack4">Jack4</SelectOption>
-      <SelectOption value="jack5">Jack5</SelectOption>
+      <!-- <SelectOption value="jack">Jack</SelectOption>
+        <SelectOption value="jack2">Jack2</SelectOption>
+        <SelectOption value="jack3">Jack3</SelectOption>
+        <SelectOption value="jack4">Jack4</SelectOption>
+        <SelectOption value="jack5">Jack5</SelectOption> -->
+        <SelectOption v-for="item in list1" :value="item.value" :key="item.key">
+          {{item.label}}
+        </SelectOption>
+
     </ScSelect>
   </div>
 </template>
@@ -48,14 +50,28 @@ const handleChange = (val:string) => {
   console.log('val: ', val);
 }
 
-const list = ref<Array<{label: string, value: number}>>([])
+interface ListItem {
+  label: string, 
+  value: number, 
+  key: string
+}
+
+const list = ref<Array<ListItem>>([])
 
 for (let i = 0;i < 100;  i++) {
   list.value = [...unref(list), {
     label: 'Jack' + i,
-    value: i
+    value: i,
+    key: 'Jack' + i
   }]
 }
+
+const list1 = ref<Array<ListItem>>([])
+
+const timer = setTimeout(() => {
+  list1.value = list
+  clearTimeout(timer)
+}, 200)
 
 </script>
 

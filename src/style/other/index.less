@@ -159,3 +159,20 @@
   // border-radius: 10px;
   transition: all .2s ease-in-out;
 }
+
+.anticon-down {
+  position: relative;
+  &::after {
+    font-family: "sc-ui" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    content: "\e662";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: -1px;
+    background: #fff;
+  }
+}

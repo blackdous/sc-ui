@@ -297,7 +297,12 @@ export const tableProps = () => ({
   // 排序方法
   filterFn: Function as PropType<(data: Partial<Recordable<string[]>>) => any>,
 
-  pagination: Object as PropType<PaginationProps>,
+  pagination: {
+    type: [Object, Boolean] as PropType<PaginationProps | boolean>,
+    default () {
+      return true
+    }
+  },
   scroll: Object as PropType<ScrollProps>,
   dataSource: Array,
   isTreeTable: Boolean,
