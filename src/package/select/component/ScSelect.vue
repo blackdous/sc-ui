@@ -12,7 +12,7 @@
       @change="handleChange"
       @dropdownVisibleChange="dropdownVisibleChange"
     >
-      <!-- <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon', 'default'].includes(item))" :key="item">
+      <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon', 'default'].includes(item))" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
       </template> 
       <template v-if="newProps.optionMode === 'checkbox'" #dropdownRender>
@@ -51,7 +51,7 @@
       <template #default>
         <slot name="default"></slot>
         <SelectOption value="" :style="{minHeight: lastChildHeight, height: lastChildHeight}"></SelectOption>
-      </template> -->
+      </template>
     </Select>
   </div>
 </template>

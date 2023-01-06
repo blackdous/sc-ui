@@ -16,7 +16,7 @@ realPath: src/package/select/index.zh-CN.md
   >
 </demo>
 
-<!-- ## 组件大小
+## 组件大小
 
 <demo src="./demo/size.vue"
   language="vue"
@@ -38,7 +38,7 @@ realPath: src/package/select/index.zh-CN.md
   language="vue"
   title="PrefixIcon slot"
   >
-</demo> -->
+</demo>
 
 ## Api
 
