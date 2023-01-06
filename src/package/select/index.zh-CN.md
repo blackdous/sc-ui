@@ -15,7 +15,7 @@ map:
   >
 </demo>
 
-## 组件大小
+<!-- ## 组件大小
 
 <demo src="./demo/size.vue"
   language="vue"
@@ -37,7 +37,7 @@ map:
   language="vue"
   title="PrefixIcon slot"
   >
-</demo>
+</demo> -->
 
 ## Api
 

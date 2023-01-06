@@ -3,6 +3,8 @@
       :visible="visible === 1"
       title="Basic Modal"
       destroyOnClose
+      wrap-class-name="aaaaaa"
+      width="100px"
       @ok="handleOk"
       cancel-text="取消"
       ok-text="确认"
@@ -15,6 +17,7 @@
   <ScModal 
     :visible="visible === 2"
     title="Basic Modal"
+    wrap-class-name="bbbbb"
     destroyOnClose
     @ok="handleOk"
     @cancel="handleCancel"
@@ -22,10 +25,8 @@
     ok-text="确认"
     maskClosable
     >
-    <!-- @dragChange="handleDrag" -->
     <div>22222是文案限制长度，我是文案限制长度</div>
   </ScModal>
-  <!-- v-modal:visible="visible1" -->
   <ScModal
     v-model:visible="visible1"
     title="Basic Modal"

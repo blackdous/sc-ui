@@ -8,8 +8,8 @@
       :customFilter="true"
       :filterTag="true"
       @change="handleChange"
-      @filter="handleFilter"
       >
+      <!-- @filter="handleFilter" -->
     </ScTable>
   </div>
 </template>
@@ -107,9 +107,10 @@ const columns = ref([
     filterMultiple: true,
     filterList: () => list,
     filterLoading: true,
-    onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) }
   },
-  { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
+  { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
+    sorter: (a: DataItem, b: DataItem) => a.age - b.age,
+  },
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
     // slots: {
@@ -122,7 +123,6 @@ const columns = ref([
     filters: [{ text: 'aaa', value: 'aa1' }],
     filtered: true,
     filterMultiple: true,
-    onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) },
     type: {
       componentName: 'tdEllipsis',
       props: {

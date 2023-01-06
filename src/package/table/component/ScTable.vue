@@ -233,7 +233,7 @@ export default defineComponent({
     ...TdComponents,
     ...THComponents
   },
-  emits: ['register', 'onAction', 'searchClick', 'onAction', 'createClick', 'selectChange', 'multipleChange', 'refresh', 'filter'],
+  emits: ['change', 'register', 'onAction', 'searchClick', 'onAction', 'createClick', 'selectChange', 'multipleChange', 'refresh', 'filter'],
   setup(props, { attrs, slots, emit, expose }) {
     const tableRef = ref()
     const wrapRef = ref()
@@ -377,7 +377,8 @@ export default defineComponent({
         ...unref(getExpandOption),
         dataSource,
         loading: unref(getLoading),
-        pagination: toRaw(unref(getPaginationInfo))
+        pagination: toRaw(unref(getPaginationInfo)),
+        change: undefined
       }
     })
     const className = computed(() => {
@@ -445,7 +446,7 @@ export default defineComponent({
     ) => {
       fetchParams.value = {...unref(fetchParams), pagination, sorter}
       onTableChange.call(null, pagination, unref(getFetchFilter), sorter)
-      // emit('change', pagination, unref(getFetchFilter), sorter)
+      emit('change', pagination, unref(getFetchFilter), sorter)
     };
 
     const multipleChangeHandle = (value: any) => {

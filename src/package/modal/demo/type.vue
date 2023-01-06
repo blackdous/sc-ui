@@ -15,10 +15,10 @@
     <Button @click="() => { type = 'info'; openModal('infoinfoinfo') }">
       info
     </Button>
-    <Button @click="() => { type = 'success'; openModal('successsuccesssuccess') }">
+    <Button @click="() => { type = 'success'; openModal('successsuccesssuccesssuccesssuccesssuccesssuccesssuccesssuccesssuccesssuccesssuccesssuccesssuccesssuccess') }">
       success
     </Button>
-    <Button @click="() => { type = 'warning'; openModal('warningwarningwarningwarning') }">
+    <Button @click="() => { type = 'warning'; openModal('warningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarningwarning') }">
       warning
     </Button>
     <Button @click="() => { type = 'error'; openModal('errorerrorerrorerror') }">
