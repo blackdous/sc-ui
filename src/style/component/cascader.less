@@ -2,9 +2,9 @@
 .ant-cascader-menus {
   .ant-cascader-menu-item {
     min-width: calc(@input-x-width - 12px);
-    min-height: 28px;
-    line-height: 28px;
-    padding: 0 8px;
+    // min-height: 28px;
+    // line-height: 28px;
+    padding: 3px 8px;
     margin: 0 6px;
     border-radius: @border-r-3;
     color: @heading-color;
@@ -24,13 +24,27 @@
   font-weight: 400;
   .ant-cascader-menu-item-expand-icon {
     color: @primary-color;
+    .anticon-right {
+      display: inline-block;
+    }
   }
+}
+.ant-cascader-menu-item:not(.ant-cascader-menu-item-disabled):hover {
+  .ant-cascader-menu-item-expand-icon {
+    .anticon-right {
+      display: inline-block;
+    }
+  }
+}
+.ant-cascader-picker-arrow.ant-cascader-picker-arrow-expand {
+  transform: rotate(180deg) translateX(-4px);
 }
 .ant-cascader-picker-focused {
   .sc-xiangxia {
     display: inline-block;
-    transform: rotate(-180deg);
+    transform: rotate(180deg);
     color: @primary-color;
+    transition: 0.3s all;
   }
 }
 .ant-cascader-picker {

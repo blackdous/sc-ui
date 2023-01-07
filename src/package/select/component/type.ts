@@ -1,6 +1,6 @@
 import { VNodeChild, PropType } from 'vue'
 export const props = () => ({
-  value: Number,
+  value: [Number, String],
   disabled: {
     type: Boolean,
     default () {

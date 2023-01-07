@@ -60,9 +60,16 @@ export default defineConfig({
   vite: {
     plugins: [genTemp(), genApiDoc(),vueJsx()],
     resolve: {
-      alias: {
-        'sc-ui': resolve('./src/'),
-      },
+      alias: [
+        {
+          find: /^~/, 
+          replacement: '',
+        },
+        {
+          find: 'sc-ui',
+          replacement: resolve('./src/')
+        }
+      ]
     },
     css: {
       preprocessorOptions: {

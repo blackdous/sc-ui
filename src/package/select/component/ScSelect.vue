@@ -1,18 +1,19 @@
 <template>
-  <div :class="[baseClass, uuid, vBind.widthSize ? baseClass + '-' + vBind.widthSize : '', isPrefixIcon ? 'is-prefix' : '', newProps.disabled ? 'is-disabled' : '']" :style="{'--lastChild-height': lastChildHeight}">
+  <div :class="[ baseClass, uuid, vBind.widthSize ? baseClass + '-' + vBind.widthSize : '', isPrefixIcon ? 'is-prefix' : '', newProps.disabled ? 'is-disabled' : '']"
+  >
     <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
       <slot name="prefixIcon"></slot>
     </span>
     <Select
       :class="[isPrefixIcon ? 'is-prefix' : '']"
       v-bind="vBind"
-      v-model:value="value"
+      v-model:value="initValue"
       :disabled="newProps.disabled"
       :dropdownClassName="dropdownClassName"
       @change="handleChange"
-      @dropdownVisibleChange="dropdownVisibleChange"
-    >
-      <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon', 'default'].includes(item))" :key="item">
+      >
+      <!-- @dropdownVisibleChange="dropdownVisibleChange" -->
+      <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
       </template> 
       <template v-if="newProps.optionMode === 'checkbox'" #dropdownRender>
@@ -48,10 +49,6 @@
           </slot>
         </span>
       </template>
-      <template #default>
-        <slot name="default"></slot>
-        <SelectOption value="" :style="{minHeight: lastChildHeight, height: lastChildHeight}"></SelectOption>
-      </template>
     </Select>
   </div>
 </template>
@@ -65,8 +62,8 @@ import cloneDeep from 'lodash/cloneDeep'
 
 import { basePrefixCls } from '../../../constant'
 import { buildUUID } from '../../../utils'
-import { findParentDom, pxToRem } from '../../../utils/domHelper'
-import { props, SizePx } from './type'
+import { findParentDom } from '../../../utils/domHelper'
+import { props } from './type'
 
 export default defineComponent({
   name: 'ScSelect',
@@ -82,9 +79,10 @@ export default defineComponent({
   setup(props, { emit, slots, attrs }) {
     const baseClass = basePrefixCls + 'Select'
 
-    const initValue = computed(() => props.value)
-    const value = ref(unref(initValue))
-    const lastChildHeight = ref('0')
+    const initValue = ref()
+    watchEffect(() => {
+      initValue.value = props.value
+    })
     const newProps = computed(() => {
       return props
     })
@@ -93,26 +91,22 @@ export default defineComponent({
     const uuid = 'sc' + buildUUID()
     const vBind = computed(() => {
       let newOptions = cloneDeep(attrs.options)
-      if (newOptions) {
-        newOptions?.push({value: ''})
-      }
       return {
         ...unref(newProps),
         ...attrs,
         options: newOptions,
         dropdownStyle: {
           ...(attrs.dropdownStyle || {}),
-          '--lastChild-height': unref(lastChildHeight)
         }
       }
     })
     if (unref(newProps)?.optionMode === 'checkbox') {
       watchEffect(() => {
-        if (checkboxValue.value?.length > value.value?.length) {
+        if (checkboxValue.value?.length > initValue.value?.length) {
           emit('change', checkboxValue.value)
         }
-        value.value = checkboxValue.value
-        emit('value:update',  value.value)
+        initValue.value = checkboxValue.value
+        emit('value:update',  initValue.value)
       })
     }
 
@@ -157,34 +151,13 @@ export default defineComponent({
       return Object.keys(slots).includes('clearIcon')
     })
 
-    const dropdownVisibleChange = (val: boolean) => {
-      if (!val) {
-        return false
-      }
-      nextTick(() => {
-        const timer = setTimeout(() => {
-          const dropdownItemContainer = document.querySelector(`.dropdown${uuid} .rc-virtual-list-holder > div`)
-          if (dropdownItemContainer) {
-            const preHeight = parseInt(dropdownItemContainer?.style?.height || 0) / SizePx[attrs.size || 'default']
-            lastChildHeight.value = pxToRem(preHeight * 0.18)
-            // lastChildHeight.value = preHeight * 0.18 + 'px'
-            if (!preHeight) {
-              return false
-            }
-          }
-          clearTimeout(timer)
-  
-        }, 300)
-      })
-    }
-
     onMounted(() => {
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
       dom && dom.addEventListener('mousedown', (event) => {
         const isParent = findParentDom(event.target, 5, (dom) => { return String(dom.className).includes('clearSelect') ? dom : false })
         if (isParent) {
           checkboxValue.value = undefined
-          emit('allowClear', value.value)
+          emit('allowClear', initValue.value)
         }
       })
     })
@@ -193,17 +166,15 @@ export default defineComponent({
       uuid,
       baseClass,
       newProps,
-      value,
+      initValue,
       isSuffixIcon,
       isPrefixIcon,
       isClearIcon,
       dropdownClassName,
       checkboxValue,
       checkboxOptions,
-      lastChildHeight,
       vBind,
       handleChange,
-      dropdownVisibleChange
     }
   }
 })

@@ -3,17 +3,6 @@
   color: @primary-color;
   cursor: pointer;
 }
-// .scTooltip-white {
-//   .ant-tooltip-inner {
-//     color: #333;
-//     background-color: @white-color !important;
-//   }
-
-//   .ant-tooltip-arrow-content {
-//     background-color: @white-color !important;
-//   }
-// }
-
 .colBtn {
   display: flex;
   flex-wrap: wrap;
@@ -111,6 +100,10 @@
     font-size: 15px;
     padding-left: 4px;
     color: @disabled-color;
+    cursor: pointer;
+    &:hover {
+      color: @primary-color;
+    }
   }
 }
 
@@ -159,20 +152,69 @@
   // border-radius: 10px;
   transition: all .2s ease-in-out;
 }
+.ant-select, .ant-dropdown-trigge, .ant-cascader-picker, .ant-cascader-menus {
+  // .ant-select-arrow {
+  //   z-index: 10;
+  // }
+  .anticon-down, .anticon-right {
+    // position: relative;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    svg {
+      display: none!important;
+    }
+    &::after {
+      content: "\e662";
+      font-family: "sc-ui" !important;
+      font-size: 16px;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+      position: absolute;
+      left: 0;
+      line-height: 16px;
+      top: -2px;
+      color: @text-color-secondary;
+    }
+  }
+  .anticon-right {
+    &::after {
+      line-height: 10px;
+      transform: rotate(-90deg);
+      top: 6px;
+    }
+  }
+}
+.ant-select-clear {
+  z-index: 11;
+}
 
-.anticon-down {
-  position: relative;
-  &::after {
-    font-family: "sc-ui" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    content: "\e662";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: -1px;
-    background: #fff;
+.ant-cascader-menu-item-expand-icon {
+  .anticon-right {
+    display: none;
+    &::after {
+      font-size: 18px;
+    }
+  }
+}
+
+.ant-dropdown-trigger, .ant-dropdown-link {
+  & > .anticon.anticon-down {
+    transform: none;
+  }
+}
+.ant-breadcrumb-overlay-link {
+  .anticon.anticon-down {
+    transform: none;
+    &::after {
+      top: 4px;
+    }
+  }
+  &.ant-dropdown-open {
+    .anticon.anticon-down {
+      &::after {
+        color: @primary-color;
+      }
+    }
   }
 }

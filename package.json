@@ -111,6 +111,7 @@
     "@sincerecloud/sc-ui": "^0.0.27",
     "ant-design-vue": "2.2.8",
     "deepmerge": "^4.2.2",
+    "less-loader": "7.3.0",
     "patch-vue-directive-ssr": "^0.0.1",
     "resize-observer-polyfill": "^1.5.1",
     "vue-slider-component": "4.1.0-beta.7"

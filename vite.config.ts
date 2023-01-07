@@ -15,7 +15,10 @@ export default ({ command }: ConfigEnv): UserConfig => {
 
   return {
     resolve: {
-      alias: [{ find: '@', replacement: resolve(__dirname, './src') }]
+      alias: [
+        { find: /^~/, replacement: '' },
+        { find: '@', replacement: resolve(__dirname, './src') }
+      ]
     },
     build: {
       lib: {
@@ -58,7 +61,7 @@ export default ({ command }: ConfigEnv): UserConfig => {
     css: {
       preprocessorOptions: {
         less: {
-          modifyVars: themeVariables,
+          // modifyVars: themeVariables,
           javascriptEnabled: true
         },
       },

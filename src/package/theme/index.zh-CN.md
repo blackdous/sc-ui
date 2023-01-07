@@ -54,7 +54,7 @@ map:
 
 @disabled-bg-color: #EEEEEE; // 禁选颜色
 
-@shadow-color: 0px 4px 4px rgb(35 166 243 / 8%), 0px 0px 6px #e4e8ed;
+@shadow-outset-color: 0px 4px 4px rgb(35 166 243 / 8%), 0px 0px 6px #e4e8ed;
 
 @primary-shadow: 0px 0px 8px rgba(0, 140, 211, 0.5); // 祖逖渐变色
 

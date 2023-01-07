@@ -24,8 +24,8 @@
         border: none;
         font-size: 26px;
         position: relative;
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
         i.sc-ui {
           box-shadow: @error-shadow;
           border-radius: 50%;
@@ -34,9 +34,9 @@
         &::after {
           position: absolute;
           content: '';
-          width: 110%;
-          height: 110%;
-          box-shadow: @shadow-color;
+          width: 100%;
+          height: 100%;
+          box-shadow: @shadow-outset-color;
         }
       }
     }
@@ -47,8 +47,8 @@
         position: relative;
         border: none;
         font-size: 26px;
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
         // box-shadow: @primary-shadow;
         i.sc-ui {
           box-shadow: @primary-shadow;
@@ -59,10 +59,11 @@
         &::after {
           position: absolute;
           content: '';
-          width: 110%;
-          height: 110%;
+          width: 100%;
+          height: 100%;
           border-radius: 50%;
-          box-shadow: @shadow-color;
+          box-shadow: @shadow-outset-color;
+          background: @bg-color;
         }
       }
     }
@@ -90,6 +91,8 @@
       font-size: 26px;
     }
     .sc-ui {
+      position: absolute;
+      z-index: 2;
       font-size: 26px;
     }
   }
@@ -217,9 +220,9 @@
   }
   &.simple {
     flex-basis: auto!important;
-    padding-left: 30px;
+    padding-left: 28px;
     .scStep-arrow {
-      padding-left: 30px;
+      padding-left: 28px;
     }
     &:first-child {
       padding-left: 0;
@@ -244,10 +247,10 @@
           &::after {
             position: absolute;
             content: '';
-            width: 110%;
-            height: 110%;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            box-shadow: @shadow-color;
+            box-shadow: @shadow-outset-color;
             z-index: 1;
           }
         }
@@ -263,10 +266,10 @@
           &::after {
             position: absolute;
             content: '';
-            width: 110%;
-            height: 110%;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            box-shadow: @shadow-color;
+            box-shadow: @shadow-outset-color;
           }
         }
       }
@@ -274,8 +277,8 @@
 
     .scStep-icon {
       background: transparent;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       font-size: 26px;
       vertical-align: middle;
     }
@@ -370,15 +373,15 @@
         font-size: 16px;
         position: relative;
         border-radius: 20px;
-        width: 30px;
-        height: 30px;
+        width: 32px;
+        height: 32px;
         &::after {
           position: absolute;
           content: '';
-          width: 110%;
-          height: 110%;
+          width: 100%;
+          height: 100%;
           border-radius: 50%;
-          box-shadow: @shadow-color;
+          box-shadow: @shadow-outset-color;
           z-index: 1;
         }
         color: @bg-color;
@@ -395,16 +398,19 @@
     }
     .scStep-head {
       &.is-wait {
+        .scStep-title {
+          font-weight: 300;
+        }
         .scStep-icon:not(.is-icon) {
           font-size: 16px;
           border-radius: 50%;
           color: @bg-color;
           .@{stepScope}__icon-inner {
-            width: 22px;
-            height: 22px;
+            width: 26px;
+            height: 26px;
             background: @steps-wait-color;
             border-radius: 50%;
-            line-height: 22px;
+            line-height: 26px;
             font-size: 16px;
           }
         }
@@ -415,7 +421,7 @@
     display: flex;
     .scStep-head {
       flex-grow: 0;
-      width: 30px;
+      width: 32px;
       // &.is-success {
       //   // .scStep-line {
       //   //   background: @steps-success-color;

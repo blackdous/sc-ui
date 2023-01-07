@@ -215,7 +215,7 @@
     right: -4px;
     bottom: -4px;
     border-radius: inherit;
-    box-shadow: @shadow-color;
+    box-shadow: @shadow-outset-color;
     z-index: 1;
   }
   &:hover, &:active, &:focus {
@@ -236,6 +236,9 @@
   }
   &:not([disabled]).actionBtn {
     color: @heading-color;
+  }
+  &:not([disabled]) {
+    color: @primary-color;
   }
 }
 

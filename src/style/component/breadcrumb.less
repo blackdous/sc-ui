@@ -5,9 +5,29 @@
   font-size: 14px;
   line-height: 22px;
   color: @text-color-secondary;
-  & > span:last-child {
-    color: @heading-color;
-    font-weight: bold;
+  & > span {
+    &:last-child {
+      color: @heading-color;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    &:not([disabled]) {
+      .ant-breadcrumb-link {
+        cursor: pointer;
+        &:hover {
+          color: @primary-color;
+        }
+        a {
+          color: @disabled-color;
+          &:hover {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+    &[disabled] {
+      cursor: not-allowed;
+    }
   }
   .ant-breadcrumb-separator {
     margin: 0 4px;

@@ -17,34 +17,47 @@
     <ScSelect
       v-model:value="value"
       :options="list"
+      disabled
       @change="handleChange"
     >
     </ScSelect>
   </div>
   <div class="mt20">
     <ScSelect
-      v-model:value="value"
+      v-model:value="valueAsync"
+      :allow-clear="true"
     >
-      <!-- <SelectOption value="jack">Jack</SelectOption>
-        <SelectOption value="jack2">Jack2</SelectOption>
-        <SelectOption value="jack3">Jack3</SelectOption>
-        <SelectOption value="jack4">Jack4</SelectOption>
-        <SelectOption value="jack5">Jack5</SelectOption> -->
-        <SelectOption v-for="item in list1" :value="item.value" :key="item.key">
-          {{item.label}}
-        </SelectOption>
-
+      <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
+        {{item.label}}
+      </SelectOption>
     </ScSelect>
+    <Select
+      v-model:value="valueAsync"
+      :allow-clear="true"
+    >
+      <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
+        {{item.label}}
+      </SelectOption>
+    </Select>
+    <Select
+      v-model:value="valueAsync"
+      disabled
+    >
+      <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
+        {{item.label}}
+      </SelectOption>
+    </Select>
   </div>
 </template>
 
 <script lang='ts' setup>
-import { ref, unref } from 'vue'
-import { SelectOption } from 'ant-design-vue'
+import { ref, unref, onMounted } from 'vue'
+import { SelectOption, Select } from 'ant-design-vue'
 import { ScSelect } from 'sc-ui'
 import '../../../style/index.less'
 
 const value = ref('jack1')
+const valueAsync = ref()
 
 const handleChange = (val:string) => {
   console.log('val: ', val);
@@ -58,6 +71,23 @@ interface ListItem {
 
 const list = ref<Array<ListItem>>([])
 
+const listAsync = ref<any>([])
+
+const mockFetch = () => {
+  return new Promise(function(resolve){
+    setTimeout(function(){
+      let result = [...new Array(100).keys()].map((i) => {
+        return {
+          label: 'Async' + i,
+          value: i + '',
+          key: 'Async' + i
+        }
+      })
+      resolve(result);
+    },2000);
+  });
+}
+
 for (let i = 0;i < 100;  i++) {
   list.value = [...unref(list), {
     label: 'Jack' + i,
@@ -66,12 +96,20 @@ for (let i = 0;i < 100;  i++) {
   }]
 }
 
-const list1 = ref<Array<ListItem>>([])
+const fetchList = () => {
+  console.log(listAsync.value);
+  
+  mockFetch().then((res:any)=> {
+    console.log(res);
+    console.log(res[0]);
+    listAsync.value = res
+    valueAsync.value = res[0].value
+  })
+}
 
-const timer = setTimeout(() => {
-  list1.value = list
-  clearTimeout(timer)
-}, 200)
+onMounted(() => {
+  fetchList()
+})
 
 </script>
 

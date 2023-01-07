@@ -10,6 +10,16 @@
     </ScCascader>
   </div>
   <div class="mt20">
+    <Cascader
+      v-model:value="value"
+      :defaultValue="['jiangsu', 'nanjing', 'zhonghuamen']"
+      :options="options"
+      @change="handleChange"
+    >
+      
+    </Cascader>
+  </div>
+  <div class="mt20">
     <ScCascader
       v-model:value="value"
       disabled
@@ -22,6 +32,7 @@
 import { ref } from 'vue'
 // import { SelectOption } from 'ant-design-vue'
 import { ScCascader } from 'sc-ui'
+import { Cascader } from 'ant-design-vue'
 import '../../../style/index.less'
 
 const value = ref()
@@ -39,7 +50,6 @@ const options: Option[] = [
   {
     value: 'zhejiang',
     label: 'Zhejiang',
-    disabled: true,
     children: [
       {
         value: 'hangzhou',
@@ -69,6 +79,10 @@ const options: Option[] = [
       },
     ],
   },
+  {
+    value: 'xianggang',
+    label: 'xianggang',
+  }
 ];
 
 </script>
