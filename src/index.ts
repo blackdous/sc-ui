@@ -24,7 +24,7 @@ import { ScCascader } from './package/cascader'
 import { ScBreadcrumb } from './package/breadcrumb'
 import { useMessage } from './hooks'
 import { ScSlider } from './package/slider'
-import { ScDescription } from './package/description'
+import { ScDescription, useDescription } from './package/description'
 
 import { installGlobalDirectives } from './directives'
 import ClickOutside from './directives/clickOutside'
@@ -111,7 +111,8 @@ export {
   useModal, 
   useModalInner,
   useModalContext,
-  useMessage
+  useMessage,
+  useDescription
 }
 
 export default ScUi;

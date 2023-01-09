@@ -6,40 +6,15 @@
       :column="4"
       :data="mockData"
       :schema="schema"
-      layout="vertical"
       :bordered="false"
-      >
+    >
+      <!-- layout="vertical" -->
 
     </ScDescription>
     <ScDescription
-      title="基础示例2"
-      :collapseOptions="{ canExpand: true, describe: 'help me' }"
-      :column="4"
-      :data="mockData"
-      :schema="schema"
-      :bordered="false"
-      >
-
-    </ScDescription>
-    <ScDescription
-      title="基础示例3"
-      :collapseOptions="{ canExpand: true, describe: 'help me' }"
-      :column="4"
-      :data="mockData"
-      layout="vertical"
-      :schema="schema"
-      :bordered="false"
-      >
-
-    </ScDescription>
-    <ScDescription
-      title="基础示例4"
-      :collapseOptions="{ canExpand: true, describe: 'help me' }"
-      :column="4"
-      :data="mockData"
-      :schema="schema"
-      :bordered="false"
-      >
+      @register="register"
+    >
+      <!-- layout="vertical" -->
 
     </ScDescription>
   </div>
@@ -47,7 +22,7 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { ScDescription } from 'sc-ui'
+import { ScDescription, useDescription } from 'sc-ui'
 import '../../../style/index.less'
 
 const mockData: Recordable = {
@@ -86,6 +61,11 @@ const mockData: Recordable = {
       label: '地址',
     },
   ];
+  const [register] = useDescription({
+    title: 'useDescription',
+    data: mockData,
+    schema: schema,
+  });
 </script>
 
 <style lang="less" scoped>

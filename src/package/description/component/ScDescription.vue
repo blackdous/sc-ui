@@ -20,7 +20,7 @@
       validator: (v:string) => ['small', 'default', 'middle', undefined].includes(v),
       default: 'small',
     },
-    bordered: { type: Boolean, default: true },
+    bordered: { type: Boolean, default: false },
     column: {
       type: [Number, Object] as PropType<number | Recordable>,
       default: () => {

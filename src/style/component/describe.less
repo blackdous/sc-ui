@@ -2,7 +2,10 @@
 @DescriptionScope: ~'@{prefixCls}Description';
 
 .@{CollapseScope} {
-  padding: 28px 23px 32px;
+  padding: 28px 0 32px;
+  & + .@{CollapseScope} {
+    border-top: 1px solid fade(#000, 6%);
+  }
   &-header {
     display: flex;
     justify-content: space-between;
@@ -12,7 +15,7 @@
   &-title {
     font-family: 'PingFang SC';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
     color: @heading-color;
     .sc-question-circle {
@@ -22,7 +25,7 @@
   &-action {
     .sc-xiangxia {
       display: inline-block;
-      padding: 5px 10px;
+      padding: 0 10px;
       cursor: pointer;
       transform: rotate(0);
       transition: all 0.5s;
@@ -53,7 +56,8 @@
     line-height: 14px;
     color: @text-color-secondary;
     &::after {
-      display: none;
+      // display: none;
+      content: '';
     }
   }
   .ant-descriptions-item-content {
@@ -68,7 +72,7 @@
     padding-bottom: 6px;
     background: transparent;
   }
-  &.ant-descriptions-small .ant-descriptions-row > td {
+  &.ant-descriptions-small .ant-descriptions-row:not(:last-child) > td {
     padding-bottom: 18px;
     background: transparent;
   }
