@@ -14,6 +14,7 @@ export * from './uuid'
 export * from './tsxHelper'
 export * from './domUtils'
 export * from './event/index'
+export * from './dateUtil'
 
 export const withInstall = <T>(component: T, alias?: string) => {
   const comp = component as any

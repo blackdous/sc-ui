@@ -211,10 +211,13 @@ export interface ActiveOptions {
     show?: boolean,
     isDisabled?: boolean
   },
-  // customActiveList: Array<VNode | { text?: string,
+  // customActiveList: Array<VNode | { 
+  //   icon?: string | VNode,
+  //   text?: string,
   //   show?: boolean,
   //   isDisabled?: boolean,
-  //   action?: Fn }>
+  //   action?: Fn 
+  // }>
 }
 
 

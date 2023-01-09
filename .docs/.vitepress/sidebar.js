@@ -36,6 +36,7 @@ export const sidebar = {
     {
       text: 'Data Entry',
       items: [
+        { text: 'Form', link: '/en/form/' },
         { text: 'Radio', link: '/en/radio/' },
         { text: 'Input', link: '/en/input/' },
         { text: 'Checkbox', link: '/en/checkbox/' },
@@ -109,6 +110,7 @@ export const sidebar = {
     {
       text: '数据录入',
       items: [
+        { text: '表单', link: '/form/' },
         { text: '单选框', link: '/radio/' },
         { text: '输入框', link: '/input/' },
         { text: '复选框', link: '/checkbox/' },

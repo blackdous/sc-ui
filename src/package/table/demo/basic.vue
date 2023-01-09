@@ -30,23 +30,25 @@
         reload: {
           text: '刷新',
           show: true,
-          showTooltip: true,
           action: refresh
         },
         columnDialog: {
           text: '定制列',
           show: true,
-          showTooltip: true
         },
         download: {
           text: '下载',
           show: true,
-          showTooltip: true,
           href: ''
         },
-        customActiveList: [
-          // h(Tooltip, { title: '其他Icon' }, [h(Button, { disabled: false }, [h('i', { class: 'sc-ui sc-sync'})])])
-        ]
+        // customActiveList: [
+        //   {
+        //     text: '刷新',
+        //     show: true,
+        //     action: refresh
+        //   }
+        //   // h(Tooltip, { title: '其他Icon' }, [h(Button, { disabled: false }, [h('i', { class: 'sc-ui sc-sync'})])])
+        // ]
       }"
       @change="handleChange"
       >
@@ -86,6 +88,7 @@ import type { TooltipButtonPropsType } from 'sc-ui'
 import { Tooltip, Button } from 'ant-design-vue'
 
 import '../../../style/index.less'
+import { Icon } from '@iconify/vue'
 
 const loading = ref(false)
 // const globalApp = inject('globalApp')

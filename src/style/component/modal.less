@@ -155,6 +155,23 @@
       padding: 32px 32px 24px;
     }
   }
+  .ant-modal-confirm-btns {
+    & > button:first-child {
+      background: @btn-info-bg;
+      border-color: @btn-info-bg;
+      &:hover {
+        background: @border-color-base;
+        border-color: @border-color-base;
+        color: @heading-color;
+      }
+      &:focus,
+      &:active {
+        color: @heading-color;
+        background: @btn-active-color;
+        border-color: @btn-active-color;
+      }
+    }
+  }
   &-success {
     .ant-modal-confirm-body > .anticon {
       color: @success-color;

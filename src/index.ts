@@ -25,6 +25,16 @@ import { ScBreadcrumb } from './package/breadcrumb'
 import { useMessage } from './hooks'
 import { ScSlider } from './package/slider'
 import { ScDescription, useDescription } from './package/description'
+import { 
+  ScForm,
+  ApiSelect,
+  RadioButtonGroup,
+  ApiTreeSelect,
+  ApiTree,
+  ApiRadioGroup,
+  ApiCascader,
+  useForm
+} from './package/form'
 
 import { installGlobalDirectives } from './directives'
 import ClickOutside from './directives/clickOutside'
@@ -59,7 +69,14 @@ const components = [
   ScCascader,
   ScBreadcrumb,
   ScSlider,
-  ScDescription
+  ScDescription,
+  ScForm,
+  ApiSelect,
+  RadioButtonGroup,
+  ApiTreeSelect,
+  ApiTree,
+  ApiRadioGroup,
+  ApiCascader
 ]
 
 const install = (app: App) => {
@@ -97,7 +114,14 @@ export {
   ScCascader,
   ScBreadcrumb,
   ScSlider,
-  ScDescription
+  ScDescription,
+  ScForm,
+  ApiSelect,
+  RadioButtonGroup,
+  ApiTreeSelect,
+  ApiTree,
+  ApiRadioGroup,
+  ApiCascader
 }
 
 export * from './types'
@@ -112,7 +136,8 @@ export {
   useModalInner,
   useModalContext,
   useMessage,
-  useDescription
+  useDescription,
+  useForm
 }
 
 export default ScUi;

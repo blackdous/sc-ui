@@ -72,7 +72,7 @@ realPath: src/package/modal/index.zh-CN.md
   >
 </demo>
 
-## 可拖拽的
+<!-- ## 可拖拽的
 
 <demo src="./demo/draggable.vue"
   language="vue"
@@ -219,7 +219,7 @@ changeLoading(true);
 
 #### setModalProps
 
-用于更改 modal 的 props 参数因为 modal 内容独立成组件，如果在外部页面需要更改 props 可能比较麻烦，所以提供 `setModalProps` 方便更改内部 modal 的 props
+用于更改 modal 的 props 参数因为 modal 内容独立成组件，如果在外部页面需要更改 props 可能比较麻烦，所以提供 `setModalProps` 方便更改内部 modal 的 props -->
 
 ## API
 

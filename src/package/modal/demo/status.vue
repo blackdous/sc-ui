@@ -37,13 +37,19 @@ const openModal = (infoDes: string) => {
   // visible.value = true
   switch (infoDes) {
     case 'info':
-      Modal.info({
+      Modal.confirm({
+        type: 'info',
         title: () => 'This is a notification message',
         icon: () => createVNode(InfoCircleFilled),
         content: () => h('div', {}, [
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
         ]),
+        cancelText: '取消',
+        okText: '确认',
+        onCancel () {
+          console.log('cancel');
+        },
         onOk() {
           console.log('ok');
         },
@@ -57,6 +63,8 @@ const openModal = (infoDes: string) => {
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
         ]),
+        cancelText: '取消',
+        okText: '确认',
       });
       break;
     case 'warning':
@@ -64,6 +72,8 @@ const openModal = (infoDes: string) => {
         title: () => 'This is a warning message',
         icon: () => createVNode(ExclamationCircleFilled),
         content: () => 'some messages...some messages...',
+        cancelText: '取消',
+        okText: '确认',
       });
       break;
     case 'error':
@@ -71,15 +81,17 @@ const openModal = (infoDes: string) => {
         title: () => 'This is an error message',
         icon: () => createVNode(CloseCircleFilled),
         content: () => 'some messages...some messages...',
+        cancelText: '取消',
+        okText: '确认',
       });
       break
   }
 }
 
-const handleOk = (e: MouseEvent) => {
+// const handleOk = (e: MouseEvent) => {
   // console.log(e);
   // visible.value = false;
-};
+// };
 
 </script>
 

@@ -1,7 +1,7 @@
 ---
 map:
-  path: /alert
-realPath: src/package/alert/index.en-US.md
+  path: /form
+realPath: src/package/form/index.en-US.md
 ---
 
 ## Guide
