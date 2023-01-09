@@ -210,7 +210,11 @@ export interface ActiveOptions {
     text?: string,
     show?: boolean,
     isDisabled?: boolean
-  }
+  },
+  // customActiveList: Array<VNode | { text?: string,
+  //   show?: boolean,
+  //   isDisabled?: boolean,
+  //   action?: Fn }>
 }
 
 

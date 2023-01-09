@@ -4,7 +4,7 @@
       <template #message>
         <div>
           这是一条普通的消息提示
-          <Button type="link" @click="gotoLink">相关操作</Button>
+          <Button type="link" size="small" @click="gotoLink">相关操作</Button>
         </div>
       </template>
     </ScAlert>
@@ -12,7 +12,7 @@
       <template #message>
         <div>
           这是一条成功的消息提示
-          <Button type="link" @click="gotoLink">相关操作</Button>
+          <Button type="link" size="small" @click="gotoLink">相关操作</Button>
         </div>
       </template>
     </ScAlert>
@@ -20,7 +20,7 @@
       <template #message>
         <div>
           这是一条警示的消息提示
-          <Button type="link" @click="gotoLink">相关操作</Button>
+          <Button type="link" size="small" @click="gotoLink">相关操作</Button>
         </div>
       </template>
     </ScAlert>
@@ -28,7 +28,7 @@
       <template #message>
         <div>
           高危操作/出错信息提示
-          <Button type="link" @click="gotoLink">相关操作</Button>
+          <Button type="link" size="small" @click="gotoLink">相关操作</Button>
         </div>
       </template>
     </ScAlert>

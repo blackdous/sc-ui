@@ -152,6 +152,8 @@
   // border-radius: 10px;
   transition: all .2s ease-in-out;
 }
+
+// 覆盖 ant-design-vue icon 图标 样式 开始 **********************************
 .ant-select, .ant-dropdown-trigge, .ant-cascader-picker, .ant-cascader-menus {
   .ant-select-arrow {
     z-index: 1;
@@ -185,9 +187,6 @@
     }
   }
 }
-.ant-select-clear {
-  z-index: 11;
-}
 
 .ant-cascader-menu-item-expand-icon {
   .anticon-right {
@@ -218,3 +217,26 @@
     }
   }
 }
+
+.anticon-close {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  svg {
+    display: none!important;
+  }
+  &::after {
+    content: "\e65c";
+    font-family: "sc-ui" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    left: 0;
+    line-height: 16px;
+    top: -2px;
+    color: @text-color-secondary;
+  }
+}
+// 覆盖 ant-design-vue icon 图标 样式 结束 **********************************

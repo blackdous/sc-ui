@@ -1,20 +1,27 @@
 @alertScope: ~'@{prefixCls}Alert';
-.@{alertScope} {
-  &.ant-alert {
-    border-radius: 4px;
-    padding: 10px 20px;
-    border-color: transparent;
-  }
+.@{alertScope}, .ant-alert {
+  border-radius: 4px;
+  padding: 10px 20px;
+  border-color: transparent;
   .ant-alert-icon {
-    font-size: 16px;
+    font-size: 18px;
+    align-self: flex-start;
+  }
+  &:not(.ant-alert-with-description) {
+    .ant-alert-icon {
+      padding: 2px 0;
+    }
   }
   &.ant-alert-with-description {
     .ant-alert-message {
       font-size: @font-size-base;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 400;
       color: @heading-color;
     }
     .ant-alert-icon {
-      margin-top: 2px;
+      margin-top: -2px;
       font-size: 18px;
     }
     .ant-alert-close-icon {

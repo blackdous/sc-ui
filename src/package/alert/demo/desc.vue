@@ -8,7 +8,7 @@
     >
       <template #message>
         这是一条普通的消息提示
-        <Button type="link" @click="gotoLink">相关操作</Button>
+        <Button type="link" size="small" @click="gotoLink">相关操作</Button>
       </template>
       <template #icon>
         <InfoCircleFilled/>

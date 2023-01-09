@@ -43,7 +43,10 @@
           show: true,
           showTooltip: true,
           href: ''
-        }
+        },
+        customActiveList: [
+          // h(Tooltip, { title: '其他Icon' }, [h(Button, { disabled: false }, [h('i', { class: 'sc-ui sc-sync'})])])
+        ]
       }"
       @change="handleChange"
       >
@@ -60,7 +63,7 @@
           {{text}}1111
         </span>
       </template>
-      <template #tableActive>
+      <!-- <template #tableActive>
         <Tooltip>
           <template #title>
             aaaaaa
@@ -69,18 +72,18 @@
             11111
           </span>
         </Tooltip>
-      </template>
+      </template> -->
     </ScTable>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, unref } from 'vue'
+import { ref, unref, h } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
-import { Tooltip } from 'ant-design-vue'
+import { Tooltip, Button } from 'ant-design-vue'
 
 import '../../../style/index.less'
 
