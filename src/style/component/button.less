@@ -3,7 +3,7 @@
   color: @heading-color;
   // padding: 4px 16px;
   .scButton-icon {
-    margin-right: 6px;
+    // margin-right: 6px;
     vertical-align: middle;
     line-height: initial;
   }
@@ -206,23 +206,26 @@
   background-color: @shadow-bg-color;
   border: none;
   color: @white-color;
-  box-shadow: @primary-shadow;
-  &::after {
-    position: absolute;
-    content: '';
-    left: -4px;
-    top: -4px;
-    right: -4px;
-    bottom: -4px;
+  background-color: @bg-color;
+  box-shadow: @shadow-outset-filter-color;
+  padding: 4px;
+  & > span {
+    background: @primary-color;
     border-radius: inherit;
-    box-shadow: @shadow-outset-color;
-    z-index: 1;
+    padding: 0 12px;
+    box-shadow: @primary-shadow;
   }
   &:hover, &:active, &:focus {
-    background-color: @shadow-bg-color;
+    background-color: @bg-color;
+    box-shadow: @shadow-outset-filter-color;
     border: none;
     color: @white-color;
-    box-shadow: @primary-shadow;
+  }
+  &[disabled] {
+    & > span {
+      background: @disabled-bg-color;
+      box-shadow: none;
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <bz-page-wrapper title="BzModal 示例">
+  <div>
     <Alert
       message="使用 useModal 进行弹窗操作"
       show-icon
@@ -30,7 +30,7 @@
     <Modal2 @register="register2" />
     <Modal3 @register="register3" />
     <Modal4 @register="register4" />
-  </bz-page-wrapper>
+  </div>
 </template>
 <script lang="ts">
   import { defineComponent, shallowRef, ComponentOptions, ref, nextTick } from 'vue';

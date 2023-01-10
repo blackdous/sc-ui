@@ -87,6 +87,7 @@
       </FilterTagsVue>
       <Table
         :id="uuid"
+        :class="['ant-table-ping-left']"
         size="small"
         ref="tableRef"
         v-bind="tableBindValue"

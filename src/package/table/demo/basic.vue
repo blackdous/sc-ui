@@ -87,10 +87,102 @@ import { ScTable, Copy } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
 import { Tooltip, Button } from 'ant-design-vue'
 
-import '../../../style/index.less'
+// import '../../../style/index.less'
 import { Icon } from '@iconify/vue'
 
 const loading = ref(false)
+
+const list = ref([
+  {
+    label: '创建快照',
+    isShow: true,
+    loading: ({tableRef, selectedRowKeysRef, record}) => {
+      console.log('record: ', record);
+      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      if (record.id === '8') {
+        return true
+      }
+      return false
+    },
+    key: 'aa',
+    isDisabled: false,
+    action: (data:any) => {
+      console.log('====================================');
+      console.log(data);
+      console.log('====================================');
+    },
+    tooltip: false,
+    tooltipDes: '创建快照创建快照aa',
+  },
+  {
+    label: '续费',
+    isShow: true,
+    isDisabled: ({tableRef, selectedRowKeysRef}) => {
+      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      if (selectedRowKeysRef.length > 3) {
+        return true
+      }
+      return false
+    },
+    key: 'bb',
+    loading: false,
+    action: 'bb',
+    tooltip: false,
+    tooltipDes: '续费续费续费续费续费'
+  },
+  {
+    label: '一级选项',
+    isShow: ({tableRef, selectedRowKeysRef}) => {
+      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      if (selectedRowKeysRef.length > 3) {
+        return true
+      }
+      return false
+    },
+    isDisabled: false,
+    loading: false,
+    key: 'cc',
+    action: '1111',
+    tooltip: false,
+    tooltipDes: '一级选项111111111',
+    children: [
+      {
+        label: '二级选项',
+        isShow: true,
+        isDisabled: false,
+        loading: true,
+        key: 'dd',
+        action: '2222',
+        tooltip: false,
+        tooltipDes: '二级选项22222222',
+      }
+    ]
+  }, {
+    label: '三级选项',
+    isShow: true,
+    isDisabled: ({tableRef, selectedRowKeysRef}) => {
+      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      if (selectedRowKeysRef.length > 3) {
+        return true
+      }
+      return false
+    },
+    loading: false,
+    key: 'ff',
+    action: '3333',
+    tooltip: true,
+    tooltipDes: '三级选项33333333',
+  }, {
+    label: '四级选项',
+    isShow: true,
+    isDisabled: false,
+    loading: false,
+    action: '4444',
+    key: '4444',
+    tooltip: false,
+    tooltipDes: '四级选项444444444',
+  }
+])
 // const globalApp = inject('globalApp')
 // globalApp.component('copy1', Copy1)
 
@@ -131,6 +223,8 @@ const columns = [
         describe: '提示内容'
       }
     },
+    filterList: list,
+    filtered: true,
     onFilter: (value: string, record: DataItem) => record.name.includes(value),
     sorter: (a: DataItem, b: DataItem) => a.age - b.age,
   }
@@ -148,6 +242,22 @@ setTimeout(() => {
     slots: {
       customRender: 'copy1'
     }
+  })
+  columns.push({  dataIndex: 'age3', key: 'age3', width: 160,
+    type: {
+      componentName: 'tdHandle',
+      props: {
+      }
+    },
+    titleType: {
+      componentName: 'thDescribe2',
+      props: {
+        text: 'Column 6',
+        describe: 'Column 6'
+      }
+    },
+    handle: handleTd
+    
   })
   columns.push({  dataIndex: 'age3', key: 'age3', width: 160,
     type: {

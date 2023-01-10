@@ -163,6 +163,9 @@
       line-height: 22px;
       padding: 4px 7px;
       border-color: @border-color-base;
+      i {
+        color: @text-color;
+      }
       &:not(.ant-btn-primary) {
         margin-left: 8px;
       }
@@ -313,7 +316,13 @@
   color: fade(@color-000, 20%);
   text-align: left;
 }
-
+.ant-table-ping-left .ant-table-cell-fix-left-first::after, 
+.ant-table-ping-left .ant-table-cell-fix-left-last::after {
+  box-shadow: inset 10px 0 8px -8px darken(@shadow-color, 5%);
+}
+.ant-table-cell-fix-left, .ant-table-cell-fix-right {
+  z-index: 2;
+}
 .ant-menu-vertical > .ant-menu-item, 
 .ant-menu-vertical-left > .ant-menu-item, 
 .ant-menu-vertical-right > .ant-menu-item, 

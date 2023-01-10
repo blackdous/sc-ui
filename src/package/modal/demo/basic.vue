@@ -35,6 +35,7 @@
     @cancel="handleCancel1"
     cancel-text="取消"
     ok-text="确认"
+    :onOkDisable="true"
     maskClosable
     >
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>

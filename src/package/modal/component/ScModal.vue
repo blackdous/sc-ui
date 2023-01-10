@@ -44,22 +44,25 @@
     <template  #footer>
       <div :class="footerClassName" v-if="!isSlotFooter">
         <slot name="insertFooter"></slot>
-        <Button
-          :disabled="curProps.onCancelDisable"
+        <!-- :disabled="curProps.onCancelDisable" -->
+        <ScButton
           :class="[modalPrefixCls + '-footer__cancel']"
+          status="info"
+          v-bind="{...curProps, type: undefined, disabled: curProps?.cancelButtonProps?.disabled || curProps?.onCancelDisable}"
           @click="closeVisible"
         >
           {{ curProps.cancelText }}
-        </Button>
-        <Button
-          :disabled="curProps.onCancelDisable"
+        </ScButton>
+        <!-- :disabled="curProps.onOkDisable" -->
+        <ScButton
           :loading="curProps.confirmLoading"
           :class="[modalPrefixCls + '-footer__ok']"
+          v-bind="{...curProps, type: undefined, disabled: curProps?.okButtonProps?.disabled || curProps?.onOkDisable}"
           type="primary"
           @click="curProps.onOk"
         >
           {{curProps.okText}}
-        </Button>
+        </ScButton>
       </div>
       <slot v-else name="footer"> </slot>
     </template>
@@ -85,7 +88,8 @@ import { defineComponent, computed, ref, watchEffect, watch, unref, nextTick, ge
 // import type { CSSProperties } from 'vue'
 // import { useDraggable } from '@vueuse/core';
 import { useModalDraggable } from '../hooks/useModalDraggable'
-import { Modal, Button, Tooltip } from 'ant-design-vue'
+import { Modal, Tooltip } from 'ant-design-vue'
+import { ScButton } from '../../button';
 import {
   QuestionCircleOutlined,
   InfoCircleFilled,
@@ -105,7 +109,7 @@ export default defineComponent({
   props: modalProps(),
   components: {
     Modal,
-    Button,
+    ScButton,
     Tooltip,
     QuestionCircleOutlined,
     InfoCircleFilled,

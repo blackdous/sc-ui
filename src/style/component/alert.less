@@ -2,6 +2,7 @@
 .@{alertScope}, .ant-alert {
   border-radius: 4px;
   padding: 10px 20px;
+  line-height: 22px;
   border-color: transparent;
   .ant-alert-icon {
     font-size: 18px;
@@ -9,7 +10,11 @@
   }
   &:not(.ant-alert-with-description) {
     .ant-alert-icon {
-      padding: 2px 0;
+      height: inherit;
+      line-height: inherit;
+      & > svg {
+        vertical-align: inherit;
+      }
     }
   }
   &.ant-alert-with-description {

@@ -234,7 +234,7 @@ changeLoading(true);
 | isDraggable | 是否可拖拽 | boolean | true |  |
 | DragOptions | 使用的@vueuse/core 的 useDraggable，可传入初始值 | [UseDraggableOptions](https://vueuse.org/core/usedraggable/#type-declarations) | 无 |  |
 | dragChange | 拖拽时的一些属性x, y, style, position | [useDraggable](https://vueuse.org/core/usedraggable/#type-declarations) | 无 |  |
-| onCancelDisable | Modal 完全关闭后的回调 | function | 无 |  |
+| onCancel | Modal 完全关闭后的回调 | function | 无 |  |
 | afterClose | Modal 完全关闭后的回调 | function | 无 |  |
 | bodyStyle | Modal body 样式 | object | {} |  |
 | cancelButtonProps | cancel 按钮 props | [ButtonProps](https://antdv.com/components/button) | - |  |

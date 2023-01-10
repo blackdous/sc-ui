@@ -153,6 +153,15 @@
   transition: all .2s ease-in-out;
 }
 
+.rc-virtual-list-scrollbar {
+  .rc-virtual-list-scrollbar-thumb {
+    width: 6px !important;
+    height: 35px !important;
+    border-radius: 10px !important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
 // 覆盖 ant-design-vue icon 图标 样式 开始 **********************************
 .ant-select, .ant-dropdown-trigge, .ant-cascader-picker, .ant-cascader-menus {
   .ant-select-arrow {
@@ -190,7 +199,7 @@
 
 .ant-cascader-menu-item-expand-icon {
   .anticon-right {
-    display: none;
+    // display: none;
     &::after {
       font-size: 18px;
     }
@@ -240,3 +249,7 @@
   }
 }
 // 覆盖 ant-design-vue icon 图标 样式 结束 **********************************
+
+p {
+  margin-bottom: 0;
+}

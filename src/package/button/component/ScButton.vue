@@ -45,11 +45,16 @@ export default defineComponent({
         {
           [`ant-btn-${status}`]: !!status,
           [`is-disabled`]: disabled,
+          [`ant-btn-${type}`]: !!type,
         },
       ];
     });
 
-    const getBindValue = computed(() => ({ ...unref(attrs), ...props }));
+    const getBindValue = computed(() => {
+      const { type } = props;
+      console.log('type: ', type);
+      return { ...unref(attrs), ...props, type: ['shadow', 'icon'].includes(type) ? undefined : type }
+    });
 
     const isIcon = computed(() => {
       return Object.keys(slots).includes('icon')

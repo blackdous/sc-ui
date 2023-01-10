@@ -53,7 +53,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   .ant-btn  + .ant-btn {
     margin-left: 24px;
   }
