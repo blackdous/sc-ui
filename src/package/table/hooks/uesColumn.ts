@@ -41,7 +41,7 @@ export function useColumn (
           filterDropdown: 'filterDropdown',
           filterIcon: 'filterIcon',
         }
-        item.filtered =  false ?? true
+        item.filtered =  item.filtered ?? true
       }
       if (!item.filterList && item.filters && item.filters?.length) {
         item.filterList = item.filters.map(item => {
@@ -56,7 +56,7 @@ export function useColumn (
           filterDropdown: 'filterDropdown',
             filterIcon: 'filterIcon'
         }
-        item.filtered =  false ?? true
+        item.filtered =  item.filtered ?? true
       }
       // console.log('item: ', item);
       // item.filters = []

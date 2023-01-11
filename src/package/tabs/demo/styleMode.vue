@@ -1,6 +1,6 @@
 <template>
   <div class="bg">
-    <ScTabs type="card">
+    <ScTabs type="card" style-mode="gradient">
       <TabPane key="1" tab="Tab 1" style="height: 100px">Content of Tab Pane 1</TabPane>
       <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
       <TabPane key="3" tab="Tab 3" style="height: 100px">Content of Tab Pane 3</TabPane>

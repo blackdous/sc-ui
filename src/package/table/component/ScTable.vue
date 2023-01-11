@@ -87,7 +87,7 @@
       </FilterTagsVue>
       <Table
         :id="uuid"
-        :class="['ant-table-ping-left']"
+        :class="['ant-table-ping-left', 'ant-table-ping-right']"
         size="small"
         ref="tableRef"
         v-bind="tableBindValue"
@@ -160,7 +160,8 @@
           </FilterDropDownVue>
         </template>
         <template #filterIcon="{column}" v-if="isCustomFilter">
-          <FilterFilled :style="{ color: column.filtered && column?.filterSelected?.length ? '#008CD3' : 'rgba(0, 0, 0, 0.2)' }" :class="[ column.filtered && column?.filterSelected?.length ? 'filtered' : 'notFilter' ]"></FilterFilled>
+          <FilterFilled :style="{ color: column.filtered && column?.filterSelected?.length ? '#008CD3' : 'rgba(0, 0, 0, 0.26)' }" :class="[ column.filtered && column?.filterSelected?.length ? 'filtered' : 'notFilter' ]"></FilterFilled>
+          <!-- {{ column }} -->
         </template>
       </Table>
       <ColumnDialogVue

@@ -170,32 +170,32 @@ const fetchParams = computed(() => {
 const emits = defineEmits(['onAction'])
 
 const menuRef = ref()
-const placementRef = ref<string>('bottomLeft')
+const placementRef = ref<string>('bottomRight')
 
 onMounted(() => {
-  const buttonMenu = unref(menuRef)
-  buttonMenu && buttonMenu.addEventListener('mouseenter', () => {
-    const totalHeight = window.innerHeight || document.documentElement.clientHeight;
-    const totalWidth = window.innerWidth || document.documentElement.clientWidth;
-    // 当滚动条滚动时，top, left, bottom, right时刻会发生改变。
-    const { top, right, bottom, left } = buttonMenu.getBoundingClientRect()
-    let placementStr:Array<string> = ['bottom', 'Left']
-    if (bottom >= totalHeight - 100) {
-      placementStr[0] = 'top'
-    }
-    if (top < 20) {
-      placementStr[0] = 'bottom'
-    }
+  // const buttonMenu = unref(menuRef)
+  // buttonMenu && buttonMenu.addEventListener('mouseenter', () => {
+  //   const totalHeight = window.innerHeight || document.documentElement.clientHeight;
+  //   const totalWidth = window.innerWidth || document.documentElement.clientWidth;
+  //   // 当滚动条滚动时，top, left, bottom, right时刻会发生改变。
+  //   const { top, right, bottom, left } = buttonMenu.getBoundingClientRect()
+  //   let placementStr:Array<string> = ['bottom', 'Left']
+  //   if (bottom >= totalHeight - 100) {
+  //     placementStr[0] = 'top'
+  //   }
+  //   if (top < 20) {
+  //     placementStr[0] = 'bottom'
+  //   }
 
-    if (left < 20) {
-      placementStr[1] = 'Right'
-    }
-    if (right >= totalWidth - 100) {
-      placementStr[1] = 'Left'
-    }
-    placementRef.value = placementStr.join('')
-    return false;
-  })
+  //   if (left < 20) {
+  //     placementStr[1] = 'Right'
+  //   }
+  //   if (right >= totalWidth - 100) {
+  //     placementStr[1] = 'Left'
+  //   }
+  //   placementRef.value = placementStr.join('')
+  //   return false;
+  // })
 })
 
 function flapSetItem (actions: Array<ActionItemProps>) {

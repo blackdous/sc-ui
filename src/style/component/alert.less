@@ -1,8 +1,8 @@
 @alertScope: ~'@{prefixCls}Alert';
 .@{alertScope}, .ant-alert {
   border-radius: 4px;
-  padding: 10px 20px;
-  line-height: 22px;
+  padding: 0 24px;
+  min-height: 32px;
   border-color: transparent;
   .ant-alert-icon {
     font-size: 18px;
@@ -10,8 +10,8 @@
   }
   &:not(.ant-alert-with-description) {
     .ant-alert-icon {
-      height: inherit;
-      line-height: inherit;
+      min-height: 24px;
+      line-height: 24px;
       & > svg {
         vertical-align: inherit;
       }

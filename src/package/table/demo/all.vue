@@ -191,7 +191,6 @@ const columns = [
       filterIcon: 'filterIcon'
     },
     filterList: list,
-    filtered: true,
     onFilterDropdownVisibleChange: (visable:boolean) => { console.log(visable) }
   },
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age',

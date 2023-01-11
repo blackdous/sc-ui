@@ -12,9 +12,10 @@
           v-show="createButtonOptions.show"
           :disabled="createButtonOptions.isDisabled"
           :type="createButtonOptions.type || 'primary'"
+          :class="[className + '-addBtns']"
           @click="createHandle"
         >
-          <PlusOutlined></PlusOutlined>
+          <i class="sc-ui sc-xinjian"></i> 
           {{ createButtonOptions.text }}
         </Button>
       </template>
