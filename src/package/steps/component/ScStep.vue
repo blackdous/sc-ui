@@ -12,17 +12,17 @@
             :class="['scStep__icon-inner', props.icon]" >
           </i>
           <i v-else-if="currentStatus === 'success'"
-            :class="['scStep__icon-inner', 'success', 'sc-ui', 'sc-success']" >
+            :class="['scStep__icon-inner', 'success', 'sc-ui', 'sc-a-Exclude1']" >
           </i>
           <i v-else-if="currentStatus === 'error'"
-            :class="['scStep__icon-inner', 'success', 'sc-ui', 'sc-error-fill']" >
+            :class="['scStep__icon-inner', 'success', 'sc-ui', 'sc-a-Union11']" >
           </i>
           <div v-else-if="!isSimple" :class="['scStep__icon-inner']">
             {{ index + 1 }}
           </div>
 
           <i v-else-if="isSimple"
-            :class="['scStep__icon-inner', 'error', 'sc-ui', 'sc-success']" >
+            :class="['scStep__icon-inner', 'error', 'sc-ui', 'sc-a-Exclude1']" >
           </i>
           <!-- <Icon
           v-else-if="isSimple"

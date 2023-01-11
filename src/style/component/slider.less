@@ -15,7 +15,7 @@
       bottom: 1px;
       width: 10px;
       height: 10px;
-      background-color: @primary-color;
+      background-color: @btn-light-color;
       border-radius: 15px 0 0 15px;
     }
     &::after {
@@ -46,24 +46,39 @@
     border-radius: 0;
   }
   .vue-slider-process {
-    background-color: @primary-color;
+    background-color:  @btn-light-color;
     border-radius: 0;
   }
   .sc-dot-wrapper {
-    height: 24px;
+    position: relative;
+    min-height: 24px;
     background: #fff;
     border-radius: 11px;
     transition: all 0.3s;
     cursor: pointer;
+    box-shadow: @shadow-outset-filter-color;
+    padding: 4px;
+    border-radius: 20px;
+    // &::after {
+    //   position: absolute;
+    //   content: '';
+    //   left: 0;
+    //   top: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   border-radius: inherit;
+    //   box-shadow: @shadow-outset-filter-color;
+    //   z-index: 1;
+    //   background: #fff;
+    // }
   }
   .sc-dot {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 6px;
     height: 24px;
-    background-color: @slider-dot-bg;
+    background-color: @btn-light-color;
     box-shadow: @primary-shadow;
     color: @white-color;
     font-weight: 600;
@@ -75,17 +90,6 @@
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    &::after {
-      position: absolute;
-      content: '';
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: inherit;
-      box-shadow: @shadow-outset-color;
-      z-index: 1;
-    }
   }
   .vue-slider-mark-step {
     border-radius: 0 0 50% 50%;

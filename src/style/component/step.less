@@ -10,6 +10,16 @@
     }
     &.is-wait {
       color: @steps-wait-color;
+      i.sc-ui {
+        // box-shadow: @error-shadow;
+        border-radius: 50%;
+        background-color: @steps-wait-color;
+        &::before {
+          color: @white-color;
+          line-height: 26px;
+        }
+      }
+      border-radius: 50%;
     }
     &.is-finish {
       color: @steps-finish-color;
@@ -25,6 +35,11 @@
         i.sc-ui {
           box-shadow: @error-shadow;
           border-radius: 50%;
+          background-color: @steps-error-color;
+          &::before {
+            color: @white-color;
+            line-height: 26px;
+          }
         }
         border-radius: 50%;
       }
@@ -40,6 +55,11 @@
         i.sc-ui {
           box-shadow: @primary-shadow;
           border-radius: 50%;
+          background-color: @btn-light-color;
+          &::before {
+            color: @white-color;
+            line-height: 26px;
+          }
         }
         border-radius: 50%;
         background: transparent;
@@ -73,10 +93,14 @@
       width: 40px;
       font-size: 26px;
     }
+    .@{stepScope}__icon-inner {
+      width: 26px;
+      height: 26px;
+    }
     .sc-ui {
       position: absolute;
       z-index: 2;
-      font-size: 26px;
+      font-size: 12px;
     }
   }
 
@@ -276,11 +300,11 @@
       }
     }
   }
-  .@{stepScope}-head:not(.is-success):not(.is-wait) {
-    .@{stepScope}__icon-inner {
-      font-size: 26px;
-    }
-  }
+  // .@{stepScope}-head:not(.is-success):not(.is-wait) {
+  //   .@{stepScope}__icon-inner {
+  //     font-size: 26px;
+  //   }
+  // }
   &.is-horizontal, &.is-vertical {
     .scStep-main {
       .scStep-arrow {

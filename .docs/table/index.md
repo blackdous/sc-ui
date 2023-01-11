@@ -45,7 +45,7 @@ realPath: src/package/table/index.zh-CN.md
 | 事件名称 | 说明   | 回调参数    |
 | --- | --- | --- |
 | change       | 分页、排序、筛选变化时触发  | Function(pagination, filters, sorter, { currentDataSource, fetchParams }) |
-
+<!-- 
 ## 带刷新&筛选column的组件
 
 **支持自定义solt组件`#tableActive`**
@@ -904,4 +904,4 @@ export interface ActionProps {
   title="table头部操作按钮"
   desc="table头部操作按钮"
   >
-</demo>
+</demo> -->

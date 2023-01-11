@@ -6,28 +6,45 @@
 }
 .ant-tabs.ant-tabs-card{
   &.gradient, & {
+    &.initClass {
+      .ant-tabs-ink-bar {
+        border-left: 4px solid @white-color;
+        border-right: 4px solid @white-color;
+        box-sizing: content-box;
+      }
+    }
+    &.tabs__transform-left {
+      .ant-tabs-ink-bar {
+        margin-left: 3px;
+      }
+    }
+    &.tabs__transform-right {
+      .ant-tabs-ink-bar {
+        margin-left: -4px;
+      }
+    }
     .ant-tabs-nav-scroll {
       height: 39px;
-      padding-top: 10px;
-      
+      padding-top: 9px;
+      overflow: initial;
+    }
+    .ant-tabs-nav-wrap {
+      overflow: initial;
     }
     .ant-tabs-ink-bar {
-      height: 0;
+      height: 36px;
+      background: @bg-color;
+      box-shadow: @shadow-outset-tabs-active-color;
+      z-index: 199;
+      border-radius: 12px 12px 0 0;
+      visibility: initial;
     }
     .ant-tabs-card-bar {
       border: none;
       margin: 0;
       position: relative;
-      &:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -2px;
-        height: 3px;
-        background: linear-gradient(135deg, #1e9ad8 0%, rgba(46, 161, 219, 0) 100%);
-      }
-      &:after {
+      margin-left: 10px;
+      &::before {
         content: '';
         position: absolute;
         left: 0;
@@ -37,13 +54,28 @@
         filter: blur(2px);
         background: linear-gradient(135deg, #2ea1db 0%, rgba(46, 161, 219, 0) 100%);
       }
+      .ant-tabs-nav-container {
+        position: relative;
+        overflow: initial;
+        &::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          left: 0;
+          right: 0;
+          bottom: -2px;
+          height: 3px;
+          background: linear-gradient(135deg, @primary-color 20%, rgba(46, 161, 219, 0) 100%);
+          z-index: 200;
+        }
+      }
       .ant-tabs-tab {
         position: relative;
         border-top-left-radius: 0;
         border-top-right-radius: 8px;
-        height: 35px;
-        line-height: 38px;
-        padding: 0 24px 0 28px;
+        height: 32px;
+        padding: 0 24px 0 32px;
+        // padding: 0 24px;
         text-align: center;
         border: none;
         margin-right: 0;
@@ -51,10 +83,10 @@
         vertical-align: bottom;
         box-shadow: @shadow-outset-tabs-color;
         background-color: @bg-color;
-        top: 4px;
         .generate-z-index(150);
         &:not(:first-child) {
-          margin-left: -4px;
+          margin-left: -8px;
+          // padding: 0 24px 0 32px;
         }
         &:first-child {
           border-top-left-radius: 8px;
@@ -63,31 +95,19 @@
           border-top-left-radius: 8px;
           color: @white-color;
           z-index: 100;
-          line-height: 40px;
-          height: 35px;
-          border-radius: 12px 12px 0 0;
+          line-height: 32px;
+          height: 32px;
+          // border-radius: 12px 12px 0 0;
+          border-radius: 9px 9px 0 0;
           // background: #000;
           top: 0;
-          background: @bg-color;
           padding: 0 24px;
-          box-shadow: @shadow-outset-filter-color;
+          box-shadow: @primary-shadow;
+          background: @primary-color;
           z-index: 200;
-          &::after {
-            position: absolute;
-            content: '';
-            top: 4px;
-            left: 4px;
-            right: 4px;
-            bottom: 0;
-            box-shadow: @primary-shadow;
-            background: @primary-color;
-            border-radius: 9px 9px 0 0;
-            z-index: -1;
-          }
         }
       }
     }
-    // box-shadow: 0px 0px 6px 0px #e2ecfa, 0px 4px 4px 0px rgb(35 166 243 / 20%);
     .ant-tabs-top-content, .ant-tabs-bottom-content {
       padding-top: 10px;
     }
@@ -113,6 +133,9 @@
       }
       .ant-tabs-nav-container {
         height: 34px;
+        &::before {
+          height: 0;
+        }
       }
       .ant-tabs-tab {
         font-family: 'PingFang SC';
@@ -122,7 +145,7 @@
         line-height: 26px;
         height: 28px;
         padding: 1px 16px;
-        margin: 1px 4px;
+        margin: 1px 2px;
         background-color: transparent;
         border: none;
         box-shadow: none;

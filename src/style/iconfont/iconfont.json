@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "33725651",
+      "name": "Union (1)",
+      "font_class": "a-Union11",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "33367584",
+      "name": "子网",
+      "font_class": "ziwang",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
       "icon_id": "20113493",
       "name": "bxs-gift",
       "font_class": "icon-gift",
@@ -32,13 +46,6 @@
       "font_class": "a-Exclude1",
       "unicode": "e603",
       "unicode_decimal": 58883
-    },
-    {
-      "icon_id": "33427920",
-      "name": "Union (1)",
-      "font_class": "a-Union1",
-      "unicode": "e602",
-      "unicode_decimal": 58882
     },
     {
       "icon_id": "6598339",

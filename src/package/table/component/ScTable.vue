@@ -85,18 +85,17 @@
         @closeAll="handleCloseAll"
       >
       </FilterTagsVue>
+      <!-- :scroll="{ x: 'calc(700px + 50%)', y: 240 }" -->
       <Table
         :id="uuid"
-        :class="['ant-table-ping-left', 'ant-table-ping-right']"
         size="small"
         ref="tableRef"
         v-bind="tableBindValue"
+        :scroll="{ x: 600 }"
         :rowClassName="getRowClassName"
         :expand-icon="expandIconFnc"
         @change="handleTableChange"
       >
-        <!-- :scroll="{ y: newProps?.scroll?.y || 500}" -->
-        <!-- @expandedRowsChange="handleExpand" -->
         <template
           template
           #[item]="data"
