@@ -10,6 +10,7 @@
       :create-button-options="{
         show: false
       }"
+      :scroll="{ x: true }"
       :search-options="{
         show: true,
         showSelect: true,
@@ -196,7 +197,8 @@ const columns = [
   { 
     width: 60,
     dataIndex: 'age', 
-    key: 'age1',
+    key: 'age',
+    disabled: true,
     slots: {
       customRender: 'status1'
     },
@@ -252,32 +254,33 @@ setTimeout(() => {
     titleType: {
       componentName: 'thDescribe2',
       props: {
-        text: 'Column 6',
-        describe: 'Column 6'
+        text: 'Column 6666',
+        describe: 'Column 66666'
       }
     },
     handle: handleTd
     
   })
-  columns.push({  dataIndex: 'age3', key: 'age3', width: 160,
+  columns.push({  dataIndex: 'age5', key: 'age5', width: 160,
     type: {
       componentName: 'tdHandle',
       props: {
       }
     },
     titleType: {
-      componentName: 'thDescribe2',
+      componentName: 'thDescribe3',
       props: {
         text: 'Column 6',
-        describe: 'Column 6'
+        describe: 'Column 66'
       }
     },
     handle: handleTd
     
   })
-  columns.push({  dataIndex: 'age4', key: 'age4', width: 160,
+  columns.push({  
+    dataIndex: 'age4', key: 'age4', width: 160,
     titleType: {
-      componentName: 'thDescribe3',
+      componentName: 'thDescribe4',
       props: {
         text: 'Column 7',
         describe: 'Column 7'

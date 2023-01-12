@@ -216,7 +216,7 @@ export function useColumn (
           item.describe =  item.titleType.componentName.indexOf('thUnit') > -1 ? item.titleType.props.unit : ''
         }
         // @ts-ignore
-        item.value = item.dataIndex
+        item.value = item.key
         item.disabled = item.disabled || false
         if (item.checked === false) {
           item.checked = false
@@ -231,31 +231,14 @@ export function useColumn (
     return columns
   })
 
+  const getColumnsRef = computed(() => {
+    const columns = cloneDeep(unref(getFilterColumnRef)).filter((item: Column) => item.checked)
+    // console.log('filterColumn: ', columns);
+    return columns
+  })
+
   const thColumn = computed(() => {
     const newColumn = cloneDeep(unref(getFilterColumnRef).filter((item:Column) => !!item.titleType))
-    // let countComponent = {
-    //   unit: 0,
-    //   describe: 0
-    // }
-    // const aanewColumn = cloneDeep(newColumn).map((item: Column) => {
-    //   if (item?.titleType?.componentName === 'thUnit') {
-    //     if (countComponent.unit !== 0) {
-    //       item.slots.title += countComponent.unit
-    //       item.titleType.componentName += countComponent.unit
-    //     }
-    //     countComponent.unit += 1
-    //   }
-    //   if (item?.titleType?.componentName === 'thDescribe') {
-    //     if (countComponent.describe !== 0) {
-    //       item.slots.title += countComponent.describe
-    //       item.titleType.componentName += countComponent.describe
-    //     }
-    //     countComponent.describe += 1
-    //   }
-    //   return item
-    // })
-    // console.log('aanewColumn: ', aanewColumn);
-    // console.log('newColumn: ', newColumn);
     return newColumn
   })
 
@@ -290,7 +273,7 @@ export function useColumn (
       // @ts-ignore
       item.checked = columnIds.includes(item.key)
       return item
-    }).filter((item: Column) => item.checked)
+    })
     filterColumn.value = columns
   }
 
@@ -325,6 +308,7 @@ export function useColumn (
   return {
     getColumnRef,
     getFilterColumnRef,
+    getColumnsRef,
     thColumn,
     getFilterDropdownRef,
     getFetchFilter,

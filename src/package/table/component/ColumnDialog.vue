@@ -21,6 +21,7 @@
 
 <script lang='ts'>
 import { defineComponent, computed, ref, unref } from 'vue'
+import cloneDeep from 'lodash/cloneDeep'
 
 import ScModal from '../../modal/component/ScModal.vue'
 import { ColumnModal, Column } from '../types/column'
@@ -42,9 +43,10 @@ export default defineComponent({
   props: ColumnModal(),
   setup (props, { emit }) {
     const checkInfo = ref<string>('')
+    const sourceList = ref()
     // const columnList = ref(props.columnList)
     const columnList = computed(() => {
-      return props.columnList
+      return cloneDeep(props.columnList)
     })
     const curKeys = ref<string[]>()
     const curCheckedList = ref<Column[]>()
@@ -61,12 +63,14 @@ export default defineComponent({
       curKeys.value = keys
       curCheckedList.value = checkedList
       checkInfo.value = (checkedList || []).length + ''
-      emit('checkChange', { keys, checkedList, list })
+      sourceList.value = list
+      // emit('checkChange', { keys, checkedList, list })
     }
     const handleCancel = () => {
       emit('cancelModal', { keys: unref(curKeys), checkedList: unref(curCheckedList) })
     }
     const handleOk = () => {
+      // emit('checkChange', { keys: curKeys , checkedList: , list })
       emit('okModal',  { keys: unref(curKeys), checkedList: unref(curCheckedList) })
     }
     return {

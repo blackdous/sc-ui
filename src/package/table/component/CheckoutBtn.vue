@@ -1,6 +1,6 @@
 <template>
   <div class="colBtn">
-    <span
+    <!-- <span
       v-for="item in list"
       :key="item.key"
       :class="[
@@ -24,44 +24,80 @@
           {{ item.describe }}
         </span>
       </span>
-    </span>
+    </span> -->
+    <div class="column-checkboxAll">
+      <Checkbox
+        v-model:checked="checkAll"
+        @change="onCheckAllChange"
+        >
+        全部
+      </Checkbox>
+    </div>
+    <CheckboxGroup
+      v-model:value="checkedListKeys"
+      :options="sourceList"
+      @change="handleGroup"
+    >
+    </CheckboxGroup>
   </div>
 </template>
 
 <script lang='ts'>
 import { CheckOutlined } from '@ant-design/icons-vue'
-import { defineComponent, ref, unref } from 'vue'
+import { defineComponent, ref, unref, watchEffect, nextTick } from 'vue'
+import { CheckboxGroup, Checkbox } from 'ant-design-vue'
 
 import { useChecked } from '../hooks/uesDialog'
 // @ts-ignore
-import { FilterItem, ColumnModal } from '../types/column'
+import { Column, ColumnModal, FilterItem } from '../types/column'
 
 export default defineComponent({
   name: 'CheckoutBtn',
   inheritAttrs: false,
   components: {
-    CheckOutlined
+    CheckOutlined,
+    Checkbox,
+    CheckboxGroup
   },
   props: ColumnModal(),
   setup (props, { emit }) {
-    const list = ref(props.columnList)
-    const checkedList = ref([] as Array<FilterItem>)
-    const { setItemChecked, getCheckedItems } = useChecked(props.columnList as Array<FilterItem>)
-    checkedList.value = getCheckedItems()
+    const checkAll = ref(true)
+    const sourceList = ref(props.columnList as Array<Column | FilterItem>)
+    const checkedListKeys = ref([] as Array<string>)
+    const checkedItems = ref([] as Array<Column | FilterItem>)
+    const { setItemChecked, getCheckedKeys, getCheckedItems } = useChecked(props.columnList as Array<Column>)
+    checkedListKeys.value = getCheckedKeys()
+    checkedItems.value = getCheckedItems()
 
-    emit('change', { checkedList: unref(checkedList)})
+    emit('change', { checkedList: unref(checkedItems)})
 
-    const handleCheck = (item:FilterItem) => {
-      if (item.disabled) {
-        return false
-      }
+    const handleGroup = (item:any) => {
+      // console.log('item: ', item);
       const { keys, list, checkedList } = setItemChecked(item)
-      
+      emit('change', { keys: unref(keys), checkedList: unref(checkedList), list: unref(list) })
+      checkAll.value = checkedListKeys.value.length === sourceList.value.length
+    }
+
+    // watchEffect(() => {
+    //   checkAll.value = checkedListKeys.value.length === sourceList.value.length
+    // })
+
+    const onCheckAllChange = (e:any) => {
+      if (e.target.checked) {
+        checkedListKeys.value = [...checkedListKeys.value, ...unref(sourceList).filter(item => !item.disabled).map(item => { return item.key  })]
+      } else {
+        checkedListKeys.value = unref(sourceList).filter(item => item.disabled).map(item => { return item.key  })
+      }
+      const { keys, list, checkedList } = setItemChecked(checkedListKeys.value)
       emit('change', { keys: unref(keys), checkedList: unref(checkedList), list: unref(list) })
     }
-      return {
-      list,
-      handleCheck
+    return {
+      checkAll,
+      checkedListKeys,
+      sourceList,
+      // handleCheck,
+      handleGroup,
+      onCheckAllChange
     }
   }
 })

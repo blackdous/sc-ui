@@ -10,24 +10,56 @@ export function useChecked (columnList:Array<Column>) {
   const keys = ref([] as Array<string>)
   const checkedList = ref([] as Array<Column>)
   
-  const setItemChecked = (colItem: Column) => {
-    if (!colItem.checked) {
-      //@ts-ignore
-      keys.value = [...unref(keys), colItem.key]
-      //@ts-ignore
-      checkedList.value = [...unref(checkedList), colItem]
-    } else {
-      keys.value = unref(keys).filter(_item => colItem.key !== _item)
-      checkedList.value = unref(checkedList).filter(_item => colItem.key !== _item.key)
-    }
+  // const setItemChecked = (colItem: Column) => {
+  //   if (!colItem.checked) {
+  //     //@ts-ignore
+  //     keys.value = [...unref(keys), colItem.key]
+  //     //@ts-ignore
+  //     checkedList.value = [...unref(checkedList), colItem]
+  //   } else {
+  //     keys.value = unref(keys).filter(_item => colItem.key !== _item)
+  //     checkedList.value = unref(checkedList).filter(_item => colItem.key !== _item.key)
+  //   }
+  //   list.value = unref(list).map((_item: Column) => {
+  //     if (colItem.key === _item.key) {
+  //       colItem.checked = !colItem.checked
+  //     }
+  //     return _item
+  //   })
+  //   console.log('keys: ', keys);
+  //   return { keys, list, checkedList }
+  // }
+
+  const setItemChecked = (curKeys:  Array<string>) => {
+    // if (!colItem.checked) {
+    //   //@ts-ignore
+    //   keys.value = [...unref(keys), colItem.key]
+    //   //@ts-ignore
+    //   checkedList.value = [...unref(checkedList), colItem]
+    // } else {
+    //   keys.value = unref(keys).filter(_item => colItem.key !== _item)
+    //   checkedList.value = unref(checkedList).filter(_item => colItem.key !== _item.key)
+    // }
+    // list.value = unref(list).map((_item: Column) => {
+    //   if (colItem.key === _item.key) {
+    //     colItem.checked = !colItem.checked
+    //   }
+    //   return _item
+    // })
+    keys.value = curKeys
+    const newCheckList = [] as Array<Column>
     list.value = unref(list).map((_item: Column) => {
-      if (colItem.key === _item.key) {
-        colItem.checked = !colItem.checked
+      if (curKeys.includes(_item.key)) {
+        // _item.checked = !_item.checked
+        newCheckList.push(_item)
       }
       return _item
     })
+    checkedList.value = newCheckList
+    // console.log('keys: ', keys);
     return { keys, list, checkedList }
   }
+
 
   const getCheckedKeys = () => {
     return unref(keys)
@@ -56,6 +88,7 @@ export function useChecked (columnList:Array<Column>) {
       }
     })
     keys.value = initKeys
+    console.log('keys: ', keys);
     checkedList.value = initChecked
   }
 

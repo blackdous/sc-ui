@@ -310,7 +310,14 @@ export const tableProps = () => ({
       return true
     }
   },
-  scroll: Object as PropType<ScrollProps>,
+  scroll: {
+    type: Object as PropType<ScrollProps>,
+    default () {
+      return {
+        x: 'true'
+      }
+    }
+  },
   dataSource: Array,
   isTreeTable: Boolean,
   autoCreateKey: Boolean,

@@ -14,32 +14,28 @@
     padding: 8px 16px;
   }
   .ant-table-content {
-    table{
-      border-left: 1px solid #F0F0F0;
-      border-right: 1px solid #F0F0F0;
+    border-left: 1px solid #F0F0F0;
+    border-right: 1px solid #F0F0F0;
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      left: -1px;
+      bottom: 0;
+      height: 8px;
+      width: 1px;
+      background: @white-color;
+      z-index: 1;
     }
-    .ant-table-scroll {
-      position: relative;
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 8px;
-        width: 1px;
-        background: @white-color;
-        z-index: 1;
-      }
-      &::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        height: 8px;
-        width: 1px;
-        background: @white-color;
-        z-index: 1;
-      }
+    &::after {
+      content: '';
+      position: absolute;
+      right: -1px;
+      bottom: 0;
+      height: 8px;
+      width: 1px;
+      background: @white-color;
+      z-index: 1;
     }
   }
   .ant-table-small {

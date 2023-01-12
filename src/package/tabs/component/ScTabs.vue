@@ -1,7 +1,7 @@
 <template>
   <Tabs
     v-bind="{...props, ...$attrs}"
-    :class="[...className, initClass ? 'initClass' : undefined]"
+    :class="[...className]"
     @change="handleChange"
     >
     <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
@@ -88,11 +88,11 @@ const initClass = ref(true)
 
 const className = computed(() => {
   const classNames = props.styleMode ? [props.styleMode] : []
-  if (isTransformLeft.value) {
-    classNames.push('tabs__transform-left')
-  } else {
-    classNames.push('tabs__transform-right')
-  }
+  // if (isTransformLeft.value) {
+  //   classNames.push('tabs__transform-left')
+  // } else {
+  //   classNames.push('tabs__transform-right')
+  // }
   return classNames
 })
 

@@ -91,7 +91,6 @@
         size="small"
         ref="tableRef"
         v-bind="tableBindValue"
-        :scroll="{ x: 600 }"
         :rowClassName="getRowClassName"
         :expand-icon="expandIconFnc"
         @change="handleTableChange"
@@ -349,10 +348,10 @@ export default defineComponent({
       customComponentKey,
       customComponentHeaderKey,
       getFilterColumnRef,
+      getColumnsRef,
       getFilterDropdownRef,
       getFetchFilter,
       thColumn,
-      adapterColumnFunc,
       showSortTitle,
       getRowClassName,
       getColumns,
@@ -369,10 +368,22 @@ export default defineComponent({
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);
       fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, selectedRowRef, setLoading, pagination: getPaginationInfo}
+      // console.log('1111', {
+      //   ...attrs,
+      //   ...unref(newProps),
+      //   columns: toRaw(unref(getColumnsRef)),
+      //   rowSelection: unref(getRowSelectionRef),
+      //   rowKey: unref(getRowKey),
+      //   ...unref(getExpandOption),
+      //   dataSource,
+      //   loading: unref(getLoading),
+      //   pagination: toRaw(unref(getPaginationInfo)),
+      //   change: undefined
+      // });
       return {
         ...attrs,
         ...unref(newProps),
-        columns: toRaw(unref(getFilterColumnRef)),
+        columns: toRaw(unref(getColumnsRef)),
         rowSelection: unref(getRowSelectionRef),
         rowKey: unref(getRowKey),
         ...unref(getExpandOption),
