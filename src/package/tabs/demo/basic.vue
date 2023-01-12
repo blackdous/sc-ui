@@ -12,11 +12,10 @@
       type="card"
       style-mode="shadow"
     >
-      <!-- <TabPane :key="item.key" :tab="item.label" v-for="item in list" style="height: 100px">{{item.text}}</TabPane> -->
       <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
       <TabPane key="3" tab="Tab 3" style="height: 100px">Content of Tab Pane 3</TabPane>
       <TabPane key="4" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
-      <TabPane key="4" tab="Tab 4" style="height: 100px">
+      <TabPane key="5" tab="Tab 5" style="height: 100px">
         <ScTabs
           type="card"
         >
@@ -27,11 +26,30 @@
       </TabPane>
     </ScTabs>
   </div>
+  <div class="mt20">
+    <Tabs
+      type="card"
+      style-mode="shadow"
+    >
+      <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
+      <TabPane key="3" tab="Tab 3" style="height: 100px">Content of Tab Pane 3</TabPane>
+      <TabPane key="4" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
+      <TabPane key="5" tab="Tab 4" style="height: 100px">
+        <Tabs
+          type="card"
+        >
+          <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
+          <TabPane key="3" tab="Tab 3" style="height: 100px">Content of Tab Pane 3</TabPane>
+          <TabPane key="4" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
+        </Tabs>
+      </TabPane>
+    </Tabs>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref, unref } from 'vue'
-import { TabPane } from 'ant-design-vue'
+import { TabPane, Tabs } from 'ant-design-vue'
 import { ScTabs } from 'sc-ui'
 import '../../../style/index.less'
 

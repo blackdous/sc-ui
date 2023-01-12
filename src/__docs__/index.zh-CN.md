@@ -7,7 +7,7 @@ map:
 
 ant-design-vue vue3 ts ui
 
-[文档地址 v0.0.25](http://sc-ui.voneyun.com/)
+[文档地址](http://sc-ui.voneyun.com/)
 
 ## 引入 ant-design-vue
 
@@ -30,6 +30,30 @@ import '@sincerecloud/sc-ui/style.css'
 import '@sincerecloud/sc-ui/style/index.less'
 ```
 
+**如需引入 less 文件 请注意一下几点**
+
+1. 要本地安装`ant-design-vue`库
+2. 新增webpack、vite 配置如下：
+
+```js
+// config.js 文件
+{
+  resolve: {
+    alias: [
+      { find: /^~/, replacement: '' }
+    ]
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        // modifyVars: themeVariables,
+        javascriptEnabled: true
+      },
+    }
+  }
+}
+```
+
 本项目也支持按需加载
 
 `App.vue`
@@ -41,3 +65,4 @@ import { ScAlert } from '@sincerecloud/sc-ui'
 ## 问题
 
 如有问题请及时反馈
+
