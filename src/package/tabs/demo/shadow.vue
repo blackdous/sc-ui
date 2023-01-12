@@ -5,12 +5,12 @@
       <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
       <TabPane key="3" tab="Tab 3" style="height: 100px">Content of Tab Pane 3</TabPane>
       <TabPane key="4" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
-      <TabPane key="5" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
+      <!-- <TabPane key="5" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
       <TabPane key="6" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
       <TabPane key="7" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
       <TabPane key="8" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
       <TabPane key="9" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
-      <TabPane key="10" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
+      <TabPane key="10" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane> -->
     </ScTabs>
   </div>
 </template>

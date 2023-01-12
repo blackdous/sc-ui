@@ -64,13 +64,13 @@ const mockData: Recordable = {
   const schema: DescItem[] = [
     {
       field: 'username',
-      label: h('span', { class: '' }, ['用户名', h('i', { class: 'sc-ui sc-question-circle' })]),
+      label: h('span', { class: '' }, ['用户名', h('i', { class: 'sc-ui sc-question-circle', style: { color: '#008CD3' } })]),
     },
     {
       field: 'nickName',
       label: '昵称',
       render: (curVal, data) => {
-        return h('span', { class: '' }, [curVal + '--' + data.username, h('i', { class: 'sc-ui sc-file-copy' })])
+        return h('span', { class: '' }, [curVal + '--' + data.username, h('i', { class: 'sc-ui sc-file-copy', style: { color: '#008CD3'} })])
       },
     },
     {
@@ -89,5 +89,7 @@ const mockData: Recordable = {
 </script>
 
 <style lang="less" scoped>
-
+// .sc-file-copy {
+//   color: @primary-color;
+// }
 </style>

@@ -5,7 +5,7 @@
     >
       <Button>
         <template #icon>
-          <i class="sc-ui sc-add"></i>
+          <i class="sc-ui sc-xinjian"></i>
         </template>
         填充按钮
       </Button>

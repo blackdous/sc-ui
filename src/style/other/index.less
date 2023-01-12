@@ -186,7 +186,7 @@
 }
 
 // 覆盖 ant-design-vue icon 图标 样式 开始 **********************************
-.ant-select, .ant-dropdown-trigge, .ant-cascader-picker, .ant-cascader-menus {
+.ant-select, .ant-dropdown-trigger, .ant-cascader-picker, .ant-cascader-menus, .ant-dropdown {
   .ant-select-arrow {
     z-index: 1;
   }
@@ -236,10 +236,11 @@
 }
 .ant-breadcrumb-overlay-link {
   .anticon.anticon-down {
+    position: relative;
     transform: none;
-    &::after {
-      top: 4px;
-    }
+    // &::after {
+    //   top: 4px;
+    // }
   }
   &.ant-dropdown-open {
     .anticon.anticon-down {
@@ -247,6 +248,12 @@
         color: @primary-color;
       }
     }
+  }
+}
+
+.ant-dropdown {
+  .anticon-right::after {
+    top: 0;
   }
 }
 
