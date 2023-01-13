@@ -33,8 +33,8 @@
     </ScSelect>
     <Select
       v-model:value="valueAsync"
-      :allow-clear="true"
-    >
+      >
+      <!-- :allow-clear="true" -->
       <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
         {{item.label}}
       </SelectOption>

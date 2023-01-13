@@ -340,7 +340,7 @@ html * {
 
 .vp-doc .vitepress-demo a {
   font-weight: 400;
-  color: #000;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .vp-doc table {

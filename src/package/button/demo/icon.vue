@@ -2,7 +2,7 @@
   <div>
     <ScButton type="primary">
       <template #icon>
-        <i class="sc-ui sc-add"></i>
+        <i class="sc-ui sc-xinjian"></i>
       </template>
       填充按钮
     </ScButton>
@@ -50,5 +50,8 @@ export default defineComponent({
   }
   .mt20 {
     margin-top: 20px;
+  }
+  .sc-xinjian, .sc-upload {
+    margin-right: 4px;
   }
 </style>

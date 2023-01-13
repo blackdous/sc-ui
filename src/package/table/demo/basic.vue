@@ -51,6 +51,9 @@
         //   // h(Tooltip, { title: '其他Icon' }, [h(Button, { disabled: false }, [h('i', { class: 'sc-ui sc-sync'})])])
         // ]
       }"
+      :pagination="{
+        
+      }"
       @change="handleChange"
       >
       <!-- :langLocale="zhCN" -->

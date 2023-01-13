@@ -50,6 +50,7 @@
   }
   .ant-radio-inner {
     border-color: @primary-color;
+    background-color: @bg-color;
   }
 }
 .ant-radio-wrapper {
@@ -60,8 +61,11 @@
 .ant-radio-input:focus + .ant-radio-inner {
   border-color: @primary-color;
 }
-.ant-radio-inner::after {
-  background-color: @primary-color;
+.ant-radio-inner {
+  background-color: @bg-color;
+  &::after {
+    background-color: @primary-color;
+  }
 }
 .ant-radio-disabled .ant-radio-inner {
   border-color: @icon-hover-bgColor !important;

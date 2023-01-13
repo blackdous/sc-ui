@@ -212,6 +212,9 @@
   .ant-btn:not(.ant-btn-primary) {
     &:hover, &:active {
       color: @primary-color;
+      i {
+        color: @primary-color;
+      }
     }
   }
   .scSearchInput {
@@ -330,6 +333,12 @@
   &:hover {
     color: @primary-color !important;
   }
+  .anticon-caret-up {
+    color: @disabled-color;
+  }
+  .anticon-caret-down {
+    color: @disabled-color;
+  }
 }
 .ant-table-filter-icon {
   &:hover {
@@ -386,7 +395,7 @@
 }
 
 .td_href {
-  color: @heading-color;
+  color: @text-color;
   &.linkBtn {
     color: @primary-color !important;
   }
