@@ -7,8 +7,8 @@ map:
 
 ```less
 
+@import '~ant-design-vue/dist/antd.less';
 @prefixCls: 'sc';
-
 @bg-color: #fff;
 
 @border-r-3: 3px;
@@ -44,21 +44,37 @@ map:
 @border-color-base: #dcdcdc; // 边框色
 @border-pagination-color: #dcdcdc;
 @box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // 浮层阴影
+@select-dropdown-height: 22px; // select option 高度
+@select-dropdown-line-height: 22px;// select option line-height 高度
+
+@disabled-bg: @background-color-base;
+@disabled-active-bg: tint(@black, 90%);
+@disabled-color-dark: fade(#fff, 35%);
 
 @btn-active-color: #a6a6a6;
 @border-color: #e7e7e7;
-@tabs-shadow-bgColor: #F5F5F5;
+@tabs-shadow-bgColor: @disabled-bg;
 @btn-light-color: #23A6F3;
 @white-color: #fff;
 @hover-shadow: fade(@link-color, 20);
 
 @disabled-bg-color: #EEEEEE; // 禁选颜色
 
-@shadow-outset-color: 0px 4px 4px rgb(35 166 243 / 8%), 0px 0px 6px #e4e8ed;
+@shadow-outset-filter-color: 0px 0px 6px 0px #F0F3F7, 0px 4px 4px 0px rgb(35 166 243 / 18%);
+@shadow-outset-color: 0px 0px 0px 3px #F0F3F7, 0px 4px 4px 0px rgb(35 166 243 / 13%);
+@shadow-outset-tabs-active-color: 0px 0px 6px 0px #e2ecfa, 0px 4px 4px 0px rgb(35 166 243 / 20%);
+@shadow-outset-tabs-color: 0px 4px 4px rgba(35, 166, 243, 0.08), 0px 0px 6px #F0F3F7;
+// @tabs-shadow-outset-color: 0px 0px 6px 0px #e2ecfa, 0px 4px 4px 0px rgb(35 166 243 / 20%);
 
-@primary-shadow: 0px 0px 8px rgba(0, 140, 211, 0.5); // 祖逖渐变色
+@primary-shadow: 0px 2px 5px 0px #23A6F3; // 祖逖渐变色
 
-@error-shadow: 0px 2px 8px rgba(245, 63, 63, 0.5); // 祖逖渐变色
+@error-shadow: 0px 2px 5px 0px rgba(245, 63, 63, 0.5); // 祖逖渐变色
+
+@input-xs-width: 104px;
+@input-x-width: 216px;
+@input-md-width: 328px;
+@input-l-width: 440px;
+@input-xl-width: 552px;
 
 //************************** steps
 // steps-wait-color
@@ -145,4 +161,12 @@ map:
 //************************ switch
 
 @switch-bg-color: #c5c5c5;
+
+//************************ slider
+@slider-bg-color: #EEEEEE;
+@slider-dot-bg: #0097E3;
+@slider-marker-color: #BFBFBF;
+
+//************************ cascader
+@cascader-Menu-bg: #E5F3FB;
 ```

@@ -101,6 +101,17 @@
   .ant-menu-submenu-arrow {
     margin: 0;
   }
+  .ant-dropdown-menu-submenu {
+    &.ant-dropdown-menu-submenu-open {
+      .ant-dropdown-menu-submenu-arrow {
+        .anticon-right {
+          &::after {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+  }
   .ant-menu-light .ant-menu-item:hover:not(.ant-menu-item-selected), 
   .ant-menu-light .ant-menu-item-active, 
   .ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open, 

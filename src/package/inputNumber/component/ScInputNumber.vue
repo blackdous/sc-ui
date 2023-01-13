@@ -21,7 +21,7 @@
       @click="changeVal('add')"
       :disabled="newProps.disabled || buttonDis || maxDisabled"
     >
-      <i class="sc-ui sc-add"></i>
+      <i class="sc-ui sc-xinjian"></i>
     </Button>
   </div>
 </template>

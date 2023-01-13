@@ -346,6 +346,9 @@ html * {
 .vp-doc table {
   display: table;
 }
+.vp-doc ul, .vp-doc ol {
+  margin: 0;
+}
 
 /* .vp-doc .ant-table-cell-fix-left-first::after, 
 .vp-doc .ant-table-cell-fix-left-last::after {
