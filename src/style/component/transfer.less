@@ -24,11 +24,6 @@
   .ant-transfer-list-body {
     padding: 14px 0 8px;
   }
-  &.ant-transfer-customize-list {
-    .ant-transfer-list-body-with-search {
-      padding-top: 0;
-    }
-  }
   .ant-transfer-list-body-with-search {
     padding-top: 48px;
     &::before {
@@ -165,5 +160,19 @@
     // .ant-checkbox-wrapper + .ant-transfer-list-content-item-text {
 
     // }
+  }
+  .ant-tree li {
+    // padding: 6px 0;
+    .ant-tree-node-content-wrapper.ant-tree-node-selected {
+      background-color: @cascader-Menu-bg;
+    }
+  }
+  &.ant-transfer-customize-list {
+    .ant-transfer-list-body-with-search {
+      padding-top: 0;
+    }
+    .ant-transfer-list-body-customize-wrapper {
+      padding: 12px 12px 0 12px;
+    }
   }
 }

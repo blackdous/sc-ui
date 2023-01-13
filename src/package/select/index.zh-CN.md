@@ -15,6 +15,14 @@ map:
   >
 </demo>
 
+## 搜索框
+
+<demo src="./demo/search.vue"
+  language="vue"
+  title="搜索框"
+  >
+</demo>
+
 ## 组件大小
 
 <demo src="./demo/size.vue"

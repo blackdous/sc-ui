@@ -8,9 +8,9 @@
         :data-source="dataSource"
         :target-keys="targetKeys"
         :render="item => item.title"
-        :show-select-all="false"
         @change="onChange"
       >
+        <!-- :show-select-all="false" -->
         <template #children="{ direction, selectedKeys, onItemSelect }">
           <Tree
             v-if="direction === 'left'"
@@ -56,11 +56,23 @@ const tData: TreeDataItem[] = [
     key: '0-1',
     title: '0-1',
     children: [
-      { key: '0-1-0', title: '0-1-0' },
+      { 
+        key: '0-1-0', title: '0-1-0',
+        children: [
+          { key: '0-1-0-1', title: '0-1-0-1', },
+          { key: '0-1-0-2', title: '0-1-0-2', }
+        ]
+      },
       { key: '0-1-1', title: '0-1-1' },
     ],
   },
-  { key: '0-2', title: '0-3' },
+  { 
+    key: '0-2', title: '0-3',
+    children: [
+      { key: '0-2-0', title: '0-2-0' },
+      { key: '0-2-1', title: '0-2-1' },
+    ],
+  }
 ];
 
 const transferDataSource: TreeDataItem[] = [];

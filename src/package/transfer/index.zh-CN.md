@@ -35,3 +35,12 @@ map:
   desc="结合树结构使用"
   >
 </demo>
+
+### 4. Describe 组件
+
+<demo src="./demo/describe.vue"
+  language="vue"
+  title="Describe 组件"
+  desc="Describe 组件"
+  >
+</demo>
