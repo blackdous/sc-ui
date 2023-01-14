@@ -13,7 +13,7 @@ export const sidebar = {
       text: 'SC-UI',
       items: [
         { text: 'Guide', link: '/en/' },
-        { text: 'theme', link: '/en/theme/' },
+        { text: 'Theme', link: '/en/theme/' },
       ],
     },
     {
@@ -78,65 +78,65 @@ export const sidebar = {
     {
       text: 'SC-UI',
       items: [
-        { text: '简介', link: '/' },
-        { text: '主题变量', link: '/theme/' },
+        { text: '简介 Guide', link: '/' },
+        { text: '主题变量 Theme', link: '/theme/' },
       ],
     },
     {
-      text: '通用',
+      text: '通用 General',
       items: [
-        { text: '按钮', link: '/button/' },
-        { text: '加载动画', link: '/loading/' },
-        { text: '滚动条', link: '/scrollbar/' },
+        { text: '按钮 Button', link: '/button/' },
+        { text: '加载动画 Loading', link: '/loading/' },
+        { text: '滚动条 Scrollbar', link: '/scrollbar/' },
       ]
     },
     {
       text: '导航',
       items: [
-        { text: '步骤条', link: '/steps/' },
-        { text: '分页', link: '/pagination/' },
-        { text: '下拉菜单', link: '/dropdown/' },
-        { text: '面包屑', link: '/breadcrumb/' }
+        { text: '步骤条 Steps', link: '/steps/' },
+        { text: '分页 Pagination', link: '/pagination/' },
+        { text: '下拉菜单 Dropdown', link: '/dropdown/' },
+        { text: '面包屑 Breadcrumb', link: '/breadcrumb/' }
       ]
     },
     {
       text: '数据展示',
       items: [
-        { text: '标签页', link: '/tabs/' },
-        { text: '表格', link: '/table/' },
-        { text: '文字提示', link: '/tooltip/' },
-        { text: '描述列表', link: '/description/' },
+        { text: '标签页 Tabs', link: '/tabs/' },
+        { text: '表格 Table', link: '/table/' },
+        { text: '文字提示 Tooltip', link: '/tooltip/' },
+        { text: '描述列表 Description', link: '/description/' },
       ]
     },
     {
       text: '数据录入',
       items: [
-        { text: '表单', link: '/form/' },
-        { text: '单选框', link: '/radio/' },
-        { text: '输入框', link: '/input/' },
-        { text: '复选框', link: '/checkbox/' },
-        { text: '数字输入框', link: '/inputNumber/' },
-        { text: '选择器', link: '/select/' },
-        { text: '开关', link: '/switch/' },
-        { text: '级联选择', link: '/cascader/' },
-        { text: '滑动输入条', link: '/slider/' },
-        { text: '穿梭框', link: '/transfer/' },
+        { text: '表单 Form', link: '/form/' },
+        { text: '单选框 Radio', link: '/radio/' },
+        { text: '输入框 Input', link: '/input/' },
+        { text: '复选框 Checkbox', link: '/checkbox/' },
+        { text: '数字输入框 InputNumber', link: '/inputNumber/' },
+        { text: '选择器 Select', link: '/select/' },
+        { text: '开关 Switch', link: '/switch/' },
+        { text: '级联选择 Cascader', link: '/cascader/' },
+        { text: '滑动输入条 Slider', link: '/slider/' },
+        { text: '穿梭框 Transfer', link: '/transfer/' },
       ]
     },
     {
       text: '反馈',
       items: [
-        { text: '警告提示', link: '/alert/' },
-        { text: '弹框', link: '/modal/' },
-        { text: '鼠标右键', link: '/contextMenu/' },
-        { text: '气泡确认框', link: '/popconfirm/' },
-        { text: '全局提示', link: '/message/' },
+        { text: '警告提示 Alert', link: '/alert/' },
+        { text: '弹框 Modal', link: '/modal/' },
+        { text: '鼠标右键 ContextMenu', link: '/contextMenu/' },
+        { text: '气泡确认框 Popconfirm', link: '/popconfirm/' },
+        { text: '全局提示 Message', link: '/message/' },
       ]
     },
     {
       text: '表单',
       items: [
-        { text: '密码框', link: '/password/' }
+        { text: '密码框 Password', link: '/password/' }
       ]
     }
   ],

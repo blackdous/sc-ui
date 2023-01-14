@@ -5,9 +5,11 @@ import DemoBlock from '@ruabick/vitepress-demo-block';
 import '@ruabick/vitepress-demo-block/dist/style.css';
 // import "ant-design-vue/dist/antd.css"
 import './var.css';
-import '../../public/font/iconfont.css'
+// import '../../public/font/iconfont.css'
 import '../../../src/style/index.less'
 
+
+// process.env.NODE_ENV
 export default {
   ...DefaultTheme,
 

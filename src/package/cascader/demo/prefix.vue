@@ -1,6 +1,7 @@
 <template>
   <div class="mt20">
     <ScCascader
+    popupClassName="spsCa"
       v-model:value="value"
       :defaultValue="['zhejiang', 'hangzhou', 'xihu']"
       :options="options"
@@ -18,6 +19,7 @@
   </div>
   <div class="mt20">
     <ScCascader
+      popupClassName="spsCa"
       v-model:value="value"
       :options="options"
       @change="handleChange"
@@ -35,6 +37,7 @@
   </div>
   <div class="mt20">
     <ScCascader
+      popupClassName="spsCa"
       v-model:value="value1"
       :options="options"
       :show-search="{ filter }"

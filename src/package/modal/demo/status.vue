@@ -56,7 +56,8 @@ const openModal = (infoDes: string) => {
       })
       break;
     case 'success':
-      Modal.success({
+      Modal.confirm({
+        type: 'info',
         title: () => 'This is a success message',
         icon: () => createVNode(CheckCircleFilled),
         content: () => h('div', {}, [
@@ -68,7 +69,8 @@ const openModal = (infoDes: string) => {
       });
       break;
     case 'warning':
-      Modal.warning({
+      Modal.confirm({
+        type: 'warning',
         title: () => 'This is a warning message',
         icon: () => createVNode(ExclamationCircleFilled),
         content: () => 'some messages...some messages...',
@@ -77,7 +79,8 @@ const openModal = (infoDes: string) => {
       });
       break;
     case 'error':
-      Modal.error({
+      Modal.confirm({
+        type: 'error',
         title: () => 'This is an error message',
         icon: () => createVNode(CloseCircleFilled),
         content: () => 'some messages...some messages...',

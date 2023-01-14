@@ -37,8 +37,8 @@ for (let i = 0; i < 20; i++) {
     key: i.toString(),
     title: `content${i + 1}`,
     description: `description of content${i + 1}`,
-    disabled: false
-    // disabled: i % 3 < 1,
+    // disabled: false
+    disabled: i % 3 < 1,
   });
 }
 

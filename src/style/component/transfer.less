@@ -132,6 +132,13 @@
     font-size: 14px;
     color: @heading-color;
   }
+  .ant-transfer-list-content {
+    margin-right: 4px;
+    padding-right: 10px;
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+  }
   .ant-transfer-list-content-item {
     position: relative;
     padding: 6px 12px;
@@ -156,6 +163,11 @@
         z-index: 1;
       }
 
+    }
+    &:hover {
+      .ant-checkbox-wrapper .ant-checkbox:not(.ant-checkbox-indeterminate):not(.ant-checkbox-checked) .ant-checkbox-inner {
+        border-color: @primary-color;
+      }
     }
     // .ant-checkbox-wrapper + .ant-transfer-list-content-item-text {
 

@@ -6,6 +6,7 @@
 }
 .ant-tabs.ant-tabs-card{
   &.gradient.ant-tabs-top, &.ant-tabs-top {
+    z-index: 0;
     &.initClass {
       .ant-tabs-ink-bar {
         border-left: 4px solid @white-color;
@@ -40,7 +41,7 @@
         height: 36px;
         background: @bg-color;
         box-shadow: @shadow-outset-tabs-active-color;
-        z-index: 199;
+        // z-index: 199;
         border-radius: 12px 12px 0 0;
         border-left: 4px solid @white-color;
         border-right: 4px solid @white-color;
@@ -100,7 +101,7 @@
           // background: linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 1) 100%);
           background-color: @white-color;
           transition: none;
-          .generate-z-index(150);
+          // .generate-z-index(150);
           &:not(:first-child):not(.ant-tabs-tab-active) {
             &::before {
               position: absolute;
@@ -119,7 +120,7 @@
           &.ant-tabs-tab-active {
             border-top-left-radius: 8px;
             color: @white-color;
-            z-index: 100;
+            // z-index: 100;
             line-height: 32px;
             height: 32px;
             font-family: 'PingFang SC';
@@ -133,7 +134,8 @@
             // padding: 0 24px;
             box-shadow: @primary-shadow;
             background: @primary-color;
-            z-index: 200;
+            z-index: 2;
+            // z-index: 11;
 
             &::before {
               border: none;
@@ -154,6 +156,7 @@
   }
   &.shadow.ant-tabs-top {
     & > .ant-tabs-bar {
+      margin-left: 0;
       .ant-tabs-nav-scroll {
         height: auto;
         padding-top: 0;

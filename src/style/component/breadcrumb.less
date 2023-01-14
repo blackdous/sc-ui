@@ -40,6 +40,14 @@
     &:hover, &:active, &:focus {
       color: @primary-color;
     }
+    &:hover {
+      .anticon-down {
+        &::after {
+          transform: rotate(180deg);
+          transition: all 0.4s;
+        }
+      }
+    }
   }
   a {
     &:hover, &:active, &:focus {

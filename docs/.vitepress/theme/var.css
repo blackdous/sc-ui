@@ -350,6 +350,11 @@ html * {
   margin: 0;
 }
 
+.vp-doc .ant-tree li ul {
+  padding: 0 0 0 18px;
+}
+
+
 /* .vp-doc .ant-table-cell-fix-left-first::after, 
 .vp-doc .ant-table-cell-fix-left-last::after {
   box-shadow: inset 10px 0 8px -8px rgb(0 0 0 / 15%);

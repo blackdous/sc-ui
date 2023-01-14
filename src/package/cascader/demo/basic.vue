@@ -1,6 +1,7 @@
 <template>
   <div class="mt20">
     <ScCascader
+      popupClassName="spsCa"
       v-model:value="value"
       :defaultValue="['jiangsu', 'nanjing', 'zhonghuamen']"
       :options="options"
@@ -11,6 +12,7 @@
   </div>
   <div class="mt20">
     <Cascader
+      popupClassName="spsCa"
       v-model:value="value"
       :defaultValue="['jiangsu', 'nanjing', 'zhonghuamen']"
       :options="options"
@@ -21,6 +23,7 @@
   </div>
   <div class="mt20">
     <ScCascader
+      popupClassName="spsCa"
       v-model:value="value"
       disabled
     >
@@ -87,7 +90,7 @@ const options: Option[] = [
 
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .mt20 {
   margin-top: 20px;
 }
