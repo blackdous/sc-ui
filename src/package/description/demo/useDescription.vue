@@ -1,16 +1,8 @@
 <template>
   <div>
     <ScDescription
-      title="基础示例"
-      :collapseOptions="{ canExpand: true, describe: 'help me' }"
-      :column="4"
-      :data="mockData"
-      :schema="schema"
-      :bordered="false"
-      :useCollapse="false"
-      layout="vertical"
+      @register="register"
     >
-
     </ScDescription>
     <ScDescription
       title="基础示例"
@@ -22,10 +14,6 @@
     >
 
     </ScDescription>
-    <!-- <ScDescription
-      @register="register"
-    >
-    </ScDescription> -->
   </div>
 </template>
 
@@ -72,8 +60,13 @@ const mockData: Recordable = {
   ];
   const [register] = useDescription({
     title: 'useDescription',
+    collapseOptions: { canExpand: true, describe: 'help me' },
+    column: 4,
     data: mockData,
     schema: schema,
+    bordered: false,
+    useCollapse: false,
+    layout: 'vertical'
   });
 </script>
 

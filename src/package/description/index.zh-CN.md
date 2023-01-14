@@ -21,9 +21,17 @@ map:
 >
 </demo>
 
-## useDescription
+## layout属性
 
 <demo src="./demo/layout.vue"
+  language="vue"
+>
+</demo>
+
+
+## useDescription
+
+<demo src="./demo/useDescription.vue"
   language="vue"
 >
 </demo>
@@ -33,6 +41,8 @@ const [register] = useDescription(Props);
 ```
 
 ## Api
+
+除 参考官方 [Button 配置](https://2x.antdv.com/components/description-cn#API)外，扩展以下参数
 
 | 属性 | 类型 | 默认值 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |

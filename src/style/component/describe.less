@@ -3,8 +3,12 @@
 
 .@{CollapseScope} {
   padding: 32px 0 32px;
-  & + .@{CollapseScope} {
-    border-top: 1px solid fade(#000, 6%);
+  & + & {
+    border-top: 1px solid @border-color-base;
+  }
+  & + .@{DescriptionScope} {
+    padding-top: 32px;
+    border-top: 1px solid @border-color-base;
   }
   &:first-child {
     padding-top: 0;
@@ -31,6 +35,7 @@
     color: @heading-color;
     .sc-question-circle {
       color: @primary-color;
+      cursor: pointer;
     }
     &__text {
       padding-right: 4px;
@@ -52,9 +57,12 @@
 }
 .@{DescriptionScope} {
   padding-bottom: 32px;
-  & + .@{DescriptionScope} {
+  & + & {
     border-top: 1px solid @border-color-base;
     padding-top: 32px;
+  }
+  & + .@{CollapseScope} {
+    border-top: 1px solid @border-color-base;
   }
   .ant-descriptions-view {
     table {
