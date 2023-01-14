@@ -14,7 +14,7 @@
 
   const props = {
     useCollapse: { type: Boolean, default: true },
-    title: { type: String, default: '' },
+    title: { type: [String, Object]},
     size: {
       type: String,
       validator: (v:string) => ['small', 'default', 'middle', undefined].includes(v),
@@ -56,26 +56,20 @@
         } as DescriptionProps;
       });
 
+      const useWrapper = computed(() => !!unref(getMergeProps).useCollapse);
+
       const getProps = computed(() => {
         const opt = {
           ...unref(getMergeProps),
-          title: undefined,
+          title: unref(useWrapper) ? undefined : unref(getMergeProps).title
         };
         return opt as DescriptionProps;
       });
 
-      /**
-       * @description: Whether to setting title
-       */
-      const useWrapper = computed(() => !!unref(getMergeProps).title);
-
-      /**
-       * @description: Get configuration Collapse
-       */
       const getCollapseOptions = computed((): CollapseContainerProps => {
         return {
           // Cannot be expanded by default
-          canExpand: false,
+          canExpand: unref(useWrapper) ?? true,
           ...unref(getProps).collapseOptions,
         };
       });
@@ -145,32 +139,38 @@
       }
 
       const renderDesc = () => {
+        const isTitle = Object.keys(slots).includes('title')
         return (
-          <Descriptions class={`${prefixCls}`} {...(unref(getDescriptionsProps) as any)}>
+          <Descriptions 
+            class={`${prefixCls}`} {...(unref(getDescriptionsProps) as any)}
+            v-slots={{
+              [isTitle && !unref(useWrapper) ? 'title' : '']: () => (isTitle && !unref(useWrapper) ? getSlot(slots, 'title') : null)
+            }}
+          >
             {renderItem()}
           </Descriptions>
         );
       };
 
       const renderContainer = () => {
-        const content = props.useCollapse ? renderDesc() : <div>{renderDesc()}</div>;
-        // Reduce the dom level
-        if (!props.useCollapse) {
-          return content;
-        }
 
         const { canExpand, describe } = unref(getCollapseOptions);
         const { title } = unref(getMergeProps);
 
+        const isTitle = Object.keys(slots).includes('title')
+
         return (
           <CollapseContainer title={title} canExpan={canExpand} describe={describe}>
             {{
-              default: () => content,
+              default: () => renderDesc(),
               action: () => getSlot(slots, 'action'),
+              [isTitle ? 'title' : '']: () => (isTitle ? getSlot(slots, 'title') : null)
             }}
           </CollapseContainer>
         );
       };
+      // title: () => (isTitle ? getSlot(slots, 'title') : undefined)
+      // title: () => getSlot(slots, 'title')
 
       const methods: DescInstance = {
         setDescProps,

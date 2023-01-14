@@ -2,9 +2,20 @@
 @DescriptionScope: ~'@{prefixCls}Description';
 
 .@{CollapseScope} {
-  padding: 28px 0 32px;
+  padding: 32px 0 32px;
   & + .@{CollapseScope} {
     border-top: 1px solid fade(#000, 6%);
+  }
+  &:first-child {
+    padding-top: 0;
+  }
+  &__body {
+    .@{DescriptionScope} {
+      padding-bottom: 0;
+      & + & {
+        padding-top: 0;
+      }
+    }
   }
   &-header {
     display: flex;
@@ -20,6 +31,9 @@
     color: @heading-color;
     .sc-question-circle {
       color: @primary-color;
+    }
+    &__text {
+      padding-right: 4px;
     }
   }
   &-action {
@@ -37,6 +51,11 @@
   }
 }
 .@{DescriptionScope} {
+  padding-bottom: 32px;
+  & + .@{DescriptionScope} {
+    border-top: 1px solid @border-color-base;
+    padding-top: 32px;
+  }
   .ant-descriptions-view {
     table {
       display: table;

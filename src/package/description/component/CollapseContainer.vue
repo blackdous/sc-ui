@@ -1,8 +1,14 @@
 <template>
   <div :class="prefixCls">
     <div :class="[prefixCls + '-header']">
-      <div :class="[prefixCls+'-title']" v-if="!isTitle">
-        {{ newProps.title }}
+      <div :class="[prefixCls+'-title']">
+        <slot name="title" v-if="isTitle"></slot>
+        <span v-else :class="[prefixCls+'-title__text']"> 
+          <template v-if="isVNode(newProps.title)">
+            <component :is="newProps.title"></component>
+          </template>
+          {{ isVNode(newProps.title) ? '' : newProps.title }}
+        </span>
         <Tooltip
           v-if="newProps.describe"
           :title="newProps.describe"
@@ -10,7 +16,6 @@
           <i class="sc-ui sc-question-circle"></i>
         </Tooltip>
       </div>
-      <slot name="title"></slot>
       <div :class="`${prefixCls}-action`">
         <slot name="action"></slot>
         <i
@@ -34,7 +39,7 @@
 </template>
 <script lang="ts">
   import type { PropType } from 'vue'
-  import { ref, defineComponent, computed } from 'vue'
+  import { ref, defineComponent, computed, isVNode, unref } from 'vue'
   import isNil from 'lodash/isNil'
   // component
   import { Skeleton, Tooltip } from 'ant-design-vue'
@@ -85,16 +90,15 @@
       function handleExpand(val: boolean) {
         show.value = isNil(val) ? !show.value : val
         if (props.triggerWindowResize) {
-          // 200 milliseconds here is because the expansion has animation,
           useTimeoutFn(triggerWindowResize, 200)
         }
       }
       const newProps = computed(() => {
-        console.log('props: ', props);
         return props
       })
       
       const isTitle = computed(() => {
+        console.log('title', isVNode(unref(newProps).title))
         return Object.keys(slots).includes('title')
       })
 
@@ -104,6 +108,7 @@
 
       return {
         isTitle,
+        isVNode,
         newProps,
         prefixCls,
         show,

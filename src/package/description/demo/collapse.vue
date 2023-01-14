@@ -1,7 +1,7 @@
 <template>
   <div>
     <ScDescription
-      title="基础示例"
+      title="通过title字段设置"
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
       :column="4"
       :data="mockData"
@@ -9,38 +9,28 @@
       layout="vertical"
       :bordered="false"
       >
-
     </ScDescription>
     <ScDescription
-      title="基础示例2"
-      :collapseOptions="{ canExpand: true, describe: 'help me' }"
+      :title="renderTitle"
       :column="4"
       :data="mockData"
       :schema="schema"
-      :bordered="false"
-      >
-
-    </ScDescription>
-    <ScDescription
-      title="基础示例3"
-      :collapseOptions="{ canExpand: true, describe: 'help me' }"
-      :column="4"
-      :data="mockData"
       layout="vertical"
-      :schema="schema"
       :bordered="false"
       >
-
     </ScDescription>
     <ScDescription
-      title="基础示例4"
-      :collapseOptions="{ canExpand: true, describe: 'help me' }"
       :column="4"
       :data="mockData"
       :schema="schema"
+      layout="vertical"
       :bordered="false"
       >
-
+      <template #title>
+        <span>
+          通过template #title字段设置
+        </span>
+      </template>
     </ScDescription>
   </div>
 </template>
@@ -62,16 +52,17 @@ const mockData: Recordable = {
     certy: '3504256199xxxxxxxxx',
     tag: 'orange',
   };
+  const renderTitle = h('span', { class: '' }, [h('span', { innerHTML: '使用h函数' }), h('i', { class: 'sc-ui sc-question-circle', style: { color: '#008CD3', marginLeft: '4px' } })])
   const schema: DescItem[] = [
     {
       field: 'username',
-      label: h('span', { class: '' }, ['用户名', h('i', { class: 'sc-ui sc-question-circle', style: { color: '#008CD3' } })]),
+      label: h('span', { class: '' }, ['用户名', h('i', { class: 'sc-ui sc-question-circle', style: { color: '#008CD3', marginLeft: '4px' } })]),
     },
     {
       field: 'nickName',
       label: '昵称',
       render: (curVal, data) => {
-        return h('span', { class: '' }, [curVal + '--' + data.username, h('i', { class: 'sc-ui sc-file-copy', style: { color: '#008CD3'} })])
+        return h('span', { class: '' }, [curVal + '--' + data.username, h('i', { class: 'sc-ui sc-file-copy', style: { color: '#008CD3', marginLeft: '4px'} })])
       },
     },
     {

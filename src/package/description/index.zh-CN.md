@@ -9,6 +9,15 @@ map:
 
 <demo src="./demo/basic.vue"
   language="vue"
+  title="通过schema和data渲染 description 组件"
+>
+</demo>
+
+## 带折叠框的
+
+<demo src="./demo/collapse.vue"
+  language="vue"
+  title="通过schema和data渲染 description 组件, useCollapse默认为`true`"
 >
 </demo>
 
@@ -27,7 +36,7 @@ const [register] = useDescription(Props);
 
 | 属性 | 类型 | 默认值 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
-| title | `string` | - | - | 标题 |
+| title | `string\vnode\slot` | - | - | 标题 |
 | size | `string` | small | - | 大小 |
 | bordered | `boolean` | true | - | 是否展示边框 |
 | column | `Number, Object` | `{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }` | - | 一行的 `DescriptionItems` 数量 |
