@@ -5,25 +5,30 @@
 
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref, unref } from 'vue';
   import { ScForm, FormSchema, useForm, useMessage } from 'sc-ui';
 
   import { isAccountExist } from './formData';
+
+  interface ListItem {
+    label: string, 
+    value: number, 
+    key: string
+  }
+  const list = ref<Array<ListItem>>([])
+  for (let i = 0;i < 10;  i++) {
+    list.value = [...unref(list), {
+      label: 'Jack' + i,
+      value: i,
+      key: 'Jack' + i
+    }]
+  }
 
   const schemas: FormSchema[] = [
     {
       field: 'field1',
       component: 'Input',
-      label: '字段1',
-      colProps: {
-        span: 24,
-      },
-      required: true,
-    },
-    {
-      field: 'field2',
-      component: 'Input',
-      label: '字段2',
+      label: '输入框',
       colProps: {
         span: 24,
       },
@@ -31,39 +36,24 @@
     },
     {
       field: 'id',
-      label: 'id',
+      label: '单选选择容器',
       required: true,
-      defaultValue: 0,
-      component: 'InputNumber',
-      show: false,
+      component: 'Select',
+      componentProps: {
+        options: unref(list)
+      }
     },
     {
-      field: 'field3',
-      component: 'DatePicker',
-      label: '字段3',
-      colProps: {
-        span: 24,
-      },
-      required: true,
-    },
-    {
-      field: 'field33',
-      component: 'DatePicker',
-      label: '字段33',
+      field: 'field44',
+      component: 'Select',
+      label: '多选选择器',
       colProps: {
         span: 24,
       },
       componentProps: {
-        valueFormat: 'YYYY-MM-DD',
-      },
-      rules: [{ required: true, type: 'string' }],
-    },
-    {
-      field: 'field44',
-      component: 'InputCountDown',
-      label: '验证码',
-      colProps: {
-        span: 24,
+        mode: 'tags',
+        optionMode:"checkbox",
+        options: unref(list)
       },
       required: true,
     },
@@ -75,7 +65,8 @@
         span: 24,
       },
       componentProps: {
-        mode: 'multiple',
+        mode: 'tags',
+        optionMode:"checkbox",
         options: [
           {
             label: '选项1',
@@ -201,7 +192,7 @@
         register,
         { validateFields, clearValidate, getFieldsValue, resetFields, setFieldsValue },
       ] = useForm({
-        labelWidth: 120,
+        labelWidth: 130,
         labelAlign: 'left',
         schemas,
         actionColOptions: {

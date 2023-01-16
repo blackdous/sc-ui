@@ -1,18 +1,18 @@
 <template>
-    <ScModal 
-      :visible="visible === 1"
-      title="Basic Modal"
-      destroyOnClose
-      wrap-class-name="aaaaaa"
-      width="100px"
-      @ok="handleOk"
-      cancel-text="取消"
-      ok-text="确认"
-      @cancel="handleCancel"
-      maskClosable
-    >
-    <!-- @dragChange="handleDrag" -->
-    <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
+  <ScModal 
+    :visible="visible === 1"
+    title="Basic Modal"
+    destroyOnClose
+    wrap-class-name="aaaaaa"
+    width="100px"
+    @ok="handleOk"
+    cancel-text="取消"
+    ok-text="确认"
+    @cancel="handleCancel"
+    maskClosable
+  >
+  <!-- @dragChange="handleDrag" -->
+  <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>
   <ScModal 
     :visible="visible === 2"
@@ -52,21 +52,40 @@
     >
     <div>22222是文案限制长度，我是文案限制长度</div>
   </ScModal>
-  <div>
-    <Button @click="openModal(1)">
+  <div class="mrt20">
+    <Button class="btn1" @click="openModal(1)">
       打开1
     </Button>
-    <Button @click="openModal(2)">
+    <Button class="btn1" @click="openModal(2)">
       打开2
     </Button>
   </div>
 
-  <div>
-    <Button @click="handle1">
+  <div class="mrt20">
+    <Button class="btn1" @click="handle1">
       打开1
     </Button>
-    <Button @click="handle2">
+    <Button class="btn1" @click="handle2">
       打开2
+    </Button>
+  </div>
+
+  <Modal
+    v-model:visible="visible3"
+    title="Basic Modal"
+    destroyOnClose
+    @ok="handleOk"
+    @cancel="handleCancel2"
+    cancel-text="取消"
+    ok-text="确认"
+    maskClosable
+  >
+  <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
+  </Modal>
+
+  <div class="mrt20">
+    <Button class="btn1" @click="handleSource1">
+      原始modal1
     </Button>
   </div>
 </template>
@@ -75,7 +94,7 @@
 import { ref } from 'vue'
 import type { Ref } from 'vue'
 
-import { Button } from 'ant-design-vue'
+import { Button, Modal } from 'ant-design-vue'
 import { ScModal } from 'sc-ui'
 import '../../../style/index.less'
 import { DraggableType } from '../component/type'
@@ -83,6 +102,7 @@ import { DraggableType } from '../component/type'
 const visible: Ref<number> = ref(0)
 const visible1: Ref<boolean> = ref(false)
 const visible2: Ref<boolean> = ref(false)
+const visible3: Ref<boolean> = ref(false)
 
 const openModal = (num:number) => {
   console.log('num: ', num);
@@ -111,6 +131,10 @@ const handleCancel2 = () => {
   visible2.value = false
 }
 
+const handleSource1 = () => {
+  visible3.value = true
+}
+
 const handleDrag = (dragRect:DraggableType) => {
   console.log('dragRect: ', dragRect);
 
@@ -119,4 +143,10 @@ const handleDrag = (dragRect:DraggableType) => {
 </script>
 
 <style lang="less">
+.mrt20 {
+  margin-top: 20px;
+}
+.btn1 {
+  margin-left: 20px;
+}
 </style>

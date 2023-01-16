@@ -7,6 +7,7 @@
   import { Col, Divider, Form } from 'ant-design-vue';
   import { componentMap } from '../componentMap';
   // import { BzHelp } from '/@/components/Basic';
+  import { ScHelp } from '../../other'
   // import { isBoolean, isFunction, isNull } from '/@/utils/is';
   import { isBoolean, isFunction, isNull, getSlot } from '../../../utils';
   import { createPlaceholderMessage, setComponentRuleType } from '../helper';
@@ -310,7 +311,7 @@
         return (
           <span>
             {renderLabel}
-            {/* <BzHelp placement="top" class="mx-1" text={getHelpMessage} {...helpComponentProps} /> */}
+            <ScHelp placement="top" class="mx-1" text={getHelpMessage} {...helpComponentProps} />
           </span>
         );
       }
@@ -318,6 +319,7 @@
       function renderItem() {
         const { itemProps, slot, render, field, suffix, component } = props.schema;
         const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
+        console.log('labelCol: ', labelCol);
         const { colon } = props.formProps;
 
         if (component === 'Divider') {

@@ -6,7 +6,7 @@ import type { ComponentType } from './types/index';
  */
 import {
   Input,
-  Select,
+  // Select,
   Radio,
   Checkbox,
   AutoComplete,
@@ -21,6 +21,9 @@ import {
   Divider,
 } from 'ant-design-vue';
 
+import { ScSelect } from '../select';
+import { ScInput } from '../input';
+
 import ApiRadioGroup from './component/ApiRadioGroup.vue';
 import RadioButtonGroup from './component/RadioButtonGroup.vue';
 import ApiSelect from './component/ApiSelect.vue';
@@ -34,7 +37,7 @@ import ApiCascader from './component/ApiCascader.vue';
 
 const componentMap = new Map<ComponentType, Component>();
 
-componentMap.set('Input', Input);
+componentMap.set('Input', ScInput);
 componentMap.set('InputGroup', Input.Group);
 componentMap.set('InputPassword', Input.Password);
 componentMap.set('InputSearch', Input.Search);
@@ -42,7 +45,7 @@ componentMap.set('InputTextArea', Input.TextArea);
 componentMap.set('InputNumber', InputNumber);
 componentMap.set('AutoComplete', AutoComplete);
 
-componentMap.set('Select', Select);
+componentMap.set('Select', ScSelect);
 componentMap.set('ApiSelect', ApiSelect);
 componentMap.set('ApiTree', ApiTree);
 componentMap.set('TreeSelect', TreeSelect);

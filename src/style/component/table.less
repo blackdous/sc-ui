@@ -182,6 +182,11 @@
       &.ant-select-focused {
         z-index: 1;
       }
+      & + .scSearchInput {
+        .scSearch {
+          border-radius: 0 @border-r-3 @border-r-3 0;
+        }
+      }
     }
     .ant-select-selector {
       border-radius: @border-r-3 0 0 @border-r-3 !important;
@@ -189,7 +194,6 @@
     .scSearch {
       width: 120px;
       height: 32px;
-      border-radius: 0 @border-r-3 @border-r-3 0;
       box-sizing: border-box;
       .ant-input-suffix {
         & > i {

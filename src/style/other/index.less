@@ -184,6 +184,29 @@
     background-color: rgba(0, 0, 0, 0.1) !important;
   }
 }
+.scBasic-help {
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 14px;
+  // color: @text-color-secondary;
+  cursor: pointer;
+
+  &:hover {
+    color: @primary-color;
+  }
+  i {
+    color: @text-color-secondary;
+    &:hover {
+      color: @primary-color;
+    }
+  }
+  &__wrap {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
 
 // 覆盖 ant-design-vue icon 图标 样式 开始 **********************************
 .ant-select, .ant-dropdown-trigger, .ant-cascader-picker, .ant-cascader-menus, .ant-dropdown {

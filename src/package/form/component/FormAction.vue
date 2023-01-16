@@ -1,6 +1,7 @@
 <template>
   <a-col v-bind="actionColOpt" v-if="showActionButtonGroup">
-    <div style="width: 100%" :style="{ textAlign: actionColOpt.style.textAlign }">
+    <div :style="{ textAlign: actionColOpt.style.textAlign, width: '100%', paddingLeft: `${labelWidth}`  }">
+      <!-- width: `calc(100% - ${pxToRem(labelWidth)})` -->
       <FormItem>
         <slot name="resetBefore"></slot>
         <ScButton
@@ -46,7 +47,7 @@
   import { Form, Col } from 'ant-design-vue';
   import { ScButton, ButtonProps } from '../../button';
   import { useFormContext } from '../hooks/useFormContext';
-  import { PropTypes } from '../../../utils';
+  import { PropTypes, pxToRem, isNumber } from '../../../utils';
 
   type ButtonOptions = Partial<ButtonProps> & { text: string };
 
@@ -58,6 +59,9 @@
       [Col.name]: Col,
     },
     props: {
+      labelWidth: {
+        type: [String, Number]
+      },
       showActionButtonGroup: PropTypes.bool.def(true),
       showResetButton: PropTypes.bool.def(true),
       showSubmitButton: PropTypes.bool.def(true),
@@ -87,13 +91,17 @@
           ? { span: actionSpan < 6 ? 24 : actionSpan }
           : {};
         const actionColOpt: Partial<ColEx> = {
-          style: { textAlign: 'right' },
+          style: { textAlign: 'left' },
           span: showAdvancedButton ? 6 : 4,
           ...advancedSpanObj,
-          ...actionColOptions,
+          ...actionColOptions
         };
         return actionColOpt;
       });
+
+      const labelWidth = computed(() => {
+        return isNumber(props.labelWidth) ? pxToRem(props.labelWidth) : props.labelWidth
+      })
 
       const getResetBtnOptions = computed((): ButtonOptions => {
         return Object.assign(
@@ -119,6 +127,7 @@
 
       return {
         actionColOpt,
+        labelWidth,
         getResetBtnOptions,
         getSubmitBtnOptions,
         toggleAdvanced,

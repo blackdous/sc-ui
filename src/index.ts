@@ -4,6 +4,7 @@ import { message } from 'ant-design-vue'
 // import './style/index.less';
 import './style/index'
 
+import { ScHelp } from './package/other'
 import { ScSteps, ScStep } from "./package/steps"
 import { ScTabs } from './package/tabs'
 import { ScRadioGroup, ScRadioTooltipGroup } from './package/radio'
@@ -47,6 +48,7 @@ message.config({
 });
 
 const components = [
+  ScHelp,
   ScSteps,
   ScStep,
   ScTabs,
@@ -92,6 +94,7 @@ const ScUi = {
 
 export {
   install,
+  ScHelp,
   ScSteps,
   ScStep,
   ScTabs,

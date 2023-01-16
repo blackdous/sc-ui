@@ -1,5 +1,5 @@
 {
-  "version": "0.0.50",
+  "version": "0.0.51",
   "name": "@sincerecloud/sc-ui",
   "description": "vue3 ui ant-design-vue sincerecloud sc-ui typescript",
   "module": "./build.es.ts",

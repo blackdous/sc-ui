@@ -7,6 +7,10 @@ export interface ViewportOffsetResult {
   bottomIncludeBody: number;
 }
 
+export function getPopupContainer(node?: HTMLElement): HTMLElement {
+  return (node?.parentNode as HTMLElement) ?? document.body;
+}
+
 export function getBoundingClientRect(element: Element): DOMRect | number {
   if (!element || !element.getBoundingClientRect) {
     return 0;

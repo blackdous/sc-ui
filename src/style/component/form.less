@@ -1,5 +1,15 @@
 @scFormScope: ~'@{prefixCls}Basic-form';
 
 .@{scFormScope} {
-  
+  .ant-btn {
+    & + .ant-btn {
+      margin-left: 16px;
+    }
+  }
+  .ant-form-item-label > label {
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    // color: @heading-color;
+  }
 }

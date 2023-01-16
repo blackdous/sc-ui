@@ -67,7 +67,7 @@ import { props } from './type'
 
 export default defineComponent({
   name: 'ScSelect',
-  // inheritAttrs: false,
+  inheritAttrs: false,
   props: props(),
   components: {
     Select,
