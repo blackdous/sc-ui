@@ -3,7 +3,7 @@
     <div style="width: 100%" :style="{ textAlign: actionColOpt.style.textAlign }">
       <FormItem>
         <slot name="resetBefore"></slot>
-        <BzButton
+        <ScButton
           type="default"
           class="mr-4"
           v-bind="getResetBtnOptions"
@@ -11,10 +11,10 @@
           v-if="showResetButton"
         >
           {{ getResetBtnOptions.text }}
-        </BzButton>
+        </ScButton>
         <slot name="submitBefore"></slot>
 
-        <BzButton
+        <ScButton
           type="primary"
           class="mr-4"
           v-bind="getSubmitBtnOptions"
@@ -22,10 +22,10 @@
           v-if="showSubmitButton"
         >
           {{ getSubmitBtnOptions.text }}
-        </BzButton>
+        </ScButton>
 
         <slot name="advanceBefore"></slot>
-        <BzButton
+        <ScButton
           type="link"
           size="small"
           @click="toggleAdvanced"
@@ -33,7 +33,7 @@
         >
           {{ isAdvanced ? '收起' : '展开' }}
           <!-- <BzArrow class="ml-1" :expand="!isAdvanced" up /> -->
-        </BzButton>
+        </ScButton>
         <slot name="advanceAfter"></slot>
       </FormItem>
     </div>
@@ -45,7 +45,6 @@
   import { defineComponent, computed, PropType } from 'vue';
   import { Form, Col } from 'ant-design-vue';
   import { ScButton, ButtonProps } from '../../button';
-  // import { BzArrow } from '/@/components/Basic';
   import { useFormContext } from '../hooks/useFormContext';
   import { PropTypes } from '../../../utils';
 
@@ -56,7 +55,6 @@
     components: {
       FormItem: Form.Item,
       ScButton,
-      // BzArrow,
       [Col.name]: Col,
     },
     props: {

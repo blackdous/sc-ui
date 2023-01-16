@@ -44,21 +44,21 @@
     <template  #footer>
       <div :class="footerClassName" v-if="!isSlotFooter">
         <slot name="insertFooter"></slot>
-        <!-- :disabled="curProps.onCancelDisable" -->
         <ScButton
           :class="[modalPrefixCls + '-footer__cancel']"
           status="info"
           v-bind="{...curProps, type: undefined, disabled: curProps?.cancelButtonProps?.disabled || curProps?.onCancelDisable}"
+          title=""
           @click="closeVisible"
         >
           {{ curProps.cancelText }}
         </ScButton>
-        <!-- :disabled="curProps.onOkDisable" -->
         <ScButton
           :loading="curProps.confirmLoading"
           :class="[modalPrefixCls + '-footer__ok']"
           v-bind="{...curProps, type: undefined, disabled: curProps?.okButtonProps?.disabled || curProps?.onOkDisable}"
           type="primary"
+          title=""
           @click="curProps.onOk"
         >
           {{curProps.okText}}

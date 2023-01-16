@@ -5,6 +5,7 @@
     ref="formElRef"
     :model="formModel"
     @keypress.enter="handleEnterPress"
+    :style="{ '--labelWidth':  getProps.labelWidth}"
   >
     <Row v-bind="getRow">
       <slot name="formHeader"></slot>
@@ -94,7 +95,7 @@
       const schemaRef = ref<Nullable<FormSchema[]>>(null);
       const formElRef = ref<Nullable<FormActionType>>(null);
       // const { prefixCls } = useDesign('basic-form');
-      const prefixCls = basePrefixCls + 'basic-form'
+      const prefixCls = basePrefixCls + 'Basic-form'
       // 获取表单的基本配置
       const getProps = computed((): FormProps => {
         // @ts-ignore

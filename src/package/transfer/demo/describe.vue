@@ -10,14 +10,12 @@
       @change="handleChange"
     >
       <template #render="item">
-        <div class="custom-item">
-          <p class="custom-title">
-            {{ item.title }}
-          </p>
-          <p class="custom-desc">
-            {{ item.description }}
-          </p>
-        </div>
+        <span class="custom-title">
+          {{ item.title }}
+        </span>
+        <p class="custom-desc">
+          {{ item.description }}
+        </p>
       </template>
     </Transfer>
     <template #renderEmpty>
@@ -82,24 +80,6 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.custom-item {
-  display: inline-flex;
-  flex-direction: column;
-  font-family: 'PingFang SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
-  .custom-desc {
-    color: @text-color-secondary;
-  }
-}
-.ant-checkbox-wrapper-checked {
-  & + .ant-transfer-list-content-item-text {
-    .custom-desc {
-      color: fade(@primary-color, 60%);
-    }
-  }
-}
+
 </style>
 

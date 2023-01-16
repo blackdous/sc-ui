@@ -187,4 +187,18 @@
       padding: 12px 12px 0 12px;
     }
   }
+  .custom-desc {
+    color: @text-color-secondary;
+    padding-left: 24px;
+    line-height: 22px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .ant-checkbox-wrapper-checked {
+    & + .ant-transfer-list-content-item-text {
+      .custom-desc {
+        color: fade(@primary-color, 60%);
+      }
+    }
+  }
 }

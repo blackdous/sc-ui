@@ -350,6 +350,7 @@ const demoAreaList = (parentCode: any) => {
 };
 
 const demoAccountExist = (account: any) => {
+  console.log('account: ', account);
   return new Promise((resolve, reject) => {
     if (account && account.indexOf('admin') !== -1) {
       reject('该字段不能包含admin');
@@ -384,7 +385,9 @@ export const areaRecord = (parentCode: any) => {
 };
 
 export const isAccountExist = (parentCode: any) => {
+  console.log('parentCode: ', parentCode);
   return demoAccountExist(parentCode);
 };
 
-export default {}
+
+export default { optionsListApi, treeOptionsListApi, areaRecord, isAccountExist}
