@@ -46,6 +46,7 @@ export const sidebar = {
         { text: 'Cascader', link: '/en/cascader/' },
         { text: 'Slider', link: '/en/slider/' },
         { text: 'Transfer', link: '/en/transfer/' },
+        { text: 'DatePicker', link: '/en/datePicker/' },
       ]
     },
     {
@@ -121,6 +122,7 @@ export const sidebar = {
         { text: '级联选择 Cascader', link: '/cascader/' },
         { text: '滑动输入条 Slider', link: '/slider/' },
         { text: '穿梭框 Transfer', link: '/transfer/' },
+        { text: '日期选择框 DatePicker', link: '/datePicker/' },
       ]
     },
     {

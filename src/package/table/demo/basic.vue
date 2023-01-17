@@ -198,6 +198,7 @@ const scTableRef = ref()
 const columns = [
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
   { 
+    // title: 'age',
     width: 60,
     dataIndex: 'age', 
     key: 'age',
@@ -206,12 +207,13 @@ const columns = [
       customRender: 'status1'
     },
     titleType: {
-      componentName: 'thDescribe',
+      componentName: 'thUnit2',
       props: {
-        text: 'Column 2',
-        describe: '提示内容'
+        text: 'Column 2111',
+        unit: '(元)'
       }
     },
+    sorter: true
   },
   {
     dataIndex: 'address', key: 'address', width: 160,
@@ -246,7 +248,8 @@ setTimeout(() => {
     },
     slots: {
       customRender: 'copy1'
-    }
+    },
+    sorter: true
   })
   columns.push({  dataIndex: 'age3', key: 'age3', width: 160,
     type: {

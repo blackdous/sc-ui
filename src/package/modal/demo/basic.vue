@@ -72,7 +72,6 @@
 
   <Modal
     v-model:visible="visible3"
-    title="Basic Modal"
     destroyOnClose
     @ok="handleOk"
     @cancel="handleCancel2"
@@ -80,6 +79,9 @@
     ok-text="确认"
     maskClosable
   >
+    <template #title>
+      Basic Modal
+    </template>
   <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </Modal>
 
