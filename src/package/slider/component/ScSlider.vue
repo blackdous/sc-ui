@@ -96,6 +96,7 @@
       v-model:value="valueRef"
       :min="newProps.min"
       :max="newProps.max"
+      :step="newProps.step"
     >
       <!-- @pressEnter="handleChange" -->
 

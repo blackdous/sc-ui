@@ -42,6 +42,9 @@ map:
 | --- | --- | --- | --- | --- |
 | wrapperWidth | 滚动条宽度 |  [Number, String] | 480 | -|
 | value | 滚动的值 |  [Number, String] | 0 | |
+| step | inputNumber 刻度值 |  [Number, String] | 10 | |
+| min | 最小值 |  [Number] | 0 | |
+| max | 最大值 |  [Number] | 100 | |
 | dotWidth | 拖拽模块的最宽度 |  [Number, String] | 0 | |
 | unit | 单位；用于拖拽块的内容显示 | String | 'Mbps' | |
 | infos | 用于默认自定义 `tooltip`、`marker`的数据 | Infos | - | |

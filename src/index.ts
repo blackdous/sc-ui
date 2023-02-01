@@ -25,6 +25,12 @@ import { ScCascader } from './package/cascader'
 import { ScBreadcrumb } from './package/breadcrumb'
 import { useMessage } from './hooks'
 import { ScSlider } from './package/slider'
+import ScDatePicker, {
+  ScMonthPicker,
+  ScWeekPicker,
+  ScRangePicker,
+  ScQuarterPicker,
+} from './package/datePicker/index'
 import { ScDescription, useDescription } from './package/description'
 import { 
   ScForm,
@@ -73,6 +79,13 @@ const components = [
   ScSlider,
   ScDescription,
   ScForm,
+  
+  ScDatePicker,
+  ScMonthPicker,
+  ScWeekPicker,
+  ScRangePicker,
+  ScQuarterPicker,
+
   ApiSelect,
   RadioButtonGroup,
   ApiTreeSelect,
@@ -119,6 +132,13 @@ export {
   ScSlider,
   ScDescription,
   ScForm,
+
+  ScDatePicker,
+  ScMonthPicker,
+  ScWeekPicker,
+  ScRangePicker,
+  ScQuarterPicker,
+  
   ApiSelect,
   RadioButtonGroup,
   ApiTreeSelect,

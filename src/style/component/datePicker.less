@@ -1,4 +1,4 @@
-@datePickerScope: ~'@{prefixCls}DatePicker';
+@datePickerScope: ~'@{prefixCls}Picker';
 // .ant-calendar-picker-container {
 //   .ant-calendar {
 //     .ant-calendar-year-panel-table {
@@ -8,6 +8,1367 @@
 //     }
 //   }
 // }
-.@{datePickerScope} {
-  
+@picker-prefix-cls: ~'scPicker';
+
+.picker-padding(@input-height, @font-size, @padding-horizontal) {
+  // font height probably 22.0001， So use floor better
+  @font-height: floor(@font-size * @line-height-base) + 2;
+  @padding-top: max(((@input-height - @font-height) / 2), 0);
+  @padding-bottom: max(@input-height - @font-height - @padding-top, 0);
+  padding: @padding-top @padding-horizontal @padding-bottom;
+}
+
+.@{picker-prefix-cls} {
+  @arrow-size: 10px;
+
+  .reset-component();
+  .picker-padding(@input-height-base, @font-size-base, @input-padding-horizontal-base);
+  padding: 4px 8px 4px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  // background: @picker-bg;
+  border: @border-width-base @border-style-base @select-border-color;
+  border-radius: @border-radius-base;
+  transition: border @animation-duration-slow, box-shadow @animation-duration-slow;
+
+  &:hover,
+  &-focused {
+    .hover();
+    border-color: @primary-color;
+  }
+
+  &-focused {
+    .active();
+    border-color: @primary-color;
+    .@{picker-prefix-cls}-suffix{
+      color: @primary-color;
+    }
+  }
+
+  &&-disabled {
+    background: @input-disabled-bg;
+    border-color: @select-border-color;
+    cursor: not-allowed;
+  }
+
+  &&-disabled &-suffix {
+    color: @disabled-color;
+  }
+
+  &&-borderless {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  // ======================== Input =========================
+  &-input {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+
+    > input {
+      .input();
+      flex: auto;
+
+      // Fix Firefox flex not correct:
+      // https://github.com/ant-design/ant-design/pull/20023#issuecomment-564389553
+      min-width: 1px;
+      height: auto;
+      padding: 0;
+      background: transparent;
+
+      border: 0;
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      &[disabled] {
+        background: transparent;
+      }
+    }
+
+    &:hover {
+      .@{picker-prefix-cls}-clear {
+        opacity: 1;
+      }
+    }
+
+    &-placeholder {
+      > input {
+        color: @input-placeholder-color;
+      }
+    }
+  }
+
+  // Size
+  &-large {
+    .picker-padding(@input-height-lg, @font-size-lg, @input-padding-horizontal-lg);
+
+    .@{picker-prefix-cls}-input > input {
+      font-size: @font-size-lg;
+    }
+  }
+
+  &-small {
+    .picker-padding(@input-height-sm, @font-size-base, @input-padding-horizontal-sm);
+  }
+
+  &-suffix {
+    align-self: center;
+    margin-left: (@padding-xs / 2);
+    color: @disabled-color;
+    line-height: 1;
+    pointer-events: none;
+
+    > * {
+      vertical-align: top;
+    }
+  }
+
+  &-clear {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    color: @disabled-color;
+    line-height: 1;
+    background: @component-background;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity @animation-duration-slow, color @animation-duration-slow;
+
+    > * {
+      vertical-align: top;
+    }
+
+    &:hover {
+      color: @text-color-secondary;
+    }
+  }
+
+  &-separator {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: @font-size-lg;
+    color: @disabled-color;
+    font-size: @font-size-lg;
+    vertical-align: top;
+    cursor: default;
+
+    .@{picker-prefix-cls}-focused & {
+      color: @text-color-secondary;
+    }
+
+    .@{picker-prefix-cls}-range-separator & {
+      .@{picker-prefix-cls}-disabled & {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // ======================== Range =========================
+  &-range {
+    position: relative;
+    display: inline-flex;
+
+    // Clear
+    .@{picker-prefix-cls}-clear {
+      right: @input-padding-horizontal-base;
+    }
+
+    &:hover {
+      .@{picker-prefix-cls}-clear {
+        opacity: 1;
+      }
+    }
+
+    // Active bar
+    .@{picker-prefix-cls}-active-bar {
+      bottom: -@border-width-base;
+      height: 2px;
+      margin-left: @input-padding-horizontal-base;
+      background: @primary-color;
+      opacity: 0;
+      transition: all @animation-duration-slow ease-out;
+      pointer-events: none;
+    }
+
+    &.@{picker-prefix-cls}-focused {
+      .@{picker-prefix-cls}-active-bar {
+        opacity: 1;
+      }
+    }
+
+    &-separator {
+      align-items: center;
+      padding: 0 @padding-xs;
+      line-height: 1;
+    }
+
+    &.@{picker-prefix-cls}-small {
+      .@{picker-prefix-cls}-clear {
+        right: @input-padding-horizontal-sm;
+      }
+
+      .@{picker-prefix-cls}-active-bar {
+        margin-left: @input-padding-horizontal-sm;
+      }
+    }
+  }
+
+  // ======================= Dropdown =======================
+  &-dropdown {
+    .reset-component();
+    position: absolute;
+    z-index: @zindex-picker;
+
+    &-hidden {
+      display: none;
+    }
+
+    &-placement-bottomLeft {
+      .@{picker-prefix-cls}-range-arrow {
+        top: (@arrow-size / 2) - (@arrow-size / 3);
+        display: block;
+        transform: rotate(-45deg);
+      }
+    }
+
+    &-placement-topLeft {
+      .@{picker-prefix-cls}-range-arrow {
+        bottom: (@arrow-size / 2) - (@arrow-size / 3);
+        display: block;
+        transform: rotate(135deg);
+      }
+    }
+
+    &.@{ant-prefix}-slide-up-enter.@{ant-prefix}-slide-up-enter-active&-placement-topLeft,
+    &.@{ant-prefix}-slide-up-enter.@{ant-prefix}-slide-up-enter-active&-placement-topRight,
+    &.@{ant-prefix}-slide-up-appear.@{ant-prefix}-slide-up-appear-active&-placement-topLeft,
+    &.@{ant-prefix}-slide-up-appear.@{ant-prefix}-slide-up-appear-active&-placement-topRight {
+      animation-name: antSlideDownIn;
+    }
+
+    &.@{ant-prefix}-slide-up-enter.@{ant-prefix}-slide-up-enter-active&-placement-bottomLeft,
+    &.@{ant-prefix}-slide-up-enter.@{ant-prefix}-slide-up-enter-active&-placement-bottomRight,
+    &.@{ant-prefix}-slide-up-appear.@{ant-prefix}-slide-up-appear-active&-placement-bottomLeft,
+    &.@{ant-prefix}-slide-up-appear.@{ant-prefix}-slide-up-appear-active&-placement-bottomRight {
+      animation-name: antSlideUpIn;
+    }
+
+    &.@{ant-prefix}-slide-up-leave.@{ant-prefix}-slide-up-leave-active&-placement-topLeft,
+    &.@{ant-prefix}-slide-up-leave.@{ant-prefix}-slide-up-leave-active&-placement-topRight {
+      animation-name: antSlideDownOut;
+    }
+
+    &.@{ant-prefix}-slide-up-leave.@{ant-prefix}-slide-up-leave-active&-placement-bottomLeft,
+    &.@{ant-prefix}-slide-up-leave.@{ant-prefix}-slide-up-leave-active&-placement-bottomRight {
+      animation-name: antSlideUpOut;
+    }
+  }
+
+  &-dropdown-range {
+    padding: (@arrow-size * 2 / 3) 0;
+
+    &-hidden {
+      display: none;
+    }
+  }
+
+  // Time picker with additional style
+  &-dropdown &-panel > &-time-panel {
+    padding-top: (@padding-xs / 2);
+  }
+
+  // ======================== Ranges ========================
+  &-ranges {
+    margin-bottom: 0;
+    padding: 7px @padding-sm;
+    overflow: hidden;
+    line-height: @picker-text-height - 2 * @border-width-base - (@padding-xs / 2);
+    text-align: left;
+    list-style: none;
+
+    > li {
+      display: inline-block;
+    }
+
+    // https://github.com/ant-design/ant-design/issues/23687
+    .@{picker-prefix-cls}-preset > .@{ant-prefix}-tag-blue {
+      color: @primary-color;
+      background: @primary-1;
+      border-color: @primary-3;
+      cursor: pointer;
+    }
+
+    .@{picker-prefix-cls}-ok {
+      float: right;
+      margin-left: @padding-xs;
+    }
+  }
+
+  &-range-wrapper {
+    display: flex;
+  }
+
+  &-range-arrow {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    width: @arrow-size;
+    height: @arrow-size;
+    margin-left: @input-padding-horizontal-base * 1.5;
+    box-shadow: 2px -2px 6px fade(@black, 6%);
+    transition: left @animation-duration-slow ease-out;
+
+    &::after {
+      position: absolute;
+      top: @border-width-base;
+      right: @border-width-base;
+      width: @arrow-size;
+      height: @arrow-size;
+      border: (@arrow-size / 2) solid @border-color-split;
+      border-color: @calendar-bg @calendar-bg transparent transparent;
+      content: '';
+    }
+  }
+
+  &-panel-container {
+    overflow: hidden;
+    vertical-align: top;
+    background: @calendar-bg;
+    // border-radius: @border-radius-base;
+    border-radius: @border-r-6;
+    box-shadow: @box-shadow-base;
+    transition: margin @animation-duration-slow;
+
+    .@{picker-prefix-cls}-panels {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      direction: ltr;
+    }
+
+    .@{picker-prefix-cls}-panel {
+      vertical-align: top;
+      background: transparent;
+      // border-width: 1px;
+      border-radius: @border-r-6;
+
+      .@{picker-prefix-cls}-content,
+      table {
+        text-align: center;
+      }
+
+      &-focused {
+        border-color: @border-color-split;
+      }
+    }
+  }
+}
+@picker-cell-inner-cls: ~'@{picker-prefix-cls}-cell-inner';
+
+.@{picker-prefix-cls} {
+  @picker-arrow-size: 7px;
+  @picker-year-month-cell-width: 60px;
+  @picker-panel-width: @picker-panel-cell-width * 7 + @padding-sm * 2 + 4;
+
+  &-panel {
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+    background: @calendar-bg;
+    border: @border-width-base @border-style-base @picker-border-color;
+    border-radius: @border-radius-base;
+    outline: none;
+
+    &-focused {
+      border-color: @primary-color;
+    }
+  }
+
+  // ========================================================
+  // =                     Shared Panel                     =
+  // ========================================================
+  &-decade-panel,
+  &-year-panel,
+  &-quarter-panel,
+  &-month-panel,
+  &-week-panel,
+  &-date-panel,
+  &-time-panel {
+    display: flex;
+    flex-direction: column;
+    width: @picker-panel-width;
+  }
+
+  // ======================= Header =======================
+  &-header {
+    display: flex;
+    padding: 0 @padding-sm;
+    color: @heading-color;
+    // border-bottom: @border-width-base @border-style-base @picker-border-color;
+
+    > * {
+      flex: none;
+    }
+
+    button {
+      padding: 0;
+      color: @heading-color;
+      // color: @disabled-color;
+      line-height: @picker-text-height;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      transition: color @animation-duration-slow;
+    }
+
+    > button {
+      min-width: 1.2em;
+      font-size: @font-size-base;
+
+      &:hover {
+        color: @text-color;
+      }
+    }
+
+    &-view {
+      flex: auto;
+      font-weight: 500;
+      line-height: @picker-text-height;
+
+      button {
+        color: inherit;
+        font-weight: inherit;
+
+        &:not(:first-child) {
+          margin-left: @padding-xs;
+        }
+
+        &:hover {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+
+  // Arrow button
+  &-prev-icon,
+  &-next-icon,
+  &-super-prev-icon,
+  &-super-next-icon {
+    position: relative;
+    display: inline-block;
+    width: @picker-arrow-size;
+    height: @picker-arrow-size;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: @picker-arrow-size;
+      height: @picker-arrow-size;
+      border: 0 solid currentcolor;
+      border-width: 1.5px 0 0 1.5px;
+      content: '';
+    }
+  }
+
+  &-super-prev-icon,
+  &-super-next-icon {
+    &::after {
+      position: absolute;
+      top: ceil((@picker-arrow-size / 2));
+      left: ceil((@picker-arrow-size / 2));
+      display: inline-block;
+      width: @picker-arrow-size;
+      height: @picker-arrow-size;
+      border: 0 solid currentcolor;
+      border-width: 1.5px 0 0 1.5px;
+      content: '';
+    }
+  }
+
+  &-prev-icon,
+  &-super-prev-icon {
+    transform: rotate(-45deg);
+  }
+
+  &-next-icon,
+  &-super-next-icon {
+    transform: rotate(135deg);
+  }
+
+  // ======================== Body ========================
+  &-content {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    th,
+    td {
+      position: relative;
+      min-width: 24px;
+      font-weight: 400;
+    }
+
+    th {
+      height: 30px;
+      color: @text-color;
+      line-height: 30px;
+    }
+  }
+
+  .picker-cell-inner(@cellClassName) {
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      left: 0;
+      z-index: 1;
+      height: @picker-panel-cell-height;
+      transform: translateY(-50%);
+      transition: all @animation-duration-slow;
+      content: '';
+    }
+
+    // >>> Default
+    .@{cellClassName} {
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+      min-width: @picker-panel-cell-height;
+      height: @picker-panel-cell-height;
+      line-height: @picker-panel-cell-height;
+      border-radius: @border-radius-base;
+      transition: background @animation-duration-slow, border @animation-duration-slow;
+    }
+
+    // >>> Hover
+    &:hover:not(&-in-view),
+    &:hover:not(&-selected):not(&-today):not(&-range-start):not(&-range-end):not(&-range-hover-start):not(&-range-hover-end) {
+      .@{cellClassName} {
+        border: 1px solid @primary-color;
+        line-height: 22px;
+      }
+    }
+
+    // >>> Today
+    &-in-view&-today:not(&-in-range) .@{cellClassName} {
+      color: @primary-color;
+      &::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        // border: @border-width-base @border-style-base @primary-color;
+        border-radius: @border-radius-base;
+        background-color: @today-bg-color;
+        content: '';
+      }
+    }
+    &-in-view&-today {
+      &.scPicker-cell-selected {
+        .@{cellClassName}{
+          &::before {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    // >>> In Range
+    &-in-view&-in-range {
+      position: relative;
+
+      &::before {
+        background: @table-Menu-bg;
+      }
+    }
+
+    // >>> Selected
+    &-in-view&-selected .@{cellClassName},
+    &-in-view&-range-start .@{cellClassName},
+    &-in-view&-range-end .@{cellClassName} {
+      color: @text-color-inverse;
+      background: @primary-color;
+    }
+
+    &-in-view&-range-start:not(&-range-start-single),
+    &-in-view&-range-end:not(&-range-end-single) {
+      &::before {
+        background: @picker-basic-cell-active-with-range-color;
+      }
+    }
+
+    &-in-view&-range-start::before {
+      left: 50%;
+    }
+
+    &-in-view&-range-end::before {
+      right: 50%;
+    }
+
+    // >>> Range Hover
+    &-in-view&-range-hover-start:not(&-in-range):not(&-range-start):not(&-range-end),
+    &-in-view&-range-hover-end:not(&-in-range):not(&-range-start):not(&-range-end),
+    &-in-view&-range-hover-start&-range-start-single,
+    &-in-view&-range-hover-start&-range-start&-range-end&-range-end-near-hover,
+    &-in-view&-range-hover-end&-range-start&-range-end&-range-start-near-hover,
+    &-in-view&-range-hover-end&-range-end-single,
+    &-in-view&-range-hover:not(&-in-range) {
+      &::after {
+        position: absolute;
+        top: 50%;
+        z-index: 0;
+        height: 24px;
+        // border-top: @border-width-base dashed @picker-date-hover-range-border-color;
+        // border-bottom: @border-width-base dashed @picker-date-hover-range-border-color;
+        background-color: @table-Menu-bg;
+        transform: translateY(-50%);
+        transition: all @animation-duration-slow;
+        content: '';
+      }
+    }
+
+    // Add space for stash
+    &-range-hover-start::after,
+    &-range-hover-end::after,
+    &-range-hover::after {
+      right: 0;
+      left: 0;
+    }
+
+    // Hover with in range
+    &-in-view&-in-range&-range-hover::before,
+    &-in-view&-range-start&-range-hover::before,
+    &-in-view&-range-end&-range-hover::before,
+    &-in-view&-range-start:not(&-range-start-single)&-range-hover-start::before,
+    &-in-view&-range-end:not(&-range-end-single)&-range-hover-end::before,
+    .@{picker-prefix-cls}-panel
+      > :not(.@{picker-prefix-cls}-date-panel)
+      &-in-view&-in-range&-range-hover-start::before,
+    .@{picker-prefix-cls}-panel
+      > :not(.@{picker-prefix-cls}-date-panel)
+      &-in-view&-in-range&-range-hover-end::before {
+      background: @table-Menu-bg;
+    }
+
+    // range start border-radius
+    &-in-view&-range-start:not(&-range-start-single):not(&-range-end) .@{cellClassName} {
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+    }
+
+    // range end border-radius
+    &-in-view&-range-end:not(&-range-end-single):not(&-range-start) .@{cellClassName} {
+      border-radius: 0 @border-radius-base @border-radius-base 0;
+    }
+
+    // DatePanel only
+    .@{picker-prefix-cls}-date-panel &-in-view&-in-range&-range-hover-start .@{cellClassName},
+    .@{picker-prefix-cls}-date-panel &-in-view&-in-range&-range-hover-end .@{cellClassName} {
+      &::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        background: @picker-date-hover-range-color;
+        transition: all @animation-duration-slow;
+        content: '';
+      }
+    }
+
+    .@{picker-prefix-cls}-date-panel
+      &-in-view&-in-range&-range-hover-start
+      .@{cellClassName}::after {
+      right: -5px - @border-width-base;
+      left: 0;
+    }
+
+    .@{picker-prefix-cls}-date-panel &-in-view&-in-range&-range-hover-end .@{cellClassName}::after {
+      right: 0;
+      left: -5px - @border-width-base;
+    }
+
+    // Hover with range start & end
+    &-range-hover&-range-start::after {
+      right: 50%;
+    }
+
+    &-range-hover&-range-end::after {
+      left: 50%;
+    }
+
+    // Edge start
+    tr > &-in-view&-range-hover:first-child::after,
+    tr > &-in-view&-range-hover-end:first-child::after,
+    &-in-view&-start&-range-hover-edge-start&-range-hover-edge-start-near-range::after,
+    &-in-view&-range-hover-edge-start:not(&-range-hover-edge-start-near-range)::after,
+    &-in-view&-range-hover-start::after {
+      left: 6px;
+      border-left: @border-width-base dashed @picker-date-hover-range-border-color;
+      border-top-left-radius: @border-radius-base;
+      border-bottom-left-radius: @border-radius-base;
+    }
+
+    // Edge end
+    tr > &-in-view&-range-hover:last-child::after,
+    tr > &-in-view&-range-hover-start:last-child::after,
+    &-in-view&-end&-range-hover-edge-end&-range-hover-edge-end-near-range::after,
+    &-in-view&-range-hover-edge-end:not(&-range-hover-edge-end-near-range)::after,
+    &-in-view&-range-hover-end::after {
+      right: 6px;
+      border-right: @border-width-base dashed @picker-date-hover-range-border-color;
+      border-top-right-radius: @border-radius-base;
+      border-bottom-right-radius: @border-radius-base;
+    }
+
+    // >>> Disabled
+    &-disabled {
+      color: @disabled-color;
+      pointer-events: none;
+
+      .@{cellClassName} {
+        background: transparent;
+      }
+
+      &::before {
+        background: @picker-basic-cell-disabled-bg;
+      }
+    }
+    &-disabled&-today .@{cellClassName}::before {
+      border-color: @disabled-color;
+    }
+  }
+
+  &-cell {
+    padding: 3px 0;
+    color: @disabled-color;
+    cursor: pointer;
+
+    // In view
+    &-in-view {
+      color: @text-color;
+    }
+
+    .picker-cell-inner(~'@{picker-cell-inner-cls}');
+  }
+
+  &-decade-panel,
+  &-year-panel,
+  &-quarter-panel,
+  &-month-panel {
+    .@{picker-prefix-cls}-content {
+      height: @picker-panel-without-time-cell-height * 4;
+    }
+
+    .@{picker-cell-inner-cls} {
+      padding: 0 @padding-xs;
+    }
+  }
+
+  &-quarter-panel {
+    .@{picker-prefix-cls}-content {
+      height: 56px;
+    }
+  }
+
+  // ======================== Footer ========================
+  &-footer {
+    width: min-content;
+    min-width: 100%;
+    line-height: @picker-text-height - 2 * @border-width-base;
+    text-align: center;
+    border-bottom: @border-width-base @border-style-base transparent;
+
+    .@{picker-prefix-cls}-panel & {
+      border-top: @border-width-base @border-style-base @picker-border-color;
+    }
+
+    &-extra {
+      padding: 0 @padding-sm;
+      line-height: @picker-text-height - 2 * @border-width-base;
+      text-align: left;
+
+      &:not(:last-child) {
+        border-bottom: @border-width-base @border-style-base @picker-border-color;
+      }
+    }
+  }
+
+  &-now {
+    text-align: left;
+  }
+
+  &-today-btn {
+    color: @link-color;
+
+    &:hover {
+      color: @link-hover-color;
+    }
+
+    &:active {
+      color: @link-active-color;
+    }
+
+    &&-disabled {
+      color: @disabled-color;
+      cursor: not-allowed;
+    }
+  }
+
+  // ========================================================
+  // =                       Special                        =
+  // ========================================================
+
+  // ===================== Decade Panel =====================
+  &-decade-panel {
+    .@{picker-cell-inner-cls} {
+      padding: 0 (@padding-xs / 2);
+    }
+
+    .@{picker-prefix-cls}-cell::before {
+      display: none;
+    }
+  }
+
+  // ============= Year & Quarter & Month Panel =============
+  &-year-panel,
+  &-quarter-panel,
+  &-month-panel {
+    @hover-cell-fixed-distance: (
+      (((@picker-panel-width - @padding-xs * 2) / 3) - @picker-year-month-cell-width) / 2
+    );
+
+    .@{picker-prefix-cls}-body {
+      padding: 0;
+      // padding: 0 @padding-sm;
+    }
+
+    .@{picker-cell-inner-cls} {
+      width: @picker-year-month-cell-width;
+    }
+
+    .@{picker-prefix-cls}-cell-range-hover-start::after {
+      left: @hover-cell-fixed-distance;
+      border-left: @border-width-base dashed @picker-date-hover-range-border-color;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: @hover-cell-fixed-distance;
+        border-right: @border-width-base dashed @picker-date-hover-range-border-color;
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+      }
+    }
+    .@{picker-prefix-cls}-cell-range-hover-end::after {
+      right: @hover-cell-fixed-distance;
+      border-right: @border-width-base dashed @picker-date-hover-range-border-color;
+      border-radius: 0 @border-radius-base @border-radius-base 0;
+
+      .@{picker-prefix-cls}-panel-rtl & {
+        left: @hover-cell-fixed-distance;
+        border-left: @border-width-base dashed @picker-date-hover-range-border-color;
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+      }
+    }
+  }
+
+  // ====================== Week Panel ======================
+  &-week-panel {
+    .@{picker-prefix-cls}-body {
+      padding: @padding-xs @padding-sm;
+    }
+
+    // Clear cell style
+    .@{picker-prefix-cls}-cell {
+      &:hover .@{picker-cell-inner-cls},
+      &-selected .@{picker-cell-inner-cls},
+      .@{picker-cell-inner-cls} {
+        background: transparent !important;
+      }
+    }
+
+    &-row {
+      td {
+        transition: background @animation-duration-slow;
+      }
+
+      &:hover td {
+        background: @picker-basic-cell-hover-color;
+      }
+
+      &-selected td,
+      &-selected:hover td {
+        background: @primary-color;
+        &:first-child {
+          border-radius: @border-r-3 0 0 @border-r-3;
+        }
+        &:last-child {
+          border-radius: 0 @border-r-3  @border-r-3 0;
+        }
+        &:first-child {
+          border-radius: @border-r-3 0 0 @border-r-3;
+        }
+        &.@{picker-prefix-cls}-cell-week {
+          color: fade(@text-color-inverse, 50%);
+        }
+
+        &.@{picker-prefix-cls}-cell-today .@{picker-cell-inner-cls}::before {
+          border-color: @text-color-inverse;
+          // background-color: @today-bg-color;
+        }
+
+        .@{picker-cell-inner-cls} {
+          color: @text-color-inverse;
+        }
+      }
+    }
+  }
+
+  // ====================== Date Panel ======================
+  &-date-panel {
+    .@{picker-prefix-cls}-body {
+      padding: @padding-xs @padding-sm;
+    }
+
+    .@{picker-prefix-cls}-content {
+      width: @picker-panel-cell-width * 7;
+
+      th {
+        width: @picker-panel-cell-width;
+      }
+    }
+  }
+
+  // ==================== Datetime Panel ====================
+  &-datetime-panel {
+    display: flex;
+
+    .@{picker-prefix-cls}-time-panel {
+      border-left: @border-width-base @border-style-base @picker-border-color;
+    }
+
+    .@{picker-prefix-cls}-date-panel,
+    .@{picker-prefix-cls}-time-panel {
+      transition: opacity @animation-duration-slow;
+    }
+
+    // Keyboard
+    &-active {
+      .@{picker-prefix-cls}-date-panel,
+      .@{picker-prefix-cls}-time-panel {
+        opacity: 0.3;
+
+        &-active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // ====================== Time Panel ======================
+  &-time-panel {
+    width: auto;
+    min-width: auto;
+
+    .@{picker-prefix-cls}-content {
+      display: flex;
+      flex: auto;
+      padding: 0 3px 0 13px;
+      height: @picker-time-panel-column-height;
+    }
+
+    &-column {
+      flex: 1 0 auto;
+      // width: @picker-time-panel-column-width;
+      margin: 0;
+      padding: 0;
+      overflow-y: hidden;
+      text-align: center;
+      list-style: none;
+      transition: background @animation-duration-slow;
+      border-right: 10px solid transparent;
+
+      &::after {
+        display: block;
+        height: @picker-time-panel-column-height - @picker-time-panel-cell-height;
+        content: '';
+        .@{picker-prefix-cls}-datetime-panel & {
+          height: @picker-time-panel-column-height - @picker-time-panel-cell-height + 2 *
+            @border-width-base;
+        }
+      }
+
+      // &::-webkit-scrollbar {
+      //   position: absolute;
+      // }
+
+      // &:not(:first-child) {
+      //   border-left: @border-width-base @border-style-base @picker-border-color;
+      // }
+
+      &-active {
+        background: @calendar-column-active-bg;
+      }
+
+      &:hover {
+        overflow-y: auto;
+        border-right: 2px solid transparent;
+        // margin-right: 10px;
+        // width: calc(59px);
+      }
+
+      > li {
+        margin: 0;
+        padding: 0;
+        width: @picker-time-panel-column-width;
+
+        &.@{picker-prefix-cls}-time-panel-cell {
+          .@{picker-prefix-cls}-time-panel-cell-inner {
+            display: block;
+            width: 100%;
+            height: @picker-time-panel-cell-height;
+            margin: 0;
+            padding: 0;
+            // padding: 0 0 0 ((@picker-time-panel-column-width - 28px) / 2);
+            color: @text-color;
+            line-height: @picker-time-panel-cell-height;
+            border-radius: 0;
+            cursor: pointer;
+            transition: background @animation-duration-slow;
+
+            &:hover {
+              background: @item-hover-bg;
+            }
+          }
+
+          &-selected {
+            .@{picker-prefix-cls}-time-panel-cell-inner, 
+            .@{picker-prefix-cls}-time-panel-cell-inner:hover {
+              // background: @calendar-item-active-bg;
+              background: @today-bg-color;
+              border-radius: @border-r-3;
+              color: @primary-color;
+            }
+          }
+
+          &-disabled {
+            .@{picker-prefix-cls}-time-panel-cell-inner {
+              color: @disabled-color;
+              background: transparent;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Fix IE11 render bug by css hacks
+// https://github.com/ant-design/ant-design/issues/21559
+// https://codepen.io/afc163-1472555193/pen/mdJRaNj?editors=0110
+/* stylelint-disable-next-line selector-type-no-unknown,selector-no-vendor-prefix */
+_:-ms-fullscreen,
+:root {
+  .@{picker-prefix-cls}-range-wrapper {
+    .@{picker-prefix-cls}-month-panel .@{picker-prefix-cls}-cell,
+    .@{picker-prefix-cls}-year-panel .@{picker-prefix-cls}-cell {
+      padding: 21px 0;
+    }
+  }
+}
+
+.@{picker-prefix-cls} {
+  &-rtl {
+    direction: rtl;
+  }
+
+  &-suffix {
+    .@{picker-prefix-cls}-rtl & {
+      margin-right: (@padding-xs / 2);
+      margin-left: 0;
+    }
+  }
+
+  &-clear {
+    .@{picker-prefix-cls}-rtl & {
+      right: auto;
+      left: 0;
+    }
+  }
+
+  &-separator {
+    .@{picker-prefix-cls}-rtl & {
+      transform: rotate(180deg);
+    }
+  }
+
+  &-header {
+    &-view {
+      button {
+        &:not(:first-child) {
+          .@{picker-prefix-cls}-panel-rtl & {
+            margin-right: @padding-xs;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // ======================== Range =========================
+  &-range {
+    // Clear
+    .@{picker-prefix-cls}-clear {
+      .@{picker-prefix-cls}-rtl& {
+        right: auto;
+        left: @input-padding-horizontal-base;
+      }
+    }
+
+    // Active bar
+    .@{picker-prefix-cls}-active-bar {
+      .@{picker-prefix-cls}-rtl& {
+        margin-right: @input-padding-horizontal-base;
+        margin-left: 0;
+      }
+    }
+
+    &.@{picker-prefix-cls}-small {
+      .@{picker-prefix-cls}-active-bar {
+        .@{picker-prefix-cls}-rtl& {
+          margin-right: @input-padding-horizontal-sm;
+        }
+      }
+    }
+  }
+
+  // ======================== Ranges ========================
+  &-ranges {
+    .@{picker-prefix-cls}-dropdown-rtl & {
+      text-align: right;
+    }
+
+    .@{picker-prefix-cls}-ok {
+      .@{picker-prefix-cls}-dropdown-rtl & {
+        float: left;
+        margin-right: @padding-xs;
+        margin-left: 0;
+      }
+    }
+  }
+
+  // ======================== Panel ========================
+  &-panel {
+    &-rtl {
+      direction: rtl;
+    }
+  }
+
+  &-prev-icon,
+  &-super-prev-icon {
+    .@{picker-prefix-cls}-panel-rtl & {
+      transform: rotate(135deg);
+    }
+  }
+
+  &-next-icon,
+  &-super-next-icon {
+    .@{picker-prefix-cls}-panel-rtl & {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &-cell {
+    .picker-cell-inner(~'@{picker-cell-inner-cls}');
+  }
+
+  // ======================== Body ==========================
+  .picker-cell-inner(@cellClassName) {
+    .@{cellClassName} {
+      position: relative;
+      z-index: 2;
+      display: inline-block;
+      min-width: @picker-panel-cell-height;
+      height: @picker-panel-cell-height;
+      line-height: @picker-panel-cell-height;
+      border-radius: @border-radius-base;
+      transition: background 0.1s, border 0.1s;
+    }
+
+    &-in-view&-range-start::before {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: 50%;
+        left: 0;
+      }
+    }
+
+    &-in-view&-range-end::before {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: 0;
+        left: 50%;
+      }
+    }
+
+    &-in-view&-range-start&-range-end::before {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: 50%;
+        left: 50%;
+      }
+    }
+
+    .@{picker-prefix-cls}-date-panel
+      &-in-view&-in-range&-range-hover-start
+      .@{cellClassName}::after {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: 0;
+        left: -5px - @border-width-base;
+      }
+    }
+
+    .@{picker-prefix-cls}-date-panel &-in-view&-in-range&-range-hover-end .@{cellClassName}::after {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: -5px - @border-width-base;
+        left: 0;
+      }
+    }
+
+    // Hover with range start & end
+    &-range-hover&-range-start::after {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: 0;
+        left: 50%;
+      }
+    }
+
+    &-range-hover&-range-end::after {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: 50%;
+        left: 0;
+      }
+    }
+
+    // range start border-radius
+    &-in-view&-range-start:not(&-range-start-single):not(&-range-end) .@{cellClassName} {
+      .@{picker-prefix-cls}-panel-rtl & {
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+      }
+    }
+
+    // range end border-radius
+    &-in-view&-range-end:not(&-range-end-single):not(&-range-start) .@{cellClassName} {
+      .@{picker-prefix-cls}-panel-rtl & {
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+      }
+    }
+
+    // Edge start
+    tr > &-in-view&-range-hover:not(&-selected):first-child::after,
+    &-in-view&-start&-range-hover-edge-start&-range-hover-edge-start-near-range::after,
+    &-in-view&-range-hover-edge-start:not(&-range-hover-edge-start-near-range)::after,
+    &-in-view&-range-hover-start::after {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: 6px;
+        left: 0;
+        border-right: @border-width-base dashed @picker-date-hover-range-border-color;
+        border-left: none;
+        border-radius: 0 @border-radius-base @border-radius-base 0;
+      }
+    }
+
+    // Edge end
+    tr > &-in-view&-range-hover:not(&-selected):last-child::after,
+    &-in-view&-end&-range-hover-edge-end&-range-hover-edge-end-near-range::after,
+    &-in-view&-range-hover-edge-end:not(&-range-hover-edge-end-near-range)::after,
+    &-in-view&-range-hover-end::after {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: 0;
+        left: 6px;
+        border-right: none;
+        border-left: @border-width-base dashed @picker-date-hover-range-border-color;
+        border-radius: @border-radius-base 0 0 @border-radius-base;
+      }
+    }
+
+    tr > &-in-view&-range-hover-start:last-child::after,
+    tr > &-in-view&-range-hover-end:first-child::after,
+    &-in-view&-start&-range-hover-edge-start:not(&-range-hover)::after,
+    &-in-view&-start&-range-hover-end&-range-hover-edge-start:not(&-range-hover)::after,
+    &-in-view&-end&-range-hover-start&-range-hover-edge-end:not(&-range-hover)::after,
+    tr > &-in-view&-start&-range-hover&-range-hover-edge-start:last-child::after,
+    tr > &-in-view&-end&-range-hover&-range-hover-edge-end:first-child::after {
+      .@{picker-prefix-cls}-panel-rtl & {
+        right: 6px;
+        left: 6px;
+        border-right: @border-width-base dashed @picker-date-hover-range-border-color;
+        border-left: @border-width-base dashed @picker-date-hover-range-border-color;
+        border-radius: @border-radius-base;
+      }
+    }
+  }
+
+  // ======================== Footer ========================
+  &-footer {
+    &-extra {
+      .@{picker-prefix-cls}-dropdown-rtl & {
+        direction: rtl;
+        text-align: right;
+      }
+    }
+  }
+
+  // ====================== Time Panel ======================
+  &-time-panel {
+    .@{picker-prefix-cls}-panel-rtl & {
+      direction: ltr;
+    }
+  }
+}
+.scPicker-decade-panel .scPicker-content, 
+.scPicker-year-panel .scPicker-content, 
+.scPicker-quarter-panel .scPicker-content, 
+.scPicker-month-panel .scPicker-content {
+  height: 184px;
+}
+.scPicker-quarter-panel {
+  .scPicker-body {
+    padding: 0 @padding-md;
+  }
+  .scPicker-content {
+    height: 56px;
+  }
+}
+
+.scPicker-year-panel {
+  tr:first-child {
+    td:first-child {
+      &:hover {
+        .scPicker-cell-inner {
+          border-color: transparent !important;
+        }
+      }
+    }
+  }
+  tr:last-child {
+    td:last-child {
+      &:hover {
+        .scPicker-cell-inner {
+          border-color: transparent !important;
+        }
+      }
+    }
+  }
+}
+.scPicker-panel-container .scPicker-panel .scPicker-content, 
+.scPicker-panel-container .scPicker-panel table {
+  text-align: center;
 }

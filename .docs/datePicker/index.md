@@ -10,10 +10,34 @@ realPath: src/package/datePicker/index.zh-CN.md
 
 ## 组件类型
 
-### 年份选择器
+## 基础选择器
 
-<demo src="./demo/year.vue"
+<demo src="./demo/basic.vue"
   language="vue"
-  title="year"
+  title="basic"
+  >
+</demo>
+
+## 日期时间选择器
+
+<demo src="./demo/dateTimer.vue"
+  language="vue"
+  title="dateTimer"
+  >
+</demo>
+
+## 日期区间选择器
+
+<demo src="./demo/dateRange.vue"
+  language="vue"
+  title="dateRange"
+  >
+</demo>
+
+## 日期时间区间选择器
+
+<demo src="./demo/dateTimerRange.vue"
+  language="vue"
+  title="dateTimerRange"
   >
 </demo>

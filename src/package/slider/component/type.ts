@@ -56,7 +56,7 @@ export const Props = () => ({
   },
   unit: {
     type: [Number, String],
-    default: 'Mbps'
+    default: 'G'
   },
   infos: {
     type:  Object as PropType<TooltipInfos>,

@@ -115,6 +115,7 @@
     "ant-design-vue": "2.2.8",
     "dayjs": "^1.11.7",
     "deepmerge": "^4.2.2",
+    "dom-align": "^1.12.4",
     "patch-vue-directive-ssr": "^0.0.1",
     "resize-observer-polyfill": "^1.5.1",
     "vue-slider-component": "4.1.0-beta.7"
