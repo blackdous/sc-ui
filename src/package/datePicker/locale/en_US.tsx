@@ -1,5 +1,5 @@
 import CalendarLocale from '../../picker/locale/en_US';
-// import TimePickerLocale from '../../time-picker/locale/en_US';
+import TimePickerLocale from '../../timePicker/locale/en_US';
 import type { PickerLocale } from '../generatePicker';
 
 // Merge into a locale object
@@ -17,7 +17,7 @@ const locale: PickerLocale = {
     ...CalendarLocale,
   },
   timePickerLocale: {
-    // ...TimePickerLocale,
+    ...TimePickerLocale,
   },
 };
 

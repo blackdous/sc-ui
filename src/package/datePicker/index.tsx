@@ -1,4 +1,4 @@
-import DatePicker from './dayjs';
+import ScDatePicker from './dayjs';
 export * from './dayjs';
 
-export default DatePicker;
+export default ScDatePicker;

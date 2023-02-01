@@ -1,5 +1,9 @@
 <template>
-  <div ref="wrapRef" :class="className">
+  <div 
+    ref="wrapRef" 
+    :class="[className, $attrs.class]"
+    :style="$attrs.style"
+  >
     <ConfigProvider 
       :locale="newProps.langLocale"
       :transformCellText="({ text }) => isEmptyText(text) ? text : '--'"
@@ -235,6 +239,7 @@ export default defineComponent({
   },
   emits: ['change', 'register', 'onAction', 'searchClick', 'onAction', 'createClick', 'selectChange', 'multipleChange', 'refresh', 'filter'],
   setup(props, { attrs, slots, emit, expose }) {
+    console.log('attrs: ', attrs);
     const tableRef = ref()
     const wrapRef = ref()
     const tableFilter = ref()
@@ -390,7 +395,9 @@ export default defineComponent({
         dataSource,
         loading: unref(getLoading),
         pagination: toRaw(unref(getPaginationInfo)),
-        change: undefined
+        change: undefined,
+        style: undefined,
+        class: undefined
       }
     })
     const className = computed(() => {

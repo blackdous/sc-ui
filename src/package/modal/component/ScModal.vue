@@ -4,6 +4,7 @@
     v-bind="getBindValue"
     v-model:visible="visibleRef"
     ref="modalRef"
+    :style="{'--model-width': getBindValue.width}"
   >
     <template #[item]="data" v-for="item in ['default']">
       <div v-if="curProps.type" :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + curProps.type]">
@@ -41,7 +42,7 @@
       </header>
     </template>
 
-    <template  #footer>
+    <template #footer v-if="curProps.footer !== null">
       <div :class="footerClassName" v-if="!isSlotFooter">
         <slot name="insertFooter"></slot>
         <ScButton
@@ -152,6 +153,9 @@ export default defineComponent({
         ...attrs,
         visible: unref(visibleRef),
       };
+      if (unref(curProps).footer === null) {
+        attr.footer = null
+      }
       return attr
     });
 

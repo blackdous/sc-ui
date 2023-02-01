@@ -31,6 +31,9 @@ import ScDatePicker, {
   ScRangePicker,
   ScQuarterPicker,
 } from './package/datePicker/index'
+import ScTimePicker, {
+  ScTimeRangePicker
+} from './package/timePicker'
 import { ScDescription, useDescription } from './package/description'
 import { 
   ScForm,
@@ -86,6 +89,9 @@ const components = [
   ScRangePicker,
   ScQuarterPicker,
 
+  ScTimePicker,
+  ScTimeRangePicker,
+
   ApiSelect,
   RadioButtonGroup,
   ApiTreeSelect,
@@ -138,6 +144,9 @@ export {
   ScWeekPicker,
   ScRangePicker,
   ScQuarterPicker,
+
+  ScTimePicker,
+  ScTimeRangePicker,
   
   ApiSelect,
   RadioButtonGroup,

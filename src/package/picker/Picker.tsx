@@ -238,7 +238,12 @@ function Picker<DateType>() {
         postState: postOpen => (props.disabled ? false : postOpen),
         onChange: newOpen => {
           if (props.onOpenChange) {
-            props.onOpenChange(newOpen);
+            if (isArray(props.onOpenChange)) {
+              props?.onOpenChange?.[1]?.(newOpen);
+            }
+            if (isFunction(props.onOpenChange)) {
+              props.onOpenChange(newOpen);
+            }
           }
 
           if (!newOpen && operationRef.value && operationRef.value.onClose) {
@@ -364,10 +369,21 @@ function Picker<DateType>() {
           props.onKeydown?.(e, preventDefault);
         },
         onFocus: (e: FocusEvent) => {
-          props.onFocus?.(e);
+          if (isArray(props.onFocus)) {
+            props.onFocus?.[1]?.(e);
+          }
+          if (isFunction(props.onFocus)) {
+            props.onFocus?.(e);
+          }
         },
         onBlur: (e: FocusEvent) => {
-          props.onBlur?.(e);
+          if (isArray(props.onBlur)) {
+            props.onBlur?.[1]?.(e);
+          }
+          if (isFunction(props.onBlur)) {
+            props.onBlur?.(e);
+          }
+          // props.onBlur?.(e);
         },
       });
 

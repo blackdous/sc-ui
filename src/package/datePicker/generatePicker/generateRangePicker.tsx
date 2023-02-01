@@ -1,10 +1,10 @@
 import { CalendarOutlined } from '@ant-design/icons-vue';
 import { ClockCircleOutlined } from '@ant-design/icons-vue';
 import { CloseCircleFilled } from '@ant-design/icons-vue';
-import { SwapRightOutlined } from '@ant-design/icons-vue';
+// import { SwapRightOutlined } from '@ant-design/icons-vue';
 import { RangePicker as VCRangePicker } from '../../picker';
 import type { GenerateConfig } from '../../picker/generate/index';
-import enUS from '../locale/en_US';
+import enUS from '../locale/zh_CN';
 import { useLocaleReceiver } from '../../../locale-provider/LocaleReceiver';
 import { getRangePlaceholder } from '../util';
 import { getTimeProps, Components } from '.';
@@ -24,7 +24,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
   extraProps: ExtraProps,
 ) {
   const RangePicker = defineComponent({
-    name: 'ARangePicker',
+    name: 'ScRangePicker',
     inheritAttrs: false,
     props: {
       ...commonProps<DateType>(),

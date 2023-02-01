@@ -1,4 +1,9 @@
 @modalScope: ~'@{prefixCls}Modal';
+.ant-modal-wrap {
+  .@{modalScope} {
+    width: var(--model-width, width) !important;
+  }
+}
 .@{modalScope}, .ant-modal {
   .ant-modal-content {
     border-radius: @border-r-6;
@@ -39,14 +44,14 @@
     color: @white-color;
   }
   .ant-modal-body {
-    padding: 24px 32px 0;
+    padding: 24px 32px 32px;
     font-size: @font-size-base;
     color: @text-color-secondary;
     font-weight: 400;
     line-height: 22px;
   }
   .ant-modal-footer {
-    padding: 32px;
+    padding: 0 32px 32px;
     text-align: center;
     button + button {
       margin-left: 16px;
@@ -102,7 +107,7 @@
     padding-left: 8px;
     vertical-align: top;
   }
-  &-info {
+  &-info:not(.ant-modal-confirm) {
     background-color: @info-bg-color;
     .@{modalScope}-status-icon {
       color: @primary-color;

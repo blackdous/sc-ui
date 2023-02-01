@@ -274,7 +274,7 @@
       }
     }
     &.ant-btn-loading {
-      min-width: 60px;
+      min-width: 50px;
       & > span:last-child {
         display: none;
       }
@@ -291,6 +291,9 @@
       height: 16px;
       background: @table-border-color;
     }
+  }
+  .ant-btn.ant-btn-loading:not(.ant-btn-circle):not(.ant-btn-circle-outline):not(.ant-btn-icon-only) {
+    padding-left: 0;
   }
 }
 

@@ -1,5 +1,5 @@
-import CalendarLocale from '../../vc-picker/locale/zh_CN';
-import TimePickerLocale from '../../time-picker/locale/zh_CN';
+import CalendarLocale from '../../picker/locale/zh_CN';
+import TimePickerLocale from '../../timePicker/locale/zh_CN';
 import type { PickerLocale } from '../generatePicker';
 
 // 统一合并为完整的 Locale

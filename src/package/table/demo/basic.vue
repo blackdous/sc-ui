@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- :pagination="false" -->
-    <ScTable 
+    <ScTable
+      style="padding: 0;"
+      class="aaaa"
       ref="scTableRef"
       :data-source="data"
       :columns="columns"

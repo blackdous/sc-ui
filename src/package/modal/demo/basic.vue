@@ -1,9 +1,9 @@
 <template>
+  <!-- wrap-class-name="aaaaaa" -->
   <ScModal 
     :visible="visible === 1"
     title="Basic Modal"
     destroyOnClose
-    wrap-class-name="aaaaaa"
     width="100px"
     @ok="handleOk"
     cancel-text="取消"
@@ -24,6 +24,7 @@
     cancel-text="取消"
     ok-text="确认"
     maskClosable
+    :footer="null"
     >
     <div>22222是文案限制长度，我是文案限制长度</div>
   </ScModal>

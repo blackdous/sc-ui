@@ -47,6 +47,7 @@ export const sidebar = {
         { text: 'Slider', link: '/en/slider/' },
         { text: 'Transfer', link: '/en/transfer/' },
         { text: 'DatePicker', link: '/en/datePicker/' },
+        { text: 'TimePicker', link: '/en/timePicker/' },
       ]
     },
     {
@@ -123,6 +124,7 @@ export const sidebar = {
         { text: '滑动输入条 Slider', link: '/slider/' },
         { text: '穿梭框 Transfer', link: '/transfer/' },
         { text: '日期选择框 DatePicker', link: '/datePicker/' },
+        { text: '时间选择框 TimePicker', link: '/timePicker/' },
       ]
     },
     {
