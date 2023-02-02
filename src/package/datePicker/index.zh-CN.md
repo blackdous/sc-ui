@@ -104,7 +104,7 @@ map:
 | format | 设置日期格式，为数组时支持多格式匹配，展示以第一个为准。配置参考 [dayjs](https://day.js.org/docs/zh-CN/display/format)，支持[自定义格式](#components-date-picker-demo-format) | string \| (value: dayjs) => string \| (string \| (value: dayjs) => string)\[] | `YYYY-MM-DD` |  |
 | renderExtraFooter | 在面板中添加额外的页脚 | v-slot:renderExtraFooter="mode" | - |  |
 | showNow | 当设定了 `showTime` 的时候，面板是否显示“此刻”按钮 | boolean | - |  |
-| showTime | 增加时间选择功能 | Object \| boolean | [TimePicker Options](/components/time-picker/#API) |  |
+| showTime | 增加时间选择功能 | Object \| boolean | [TimePicker Options] |  |
 | showTime.defaultValue | 设置用户选择日期时默认的时分秒，[例子](#components-date-picker-demo-disabled-date) | [dayjs](https://day.js.org/)] | dayjs() |  |
 | showToday | 是否展示“今天”按钮 | boolean | true |  |
 | value(v-model) | 日期 | [dayjs](https://day.js.org/)] | - |  |
@@ -154,7 +154,7 @@ map:
 | ranges | 预设时间范围快捷选择 | { \[range: string]: [dayjs](https://day.js.org/)\[] } \| { \[range: string]: () => [dayjs](https://day.js.org/)\[] } | - |  |
 | renderExtraFooter | 在面板中添加额外的页脚 | () => React.ReactNode | - |  |
 | separator | 设置分隔符 | string \| v-slot:separator | `<SwapRightOutlined />` |  |
-| showTime | 增加时间选择功能 | Object\|boolean | [TimePicker Options](/components/time-picker/#API) |  |
+| showTime | 增加时间选择功能 | Object\|boolean | [TimePicker Options] |  |
 | showTime.defaultValue | 设置用户选择日期时默认的时分秒，[例子](#components-date-picker-demo-disabled-date) | [dayjs](https://day.js.org/)\[] | \[dayjs(), dayjs()] |  |
 | value(v-model) | 日期 | [dayjs](https://day.js.org/)\[] | - |  |
 

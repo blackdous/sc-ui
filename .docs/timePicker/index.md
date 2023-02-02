@@ -107,7 +107,7 @@ realPath: src/package/timePicker/index.zh-CN.md
 
 ### TimeRangePicker
 
-属性与 DatePicker 的 [RangePicker](/components/date-picker/#RangePicker) 相同。还包含以下属性：
+属性与 DatePicker 的 [RangePicker] 相同。还包含以下属性：
 
 | 参数  | 说明                 | 类型    | 默认值 | 版本 |
 | ----- | -------------------- | ------- | ------ | ---- |
