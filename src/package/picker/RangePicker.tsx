@@ -37,6 +37,7 @@ import useState from '../../hooks/useState';
 import classNames from '../../utils/classNames';
 import { useProviderTrigger } from '../trigger/context';
 import { legacyPropsWarning } from './utils/warnUtil';
+import { isArray, isFunction } from '../../utils';
 
 function reorderValues<DateType>(
   values: RangeValue<DateType>,
@@ -357,7 +358,14 @@ function RangerPicker<DateType>() {
         postState: postOpen =>
           mergedDisabled.value[mergedActivePickerIndex.value] ? false : postOpen,
         onChange: newOpen => {
-          props.onOpenChange?.(newOpen);
+          if (props.onOpenChange) {
+            if (isFunction(props.onOpenChange)) {
+              props.onOpenChange?.(newOpen);
+            }
+            if (isArray(props.onOpenChange)) {
+              props?.onOpenChange?.[1]?.(newOpen);
+            }
+          }
 
           if (!newOpen && operationRef.value && operationRef.value.onClose) {
             operationRef.value.onClose();
@@ -480,7 +488,13 @@ function RangerPicker<DateType>() {
         if (onCalendarChange) {
           const info: RangeInfo = { range: sourceIndex === 0 ? 'start' : 'end' };
 
-          onCalendarChange(values, [startStr, endStr], info);
+          // onCalendarChange(values, [startStr, endStr], info);
+          if (isFunction(onCalendarChange)) {
+            onCalendarChange(values, [startStr, endStr], info);
+          }
+          if (isArray(onCalendarChange)) {
+            onCalendarChange?.[1]?.(values, [startStr, endStr], info);
+          }
         }
 
         // >>>>> Trigger `onChange` event
@@ -503,7 +517,13 @@ function RangerPicker<DateType>() {
             (!isEqual(generateConfig, getValue(mergedValue.value, 0), startValue) ||
               !isEqual(generateConfig, getValue(mergedValue.value, 1), endValue))
           ) {
-            onChange(values, [startStr, endStr]);
+            if (isFunction(onChange)) {
+              onChange(values, [startStr, endStr]);
+            }
+            if (isArray(onChange)) {
+              onChange?.[1]?.(values, [startStr, endStr]);
+            }
+            // onChange(values, [startStr, endStr]);
           }
         }
 
@@ -623,7 +643,15 @@ function RangerPicker<DateType>() {
       const getSharedInputHookProps = (index: 0 | 1, resetText: () => void) => ({
         forwardKeydown,
         onBlur: (e: FocusEvent) => {
-          props.onBlur?.(e);
+          if (props.onBlur) {
+            if (isFunction(props.onBlur)) {
+              props.onBlur?.(e);
+            }
+            if (isArray(props.onBlur)) {
+              props?.onBlur?.[1]?.(e);
+            }
+          }
+          // props.onBlur?.(e);
         },
         isClickOutside: (target: EventTarget | null) =>
           !elementsContains(
@@ -632,7 +660,15 @@ function RangerPicker<DateType>() {
           ),
         onFocus: (e: FocusEvent) => {
           setMergedActivePickerIndex(index);
-          props.onFocus?.(e);
+          if (props.onFocus) {
+            if (isFunction(props.onFocus)) {
+              props.onFocus?.(e);
+            }
+            if (isArray(props.onFocus)) {
+              props?.onFocus?.[1]?.(e);
+            }
+          }
+          // props.onFocus?.(e);
         },
         triggerOpen: (newOpen: boolean) => {
           triggerOpen(newOpen, index);
@@ -1023,7 +1059,13 @@ function RangerPicker<DateType>() {
                 // triggerChangeOld(selectedValue.value);
                 triggerChange(selectedValue.value, mergedActivePickerIndex.value);
                 if (onOk) {
-                  onOk(selectedValue.value);
+                  if (isFunction(onOk)) {
+                    onOk(selectedValue.value);
+                  }
+                  if (isArray(onOk)) {
+                    onOk?.[1]?.(selectedValue.value);
+                  }
+                  // onOk(selectedValue.value);
                 }
               }
             },

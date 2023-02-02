@@ -212,8 +212,8 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               locale={locale!.lang}
               class={classNames(
                 {
-                  [`${pre}-${size.value}`]: size.value,
-                  [`${pre}-borderless`]: !bordered,
+                  [`scPicker-${size.value}`]: size.value,
+                  [`scPicker-borderless`]: !bordered,
                 },
                 attrs.class,
               )}

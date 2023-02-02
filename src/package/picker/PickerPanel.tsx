@@ -395,7 +395,6 @@ function PickerPanel<DateType>() {
 
       const classString = computed(() => {
         const { prefixCls, direction } = props;
-        console.log('prefixCls: ', prefixCls);
         return classNames(`${prefixCls}-panel`, {
           [`${prefixCls}-panel-has-range`]:
             rangedValue && rangedValue.value && rangedValue.value[0] && rangedValue.value[1],

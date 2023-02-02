@@ -1,7 +1,7 @@
 import { scrollTo, waitElementReady } from '../../utils/uiUtil';
 import { useInjectPanel } from '../../PanelContext';
 import classNames from '../../../../utils/classNames';
-import { ref, onBeforeUnmount, watch, defineComponent, nextTick } from 'vue';
+import { ref, onBeforeUnmount, watch, defineComponent, nextTick, onMounted } from 'vue';
 
 export type Unit = {
   label: any;
@@ -27,19 +27,43 @@ export default defineComponent<TimeUnitColumnProps>({
     const ulRef = ref<HTMLUListElement>(null);
     const liRefs = ref<Map<number, HTMLElement | null>>(new Map());
     const scrollRef = ref<Function>();
+    let ticking = false; 
+    let notScroll = false;
 
     watch(
       () => props.value,
       () => {
         const li = liRefs.value.get(props.value!);
         if (li && open.value !== false) {
-          scrollTo(ulRef.value!, li.offsetTop, 120);
+          scrollTo(ulRef.value!, li.offsetTop - 100, 120);
         }
       },
     );
     onBeforeUnmount(() => {
       scrollRef.value?.();
     });
+
+    onMounted(() => {
+      waitElementReady(ulRef.value, () => {
+        const { onSelect } = props;
+        ulRef.value.addEventListener('scroll', (event) => {
+          if (!ticking && !notScroll) {
+            window?.requestAnimationFrame(() => {
+              const selectItem = Math.round((parseInt(event.target.scrollTop)) / 30);
+              // console.log('event: ', event.target.scrollTop, (parseInt(event.target.scrollTop)) / 24, selectItem);
+              onSelect!(selectItem);
+              ticking = false;
+              const li = liRefs.value.get(props.value!);
+              if (li && open.value !== false) {
+                scrollTo(ulRef.value!, li.offsetTop - 100, 120);
+              }
+            })
+            ticking = true;
+          }
+        })
+      })
+    })
+    
 
     watch(
       open,
@@ -50,7 +74,7 @@ export default defineComponent<TimeUnitColumnProps>({
             const li = liRefs.value.get(props.value!);
             if (li) {
               scrollRef.value = waitElementReady(li, () => {
-                scrollTo(ulRef.value!, li.offsetTop, 0);
+                scrollTo(ulRef.value!, li.offsetTop - 100, 0);
               });
             }
           }
@@ -88,7 +112,12 @@ export default defineComponent<TimeUnitColumnProps>({
                   if (unit.disabled) {
                     return;
                   }
+                  notScroll = true
                   onSelect!(unit.value);
+                  const timer = setTimeout(() => {
+                    notScroll = false
+                    clearTimeout(timer)
+                  }, 300)
                 }}
               >
                 <div class={`${cellPrefixCls}-inner`}>{unit.label}</div>

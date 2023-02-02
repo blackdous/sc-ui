@@ -17,6 +17,7 @@
   <ScModal 
     :visible="visible === 2"
     title="Basic Modal"
+    width="80%"
     wrap-class-name="bbbbb"
     destroyOnClose
     @ok="handleOk"

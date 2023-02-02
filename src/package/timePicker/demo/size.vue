@@ -3,46 +3,35 @@
     <div>
       <ScTimePicker
         v-model:value="value"
+        size="large"
       >
-  
       </ScTimePicker>
     </div>
     <div>
       <ScTimePicker
-        v-model:value="strValue"
-        value-format="HH:mm:ss"
+        v-model:value="value1"
       >
-  
       </ScTimePicker>
     </div>
     <div>
       <ScTimePicker
-        v-model:value="strValue"
-        value-format="HH:mm:ss"
-        disabled
+        v-model:value="value2"
+        size="small"
       >
-  
       </ScTimePicker>
     </div>
   </Space>
 </template>
 
 <script lang='ts' setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { ScTimePicker } from 'sc-ui';
 import { Space } from 'ant-design-vue';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 
-const value = ref<Dayjs>(dayjs('08:12:34', 'HH:mm:ss'));
-const strValue = ref<string>('11:03:12');
-
-
-  watch(value, () => {
-    console.log(value.value);
-  });
-  watch(strValue, () => {
-    console.log(strValue.value);
-  });
+const value = ref(dayjs('12:08:23', 'HH:mm'));
+const value1 = ref(dayjs('12:08:23', 'HH:mm'));
+const value2 = ref(dayjs('12:08:23', 'HH:mm'));
 
 </script>
 

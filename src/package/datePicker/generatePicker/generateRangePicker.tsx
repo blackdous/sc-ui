@@ -198,8 +198,8 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             picker={picker}
             class={classNames(
               {
-                [`${pre}-${size.value}`]: size.value,
-                [`${pre}-borderless`]: !bordered,
+                [`scPicker-${size.value}`]: size.value,
+                [`scPicker-borderless`]: !bordered,
               },
               attrs.class,
             )}

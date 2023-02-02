@@ -4,8 +4,8 @@
     v-bind="getBindValue"
     v-model:visible="visibleRef"
     ref="modalRef"
-    :style="{'--model-width': getBindValue.width}"
-  >
+    >
+    <!-- :style="{'--model-width': getBindValue.width}" -->
     <template #[item]="data" v-for="item in ['default']">
       <div v-if="curProps.type" :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + curProps.type]">
         <span v-if="props.type" :class="[modalPrefixCls + '-status-icon']">
@@ -102,7 +102,7 @@ import {
 import { modalProps, ModalProps, ModalMethods } from './type'
 import { basePrefixCls } from '../../../constant'
 import { isFunction } from '../../../utils/is';
-import { deepMerge } from '../../../utils'
+import { deepMerge, pxToRem, isNumber } from '../../../utils'
 
 export default defineComponent({
   name: 'ScModal',
@@ -151,10 +151,20 @@ export default defineComponent({
       const attr = {
         ...newProps,
         ...attrs,
-        visible: unref(visibleRef),
+        visible: unref(visibleRef)
       };
+      
       if (unref(curProps).footer === null) {
         attr.footer = null
+      }
+      if (newProps.width) {
+        if (isNumber(newProps.width)) {
+          attr.width = pxToRem(newProps.width)
+        } else if (String(newProps.width).includes('%')){
+          attr.width = newProps.width
+        } else {
+          attr.width = pxToRem(parseInt(newProps.width))
+        }
       }
       return attr
     });

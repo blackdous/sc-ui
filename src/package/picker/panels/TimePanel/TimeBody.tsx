@@ -213,6 +213,7 @@ const TimeBody = defineComponent({
         onSelect: (diff: number) => void;
       }[] = [];
       const contentPrefixCls = `${prefixCls}-content`;
+      const maskPrefixCls = `${prefixCls}-time-mask`;
       const columnPrefixCls = `${prefixCls}-time-panel`;
 
       // ====================== Operations ======================
@@ -306,7 +307,12 @@ const TimeBody = defineComponent({
         },
       );
 
-      return <div class={contentPrefixCls}>{columns.map(({ node }) => node)}</div>;
+      return <div class={contentPrefixCls}>
+        {columns.map(({ node }) => node)}
+        <div class={maskPrefixCls}>
+          {columns.map(() => <div class={maskPrefixCls+'-item'}></div>)}
+        </div>
+      </div>;
     };
   },
 });
