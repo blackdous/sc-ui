@@ -4,14 +4,15 @@
     <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
       <slot name="prefixIcon"></slot>
     </span>
+    <!-- v-model:value="initValue" -->
     <Select
       :class="[isPrefixIcon ? 'is-prefix' : '']"
       v-bind="vBind"
       v-model:value="initValue"
       :disabled="newProps.disabled"
       :dropdownClassName="dropdownClassName"
-      @change="handleChange"
       >
+      <!-- @change="handleChange" -->
       <!-- @dropdownVisibleChange="dropdownVisibleChange" -->
       <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
@@ -55,7 +56,7 @@
 
 <script lang="ts" >
 
-import { computed, defineComponent, ref, unref, onMounted, watchEffect, nextTick } from 'vue'
+import { computed, defineComponent, ref, unref, onMounted, watchEffect, watch } from 'vue'
 import { Select, CheckboxGroup, Checkbox, SelectOption } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 import cloneDeep from 'lodash/cloneDeep'
@@ -69,6 +70,7 @@ export default defineComponent({
   name: 'ScSelect',
   inheritAttrs: false,
   props: props(),
+  emits: ['change', 'update:value', 'allowClear'],
   components: {
     Select,
     CheckboxGroup,
@@ -78,15 +80,25 @@ export default defineComponent({
   },
   setup(props, { emit, slots, attrs }) {
     const baseClass = basePrefixCls + 'Select'
-
-    const initValue = ref()
-    watchEffect(() => {
-      initValue.value = props.value
+    const checkboxValue = ref<string[]>([])
+    const initValue = computed({
+      get:() => {
+        if (props.optionMode === 'checkbox') {
+          checkboxValue.value = props.value || []
+        }
+        return props.optionMode === 'checkbox' ? props.value === undefined ? [] : props.value : props.value
+      },
+      set: (val) => {
+        // console.log('val: ', val);
+        emit('update:value',  val)
+      }
     })
     const newProps = computed(() => {
-      return props
+      return {
+        ...props
+      }
     })
-    const checkboxValue = ref(unref(initValue))
+    // const checkboxValue = ref(unref(initValue))
 
     const uuid = 'sc' + buildUUID()
     const vBind = computed(() => {
@@ -105,8 +117,9 @@ export default defineComponent({
         if (checkboxValue.value?.length > initValue.value?.length) {
           emit('change', checkboxValue.value)
         }
+        // console.log('checkboxValue: ', checkboxValue);
         initValue.value = checkboxValue.value
-        emit('value:update',  initValue.value)
+        emit('update:value',  checkboxValue.value)
       })
     }
 
@@ -124,9 +137,9 @@ export default defineComponent({
       })
     })
 
-    const handleChange = (val:any) => {
-      checkboxValue.value = val
-    }
+    // const handleChange = (val:any) => {
+    //   checkboxValue.value = val
+    // }
     
     const dropdownClassName = computed(() => {
       const dropdownClass = ['dropdown' + uuid, 'selectDropdown']
@@ -174,7 +187,7 @@ export default defineComponent({
       checkboxValue,
       checkboxOptions,
       vBind,
-      handleChange,
+      // handleChange,
     }
   }
 })

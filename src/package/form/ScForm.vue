@@ -120,7 +120,8 @@
       const getBindValue = computed(
         () => ({ ...attrs, ...props, ...unref(getProps) } as Recordable),
       );
-
+        
+      // console.log('getBindValue: ', getBindValue.value);
       const getSchema = computed((): FormSchema[] => {
         const schemas: FormSchema[] = unref(schemaRef) || (unref(getProps).schemas as any);
         for (const schema of schemas) {
@@ -303,7 +304,7 @@
         setFormModel,
         getFormClass,
         getFormActionBindProps: computed(
-          (): Recordable => ({ ...getProps.value, ...advanceState }),
+          (): Recordable => ({ ...getProps.value, ...advanceState, layout: getBindValue.value.layout }),
         ),
         ...formActionType,
       };

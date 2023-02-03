@@ -10,6 +10,13 @@
   &.ant-switch-checked {
     background-color: @primary-color;
   }
+  &-inner {
+    & > .anticon-close {
+      &::after {
+        color: @white-color;
+      }
+    }
+  }
   &-large {
     min-width: 44px;
     height: 24px;

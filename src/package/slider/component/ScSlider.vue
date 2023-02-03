@@ -4,7 +4,7 @@
   >
     <div 
       :class="[baseClass+'-container']"
-      :style="{ 'width': pxToRem(newProps?.wrapperWidth) }"
+      :style="{ 'width': transformPxtoRem(newProps?.wrapperWidth) }"
     >
       <VueSlider
         v-bind="vBindValue"
@@ -108,6 +108,7 @@
 import { defineComponent, computed, unref, ref, watch, watchEffect, isVNode, h } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 import { ScInputNumber } from '../../inputNumber'
+import { transformPxtoRem } from '../../../utils'
 
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
 
@@ -200,6 +201,7 @@ export default defineComponent({
       valueRef,
       uuid,
       infos,
+      transformPxtoRem,
       pxToRem,
       isVNode,
       getIcon

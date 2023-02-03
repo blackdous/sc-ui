@@ -16,13 +16,14 @@ import {
   Switch,
   TimePicker,
   TreeSelect,
-  Slider,
+  // Slider,
   Rate,
   Divider,
 } from 'ant-design-vue';
 
 import { ScSelect } from '../select';
 import { ScInput } from '../input';
+import { ScSlider } from '../slider';
 
 import ApiRadioGroup from './component/ApiRadioGroup.vue';
 import RadioButtonGroup from './component/RadioButtonGroup.vue';
@@ -58,7 +59,7 @@ componentMap.set('Checkbox', Checkbox);
 componentMap.set('CheckboxGroup', Checkbox.Group);
 componentMap.set('ApiCascader', ApiCascader);
 componentMap.set('Cascader', Cascader);
-componentMap.set('Slider', Slider);
+componentMap.set('Slider', ScSlider);
 componentMap.set('Rate', Rate);
 
 componentMap.set('DatePicker', DatePicker);

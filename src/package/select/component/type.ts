@@ -1,6 +1,6 @@
 import { VNodeChild, PropType } from 'vue'
 export const props = () => ({
-  value: [Number, String],
+  value: [Number, String, Array],
   disabled: {
     type: Boolean,
     default () {
@@ -13,7 +13,8 @@ export const props = () => ({
   },
   // 'checkbox'
   optionMode: String,
-  prefixIcon: Object as PropType<VNodeChild>
+  prefixIcon: Object as PropType<VNodeChild>,
+  onChange: [Function, Array]
 })
 
 export enum SizePx {

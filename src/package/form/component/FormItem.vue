@@ -276,11 +276,15 @@
           [valueField || (isCheck ? 'checked' : 'value')]: props.formModel[field],
         };
 
+        // console.log('propsData: ', propsData);
+        // console.log('on: ', on);
+        // console.log('bindValue: ', bindValue);
         const compAttr: Recordable = {
           ...propsData,
           ...on,
           ...bindValue,
         };
+        // console.log('compAttr: ', compAttr);
 
         if (!renderComponentContent) {
           return <Comp {...compAttr} />;
@@ -319,7 +323,7 @@
       function renderItem() {
         const { itemProps, slot, render, field, suffix, component } = props.schema;
         const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
-        console.log('labelCol: ', labelCol);
+        // console.log('labelCol: ', labelCol);
         const { colon } = props.formProps;
 
         if (component === 'Divider') {

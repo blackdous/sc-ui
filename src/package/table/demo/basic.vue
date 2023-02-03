@@ -5,9 +5,9 @@
       style="padding: 0;"
       class="aaaa"
       ref="scTableRef"
+      :filterRightStyle="{'justify-content': 'space-between'}"
       :data-source="data"
       :columns="columns"
-      :filterRightStyle="{'justify-content': 'space-between'}"
       size="small"
       :loading="loading"
       :create-button-options="{

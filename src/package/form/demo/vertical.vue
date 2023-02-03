@@ -3,6 +3,7 @@
     <ScForm 
       @register="register"
       @submit="handleSubmit" 
+      layout="vertical"
     />
   </div>
 
@@ -10,6 +11,8 @@
 <script lang="ts">
   import { defineComponent, ref, unref } from 'vue';
   import { ScForm, FormSchema, useForm, useMessage } from 'sc-ui';
+
+  import { isAccountExist } from './formData';
 
   interface ListItem {
     label: string, 
@@ -165,6 +168,7 @@
     },
 
 
+
     // {
     //   field: 'field6',
     //   component: '',
@@ -301,8 +305,8 @@
 </script>
 <style lang="less" scoped>
 .basicFrom {
-  .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
-    max-width: 530px;
+  .ant-form:not(.ant-form-inline) {
+    max-width: 400px;
   }
 }
 </style>

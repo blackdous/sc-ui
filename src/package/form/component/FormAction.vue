@@ -5,7 +5,7 @@
       <FormItem>
         <slot name="resetBefore"></slot>
         <ScButton
-          type="default"
+          status="info"
           class="mr-4"
           v-bind="getResetBtnOptions"
           @click="resetAction"
@@ -47,7 +47,7 @@
   import { Form, Col } from 'ant-design-vue';
   import { ScButton, ButtonProps } from '../../button';
   import { useFormContext } from '../hooks/useFormContext';
-  import { PropTypes, pxToRem, isNumber } from '../../../utils';
+  import { PropTypes, transformPxtoRem } from '../../../utils';
 
   type ButtonOptions = Partial<ButtonProps> & { text: string };
 
@@ -81,9 +81,11 @@
       actionSpan: PropTypes.number.def(6),
       isAdvanced: PropTypes.bool,
       hideAdvanceBtn: PropTypes.bool,
+      layout: String as PropType<'horizontal'|'vertical'|'inline'>
     },
     emits: ['toggle-advanced'],
     setup(props, { emit }) {
+      // console.log('props: ', props);
       const actionColOpt = computed(() => {
         const { showAdvancedButton, actionSpan: span, actionColOptions } = props;
         const actionSpan = 24 - span;
@@ -100,7 +102,7 @@
       });
 
       const labelWidth = computed(() => {
-        return isNumber(props.labelWidth) ? pxToRem(props.labelWidth) : props.labelWidth
+        return props.layout !== 'vertical' ? transformPxtoRem(props.labelWidth || '') : 0
       })
 
       const getResetBtnOptions = computed((): ButtonOptions => {
