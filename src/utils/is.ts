@@ -1,3 +1,4 @@
+import { pxToRem } from './domHelper';
 const toString = Object.prototype.toString;
 
 export function is(val: unknown, type: string) {
@@ -37,6 +38,11 @@ export function isEmpty<T = unknown>(val: T): val is T {
   }
 
   return false;
+}
+
+export function transformPxtoRem (val: string | number) {
+  const newVal = (String(val).includes('%') || String(val).includes('rem') || String(val).includes('vh') || String(val).includes('vw')) ? val : pxToRem(parseInt(val))
+  return newVal
 }
 
 export function isDate(val: unknown): val is Date {

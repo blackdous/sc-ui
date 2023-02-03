@@ -37,14 +37,14 @@
     <div
       v-if="isShowRightFilter" 
       :class="[className + '-right', !isShowLeftFilter && isShowRightFilter ? 'isOnlyRight' : '']"
-      :style="newProps.filterLeftStyle"
+      :style="newProps.filterRightStyle"
     >
       <template v-if="!isSearch && searchOptions.show">
         <InputGroup>
           <Select
             v-model:value="selectValue"
             v-if="searchOptions.showSelect"
-            :style="{width: searchOptions.selectOptions?.width || '120px'}"
+            :style="{width: transformPxtoRem(searchOptions.selectOptions?.width) || transformPxtoRem('120px')}"
             dropdownClassName="scDropdown"
             :placeholder="searchOptions.selectOptions?.placeholder"
             :loading="searchOptions.loading"
@@ -62,7 +62,7 @@
             <InputSearch
               v-model:value="textValue"
               :maxlength="searchOptions.inputOptions?.maxlength"
-              :style="{width: searchOptions.inputOptions?.width || '120px'}"
+              :style="{width: transformPxtoRem(searchOptions.inputOptions?.width) || transformPxtoRem('120px')}"
               :placeholder="searchOptionsRef.inputOptions?.placeholder"
               :class="['scSearch', !validatorResult.result ? 'isError' : '']"
               @change="updateTextValue"
@@ -100,7 +100,7 @@ import { ScRadioTooltipGroup } from '../../radio'
 //@ts-ignore
 import { CreateButton, MutilpActionOptions, SearchOptions } from './types/table'
 import ColumnDialogVue from './ColumnDialog.vue'
-import { isFunction, deepMerge } from '../../../utils'
+import { isFunction, deepMerge, transformPxtoRem } from '../../../utils'
 
 const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
 
@@ -361,6 +361,7 @@ export default defineComponent({
       isShowRightFilter,
       newProps,
       validatorResult,
+      transformPxtoRem,
       createHandle,
       radioHandle,
       onSearch,

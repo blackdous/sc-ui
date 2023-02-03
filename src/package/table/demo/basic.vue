@@ -7,6 +7,7 @@
       ref="scTableRef"
       :data-source="data"
       :columns="columns"
+      :filterRightStyle="{'justify-content': 'space-between'}"
       size="small"
       :loading="loading"
       :create-button-options="{

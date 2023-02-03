@@ -565,7 +565,6 @@ const dataSource = [
 | pagination              | `any`                                              | -       | -      | 分页信息配置，为 `false` 不显示分页                                                             |      |
 | loading                 | `boolean`                                          | `false` | -      | 表格 loading 状态                                                                               |      |
 | scroll                  | `any`                                              | -       | -      | 参考官方文档 scroll                                                                             |      |
-| createButton                  | `CreateButton`                                              | -       | -      |  头部创建按钮                                                                             |      |
 | multipleActionOptions                  | `MutilpActionOptions`                                              | -       | -      |  用于展示单选按钮组                                                                           |      |
 | searchOptions                  | `SearchOptions`                                              | -       | -      |   头部搜索组件配置数据                                                                        |      |
 | activeOptions                  | `ActiveOptions`                                              | -       | -      |   用于配置是否显示刷新、自定列按钮                                                                     |      |

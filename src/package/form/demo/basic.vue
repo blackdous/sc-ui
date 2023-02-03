@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <ScForm @register="register" @submit="handleSubmit" />
+  <div class="basicFrom">
+    <ScForm 
+      @register="register"
+      @submit="handleSubmit" 
+    />
   </div>
 
 </template>
@@ -37,7 +40,11 @@
     {
       field: 'id',
       label: '单选选择容器',
+      colProps: {
+        span: 24,
+      },
       required: true,
+      helpMessage: ['单选选择容器'],
       component: 'Select',
       componentProps: {
         options: unref(list)
@@ -58,36 +65,76 @@
       required: true,
     },
     {
-      field: 'field4',
-      component: 'Select',
-      label: '字段4',
+      field: 'field7',
+      component: 'RadioGroup',
+      label: '单选框',
       colProps: {
         span: 24,
       },
       componentProps: {
-        mode: 'tags',
-        optionMode:"checkbox",
         options: [
           {
             label: '选项1',
             value: '1',
-            key: '1',
           },
           {
             label: '选项2',
             value: '2',
-            key: '2',
           },
         ],
       },
-      rules: [
-        {
-          required: true,
-          message: '请输入aa',
-          type: 'array',
-        },
-      ],
+      rules: [{ message: '覆盖默认生成的校验信息' }],
     },
+    {
+      field: 'field5',
+      component: 'CheckboxGroup',
+      label: '多选框',
+      colProps: {
+        span: 24,
+      },
+      componentProps: {
+        options: [
+          {
+            label: '选项1',
+            value: '1',
+          },
+          {
+            label: '选项2',
+            value: '2',
+          },
+          {
+            label: '选项3',
+            value: '3',
+          }
+        ],
+      },
+      rules: [{ required: true }],
+    },
+    // {
+    //   field: 'field6',
+    //   component: '',
+    //   label: '多选框',
+    //   colProps: {
+    //     span: 24,
+    //   },
+    //   componentProps: {
+    //     options: [
+    //       {
+    //         label: '选项1',
+    //         value: '1',
+    //       },
+    //       {
+    //         label: '选项2',
+    //         value: '2',
+    //       },
+    //       {
+    //         label: '选项3',
+    //         value: '3',
+    //       }
+    //     ],
+    //   },
+    //   rules: [{ required: true }],
+    // },
     {
       field: 'field441',
       component: 'Input',
@@ -113,48 +160,6 @@
           trigger: 'change',
         },
       ],
-    },
-    {
-      field: 'field5',
-      component: 'CheckboxGroup',
-      label: '字段5',
-      colProps: {
-        span: 24,
-      },
-      componentProps: {
-        options: [
-          {
-            label: '选项1',
-            value: '1',
-          },
-          {
-            label: '选项2',
-            value: '2',
-          },
-        ],
-      },
-      rules: [{ required: true }],
-    },
-    {
-      field: 'field7',
-      component: 'RadioGroup',
-      label: '字段7',
-      colProps: {
-        span: 24,
-      },
-      componentProps: {
-        options: [
-          {
-            label: '选项1',
-            value: '1',
-          },
-          {
-            label: '选项2',
-            value: '2',
-          },
-        ],
-      },
-      rules: [{ required: true, message: '覆盖默认生成的校验信息' }],
     },
     {
       field: 'field8',
@@ -239,3 +244,10 @@
     },
   });
 </script>
+<style lang="less" scoped>
+.basicFrom {
+  .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
+    max-width: 530px;
+  }
+}
+</style>
