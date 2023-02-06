@@ -1,5 +1,5 @@
 <template>
-  <Select
+  <ScSelect
     @dropdown-visible-change="handleFetch"
     v-bind="$attrs"
     @change="handleChange"
@@ -18,11 +18,11 @@
         请等待数据加载完成...
       </span>
     </template>
-  </Select>
+  </ScSelect>
 </template>
 <script lang="ts">
   import { defineComponent, PropType, ref, watchEffect, computed, unref, watch } from 'vue';
-  import { Select } from 'ant-design-vue';
+  import { ScSelect } from '../../select';
   import { isFunction, PropTypes } from '../../../utils';
   import { useRuleFormItem } from '../hooks/useFormItem';
   import { useAttrs } from '../../../hooks';
@@ -35,7 +35,7 @@
   export default defineComponent({
     name: 'ApiSelect',
     components: {
-      Select,
+      ScSelect,
       LoadingOutlined,
     },
     inheritAttrs: false,

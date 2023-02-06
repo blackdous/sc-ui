@@ -1,4 +1,5 @@
 @scFormScope: ~'@{prefixCls}Basic-form';
+@scFormActionScope: ~'@{prefixCls}FormAction';
 
 .@{scFormScope} {
   .ant-btn {
@@ -29,5 +30,23 @@
   }
   .ant-form-item {
     margin-bottom: 20px;
+  }
+  .ant-form-item-has-error {
+    margin-bottom: 2px;
+  }
+  .@{scFormActionScope} {
+    &-collapse-btn {
+      & > i.sc-xiangxia {
+        display: inline-block;
+        &.up {
+          transform: rotate(-180deg);
+          transition: 0.2s all;
+        }
+        &.down {
+          transform: rotate(0);
+          transition: 0.2s all;
+        }
+      }
+    }
   }
 }

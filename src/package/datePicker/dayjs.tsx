@@ -18,7 +18,7 @@ const { ScDatePicker, ScWeekPicker, ScMonthPicker, ScYearPicker, ScTimePicker, S
   generatePicker<Dayjs>(dayjsGenerateConfig);
 
 /* istanbul ignore next */
-export { ScRangePicker, ScWeekPicker, ScMonthPicker, ScQuarterPicker };
+export { ScRangePicker, ScWeekPicker, ScMonthPicker, ScQuarterPicker, ScYearPicker };
 
 export default Object.assign(ScDatePicker, {
   ScWeekPicker: ScWeekPicker,

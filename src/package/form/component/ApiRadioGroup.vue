@@ -2,7 +2,7 @@
  * 在表单中实现单选按钮组比较麻烦。所以作为一个单独的组件被单独提取出来的
 -->
 <template>
-  <RadioGroup v-bind="attrs" v-model:value="state" button-style="solid" @change="handleChange">
+  <RadioGroup v-bind="attrs" v-model:value="state" @change="handleChange">
     <template v-for="item in getOptions" :key="`${item.value}`">
       <RadioButton v-if="props.isBtn" :value="item.value" :disabled="item.disabled">
         {{ item.label }}

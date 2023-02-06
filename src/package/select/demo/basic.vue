@@ -60,7 +60,7 @@ const value = ref('jack1')
 const valueAsync = ref()
 
 const handleChange = (val:string) => {
-  console.log('val: ', val);
+  console.log('val: handleChange', val);
 }
 
 interface ListItem {

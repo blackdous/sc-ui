@@ -2,9 +2,10 @@
   <Space direction="vertical" :size="12">
     <div>
       <p>日期区间选择器</p>
-      <!-- v-model:value="value" -->
+      <!-- @change="handleChange" -->
       <ScRangePicker
         v-model:value="value"
+        @change="onChange"
       >
       </ScRangePicker>
     </div>
@@ -25,18 +26,14 @@ export default defineComponent({
   },
   setup () {
     const value = ref<Dayjs>()
-    // const onChange = (value: Dayjs, dateString: string) => {
-    //   console.log('Selected Time: ', value);
-    //   console.log('Formatted Selected Time: ', dateString);
-    // };
+    const onChange = (value: Dayjs, dateString: string) => {
+      console.log('Selected Time: ', value);
+      console.log('Formatted Selected Time: ', dateString);
+    };
 
-    // const onOk = (value: Dayjs) => {
-    //   console.log('onOk: ', value);
-    // };
     return {
-      value
-      // onChange,
-      // onOk,
+      value,
+      onChange,
     }
   }
 })

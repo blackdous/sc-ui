@@ -517,6 +517,7 @@ function RangerPicker<DateType>() {
             (!isEqual(generateConfig, getValue(mergedValue.value, 0), startValue) ||
               !isEqual(generateConfig, getValue(mergedValue.value, 1), endValue))
           ) {
+            // console.log('onChange: ', onChange);
             if (isFunction(onChange)) {
               onChange(values, [startStr, endStr]);
             }

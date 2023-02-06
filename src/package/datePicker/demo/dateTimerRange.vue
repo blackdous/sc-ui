@@ -6,6 +6,8 @@
       <ScRangePicker
         v-model:value="value"
         show-time
+        @change="onChange"
+        @ok="onOk"
       >
       </ScRangePicker>
     </div>
@@ -26,18 +28,19 @@ export default defineComponent({
   },
   setup () {
     const value = ref<Dayjs>()
-    // const onChange = (value: Dayjs, dateString: string) => {
-    //   console.log('Selected Time: ', value);
-    //   console.log('Formatted Selected Time: ', dateString);
-    // };
+    const onChange = (value: Dayjs, dateString: string) => {
+      console.log('Selected Time: ', value);
+      console.log('Formatted Selected Time: ', dateString);
+    };
 
-    // const onOk = (value: Dayjs) => {
-    //   console.log('onOk: ', value);
-    // };
+    const onOk = (value: Dayjs) => {
+      console.log('onOk: ', value);
+    };
+
     return {
-      value
-      // onChange,
-      // onOk,
+      value,
+      onChange,
+      onOk,
     }
   }
 })

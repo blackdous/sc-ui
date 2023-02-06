@@ -326,6 +326,9 @@ function PickerPanel<DateType>() {
             !disabledDate?.(date)
           ) {
             if (isArray(onChange)) {
+              if (!onChange[onChange.length - 1]) {
+                return false
+              }
               onChange?.[1]?.(date);
             }
             if (isFunction(onChange)) {

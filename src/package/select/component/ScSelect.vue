@@ -11,8 +11,8 @@
       v-model:value="initValue"
       :disabled="newProps.disabled"
       :dropdownClassName="dropdownClassName"
+      @change="handleChange"
       >
-      <!-- @change="handleChange" -->
       <!-- @dropdownVisibleChange="dropdownVisibleChange" -->
       <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
@@ -109,25 +109,25 @@ export default defineComponent({
         options: newOptions,
         dropdownStyle: {
           ...(attrs.dropdownStyle || {}),
-        }
+        },
+        onChange: undefined
       }
     })
     if (unref(newProps)?.optionMode === 'checkbox') {
       watchEffect(() => {
+        emit('update:value',  checkboxValue.value)
         if (checkboxValue.value?.length > initValue.value?.length) {
           emit('change', checkboxValue.value)
         }
-        // console.log('checkboxValue: ', checkboxValue);
         initValue.value = checkboxValue.value
-        emit('update:value',  checkboxValue.value)
       })
     }
 
     const checkboxOptions = computed(() => {
       // @ts-ignore
-      return attrs?.options?.map((item:any) => {
+      const newOptions = attrs?.options?.map((item:any) => {
         const checkboxUnref = unref(checkboxValue)
-         // @ts-ignore
+        // @ts-ignore
         if (checkboxUnref?.includes(item.value)) {
           item.className = ['ant-select-item', 'ant-select-item-option', 'ant-select-item-option-selected']
         } else {
@@ -135,11 +135,17 @@ export default defineComponent({
         }
         return item
       })
+      return newOptions
     })
 
-    // const handleChange = (val:any) => {
-    //   checkboxValue.value = val
-    // }
+    const handleChange = (val:any) => {
+      // console.log('val: ', val);
+      // emit('change', val)
+      if (props.optionMode === 'checkbox') {
+        checkboxValue.value = val
+      }
+      emit('change', val)
+    }
     
     const dropdownClassName = computed(() => {
       const dropdownClass = ['dropdown' + uuid, 'selectDropdown']
@@ -187,7 +193,7 @@ export default defineComponent({
       checkboxValue,
       checkboxOptions,
       vBind,
-      // handleChange,
+      handleChange,
     }
   }
 })

@@ -353,6 +353,9 @@ html * {
 .vp-doc .ant-tree li ul {
   padding: 0 0 0 18px;
 }
+.vp-doc .scPicker-cell, .vp-doc .scPicker-dropdown th {
+  padding: 3px 0;
+}
 
 
 /* .vp-doc .ant-table-cell-fix-left-first::after, 

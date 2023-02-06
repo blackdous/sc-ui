@@ -11,10 +11,10 @@ import {
   Checkbox,
   AutoComplete,
   Cascader,
-  DatePicker,
-  InputNumber,
+  // DatePicker,
+  // InputNumber,
   Switch,
-  TimePicker,
+  // TimePicker,
   TreeSelect,
   // Slider,
   Rate,
@@ -24,6 +24,10 @@ import {
 import { ScSelect } from '../select';
 import { ScInput } from '../input';
 import { ScSlider } from '../slider';
+
+import ScDatePicker, { ScWeekPicker, ScMonthPicker, ScRangePicker, ScQuarterPicker, ScYearPicker } from '../datePicker';
+import ScTimePicker, { ScTimeRangePicker } from '../timePicker';
+import { ScInputNumber } from '../inputNumber';
 
 import ApiRadioGroup from './component/ApiRadioGroup.vue';
 import RadioButtonGroup from './component/RadioButtonGroup.vue';
@@ -43,7 +47,7 @@ componentMap.set('InputGroup', Input.Group);
 componentMap.set('InputPassword', Input.Password);
 componentMap.set('InputSearch', Input.Search);
 componentMap.set('InputTextArea', Input.TextArea);
-componentMap.set('InputNumber', InputNumber);
+componentMap.set('InputNumber', ScInputNumber);
 componentMap.set('AutoComplete', AutoComplete);
 
 componentMap.set('Select', ScSelect);
@@ -62,11 +66,21 @@ componentMap.set('Cascader', Cascader);
 componentMap.set('Slider', ScSlider);
 componentMap.set('Rate', Rate);
 
-componentMap.set('DatePicker', DatePicker);
-componentMap.set('MonthPicker', DatePicker.MonthPicker);
-componentMap.set('RangePicker', DatePicker.RangePicker);
-componentMap.set('WeekPicker', DatePicker.WeekPicker);
-componentMap.set('TimePicker', TimePicker);
+// componentMap.set('DatePicker', DatePicker);
+// componentMap.set('MonthPicker', DatePicker.MonthPicker);
+// componentMap.set('RangePicker', DatePicker.RangePicker);
+// componentMap.set('WeekPicker', DatePicker.WeekPicker);
+// componentMap.set('TimePicker', TimePicker);
+
+componentMap.set('DatePicker', ScDatePicker);
+componentMap.set('MonthPicker', ScMonthPicker);
+componentMap.set('RangePicker', ScRangePicker);
+componentMap.set('WeekPicker', ScWeekPicker);
+componentMap.set('YearPicker', ScYearPicker);
+componentMap.set('QuarterPicker', ScQuarterPicker);
+componentMap.set('TimePicker', ScTimePicker);
+componentMap.set('TimeRangePicker', ScTimeRangePicker);
+
 // componentMap.set('StrengthMeter', StrengthMeter);
 // componentMap.set('IconPicker', BzIconPicker);
 // componentMap.set('InputCountDown', CountdownInput);

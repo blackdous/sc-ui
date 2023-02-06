@@ -1,6 +1,9 @@
 <template>
   <a-col v-bind="actionColOpt" v-if="showActionButtonGroup">
-    <div :style="{ textAlign: actionColOpt.style.textAlign, width: '100%', paddingLeft: `${labelWidth}`  }">
+    <div 
+      :style="{ textAlign: actionColOpt.style.textAlign, width: '100%', paddingLeft: `${labelWidth}` }"
+      :class="formAction"
+    >
       <!-- width: `calc(100% - ${pxToRem(labelWidth)})` -->
       <FormItem>
         <slot name="resetBefore"></slot>
@@ -30,10 +33,12 @@
           type="link"
           size="small"
           @click="toggleAdvanced"
+          :class="[`${formAction}-collapse-btn`]"
           v-if="showAdvancedButton && !hideAdvanceBtn"
         >
           {{ isAdvanced ? '收起' : '展开' }}
           <!-- <BzArrow class="ml-1" :expand="!isAdvanced" up /> -->
+          <i :class="['sc-ui', 'sc-xiangxia', isAdvanced ? 'up' : 'down']"></i>
         </ScButton>
         <slot name="advanceAfter"></slot>
       </FormItem>
@@ -48,6 +53,7 @@
   import { ScButton, ButtonProps } from '../../button';
   import { useFormContext } from '../hooks/useFormContext';
   import { PropTypes, transformPxtoRem } from '../../../utils';
+  import { basePrefixCls } from '../../../constant';
 
   type ButtonOptions = Partial<ButtonProps> & { text: string };
 
@@ -86,6 +92,7 @@
     emits: ['toggle-advanced'],
     setup(props, { emit }) {
       // console.log('props: ', props);
+      const formAction = [basePrefixCls + 'FormAction']
       const actionColOpt = computed(() => {
         const { showAdvancedButton, actionSpan: span, actionColOptions } = props;
         const actionSpan = 24 - span;
@@ -128,6 +135,7 @@
       }
 
       return {
+        formAction,
         actionColOpt,
         labelWidth,
         getResetBtnOptions,
