@@ -114,13 +114,13 @@ realPath: src/package/form/index.zh-CN.md
   >
 </demo>
 
-## refForm
+<!-- ## refForm
 
 <demo src="./demo/refForm.vue"
   language="vue"
   title="refForm"
   >
-</demo>
+</demo> -->
 
 ## 可收缩表单
 
