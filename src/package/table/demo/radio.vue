@@ -16,8 +16,6 @@
 import { ref, reactive, computed } from 'vue'
 import { ScTable } from 'sc-ui'
 
-import '../../../style/index.less'
-
 const scTableRef = ref()
 // @ts-ignore
 const columns = [
@@ -120,7 +118,3 @@ const handleChange = (pagination, filters, sorter, fetchParams) => {
 
 
 </script>
-
-<style lang="less">
-@import '../../../style/index.less';
-</style>

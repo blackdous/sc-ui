@@ -24,7 +24,3 @@ const value = ref<Dayjs>();
   });
 
 </script>
-
-<style lang="less" scoped>
-
-</style>

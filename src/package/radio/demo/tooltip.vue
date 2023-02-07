@@ -37,6 +37,3 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
 ])
 
 </script>
-
-<style lang="less">
-</style>

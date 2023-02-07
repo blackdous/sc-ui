@@ -74,7 +74,7 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         less: {
-          modifyVars: themeVariables,
+          // modifyVars: themeVariables,
           javascriptEnabled: true
         },
       },

@@ -41,6 +41,3 @@ const globalApp = inject('globalApp')
 // @ts-ignore
 installGlobalDirectives(globalApp)
 </script>
-
-<style lang="less">
-</style>

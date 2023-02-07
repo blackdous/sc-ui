@@ -81,10 +81,10 @@ import '../../../style/index.less'
 
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .btns {
   & > button {
-    margin-left: 20px;
+    margin-left: 8px;
   }
 }
 </style>

@@ -69,7 +69,3 @@ const mockData: Recordable = {
     layout: 'vertical'
   });
 </script>
-
-<style lang="less" scoped>
-
-</style>

@@ -75,6 +75,14 @@ realPath: src/package/input/index.zh-CN.md
   >
 </demo>
 
+## 搜索框
+
+<demo src="./demo/inputSearch.vue"
+  language="vue"
+  title="搜索框"
+  >
+</demo>
+
 ## 组件大小
 
 ### 不同尺寸输入框

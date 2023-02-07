@@ -1,31 +1,32 @@
 <template>
   <div ref="wrapEl"
     v-loading="loadingRef"
+    class="loading-demo"
   >
     <h3>
       组件方式
     </h3>
-    <Button class="my-16 mr-16" type="primary" @click="openCompFullLoading">
+    <Button class="my-16 mr-16" @click="openCompFullLoading">
       全屏 Loading
     </Button>
-    <Button class="my-16" type="primary" @click="openCompAbsolute"> 容器内 Loading </Button>
+    <Button class="my-16" @click="openCompAbsolute"> 容器内 Loading </Button>
     <ScLoading :loading="loading" :absolute="absolute" :theme="theme" :isFullPage="isFullPage" :background="background" :tip="tip" />
 
     <h3>
       函数方式
     </h3>
 
-    <Button class="my-16 mr-16" type="primary" @click="openFnFullLoading">
+    <Button class="my-16 mr-16" @click="openFnFullLoading">
       全屏 Loading
     </Button>
-    <Button class="my-16" type="primary" @click="openFnWrapLoading">
+    <Button class="my-16" @click="openFnWrapLoading">
       容器内 Loading
     </Button>
 
     <h3>
       指令方式
     </h3>
-    <Button class="my-16 mr-16" type="primary" @click="openDirectiveLoading">
+    <Button class="my-16 mr-16" @click="openDirectiveLoading">
       打开指令Loading
     </Button>
   </div>
@@ -33,13 +34,13 @@
 
 <script lang="ts">
 import { defineComponent, ref, toRefs, reactive, inject } from 'vue'
-import { Alert, Button } from 'ant-design-vue'
-import { useLoading, ScLoading, installGlobalDirectives } from 'sc-ui'
+import { Alert } from 'ant-design-vue'
+import { useLoading, ScLoading, installGlobalDirectives, ScButton } from 'sc-ui'
 
 import '../../../style/index.less'
 
 export default defineComponent({
-  components: { Alert, Button, ScLoading },
+  components: { Alert, Button: ScButton, ScLoading },
   setup () {
     const wrapEl = ref<ElRef>();
     const loadingRef = ref(false);
@@ -123,3 +124,13 @@ export default defineComponent({
   }
 })
 </script>
+<style lang="less" scoped>
+.loading-demo {
+  h3 {
+    margin-bottom: 16px;
+  }
+  .scbutton {
+    margin-right: 8px;
+  }
+}
+</style>

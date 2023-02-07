@@ -21,6 +21,3 @@ const valChange = (e:Event) => {
   console.log('e: ', e);
 }
 </script>
-
-<style lang="less">
-</style>

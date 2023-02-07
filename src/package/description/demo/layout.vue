@@ -76,7 +76,3 @@ const mockData: Recordable = {
     schema: schema,
   });
 </script>
-
-<style lang="less" scoped>
-
-</style>

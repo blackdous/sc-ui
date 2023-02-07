@@ -35,6 +35,3 @@ const handleOk = (e: MouseEvent) => {
 };
 
 </script>
-
-<style lang="less">
-</style>

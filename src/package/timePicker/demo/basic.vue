@@ -45,7 +45,3 @@ const strValue = ref<string>('11:03:12');
   });
 
 </script>
-
-<style lang="less" scoped>
-
-</style>

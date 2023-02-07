@@ -146,7 +146,7 @@ const handleDrag = (dragRect:DraggableType) => {
 
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .mrt20 {
   margin-top: 20px;
 }

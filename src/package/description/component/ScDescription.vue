@@ -181,15 +181,3 @@
     },
   });
 </script>
-<style lang="less">
-// .vp-doc table {
-//   display: table;
-// }
-// .vp-doc th, .vp-doc td {
-//   background-color: transparent;
-//   padding: 0 0 8px 0;
-// }
-// .vp-doc .vitepress-demo table {
-//   margin: 0;
-// }
-</style>

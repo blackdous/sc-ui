@@ -53,6 +53,9 @@ export default defineComponent({
 })
 
 </script>
+<style lang="less">
+@import '../../../style/index.less';
+</style>
 
 <style lang="less" scoped>
   .ant-btn  + .ant-btn {

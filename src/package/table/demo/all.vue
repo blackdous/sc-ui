@@ -81,7 +81,6 @@ import { list as ColumnList } from '../types/column'
 import { demoListApi } from './tableData'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
-import '../../../style/index.less'
 
 
 type Key = string | number
@@ -391,7 +390,3 @@ const handleModalClick = () => {
 }
 
 </script>
-
-<style lang="less">
-@import '../../../style/index.less';
-</style>

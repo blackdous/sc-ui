@@ -147,8 +147,3 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less">
-.loadingCon {
-  min-height: 100px;
-}
-</style>

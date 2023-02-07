@@ -45,6 +45,3 @@ const gotoLink = () => {
 }
 
 </script>
-
-<style lang="less">
-</style>

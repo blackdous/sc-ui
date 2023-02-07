@@ -29,6 +29,7 @@
       <Checkbox
         v-model:checked="checkAll"
         @change="onCheckAllChange"
+        :indeterminate="indeterminate"
         >
         全部
       </Checkbox>
@@ -44,7 +45,7 @@
 
 <script lang='ts'>
 import { CheckOutlined } from '@ant-design/icons-vue'
-import { defineComponent, ref, unref, watchEffect, nextTick } from 'vue'
+import { defineComponent, ref, unref, computed } from 'vue'
 import { CheckboxGroup, Checkbox } from 'ant-design-vue'
 
 import { useChecked } from '../hooks/uesDialog'
@@ -76,7 +77,17 @@ export default defineComponent({
       const { keys, list, checkedList } = setItemChecked(item)
       emit('change', { keys: unref(keys), checkedList: unref(checkedList), list: unref(list) })
       checkAll.value = checkedListKeys.value.length === sourceList.value.length
+      if (checkedListKeys.value.length === 0) {
+        checkAll.value = false
+      }
     }
+
+    const indeterminate = computed(() => {
+      if (checkedListKeys.value.length === 0) {
+        return false
+      }
+      return checkedListKeys.value.length !== sourceList.value.length
+    })
 
     // watchEffect(() => {
     //   checkAll.value = checkedListKeys.value.length === sourceList.value.length
@@ -95,6 +106,7 @@ export default defineComponent({
       checkAll,
       checkedListKeys,
       sourceList,
+      indeterminate,
       // handleCheck,
       handleGroup,
       onCheckAllChange

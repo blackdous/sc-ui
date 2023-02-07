@@ -42,6 +42,3 @@ const handleDrag = (dragRect:DraggableType) => {
 }
 
 </script>
-
-<style lang="less">
-</style>

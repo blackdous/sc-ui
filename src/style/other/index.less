@@ -317,7 +317,7 @@
       left: 0;
       line-height: 16px;
       top: 3px;
-      color: @text-color-secondary;
+      color: @heading-color;
       transform: rotate(-90deg);
     }
   }
@@ -353,6 +353,21 @@
 //     color: @text-color-secondary;
 //   }
 // }
+.ant-input-search {
+  .ant-input-search-icon, .ant-input-group-addon .anticon-search {
+    position: relative;
+    svg {
+      display: none!important;
+    }
+    &::after {
+      content: "\e663";
+      font-family: "sc-ui" !important;
+      font-size: 16px;
+      font-style: normal;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+}
 // 覆盖 ant-design-vue icon 图标 样式 结束 **********************************
 
 p {

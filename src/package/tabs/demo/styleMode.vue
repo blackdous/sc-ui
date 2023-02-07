@@ -25,9 +25,3 @@ import { TabPane } from 'ant-design-vue'
 import { ScTabs } from 'sc-ui'
 import '../../../style/index.less'
 </script>
-
-<style lang="less">
-.bg {
-  // background: #e5e5e5;
-}
-</style>

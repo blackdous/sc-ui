@@ -92,10 +92,6 @@ import { ref, unref, h } from 'vue'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
-import { Tooltip, Button } from 'ant-design-vue'
-
-// import '../../../style/index.less'
-import { Icon } from '@iconify/vue'
 
 const loading = ref(false)
 
@@ -392,7 +388,3 @@ const searchHanle = (data) => {
 
 
 </script>
-
-<style lang="less">
-@import '../../../style/index.less';
-</style>

@@ -41,9 +41,3 @@ const schemas: FormSchema[] = [
   },
 ]
 </script>
-
-<!-- <style lang="less" scoped>
-.scPicker th, .scPicker td {
-  padding: 0;
-}
-</style> -->

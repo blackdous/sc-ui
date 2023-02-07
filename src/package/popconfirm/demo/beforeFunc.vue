@@ -48,7 +48,7 @@ const cancelBeforeFunc = async() => {
 
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .btns {
 
 }

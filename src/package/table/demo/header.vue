@@ -49,8 +49,6 @@ import { ScTable } from 'sc-ui'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
 
-import '../../../style/index.less'
-
 const scTableRef = ref()
 type Key = string | number
 
@@ -231,7 +229,3 @@ for(let i = 10; i < 12; i++) {
 
 
 </script>
-
-<style lang="less">
-@import '../../../style/index.less';
-</style>

@@ -16,6 +16,3 @@ import '../../../style/index.less'
 
 const value = ref<number>(1)
 </script>
-
-<style lang="less">
-</style>

@@ -97,6 +97,3 @@ const openModal = (infoDes: string) => {
 // };
 
 </script>
-
-<style lang="less">
-</style>

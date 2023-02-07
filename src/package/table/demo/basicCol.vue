@@ -1,15 +1,17 @@
 <template>
   <div>
-    <Button
-      @click="handleChecked"
-    >
-      设置默认选中列
-    </Button>
-    <Button
-    @click="handleDisabled"
-    >
-      设置不可取消列disabled值
-    </Button>
+    <div class="btns">
+      <Button
+        @click="handleChecked"
+      >
+        设置默认选中列
+      </Button>
+      <Button
+      @click="handleDisabled"
+      >
+        设置不可取消列disabled值
+      </Button>
+    </div>
     <ScTable 
       ref="scTableRef"
       :data-source="data"
@@ -38,10 +40,6 @@
 import { ref, unref, nextTick } from 'vue'
 import { ScTable } from 'sc-ui'
 import { Button } from 'ant-design-vue'
-
-import "ant-design-vue/dist/antd.css"
-import '../../../style/index.less'
-
 const scTableRef = ref()
 // @ts-ignore
 const columns = [
@@ -125,6 +123,10 @@ nextTick(() => {
 
 </script>
 
-<style lang="less">
-@import '../../../style/index.less';
+<style lang="less" scoped>
+.btns {
+  & > .ant-btn {
+    margin-right: 8px;
+  }
+}
 </style>

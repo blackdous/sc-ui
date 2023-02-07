@@ -11,6 +11,3 @@
 import { ScAlert } from 'sc-ui'
 import '../../../style/index.less'
 </script>
-
-<style lang="less">
-</style>

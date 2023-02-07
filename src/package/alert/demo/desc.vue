@@ -26,6 +26,3 @@ const gotoLink = () => {
   window.open('https://www.baidu.com', '_blank')
 }
 </script>
-
-<style lang="less">
-</style>

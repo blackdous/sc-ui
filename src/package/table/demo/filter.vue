@@ -18,8 +18,6 @@
 import { ref, unref } from 'vue'
 import { ScTable } from 'sc-ui'
 
-import '../../../style/index.less'
-
 const scTableRef = ref()
 const list = ref([
   {
@@ -201,7 +199,3 @@ const handleFilter = ({ items, column, setLoading, fetchParams }) => {
 
 
 </script>
-
-<style lang="less">
-@import '../../../style/index.less';
-</style>

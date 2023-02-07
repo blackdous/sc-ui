@@ -4,24 +4,24 @@
       message="使用 useModal 进行弹窗操作"
       show-icon
     />
-    <ScButton type="primary" class="my-16" @click="openModalLoading">
+    <ScButton class="my-16" @click="openModalLoading">
       打开弹窗,加载动态数据并自动调整高度(默认可以拖动/全屏)
     </ScButton>
 
     <Alert message="内外同时同时显示隐藏" show-icon />
-    <ScButton type="primary" class="my-16" @click="openModal2"> 打开弹窗 </ScButton>
+    <ScButton  class="my-16" @click="openModal2"> 打开弹窗 </ScButton>
     <Alert message="自适应高度" show-icon />
-    <ScButton type="primary" class="my-16" @click="openModal3"> 打开弹窗 </ScButton>
+    <ScButton  class="my-16" @click="openModal3"> 打开弹窗 </ScButton>
 
     <Alert message="内外数据交互" show-icon />
-    <ScButton type="primary" class="my-16" @click="send"> 打开弹窗并传递数据 </ScButton>
+    <ScButton  class="my-16" @click="send"> 打开弹窗并传递数据 </ScButton>
 
     <Alert message="使用动态组件的方式在页面内使用多个弹窗" show-icon />
     <a-space>
-      <ScButton type="primary" class="my-16" @click="openTargetModal(1)"> 打开弹窗1 </ScButton>
-      <ScButton type="primary" class="my-16" @click="openTargetModal(2)"> 打开弹窗2 </ScButton>
-      <ScButton type="primary" class="my-16" @click="openTargetModal(3)"> 打开弹窗3 </ScButton>
-      <ScButton type="primary" class="my-16" @click="openTargetModal(4)"> 打开弹窗4 </ScButton>
+      <ScButton  class="my-16" @click="openTargetModal(1)"> 打开弹窗1 </ScButton>
+      <ScButton  class="my-16" @click="openTargetModal(2)"> 打开弹窗2 </ScButton>
+      <ScButton  class="my-16" @click="openTargetModal(3)"> 打开弹窗3 </ScButton>
+      <ScButton  class="my-16" @click="openTargetModal(4)"> 打开弹窗4 </ScButton>
     </a-space>
 
     <component :is="currentModal" v-model:visible="modalVisible" :userData="userData" />
@@ -105,3 +105,9 @@
     },
   });
 </script>
+
+<style lang="less" scoped>
+  .demo-slot .ant-alert {
+    margin: 16px 0;
+  }
+</style>

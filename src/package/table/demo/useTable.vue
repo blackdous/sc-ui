@@ -125,8 +125,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="less">
-@import '../../../style/index.less';
+<style lang="less" scoped>
 .action {
   padding: 10px 32px 0;
 }

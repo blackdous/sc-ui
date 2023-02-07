@@ -12,6 +12,3 @@ import { ScAlert } from 'sc-ui'
 import "ant-design-vue/dist/antd.css"
 
 </script>
-
-<style lang="less">
-</style>

@@ -23,9 +23,3 @@ import { ScButton } from '../../button'
 import '../../../style/index.less'
 
 </script>
-
-<style lang="less">
-.btns {
-
-}
-</style>

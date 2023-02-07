@@ -55,6 +55,3 @@ export default defineComponent({
 
 })
 </script>
-
-<style lang="less">
-</style>

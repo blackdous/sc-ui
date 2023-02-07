@@ -24,7 +24,3 @@ const value = ref(dayjs('12:08', 'HH:mm'));
   });
 
 </script>
-
-<style lang="less" scoped>
-
-</style>

@@ -2,31 +2,26 @@
 
   <div class="btns">
     <ScButton
-      type="primary"
       @click="refHandleScroll"
     >
       handleScroll
     </ScButton>
     <ScButton
-      type="primary"
       @click="refScrollTo"
     >
       scrollTo
     </ScButton>
     <ScButton
-      type="primary"
       @click="refSetScrollTop"
     >
       setScrollTop
     </ScButton>
     <ScButton
-      type="primary"
       @click="setScrollLeft"
     >
       setScrollLeft
     </ScButton>
     <ScButton
-      type="primary"
       @click="update"
     >
       update
@@ -78,6 +73,7 @@ const update = () => {
 
 <style scoped lang="less">
 .btns {
+  margin-bottom: 16px;
   & > button {
    margin-left: 10px;
   }

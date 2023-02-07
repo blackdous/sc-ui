@@ -68,5 +68,10 @@ const closeHandle = () => {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+div {
+  & > .scbutton {
+    margin-right: 8px;
+  }
+}
 </style>

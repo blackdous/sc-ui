@@ -141,9 +141,3 @@ const mockData: Recordable = {
     },
   ];
 </script>
-
-<style lang="less" scoped>
-// .sc-file-copy {
-//   color: @primary-color;
-// }
-</style>
