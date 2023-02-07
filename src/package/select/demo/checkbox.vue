@@ -1,5 +1,5 @@
 <template>
-  <div class="mt20">
+  <div class="mt20 scSe">
     <ScSelect
       v-model:value="value"
       :options="options"
@@ -36,7 +36,7 @@ watch(() => value.value, (val) => {
 
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .mt20 {
   margin-top: 20px;
 }
