@@ -101,11 +101,20 @@
         // @ts-ignore
         return { ...props, ...unref(propsRef) } as FormProps;
       });
+
+      const isRequire = computed(() => {
+        const list = unref(getProps).schemas?.find(item => {
+          return item.required
+        })
+        return Boolean(list)
+      })
+
       const getFormClass = computed(() => {
         return [
           prefixCls,
           {
             [`${prefixCls}--compact`]: unref(getProps).compact,
+            'isRequire': isRequire.value
           },
         ];
       });
