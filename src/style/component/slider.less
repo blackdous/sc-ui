@@ -9,21 +9,24 @@
     position: relative;
     padding: 0 10px;
     .vue-slider {
+      height: 10px!important;
+      padding: 0!important;
       &::before {
         content: '';
         position: absolute;
         left: -10px;
-        bottom: 1px;
-        width: 10px;
+        bottom: 0;
+        width: 11px;
         height: 10px;
         background-color: @btn-light-color;
         border-radius: 15px 0 0 15px;
+        z-index: 2;
       }
       &::after {
         content: '';
         position: absolute;
         right: -10px;
-        bottom: 1px;
+        bottom: 0;
         width: 10px;
         height: 10px;
         background-color: @slider-bg-color;
