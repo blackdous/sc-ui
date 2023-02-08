@@ -19,7 +19,6 @@
 // import { ref } from 'vue'
 import { ScBreadcrumb } from 'sc-ui'
 import { BreadcrumbItem } from 'ant-design-vue'
-import '../../../style/index.less'
 </script>
 
 <style lang="less" scoped>

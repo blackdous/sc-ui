@@ -54,7 +54,6 @@
 import { ref, unref, onMounted } from 'vue'
 import { SelectOption, Select } from 'ant-design-vue'
 import { ScSelect } from 'sc-ui'
-import '../../../style/index.less'
 
 const value = ref('jack1')
 const valueAsync = ref()

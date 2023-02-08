@@ -1,5 +1,5 @@
 {
-  "version": "0.0.56",
+  "version": "0.0.58",
   "name": "@sincerecloud/sc-ui",
   "description": "vue3 ui ant-design-vue sincerecloud sc-ui typescript",
   "module": "./build.es.ts",
@@ -27,7 +27,8 @@
     "ant-design-vue": "2.2.8",
     "lodash": "^4.17.21",
     "less": "^4.1.3",
-    "vue-slider-component": "4.1.0-beta.7"
+    "vue-slider-component": "4.1.0-beta.7",
+    "@vueuse/core": "^9.4.0"
   },
   "keywords": [
     "vue3",

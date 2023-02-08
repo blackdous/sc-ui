@@ -37,7 +37,6 @@
 import { h } from 'vue'
 import { message } from 'ant-design-vue'
 import { ScButton, useMessage } from 'sc-ui'
-import '../../../style/index.less'
 
 const successHandle = () => {
   message.success('用于表示普通操作信息提示，可关闭，通常信息较长', 3000)

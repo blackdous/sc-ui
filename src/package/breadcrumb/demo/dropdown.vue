@@ -15,8 +15,6 @@
 import { ref } from 'vue'
 import { ScBreadcrumb } from 'sc-ui'
 
-import '../../../style/index.less'
-
 interface Route {
   path: string;
   breadcrumbName: string;

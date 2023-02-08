@@ -25,6 +25,4 @@
 
 <script setup lang="ts">
 import { Tooltip } from 'ant-design-vue'
-import '../../../style/index.less'
-
 </script>

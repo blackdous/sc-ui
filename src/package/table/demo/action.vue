@@ -17,8 +17,6 @@
 import { ref } from 'vue'
 import { ScTable } from 'sc-ui'
 
-import '../../../style/index.less'
-
 const scTableRef = ref()
 // @ts-ignore
 const columns = [

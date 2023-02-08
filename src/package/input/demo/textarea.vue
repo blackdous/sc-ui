@@ -20,7 +20,6 @@
 <script lang='ts' setup>
 import { ref } from 'vue'
 import { Textarea } from 'ant-design-vue'
-import '../../../style/index.less'
 
 const inputValueRef = ref('')
 const inputValueLengthRef = ref('')

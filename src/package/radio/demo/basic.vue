@@ -13,7 +13,6 @@
 import { RadioButton } from 'ant-design-vue'
 import { ScRadioGroup } from 'sc-ui'
 import { ref } from 'vue'
-import '../../../style/index.less'
 
 const value1 = ref<string>('a')
 </script>

@@ -37,6 +37,9 @@ export default ({ command }: ConfigEnv): UserConfig => {
             vue: 'Vue',
             vueSlider: 'VueSlider'
           },
+          exports: 'named',
+          chunkFileNames: `assets/[name].js`,
+          extend: true,
         },
       },
       // 传递给 @rollup/plugin-commonjs 插件的选项。

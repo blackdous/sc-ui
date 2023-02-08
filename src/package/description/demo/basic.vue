@@ -96,7 +96,6 @@
 <script setup lang="ts">
 import { h } from 'vue'
 import { ScDescription } from 'sc-ui'
-import '../../../style/index.less'
 
 const mockData: Recordable = {
     username: 'test',

@@ -60,7 +60,6 @@
 import { ref } from 'vue'
 // import { SelectOption } from 'ant-design-vue'
 import { ScCascader } from 'sc-ui'
-import '../../../style/index.less'
 
 const value = ref()
 const value1 = ref([])

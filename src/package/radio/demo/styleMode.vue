@@ -12,7 +12,6 @@
 <script setup lang="ts">
 import { RadioButton } from 'ant-design-vue'
 import { ScRadioGroup } from 'sc-ui'
-import '../../../style/index.less'
 import { ref } from 'vue'
 
 const value1 = ref<string>('a')

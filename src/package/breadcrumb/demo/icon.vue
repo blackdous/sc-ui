@@ -25,5 +25,4 @@
 import { ScBreadcrumb } from 'sc-ui'
 import { BreadcrumbItem } from 'ant-design-vue'
 import { TagOutlined } from '@ant-design/icons-vue'
-import '../../../style/index.less'
 </script>

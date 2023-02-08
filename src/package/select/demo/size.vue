@@ -109,7 +109,6 @@
 import { ref } from 'vue'
 import { SelectOption } from 'ant-design-vue'
 import { ScSelect } from 'sc-ui'
-import '../../../style/index.less'
 
 const value1 = ref('jack1')
 const value2 = ref('jack1')

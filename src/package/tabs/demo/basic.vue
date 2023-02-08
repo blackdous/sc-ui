@@ -51,7 +51,6 @@
 import { ref, unref } from 'vue'
 import { TabPane, Tabs } from 'ant-design-vue'
 import { ScTabs } from 'sc-ui'
-import '../../../style/index.less'
 
 interface ItemType {
   key?: string | number;

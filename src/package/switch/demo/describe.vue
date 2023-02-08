@@ -25,7 +25,6 @@
 import { ref } from 'vue'
 import { ScSwitch } from 'sc-ui'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
-import '../../../style/index.less'
 
 const checked = ref(false)
 const checked1 = ref(false)

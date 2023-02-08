@@ -23,5 +23,4 @@
 <script setup lang="ts">
 import { TabPane } from 'ant-design-vue'
 import { ScTabs } from 'sc-ui'
-import '../../../style/index.less'
 </script>

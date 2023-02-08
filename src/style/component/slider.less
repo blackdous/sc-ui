@@ -8,25 +8,27 @@
   &-container {
     position: relative;
     padding: 0 10px;
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 1px;
-      width: 10px;
-      height: 10px;
-      background-color: @btn-light-color;
-      border-radius: 15px 0 0 15px;
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: 1px;
-      width: 10px;
-      height: 10px;
-      background-color: @slider-bg-color;
-      border-radius: 0 15px 15px 0;
+    .vue-slider {
+      &::before {
+        content: '';
+        position: absolute;
+        left: -10px;
+        bottom: 1px;
+        width: 10px;
+        height: 10px;
+        background-color: @btn-light-color;
+        border-radius: 15px 0 0 15px;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        right: -10px;
+        bottom: 1px;
+        width: 10px;
+        height: 10px;
+        background-color: @slider-bg-color;
+        border-radius: 0 15px 15px 0;
+      }
     }
     & + .scInputNumber {
       margin-left: 34px;

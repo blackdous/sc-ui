@@ -59,6 +59,9 @@
     // "emitDeclarationOnly": true,
     "paths": {
       "/@/*": ["src/*"],
+      "@sincerecloud/sc-ui": [
+        "src/index.ts"
+      ],
       "sc-ui": [
         "src/index.ts"
       ]

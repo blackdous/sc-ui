@@ -21,7 +21,6 @@ import type { Ref } from 'vue'
 
 import { Button } from 'ant-design-vue'
 import { ScModal } from 'sc-ui'
-import '../../../style/index.less'
 
 const visible: Ref<boolean> = ref(false)
 

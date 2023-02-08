@@ -85,7 +85,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { Tooltip, Button } from 'ant-design-vue'
-import '../../../style/index.less'
 export default defineComponent({
   components: {
     Tooltip,

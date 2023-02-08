@@ -37,8 +37,6 @@ import { defineComponent, ref, toRefs, reactive, inject } from 'vue'
 import { Alert } from 'ant-design-vue'
 import { useLoading, ScLoading, installGlobalDirectives, ScButton } from 'sc-ui'
 
-import '../../../style/index.less'
-
 export default defineComponent({
   components: { Alert, Button: ScButton, ScLoading },
   setup () {

@@ -100,7 +100,6 @@ import type { Ref } from 'vue'
 
 import { Button, Modal } from 'ant-design-vue'
 import { ScModal } from 'sc-ui'
-import '../../../style/index.less'
 import { DraggableType } from '../component/type'
 
 const visible: Ref<number> = ref(0)

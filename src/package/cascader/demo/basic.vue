@@ -36,7 +36,6 @@ import { ref } from 'vue'
 // import { SelectOption } from 'ant-design-vue'
 import { ScCascader } from 'sc-ui'
 import { Cascader } from 'ant-design-vue'
-import '../../../style/index.less'
 
 const value = ref()
 

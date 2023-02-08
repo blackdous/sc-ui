@@ -31,7 +31,6 @@ import { inject } from 'vue'
 import { ScAlert, installGlobalDirectives } from 'sc-ui'
 import { InfoCircleFilled } from '@ant-design/icons-vue';
 import { Button } from 'ant-design-vue';
-import "../../../style/index.less"
 
 const gotoLink = () => {
   window.open('https://www.baidu.com', '_blank')

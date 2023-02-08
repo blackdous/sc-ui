@@ -9,5 +9,4 @@
 
 <script setup lang="ts">
 import { ScAlert } from 'sc-ui'
-import '../../../style/index.less'
 </script>

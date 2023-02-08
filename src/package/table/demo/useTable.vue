@@ -29,7 +29,6 @@ import { ScTable, useTable } from 'sc-ui'
 import { Row, Col, Button } from 'ant-design-vue'
 
 import { demoListApi } from './tableData'
-import '../../../style/index.less'
 interface DataItem {
   key: string;
   name: string;

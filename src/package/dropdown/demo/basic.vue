@@ -79,7 +79,6 @@
 import { defineComponent, ref } from 'vue'
 import { Dropdown, Menu, SubMenu, MenuItem, Button } from 'ant-design-vue'
 import { ScDropDown } from 'sc-ui'
-import '../../../style/index.less'
 
 export default defineComponent({
   name: 'basic',

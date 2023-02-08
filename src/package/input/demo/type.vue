@@ -43,7 +43,6 @@
 <script lang='ts' setup>
 import { ref } from 'vue'
 import { ScInput } from 'sc-ui';
-import '../../../style/index.less'
 
 const inputValueRef = ref('')
 const inputValueSuccessRef = ref('')

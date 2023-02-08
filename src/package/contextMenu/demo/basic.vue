@@ -19,7 +19,6 @@
 import { Button, message } from 'ant-design-vue';
 import {  } from 'vue'
 import { useContextMenu } from 'sc-ui'
-import '../../../style/index.less'
 
 const [createContextMenu] = useContextMenu();
 function handleContext(e: MouseEvent) {

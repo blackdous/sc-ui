@@ -29,9 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { h } from 'vue'
 import { ScButton, useMessage } from 'sc-ui'
-import '../../../style/index.less'
 
 const { createCloseMessage } = useMessage()
 const successHandle = () => {

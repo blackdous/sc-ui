@@ -20,9 +20,7 @@
 
 <script setup lang="ts">
 // import { Popconfirm } from 'ant-design-vue'
-import { ScPopconfirm } from 'sc-ui'
-import { ScButton } from '../../button'
-import '../../../style/index.less'
+import { ScPopconfirm, ScButton } from 'sc-ui'
 
 const okBeforeFunc = async() => {
   const promise1 = new Promise((resolve) => {

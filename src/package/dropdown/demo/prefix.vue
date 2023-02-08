@@ -81,7 +81,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { Dropdown, Menu, SubMenu, MenuItem, Button } from 'ant-design-vue'
-import '../../../style/index.less'
 
 export default defineComponent({
   name: 'basic',

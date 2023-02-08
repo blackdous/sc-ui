@@ -68,10 +68,8 @@
 </template>
 
 <script setup lang="ts">
-import { ScPopconfirm } from 'sc-ui'
+import { ScPopconfirm, ScButton } from 'sc-ui'
 import { QuestionCircleOutlined } from '@ant-design/icons-vue';
-import { ScButton } from '../../button'
-import '../../../style/index.less'
 
 </script>
 

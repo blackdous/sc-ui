@@ -16,7 +16,6 @@
 <script lang='ts' setup>
 import { ref, watch } from 'vue'
 import { ScSelect } from 'sc-ui'
-import '../../../style/index.less'
 
 const value = ref()
 
