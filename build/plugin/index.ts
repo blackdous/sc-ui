@@ -43,7 +43,6 @@ export const createVitePlugins = (isBuild: boolean) => {
     }),
     // transformLess(),
     vueJsx(),
-    copy(),
     vueSetupExtend(),
     dts({
       insertTypesEntry: true,
@@ -58,7 +57,8 @@ export const createVitePlugins = (isBuild: boolean) => {
       ],
       dts: true,
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-    })
+    }),
+    copy()
   ];
   // vitePlugins.push();
   // legacy

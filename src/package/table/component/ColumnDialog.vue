@@ -10,6 +10,7 @@
     maskClosable
     :afterClose="handleCancel"
     @ok="handleOk"
+    v-bind="getProps"
   >
     <CheckoutBtnVue
       :columnList="columnList"
@@ -41,7 +42,7 @@ export default defineComponent({
     CheckoutBtnVue
   },
   props: ColumnModal(),
-  setup (props, { emit }) {
+  setup (props, { emit, attrs }) {
     const checkInfo = ref<string>('')
     const sourceList = ref()
     // const columnList = ref(props.columnList)
@@ -58,6 +59,13 @@ export default defineComponent({
         emit('update:visible', val)
       }
       
+    })
+    const getProps = computed(() => {
+      return {
+        ...props,
+        ...attrs,
+        columnList: undefined
+      }
     })
     const handleCheck = ({ keys, checkedList, list }:CheckParams) => {
       curKeys.value = keys
@@ -79,7 +87,8 @@ export default defineComponent({
       checkInfo,
       handleCheck,
       handleCancel,
-      handleOk
+      handleOk,
+      getProps
     }
   }
 })

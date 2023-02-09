@@ -4,6 +4,7 @@
       <ScStep title="Done" status="success" />
       <ScStep title="Processing" status="error" />
       <ScStep title="Step 3" status="wait"/>
+      <ScStep title="Step 4" status="process"/>
     </ScSteps>
   </div>
 </template>

@@ -74,6 +74,13 @@ export const sidebar = {
       items: [
         { text: 'Password', link: '/en/password/' }
       ]
+    },
+    {
+      text: 'Other',
+      items: [
+        { text: 'Empty', link: '/en/empty/' },
+        { text: 'TableColumn', link: '/en/tableColumn/' }
+      ]
     }
   ],
   '/': [
@@ -141,6 +148,13 @@ export const sidebar = {
       text: '表单',
       items: [
         { text: '密码框 Password', link: '/password/' }
+      ]
+    },
+    {
+      text: '其他',
+      items: [
+        { text: '空组件', link: '/empty/' },
+        { text: '表格Column', link: '/tableColumn/' }
       ]
     }
   ],

@@ -24,7 +24,7 @@ export default ({ command }: ConfigEnv): UserConfig => {
       lib: {
         entry: resolve(__dirname, './src/index.ts'),
         name: 'sc-ui',
-        formats: ['es', 'umd'],
+        formats: ['es', 'umd', 'cjs'],
         fileName: (format) => `build.${format}.ts`,
       },
       sourcemap: true,
