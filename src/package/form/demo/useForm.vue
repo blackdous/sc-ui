@@ -262,11 +262,9 @@
     },
   });
 </script>
-<style lang="less" scoped>
-  .mb-4 {
-    .scbutton {
-      margin-left: 6px;
-      margin-bottom: 10px;
-    }
+<style scoped>
+  .mb-4 .scbutton {
+    margin-left: 6px;
+    margin-bottom: 10px;
   }
 </style>

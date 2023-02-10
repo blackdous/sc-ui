@@ -62,10 +62,8 @@ const handleClick2 = () => {
   }, 1500)
 }
 </script>
-<style lang="less" scoped>
-  div {
-    & > button {
-      margin-left: 10px;
-    }
+<style scoped>
+  div > button {
+    margin-left: 10px;
   }
 </style>

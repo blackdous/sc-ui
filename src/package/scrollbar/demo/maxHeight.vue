@@ -15,7 +15,7 @@ const timer = setTimeout(() => {
 }, 3500)
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .scrollbar-demo-item {
   display: flex;
   align-items: center;
@@ -26,8 +26,8 @@ const timer = setTimeout(() => {
   border-radius: 4px;
   background: #ecf5ff;
   color: #409eff;
-  & + & {
-    margin-top: 10px;
-  }
+}
+.scrollbar-demo-item + .scrollbar-demo-item {
+  margin-top: 10px;
 }
 </style>

@@ -241,13 +241,13 @@
   });
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .mb-4 {
   margin-bottom: 16px;
-  & > .scbutton {
+}
+.mb-4 > .scbutton {
     margin-right: 8px;
   }
-}
 .mt-8 {
   margin-top: 24px;
 }

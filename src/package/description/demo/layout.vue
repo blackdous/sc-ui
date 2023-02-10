@@ -22,10 +22,6 @@
     >
 
     </ScDescription>
-    <!-- <ScDescription
-      @register="register"
-    >
-    </ScDescription> -->
   </div>
 </template>
 

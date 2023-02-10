@@ -21,7 +21,7 @@ import { ScBreadcrumb } from 'sc-ui'
 import { BreadcrumbItem } from 'ant-design-vue'
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 div {
   margin-top: 10px;
 }

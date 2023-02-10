@@ -27,8 +27,6 @@ const handleChange = (val:string) => {
 }
 
 const data = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '12': 12}
-// const marks = [{"label":"A"},{"label":"B"},{"label":"C"},{"label":"D"},{"label":"E"},{"label":"F"},{"label":"G"}]
-// const marks1 = {"1":{"label":"A", icon: h('i', { class: 'sc-ui sc-gift' })},"2":{"label":"B", icon: 'https://iph.href.lu/16x16'},"3":{"label":"C"},"4":{"label":"D"},"5":{"label":"E"},"6":{"label":"F"},"7":{"label":"G", icon: h('i', { class: 'sc-ui sc-gift' }), markerColor: 'rgb(252, 117, 66)'}}
 
 const tooltipInfos = {
   '1': {

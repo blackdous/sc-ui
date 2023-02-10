@@ -299,10 +299,8 @@
     },
   });
 </script>
-<style lang="less" scoped>
-.basicFrom {
-  .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
-    max-width: 530px;
-  }
+<style scoped>
+.basicFrom .ant-form:not(.ant-form-inline):not(.ant-form-vertical) {
+  max-width: 530px;
 }
 </style>

@@ -256,11 +256,11 @@
     },
   });
 </script>
-<style lang="less" scoped>
+<style scoped>
   .mb-4 {
     margin-bottom: 16px;
-    & > .scbutton {
-      margin-right: 8px;
-    }
+  }
+  .mb-4 > .scbutton {
+    margin-right: 8px;
   }
 </style>

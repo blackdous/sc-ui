@@ -6,7 +6,6 @@
 </template>
 
 <script setup lang="ts">
-// import { RadioButton } from 'ant-design-vue'
 import { ScRadioTooltipGroup } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
 import { ref } from 'vue'

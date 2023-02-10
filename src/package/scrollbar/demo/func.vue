@@ -71,12 +71,12 @@ const update = () => {
 
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .btns {
   margin-bottom: 16px;
-  & > button {
-   margin-left: 10px;
-  }
+}
+.btns > button {
+  margin-left: 10px;
 }
 .scrollbar-flex-content {
   display: flex;
@@ -93,8 +93,8 @@ const update = () => {
   border-radius: 4px;
   background: #ecf5ff;
   color: #409eff;
-  & + & {
-    margin-left: 10px;
-  }
+}
+.scrollbar-demo-item + .scrollbar-demo-item {
+  margin-left: 10px;
 }
 </style>

@@ -10,7 +10,7 @@ import { ScScrollbar } from 'sc-ui'
 
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .scrollbar-demo-item {
   display: flex;
   align-items: center;
@@ -21,8 +21,8 @@ import { ScScrollbar } from 'sc-ui'
   border-radius: 4px;
   background: #ecf5ff;
   color: #409eff;
-  & + & {
-    margin-top: 10px;
-  }
+}
+.scrollbar-demo-item + .scrollbar-demo-item {
+  margin-top: 10px;
 }
 </style>

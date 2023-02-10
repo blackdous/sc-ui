@@ -86,7 +86,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .tableEmpty {
   min-height: 100px;
   padding-top: 0;

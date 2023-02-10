@@ -122,13 +122,12 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less" scoped>
-.loading-demo {
-  h3 {
-    margin-bottom: 16px;
-  }
-  .scbutton {
-    margin-right: 8px;
-  }
+<style scoped>
+.loading-demo h3 {
+  margin-bottom: 16px;
+}
+  
+.loading-demo .scbutton {
+  margin-right: 8px;
 }
 </style>

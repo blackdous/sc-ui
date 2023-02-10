@@ -303,10 +303,8 @@
     },
   });
 </script>
-<style lang="less" scoped>
-.basicFrom {
-  .ant-form:not(.ant-form-inline) {
-    max-width: 400px;
-  }
+<style scoped>
+.basicFrom .ant-form:not(.ant-form-inline) {
+  max-width: 400px;
 }
 </style>

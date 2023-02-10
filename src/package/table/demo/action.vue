@@ -194,7 +194,3 @@ const handleAction = (data: any) => {
 
 
 </script>
-
-<style lang="less">
-@import '../../../style/index.less';
-</style>

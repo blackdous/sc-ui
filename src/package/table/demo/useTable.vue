@@ -124,7 +124,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .action {
   padding: 10px 32px 0;
 }

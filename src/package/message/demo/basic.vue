@@ -66,11 +66,11 @@ const closeHandle = () => {
   })
 }
 </script>
-
-<style lang="less" scoped>
-div {
-  & > .scbutton {
-    margin-right: 8px;
-  }
+<style lang="less">
+@import '../../../style/index.less';
+</style>
+<style scoped>
+div > .scbutton {
+  margin-right: 8px;
 }
 </style>

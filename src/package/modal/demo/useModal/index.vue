@@ -106,7 +106,7 @@
   });
 </script>
 
-<style lang="less" scoped>
+<style scoped>
   .demo-slot .ant-alert {
     margin: 16px 0;
   }

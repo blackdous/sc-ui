@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-// import { Popconfirm } from 'ant-design-vue'
 import { ScPopconfirm, ScButton} from 'sc-ui'
 
 </script>

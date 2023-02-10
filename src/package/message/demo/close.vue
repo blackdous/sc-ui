@@ -49,10 +49,8 @@ const loadingHandle = () => {
 }
 </script>
 
-<style lang="less" scoped>
-div {
-  & > .scbutton {
-    margin-right: 8px;
-  }
+<style scoped>
+div > .scbutton {
+  margin-right: 8px;
 }
 </style>

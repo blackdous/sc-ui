@@ -73,10 +73,8 @@ import { QuestionCircleOutlined } from '@ant-design/icons-vue';
 
 </script>
 
-<style lang="less" scoped>
-.btns {
-  & > button {
-    margin-left: 8px;
-  }
+<style scoped>
+.btns > button {
+  margin-left: 8px;
 }
 </style>

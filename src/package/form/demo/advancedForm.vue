@@ -182,10 +182,8 @@
   });
 </script>
 
-<style lang="less" scoped>
-  div {
-    h3 {
-      margin-bottom: 20px;
-    }
+<style scoped>
+  div h3 {
+    margin-bottom: 20px;
   }
 </style>

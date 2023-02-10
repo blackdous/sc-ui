@@ -172,7 +172,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .sc-ui .sc-add{
   vertical-align: top;
   line-height: 22px;

@@ -1,8 +1,8 @@
 import type { App } from 'vue'
 import { message } from 'ant-design-vue'
 
-// import './style/index.less';
-import './style/index'
+import './style/index.less';
+// import './style/index'
 
 import { ScHelp } from './package/other'
 import { ScSteps, ScStep } from "./package/steps"

@@ -1,22 +1,20 @@
 <template>
   <div>
-    <ScButton type="shadow" shape="round">
+    <ScButton type="primary">
       填充按钮
     </ScButton>
   </div>
-  <div class="mt20">
-    <ScButton type="shadow" shape="round" disabled>
-      填充按钮
-    </ScButton>
-  </div>
+
 </template>
 
 <script lang="ts">
 import { ScButton } from 'sc-ui'
 import { defineComponent } from 'vue'
+import './url'
+import '../../../'
 
 export default defineComponent({
-  name: 'shadow',
+  name: 'basic',
   inheritAttrs: false,
   components: {
     ScButton
@@ -29,8 +27,11 @@ export default defineComponent({
 })
 
 </script>
+<!-- <style lang="less">
+@import '../../../style/index.less';
+</style> -->
 
-<style scoped>
+<style lang="less" scoped>
   .ant-btn  + .ant-btn {
     margin-left: 24px;
   }

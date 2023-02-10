@@ -123,10 +123,8 @@ nextTick(() => {
 
 </script>
 
-<style lang="less" scoped>
-.btns {
-  & > .ant-btn {
-    margin-right: 8px;
-  }
+<style scoped>
+.btns > .ant-btn {
+  margin-right: 8px;
 }
 </style>

@@ -35,7 +35,7 @@ export default defineComponent({
 
 </script>
 
-<style lang="less" scoped>
+<style scoped>
   div {
     width: 300px;
   }

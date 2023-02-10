@@ -137,7 +137,7 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="less" scoped>
+<style scoped>
 .tree-transfer .ant-transfer-list:first-child {
   width: 50%;
   flex: none;

@@ -44,16 +44,14 @@ export default defineComponent({
 
 </script>
 
-<style lang="less" scoped>
+<style scoped>
   .ant-btn  + .ant-btn {
     margin-left: 24px;
   }
   .mt20 {
     margin-top: 20px;
   }
-  .ant-btn:not(.ant-btn-icon-only) {
-    .sc-xinjian, .sc-upload {
-      margin-right: 4px;
-    }
-  }
+  .ant-btn:not(.ant-btn-icon-only) .sc-xinjian, .sc-upload {
+    margin-right: 4px;
+  } 
 </style>

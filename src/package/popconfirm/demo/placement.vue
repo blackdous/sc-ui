@@ -84,7 +84,6 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-// import { ScPopconfirm, ScButton } from 'ant-design-vue'
 import { ScButton, ScPopconfirm } from 'sc-ui';
 export default defineComponent({
   components: {

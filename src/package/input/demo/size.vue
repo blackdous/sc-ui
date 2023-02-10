@@ -69,11 +69,9 @@ const inputValueSmallRef = ref('')
 
 </script>
 
-<style scoped lang="less">
-.scInput {
-  & + & {
-    margin-left: 20px;
-  }
+<style scoped>
+.scInput + .scInput {
+  margin-left: 20px;
 }
 .mt20 {
   margin-top: 20px;

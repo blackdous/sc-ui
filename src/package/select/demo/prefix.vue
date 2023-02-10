@@ -18,7 +18,6 @@
 </template>
 <script lang='ts' setup>
 import { ref } from 'vue'
-// import { SelectOption } from 'ant-design-vue'
 import { ScSelect } from 'sc-ui'
 
 const options = [...Array(6)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1), label: (i + 10).toString(36) + (i + 1) }))

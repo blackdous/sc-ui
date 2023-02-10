@@ -357,6 +357,17 @@ html * {
   padding: 3px 0;
 }
 
+.demo-actions .demo-platforms {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+}
+
 
 /* .vp-doc .ant-table-cell-fix-left-first::after, 
 .vp-doc .ant-table-cell-fix-left-last::after {

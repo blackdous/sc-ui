@@ -2,7 +2,8 @@ import DefaultTheme from 'vitepress/theme';
 import DemoBlock from '@ruabick/vitepress-demo-block';
 import '@ruabick/vitepress-demo-block/dist/style.css';
 import './var.less';
-import '../../../src/style/index'
+import '../../../src/style/index';
+// import './showVueSFCPlayground.ts';
 
 export default {
   ...DefaultTheme,

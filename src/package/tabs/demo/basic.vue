@@ -68,7 +68,7 @@ for (let i = 0; i < 5; i++) {
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .mt20 {
   margin-top: 20px;
 }

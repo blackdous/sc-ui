@@ -92,10 +92,8 @@ export default defineComponent({
 
 </script>
 
-<style lang="less" scoped>
-  div {
-    p {
-      padding: 10px 0;
-    }
+<style scoped>
+  div p {
+    padding: 10px 0;
   }
 </style>

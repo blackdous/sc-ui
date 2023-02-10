@@ -80,7 +80,7 @@ function handleMultipleContext(e: MouseEvent) {
 }
 </script>
 
-<style>
+<style scoped>
 .demoButton {
   margin: 20px;
 }
