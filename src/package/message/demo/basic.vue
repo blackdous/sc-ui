@@ -70,6 +70,9 @@ const closeHandle = () => {
 @import '../../../style/index.less';
 </style>
 <style scoped>
+/* @import ''; */
+</style>
+<style scoped>
 div > .scbutton {
   margin-right: 8px;
 }

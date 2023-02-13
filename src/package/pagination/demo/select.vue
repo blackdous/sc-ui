@@ -52,3 +52,6 @@ export default defineComponent({
 })
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

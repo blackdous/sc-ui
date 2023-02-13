@@ -34,3 +34,6 @@ const value1 = ref(dayjs('12:08:23', 'HH:mm'));
 const value2 = ref(dayjs('12:08:23', 'HH:mm'));
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

@@ -85,7 +85,9 @@ export default defineComponent({
   },
 });
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .tableEmpty {
   min-height: 100px;

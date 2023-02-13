@@ -7,3 +7,6 @@
 <script lang='ts' setup>
 import { Empty } from 'sc-ui'
 </script>
+<style scoped>
+/* @import ''; */
+</style>

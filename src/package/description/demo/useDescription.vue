@@ -68,3 +68,6 @@ const mockData: Recordable = {
     layout: 'vertical'
   });
 </script>
+<style scoped>
+/* @import ''; */
+</style>

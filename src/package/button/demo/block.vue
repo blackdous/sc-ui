@@ -34,7 +34,9 @@ export default defineComponent({
 })
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
   div {
     width: 300px;

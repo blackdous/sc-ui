@@ -1,7 +1,5 @@
 import type { App } from 'vue'
 import { message } from 'ant-design-vue'
-
-import './style/index.less';
 // import './style/index'
 
 import { ScHelp } from './package/other'
@@ -50,6 +48,9 @@ import { installGlobalDirectives } from './directives'
 import ClickOutside from './directives/clickOutside'
 import TextCollapse from './directives/textCollapse'
 import LoadingDirective from './directives/loading'
+
+
+import './style/index.less';
 
 message.config({
   duration: 2, // 持续时间
@@ -111,7 +112,7 @@ const install = (app: App) => {
 };
 
 const ScUi = {
-  version: '0.0.57',
+  version: '0.0.64',
   install,
 };
 

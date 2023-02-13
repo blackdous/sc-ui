@@ -34,11 +34,11 @@
 
 <script lang="ts">
 import { defineComponent, ref, toRefs, reactive, inject } from 'vue'
-import { Alert } from 'ant-design-vue'
+// import { Alert } from 'ant-design-vue'
 import { useLoading, ScLoading, installGlobalDirectives, ScButton } from 'sc-ui'
 
 export default defineComponent({
-  components: { Alert, Button: ScButton, ScLoading },
+  components: { Button: ScButton, ScLoading },
   setup () {
     const wrapEl = ref<ElRef>();
     const loadingRef = ref(false);
@@ -122,6 +122,9 @@ export default defineComponent({
   }
 })
 </script>
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .loading-demo h3 {
   margin-bottom: 16px;

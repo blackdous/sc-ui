@@ -44,3 +44,6 @@ watch(
   },
 );
 </script>
+<style scoped>
+/* @import ''; */
+</style>

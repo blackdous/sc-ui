@@ -48,7 +48,9 @@ const loadingHandle = () => {
   createCloseMessage({type: 'loading', content: '用于表示普通操作信息提示，可关闭，通常信息较长'})
 }
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 div > .scbutton {
   margin-right: 8px;

@@ -9,7 +9,9 @@
 import { ScScrollbar } from 'sc-ui'
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .scrollbar-demo-item {
   display: flex;

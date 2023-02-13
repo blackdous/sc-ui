@@ -71,3 +71,6 @@ const mockData: Recordable = {
     schema: schema,
   });
 </script>
+<style scoped>
+/* @import ''; */
+</style>

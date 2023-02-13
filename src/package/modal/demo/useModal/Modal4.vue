@@ -41,3 +41,6 @@
     },
   });
 </script>
+<style scoped>
+@import '';
+</style>

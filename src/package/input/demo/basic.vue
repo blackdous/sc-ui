@@ -21,7 +21,9 @@ const handleClear = (val:string) => {
 }
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .w400 {
   width: 400px;

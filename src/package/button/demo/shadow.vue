@@ -29,8 +29,11 @@ export default defineComponent({
 })
 
 </script>
-
+<!-- <style scoped>
+</style> -->
 <style scoped>
+  /* 0.0.64作为初始版本；版本更新请在 示例页面更新 */
+  /* @import 'https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.64/style.css';  */
   .ant-btn  + .ant-btn {
     margin-left: 24px;
   }

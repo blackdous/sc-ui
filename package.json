@@ -111,7 +111,7 @@
   "dependencies": {
     "@ant-design/icons-svg": "^4.2.1",
     "@iconify/vue": "^4.0.0",
-    "@sincerecloud/sc-ui": "^0.0.27",
+    "@sincerecloud/sc-ui": "^0.0.63",
     "ant-design-vue": "2.2.8",
     "dayjs": "^1.11.7",
     "deepmerge": "^4.2.2",

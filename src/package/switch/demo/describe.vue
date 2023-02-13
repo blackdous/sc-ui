@@ -30,3 +30,6 @@ const checked = ref(false)
 const checked1 = ref(false)
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

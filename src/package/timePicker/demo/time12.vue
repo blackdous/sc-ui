@@ -24,3 +24,6 @@ const value = ref<Dayjs>();
   });
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

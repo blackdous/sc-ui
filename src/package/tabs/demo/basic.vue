@@ -67,7 +67,9 @@ for (let i = 0; i < 5; i++) {
   }]
 }
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .mt20 {
   margin-top: 20px;

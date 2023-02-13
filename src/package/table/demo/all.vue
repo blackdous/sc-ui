@@ -390,3 +390,6 @@ const handleModalClick = () => {
 }
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

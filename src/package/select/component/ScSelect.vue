@@ -4,37 +4,17 @@
     <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
       <slot name="prefixIcon"></slot>
     </span>
-    <!-- v-model:value="initValue" -->
     <Select
       :class="[isPrefixIcon ? 'is-prefix' : '']"
       v-bind="vBind"
       v-model:value="initValue"
       :disabled="newProps.disabled"
       :dropdownClassName="dropdownClassName"
-      @change="handleChange"
       >
-      <!-- @dropdownVisibleChange="dropdownVisibleChange" -->
+      <!-- @change="handleChange" -->
       <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
         <slot :name="item" v-bind="data || {}"></slot>
       </template> 
-      <template v-if="newProps.optionMode === 'checkbox'" #dropdownRender>
-        <CheckboxGroup
-          v-model:value="checkboxValue"
-        >
-          <div 
-            v-for="item in checkboxOptions"
-            :class="item.className"
-          >
-            <div class="ant-select-item-option-content">
-              <Checkbox
-                v-bind="item"
-              >
-                {{item.label || item.value}}
-              </Checkbox>
-            </div>
-          </div>
-        </CheckboxGroup>
-      </template>
   
       <template #suffixIcon>
         <i 
@@ -56,7 +36,7 @@
 
 <script lang="ts" >
 
-import { computed, defineComponent, ref, unref, onMounted, watchEffect, watch } from 'vue'
+import { computed, defineComponent, unref, onMounted } from 'vue'
 import { Select, CheckboxGroup, Checkbox, SelectOption } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 import cloneDeep from 'lodash/cloneDeep'
@@ -80,17 +60,14 @@ export default defineComponent({
   },
   setup(props, { emit, slots, attrs }) {
     const baseClass = basePrefixCls + 'Select'
-    const checkboxValue = ref<string[]>([])
     const initValue = computed({
       get:() => {
-        if (props.optionMode === 'checkbox') {
-          checkboxValue.value = props.value || []
-        }
         return props.optionMode === 'checkbox' ? props.value === undefined ? [] : props.value : props.value
       },
       set: (val) => {
         // console.log('val: ', val);
         emit('update:value',  val)
+        emit('change', val)
       }
     })
     const newProps = computed(() => {
@@ -98,7 +75,6 @@ export default defineComponent({
         ...props
       }
     })
-    // const checkboxValue = ref(unref(initValue))
 
     const uuid = 'sc' + buildUUID()
     const vBind = computed(() => {
@@ -112,41 +88,7 @@ export default defineComponent({
         },
         onChange: undefined
       }
-    })
-    if (unref(newProps)?.optionMode === 'checkbox') {
-      watchEffect(() => {
-        emit('update:value',  checkboxValue.value)
-        if (checkboxValue.value?.length > initValue.value?.length) {
-          emit('change', checkboxValue.value)
-        }
-        initValue.value = checkboxValue.value
-      })
-    }
-
-    const checkboxOptions = computed(() => {
-      // @ts-ignore
-      const newOptions = attrs?.options?.map((item:any) => {
-        const checkboxUnref = unref(checkboxValue)
-        // @ts-ignore
-        if (checkboxUnref?.includes(item.value)) {
-          item.className = ['ant-select-item', 'ant-select-item-option', 'ant-select-item-option-selected']
-        } else {
-          item.className = ['ant-select-item', 'ant-select-item-option']
-        }
-        return item
-      })
-      return newOptions
-    })
-
-    const handleChange = (val:any) => {
-      // console.log('val: ', val);
-      // emit('change', val)
-      if (props.optionMode === 'checkbox') {
-        checkboxValue.value = val
-      }
-      emit('change', val)
-    }
-    
+    })    
     const dropdownClassName = computed(() => {
       const dropdownClass = ['dropdown' + uuid, 'selectDropdown']
       if (attrs.size) {
@@ -154,6 +96,9 @@ export default defineComponent({
       }
       if (attrs.dropdownClassName) {
         dropdownClass.push(attrs.dropdownClassName)
+      }
+      if (props.optionMode === 'checkbox') {
+        dropdownClass.push('scDropdown-checkbox')
       }
       return dropdownClass.join(' ')
     })
@@ -175,7 +120,6 @@ export default defineComponent({
       dom && dom.addEventListener('mousedown', (event) => {
         const isParent = findParentDom(event.target, 5, (dom) => { return String(dom.className).includes('clearSelect') ? dom : false })
         if (isParent) {
-          checkboxValue.value = undefined
           emit('allowClear', initValue.value)
         }
       })
@@ -190,10 +134,7 @@ export default defineComponent({
       isPrefixIcon,
       isClearIcon,
       dropdownClassName,
-      checkboxValue,
-      checkboxOptions,
       vBind,
-      handleChange,
     }
   }
 })

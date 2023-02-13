@@ -105,7 +105,9 @@
     },
   });
 </script>
-
+<style scoped>
+@import '';
+</style>
 <style scoped>
   .demo-slot .ant-alert {
     margin: 16px 0;

@@ -10,7 +10,9 @@
     </Empty>
   </div>
 </template>
-
+<style scoped>
+/* @import ''; */
+</style>
 <script lang='ts' setup>
 import { Empty } from 'sc-ui'
 </script>

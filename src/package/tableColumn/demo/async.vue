@@ -65,3 +65,6 @@ const handleChange = (val: { keys: string[], checkedList: any }) => {
 }
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

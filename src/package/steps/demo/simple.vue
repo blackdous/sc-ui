@@ -12,7 +12,9 @@
 <script setup lang="ts">
 import { ScSteps, ScStep } from 'sc-ui'
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 /* div {
   width: 240px;

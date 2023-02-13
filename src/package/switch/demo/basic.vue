@@ -13,3 +13,6 @@ import { ScSwitch } from 'sc-ui'
 const checked = ref(false)
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

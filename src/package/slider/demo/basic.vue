@@ -15,8 +15,11 @@
 <script lang='ts' setup>
 import { ref } from 'vue'
 import { ScSlider } from 'sc-ui'
-const valueRef = ref(0)
+const valueRef = ref(12)
 const handleChange = (val:string) => {
-  console.log('val: ', val);
+  console.log('val: handleChange', val);
 }
 </script>
+<style scoped>
+/* @import ''; */
+</style>

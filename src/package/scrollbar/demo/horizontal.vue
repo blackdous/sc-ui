@@ -11,7 +11,9 @@
 import { ScScrollbar } from 'sc-ui'
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .scrollbar-flex-content {
   display: flex;

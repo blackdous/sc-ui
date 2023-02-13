@@ -26,6 +26,7 @@
     <ScSelect
       v-model:value="valueAsync"
       :allow-clear="true"
+      @change="handleChange"
     >
       <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
         {{item.label}}
@@ -33,6 +34,7 @@
     </ScSelect>
     <Select
       v-model:value="valueAsync"
+      @change="handleChange"
       >
       <!-- :allow-clear="true" -->
       <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
@@ -42,6 +44,7 @@
     <Select
       v-model:value="valueAsync"
       disabled
+      @change="handleChange"
     >
       <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
         {{item.label}}
@@ -51,7 +54,7 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, unref, onMounted } from 'vue'
+import { ref, unref, onMounted, watch } from 'vue'
 import { SelectOption, Select } from 'ant-design-vue'
 import { ScSelect } from 'sc-ui'
 
@@ -61,6 +64,11 @@ const valueAsync = ref()
 const handleChange = (val:string) => {
   console.log('val: handleChange', val);
 }
+
+watch(() => valueAsync.value, (val) => {
+  console.log('val: watch', val);
+
+})
 
 interface ListItem {
   label: string, 
@@ -111,7 +119,9 @@ onMounted(() => {
 })
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .mt20 {
   margin-top: 20px;

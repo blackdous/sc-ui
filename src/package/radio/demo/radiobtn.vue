@@ -14,3 +14,6 @@ import { ref } from 'vue'
 
 const checked = ref<boolean>(false)
 </script>
+<style scoped>
+/* @import ''; */
+</style>

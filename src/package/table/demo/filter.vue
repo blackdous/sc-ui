@@ -199,3 +199,6 @@ const handleFilter = ({ items, column, setLoading, fetchParams }) => {
 
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

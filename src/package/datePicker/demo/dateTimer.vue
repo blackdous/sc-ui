@@ -43,7 +43,9 @@ export default defineComponent({
 })
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
   div p {
     padding: 10px 0;

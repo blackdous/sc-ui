@@ -44,9 +44,6 @@ const cancelBeforeFunc = async() => {
 }
 
 </script>
-
-<style lang="less" scoped>
-.btns {
-
-}
+<style scoped>
+/* @import ''; */
 </style>

@@ -27,3 +27,6 @@ const checked1 = ref(true)
 const checked2 = ref(true)
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

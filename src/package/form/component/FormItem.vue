@@ -283,6 +283,7 @@
           ...propsData,
           ...on,
           ...bindValue,
+          formItem: true
         };
         // console.log('compAttr: ', compAttr);
 

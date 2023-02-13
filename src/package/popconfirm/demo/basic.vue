@@ -20,3 +20,6 @@
 import { ScPopconfirm, ScButton} from 'sc-ui'
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

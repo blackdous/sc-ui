@@ -9,6 +9,7 @@
       <VueSlider
         v-bind="vBindValue"
         v-model="valueRef"
+        @change="handleChange"
       >
         <template 
           #[item]="data" 
@@ -97,6 +98,7 @@
       :min="newProps.min"
       :max="newProps.max"
       :step="newProps.step"
+      @change="handleInputNumberChange"
     >
       <!-- @pressEnter="handleChange" -->
 
@@ -105,10 +107,11 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, unref, ref, watch, watchEffect, isVNode, h } from 'vue'
+import { defineComponent, computed, unref, ref, watch, isVNode } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 import { ScInputNumber } from '../../inputNumber'
-import { transformPxtoRem } from '../../../utils'
+import { transformPxtoRem, isNumber } from '../../../utils'
+import { useInjectFormItemContext } from '../../form/FormItemContext';
 
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
 
@@ -119,6 +122,7 @@ import { basePrefixCls } from '../../../constant'
 import { pxToRem, buildUUID } from '../../../utils'
 import { Props } from './type'
 import { getIcon } from '../hooks/index'
+// import { isNumber } from 'lodash';
 
 export default defineComponent({
   name: 'ScSlider',
@@ -129,10 +133,14 @@ export default defineComponent({
     Tooltip,
     ScInputNumber
   },
+  emits: ['change', 'update:value'],
   setup (props, { slots, attrs, emit }) {
+    // console.log('attrs: ', attrs);
     const valueRef = ref()
     const uuid = basePrefixCls + buildUUID()
     const baseClass = basePrefixCls+'Slider'
+    const formItemContext = useInjectFormItemContext();
+    // console.log('formItemContext: ', formItemContext);
 
     const newProps = computed(() => {
       return {
@@ -175,14 +183,22 @@ export default defineComponent({
       }
     })
 
-    watch(() => valueRef.value, (val) => {
-      emit('update:value', val)
-      emit('change', val)
+    watch(() => props.value, (val) => {
+      valueRef.value = val
     })
 
-    watchEffect(() => {
-      valueRef.value = props.value
-    })
+    const handleChange = (value:any) => {
+      if (attrs.formItem || !isNumber(value)) {
+        emit('change', value)
+      }
+      emit('update:value', value)
+      formItemContext.onFieldChange()
+    }
+
+    const handleInputNumberChange = (value:number) => {
+      emit('change', value)
+      emit('update:value', value)
+    }
 
     const isDot = computed(() => {
       return Object.keys(slots).includes('slot')
@@ -204,7 +220,9 @@ export default defineComponent({
       transformPxtoRem,
       pxToRem,
       isVNode,
-      getIcon
+      getIcon,
+      handleChange,
+      handleInputNumberChange
     }
   }
 })

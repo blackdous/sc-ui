@@ -15,3 +15,6 @@ import { ref } from 'vue'
 
 const value = ref<number>(1)
 </script>
+<style scoped>
+/* @import ''; */
+</style>

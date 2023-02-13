@@ -15,3 +15,6 @@
 <script setup lang="ts">
 import { ScSteps, ScStep } from 'sc-ui'
 </script>
+<style scoped>
+/* @import ''; */
+</style>

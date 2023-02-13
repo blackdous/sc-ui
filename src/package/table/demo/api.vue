@@ -90,3 +90,6 @@ const handleChange = (pagination, filters, sorter, fetchParams) => {
 
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

@@ -44,3 +44,6 @@ const gotoLink = () => {
 }
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

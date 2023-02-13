@@ -3,7 +3,7 @@ import DemoBlock from '@ruabick/vitepress-demo-block';
 import '@ruabick/vitepress-demo-block/dist/style.css';
 import './var.less';
 import '../../../src/style/index';
-// import './showVueSFCPlayground.ts';
+import { initLineCode } from './showVueSFCPlayground';
 
 export default {
   ...DefaultTheme,
@@ -14,5 +14,6 @@ export default {
     // a `ref` of current site-level metadata.
     app.component('demo', DemoBlock);
     app.provide('globalApp', app);
+    initLineCode()
   },
 };

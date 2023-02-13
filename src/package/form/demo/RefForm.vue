@@ -181,9 +181,11 @@
         },
       };
     },
-  });
+});
 </script>
-
+<style scoped>
+@import '';
+</style>
 <style scoped>
   .mb-4 .scbutton {
     margin-left: 6px;

@@ -21,3 +21,6 @@ import { ScSteps, ScStep } from 'sc-ui'
 import { Icon } from '@iconify/vue'
 import { UserOutlined, } from '@ant-design/icons-vue';
 </script>
+<style scoped>
+/* @import ''; */
+</style>

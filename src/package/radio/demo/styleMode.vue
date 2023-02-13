@@ -20,3 +20,6 @@ const valChange = (e:Event) => {
   console.log('e: ', e);
 }
 </script>
+<style scoped>
+/* @import ''; */
+</style>

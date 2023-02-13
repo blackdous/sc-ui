@@ -49,3 +49,6 @@ const handleOk = (e: MouseEvent) => {
 };
 
 </script>
+<style scoped>
+@import '';
+</style>

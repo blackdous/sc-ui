@@ -14,7 +14,9 @@ const timer = setTimeout(() => {
   clearTimeout(timer)
 }, 3500)
 </script>
-
+<style scoped>
+@import '';
+</style>
 <style scoped>
 .scrollbar-demo-item {
   display: flex;

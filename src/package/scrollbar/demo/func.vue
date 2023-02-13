@@ -70,7 +70,9 @@ const update = () => {
 }
 
 </script>
-
+<style scoped>
+@import '';
+</style>
 <style scoped>
 .btns {
   margin-bottom: 16px;

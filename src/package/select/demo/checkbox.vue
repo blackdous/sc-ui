@@ -22,7 +22,10 @@ const value = ref()
 const options = [...Array(6)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1), label: (i + 10).toString(36) + (i + 1) }))
 
 const handleChange = (val:string) => {
-  console.log('val: handleChange', val);
+  console.log('val: handleChange', val.length);
+  if (val.length > 3) {
+    value.value = val.slice(0, 3)
+  }
 }
 
 watch(() => value.value, (val) => {
@@ -34,7 +37,9 @@ watch(() => value.value, (val) => {
 // }, 3000);
 
 </script>
-
+<style scoped>
+@import '';
+</style>
 <style scoped>
 .mt20 {
   margin-top: 20px;

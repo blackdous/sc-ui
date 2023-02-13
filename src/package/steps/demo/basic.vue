@@ -19,3 +19,6 @@ const next = () => {
   if (active.value++ > 2) active.value = 0
 }
 </script>
+<style scoped>
+/* @import ''; */
+</style>

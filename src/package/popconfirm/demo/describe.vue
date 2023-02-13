@@ -78,7 +78,9 @@ import { ScPopconfirm, ScButton } from 'sc-ui'
 import { QuestionCircleOutlined } from '@ant-design/icons-vue';
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .btns  button {
   margin-left: 8px;

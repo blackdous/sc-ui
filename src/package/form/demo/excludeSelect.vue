@@ -108,3 +108,6 @@ const schemas: FormSchema[] = [
   },
 ]
 </script>
+<style scoped>
+@import '';
+</style>

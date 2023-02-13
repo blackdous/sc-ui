@@ -97,3 +97,6 @@ const openModal = (infoDes: string) => {
 // };
 
 </script>
+<style scoped>
+@import '';
+</style>

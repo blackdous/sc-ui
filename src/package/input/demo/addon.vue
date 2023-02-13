@@ -18,7 +18,9 @@ import { ScInput } from 'sc-ui';
 const inputValueRef = ref('')
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .w400 {
   width: 400px;

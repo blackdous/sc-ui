@@ -229,3 +229,6 @@ for(let i = 10; i < 12; i++) {
 
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

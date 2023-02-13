@@ -23,7 +23,7 @@ watch(() => valueRef.value, (val) => {
 })
 
 const handleChange = (val:string) => {
-  console.log('val: ', val);
+  console.log('val:handleChange ', val);
 }
 
 const data = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '12': 12}
@@ -88,3 +88,6 @@ const tooltipInfos = {
     
 
 </script>
+<style scoped>
+/* @import ''; */
+</style>

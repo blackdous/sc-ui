@@ -26,3 +26,6 @@
 <script setup lang="ts">
 import { Tooltip } from 'ant-design-vue'
 </script>
+<style scoped>
+/* @import ''; */
+</style>

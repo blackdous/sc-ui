@@ -8,7 +8,7 @@
     >
       <template #message>
         这是一条普通的消息提示
-        <Button type="link" size="small" @click="gotoLink">相关操作</Button>
+        <ScButton type="link" size="small" @click="gotoLink">相关操作</ScButton>
       </template>
       <template #icon>
         <InfoCircleFilled/>
@@ -18,10 +18,12 @@
 </template>
 
 <script setup lang="ts">
-import { ScAlert } from 'sc-ui'
+import { ScAlert, ScButton } from 'sc-ui'
 import { InfoCircleFilled } from '@ant-design/icons-vue';
-import { Button } from 'ant-design-vue';
 const gotoLink = () => {
   window.open('https://www.baidu.com', '_blank')
 }
 </script>
+<style scoped>
+/* @import ''; */
+</style>

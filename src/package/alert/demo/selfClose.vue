@@ -8,3 +8,6 @@
 <script setup lang="ts">
 import { ScAlert } from 'sc-ui'
 </script>
+<style scoped>
+/* @import ''; */
+</style>

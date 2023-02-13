@@ -10,8 +10,6 @@
 <script lang="ts">
 import { ScButton } from 'sc-ui'
 import { defineComponent } from 'vue'
-import './url'
-import '../../../'
 
 export default defineComponent({
   name: 'basic',
@@ -27,11 +25,11 @@ export default defineComponent({
 })
 
 </script>
-<!-- <style lang="less">
-@import '../../../style/index.less';
-</style> -->
 
-<style lang="less" scoped>
+<style scoped>
+/* @import ''; */
+</style>
+<style scoped>
   .ant-btn  + .ant-btn {
     margin-left: 24px;
   }

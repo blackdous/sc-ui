@@ -123,7 +123,9 @@ export default defineComponent({
 })
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .action {
   padding: 10px 32px 0;

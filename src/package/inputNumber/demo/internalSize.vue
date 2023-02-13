@@ -43,7 +43,9 @@ const handleChange = (val:string) => {
 }
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
 .mt10 {
   margin-top: 10px;

@@ -75,7 +75,9 @@ export default defineComponent({
 })
 
 </script>
-
+<style scoped>
+/* @import ''; */
+</style>
 <style scoped>
   .ant-btn  + .ant-btn {
     margin-left: 24px;

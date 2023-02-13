@@ -41,3 +41,6 @@ const handleDrag = (dragRect:DraggableType) => {
 }
 
 </script>
+<style scoped>
+@import '';
+</style>
