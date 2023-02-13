@@ -68,7 +68,7 @@ for (let i = 0; i < 5; i++) {
 }
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>
 <style scoped>
 .mt20 {

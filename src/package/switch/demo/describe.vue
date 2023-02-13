@@ -31,5 +31,5 @@ const checked1 = ref(false)
 
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

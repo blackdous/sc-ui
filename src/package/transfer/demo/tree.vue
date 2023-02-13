@@ -138,7 +138,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>
 <style scoped>
 .tree-transfer .ant-transfer-list:first-child {

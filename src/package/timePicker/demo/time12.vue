@@ -25,5 +25,5 @@ const value = ref<Dayjs>();
 
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

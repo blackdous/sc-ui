@@ -69,7 +69,7 @@ const inputValueSmallRef = ref('')
 
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>
 <style scoped>
 .scInput + .scInput {

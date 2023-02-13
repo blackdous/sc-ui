@@ -20,5 +20,5 @@ const next = () => {
 }
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

@@ -11,7 +11,7 @@
   </div>
 </template>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>
 <script lang='ts' setup>
 import { Empty } from 'sc-ui'

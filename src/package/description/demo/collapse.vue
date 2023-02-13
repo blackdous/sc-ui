@@ -84,5 +84,5 @@ const mockData: Recordable = {
 </script>
 
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

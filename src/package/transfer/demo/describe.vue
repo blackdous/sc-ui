@@ -80,5 +80,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

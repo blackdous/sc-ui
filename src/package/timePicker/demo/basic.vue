@@ -47,5 +47,5 @@ const strValue = ref<string>('11:03:12');
 </script>
 
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

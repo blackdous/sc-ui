@@ -27,5 +27,5 @@
 import { Tooltip } from 'ant-design-vue'
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

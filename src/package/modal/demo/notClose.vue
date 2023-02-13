@@ -35,5 +35,5 @@ const handleOk = (e: MouseEvent) => {
 
 </script>
 <style scoped>
-@import '';
+/* @import 'comment'; */
 </style>

@@ -12,7 +12,7 @@ import { ScScrollbar } from 'sc-ui'
 
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>
 <style scoped>
 .scrollbar-flex-content {

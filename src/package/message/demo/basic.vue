@@ -70,7 +70,7 @@ const closeHandle = () => {
 @import '../../../style/index.less';
 </style>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>
 <style scoped>
 div > .scbutton {

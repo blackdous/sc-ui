@@ -41,6 +41,7 @@ export default defineComponent({
     ScModal,
     CheckoutBtnVue
   },
+  emits: ['cancelModal', 'okModal', 'update:visible'],
   props: ColumnModal(),
   setup (props, { emit, attrs }) {
     const checkInfo = ref<string>('')
@@ -56,11 +57,13 @@ export default defineComponent({
         return props.visible
       },
       set: (val) => {
+        console.log('val: ', val);
         emit('update:visible', val)
       }
       
     })
     const getProps = computed(() => {
+      console.log('attrs: ', attrs);
       return {
         ...props,
         ...attrs,

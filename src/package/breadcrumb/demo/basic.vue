@@ -27,7 +27,7 @@ import { BreadcrumbItem } from 'ant-design-vue'
 </script>
 
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 div {
   margin-top: 10px;
 }

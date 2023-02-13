@@ -71,7 +71,7 @@ const update = () => {
 
 </script>
 <style scoped>
-@import '';
+/* @import 'comment'; */
 </style>
 <style scoped>
 .btns {

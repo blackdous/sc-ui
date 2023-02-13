@@ -25,5 +25,5 @@ import { TabPane } from 'ant-design-vue'
 import { ScTabs } from 'sc-ui'
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

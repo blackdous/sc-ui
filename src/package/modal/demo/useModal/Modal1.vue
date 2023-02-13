@@ -65,7 +65,7 @@
   });
 </script>
 <style scoped>
-@import '';
+/* @import 'comment'; */
 </style>
 <style scoped>
   .empty-tips {

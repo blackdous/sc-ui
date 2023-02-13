@@ -38,7 +38,7 @@ watch(() => value.value, (val) => {
 
 </script>
 <style scoped>
-@import '';
+/* @import 'comment'; */
 </style>
 <style scoped>
 .mt20 {

@@ -40,5 +40,5 @@ const globalApp = inject('globalApp')
 installGlobalDirectives(globalApp)
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

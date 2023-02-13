@@ -4,6 +4,7 @@
     @okModal="handleChange"
     @cancelModal="handleCancel"
     :columnList="checkList"
+    :width="660"
   >
   </ColumnDialog>
   <ScButton @click="openModal">
@@ -57,5 +58,5 @@ const handleChange = (val: { keys: string[], checkedList: any }) => {
 
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

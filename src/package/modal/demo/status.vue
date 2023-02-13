@@ -98,5 +98,5 @@ const openModal = (infoDes: string) => {
 
 </script>
 <style scoped>
-@import '';
+/* @import 'comment'; */
 </style>

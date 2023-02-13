@@ -17,5 +17,5 @@ import { ref } from 'vue'
 const value1 = ref<string>('a')
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

@@ -36,5 +36,5 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
 
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

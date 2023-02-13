@@ -1,24 +1,23 @@
 <template>
   <div class="demoButton">
-    <Button
+    <ScButton
       type="primary" @contextmenu="handleContext"
     >
       右键点击
-    </Button>
+    </ScButton>
   </div>
   <div class="demoButton">
-    <Button
+    <ScButton
       type="primary" @contextmenu="handleMultipleContext"
     >
       右键点击
-    </Button>
+    </ScButton>
   </div>
 </template>
 
 <script lang='ts' setup>
-import { Button, message } from 'ant-design-vue';
-import {  } from 'vue'
-import { useContextMenu } from 'sc-ui'
+import { message } from 'ant-design-vue';
+import { useContextMenu, ScButton } from 'sc-ui'
 
 const [createContextMenu] = useContextMenu();
 function handleContext(e: MouseEvent) {
@@ -80,7 +79,7 @@ function handleMultipleContext(e: MouseEvent) {
 }
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>
 <style scoped>
 .demoButton {

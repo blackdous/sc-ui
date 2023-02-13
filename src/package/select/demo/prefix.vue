@@ -27,7 +27,7 @@ const value = ref('a1')
 
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>
 <style scoped>
 .ml20 + .ml20 {

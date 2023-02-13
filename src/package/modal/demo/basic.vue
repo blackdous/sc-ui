@@ -145,7 +145,7 @@ const handleDrag = (dragRect:DraggableType) => {
 
 </script>
 <style scoped>
-@import '';
+/* @import 'comment'; */
 </style>
 <style scoped>
 .mrt20 {

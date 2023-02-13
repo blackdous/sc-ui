@@ -128,5 +128,5 @@ const schemas: FormSchema[] = [
 ]
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

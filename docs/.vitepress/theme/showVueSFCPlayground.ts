@@ -87,7 +87,7 @@ const initClick = () => {
     if (ClickDom) {
       const sfcTemCode = `
         ${item.innerText}
-      `.trim()?.replace("/* @import ''; */", (item) => {
+      `.trim()?.replace("/* @import 'comment'; */", (item) => {
         // console.log('item: ', item);
         return "@import 'https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.64/style.css';"
       });

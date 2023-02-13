@@ -64,5 +64,5 @@ const basePath = '/components/breadcrumb'
 
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

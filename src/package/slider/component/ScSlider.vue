@@ -188,7 +188,7 @@ export default defineComponent({
     })
 
     const handleChange = (value:any) => {
-      if (attrs.formItem || !isNumber(value)) {
+      if (attrs.formItem || !unref(newProps).inputNumberOptions) {
         emit('change', value)
       }
       emit('update:value', value)

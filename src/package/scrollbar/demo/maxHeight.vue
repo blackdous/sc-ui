@@ -15,7 +15,7 @@ const timer = setTimeout(() => {
 }, 3500)
 </script>
 <style scoped>
-@import '';
+/* @import 'comment'; */
 </style>
 <style scoped>
 .scrollbar-demo-item {

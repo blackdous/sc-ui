@@ -73,7 +73,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons-vue';
 
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>
 <style scoped>
 .btns > button {

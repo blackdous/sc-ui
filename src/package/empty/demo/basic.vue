@@ -8,5 +8,5 @@
 import { Empty } from 'sc-ui'
 </script>
 <style scoped>
-/* @import ''; */
+/* @import 'comment'; */
 </style>

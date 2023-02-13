@@ -106,7 +106,7 @@
   });
 </script>
 <style scoped>
-@import '';
+/* @import 'comment'; */
 </style>
 <style scoped>
   .demo-slot .ant-alert {
