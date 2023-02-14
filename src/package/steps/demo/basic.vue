@@ -6,14 +6,13 @@
       <ScStep title="Step 3"/>
       <ScStep title="Step 4" status="process"/>
     </ScSteps>
-    <Button style="margin-top: 12px" @click="next">Next step</Button>
+    <ScButton style="margin-top: 12px" @click="next">Next step</ScButton>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { Button } from 'ant-design-vue';
-import { ScSteps, ScStep } from 'sc-ui'
+import { ScSteps, ScStep, ScButton } from 'sc-ui'
 const active = ref(0)
 const next = () => {
   if (active.value++ > 2) active.value = 0

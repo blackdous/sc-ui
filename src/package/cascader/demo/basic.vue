@@ -11,17 +11,6 @@
     </ScCascader>
   </div>
   <div class="mt20">
-    <Cascader
-      popupClassName="spsCa"
-      v-model:value="value"
-      :defaultValue="['jiangsu', 'nanjing', 'zhonghuamen']"
-      :options="options"
-      @change="handleChange"
-    >
-      
-    </Cascader>
-  </div>
-  <div class="mt20">
     <ScCascader
       popupClassName="spsCa"
       v-model:value="value"
@@ -33,9 +22,7 @@
 
 <script lang='ts' setup>
 import { ref } from 'vue'
-// import { SelectOption } from 'ant-design-vue'
 import { ScCascader } from 'sc-ui'
-import { Cascader } from 'ant-design-vue'
 
 const value = ref()
 

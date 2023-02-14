@@ -16,8 +16,7 @@
 </template>
 
 <script lang='ts' setup>
-import { message } from 'ant-design-vue';
-import { useContextMenu, ScButton } from 'sc-ui'
+import { useContextMenu, ScButton, message } from 'sc-ui'
 
 const [createContextMenu] = useContextMenu();
 function handleContext(e: MouseEvent) {

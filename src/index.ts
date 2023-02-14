@@ -20,7 +20,7 @@ import { ScInput } from './package/input'
 import { ScScrollbar } from './package/scrollbar'
 import { ScPopconfirm } from './package/popconfirm'
 import { ScCascader } from './package/cascader'
-import { ScBreadcrumb } from './package/breadcrumb'
+import { ScBreadcrumb, ScBreadcrumbItem } from './package/breadcrumb'
 import { useMessage } from './hooks'
 import { ScSlider } from './package/slider'
 import ScDatePicker, {
@@ -83,7 +83,10 @@ const components = [
   ScScrollbar,
   ScPopconfirm,
   ScCascader,
+
   ScBreadcrumb,
+  ScBreadcrumbItem,
+
   ScSlider,
   ScDescription,
   ScForm,
@@ -102,7 +105,10 @@ const components = [
   ApiTreeSelect,
   ApiTree,
   ApiRadioGroup,
-  ApiCascader
+  ApiCascader,
+
+  // 未修改的组件
+  message
 ]
 
 const install = (app: App) => {
@@ -143,7 +149,10 @@ export {
   ScScrollbar,
   ScPopconfirm,
   ScCascader,
+
   ScBreadcrumb,
+  ScBreadcrumbItem,
+  
   ScSlider,
   ScDescription,
   ScForm,
@@ -162,7 +171,10 @@ export {
   ApiTreeSelect,
   ApiTree,
   ApiRadioGroup,
-  ApiCascader
+  ApiCascader,
+
+  // 未修改的组件
+  message
 }
 
 export * from './types'

@@ -58,7 +58,6 @@
 
 <script lang='ts' setup>
 import { ref } from 'vue'
-// import { SelectOption } from 'ant-design-vue'
 import { ScCascader } from 'sc-ui'
 
 const value = ref()

@@ -110,7 +110,7 @@
 import { defineComponent, computed, unref, ref, watch, isVNode } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 import { ScInputNumber } from '../../inputNumber'
-import { transformPxtoRem, isNumber } from '../../../utils'
+import { transformPxtoRem } from '../../../utils'
 import { useInjectFormItemContext } from '../../form/FormItemContext';
 
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
@@ -136,7 +136,10 @@ export default defineComponent({
   emits: ['change', 'update:value'],
   setup (props, { slots, attrs, emit }) {
     // console.log('attrs: ', attrs);
-    const valueRef = ref()
+    const valueRef = computed(() => {
+      console.log('props.value: ', props.value);
+      return props.value
+    })
     const uuid = basePrefixCls + buildUUID()
     const baseClass = basePrefixCls+'Slider'
     const formItemContext = useInjectFormItemContext();
@@ -183,9 +186,10 @@ export default defineComponent({
       }
     })
 
-    watch(() => props.value, (val) => {
-      valueRef.value = val
-    })
+    // watch(() => props.value, (val) => {
+    //   console.log('val: ', val);
+    //   valueRef.value = val
+    // })
 
     const handleChange = (value:any) => {
       if (attrs.formItem || !unref(newProps).inputNumberOptions) {

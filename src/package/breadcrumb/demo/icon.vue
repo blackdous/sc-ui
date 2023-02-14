@@ -1,17 +1,17 @@
 <template>
   <ScBreadcrumb>
-    <BreadcrumbItem>
+    <ScBreadcrumbItem>
       <TagOutlined></TagOutlined>
       上级页面
-    </BreadcrumbItem>
-    <BreadcrumbItem>
+    </ScBreadcrumbItem>
+    <ScBreadcrumbItem>
       <TagOutlined></TagOutlined>
       上级页面
-    </BreadcrumbItem>
-    <BreadcrumbItem>
+    </ScBreadcrumbItem>
+    <ScBreadcrumbItem>
       <TagOutlined></TagOutlined>
       当前页面
-    </BreadcrumbItem>
+    </ScBreadcrumbItem>
     <template #separator>
       <span>
         <i class="sc-ui sc-you"></i>
@@ -21,9 +21,7 @@
 </template>
 
 <script lang='ts' setup>
-// import { ref } from 'vue'
-import { ScBreadcrumb } from 'sc-ui'
-import { BreadcrumbItem } from 'ant-design-vue'
+import { ScBreadcrumb, ScBreadcrumbItem } from 'sc-ui'
 import { TagOutlined } from '@ant-design/icons-vue'
 </script>
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Alert
+    <ScAlert
       message="使用 useModal 进行弹窗操作"
       show-icon
     />
@@ -8,15 +8,15 @@
       打开弹窗,加载动态数据并自动调整高度(默认可以拖动/全屏)
     </ScButton>
 
-    <Alert message="内外同时同时显示隐藏" show-icon />
+    <ScAlert message="内外同时同时显示隐藏" show-icon />
     <ScButton  class="my-16" @click="openModal2"> 打开弹窗 </ScButton>
-    <Alert message="自适应高度" show-icon />
+    <ScAlert message="自适应高度" show-icon />
     <ScButton  class="my-16" @click="openModal3"> 打开弹窗 </ScButton>
 
-    <Alert message="内外数据交互" show-icon />
+    <ScAlert message="内外数据交互" show-icon />
     <ScButton  class="my-16" @click="send"> 打开弹窗并传递数据 </ScButton>
 
-    <Alert message="使用动态组件的方式在页面内使用多个弹窗" show-icon />
+    <ScAlert message="使用动态组件的方式在页面内使用多个弹窗" show-icon />
     <a-space>
       <ScButton  class="my-16" @click="openTargetModal(1)"> 打开弹窗1 </ScButton>
       <ScButton  class="my-16" @click="openTargetModal(2)"> 打开弹窗2 </ScButton>
@@ -34,15 +34,15 @@
 </template>
 <script lang="ts">
   import { defineComponent, shallowRef, ComponentOptions, ref, nextTick } from 'vue';
-  import { Alert, Space } from 'ant-design-vue';
-  import { useModal, ScButton } from 'sc-ui';
+  import { Space } from 'ant-design-vue';
+  import { useModal, ScButton, ScAlert } from 'sc-ui';
   import Modal1 from './Modal1.vue';
   import Modal2 from './Modal2.vue';
   import Modal3 from './Modal3.vue';
   import Modal4 from './Modal4.vue';
 
   export default defineComponent({
-    components: { Alert, ASpace: Space, Modal1, Modal2, Modal3, Modal4, ScButton },
+    components: { ScAlert, ASpace: Space, Modal1, Modal2, Modal3, Modal4, ScButton },
     setup() {
       const currentModal = shallowRef<Nullable<ComponentOptions>>(null);
       const [register1, { openModal: openModal1 }] = useModal();

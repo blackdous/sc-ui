@@ -1,11 +1,11 @@
 <template>
   <div>
     <ScBreadcrumb>
-      <BreadcrumbItem
+      <ScBreadcrumbItem
         disabled
-      >上级页面</BreadcrumbItem>
-      <BreadcrumbItem>上级页面</BreadcrumbItem>
-      <BreadcrumbItem>当前页面</BreadcrumbItem>
+      >上级页面</ScBreadcrumbItem>
+      <ScBreadcrumbItem>上级页面</ScBreadcrumbItem>
+      <ScBreadcrumbItem>当前页面</ScBreadcrumbItem>
       <template #separator>
         <span>
           <i class="sc-ui sc-you"></i>
@@ -16,9 +16,7 @@
 </template>
 
 <script lang='ts' setup>
-// import { ref } from 'vue'
-import { ScBreadcrumb } from 'sc-ui'
-import { BreadcrumbItem } from 'ant-design-vue'
+import { ScBreadcrumb, ScBreadcrumbItem } from 'sc-ui'
 </script>
 
 <style scoped>

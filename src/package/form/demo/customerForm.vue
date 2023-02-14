@@ -1,15 +1,13 @@
 <template>
   <ScForm @register="register" @submit="handleSubmit">
     <template #f3="{ model, field }">
-      <a-input v-model:value="model[field]" placeholder="自定义slot" />
+      <ScInput v-model:value="model[field]" placeholder="自定义slot" />
     </template>
   </ScForm>
 </template>
 <script lang="ts">
   import { defineComponent, h } from 'vue';
-  import { ScForm, FormSchema, useForm, useMessage } from 'sc-ui';
-
-  import { Input } from 'ant-design-vue';
+  import { ScForm, FormSchema, useForm, useMessage, ScInput } from 'sc-ui';
 
   const schemas: FormSchema[] = [
     {
@@ -21,7 +19,7 @@
       },
       rules: [{ required: true }],
       render: ({ model, field }) => {
-        return h(Input, {
+        return h(ScInput, {
           placeholder: '请输入',
           value: model[field],
           onChange: (e: ChangeEvent) => {
@@ -56,7 +54,7 @@
     },
   ];
   export default defineComponent({
-    components: { ScForm, [Input.name]: Input },
+    components: { ScForm, ScInput },
     setup() {
       const { createCloseMessage } = useMessage();
       const [register, { setProps }] = useForm({
