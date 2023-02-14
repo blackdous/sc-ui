@@ -7,7 +7,21 @@ map:
 
 ant-design-vue vue3 ts ui
 
+**最新版本0.0.68**
+
 [文档地址](http://sc-ui.voneyun.com/)
+
+[npm地址](https://www.npmjs.com/package/@sincerecloud/sc-ui)
+
+[cnpm地址](https://npmmirror.com/package/@sincerecloud/sc-ui)
+
+**如果cnpm 上的版本不是最新的，可以通过点击`SYNC`按钮来同步最新**
+
+[cnd地址一 jsdelivr](https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui/)
+
+[cnd介绍页面 jsdelivr](https://www.jsdelivr.com/package/npm/@sincerecloud/sc-ui?nav=stats)
+
+[cnd地址二 unpkg](https://unpkg.com/browse/@sincerecloud/sc-ui@0.0.67/)
 
 ## 引入 ant-design-vue
 
