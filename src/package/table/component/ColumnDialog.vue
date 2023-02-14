@@ -6,7 +6,7 @@
     :infoDes="`请选择您想显示的列表详细信息。您已勾选${checkInfo}个。`"
     cancelText="取消"
     okText="确认"
-    :width="604"
+    :width="840"
     maskClosable
     :afterClose="handleCancel"
     @ok="handleOk"
@@ -63,7 +63,7 @@ export default defineComponent({
       
     })
     const getProps = computed(() => {
-      console.log('attrs: ', attrs);
+      // console.log('attrs: ', attrs);
       return {
         ...props,
         ...attrs,
@@ -81,7 +81,8 @@ export default defineComponent({
       emit('cancelModal', { keys: unref(curKeys), checkedList: unref(curCheckedList) })
     }
     const handleOk = () => {
-      // emit('checkChange', { keys: curKeys , checkedList: , list })
+      console.log('unref(curKeys): ', unref(curKeys));
+      console.log('unref(curCheckedList): ', unref(curCheckedList));
       emit('okModal',  { keys: unref(curKeys), checkedList: unref(curCheckedList) })
     }
     return {

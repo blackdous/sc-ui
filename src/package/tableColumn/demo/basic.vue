@@ -4,7 +4,6 @@
     @okModal="handleChange"
     @cancelModal="handleCancel"
     :columnList="checkList"
-    :width="660"
   >
   </ColumnDialog>
   <ScButton @click="openModal">
@@ -20,13 +19,13 @@ import { ColumnDialog, ScButton } from 'sc-ui'
 
 const visible: Ref<boolean> = ref(false)
 
-const list = [1, 2, 3, 4, 5, 6, 7, 19].map((item:number) => {
+const list = ['全部', '全部1', '全部2', '全部3', '全部4', '全部5', '全部6', '全部7'].map((item:number, index) => {
   return {
     label: item.toString().repeat(4),
     value: item.toString().repeat(4),
     key: item.toString().repeat(4),
     disabled: (Math.random() * 100)%2 === 1,
-    checked: true,
+    checked: index % 2 === 0,
   }
 })
 

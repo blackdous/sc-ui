@@ -137,7 +137,7 @@ export default defineComponent({
   setup (props, { slots, attrs, emit }) {
     // console.log('attrs: ', attrs);
     const valueRef = computed(() => {
-      console.log('props.value: ', props.value);
+      // console.log('props.value: ', props.value);
       return props.value
     })
     const uuid = basePrefixCls + buildUUID()
