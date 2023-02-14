@@ -39,9 +39,10 @@ const handleCancel = () => {
   console.log('close Modal')
 }
 
-const handleChange = (val: { keys: string[], checkedList: any }) => {
+const handleChange = (val: { keys: string[], checkedList: any, delItemKeys: string[] }) => {
   // console.log('val: ', val);
-  const { keys } = val
+  const { keys, delItemKeys } = val
+  console.log('delItemKeys: ', delItemKeys);
   visible.value = false
   checkList.value = list.map(item => {
     if (keys.includes(item.key)) {

@@ -46,9 +46,11 @@ export default defineComponent({
   setup (props, { emit, attrs }) {
     const checkInfo = ref<string>('')
     const sourceList = ref()
-    // const columnList = ref(props.columnList)
+    const delItemKeys = ref()
     const columnList = computed(() => {
-      return cloneDeep(props.columnList)
+      const newColumnList = cloneDeep(props.columnList)
+      sourceList.value = cloneDeep(props.columnList)
+      return newColumnList
     })
     const curKeys = ref<string[]>()
     const curCheckedList = ref<Column[]>()
@@ -57,7 +59,6 @@ export default defineComponent({
         return props.visible
       },
       set: (val) => {
-        console.log('val: ', val);
         emit('update:visible', val)
       }
       
@@ -70,20 +71,18 @@ export default defineComponent({
         columnList: undefined
       }
     })
-    const handleCheck = ({ keys, checkedList, list }:CheckParams) => {
+    const handleCheck = ({ keys, checkedList }:CheckParams) => {
       curKeys.value = keys
       curCheckedList.value = checkedList
       checkInfo.value = (checkedList || []).length + ''
-      sourceList.value = list
-      // emit('checkChange', { keys, checkedList, list })
+
+      delItemKeys.value = unref(sourceList).filter((item:Column) => { return item.checked }).map((item:string) => item.key).filter((item:string) => !keys.includes(item))
     }
     const handleCancel = () => {
       emit('cancelModal', { keys: unref(curKeys), checkedList: unref(curCheckedList) })
     }
     const handleOk = () => {
-      console.log('unref(curKeys): ', unref(curKeys));
-      console.log('unref(curCheckedList): ', unref(curCheckedList));
-      emit('okModal',  { keys: unref(curKeys), checkedList: unref(curCheckedList) })
+      emit('okModal',  { keys: unref(curKeys), checkedList: unref(curCheckedList), delItemKeys: unref(delItemKeys) })
     }
     return {
       visible,

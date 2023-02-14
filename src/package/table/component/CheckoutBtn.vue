@@ -45,7 +45,7 @@
 
 <script lang='ts'>
 import { CheckOutlined } from '@ant-design/icons-vue'
-import { defineComponent, ref, unref, computed, onMounted } from 'vue'
+import { defineComponent, ref, unref, computed, onMounted, watch } from 'vue'
 import { CheckboxGroup, Checkbox } from 'ant-design-vue'
 
 import { useChecked } from '../hooks/uesDialog'
@@ -70,6 +70,15 @@ export default defineComponent({
     checkedListKeys.value = getCheckedKeys()
     checkedItems.value = getCheckedItems()
 
+    watch(() => props.columnList, (val) => {
+      sourceList.value = val
+      const { getCheckedKeys, getCheckedItems } = useChecked(val as Array<Column>)
+      checkedListKeys.value = getCheckedKeys()
+      checkedItems.value = getCheckedItems()
+      emit('change', { keys: unref(checkedListKeys), checkedList: unref(checkedItems) })
+    })
+    
+    
     emit('change', { keys: unref(checkedListKeys), checkedList: unref(checkedItems) })
 
     const handleGroup = (item:any) => {
@@ -93,13 +102,6 @@ export default defineComponent({
         checkAll.value = false
       }
     })
-
-    // watchEffect(() => {
-    //   if (checkedListKeys.value.length === 0) {
-    //     checkAll.value = false
-    //   }
-    //   // checkAll.value = checkedListKeys.value.length === sourceList.value.length
-    // })
 
     const onCheckAllChange = (e:any) => {
       if (e.target.checked) {
