@@ -9,8 +9,8 @@
       <VueSlider
         v-bind="vBindValue"
         v-model="valueRef"
-        @change="handleChange"
-      >
+        >
+        <!-- @change="handleChange" -->
         <template 
           #[item]="data" 
           v-for="item in Object.keys($slots).filter((_item) => !['dot', 'label'].includes(_item))"
@@ -98,8 +98,8 @@
       :min="newProps.min"
       :max="newProps.max"
       :step="newProps.step"
-      @change="handleInputNumberChange"
-    >
+      >
+      <!-- @change="handleInputNumberChange" -->
       <!-- @pressEnter="handleChange" -->
 
     </ScInputNumber>
@@ -107,7 +107,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, unref, ref, watch, isVNode } from 'vue'
+import { defineComponent, computed, unref, ref, watch, isVNode, watchEffect } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 import { ScInputNumber } from '../../inputNumber'
 import { transformPxtoRem } from '../../../utils'
@@ -115,14 +115,10 @@ import { useInjectFormItemContext } from '../../form/FormItemContext';
 
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
 
-// console.log(process.env.BUILD)
-// import VueSlider from 'vue-slider-component'
-// import 'vue-slider-component/theme/default.css'
 import { basePrefixCls } from '../../../constant'
 import { pxToRem, buildUUID } from '../../../utils'
 import { Props } from './type'
 import { getIcon } from '../hooks/index'
-// import { isNumber } from 'lodash';
 
 export default defineComponent({
   name: 'ScSlider',
@@ -135,15 +131,10 @@ export default defineComponent({
   },
   emits: ['change', 'update:value'],
   setup (props, { slots, attrs, emit }) {
-    // console.log('attrs: ', attrs);
-    const valueRef = computed(() => {
-      // console.log('props.value: ', props.value);
-      return props.value
-    })
+    const valueRef = ref(props.value)
     const uuid = basePrefixCls + buildUUID()
     const baseClass = basePrefixCls+'Slider'
     const formItemContext = useInjectFormItemContext();
-    // console.log('formItemContext: ', formItemContext);
 
     const newProps = computed(() => {
       return {
@@ -185,24 +176,18 @@ export default defineComponent({
         tooltipInfos: undefined
       }
     })
-
-    // watch(() => props.value, (val) => {
-    //   console.log('val: ', val);
-    //   valueRef.value = val
-    // })
-
-    const handleChange = (value:any) => {
-      if (attrs.formItem || !unref(newProps).inputNumberOptions) {
-        emit('change', value)
-      }
-      emit('update:value', value)
+    watch(() => props.value, () => {
+      valueRef.value = props.value
+    }, {
+      flush: 'post'
+    })
+    watch(() => valueRef.value, (val) => {
+      emit('update:value', val)
+      emit('change', val)
       formItemContext.onFieldChange()
-    }
-
-    const handleInputNumberChange = (value:number) => {
-      emit('change', value)
-      emit('update:value', value)
-    }
+    }, {
+      flush: 'post'
+    })
 
     const isDot = computed(() => {
       return Object.keys(slots).includes('slot')
@@ -225,8 +210,8 @@ export default defineComponent({
       pxToRem,
       isVNode,
       getIcon,
-      handleChange,
-      handleInputNumberChange
+      // handleChange,
+      // handleInputNumberChange
     }
   }
 })

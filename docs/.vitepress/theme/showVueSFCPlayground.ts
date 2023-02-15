@@ -41,17 +41,6 @@ export class File {
   }
 }
 
-const welcomeCode = `
-<script setup>
-import { ref } from 'vue'
-const msg = ref('Hello World!')
-</script>
-<template>
-  <h1>{{ msg }}</h1>
-  <input v-model="msg">
-</template>
-`.trim()
-
 const getFiles = (files) => {
   const exported: Record<string, string> = {}
   for (const filename in files) {
@@ -60,24 +49,6 @@ const getFiles = (files) => {
   return exported
 }
 
-const files = {
-  'App.vue': new File('App.vue', welcomeCode.trim()),
-  'import-map.json': new File(
-    'import-map.json',
-    JSON.stringify(
-      {
-        imports: {
-          'vue': 'https://sfc.vuejs.org/vue.runtime.esm-browser.js',
-          "vue/server-renderer": "https://sfc.vuejs.org/server-renderer.esm-browser.js",
-          "ant-design-vue": "https://cdn.jsdelivr.net/npm/ant-design-vue@2.2.8/dist/antd.min.js",
-          "sc-ui": "https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.62/sc-ui.es.min.js"
-        }
-      },
-      null,
-      2
-    )
-  )
-}
 
 const initClick = () => {
   const codeDom = document && document.querySelectorAll('.vp-code-light code')
@@ -89,7 +60,7 @@ const initClick = () => {
         ${item.innerText}
       `.trim()?.replace("/* @import 'comment'; */", (item) => {
         // console.log('item: ', item);
-        return "@import 'https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.64/style.css';"
+        return "@import 'https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.68/style.css';"
       });
       const files = {
         'App.vue': new File('App.vue', sfcTemCode),
@@ -100,8 +71,8 @@ const initClick = () => {
               imports: {
                 'vue': 'https://sfc.vuejs.org/vue.runtime.esm-browser.js',
                 "vue/server-renderer": "https://sfc.vuejs.org/server-renderer.esm-browser.js",
-                "ant-design-vue": "https://cdn.jsdelivr.net/npm/ant-design-vue@2.2.8/dist/antd.min.js",
-                "sc-ui": "https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.62/sc-ui.es.min.js"
+                "ant-design-vue": "https://cdn.jsdelivr.net/npm/ant-design-vue@2.2.8/+esm",
+                "sc-ui": "https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.68/sc-ui.es.min.js"
               }
             },
             null,
@@ -147,6 +118,3 @@ export const initLineCode = () => {
   }
 }
 
-
-// const urlHash = '#' + utoa(JSON.stringify(getFiles(files)))
-// console.log('urlHash: ', urlHash);
