@@ -4,8 +4,8 @@
     :class="[className, $attrs.class]"
     :style="$attrs.style"
   >
+  <!-- :locale="newProps.langLocale" -->
     <ConfigProvider 
-      :locale="newProps.langLocale"
       :transformCellText="({ text }) => isEmptyText(text) ? text : '--'"
     >
       <TableFilter
@@ -133,12 +133,13 @@
           />
         </template>
 
-        <template #action="{ record }">
+        <template #action="{ record, dataIndex }">
           <slot v-if="isAction" slot="action" />
           <ScTableAction
             v-else
             name="action"
             :record="record"
+            :data="getDataSourceRef"
             :fetchParams="fetchParams"
             v-bind="actionsOptions"
             @onAction="(action) => { handle(action, record) }"
@@ -239,7 +240,6 @@ export default defineComponent({
   },
   emits: ['change', 'register', 'onAction', 'searchClick', 'onAction', 'createClick', 'selectChange', 'multipleChange', 'refresh', 'filter'],
   setup(props, { attrs, slots, emit, expose }) {
-    console.log('attrs: ', attrs);
     const tableRef = ref()
     const wrapRef = ref()
     const tableFilter = ref()
@@ -654,6 +654,7 @@ export default defineComponent({
       newProps,
       uuid,
 
+      getDataSourceRef,
       className,
       getLoading,
       visible,

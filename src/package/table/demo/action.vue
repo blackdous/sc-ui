@@ -2,7 +2,7 @@
   <div>
     <ScTable 
       ref="scTableRef"
-      :data-source="data"
+      :data-source="listData"
       :columns="columns"
       :loading="false"
       :actionsOptions="actionProps"
@@ -54,7 +54,7 @@ const list = ref([
     label: '创建快照',
     isShow: true,
     loading: ({tableRef, selectedRowKeysRef}) => {
-      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      // console.log('selectedRowKeysRef: ', selectedRowKeysRef);
       if (selectedRowKeysRef.length > 3) {
         return true
       }
@@ -63,17 +63,22 @@ const list = ref([
     key: 'aa',
     isDisabled: false,
     action: (data:any) => {
-      console.log('====================================');
-      console.log(data);
-      console.log('====================================');
+      // console.log('====================================');
+      // console.log(data);
+      // console.log('====================================');
     },
-    tooltipDes: '创建快照创建快照aa',
+    tooltipDes: ({record}: {record: any}) => {
+      // console.log('record: ', record);
+      if (record.status % 2 === 1) {
+        return '显示'
+      }
+    }
   },
   {
     label: '续费',
     isShow: true,
     isDisabled: ({tableRef, selectedRowKeysRef}) => {
-      console.log('selectedRowKeysRef: ', selectedRowKeysRef);
+      // console.log('selectedRowKeysRef: ', selectedRowKeysRef);
       if (selectedRowKeysRef.length > 3) {
         return true
       }
@@ -97,7 +102,7 @@ const list = ref([
         label: '二级选项',
         isShow: true,
         isDisabled: ({record}) => {
-          console.log('record: ', record);
+          // console.log('record: ', record);
           if (record.key === '17') {
             return true
           }
@@ -113,7 +118,7 @@ const list = ref([
     label: '三级选项',
     isShow: true,
     isDisabled: ({record}) => {
-      console.log('record: ', record);
+      // console.log('record: ', record);
       if (record.key === '17') {
         return true
       }
@@ -124,7 +129,7 @@ const list = ref([
     // action: '3333',
     tooltipDes: '1111111',
     action: (data) => {
-      console.log('data: ', data);
+      // console.log('data: ', data);
     }
   }, {
     label: '四级选项',
@@ -156,6 +161,7 @@ const data: DataItem[] = [
       loading: true,
       disable: false
     },
+    status: 1
   },
   {
     key: '2',
@@ -166,6 +172,7 @@ const data: DataItem[] = [
       loading: false,
       disable: true
     },
+    status: 2
   },
 ];
 
@@ -174,14 +181,40 @@ const actionProps = ref({
   actions: list
 })
 
+const listData = ref()
+
 for(let i = 10; i < 25; i++) {
   data.push({
     key: i + '',
     name: 'John Brown',
     age: i,
     address: 'New London',
+    status: i
   })
 }
+listData.value = data
+// console.log('data: ', JSON.parse(JSON.stringify(data)));
+
+setTimeout(() => {
+  // 更新数据
+  listData.value = data.map((item, index) => {
+    if (index === 0) {
+      item.aa = {
+        loading: false,
+        disable: true
+      }
+    }
+    if (index === 1) {
+      item.status = 3
+      item.bb = {
+        loading: true,
+        disable: false
+      }
+    }
+    return item
+  })
+  console.log('更新数据: data', data);
+}, 2500)
 
 //@ts-ignore
 const handleChange = (pagination, filters, sorter, fetchParams) => {

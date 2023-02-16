@@ -1,6 +1,6 @@
 <template>
   <div :class="prefixCls">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 <script lang="ts">
@@ -62,13 +62,22 @@ const emit = defineEmits(stepsEmits);
 
 const steps: Ref<StepItemState[]> = ref([])
 
+const currentIndex = ref(-1)
+
 watch(steps, () => {
   steps.value.forEach((instance: StepItemState, index: number) => {
     instance.setIndex(index)
   })
 })
 
-provide('ScSteps', { props, steps })
+
+const setCurrentIndex = (val: number) => {
+  currentIndex.value = val
+  emit('changeIndex', val)
+}
+
+
+provide('ScSteps', { props, steps, setCurrentIndex: setCurrentIndex })
 
 watch(() => props.active, (newVal: number, oldVal: number) => {
   emit(CHANGE_EVENT, newVal, oldVal)

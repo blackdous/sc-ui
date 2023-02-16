@@ -11,7 +11,8 @@
       size="small"
       :loading="loading"
       :create-button-options="{
-        show: false
+        show: true,
+        loading: true
       }"
       :scroll="{ x: true }"
       :search-options="{

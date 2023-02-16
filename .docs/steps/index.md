@@ -58,3 +58,10 @@ realPath: src/package/steps/index.zh-CN.md
 ## Step 属性
 
 <API src="./component/ScStep.vue" lang="zh"></API>
+
+## 事件
+
+| 事件名称 | 说明                                 | 回调参数    |
+| -------- | ------------------------------------ | ----------- |
+| change   | 下一步执行到第几个step | function(val:number) |
+| changeIndex   | 点击的step下表 | function(val:number) |

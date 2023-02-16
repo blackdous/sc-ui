@@ -8,9 +8,9 @@
     >
       <VueSlider
         v-bind="vBindValue"
-        v-model="valueRef"
+        v-model="valueSliderRef"
+        @change="handleChange"
         >
-        <!-- @change="handleChange" -->
         <template 
           #[item]="data" 
           v-for="item in Object.keys($slots).filter((_item) => !['dot', 'label'].includes(_item))"
@@ -98,7 +98,7 @@
       :min="newProps.min"
       :max="newProps.max"
       :step="newProps.step"
-      >
+    >
       <!-- @change="handleInputNumberChange" -->
       <!-- @pressEnter="handleChange" -->
 
@@ -116,7 +116,7 @@ import { useInjectFormItemContext } from '../../form/FormItemContext';
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
 
 import { basePrefixCls } from '../../../constant'
-import { pxToRem, buildUUID } from '../../../utils'
+import { pxToRem, buildUUID, isNumber } from '../../../utils'
 import { Props } from './type'
 import { getIcon } from '../hooks/index'
 
@@ -132,6 +132,7 @@ export default defineComponent({
   emits: ['change', 'update:value'],
   setup (props, { slots, attrs, emit }) {
     const valueRef = ref(props.value)
+    const valueSliderRef = ref(props.value)
     const uuid = basePrefixCls + buildUUID()
     const baseClass = basePrefixCls+'Slider'
     const formItemContext = useInjectFormItemContext();
@@ -177,11 +178,17 @@ export default defineComponent({
       }
     })
     watch(() => props.value, () => {
-      valueRef.value = props.value
+      valueRef.value = unref(newProps).inputNumberOptions ? Number(props.value) : props.value
+      valueSliderRef.value = unref(newProps).inputNumberOptions ? Number(props.value) : props.value
     }, {
       flush: 'post'
     })
     watch(() => valueRef.value, (val) => {
+      if (unref(newProps).inputNumberOptions) {
+        if (!isNumber(val)) {
+          return false;
+        }
+      }
       emit('update:value', val)
       emit('change', val)
       formItemContext.onFieldChange()
@@ -196,6 +203,10 @@ export default defineComponent({
     const isLabel = computed(() => {
       return Object.keys(slots).includes('label')
     })
+
+    const handleChange = (val:any) => {
+      valueRef.value = val
+    }
     
     return {
       baseClass,
@@ -204,13 +215,14 @@ export default defineComponent({
       isDot,
       isLabel,
       valueRef,
+      valueSliderRef,
       uuid,
       infos,
       transformPxtoRem,
       pxToRem,
       isVNode,
       getIcon,
-      // handleChange,
+      handleChange,
       // handleInputNumberChange
     }
   }

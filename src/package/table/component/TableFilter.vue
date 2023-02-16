@@ -11,6 +11,7 @@
         <Button
           v-show="createButtonOptions.show"
           :disabled="createButtonOptions.isDisabled"
+          :loading="createButtonOptions.loading"
           :type="createButtonOptions.type || 'primary'"
           :class="[className + '-addBtns']"
           @click="createHandle"

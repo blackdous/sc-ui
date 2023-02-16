@@ -60,4 +60,5 @@ export interface StepProp {
 export const stepsEmits = {
   [CHANGE_EVENT]: (newVal: number, oldVal: number) =>
     [newVal, oldVal].every(isNumber),
+  'changeIndex': (val:number) => val
 }

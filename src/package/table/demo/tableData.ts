@@ -57,14 +57,21 @@ export function pagination<T = any>(pageNo: number, pageSize: number, array: T[]
 export const demoListApi = (params: any) => {
   return new Promise<any>((res) => {
     setTimeout(() => {
-      const list: any[] = demoList();
+      const list: any[] = demoList()?.map(item => {
+        return {
+          ...item,
+          status: parseInt(Math.random() * 100)
+        }
+      });
       const pageData = pagination(params.current, params.size, list);
-      res({
+      const testData = {
         current: params.current,
         size: params.size,
         records: pageData,
-        total: list.length,
-      });
+        total: list.length
+      }
+      console.log('testData: ', testData);
+      res(testData);
     }, 500);
   });
 };

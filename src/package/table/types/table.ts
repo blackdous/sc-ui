@@ -99,6 +99,7 @@ export const createButton = () => ({
   // 展示文本
   text: { type: String, default: '创建' },
   isDisabled: { type: Boolean, default: false },
+  loading: { type: Boolean, default: false },
   // sc-ui
   icon: { type: String, default: '' },
   // 按钮类型 默认'success', 'info', 'warning', 'error', 'primary'
@@ -110,6 +111,7 @@ export interface CreateButton {
   show?: boolean,
   text?: string,
   isDisabled?: boolean,
+  loading?: boolean,
   icon?: string,
   type?: string,
   action?: (...arg:any) => void

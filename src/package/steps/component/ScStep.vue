@@ -2,6 +2,7 @@
   <div
     :class="prefixCls"
     :style="style"
+    @click="handleClick"
   >
     <div :class="['scStep-head', currentStatus ? 'is-' + currentStatus + ' is-status' : '']">
       <div :class="['scStep-icon', props.icon || $slots.icon ? 'is-icon' : 'is-text' ]">
@@ -77,7 +78,7 @@ import {
   onMounted,
   reactive,
   ref,
-  watch
+  watch,
 } from 'vue'
 import type { Ref, CSSProperties } from 'vue'
 // import { Icon } from '@iconify/vue'
@@ -99,12 +100,14 @@ export interface StepItemState {
   uid: number | undefined
   currentStatus: string
   setIndex: (val: number) => void
-  calcProgress: (status: string) => void
+  calcProgress: (status: string) => void,
+  index: number
 }
 
 export interface IStepsInject {
   props: IStepsProps
-  steps: Ref<StepItemState[]>
+  steps: Ref<StepItemState[]>,
+  setCurrentIndex: (index:number) => void
 }
 
 export interface StepProp {
@@ -124,13 +127,18 @@ export interface StepProp {
   /**
    * Step 组件的自定义图标。 也支持 slot 方式写入
    */
-  icon?: typeof iconPropType
+  icon?: typeof iconPropType,
+  /**
+   * 是否可点击
+   */
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<StepProp>(), {
   title: '',
   description: '',
-  status: ''
+  status: '',
+  disabled: false
 })
 
 const index = ref(-1)
@@ -194,7 +202,6 @@ const space = computed(() => {
 
 const prefixCls = computed(() => {
   const classNames:string[] = ['scStep']
-  // console.log('parent.props.direction: ', parent.props.direction);
   if (parent.props.simple) {
     classNames.push('simple')
   } else {
@@ -224,6 +231,13 @@ const style = computed(() => {
   }
   return style
 })
+
+const handleClick = () => {
+  if (props.disabled) {
+    return false;
+  }
+  parent.setCurrentIndex(index.value)
+}
 
 const setIndex = (val: number) => {
   index.value = val

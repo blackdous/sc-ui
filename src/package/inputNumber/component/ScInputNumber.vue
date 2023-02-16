@@ -32,6 +32,7 @@ import { ref, watch, computed, defineComponent } from 'vue'
 import { InputNumber, Button } from 'ant-design-vue'
 import { basePrefixCls } from '../../../constant'
 import { props } from './type'
+import { isNumber } from '../../../utils'
 
 export default defineComponent({
   name: 'ScInputNumber',
@@ -41,6 +42,7 @@ export default defineComponent({
     InputNumber,
     Button,
   },
+  emits: ['change', 'update:value'],
   setup(props, { emit, attrs }) {
 
     const baseClass = basePrefixCls + 'InputNumber'
@@ -79,6 +81,9 @@ export default defineComponent({
     watch(
       () => text.value,
       (val) => {
+        if (!isNumber(val)) {
+          return false
+        }
         emit('update:value', val)
         emit('change', val)
       },

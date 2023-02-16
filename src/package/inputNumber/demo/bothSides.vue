@@ -3,7 +3,7 @@
     <ScInputNumber
       placeholder="请输入内容"
       v-model:value="inputValueRef"
-      @pressEnter="handleChange"
+      @change="handleChange"
     >
     </ScInputNumber>
   </div>

@@ -101,6 +101,7 @@ reload参数中的`action`方法，参数为`fetchParams`
 | show | 是否显示 | boolean | 无 | |
 | text | 展示文本 | string | 无 | |
 | isDisabled | 是否禁用 | boolean | 无 |  |
+| loading | 是否显示loading状态 | boolean | 无 |  |
 | action | 创建方法 | Fn | wu |  |
 
 #### 事件
@@ -708,8 +709,8 @@ export interface ActiveOptions {
     isDisabled?: boolean | (() => boolean),
     // 当前按钮loading状态
     loading?: boolean | (() => boolean),
-    // tooltip显示文字
-    tooltipDes?: string,
+    // tooltip显示文字 支持方法
+    tooltipDes?: string | (() => boolean),
     // 嵌套结构
     children?: Array<ActionItemProps>,
     // 点击要监听的事件或要执行的方法

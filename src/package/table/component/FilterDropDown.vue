@@ -22,12 +22,12 @@
               <template v-if="item?.children && item?.children?.length">
                 <SubMenu 
                   :title="item.label"
-                  :disabled="item.isDisabled"
+                  :disabled="!!item.isDisabled"
                   popupClassName="filterDropdown-subMenu"
                 >
                   <MenuItem
                     v-for="(subItem) in item.children"
-                    :disabled="subItem.isDisabled"
+                    :disabled="!!subItem.isDisabled"
                     :aria-label="subItem.label"
                     :key="subItem.key"
                   >
@@ -37,7 +37,7 @@
               </template>
               <MenuItem
                 v-else
-                :disabled="item.isDisabled"
+                :disabled="!!item.isDisabled"
                 :key="item.key"
                 >
                 <template v-if="item.isDisabled && item.tooltipDes">
