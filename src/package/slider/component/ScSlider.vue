@@ -98,6 +98,7 @@
       :min="newProps.min"
       :max="newProps.max"
       :step="newProps.step"
+      :disabled="newProps.disabled"
     >
       <!-- @change="handleInputNumberChange" -->
       <!-- @pressEnter="handleChange" -->
@@ -107,7 +108,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, unref, ref, watch, isVNode, watchEffect } from 'vue'
+import { defineComponent, computed, unref, ref, watch, isVNode } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 import { ScInputNumber } from '../../inputNumber'
 import { transformPxtoRem } from '../../../utils'

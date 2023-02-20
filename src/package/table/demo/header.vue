@@ -37,7 +37,7 @@
         }
       }"
       @change="handleChange"
-
+      @selectChange="handleSelectChange"
       >
     </ScTable>
   </div>
@@ -227,7 +227,9 @@ for(let i = 10; i < 12; i++) {
   })
 }
 
-
+const handleSelectChange = (val:string) => {
+  console.log('val: ', val);
+}
 </script>
 <style scoped>
 /* @import 'comment'; */

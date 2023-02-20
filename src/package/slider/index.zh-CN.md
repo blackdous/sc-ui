@@ -17,6 +17,14 @@ map:
   >
 </demo>
 
+## disabled
+
+<demo src="./demo/disabled.vue"
+  language="vue"
+  title="disabled=true"
+  >
+</demo>
+
 ## 带tooltip
 
 **data为数组时**，需要指定`data-value`和`data-label`为同一个`key`

@@ -17,7 +17,7 @@
       :scroll="{ x: true }"
       :search-options="{
         show: true,
-        showSelect: true,
+        showSelect: false,
         // typeList: () => radioList,
         typeList: promiseTypelist,
         customSearchFunc: searchHanle,

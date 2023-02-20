@@ -797,7 +797,7 @@ export interface ActiveOptions {
 | multiple-change | `Function({...FetchParams, multipleItem})`                | 头部按钮组点击触发                       |
 | search-click | `Function({...FetchParams})`                | 头部点击搜索icon触发                     |
 | filter | `Function({...FetchParams})`                | 点击筛选事件触发                       |
-
+| select-change | `Function({...FetchParams})`                | 头部下拉选择触发                       |
 
 ## Slots
 

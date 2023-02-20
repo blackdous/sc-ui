@@ -64,6 +64,12 @@ export const Props = () => ({
       return []
     }
   },
+  disabled: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
   customMarker: Boolean,
   showMinMaxMarker: Boolean,
   inputNumberOptions: Object as PropType<InputNumberOptions>
