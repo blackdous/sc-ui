@@ -13,6 +13,20 @@
       <!-- :showMinMaxMarker="true" -->
       <!-- data-label="id" -->
     </ScSlider>
+    <ScSlider
+      :data="data"
+      :infos="tooltipInfos"
+      v-model:value="valueRef"
+      data-value="id"
+      data-label="id"
+      unit="个月"
+      disabled
+      :customMarker="true"
+      @change="handleChange"
+    >
+      <!-- :showMinMaxMarker="true" -->
+      <!-- data-label="id" -->
+    </ScSlider>
   </div>
 </template>
 

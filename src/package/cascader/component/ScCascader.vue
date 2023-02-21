@@ -35,7 +35,7 @@
 
 <script lang="ts" >
 
-import { computed, defineComponent, ref, unref } from 'vue'
+import { computed, defineComponent, unref } from 'vue'
 import { Cascader, CheckboxGroup, Checkbox } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 import { basePrefixCls } from '../../../constant'

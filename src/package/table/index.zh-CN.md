@@ -853,7 +853,8 @@ export interface ActionItemProps {
   key?: string,
   isDisabled?: boolean | (() => boolean),
   loading?: boolean | (() => boolean),
-  tooltipDes?: string,
+  // tooltip显示文字 支持方法
+  tooltipDes?: string | (() => boolean),
   children?: Array<ActionItemProps>,
   action?: string | (() => void)
 }
