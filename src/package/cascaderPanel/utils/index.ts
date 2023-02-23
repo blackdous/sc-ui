@@ -69,10 +69,10 @@ export const isEmpty = (val:unknown) => {
   return (!val && val !== 0) || (isArray(val) && val.length === 0) || (isObject(val) && !Object.keys(val).length)
 }
 
-export const scrollView = (
+export function scrollIntoView(
   container: HTMLElement,
   selected: HTMLElement
-): void => {
+): void {
   if (!isClient) return
 
   if (!selected) {
@@ -102,7 +102,6 @@ export const scrollView = (
   } else if (bottom > viewRectBottom) {
     container.scrollTop = bottom - container.clientHeight
   }
-
 }
 
 export const generateId = (): number => Math.floor(Math.random() * 10000)

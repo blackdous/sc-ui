@@ -48,6 +48,82 @@ const options: Option[] = [
             value: 'xihu',
             label: 'West Lake',
           },
+          {
+            value: 'xihu1',
+            label: 'West Lake1',
+          },
+          {
+            value: 'xihu2',
+            label: 'West Lake2',
+          },
+          {
+            value: 'xihu3',
+            label: 'West Lake3',
+          },
+          {
+            value: 'xihu4',
+            label: 'West Lake4',
+          },
+          {
+            value: 'xihu5',
+            label: 'West Lake5',
+          },
+          {
+            value: 'xihu6',
+            label: 'West Lake6',
+          },
+          {
+            value: 'xihu7',
+            label: 'West Lake7',
+          },
+          {
+            value: 'xihu8',
+            label: 'West Lake8',
+          },
+          {
+            value: 'xihu9',
+            label: 'West Lake9',
+          },
+          {
+            value: 'xihu10',
+            label: 'West Lake10',
+          },
+          {
+            value: 'xihu11',
+            label: 'West Lake11',
+          },
+          {
+            value: 'xihu12',
+            label: 'West Lake12',
+          },
+          {
+            value: 'xihu13',
+            label: 'West Lake13',
+          },
+          {
+            value: 'xihu14',
+            label: 'West Lake14',
+          },
+          {
+            value: 'xihu15',
+            label: 'West Lake15',
+          },
+          {
+            value: 'xihu16',
+            label: 'West Lake16',
+          },
+          {
+            value: 'xihu17',
+            label: 'West Lake17',
+          },
+          {
+            value: 'xihu18',
+            label: 'West Lake18',
+          },
+          {
+            value: 'xihu19',
+            label: 'West Lake19',
+          },
         ],
       },
     ],

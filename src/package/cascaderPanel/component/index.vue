@@ -1,9 +1,9 @@
 <template>
   <div
-    :class="[ns.b('panel'), ns.is('bordered', border)]"
+    :class="[ns + '-panel', border ? 'isBordered': '']"
     @keydown="handleKeyDown"
   >
-    <el-cascader-menu
+    <ScCascaderMenu
       v-for="(menu, index) in menus"
       :key="index"
       :ref="(item) => (menuList[index] = item)"
@@ -42,9 +42,7 @@ import {
   UPDATE_MODEL_EVENT
 } from '../utils'
 
-// import { useNamespace } from '@element-plus/hooks'
-
-import ElCascaderMenu from './menu.vue'
+import ScCascaderMenu from './menu.vue'
 import Store from './store'
 import Node from './node'
 import { CommonProps, useCascaderConfig } from './config'
@@ -62,13 +60,13 @@ import type {
   RenderLabel,
 } from './node'
 
-import type { ElCascaderPanelContext } from './types'
+import type { ScCascaderPanelContext } from './types'
 
 export default defineComponent({
   name: 'ScCascaderPanel',
 
   components: {
-    ElCascaderMenu,
+    ScCascaderMenu,
   },
 
   props: {
@@ -88,6 +86,7 @@ export default defineComponent({
 
     const ns = basePrefixCls + 'Cascader'
     const config = useCascaderConfig(props)
+    console.log('config: ', config);
 
     let store: Nullable<Store> = null
     const initialLoaded = ref(true)
@@ -123,7 +122,7 @@ export default defineComponent({
       }
     }
 
-    const lazyLoad: ElCascaderPanelContext['lazyLoad'] = (node, cb) => {
+    const lazyLoad: ScCascaderPanelContext['lazyLoad'] = (node, cb) => {
       const cfg = config.value
       node! = node || new Node({}, cfg, undefined, true)
       node.loading = true
@@ -141,7 +140,7 @@ export default defineComponent({
       cfg.lazyLoad(node, resolve as any)
     }
 
-    const expandNode: ElCascaderPanelContext['expandNode'] = (node, silent) => {
+    const expandNode: ScCascaderPanelContext['expandNode'] = (node, silent) => {
       const { level } = node
       const newMenus = menus.value.slice(0, level)
       let newExpandingNode: Nullable<CascaderNode>
@@ -160,12 +159,13 @@ export default defineComponent({
       }
     }
 
-    const handleCheckChange: ElCascaderPanelContext['handleCheckChange'] = (
+    const handleCheckChange: ScCascaderPanelContext['handleCheckChange'] = (
       node,
       checked,
       emitClose = true
     ) => {
       const { checkStrictly, multiple } = config.value
+      console.log('multiple: ', multiple);
       const oldNode = checkedNodes.value[0]
       manualChecked = true
 
@@ -277,11 +277,11 @@ export default defineComponent({
         const menuElement = menu?.$el
         if (menuElement) {
           const container = menuElement.querySelector(
-            `.${ns.namespace.value}-scrollbar__wrap`
+            `.${ns}-menu-wrap`
           )
           const activeNode =
-            menuElement.querySelector(`.${ns.b('node')}.${ns.is('active')}`) ||
-            menuElement.querySelector(`.${ns.b('node')}.in-active-path`)
+          menuElement.querySelector(`.${ns+'-node'}.isActive`) ||
+          menuElement.querySelector(`.${ns+'-node'}.in-active-path`)
           scrollIntoView(container, activeNode)
         }
       })
@@ -297,7 +297,7 @@ export default defineComponent({
           e.preventDefault()
           const distance = code === EVENT_CODE.up ? -1 : 1
           focusNode(
-            getSibling(target, distance, `.${ns.b('node')}[tabindex="-1"]`)
+            getSibling(target, distance, `.${ns+'-node'}[tabindex="-1"]`)
           )
           break
         }
@@ -305,7 +305,7 @@ export default defineComponent({
           e.preventDefault()
           const preMenu = menuList.value[getMenuIndex(target) - 1]
           const expandedNode = preMenu?.$el.querySelector(
-            `.${ns.b('node')}[aria-expanded="true"]`
+            `.${ns+'-node'}[aria-expanded="true"]`
           )
           focusNode(expandedNode)
           break
@@ -314,7 +314,7 @@ export default defineComponent({
           e.preventDefault()
           const nextMenu = menuList.value[getMenuIndex(target) + 1]
           const firstNode = nextMenu?.$el.querySelector(
-            `.${ns.b('node')}[tabindex="-1"]`
+            `.${ns+'-node'}[tabindex="-1"]`
           )
           focusNode(firstNode)
           break

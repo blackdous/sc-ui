@@ -18,7 +18,7 @@ realPath: src/package/cascader/index.zh-CN.md
   >
 </demo>
 
-<!-- ## 组件大小
+## 组件大小
 
 <demo src="./demo/size.vue"
   language="vue"
@@ -32,7 +32,7 @@ realPath: src/package/cascader/index.zh-CN.md
   language="vue"
   title="标签选择器状态"
   >
-</demo> -->
+</demo>
 
 ## PrefixIcon slot
 

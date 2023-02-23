@@ -9,56 +9,51 @@
     :class="[
       ns,
       checkStrictly ? 'isSelectable' : '',
-      checked ? 'isChecked' : '',
+      node.checked ? 'isChecked' : '',
       !expandable ? 'isDisabled' : '',
       inExpandingPath && 'in-active-path',
       inCheckedPath && 'in-checked-path',
+      isLeaf && node.checked && 'isSelected'
     ]"
     @mouseenter="handleHoverExpand"
     @focus="handleHoverExpand"
     @click="handleClick"
   >
     <!-- prefix -->
-    <el-checkbox
+    <Checkbox
       v-if="multiple"
-      :model-value="node.checked"
+      :checked="node.checked"
       :indeterminate="node.indeterminate"
       :disabled="isDisabled"
       @click.stop
-      @update:model-value="handleSelectCheck"
+      @update:checked="handleSelectCheck"
     />
-    <el-radio
+    <Radio
       v-else-if="checkStrictly"
-      :model-value="checkedNodeId"
+      :checked="node.checked"
       :label="node.uid"
       :disabled="isDisabled"
-      @update:model-value="handleSelectCheck"
+      @update:checked="handleSelectCheck"
       @click.stop
     >
-      <!--
-        Add an empty element to avoid render label,
-        do not use empty fragment here for https://github.com/vuejs/vue-next/pull/2485
-      -->
       <span />
-    </el-radio>
-    <el-icon v-else-if="isLeaf && node.checked" :class="[ns + '-prefix']">
-      <!-- <check /> -->
+    </Radio>
+    <!-- <el-icon v-else-if="isLeaf && node.checked" :class="[ns + '-prefix' ]">
       <Icon icon="ep:check"></Icon>
-    </el-icon>
+    </el-icon> -->
 
     <!-- content -->
     <node-content />
 
     <!-- postfix -->
     <template v-if="!isLeaf">
-      <el-icon v-if="node.loading" :class="['isLoading', ns + '-postfix']">
-        <!-- <loading /> -->
-        <Icon icon="ep:loading"></Icon>
-      </el-icon>
-      <el-icon v-else :class="['arrow-right', ns + '-postfix']">
-        <!-- <arrow-right /> -->
-        <Icon icon="ep:arrow-right"></Icon>
-      </el-icon>
+      <span v-if="node.loading" :class="['isLoading', ns + '-postfix']">
+        <span class="loading-transition"></span>
+        <!-- loading... -->
+      </span>
+      <span v-else :class="['arrow-right', ns + '-postfix']">
+        <i class="sc-ui sc-you"></i>
+      </span>
     </template>
   </li>
 </template>
@@ -67,7 +62,6 @@
 // @ts-nocheck
 import { computed, defineComponent, inject } from 'vue'
 import { Checkbox, Radio } from 'ant-design-vue'
-import { Icon } from '@iconify/vue'
 import NodeContent from './node-content'
 import { CASCADER_PANEL_INJECTION_KEY } from './types'
 import type { default as CascaderNode } from './node'
@@ -75,13 +69,12 @@ import type { default as CascaderNode } from './node'
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  name: 'ElCascaderNode',
+  name: 'ScCascaderNode',
 
   components: {
-    ElCheckbox: Checkbox,
-    ElRadio: Radio,
-    NodeContent,
-    Icon,
+    Checkbox,
+    Radio,
+    NodeContent
   },
 
   props: {
@@ -164,6 +157,7 @@ export default defineComponent({
     }
 
     const handleSelectCheck = (checked: boolean) => {
+      // console.log('checked: ', checked);
       if (checkStrictly.value) {
         doCheck(checked)
         if (props.node.loaded) {

@@ -1,0 +1,95 @@
+@cascaderPanelScope: ~'@{prefixCls}Cascader-panel';
+
+.@{cascaderPanelScope} {
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  border-radius: @border-r-3;
+  box-shadow: 0 2px 8px fade(@color-000, 26);
+  .@{cascaderScope} {
+    &-menu {
+      display: inline-block;
+      min-width: 204px;
+      box-sizing: border-box;
+      color: @heading-color;
+      &:not(:last-child) {
+        border-right: 1px solid @border-color-base;
+      }
+      &-wrap {
+        &.scScrollbar-wrap {
+          height: 204px;
+        }
+      }
+      &-list {
+        position: relative;
+        min-height: 100%;
+        margin: 0;
+        padding: 4px 0;
+        list-style: none;
+        box-sizing: border-box;
+      }
+      &-hover-zone {
+        width: 204px;
+        height: 100px;
+      }
+      &-empty-text {
+        text-align: center;
+        .loading-transition {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          margin: 80px 0;
+        }
+      }
+    }
+    &-node {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 3px 8px;
+      margin: 2px 6px ;
+      line-height: 22px;
+      outline: none;
+      border-radius: @border-r-3;
+      &:not(.isDisabled){
+        cursor: pointer;
+        &:not(.in-active-path):not(.isSelected) {
+          &:hover {
+            background: @item-hover-bg;
+          }
+        }
+      }
+      &.isDisabled {
+        cursor: not-allowed;
+        color: @disabled-color;
+      }
+      &-label {
+        flex: 1;
+        text-align: left;
+        // padding: 0 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &.in-active-path {
+        color: @primary-color;
+        background: @cascader-Menu-bg;
+      }
+      &.isSelected {
+        color: @primary-color;
+        background: @cascader-Menu-bg;
+      }
+      .isLoading {
+        position: relative;
+        top: 3px;
+      }
+    }
+  }
+  .loading-transition {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+  }
+}

@@ -20,6 +20,7 @@ import { ScInput } from './package/input'
 import { ScScrollbar } from './package/scrollbar'
 import { ScPopconfirm } from './package/popconfirm'
 import { ScCascader } from './package/cascader'
+import { ScCascaderPanel } from './package/cascaderPanel'
 import { ScBreadcrumb, ScBreadcrumbItem } from './package/breadcrumb'
 import { useMessage } from './hooks'
 import { ScSlider } from './package/slider'
@@ -83,6 +84,7 @@ const components = [
   ScScrollbar,
   ScPopconfirm,
   ScCascader,
+  ScCascaderPanel,
 
   ScBreadcrumb,
   ScBreadcrumbItem,
@@ -150,6 +152,7 @@ export {
   ScScrollbar,
   ScPopconfirm,
   ScCascader,
+  ScCascaderPanel,
 
   ScBreadcrumb,
   ScBreadcrumbItem,

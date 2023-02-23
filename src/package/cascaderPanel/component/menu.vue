@@ -3,34 +3,30 @@
     :key="menuId"
     tag="ul"
     role="menu"
-    :class="ns.b()"
-    :wrap-class="ns.e('wrap')"
-    :view-class="[ns.e('list'), ns.is('empty', isEmpty)]"
+    :class="ns"
+    :wrap-class="ns + '-wrap'"
+    :view-class="[ns + '-list', isEmpty ? 'isEmpty' : '']"
     @mousemove="handleMouseMove"
     @mouseleave="clearHoverZone"
   >
-    <el-cascader-node
+    <ScCascaderNode
       v-for="node in nodes"
       :key="node.uid"
       :node="node"
       :menu-id="menuId"
       @expand="handleExpand"
     />
-    <div v-if="isLoading" :class="ns.e('empty-text')">
-      <!-- <el-icon size="14" :class="ns.is('loading')">
-        <loading />
-      </el-icon> -->
-      <!-- {{  }} -->
-      loading
+    <div v-if="isLoading" :class="ns + '-empty-text'">
+      <span class="loading-transition"></span>
     </div>
-    <div v-else-if="isEmpty" :class="ns.e('empty-text')">
+    <div v-else-if="isEmpty" :class="ns + '-empty-text'">
       <!-- {{ t('el.cascader.noData') }} -->
       no data
     </div>
     <svg
       v-else-if="panel?.isHoverMenu"
       ref="hoverZone"
-      :class="ns.e('hover-zone')"
+      :class="ns + '-hover-zone'"
     ></svg>
   </sc-scrollbar>
 </template>
@@ -39,20 +35,21 @@
 
 import { computed, defineComponent, getCurrentInstance, inject, ref } from 'vue'
 import { ScScrollbar } from '../../scrollbar'
-import ElCascaderNode from './node.vue'
+import ScCascaderNode from './node.vue'
 import { CASCADER_PANEL_INJECTION_KEY } from './types'
 import { generateId } from '../utils'
+import { basePrefixCls } from '../../../constant'
 
 import type { default as CascaderNode } from './node'
 import type { PropType, Ref } from 'vue'
 
 
 export default defineComponent({
-  name: 'ElCascaderMenu',
+  name: 'ScCascaderMenu',
 
   components: {
     ScScrollbar,
-    ElCascaderNode,
+    ScCascaderNode,
   },
 
   props: {
@@ -68,9 +65,8 @@ export default defineComponent({
 
   setup(props) {
     const instance = getCurrentInstance()!
-    // const ns = useNamespace('cascader-menu')
+    const ns = basePrefixCls + 'Cascader-menu'
 
-    // const { t } = useLocale()
     const id = generateId()
     let activeNode: Nullable<HTMLElement> = null
     let hoverTimer: Nullable<number> = null

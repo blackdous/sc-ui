@@ -35,7 +35,7 @@ export interface Tag {
   isCollapseTag: boolean
 }
 
-export interface ElCascaderPanelContext {
+export interface ScCascaderPanelContext {
   config: CascaderConfig
   expandingNode: Nullable<CascaderNode>
   checkedNodes: CascaderNode[]
@@ -54,5 +54,5 @@ export interface ElCascaderPanelContext {
   ) => void
 }
 
-export const CASCADER_PANEL_INJECTION_KEY: InjectionKey<ElCascaderPanelContext> =
+export const CASCADER_PANEL_INJECTION_KEY: InjectionKey<ScCascaderPanelContext> =
   Symbol()
