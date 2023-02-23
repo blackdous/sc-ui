@@ -81,7 +81,7 @@ export const sidebar = {
       items: [
         { text: 'Empty', link: '/en/empty/' },
         { text: 'TableColumn', link: '/en/tableColumn/' },
-        { text: 'Copy', link: '/en/Copy/' }
+        { text: 'Copy', link: '/en/copy/' }
       ]
     }
   ],
@@ -158,7 +158,7 @@ export const sidebar = {
       items: [
         { text: '空组件', link: '/empty/' },
         { text: '表格Column', link: '/tableColumn/' },
-        { text: '复制Copy', link: '/Copy/' }
+        { text: '复制Copy', link: '/copy/' }
       ]
     }
   ],
