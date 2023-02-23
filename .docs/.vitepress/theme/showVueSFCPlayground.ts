@@ -57,10 +57,10 @@ const initClick = () => {
     // console.log('item: ClickDom', item.innerText);
     if (ClickDom) {
       const sfcTemCode = `
-        ${item.innerText}
+        ${item?.innerText}
       `.trim()?.replace("/* @import 'comment'; */", (item) => {
         // console.log('item: ', item);
-        return "@import 'https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.71/style.css';"
+        return "@import 'https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.72/style.css';"
       });
       const files = {
         'App.vue': new File('App.vue', sfcTemCode),
@@ -72,7 +72,7 @@ const initClick = () => {
                 'vue': 'https://sfc.vuejs.org/vue.runtime.esm-browser.js',
                 "vue/server-renderer": "https://sfc.vuejs.org/server-renderer.esm-browser.js",
                 "ant-design-vue": "https://cdn.jsdelivr.net/npm/ant-design-vue@2.2.8/+esm",
-                "sc-ui": "https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.71/sc-ui.es.min.js"
+                "sc-ui": "https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.72/sc-ui.es.min.js"
               }
             },
             null,

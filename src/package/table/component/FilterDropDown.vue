@@ -114,6 +114,7 @@ export default defineComponent({
     const handle = ({key}:{key: string}) => {
       // @ts-ignore
       const item = findNode(unref(filterList), (node:FilterItem) => node.key === key, { key: 'key' })
+      console.log('item: ', item);
       if (unref(columnOptions)?.filterMultiple) {
         selectedItems.value = [...unref(selectedItems), item]
       } else {

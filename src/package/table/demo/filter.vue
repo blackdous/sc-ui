@@ -94,6 +94,7 @@ const list = ref([
 // }).catch(error => {
 //   console.log('error: ', error);
 // })
+const filtersList = ref([])
 // @ts-ignore
 const columns = ref([
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', 
@@ -118,9 +119,7 @@ const columns = ref([
     // filterMultiple: false,
     // filterList: () => list,
     // filters: list,
-    filters: [{ text: 'aaa', value: 'aa1' }],
-    filtered: true,
-    filterMultiple: true,
+    filters: filtersList,
     type: {
       componentName: 'tdEllipsis',
       props: {
@@ -143,11 +142,12 @@ setTimeout(() => {
   columns.value = unref(columns).map((item, index) => {
     // item.filterList = []
     if (index === 0) {
-      item.filterList = unref(list).slice(0, 1)
+      item.filterList = unref(list).slice(0, 4)
       item.filterLoading = false
     }
     return item
   })
+  filtersList.value = [{ text: 'aaa', value: 'aa1' }]
 }, 5000)
 
 interface DataItem {
@@ -187,6 +187,12 @@ for(let i = 10; i < 14; i++) {
 //@ts-ignore
 const handleChange = (pagination, filters, sorter, fetchParams) => {
   console.log('pagination, filters, sorter: ', pagination, filters, sorter, fetchParams);
+  columns.value = unref(columns).map(item => {
+    // if (item.dataIndex ===)
+    item.filteredValue = filters[item.dataIndex]
+    console.log('item: ', item);
+    return item
+  })
 }
 
 // @ts-ignore

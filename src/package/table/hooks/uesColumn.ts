@@ -2,8 +2,8 @@ import { ref, Ref, unref, computed, toRaw, onMounted, nextTick, watch, watchEffe
 import cloneDeep from 'lodash/cloneDeep'
 
 import { Column, FilterItem } from '../types/column'
-import { isArray, isFunction } from '../../../utils/is'
-
+import { isArray, isFunction } from '../../../utils'
+import { findNode } from '../../../utils/treeHelper'
 export interface GetColumnsParams {
   ignoreIndex?: boolean;
   ignoreAction?: boolean;
@@ -58,8 +58,20 @@ export function useColumn (
         }
         item.filtered =  item.filtered ?? true
       }
+      if (item.filteredValue) {
+        // console.log('item.filteredValue: ', item?.filteredValue?.includes(item.key));
+        // item.filterSelected = item.filterList?.map(_item => {
+          
+        //   return item?.filteredValue?.includes(_item.key)
+        // })
+        item.filterSelected = item?.filteredValue?.map(_item => {
+          console.log('_item: ', _item);
+          const newItem = findNode(item?.filterList, (node:FilterItem) => node.key === _item, { key: 'key' })
+          console.log('newItem: ', newItem);
+          return newItem ? newItem : null
+        })
+      }
       // console.log('item: ', item);
-      // item.filters = []
       return item
     })
     getColumnRef.value = newColumns
@@ -76,11 +88,11 @@ export function useColumn (
     adapterColumnFunc(unref(columnsRef))
   })
   function setFilterDropdownRef (column:Column, filterItem: FilterItem[]) {
-    const columns = unref(filterColumn)
-    columns.forEach((item: Column) => {
+    const columns = unref(filterColumn)?.map((item: Column) => {
       if (item.dataIndex === column.dataIndex) {
         item.filterSelected = filterItem
       }
+      return item
     })
     filterColumn.value = columns
   }

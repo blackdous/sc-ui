@@ -251,6 +251,7 @@ changeLoading(true);
 | getContainer | 指定 Modal 挂载的 HTML 节点 | (instance): HTMLElement | () => document.body |  |
 | keyboard | 是否支持键盘 esc 关闭 | boolean | true |  |
 | mask | 是否展示遮罩 | boolean | true |  |
+| footerAlign | 是否展示遮罩 'left'、'center'、'right' | string | 'right' |  |
 | maskClosable | 点击蒙层是否允许关闭 | boolean | true |  |
 | maskStyle | 遮罩样式 | object | {} |  |
 | okButtonProps | ok 按钮 props | [ButtonProps](https://antdv.com/components/button) | - |  |

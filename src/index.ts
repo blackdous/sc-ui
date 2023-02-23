@@ -118,7 +118,7 @@ const install = (app: App) => {
 };
 
 const ScUi = {
-  version: '0.0.71',
+  version: '0.0.72',
   install,
 };
 
@@ -134,6 +134,7 @@ export {
   ScModal,
 
   ScTable,
+  
   Copy,
   TableAction,
   ColumnDialog,

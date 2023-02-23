@@ -10,61 +10,14 @@
       :columns="columns"
       size="small"
       :loading="loading"
-      :create-button-options="{
-        show: true,
-        loading: true
-      }"
       :scroll="{ x: true }"
-      :search-options="{
-        show: true,
-        showSelect: false,
-        // typeList: () => radioList,
-        typeList: promiseTypelist,
-        customSearchFunc: searchHanle,
-        selectOptions: {
-          placeholder: '请选择',
-          width: '100px'
-        },
-        inputOptions: {
-          placeholder: '请输入',
-          width: '200px',
-          maxlength: 40
-        }
-      }"
-      :activeOptions="{
-        reload: {
-          text: '刷新',
-          show: true,
-          action: refresh
-        },
-        columnDialog: {
-          text: '定制列',
-          show: true,
-        },
-        download: {
-          text: '下载',
-          show: true,
-          href: ''
-        },
-        // customActiveList: [
-        //   {
-        //     text: '刷新',
-        //     show: true,
-        //     action: refresh
-        //   }
-        //   // h(Tooltip, { title: '其他Icon' }, [h(Button, { disabled: false }, [h('i', { class: 'sc-ui sc-sync'})])])
-        // ]
-      }"
-      :pagination="{
-        
-      }"
       @change="handleChange"
       >
       <!-- :langLocale="zhCN" -->
       <template #copy1="{text, record, index, column}">
         <Copy v-bind="{text, record, index, column}">
           <template #text>
-            1111
+            11112222
           </template>
         </Copy>
       </template>
@@ -72,6 +25,11 @@
         <span>
           {{text}}1111
         </span>
+      </template>
+      <template #multipleBtns>
+        <div>
+          111111
+        </div>
       </template>
       <!-- <template #tableActive>
         <Tooltip>

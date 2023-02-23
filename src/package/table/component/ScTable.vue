@@ -9,7 +9,7 @@
       :transformCellText="({ text }) => isEmptyText(text) ? text : '--'"
     >
       <TableFilter
-        v-if="isShowFilter"
+        v-if="isShowFilter || (Object.keys($slots).filter((item) => ['createButton', 'search', 'multipleBtns'].includes(item))).length"
         v-model:selectValue="selectValue"
         v-model:textValue="textValue"
         :createButtonOptions="createButtonOptions"
@@ -257,9 +257,9 @@ export default defineComponent({
 
     const fetchParams = ref<Recordable>({
       tableRef,
-      multipleValue: '',
-      searchSelect: '',
-      searchText: '',
+      multipleValue: undefined,
+      searchSelect: undefined,
+      searchText: undefined,
       filters: {},
       selectedRowKeysRef: [],
       selectedRowRef: [],

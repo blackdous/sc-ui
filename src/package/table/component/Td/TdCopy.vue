@@ -3,6 +3,7 @@
     v-if="isEmptyText(newProps.text)"
     :id="`tb_btn_${index}_copy`"
     class="tbCopy"
+    v-bind="$attrs"
   >
     <span
       class="tbCopy-prefix"
@@ -14,22 +15,34 @@
         {{ newProps.text }}
       </span>
     </span>
-    <CopyOutlined @click="copyText" />
+    <span class="tdCopy-icon" @click="copyText">
+      <slot name="icon" v-if="isCopyIcon"></slot>
+      <CopyOutlined v-else/>
+    </span>
   </div>
   <div v-else>--</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, nextTick, unref } from 'vue'
+import { defineComponent, computed, unref } from 'vue'
 import { CopyOutlined } from '@ant-design/icons-vue'
 import { useClipboard } from '@vueuse/core'
 import { message } from 'ant-design-vue'
-import { isEmptyText } from '../../../../utils/is'
+import { isEmptyText, isFunction } from '../../../../utils'
 
 const props = () => ({
   column: {
     type: Object,
     default: () => ({})
+  },
+  handle: {
+    type: Function
+  },
+  successTxt: {
+    type: String
+  },
+  copyTxt: {
+    type: [String, Function]
   },
   record: {
     type: Object,
@@ -41,7 +54,8 @@ const props = () => ({
   },
   text: {
     type: [String, Number],
-    default: ''
+    default: '',
+    require: true
   }
 })
 
@@ -52,6 +66,7 @@ export default defineComponent({
   components: {
     CopyOutlined
   },
+  emits: ['click'],
   setup (props, { slots }) {
     const newProps = computed(() => {
       return props
@@ -59,23 +74,31 @@ export default defineComponent({
     const isCopyPrefix = computed(() => {
       return Object.keys(slots).includes('text');
     }) 
+    const isCopyIcon = computed(() => {
+      return Object.keys(slots).includes('icon');
+    }) 
     const { copy, copied } = useClipboard({
       legacy: true
     })
-    const copyText = () => {
-      nextTick(() => {
-        copy(String(unref(newProps).text))
-        if (copied) {
-          message.success({
-            content: props.column?.type.props.successTxt
-          })
-        }
-      })
+    const copyText = async () => {
+      const copyText = unref(newProps).copyTxt || unref(newProps).text
+      await copy(String(copyText))
+      if (copied && (unref(newProps).column?.type?.props?.successTxt || unref(newProps)?.successTxt)) {
+        message.success({
+          content: unref(newProps).column?.type?.props?.successTxt || unref(newProps).successTxt,
+          duration: 1.5
+        })
+      }
     }
 
     const handle = async () => {
-      if (props?.column?.handle) {
-        await props?.column?.handle()
+      if (unref(newProps)?.column?.handle || unref(newProps)?.handle) {
+        if (isFunction(unref(newProps)?.handle)) {
+          await unref(newProps)?.handle?.()
+        }
+        if (isFunction(unref(newProps)?.column?.handle)) {
+          await unref(newProps)?.column?.handle()
+        }
       }
     }
     
@@ -84,6 +107,7 @@ export default defineComponent({
       newProps,
       copyText,
       isEmptyText,
+      isCopyIcon,
       // copy,
       handle
     }

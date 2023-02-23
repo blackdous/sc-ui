@@ -238,6 +238,7 @@ export default defineComponent({
     })
     
     const createButtonOptions = computed(() => {
+      console.log('props.createButtonOptions: ', props.createButtonOptions);
       return props.createButtonOptions
     })
     

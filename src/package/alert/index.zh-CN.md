@@ -72,7 +72,7 @@ map:
 
 <!-- <API src="./component/type.ts" lang="zh"></API> -->
 
-## API
+## props
 
 除 参考官方 [Button 配置](https://2x.antdv.com/components/alert-cn#API)外，扩展以下参数
 

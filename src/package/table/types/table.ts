@@ -274,7 +274,7 @@ export const tableProps = () => ({
   customFilter: {
     type: Boolean,
     default () {
-      return false
+      return true
     }
   },
   filterTag: {
