@@ -1,25 +1,28 @@
 <template>
   <div class="mt20">
     <ScCascaderPanel 
+      ref="cascaderRef"
       v-model:modelValue="value"
       :options="options"
       @change="handleChange"
       @expandChange="handleExpandChange"
+      :props="{ multiple: true }"
     >
     </ScCascaderPanel>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, unref } from 'vue'
 import { ScCascaderPanel } from 'sc-ui'
 const value = ref()
-
-watch(() => value.value, (val) => {
-  console.log('val: watch', val);
-})
+const cascaderRef = ref()
 const handleChange = (val:any) => {
   console.log('val: handleChange', val);
+  const leafOnlyArr = unref(cascaderRef).getCheckedNodes(true)
+  console.log('leafOnlyArr: ', leafOnlyArr);
+  const notLeafOnlyArr = unref(cascaderRef).getCheckedNodes()
+  console.log('notLeafOnlyArr: ', notLeafOnlyArr);
 }
 const handleExpandChange = (val:any) => {
   console.log('val: handleExpandChange', val);

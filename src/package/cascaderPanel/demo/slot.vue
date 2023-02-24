@@ -6,18 +6,18 @@
       @change="handleChange"
       @expandChange="handleExpandChange"
     >
+      <template #default="{ node, data }">
+        <span>{{ data.label }}</span>
+        <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+      </template>
     </ScCascaderPanel>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { ScCascaderPanel } from 'sc-ui'
 const value = ref()
-
-watch(() => value.value, (val) => {
-  console.log('val: watch', val);
-})
 const handleChange = (val:any) => {
   console.log('val: handleChange', val);
 }

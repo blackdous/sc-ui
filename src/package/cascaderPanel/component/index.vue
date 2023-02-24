@@ -86,7 +86,7 @@ export default defineComponent({
 
     const ns = basePrefixCls + 'Cascader'
     const config = useCascaderConfig(props)
-    console.log('config: ', config);
+    // console.log('config: ', config);
 
     let store: Nullable<Store> = null
     const initialLoaded = ref(true)
@@ -165,7 +165,6 @@ export default defineComponent({
       emitClose = true
     ) => {
       const { checkStrictly, multiple } = config.value
-      console.log('multiple: ', multiple);
       const oldNode = checkedNodes.value[0]
       manualChecked = true
 
@@ -281,7 +280,8 @@ export default defineComponent({
           )
           const activeNode =
           menuElement.querySelector(`.${ns+'-node'}.isActive`) ||
-          menuElement.querySelector(`.${ns+'-node'}.in-active-path`)
+          menuElement.querySelector(`.${ns+'-node'}.in-active-path`) ||
+          menuElement.querySelector(`.${ns+'-node'}.isSelected`)
           scrollIntoView(container, activeNode)
         }
       })
