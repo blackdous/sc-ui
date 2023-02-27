@@ -72,7 +72,8 @@ const initClick = () => {
                 'vue': 'https://sfc.vuejs.org/vue.runtime.esm-browser.js',
                 "vue/server-renderer": "https://sfc.vuejs.org/server-renderer.esm-browser.js",
                 "ant-design-vue": "https://cdn.jsdelivr.net/npm/ant-design-vue@2.2.8/+esm",
-                "sc-ui": "https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.72/sc-ui.es.min.js"
+                "sc-ui": "https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.72/sc-ui.es.min.js",
+                "@ant-design/icons-vue": "https://cdn.jsdelivr.net/npm/@ant-design/icons-vue@6.1.0/+esm"
               }
             },
             null,

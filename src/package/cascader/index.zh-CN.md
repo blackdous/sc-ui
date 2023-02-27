@@ -17,22 +17,6 @@ map:
   >
 </demo>
 
-## 组件大小
-
-<demo src="./demo/size.vue"
-  language="vue"
-  title="组件大小"
-  >
-</demo>
-
-## 标签选择器状态
-
-<demo src="./demo/checkbox.vue"
-  language="vue"
-  title="标签选择器状态"
-  >
-</demo>
-
 ## PrefixIcon slot
 
 <demo src="./demo/prefix.vue"

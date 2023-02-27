@@ -2,6 +2,7 @@
   <div class="text-center">
     <ScDropDown
       :visible="true"
+      :getPopupContainer="popTarge"
     >
       <Button>
         填充按钮
@@ -92,6 +93,8 @@ export default defineComponent({
     ScDropDown
   },
   setup() {
+    const isBrowser = () => typeof window !== 'undefined';
+
     const valueRef = ref()
     const listRef = ref([
       {
@@ -162,10 +165,17 @@ export default defineComponent({
     const handle = (item:any) => {
       console.log('item: ', item);
     }
+
+    const popTarge = () => {
+      if (isBrowser()) {
+        return document.body
+      }
+    }
     return {
       valueRef,
       listRef,
-      handle
+      handle,
+      popTarge
     }
   }
 })

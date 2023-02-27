@@ -67,3 +67,5 @@ export function getDynamicProps<T, U>(props: T): Partial<U> {
 
   return ret as Partial<U>;
 }
+
+const isBrowser = () => typeof window !== 'undefined';

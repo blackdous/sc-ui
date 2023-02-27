@@ -28,12 +28,12 @@ export function useRowSelection(
     };
   });
 
-  watch(
-    () => unref(propsRef).rowSelection?.selectedRowKeys,
-    (v: string[]) => {
-      setSelectedRowKeys(v);
-    },
-  );
+  // watch(
+  //   () => unref(propsRef).rowSelection?.selectedRowKeys,
+  //   (v: string[]) => {
+  //     setSelectedRowKeys(v);
+  //   },
+  // );
 
   watch(
     () => unref(selectedRowKeysRef),

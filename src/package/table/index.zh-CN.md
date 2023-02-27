@@ -905,3 +905,12 @@ export interface ActionProps {
   desc="table头部操作按钮"
   >
 </demo>
+
+## 指定rowSelected值
+
+<demo src="./demo/refRowSelected.vue"
+  language="vue"
+  title="指定rowSelected值"
+  desc="指定rowSelected值"
+  >
+</demo>
