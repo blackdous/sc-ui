@@ -1,4 +1,5 @@
-import isEqual from 'lodash/isEqual'
+import lodash from 'lodash'
+// import isEqual from 'lodash/isEqual'
 import Node from './node'
 
 import type { Nullable } from '../utils'
@@ -8,6 +9,8 @@ import type {
   CascaderNodeValue,
   CascaderOption,
 } from './node'
+
+const { isEqual } = lodash
 
 const flatNodes = (nodes: Node[], leafOnly: boolean) => {
   return nodes.reduce((res, node) => {

@@ -1,6 +1,7 @@
 // @ts-nocheck
 
-import isPlainObject from 'lodash/isPlainObject';
+// import isPlainObject from 'lodash/isPlainObject';
+import lodash from 'lodash'
 import classNames from '../classNames';
 import { isVNode, Fragment, Comment, Text, h } from 'vue';
 import { camelize, hyphenate, isOn, resolvePropValue } from '../util';
@@ -11,7 +12,7 @@ import initDefaultProps from './initDefaultProps';
 //   return match ? match[1] : '';
 // }
 
-
+const { isPlainObject } = lodash
 
 const splitAttrs = attrs => {
   const allAttrs = Object.keys(attrs);

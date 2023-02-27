@@ -34,9 +34,10 @@
 <script lang='ts' setup>
 import { ref, computed, unref, watch } from 'vue'
 import { ScForm, FormSchema, useMessage, ScSelect } from 'sc-ui';
-import cloneDeep from 'lodash/cloneDeep';
+import lodash from 'lodash';
+// import cloneDeep from 'lodash/cloneDeep';
 // import { porvin, treeOptionsListApi } from './formData';
-
+const { cloneDeep } = lodash
 const keyword = ref<string>('');
 
   const valueSelectA = ref<string[]>([]);

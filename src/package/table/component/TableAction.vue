@@ -116,6 +116,7 @@
 
 
 <script lang="ts">
+// @ts-nocheck
 export default {
   name: 'ScTableAction',
   inheritAttrs: false
@@ -131,8 +132,10 @@ import { basePrefixCls } from '../../../constant'
 import { isArray, isFunction } from '../../../utils/is'
 import { treeMap } from '../../../utils/treeHelper'
 
-import cloneDeep from 'lodash/cloneDeep'
+// import cloneDeep from 'lodash/cloneDeep'
+import lodash from 'lodash'
 
+const { cloneDeep } = lodash
 
 export interface ActionItemProps {
   label: string,

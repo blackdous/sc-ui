@@ -2,9 +2,11 @@ import { isArray, isFunction, isObject, isString, isNullOrUnDef, dateUtil } from
 import { unref } from 'vue';
 import type { Ref, ComputedRef } from 'vue';
 import type { FormProps, FormSchema } from '../types/form';
-// import { cloneDeep, set } from 'lodash-es';
-import cloneDeep from 'lodash/cloneDeep';
-import set from 'lodash/set';
+// import cloneDeep from 'lodash/cloneDeep';
+// import set from 'lodash/set';
+import lodash from 'lodash';
+
+const { cloneDeep, set } = lodash
 
 interface UseFormValuesContext {
   defaultValueRef: Ref<any>;

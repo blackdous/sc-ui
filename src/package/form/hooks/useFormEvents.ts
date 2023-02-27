@@ -5,12 +5,11 @@ import { unref, toRaw, nextTick } from 'vue';
 import { isArray, isFunction, isObject, isString, isDef, isNullOrUnDef, dateUtil, error } from '../../../utils';
 import deepMerge from 'deepmerge';
 import { dateItemType, handleInputNumberValue, defaultValueComponents } from '../helper';
-// import { dateUtil } from '/@/utils/dateUtil';
-// import { cloneDeep, uniqBy } from 'lodash-es';
-import cloneDeep from 'lodash/cloneDeep';
-import uniqBy from 'lodash/uniqBy';
-// import { error } from '/@/utils/log';
+// import cloneDeep from 'lodash/cloneDeep';
+// import uniqBy from 'lodash/uniqBy';
+import lodash from 'lodash';
 
+const { cloneDeep, uniqBy } = lodash
 interface UseFormActionContext {
   emit: EmitType;
   getProps: ComputedRef<FormProps>;

@@ -10,9 +10,9 @@ import {
   toRaw,
 } from 'vue';
 
-// import { isEqual } from 'lodash-es';
-import isEqual from 'lodash/isEqual'
-
+import lodash from 'lodash'
+// import isEqual from 'lodash/isEqual'
+const { isEqual } = lodash
 export function useRuleFormItem<T extends Recordable, K extends keyof T, V = UnwrapRef<T[K]>>(
   props: T,
   key?: K,

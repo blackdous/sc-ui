@@ -1,5 +1,6 @@
 import { App, Plugin, Component, PropType, VNode, unref } from 'vue'
-import cloneDeep from 'lodash/cloneDeep'
+// import cloneDeep from 'lodash/cloneDeep'
+import lodash from 'lodash'
 import { EventDataNode } from './nodeType'
 import { isObject } from './is'
 export * from './domHelper'
@@ -16,6 +17,8 @@ export * from './domUtils'
 export * from './event/index'
 export * from './dateUtil'
 export * from './tsxHelper'
+
+const cloneDeep = lodash
 
 export const withInstall = <T>(component: T, alias?: string) => {
   const comp = component as any

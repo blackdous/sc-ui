@@ -17,7 +17,9 @@ import isVisible from '../../utils/dom/isVisible';
 import { isSamePoint, restoreFocus, monitorResize } from './util';
 import type { AlignType, AlignResult, TargetType, TargetPoint } from './interface';
 import useBuffer from './hooks/useBuffer';
-import isEqual from 'lodash/isEqual';
+import lodash from 'lodash';
+
+const { isEqual } = lodash
 
 type OnAlign = (source: HTMLElement, result: AlignResult) => void;
 

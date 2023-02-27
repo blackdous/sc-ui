@@ -19,10 +19,11 @@
   import { isFunction, PropTypes } from '../../../utils';
   import { useRuleFormItem } from '../hooks/useFormItem';
   import { useAttrs } from '../../../hooks';
-  import get from 'lodash/get'
-  import omit from 'lodash/omit'
+  import lodash from 'lodash'
+  // import get from 'lodash/get'
+  // import omit from 'lodash/omit'
   type OptionsItem = { label: string; value: string | number | boolean; disabled?: boolean };
-
+  const { get, omit } = lodash
   export default defineComponent({
     name: 'ApiRadioGroup',
     components: {

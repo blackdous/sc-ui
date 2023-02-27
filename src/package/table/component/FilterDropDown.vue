@@ -63,7 +63,8 @@
 <script lang='ts'>
 import { computed, defineComponent, unref, ref, watch, watchEffect, h } from 'vue'
 import { Dropdown, Menu, MenuItem, SubMenu, Tooltip, Spin } from 'ant-design-vue'
-import cloneDeep from 'lodash/cloneDeep'
+// import cloneDeep from 'lodash/cloneDeep'
+import lodash from 'lodash'
 import { ScLoading } from '../../loading'
 //@ts-ignore
 import { scFilterProps, FilterItem } from '../types/column'
@@ -71,6 +72,7 @@ import { basePrefixCls } from '../../../constant'
 import { findNode } from '../../../utils/treeHelper'
 
 // export interface 
+const { cloneDeep } = lodash
 
 export default defineComponent({
   name: 'ScTableFilterDropDown',

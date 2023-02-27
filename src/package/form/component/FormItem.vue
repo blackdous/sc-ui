@@ -11,11 +11,11 @@
   // import { isBoolean, isFunction, isNull } from '/@/utils/is';
   import { isBoolean, isFunction, isNull, getSlot } from '../../../utils';
   import { createPlaceholderMessage, setComponentRuleType } from '../helper';
-  // import { cloneDeep, upperFirst } from 'lodash-es';
-  import cloneDeep from 'lodash/cloneDeep';
-  import upperFirst from 'lodash/upperFirst';
+  import lodash from 'lodash';
+  // import cloneDeep from 'lodash/cloneDeep';
+  // import upperFirst from 'lodash/upperFirst';
   import { useItemLabelWidth } from '../hooks/useLabelWidth';
-
+  const { cloneDeep, upperFirst } = lodash
   export default defineComponent({
     name: 'BasicFormItem',
     inheritAttrs: false,

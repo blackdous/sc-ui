@@ -211,9 +211,12 @@ import { useDataSource } from '../hooks/useDataSource'
 import { useActions } from '../hooks/useActions'
 import { useColumn } from '../hooks/uesColumn'
 import { createTableContext } from '../hooks/useTableContext'
-import isFunction from 'lodash/isFunction'
+// import isFunction from 'lodash/isFunction'
+import lodash from 'lodash'
 
 const tablePrefixCls = basePrefixCls + 'Table';
+
+const { isFunction } = lodash
 
 // const props = defineProps(tableProps())
 // const emits = defineEmits(['onAction', 'tableChange', 'createClick', 'multipleChange', 'filter'])

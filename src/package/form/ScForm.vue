@@ -52,7 +52,8 @@
   import { dateUtil } from '../../utils';
 
   import deepMerge from 'deepmerge';
-  import cloneDeep from 'lodash/cloneDeep';
+  // import cloneDeep from 'lodash/cloneDeep';
+  import lodash from 'lodash';
 
   import { useFormValues } from './hooks/useFormValues';
   import useAdvanced from './hooks/useAdvanced';
@@ -66,6 +67,8 @@
 
   import { basicProps } from './props';
   // import { useDesign } from '/@/hooks/web/useDesign';
+
+  const { cloneDeep } = lodash
 
   export default defineComponent({
     name: 'ScForm',

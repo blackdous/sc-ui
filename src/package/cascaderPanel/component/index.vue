@@ -26,9 +26,10 @@ import {
   ref,
   watch,
 } from 'vue'
-import cloneDeep from 'lodash/cloneDeep'
-import flattenDeep from 'lodash/flattenDeep'
-import isEqual from 'lodash/isEqual'
+// import cloneDeep from 'lodash/cloneDeep'
+// import flattenDeep from 'lodash/flattenDeep'
+// import isEqual from 'lodash/isEqual'
+import lodash from 'lodash'
 import { isClient } from '@vueuse/core'
 import {
   castArray,
@@ -61,6 +62,8 @@ import type {
 } from './node'
 
 import type { ScCascaderPanelContext } from './types'
+
+const { cloneDeep, flattenDeep, isEqual } = lodash
 
 export default defineComponent({
   name: 'ScCascaderPanel',

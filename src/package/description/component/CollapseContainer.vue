@@ -40,7 +40,8 @@
 <script lang="ts">
   import type { PropType } from 'vue'
   import { ref, defineComponent, computed, isVNode, unref } from 'vue'
-  import isNil from 'lodash/isNil'
+  import lodash from 'lodash'
+  // import isNil from 'lodash/isNil'
   // component
   import { Skeleton, Tooltip } from 'ant-design-vue'
   import CollapseTransition from './CollapseTransition.vue'
@@ -48,6 +49,8 @@
   import { basePrefixCls } from '../../../constant'
   // hook
   import { useTimeoutFn } from '../../../hooks'
+
+  const { isNil } = lodash
 
   export default defineComponent({
     name: 'ScCollapseContainer',

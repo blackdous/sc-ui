@@ -1,9 +1,12 @@
-import { ref, Ref, unref, computed, toRaw, onMounted, nextTick, watch, watchEffect } from 'vue'
-import cloneDeep from 'lodash/cloneDeep'
+import { ref, Ref, unref, computed, toRaw, onMounted, nextTick, watchEffect } from 'vue'
+// import cloneDeep from 'lodash/cloneDeep'
+import lodash from 'lodash'
 
 import { Column, FilterItem } from '../types/column'
 import { isArray, isFunction } from '../../../utils'
 import { findNode } from '../../../utils/treeHelper'
+
+const { cloneDeep } = lodash
 export interface GetColumnsParams {
   ignoreIndex?: boolean;
   ignoreAction?: boolean;

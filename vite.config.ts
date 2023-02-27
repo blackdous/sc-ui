@@ -6,9 +6,9 @@ import { themeVariables } from './build/theme'
 import autoprefixer from 'autoprefixer'
 import postcssFlexbugsFixes from 'postcss-flexbugs-fixes'
 
-function pathResolve(dir: string) {
-  return resolve(process.cwd(), '.', dir);
-}
+// function pathResolve(dir: string) {
+//   return resolve(process.cwd(), '.', dir);
+// }
 
 export default ({ command }: ConfigEnv): UserConfig => {
   const isBuild = command === 'build';
@@ -30,12 +30,16 @@ export default ({ command }: ConfigEnv): UserConfig => {
       sourcemap: true,
       rollupOptions: {
         // 确保外部化处理那些你不想打包进库的依赖
-        external: ['vue', 'vue-slider-component'],
+        external: ['vue', 'vue-slider-component', 'lodash', 'moment', 'dayjs', 'ant-design-vue'],
         output: {
           // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
           globals: {
             vue: 'Vue',
-            vueSlider: 'VueSlider'
+            vueSlider: 'VueSlider',
+            lodash: 'lodash',
+            moment: 'moment',
+            dayjs: 'dayjs',
+            'ant-design-vue': 'ant-design-vue'
           },
           exports: 'named',
           chunkFileNames: `assets/[name].js`,

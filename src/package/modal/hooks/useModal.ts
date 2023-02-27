@@ -16,11 +16,13 @@ import {
   toRaw,
 } from 'vue';
 import { isFunction } from '../../../utils/is';
-import isEqual from 'lodash/isEqual';
+import lodash from 'lodash';
+// import isEqual from 'lodash/isEqual';
 import { tryOnUnmounted } from '@vueuse/core';
 import { error } from '../../../utils/log';
 import { computed } from 'vue';
 
+const { isEqual } = lodash
 const dataTransfer = reactive<any>({});
 
 const visibleData = reactive<{ [key: number]: boolean }>({});

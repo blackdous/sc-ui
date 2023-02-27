@@ -22,8 +22,9 @@
   import { defineComponent, PropType, ref, unref, watch, watchEffect } from 'vue';
   import { Cascader } from 'ant-design-vue';
   import { PropTypes, isFunction } from '../../../utils';
-  import get from 'lodash/get'
-  import omit from 'lodash/omit'
+  // import get from 'lodash/get'
+  // import omit from 'lodash/omit'
+  import lodash from 'lodash'
   import { useRuleFormItem } from '../hooks/useFormItem';
   import { LoadingOutlined } from '@ant-design/icons-vue';
   interface Option {
@@ -33,6 +34,7 @@
     isLeaf?: boolean;
     children?: Option[];
   }
+  const { get, omit } = lodash
   export default defineComponent({
     name: 'ApiCascader',
     components: {

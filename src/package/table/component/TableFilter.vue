@@ -94,7 +94,8 @@
 import { computed, defineComponent, PropType, ref, unref, CSSProperties } from 'vue'
 import { Button, Select, SelectOption, Tooltip, InputSearch, InputGroup } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
-import cloneDeep from 'lodash/cloneDeep'
+import lodash from 'lodash'
+// import cloneDeep from 'lodash/cloneDeep'
 
 import { basePrefixCls } from '../../../constant'
 import { ScRadioTooltipGroup } from '../../radio'
@@ -104,6 +105,8 @@ import ColumnDialogVue from './ColumnDialog.vue'
 import { isFunction, deepMerge, transformPxtoRem } from '../../../utils'
 
 const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
+
+const { cloneDeep } = lodash
 
 export const TableFilterProps = () => ({
   selectValue: String,

@@ -7,10 +7,12 @@ import type { PaginationProps } from '../types/pagination'
 import { FetchParams, SorterResult } from '../types/table'
 import { buildUUID } from '../../../utils/uuid'
 import { useTimeoutFn } from '../../../hooks/useTimeoutFn'
-import cloneDeep from 'lodash/cloneDeep'
-import get from 'lodash/get'
-import merge from 'lodash/merge'
+// import cloneDeep from 'lodash/cloneDeep'
+// import get from 'lodash/get'
+// import merge from 'lodash/merge'
+import lodash from 'lodash'
 
+const { cloneDeep, get, merge } = lodash
 interface ActionType {
   getPaginationInfo: ComputedRef<boolean | PaginationProps>;
   setPagination: (info: Partial<PaginationProps>) => void;

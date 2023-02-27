@@ -39,12 +39,15 @@
 import { computed, defineComponent, unref, onMounted } from 'vue'
 import { Select, CheckboxGroup, Checkbox, SelectOption } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
-import cloneDeep from 'lodash/cloneDeep'
+// import cloneDeep from 'lodash/cloneDeep'
+import lodash from 'lodash'
 
 import { basePrefixCls } from '../../../constant'
 import { buildUUID } from '../../../utils'
 import { findParentDom } from '../../../utils/domHelper'
 import { props } from './type'
+
+const { cloneDeep } = lodash
 
 export default defineComponent({
   name: 'ScSelect',

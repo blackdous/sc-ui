@@ -22,7 +22,8 @@
 
 <script lang='ts'>
 import { defineComponent, computed, ref, unref } from 'vue'
-import cloneDeep from 'lodash/cloneDeep'
+// import cloneDeep from 'lodash/cloneDeep'
+import lodash from 'lodash'
 
 import ScModal from '../../modal/component/ScModal.vue'
 import { ColumnModal, Column } from '../types/column'
@@ -33,6 +34,7 @@ interface CheckParams {
   checkedList: Column[],
   list: Column[],
 }
+const { cloneDeep } = lodash
 
 export default defineComponent({
   name: 'ColumnDialog',

@@ -1,8 +1,11 @@
 import { ComputedRef, ref, watchEffect, isRef, unref, Ref, watch, nextTick, onMounted, computed} from "vue"
 import { CreateButton, MutilpActionOptions, SearchOptions } from "../types/table"
-import cloneDeep from 'lodash/cloneDeep'
+// import cloneDeep from 'lodash/cloneDeep'
+import lodash from 'lodash'
 
 import { isFunction } from "@vueuse/core"
+
+const { cloneDeep } = lodash
 export function useFilter (
   propsRef: ComputedRef<Recordable>,
   selectedRowKeysRef?: Ref<Recordable[]>,

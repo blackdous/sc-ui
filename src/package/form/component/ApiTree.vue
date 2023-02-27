@@ -13,8 +13,10 @@
   import { computed, defineComponent, watch, ref, onMounted, unref, PropType } from 'vue';
   import { Tree } from 'ant-design-vue';
   import { isArray, isFunction, PropTypes } from '../../../utils';
-  import get from 'lodash/get'
+  import lodash from 'lodash'
+  // import get from 'lodash/get'
   import { LoadingOutlined } from '@ant-design/icons-vue';
+  const { get } = lodash
   export default defineComponent({
     name: 'ApiTree',
     components: { ATree: Tree, LoadingOutlined },

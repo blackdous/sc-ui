@@ -7,11 +7,13 @@
   import { useAttrs } from '../../../hooks'
   import { basePrefixCls } from '../../../constant'
   import { defineComponent, computed, ref, unref, toRefs } from 'vue'
-  import get from 'lodash/get'
+  import lodash from 'lodash'
+  // import get from 'lodash/get'
   import CollapseContainer from './CollapseContainer.vue'
 
   declare type CollapseContainerProps = Partial<ExtractPropTypes<typeof CollapseContainer>> 
-
+  
+  const { get } = lodash
   const props = {
     useCollapse: { type: Boolean, default: true },
     title: { type: [String, Object]},

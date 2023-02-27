@@ -26,12 +26,13 @@
   import { isFunction, PropTypes } from '../../../utils';
   import { useRuleFormItem } from '../hooks/useFormItem';
   import { useAttrs } from '../../../hooks';
-  import get from 'lodash/get'
-  import omit from 'lodash/omit'
+  import lodash from 'lodash'
+  // import get from 'lodash/get'
+  // import omit from 'lodash/omit'
   import { LoadingOutlined } from '@ant-design/icons-vue';
 
   type OptionsItem = { label: string; value: string; disabled?: boolean };
-
+  const { get, omit } = lodash
   export default defineComponent({
     name: 'ApiSelect',
     components: {
