@@ -3,7 +3,8 @@ import DemoBlock from '@ruabick/vitepress-demo-block';
 import '@ruabick/vitepress-demo-block/dist/style.css';
 import './var.less';
 import '../../../src/style/index';
-import { initLineCode } from './showVueSFCPlayground';
+// import { initLineCode } from './showVueSFCPlayground';
+import { initLineCode } from './showCodeSandbox'
 
 export default {
   ...DefaultTheme,

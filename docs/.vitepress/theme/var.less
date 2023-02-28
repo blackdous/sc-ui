@@ -134,7 +134,35 @@ html * {
 
 .dark {
   --vp-code-block-bg: var(--vp-c-bg-alt);
+  .VPContent {
+    background-color: var(--vp-code-block-bg);
+    color: #fff;
+    h1, 
+    h2, 
+    h3, 
+    h4, 
+    h5, 
+    h6, 
+    .anticon, 
+    .ant-descriptions-title,
+    .ant-descriptions-item-label,
+    .ant-descriptions-item-content,
+    .ant-form-item-label > label,
+    .ant-radio-wrapper,
+    .ant-checkbox-wrapper,
+    .scPicker-input > input:not(:disabled)
+    {
+      color: #fff;
+    }
+    .scCascader-panel,
+    .ant-transfer,
+    .tableEmpty
+    {
+      background-color: #fff;
+    }
+  }
 }
+
 
 .vp-doc [class*='language-']:before {
   color: var(--vp-c-text-2);

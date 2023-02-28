@@ -73,7 +73,10 @@ const initClick = () => {
                 "vue/server-renderer": "https://sfc.vuejs.org/server-renderer.esm-browser.js",
                 "ant-design-vue": "https://cdn.jsdelivr.net/npm/ant-design-vue@2.2.8/+esm",
                 "sc-ui": "https://cdn.jsdelivr.net/npm/@sincerecloud/sc-ui@0.0.74/sc-ui.es.min.js",
-                "@ant-design/icons-vue": "https://cdn.jsdelivr.net/npm/@ant-design/icons-vue@6.1.0/+esm"
+                "@ant-design/icons-vue": "https://cdn.jsdelivr.net/npm/@ant-design/icons-vue@6.1.0/+esm",
+                "lodash": "https://cdn.jsdelivr.net/npm/lodash@4.17.21/+esm",
+                "dayjs": "https://cdn.jsdelivr.net/npm/dayjs@1.11.7/+esm",
+                "moment": "https://cdn.jsdelivr.net/npm/moment@2.29.4/+esm"
               }
             },
             null,
