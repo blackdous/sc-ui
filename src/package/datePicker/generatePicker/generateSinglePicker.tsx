@@ -4,7 +4,7 @@ import { CloseCircleFilled } from '@ant-design/icons-vue';
 import RCPicker from '../../picker';
 import type { PanelMode, PickerMode } from '../../picker/interface';
 import type { GenerateConfig } from '../../picker/generate/index';
-import enUS from '../locale/zh_CN';
+import enUS from '../locale/en_US';
 import { getPlaceholder } from '../util';
 import { useLocaleReceiver } from '../../../locale-provider/LocaleReceiver';
 import { getTimeProps, Components } from '.';

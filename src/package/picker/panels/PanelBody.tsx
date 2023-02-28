@@ -6,6 +6,7 @@ import { getCellDateDisabled } from '../utils/dateUtil';
 import type { VueNode } from '../../../utils/type';
 import classNames from '../../../utils/classNames';
 import useMergeProps from '../hooks/useMergeProps';
+import { isArray, isFunction } from '../../../utils';
 
 export type PanelBodyProps<DateType> = {
   prefixCls: string;
@@ -95,10 +96,12 @@ function PanelBody<DateType>(_props: PanelBodyProps<DateType>) {
           })}
           onClick={() => {
             if (!disabled) {
-              // if (onSelect.length) {
-              //   onSelect?.[1](currentDate);
-              // }
-              onSelect(currentDate)
+              if (isArray(onSelect)) {
+                onSelect?.[1](currentDate)
+              }
+              if (isFunction(onSelect)) {
+                onSelect(currentDate)
+              }
             }
           }}
           onMouseenter={() => {

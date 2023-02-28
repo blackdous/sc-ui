@@ -72,7 +72,6 @@ export function isSameMonth<DateType>(
   if (typeof equal === 'boolean') {
     return equal;
   }
-
   return (
     isSameYear(generateConfig, month1, month2) &&
     generateConfig.getMonth(month1!) === generateConfig.getMonth(month2!)

@@ -42,6 +42,16 @@ realPath: src/package/datePicker/index.zh-CN.md
   >
 </demo>
 
+
+## 不可选择日期和时间
+
+<demo src="./demo/disabledDate.vue"
+  language="vue"
+  title="不可选择日期和时间"
+  desc="可用 `disabledDate` 和 `disabledTime` 分别禁止选择部分日期和时间，其中 `disabledTime` 需要和 `showTime` 一起使用"
+  >
+</demo>
+
 ## API
 
 日期类组件包括以下五种形式。

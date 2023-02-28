@@ -4,7 +4,7 @@ import { CloseCircleFilled } from '@ant-design/icons-vue';
 // import { SwapRightOutlined } from '@ant-design/icons-vue';
 import { RangePicker as VCRangePicker } from '../../picker';
 import type { GenerateConfig } from '../../picker/generate/index';
-import enUS from '../locale/zh_CN';
+import enUS from '../locale/en_US';
 import { useLocaleReceiver } from '../../../locale-provider/LocaleReceiver';
 import { getRangePlaceholder } from '../util';
 import { getTimeProps, Components } from '.';
