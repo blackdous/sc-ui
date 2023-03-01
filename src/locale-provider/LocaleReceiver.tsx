@@ -70,10 +70,19 @@ export function useLocaleReceiver<T extends LocaleComponentName>(
   const localeData = inject<LocaleReceiverContext>('localeData', {} as LocaleReceiverContext);
   const componentLocale = computed<Locale[T]>(() => {
     const { antLocale } = localeData;
+    // console.log('antLocale: ', antLocale);
+    let localeLang:string | Nullable<undefined> = antLocale?.locale
+    // console.log('localeLang: ', localeLang);
+    if (localeLang) {
+      const localLangArr = (localeLang || '').split('-')
+      localeLang = localLangArr[0] + '_' + localLangArr[1].toUpperCase()
+    }
     const locale =
       unref(defaultLocale) || (defaultLocaleData as LocaleInterface)[componentName || 'global'];
     const localeFromContext = componentName && antLocale ? antLocale[componentName] : {};
-
+    if (localeFromContext.lang) {
+      localeFromContext.lang = { ...localeFromContext.lang, locale: localeLang }
+    }
     return {
       ...(typeof locale === 'function' ? (locale as Function)() : locale),
       ...(localeFromContext || {}),

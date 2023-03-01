@@ -1,66 +1,85 @@
 <template>
-  <Space direction="vertical" :size="12">
-    <div>
-      <p>年份选择器</p>
-      <ScDatePicker
-        v-model:value="value4"
-        picker="year"
-        value-format="YYYY"
-        @change="handleChange"
-      >
-      </ScDatePicker>
-    </div> 
-    <div>
-      <p>月份选择器</p>
-      <ScDatePicker
-        v-model:value="value2"
-        value-format="YYYY-MM"
-        @change="handleChange"
-        picker="month"
-      >
-      </ScDatePicker>
-    </div>
-    <div>
-      <p>日期选择器</p>
-      <ScDatePicker
-        v-model:value="value"
-        value-format="YYYY-MM-DD"
-        @change="handleChange"
-      >
-      </ScDatePicker>
-    </div>
-    <div>
-      <p>周选择器</p>
-      <ScDatePicker
-        v-model:value="value1"
-        @change="handleChange"
-        picker="week"
-      >
-      </ScDatePicker>
-    </div>
-    <div>
-      <p>季度选择器</p>
-      <ScDatePicker
-        v-model:value="value3"
-        value-format="YYYY-Q"
-        @change="handleChange"
-        picker="quarter"
-      >
-      </ScDatePicker>
-    </div> 
-  </Space>
+  <!-- <ConfigProvider
+    :locale="zh_CN"
+  > -->
+    <Space direction="vertical" :size="12">
+      <div>
+        <p>年份选择器</p>
+        <ScDatePicker
+          v-model:value="value4"
+          picker="year"
+          value-format="YYYY"
+          @change="handleChange"
+        >
+        </ScDatePicker>
+      </div> 
+      <!-- <div>
+        <DatePicker
+          v-model:value="value4"
+          picker="year"
+          value-format="YYYY"
+          @change="handleChange"
+        >
+
+        </DatePicker>
+      </div> -->
+      <div>
+        <p>月份选择器</p>
+        <ScDatePicker
+          v-model:value="value2"
+          value-format="YYYY-MM"
+          @change="handleChange"
+          picker="month"
+        >
+        </ScDatePicker>
+      </div>
+      <div>
+        <p>日期选择器</p>
+        <ScDatePicker
+          v-model:value="value"
+          value-format="YYYY-MM-DD"
+          @change="handleChange"
+        >
+        </ScDatePicker>
+      </div>
+      <div>
+        <p>周选择器</p>
+        <ScDatePicker
+          v-model:value="value1"
+          @change="handleChange"
+          picker="week"
+        >
+        </ScDatePicker>
+      </div>
+      <div>
+        <p>季度选择器</p>
+        <ScDatePicker
+          v-model:value="value3"
+          @change="handleChange"
+          picker="quarter"
+        >
+        </ScDatePicker>
+      </div> 
+    </Space>
+  <!-- </ConfigProvider> -->
 </template>
 
 <script lang='ts'>
 import { ref, defineComponent, watch } from 'vue'
-import { Space } from 'ant-design-vue';
+import { Space, ConfigProvider, DatePicker } from 'ant-design-vue';
 import { ScDatePicker } from 'sc-ui'
 import type { Dayjs } from 'dayjs';
+// import { zh_CN } from '../../../utils/zh_CN'
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+dayjs.locale('zh');
 
 export default defineComponent({
   components: {
     ScDatePicker,
-    Space
+    Space,
+    ConfigProvider,
+    DatePicker
   },
   setup () {
     const value = ref<Dayjs>()
@@ -85,7 +104,8 @@ export default defineComponent({
       value2,
       value3,
       value4,
-      handleChange
+      handleChange,
+      // zh_CN
     }
   }
 })

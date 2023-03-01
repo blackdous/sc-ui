@@ -7,6 +7,9 @@
       :loading="false"
       :actionsOptions="actionProps"
       @change="handleChange"
+      :create-button-options="{
+        show: false
+      }"
       >
       <!-- @onAction="handleAction" -->
     </ScTable>

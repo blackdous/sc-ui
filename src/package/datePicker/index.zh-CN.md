@@ -7,6 +7,51 @@ map:
 
 用于选择某一具体日期或某一段日期区间。
 
+## 通过ConfigProvider设置国际化
+
+```vue
+<template>
+  <ConfigProvider
+    :locale="zh_CN"
+  >
+   <ScDatePicker
+      v-model:value="value4"
+      picker="year"
+      value-format="YYYY"
+      @change="handleChange"
+    >
+    </ScDatePicker>
+  </ConfigProvider>
+</template>
+<script lang='ts'>
+import { ref, defineComponent } from 'vue'
+import { ConfigProvider } from 'ant-design-vue';
+import { ScDatePicker } from 'sc-ui'
+import type { Dayjs } from 'dayjs';
+import zh_CN from 'ant-design-vue/es/locale/zh_CN';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+dayjs.locale('zh');
+export default defineComponent({
+  components: {
+    ScDatePicker,
+    ConfigProvider,
+  },
+  setup () {
+     const value = ref<Dayjs>()
+     const handleChange = (val:any) => {
+        console.log('val: ', val);
+      }
+     return {
+      value,
+      zh_CN,
+      handleChange
+    }
+  }
+})
+</script>
+```
+
 ## 组件类型
 
 ## 基础选择器
@@ -40,7 +85,6 @@ map:
   title="dateTimerRange"
   >
 </demo>
-
 
 ## 不可选择日期和时间
 

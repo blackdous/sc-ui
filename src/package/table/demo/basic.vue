@@ -9,6 +9,9 @@
       :data-source="data"
       :columns="columns"
       size="small"
+      :create-button-options="{
+        show: true
+      }"
       :loading="loading"
       :scroll="{ x: true }"
       @change="handleChange"
@@ -26,11 +29,11 @@
           {{text}}1111
         </span>
       </template>
-      <template #multipleBtns>
+      <!-- <template #multipleBtns>
         <div>
           111111
         </div>
-      </template>
+      </template> -->
       <!-- <template #tableActive>
         <Tooltip>
           <template #title>
