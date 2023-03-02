@@ -32,6 +32,10 @@ export const ssrTransformCustomDir = () => {
 };
 export const createVitePlugins = (isBuild: boolean) => {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
+    dts({
+      insertTypesEntry: true,
+      copyDtsFiles: true,
+    }),
     vue({
       template: {
         compilerOptions: {
@@ -44,10 +48,6 @@ export const createVitePlugins = (isBuild: boolean) => {
     // transformLess(),
     vueJsx(),
     vueSetupExtend(),
-    dts({
-      insertTypesEntry: true,
-      copyDtsFiles: false,
-    }),
     DefineOptions(),
     Components({
       resolvers: [

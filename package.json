@@ -21,7 +21,9 @@
   },
   "scripts": {
     "dev": "initial-scan docs && vitepress dev .docs --host",
-    "build": "vite build",
+    "build": "rimraf rm -f dist &&  yarn build:umd && yarn build:es",
+    "build:es": "cross-env build=es vite build",
+    "build:umd": "cross-env build=umd vite build",
     "site:build": "cross-env NODE_ENV=production vitepress build .docs",
     "serve": "vitepress serve .docs --host",
     "deploy": "gh-pages -d .docs/.vitepress/dist -t true",
@@ -88,6 +90,7 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.3.2",
     "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-terser": "^7.0.0",
     "rollup-plugin-typescript2": "^0.27.0",

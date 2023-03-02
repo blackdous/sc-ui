@@ -52,7 +52,6 @@
         }
       }"
       :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
-      locale="zh"
       :customFilter="true"
       :filterTag="true"
       

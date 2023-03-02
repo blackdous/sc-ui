@@ -1,121 +1,107 @@
 <template>
-  <!-- <ConfigProvider
-    :locale="zh_CN"
-  > -->
-    <Space direction="vertical" :size="12">
-      <div>
-        <p>年份选择器</p>
-        <ScDatePicker
-          v-model:value="value4"
-          picker="year"
-          value-format="YYYY"
-          @change="handleChange"
-        >
-        </ScDatePicker>
-      </div> 
-      <!-- <div>
-        <DatePicker
-          v-model:value="value4"
-          picker="year"
-          value-format="YYYY"
-          @change="handleChange"
-        >
-
-        </DatePicker>
-      </div> -->
-      <div>
-        <p>月份选择器</p>
-        <ScDatePicker
-          v-model:value="value2"
-          value-format="YYYY-MM"
-          @change="handleChange"
-          picker="month"
-        >
-        </ScDatePicker>
-      </div>
-      <div>
-        <p>日期选择器</p>
-        <ScDatePicker
-          v-model:value="value"
-          value-format="YYYY-MM-DD"
-          @change="handleChange"
-        >
-        </ScDatePicker>
-      </div>
-      <div>
-        <p>周选择器</p>
-        <ScDatePicker
-          v-model:value="value1"
-          @change="handleChange"
-          picker="week"
-        >
-        </ScDatePicker>
-      </div>
-      <div>
-        <p>季度选择器</p>
-        <ScDatePicker
-          v-model:value="value3"
-          @change="handleChange"
-          picker="quarter"
-        >
-        </ScDatePicker>
-      </div> 
-    </Space>
-  <!-- </ConfigProvider> -->
+  <Space direction="vertical">
+    <ConfigProvider
+      :locale="zh_CN"
+    >
+      <!-- <ScDatePicker
+        v-model:value="value1"
+        format="YYYY-MM-DD HH:mm:ss"
+        :disabled-date="disabledDate"
+        :disabled-time="disabledDateTime"
+        :show-time="{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }"
+      /> -->
+      <!-- <ScDatePicker v-model:value="value2" :disabled-date="disabledDate" picker="month" /> -->
+      <ScRangePicker v-model:value="value3" :disabled-date="disabledDate" />
+      <ScRangePicker
+        v-model:value="value4"
+        style="width: 400px"
+        :disabled-date="disabledDate"
+        :disabled-time="disabledRangeTime"
+        :show-time="{
+          hideDisabledOptions: true,
+          defaultValue: [dayjs('00:00:00', 'HH:mm:ss'), dayjs('11:59:59', 'HH:mm:ss')],
+        }"
+        format="YYYY-MM-DD HH:mm:ss"
+      />
+    </ConfigProvider>
+  </Space>
 </template>
-
-<script lang='ts'>
-import { ref, defineComponent, watch } from 'vue'
-import { Space, ConfigProvider, DatePicker } from 'ant-design-vue';
-import { ScDatePicker } from 'sc-ui'
-import type { Dayjs } from 'dayjs';
-// import { zh_CN } from '../../../utils/zh_CN'
-import dayjs from 'dayjs';
-import 'dayjs/locale/zh-cn';
-dayjs.locale('zh');
+<script lang="ts">
+import dayjs, { Dayjs } from 'dayjs';
+import { defineComponent, ref, watch } from 'vue';
+import { Space, ConfigProvider } from 'ant-design-vue';
+import { ScDatePicker, ScRangePicker } from 'sc-ui';
+import zh_CN from 'ant-design-vue/es/locale/zh_CN.js'
+console.log('zhCN: ', zh_CN);
 
 export default defineComponent({
   components: {
-    ScDatePicker,
     Space,
-    ConfigProvider,
-    DatePicker
+    ScDatePicker,
+    ScRangePicker,
+    ConfigProvider
   },
-  setup () {
-    const value = ref<Dayjs>()
-    console.log('value: ', value.value);
-    const value1 = ref<Dayjs>()
-    const value2 = ref<Dayjs>()
-    const value3 = ref<Dayjs>()
-    const value4 = ref<Dayjs>()
+  setup() {
+    const range = (start: number, end: number) => {
+      const result = [];
 
-    const handleChange = (val:any) => {
+      for (let i = start; i < end; i++) {
+        result.push(i);
+      }
+
+      return result;
+    };
+
+    const disabledDate = (current: Dayjs) => {
+      // Can not select days before today and today
+      return current && current < dayjs().endOf('day');
+    };
+
+    const value1 = ref<Dayjs>();
+    const value2 = ref<Dayjs>();
+    const value3 = ref<[Dayjs, Dayjs]>();
+    const value4 = ref<[Dayjs, Dayjs]>();
+
+    watch(() => value3.value, (val) => {
       console.log('val: ', val);
-    }
 
-    watch([() => value1.value, () => value2.value, () => value3.value, () => value4], ([val1, val2, val3, val4]) => {
-      console.log('val1, val2, val3, val4: ', val1, val2, val3, val4);
     })
 
-    // console.log('value4: ', value4.value);
+    const disabledDateTime = () => {
+      return {
+        disabledHours: () => range(0, 24).splice(4, 20),
+        disabledMinutes: () => range(30, 60),
+        disabledSeconds: () => [55, 56],
+      };
+    };
+
+    const disabledRangeTime = (_: Dayjs, type: 'start' | 'end') => {
+      if (type === 'start') {
+        return {
+          disabledHours: () => range(0, 60).splice(4, 20),
+          disabledMinutes: () => range(30, 60),
+          disabledSeconds: () => [55, 56],
+        };
+      }
+      return {
+        disabledHours: () => range(0, 60).splice(20, 4),
+        disabledMinutes: () => range(0, 31),
+        disabledSeconds: () => [55, 56],
+      };
+    };
+
     return {
-      value,
+      dayjs,
       value1,
       value2,
       value3,
       value4,
-      handleChange,
-      // zh_CN
-    }
-  }
-})
-
+      disabledDate,
+      disabledDateTime,
+      disabledRangeTime,
+      zh_CN
+    };
+  },
+});
 </script>
-<style scoped>
-/* @import 'comment'; */
-</style>
-<style scoped>
-  div p {
-    padding: 10px 0;
-  }
-</style>
+
