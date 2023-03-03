@@ -185,7 +185,8 @@ export interface SearchOptions {
     validatorTrigger?: 'all' | 'search' | 'change',
     maxlength?: number,
     width?: string,
-    allowClear?: boolean
+    allowClear?: boolean,
+    defaultValue?: string
   }
 }
 

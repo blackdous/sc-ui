@@ -642,7 +642,9 @@ export interface SearchOptions {
   // select 站位字符串、宽度
   selectOptions?: {
     placeholder?: string,
-    width?: string
+    width?: string,
+    // 默认值
+    defaultValue: string
   },
   // input 站位字符串、宽度、最大输入长度、是否出现清空按钮
   inputOptions?: {
@@ -654,7 +656,9 @@ export interface SearchOptions {
     validatorTrigger: 'all' | 'search' | 'change',
     maxlength?: number,
     width?: string,
-    allowClear?: boolean
+    allowClear?: boolean,
+    // 默认值
+    defaultValue?: string
   }
 }
 ```

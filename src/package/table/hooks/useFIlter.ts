@@ -120,11 +120,14 @@ export function useFilter (
 
   onMounted(() => {
     setMutilpAction(unref(propsRef).multipleOptions as MutilpActionOptions)
-    setSearchOptions(unref(propsRef).searchOptions as SearchOptions)
   })
 
   watchEffect(() => {
     createButtonOptions.value = unref(propsRef).createButtonOptions
+  })
+
+  watchEffect(() => {
+    setSearchOptions(unref(propsRef).searchOptions as SearchOptions)
   })
 
   return {

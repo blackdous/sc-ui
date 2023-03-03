@@ -28,12 +28,14 @@
         customSearchFunc: searchHanle,
         selectOptions: {
           placeholder: '请选择',
-          width: '100px'
+          width: '100px',
+          defaultValue: 'bb'
         },
         inputOptions: {
           placeholder: '请输入',
           width: '200px',
-          maxlength: 40
+          maxlength: 40,
+          defaultValue: searchDefaultValue
         }
       }"
       @change="handleChange"
@@ -48,9 +50,12 @@ import { ref, Ref, ComputedRef, reactive } from 'vue'
 import { ScTable } from 'sc-ui'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
+import { setTime } from '../../picker/utils/timeUtil';
 
 const scTableRef = ref()
 type Key = string | number
+
+const searchDefaultValue = ref<string>('测试默认值')
 
 const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
   {
@@ -230,6 +235,11 @@ for(let i = 10; i < 12; i++) {
 const handleSelectChange = (val:string) => {
   console.log('val: ', val);
 }
+
+setTimeout(() => {
+  searchDefaultValue.value = '测试异步更新searchDefaultValue值'
+  console.log('更新searchDefaultValue: ', searchDefaultValue);
+}, 500)
 </script>
 <style scoped>
 /* @import 'comment'; */

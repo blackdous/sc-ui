@@ -91,7 +91,7 @@
 </template>
 
 <script lang='ts'>
-import { computed, defineComponent, PropType, ref, unref, CSSProperties } from 'vue'
+import { computed, defineComponent, PropType, ref, unref, CSSProperties, watch } from 'vue'
 import { Button, Select, SelectOption, Tooltip, InputSearch, InputGroup } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
 import lodash from 'lodash'
@@ -178,6 +178,14 @@ export default defineComponent({
       tip: ''
     })
 
+    watch(() => props?.searchOptions?.inputOptions, () => {
+      console.log('props?.searchOptions?.inputOptions: ', props?.searchOptions?.inputOptions);
+      textValue.value = props?.searchOptions?.inputOptions?.defaultValue || ''
+    }, {
+      immediate: true,
+      deep: true
+    })
+
 
     const newProps = computed(() => {
       return props
@@ -205,7 +213,6 @@ export default defineComponent({
     })
 
     const isShowRightFilter = computed(() => {
-      console.log('Object.keys(slots).includes', slots, Object.keys(slots).includes('search'));
       return (
         props?.searchOptions?.show ||
         unref(isSearch) ||
@@ -220,13 +227,12 @@ export default defineComponent({
     
     const selectValue = computed({
       get: () => {
-        const { typeList } = props.searchOptions || {}
-        let defaultValue = undefined
+        const { typeList, selectOptions, loading } = props.searchOptions || {}
+        const { defaultValue } = selectOptions
         if (!props.selectValue && typeList) {
-          defaultValue = typeList[0]?.value
           selectedItem.value = typeList[0]
         }
-        return props.selectValue || defaultValue
+        return props.selectValue || (!loading ? defaultValue : undefined) || typeList[0]?.value
       },
       set: (val) => {
         selectedItem.value = unref(searchOptions)?.typeList?.find((item: any)=> item.value === val)
@@ -241,7 +247,6 @@ export default defineComponent({
     })
     
     const createButtonOptions = computed(() => {
-      console.log('props.createButtonOptions: ', props.createButtonOptions);
       return props.createButtonOptions
     })
     
@@ -364,6 +369,7 @@ export default defineComponent({
       basePrefixCls,
       isShowLeftFilter,
       isShowRightFilter,
+      multipleValue,
       newProps,
       validatorResult,
       transformPxtoRem,
