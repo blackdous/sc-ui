@@ -2,16 +2,14 @@
   "version": "0.0.79",
   "name": "@sincerecloud/sc-ui",
   "description": "vue3 ui ant-design-vue sincerecloud sc-ui typescript",
-  "module": "./es/index.js",
-  "main": "./lib/index.js",
+  "module": "./build.es.ts",
+  "main": "./build.umd.ts",
+  "typings": "./index.d.ts",
   "exports": {
     ".": {
-      "import": "./es/index.js",
-      "require": "./lib/index.js",
-      "types": "./index.d.ts"
+      "import": "./build.es.ts",
+      "require": "./build.umd.ts"
     },
-    "./es": "./es/index.js",
-    "./lib": "./lib/index.js",
     "./style.css": {
       "import": "./style.css",
       "require": "./style.css"
@@ -26,12 +24,9 @@
   },
   "dependencies": {
     "@iconify/vue": "^4.0.0",
-    "@ant-design/icons-vue": "6.0.0",
     "less": "^4.1.3",
     "vue-slider-component": "4.1.0-beta.7",
-    "@vueuse/core": "^9.4.0"
-  },
-  "devDependencies": {
+    "@vueuse/core": "^9.4.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "dayjs": "^1.11.7"

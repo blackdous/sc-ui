@@ -227,8 +227,8 @@ export default defineComponent({
     
     const selectValue = computed({
       get: () => {
-        const { typeList, selectOptions, loading } = props.searchOptions || {}
-        const { defaultValue } = selectOptions
+        const { typeList, loading } = props.searchOptions || {}
+        const { defaultValue } = props?.searchOptions?.selectOptions || {}
         if (!props.selectValue && typeList) {
           selectedItem.value = typeList[0]
         }
