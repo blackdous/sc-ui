@@ -129,6 +129,7 @@ function PickerPanel<DateType>() {
           return 'scPicker'
         }
       },
+      pickerType: String,
       locale: Object,
       generateConfig: Object,
       value: Object,
@@ -308,7 +309,7 @@ function PickerPanel<DateType>() {
         type: 'key' | 'mouse' | 'submit',
         forceTriggerSelect = false,
       ) => {
-        const { picker, generateConfig, onSelect, onChange, disabledDate } = props;
+        const { picker, generateConfig, onSelect, onChange, disabledDate, pickerType } = props;
         if (mergedMode.value === picker || forceTriggerSelect) {
           setInnerValue(date);
 
@@ -326,7 +327,7 @@ function PickerPanel<DateType>() {
             !disabledDate?.(date)
           ) {
             if (isArray(onChange)) {
-              if (!onChange[onChange.length - 1]) {
+              if (pickerType === 'rangePicker') {
                 return false
               }
               onChange?.[1]?.(date);

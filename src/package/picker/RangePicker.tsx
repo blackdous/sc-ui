@@ -886,6 +886,8 @@ function RangerPicker<DateType>() {
             });
         }
 
+        // console.log('props: ', props);
+        // console.log('panelProps: ', panelProps);
         return (
           <RangeContextProvider
             value={{
@@ -898,6 +900,7 @@ function RangerPicker<DateType>() {
             <PickerPanel<DateType>
               {...(props as any)}
               {...panelProps}
+              pickerType='rangePicker'
               dateRender={panelDateRender}
               showTime={panelShowTime}
               mode={mergedModes.value[mergedActivePickerIndex.value]}
@@ -960,6 +963,7 @@ function RangerPicker<DateType>() {
 
         if (type === 'submit' || (type !== 'key' && !needConfirmButton.value)) {
           // triggerChange will also update selected values
+          // console.log('values, mergedActivePickerIndex.value: ', values, mergedActivePickerIndex.value);
           triggerChange(values, mergedActivePickerIndex.value);
           // clear hover value style
           if (mergedActivePickerIndex.value === 0) {
@@ -1088,6 +1092,7 @@ function RangerPicker<DateType>() {
             const rightPanel = renderPanel('right', {
               pickerValue: nextViewDate,
               onPickerValueChange: newViewDate => {
+                console.log('newViewDate: ', newViewDate);
                 setViewDate(
                   getClosingViewDate(newViewDate, picker, generateConfig, -1),
                   mergedActivePickerIndex.value,

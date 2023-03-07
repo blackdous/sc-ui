@@ -13,13 +13,13 @@
       <template #title>
         {{propsRef.describe}}
       </template>
-      <i class="sc-ui sc-question-circle-fill"></i>
+      <i @click.stop class="sc-ui sc-question-circle-fill"></i>
     </Tooltip>
   </span>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, unref } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 
 const preFixClass = 'describeTh'

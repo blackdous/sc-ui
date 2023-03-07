@@ -71,6 +71,9 @@ export default defineComponent({
       if (props.isFullPage === true) {
         nerIndiactorH = h('img', { src: loadGif, class: 'loading-gif' })
       }
+      if (props.indicator === null) {
+        return props.indicator
+      }
       return nerIndiactorH
     })
     return {
