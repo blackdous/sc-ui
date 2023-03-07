@@ -1,4 +1,6 @@
 @cascaderScope: ~'@{prefixCls}Cascader';
+@cascaderNewScope: ~'@{prefixCls}CascaderNew';
+// scCascaderNew-dropdown
 .ant-cascader-menus {
   .ant-cascader-menu-item {
     min-width: calc(@input-x-width - 12px);
@@ -110,5 +112,11 @@ div.ant-cascader-menu {
     .@{cascaderScope}-prefix {
       color: @disabled-color;
     }
+  }
+}
+
+.@{cascaderNewScope} {
+  &-dropdown {
+    max-width: none;
   }
 }

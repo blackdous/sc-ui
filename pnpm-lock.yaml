@@ -6,6 +6,7 @@ specifiers:
   '@commitlint/config-conventional': ^17.2.0
   '@iconify/vue': ^4.0.0
   '@pnpm/types': ^8.8.0
+  '@popperjs/core': ^2.11.6
   '@rollup/plugin-commonjs': ^15.0.0
   '@rollup/plugin-node-resolve': ^9.0.0
   '@rollup/plugin-replace': ^2.3.1
@@ -97,6 +98,7 @@ devDependencies:
   '@commitlint/cli': 17.2.0
   '@commitlint/config-conventional': 17.2.0
   '@pnpm/types': 8.8.0
+  '@popperjs/core': 2.11.6
   '@rollup/plugin-commonjs': 15.1.0_rollup@2.79.1
   '@rollup/plugin-node-resolve': 9.0.0_rollup@2.79.1
   '@rollup/plugin-replace': 2.4.2_rollup@2.79.1
@@ -1032,6 +1034,10 @@ packages:
   /@pnpm/types/8.8.0:
     resolution: {integrity: sha512-IKUpbWRHDB9C4Yy4UeBpeYhU7eIsLj50jF5HNRUkbJnM0CWHPLxX9TGCI+ov8pgGeTP1t1g0GPDHD6en9D8LxQ==}
     engines: {node: '>=14.6'}
+    dev: true
+
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: true
 
   /@rollup/plugin-commonjs/15.1.0_rollup@2.79.1:

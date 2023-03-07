@@ -53,6 +53,8 @@ export default defineConfig({
         directiveTransforms: {
           textCollapse: ssrTransformCustomDir,
           loading: ssrTransformCustomDir,
+          Clickoutside: ssrTransformCustomDir,
+          clickoutside: ssrTransformCustomDir
         },
       },
     },

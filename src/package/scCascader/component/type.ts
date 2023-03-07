@@ -1,5 +1,10 @@
-import { SizeEnum } from './../../../enums/sizeEnum';
-import { Slot, CSSProperties, VNode } from "vue"
+import { Slot, CSSProperties, VNode, ExtractPropTypes } from "vue"
+
+import { SizeEnum } from './../../../enums/sizeEnum'
+
+export const componentSizes = ['', 'default', 'small', 'large'] as const
+
+export type { Placement, Options } from '@popperjs/core'
 
 export interface OptionsItem {
   label: string,
@@ -8,7 +13,6 @@ export interface OptionsItem {
   disabled: boolean,
   [key: string]: any
 }
-
 export interface ShowSearch {
   filter?: (inputValue: string, options: OptionsItem[], fieldNames: OptionsItem) => boolean;
   render?: (arg?: {
@@ -55,3 +59,30 @@ export interface CascaderProps {
   tagRender: Slot,
   value: string | number | string[] | number[]
 }
+
+export const tagProps = () => ({
+  closable: Boolean,
+  type: {
+    type: String,
+    values: ['success', 'info', 'warning', 'danger', ''],
+    default: '',
+  },
+  hit: Boolean,
+  disableTransitions: Boolean,
+  color: {
+    type: String,
+    default: '',
+  },
+  size: {
+    type: String,
+    values: componentSizes,
+    default: '',
+  },
+  effect: {
+    type: String,
+    values: ['dark', 'light', 'plain'],
+    default: 'light',
+  },
+  round: Boolean,
+} as const)
+export type TagProps = ExtractPropTypes<typeof tagProps>

@@ -4,7 +4,11 @@
       <p>日期区间选择器</p>
       <!-- @change="handleChange" -->
       <ScRangePicker
-        v-model:value="value"
+        v-model:value="dateReactive.date"
+        value-format="YYYY-MM-DD"
+        format="YYYY-MM-DD"
+        :disabledDate="onDisabledDate"
+        allow-clear
         @change="onChange"
       >
       </ScRangePicker>
@@ -13,11 +17,12 @@
 </template>
 
 <script lang='ts'>
-import { ref, defineComponent } from 'vue'
+import { defineComponent, reactive } from 'vue'
 import { Space } from 'ant-design-vue';
 import { ScRangePicker } from 'sc-ui'
 // import type { Dayjs } from 'dayjs';
 import { Dayjs } from 'dayjs';
+import moment from 'moment';
 
 export default defineComponent({
   components: {
@@ -25,14 +30,22 @@ export default defineComponent({
     Space
   },
   setup () {
-    const value = ref<Dayjs>()
+    // const value = ref<Dayjs>()
+    const dateReactive = reactive({
+      date: []
+    })
     const onChange = (value: Dayjs, dateString: string) => {
       console.log('Selected Time: ', value);
       console.log('Formatted Selected Time: ', dateString);
     };
 
+    const onDisabledDate = (current:any) => {
+      return moment(current).year() < 2021
+    }
+
     return {
-      value,
+      dateReactive,
+      onDisabledDate,
       onChange,
     }
   }

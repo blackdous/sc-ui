@@ -4,6 +4,7 @@
     :id="uuid"
   >
     <Input
+      ref="input"
       v-bind="vBind"
       v-model:value="value"
       :class="classNames"
@@ -21,7 +22,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, onMounted, onUnmounted } from 'vue'
+import { defineComponent, computed, onMounted, onUnmounted, ref } from 'vue'
 import { Input } from 'ant-design-vue'
 import { basePrefixCls } from '../../../constant'
 import { buildUUID } from '../../../utils/uuid'
@@ -42,13 +43,16 @@ export default defineComponent({
       return {...props, ...attrs}
     })
 
+    const input = ref()
+
     const uuid = 'sc' + buildUUID()
 
     const value = computed({
       get: () => {
-        return props.value
+        return props.value || props.modelValue
       },
       set: (val) => {
+        console.log('val: ', val);
         emit('update:value', val)
       }
     })
@@ -89,7 +93,8 @@ export default defineComponent({
       vBind,
       value,
       isDescribe,
-      uuid
+      uuid,
+      input
     }
   }
 })

@@ -1,5 +1,4 @@
 /* eslint-disable no-template-curly-in-string */
-// import Pagination from '../vc-pagination/locale/en_US';
 import DatePicker from '../package/datePicker/locale/en_US';
 // import TimePicker from '../time-picker/locale/en_US';
 // import Calendar from '../calendar/locale/en_US';

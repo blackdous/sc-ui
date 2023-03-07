@@ -31,8 +31,8 @@ import dayjs, { Dayjs } from 'dayjs';
 import { defineComponent, ref, watch } from 'vue';
 import { Space, ConfigProvider } from 'ant-design-vue';
 import { ScDatePicker, ScRangePicker } from 'sc-ui';
-import zh_CN from 'ant-design-vue/es/locale/zh_CN.js'
-console.log('zhCN: ', zh_CN);
+// import zh_CN from 'ant-design-vue/es/locale/zh_CN.js'
+// console.log('zhCN: ', zh_CN);
 
 export default defineComponent({
   components: {

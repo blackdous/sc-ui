@@ -21,6 +21,7 @@ import { ScScrollbar } from './package/scrollbar'
 import { ScPopconfirm } from './package/popconfirm'
 import { ScCascader } from './package/cascader'
 import { ScCascaderPanel } from './package/cascaderPanel'
+import { ScCascaderNew } from './package/scCascader'
 import { ScBreadcrumb, ScBreadcrumbItem } from './package/breadcrumb'
 import { useMessage } from './hooks'
 import { ScSlider } from './package/slider'
@@ -49,7 +50,6 @@ import { installGlobalDirectives } from './directives'
 import ClickOutside from './directives/clickOutside'
 import TextCollapse from './directives/textCollapse'
 import LoadingDirective from './directives/loading'
-
 
 import './style/index.less';
 
@@ -85,6 +85,7 @@ const components = [
   ScPopconfirm,
   ScCascader,
   ScCascaderPanel,
+  ScCascaderNew,
 
   ScBreadcrumb,
   ScBreadcrumbItem,
@@ -153,6 +154,7 @@ export {
   ScPopconfirm,
   ScCascader,
   ScCascaderPanel,
+  ScCascaderNew,
 
   ScBreadcrumb,
   ScBreadcrumbItem,
