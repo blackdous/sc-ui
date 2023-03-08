@@ -39,7 +39,11 @@ const props = () => ({
     type: Function
   },
   successTxt: {
-    type: String
+    type: String,
+    default () {
+      // sykb-sqj
+      return '复制成功！'
+    }
   },
   copyTxt: {
     type: [String, Function]
@@ -83,6 +87,9 @@ export default defineComponent({
     const copyText = async () => {
       const copyText = unref(newProps).copyTxt || unref(newProps).text
       await copy(String(copyText))
+      if (unref(newProps)?.successTxt === null) {
+        return false
+      }
       if (copied && (unref(newProps).column?.type?.props?.successTxt || unref(newProps)?.successTxt)) {
         message.success({
           content: unref(newProps).column?.type?.props?.successTxt || unref(newProps).successTxt,
