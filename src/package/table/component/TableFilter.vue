@@ -178,13 +178,12 @@ export default defineComponent({
       tip: ''
     })
 
-    watch(() => props?.searchOptions?.inputOptions, () => {
-      console.log('props?.searchOptions?.inputOptions: ', props?.searchOptions?.inputOptions);
-      textValue.value = props?.searchOptions?.inputOptions?.defaultValue || ''
-    }, {
-      immediate: true,
-      deep: true
-    })
+    // watch(() => props?.searchOptions?.inputOptions?.defaultValue, () => {
+    //   textValue.value = props?.searchOptions?.inputOptions?.defaultValue || ''
+    // }, {
+    //   immediate: true,
+    //   deep: true
+    // })
 
 
     const newProps = computed(() => {
