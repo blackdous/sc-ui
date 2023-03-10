@@ -4,8 +4,8 @@
       ref="scTableRef"
       :data-source="data"
       :columns="columns"
-      :loading="false"
-
+      :loading="loading"
+      :pagination="pagination"
       :row-selection="{ 
         selectedRowKeys: state.selectedRowKeys, 
         onChange: onSelectChange
@@ -25,7 +25,7 @@
         showSelect: true,
         // typeList: () => radioList,
         typeList: promiseTypelist,
-        customSearchFunc: searchHanle,
+        action: searchHanle,
         selectOptions: {
           placeholder: '请选择',
           width: '100px',
@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, ComputedRef, reactive } from 'vue'
+import { ref, Ref, ComputedRef, reactive, h } from 'vue'
 import { ScTable } from 'sc-ui'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
@@ -56,6 +56,30 @@ const scTableRef = ref()
 type Key = string | number
 
 const searchDefaultValue = ref<string>('测试默认值')
+
+const loading = ref(false)
+
+const pagination = reactive({
+      total: 100,
+      current: 1,
+      pageSize: 10,
+      size: 'default',
+      defaultPageSize: 10,
+      showTotal: (total:string) => `共 ${total} 条`,
+      itemRender: ({type, originalElement}:any) => {
+        if (type === 'prev') {
+          return h('i', { class: 'sc-ui sc-you' })
+        } else if (type === 'next') {
+          return h('i', { class: 'sc-ui sc-you' })
+        } else {
+          return originalElement
+        }
+  
+      },
+      // showSizeChanger: true,
+      // // pageSizeOptions: PAGE_SIZE_OPTIONS,
+      // showQuickJumper: true,
+    })
 
 const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
   {
@@ -178,7 +202,7 @@ interface DataItem {
   actionsOptions?: []
 }
 
-const data: DataItem[] = [
+let data: DataItem[] = [
   {
     key: '1',
     name: 'John Brown',
@@ -214,8 +238,20 @@ const createClick = (data: ComputedRef) => {
   console.log('Data: ', data);
 }
 
-const searchHanle = (data: ComputedRef) => {
-  console.log('Data: ', data);
+const searchHanle = (aaa: ComputedRef) => {
+  console.log('aaa: ', aaa);
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+  }, 100)
+  // console.log('Data: ', data);
+  data.push(  {
+    key: '2asdasdad',
+    name: 'Jim Green112222222',
+    age: 4022222,
+    address: 'London London32222',
+  })
+  pagination.total = parseInt(Math.random() * 100)
 }
 //@ts-ignore
 const multipleChangeHandle = ({tableRef, selectedRowKeysRef}) => {

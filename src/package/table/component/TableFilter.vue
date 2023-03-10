@@ -170,6 +170,7 @@ export default defineComponent({
   setup(props, { slots, emit, expose }) {
     const multipleValue = ref()
     const textValue = ref()
+    const isDefaultValue = ref(false)
     const searchOptionsRef = ref()
     const selectedItem = ref()
 
@@ -178,12 +179,15 @@ export default defineComponent({
       tip: ''
     })
 
-    // watch(() => props?.searchOptions?.inputOptions?.defaultValue, () => {
-    //   textValue.value = props?.searchOptions?.inputOptions?.defaultValue || ''
-    // }, {
-    //   immediate: true,
-    //   deep: true
-    // })
+    watch(() => props?.searchOptions?.inputOptions?.defaultValue, (val) => {
+      if (!unref(isDefaultValue) && !unref(textValue)) {
+        textValue.value = val || props?.searchOptions?.inputOptions?.defaultValue || ''
+        isDefaultValue.value = true
+      }
+    }, {
+      immediate: true,
+      deep: true
+    })
 
 
     const newProps = computed(() => {
