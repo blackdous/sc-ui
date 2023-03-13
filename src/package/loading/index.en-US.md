@@ -1,6 +1,6 @@
 ---
 map:
-  path: /button
+  path: /loading
 ---
 
 ## Guide

@@ -17,17 +17,17 @@
     <ScButton
       @click="handleClick"
     >
-      仅图标加载
+      最小
     </ScButton>
     <ScButton
       @click="handleClick1"
     >
-      仅文字加载
+      中等
     </ScButton>
     <ScButton
       @click="handleClick2"
     >
-      图片和文字加载
+      最大
     </ScButton>
   </div>
 </template>
