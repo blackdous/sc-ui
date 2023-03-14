@@ -21,7 +21,7 @@ map:
   >
 </demo>
 
-<!-- ## 自定义title 对话框
+## 自定义title 对话框
 
 <demo src="./demo/selftHeader.vue"
   language="vue"
@@ -273,4 +273,4 @@ changeLoading(true);
 | 事件名称 | 说明                                 | 回调参数    |
 | -------- | ------------------------------------ | ----------- |
 | cancel   | 点击遮罩层或右上角叉或取消按钮的回调 | function(e) |
-| ok       | 点击确定回调                         | function(e) | -->
+| ok       | 点击确定回调                         | function(e) |
