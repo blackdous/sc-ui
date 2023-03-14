@@ -103,6 +103,7 @@ import { modalProps, ModalProps, ModalMethods } from './type'
 import { basePrefixCls } from '../../../constant'
 import { isFunction } from '../../../utils/is';
 import { deepMerge, pxToRem, isNumber } from '../../../utils'
+import useLocale from '../../../hooks/useLocale';
 
 export default defineComponent({
   name: 'ScModal',
@@ -125,13 +126,19 @@ export default defineComponent({
       return props
     })
 
+
     const visibleRef = ref(false)
     const propsRef = ref();
 
     const curProps = computed(() => {
+      const { okText, cancelText } = unref(vBind)
+      const { antLocale } = useLocale()
       return {
         ...unref(vBind),
-        ...propsRef.value
+        ...propsRef.value,
+        okText: okText || antLocale?.Modal?.okText,
+        cancelText: cancelText || antLocale?.Modal.cancelText
+
       }
     })
     const getBindValue = computed((): Recordable => {

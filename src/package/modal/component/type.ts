@@ -54,9 +54,9 @@ export const modalProps = () => ({
     default: '480px'
   },
   footer: PropTypes.any,
-  okText: { type: String, default: '确定' },
+  okText: { type: String },
   okType: String as PropType<LegacyButtonType>,
-  cancelText: { type: String, default: '取消' },
+  cancelText: { type: String },
   icon: PropTypes.any,
   maskClosable: { type: Boolean, default: true },
   forceRender: { type: Boolean, default: undefined },

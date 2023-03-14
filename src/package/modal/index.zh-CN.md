@@ -7,6 +7,11 @@ map:
 
 对话框是一种临时窗口，通常在不想中断整体任务流程，但又需要为用户展示信息或获得用户响应时，在页面中打开一个对话框承载相应的信息及操作。
 
+<!-- <demo src="./demo/confirm.vue"
+  language="vue"
+  title="confirm"
+  >
+</demo> -->
 
 ## 默认对话框
 
@@ -16,7 +21,7 @@ map:
   >
 </demo>
 
-## 自定义title 对话框
+<!-- ## 自定义title 对话框
 
 <demo src="./demo/selftHeader.vue"
   language="vue"
@@ -268,4 +273,4 @@ changeLoading(true);
 | 事件名称 | 说明                                 | 回调参数    |
 | -------- | ------------------------------------ | ----------- |
 | cancel   | 点击遮罩层或右上角叉或取消按钮的回调 | function(e) |
-| ok       | 点击确定回调                         | function(e) |
+| ok       | 点击确定回调                         | function(e) | -->

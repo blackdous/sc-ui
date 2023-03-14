@@ -29,6 +29,7 @@ import { CopyOutlined } from '@ant-design/icons-vue'
 import { useClipboard } from '@vueuse/core'
 import { message } from 'ant-design-vue'
 import { isEmptyText, isFunction } from '../../../../utils'
+import useLocale from '../../../../hooks/useLocale'
 
 const props = () => ({
   column: {
@@ -39,11 +40,7 @@ const props = () => ({
     type: Function
   },
   successTxt: {
-    type: String,
-    default () {
-      // sykb-sqj
-      return '复制成功！'
-    }
+    type: String
   },
   copyTxt: {
     type: [String, Function]
@@ -72,6 +69,7 @@ export default defineComponent({
   },
   emits: ['click'],
   setup (props, { slots }) {
+
     const newProps = computed(() => {
       return props
     })
@@ -90,9 +88,10 @@ export default defineComponent({
       if (unref(newProps)?.successTxt === null) {
         return false
       }
-      if (copied && (unref(newProps).column?.type?.props?.successTxt || unref(newProps)?.successTxt)) {
+      const { curLocale } = useLocale()
+      if (copied && (unref(newProps).column?.type?.props?.successTxt || unref(newProps)?.successTxt) || curLocale?.copy?.successMessage) {
         message.success({
-          content: unref(newProps).column?.type?.props?.successTxt || unref(newProps).successTxt,
+          content: unref(newProps).column?.type?.props?.successTxt || unref(newProps).successTxt || curLocale?.copy?.successMessage,
           duration: 1.5
         })
       }

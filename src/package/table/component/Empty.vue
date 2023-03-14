@@ -13,14 +13,12 @@
 
 <script lang='ts'>
 import { defineComponent, computed } from 'vue'
+import useLocale from '../../../hooks/useLocale'
 
 export default defineComponent({
   props: {
     text: {
-      type: String,
-      default () {
-        return '暂无数据'
-      }
+      type: String
     },
     img: {
       type: String,
@@ -30,8 +28,12 @@ export default defineComponent({
     }
   },
   setup (props, { slots }) {
+    const { curLocale } = useLocale()
     const getProps = computed(() => {
-      return props
+      return {
+        ...props,
+        text: curLocale?.noData
+      }
     })
     const isImgSlot = computed(() => {
       return Object.keys(slots).includes('img')
