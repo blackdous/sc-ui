@@ -25,6 +25,8 @@ import { ScCascaderNew } from './package/scCascader'
 import { ScBreadcrumb, ScBreadcrumbItem } from './package/breadcrumb'
 import { useMessage } from './hooks'
 import { ScSlider } from './package/slider'
+import { ScIcon } from './package/icon'
+import useIcon from './hooks/useIcon'
 import ScDatePicker, {
   ScMonthPicker,
   ScWeekPicker,
@@ -73,6 +75,7 @@ const components = [
   TableAction,
   ColumnDialog,
   Empty,
+  ScIcon,
 
   ScLoading,
   ScButton,
@@ -121,7 +124,7 @@ const install = (app: App) => {
 };
 
 const ScUi = {
-  version: '0.0.83',
+  version: '0.0.84',
   install,
 };
 
@@ -142,6 +145,7 @@ export {
   TableAction,
   ColumnDialog,
   Empty,
+  ScIcon,
 
   ScLoading,
   ScButton,
@@ -196,7 +200,8 @@ export {
   useModalContext,
   useMessage,
   useDescription,
-  useForm
+  useForm,
+  useIcon
 }
 
 export default ScUi;

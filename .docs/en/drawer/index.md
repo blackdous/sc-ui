@@ -1,7 +1,7 @@
 ---
 map:
-  path: /alert
-realPath: src/package/alert/index.en-US.md
+  path: /drawer
+realPath: src/package/drawer/index.en-US.md
 ---
 
 ## Guide

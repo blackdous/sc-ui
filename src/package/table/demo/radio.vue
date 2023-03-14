@@ -89,6 +89,7 @@ const rowSelection = computed(() => {
   return {
     selectedRowKeys: state.selectedRowKeys,
     onChange: onSelectChange,
+    type: 'radio',
     getCheckboxProps: (record:any) => {
       const props = {
         disabled: record.disabled

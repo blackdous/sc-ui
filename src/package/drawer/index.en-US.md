@@ -1,6 +1,6 @@
 ---
 map:
-  path: /alert
+  path: /drawer
 ---
 
 ## Guide
