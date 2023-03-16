@@ -83,6 +83,7 @@ export default defineComponent({
 
     const handleGroup = (item:any) => {
       const { keys, list, checkedList } = setItemChecked(item)
+      console.log('keys, list, checkedList: ', keys, list, checkedList);
       emit('change', { keys: unref(keys), checkedList: unref(checkedList), list: unref(list) })
       checkAll.value = checkedListKeys.value.length === sourceList.value.length
       if (checkedListKeys.value.length === 0) {

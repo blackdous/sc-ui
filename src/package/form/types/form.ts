@@ -115,6 +115,7 @@ export interface FormSchema {
   valueField?: string;
   // 标签名
   label: string | VNode;
+  className?: string;
   // 二级标签名 灰色
   subLabel?: string;
   // 标签名右侧温馨提示

@@ -1,6 +1,22 @@
 .ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link {
   border-color: @border-pagination-color;
 }
+.ant-pagination-jump-prev:focus, .ant-pagination-jump-next:focus {
+  .ant-pagination-item-link-icon {
+    opacity: 0;
+  }
+  .ant-pagination-item-ellipsis {
+    opacity: 1;
+  }
+  &:hover {
+    .ant-pagination-item-link-icon {
+      opacity: 1;
+    }
+    .ant-pagination-item-ellipsis {
+      opacity: 0;
+    }
+  }
+}
 .ant-pagination-total-text {
   font-weight: 400;
   font-size: 14px;

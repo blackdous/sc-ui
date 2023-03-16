@@ -98,7 +98,9 @@ div.ant-cascader-menu {
     max-width: @input-xl-width;
   }
   &.is-prefix {
-    position: relative;
+    & > span {
+      position: relative;
+    }
   }
   &-prefix {
     position: absolute;

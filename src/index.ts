@@ -52,6 +52,7 @@ import { installGlobalDirectives } from './directives'
 import ClickOutside from './directives/clickOutside'
 import TextCollapse from './directives/textCollapse'
 import LoadingDirective from './directives/loading'
+import StopEvent from './directives/stopEvent'
 
 import './style/index.less';
 
@@ -124,7 +125,7 @@ const install = (app: App) => {
 };
 
 const ScUi = {
-  version: '0.0.84',
+  version: '0.0.85',
   install,
 };
 
@@ -189,7 +190,7 @@ export {
 
 export * from './types'
 
-export { installGlobalDirectives as installGlobalDirectives, ClickOutside, TextCollapse, LoadingDirective }
+export { installGlobalDirectives as installGlobalDirectives, ClickOutside, TextCollapse, LoadingDirective, StopEvent }
 
 export { 
   useTable, 

@@ -54,7 +54,8 @@ export default defineConfig({
           textCollapse: ssrTransformCustomDir,
           loading: ssrTransformCustomDir,
           Clickoutside: ssrTransformCustomDir,
-          clickoutside: ssrTransformCustomDir
+          clickoutside: ssrTransformCustomDir,
+          stopEvent: ssrTransformCustomDir
         },
       },
     },

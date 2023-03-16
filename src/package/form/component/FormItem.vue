@@ -322,7 +322,7 @@
       }
 
       function renderItem() {
-        const { itemProps, slot, render, field, suffix, component } = props.schema;
+        const { itemProps, slot, render, field, suffix, component, className, componentProps } = props.schema;
         const { labelCol, wrapperCol } = unref(itemLabelWidthProp);
         // console.log('labelCol: ', labelCol);
         const { colon } = props.formProps;
@@ -345,11 +345,19 @@
           const showSuffix = !!suffix;
           const getSuffix = isFunction(suffix) ? suffix(unref(getValues)) : suffix;
 
+          {/* class={{ 'suffix-item': showSuffix }} */}
+
+          let newClassName = className;
+
+          if (component === 'Input' && componentProps?.describe) {
+            newClassName = newClassName + ' ' + 'mrgb4'
+          } 
+
           return (
             <Form.Item
               name={field}
               colon={colon}
-              class={{ 'suffix-item': showSuffix }}
+              class={[ showSuffix ? 'suffix-item' : '', newClassName ]}
               {...(itemProps as Recordable)}
               label={renderLabelHelpMessage()}
               rules={handleRules()}

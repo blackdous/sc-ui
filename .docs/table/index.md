@@ -8,7 +8,7 @@ realPath: src/package/table/index.zh-CN.md
 
 基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件, 部分方法是从`vben`的table上拿过来的
 
-## 基础组件
+<!-- ## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -81,7 +81,7 @@ const activeOptions = {
   }
 ```
 
-reload参数中的`action`方法，参数为`fetchParams`
+reload参数中的`action`方法，参数为`fetchParams` -->
 
 ## 带头部操作的表格
 

@@ -1,6 +1,6 @@
 .generate-z-index(@n, @i: 1) when (@i =< @n) {
   &:nth-child(@{i}){
-    z-index: (200-@i);
+    z-index: (50-@i);
   }
   .generate-z-index(@n, (@i + 1));
 }
@@ -47,7 +47,8 @@
         border-right: 4px solid @white-color;
         box-sizing: content-box;
         visibility: initial;
-        margin-left: -4px;
+        margin-left: -3px;
+        z-index: 51;
       }
       &.ant-tabs-card-bar {
         border: none;
@@ -101,7 +102,7 @@
           // background: linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 1) 100%);
           background-color: @white-color;
           transition: none;
-          // .generate-z-index(150);
+          .generate-z-index(30);
           &:not(:first-child):not(.ant-tabs-tab-active) {
             &::before {
               position: absolute;
@@ -109,6 +110,7 @@
               width: 4px;
               height: 100%;
               left: -4px;
+              top: 0;
               border-radius: 0;
               border: none;
               background: @white-color;
@@ -134,7 +136,7 @@
             // padding: 0 24px;
             box-shadow: @primary-shadow;
             background: @primary-color;
-            z-index: 2;
+            z-index: 52;
             // z-index: 11;
 
             &::before {

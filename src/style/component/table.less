@@ -227,7 +227,10 @@
           display: none;
         }
         & > .anticon-close-circle {
-          color: @text-color;
+          color: @disabled-color;
+          &:hover {
+            color: @text-color-secondary;
+          }
         }
       }
     }
@@ -360,8 +363,10 @@
 }
 
 .ant-table-column-sorter-inner {
-  &:hover {
-    color: @primary-color !important;
+  .ant-table-column-sorter-up, .ant-table-column-sorter-down {
+    &:hover {
+      color: @primary-color !important;
+    }
   }
   .anticon-caret-up {
     color: @disabled-color;

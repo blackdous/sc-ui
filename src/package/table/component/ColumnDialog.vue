@@ -47,13 +47,19 @@ export default defineComponent({
   props: ColumnModal(),
   setup (props, { emit, attrs }) {
     const checkInfo = ref<string>('')
-    const sourceList = ref()
+    // const sourceList = ref()
     const delItemKeys = ref()
     const columnList = computed(() => {
       const newColumnList = cloneDeep(props.columnList)
-      sourceList.value = cloneDeep(props.columnList)
+      // sourceList.value = cloneDeep(props.columnList)
       return newColumnList
     })
+    const sourceList = computed(() => {
+      const newColumnList = cloneDeep(props.columnList)
+      return newColumnList
+    })
+    console.log('sourceList.value: ', sourceList.value);
+    console.log('columnList: ', columnList.value);
     const curKeys = ref<string[]>()
     const curCheckedList = ref<Column[]>()
     const visible = computed({
@@ -78,7 +84,9 @@ export default defineComponent({
       curCheckedList.value = checkedList
       checkInfo.value = (checkedList || []).length + ''
 
-      delItemKeys.value = unref(sourceList).filter((item:Column) => { return item.checked }).map((item:string) => item.key).filter((item:string) => !keys.includes(item))
+      console.log('sourceList: ', sourceList);
+
+      delItemKeys.value = unref(sourceList).filter((item:Column) => { return item.checked }).map((item:string) => item.key || item.dataIndex).filter((item:string) => !keys.includes(item))
     }
     const handleCancel = () => {
       emit('cancelModal', { keys: unref(curKeys), checkedList: unref(curCheckedList) })

@@ -33,6 +33,10 @@
       colProps: {
         span: 24,
       },
+      componentProps: {
+        describe: '额外提示语，文字过多时输入框宽度折行'
+      },
+      className: 'mrb0',
       required: true,
     },
     {
@@ -59,6 +63,7 @@
         mode: 'tags',
         optionMode:"checkbox",
         options: unref(list),
+        class: 'scSe'
       },
       required: true,
     },
