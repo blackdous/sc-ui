@@ -1,9 +1,9 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3690753 */
-  src: url('iconfont.woff2?t=1673419996358') format('woff2'),
-       url('iconfont.woff?t=1673419996358') format('woff'),
-       url('iconfont.ttf?t=1673419996358') format('truetype'),
-       url('iconfont.svg?t=1673419996358#iconfont') format('svg');
+  src: url('iconfont.woff2?t=1678944514741') format('woff2'),
+       url('iconfont.woff?t=1678944514741') format('woff'),
+       url('iconfont.ttf?t=1678944514741') format('truetype'),
+       url('iconfont.svg?t=1678944514741#iconfont') format('svg');
 }
 
 .iconfont {
@@ -12,6 +12,42 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-link:before {
+  content: "\e618";
+}
+
+.icon-ellipsis:before {
+  content: "\e617";
+}
+
+.icon-a-chevron-rightdouble:before {
+  content: "\e615";
+}
+
+.icon-a-chevron-leftdouble:before {
+  content: "\e616";
+}
+
+.icon-tiaozhuan:before {
+  content: "\e614";
+}
+
+.icon-wodepingzheng:before {
+  content: "\e613";
+}
+
+.icon-Frame1:before {
+  content: "\e612";
+}
+
+.icon-bell-fill:before {
+  content: "\e866";
+}
+
+.icon-hourglass:before {
+  content: "\e7c4";
 }
 
 .icon-a-Union11:before {

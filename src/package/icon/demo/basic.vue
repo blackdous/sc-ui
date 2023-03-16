@@ -7,6 +7,7 @@
     <ScIcon type="icon-ziwang"></ScIcon>
     <ScIcon type="icon-hourglass"></ScIcon>
     <ScIcon type="icon-a-Union11" class="sss"></ScIcon>
+    <ScIcon type="icon-a-chevron-rightdouble"></ScIcon>
   </div>
 </template>
 

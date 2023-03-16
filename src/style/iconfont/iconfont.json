@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "34594614",
+      "name": "link",
+      "font_class": "link",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "34594301",
+      "name": "ellipsis",
+      "font_class": "ellipsis",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "34585874",
+      "name": "chevron-right.double",
+      "font_class": "a-chevron-rightdouble",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "34585875",
+      "name": "chevron-left.double",
+      "font_class": "a-chevron-leftdouble",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "34542150",
+      "name": "跳转",
+      "font_class": "tiaozhuan",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "34217536",
+      "name": "我的凭证",
+      "font_class": "wodepingzheng",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "33879370",
+      "name": "访问密钥",
+      "font_class": "Frame1",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "4936650",
+      "name": "bell-fill",
+      "font_class": "bell-fill",
+      "unicode": "e866",
+      "unicode_decimal": 59494
+    },
+    {
+      "icon_id": "4766677",
+      "name": "hourglass",
+      "font_class": "hourglass",
+      "unicode": "e7c4",
+      "unicode_decimal": 59332
+    },
+    {
       "icon_id": "33725651",
       "name": "Union (1)",
       "font_class": "a-Union11",
