@@ -58,7 +58,7 @@
     background: @table-td-hover;
   }
   .ant-table-tbody > .ant-table-row-selected > td {
-    background: #f0f6ff;
+    background: @table-td-hover;
   }
   .ant-table-thead > tr > th {
     white-space: nowrap;
@@ -406,6 +406,43 @@
   }
   &-icon {
     cursor: pointer;
+    &:hover {
+      & > span {
+        color: @link-color1;
+      }
+    }
+    &:active {
+      & > span {
+        color: @link-color;
+      }
+    }
+    &[disabled] {
+      & > span {
+        color: @disabled-link-color;
+      }
+    }
+  }
+}
+.tdCopy {
+  span.anticon-copy {
+    cursor: pointer;
+    color: @primary-color;
+  }
+  &-prefix {
+    padding-right: 6px;
+  }
+  &-icon {
+    cursor: pointer;
+    &:hover {
+      & > span {
+        color: @link-color1;
+      }
+    }
+    &:active {
+      & > span {
+        color: @link-color;
+      }
+    }
   }
 }
 .ellipsisText {
