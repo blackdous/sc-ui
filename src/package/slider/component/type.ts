@@ -70,6 +70,12 @@ export const Props = () => ({
       return false
     }
   },
+  dotCircle: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
   customMarker: Boolean,
   showMinMaxMarker: Boolean,
   inputNumberOptions: Object as PropType<InputNumberOptions>

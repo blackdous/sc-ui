@@ -18,6 +18,7 @@
       }"
       :multiple-options="{
         show: true,
+        triggerMultiple: true,
         options: radioList
       }"
       :search-options="{
@@ -94,7 +95,7 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
     },
     value: 'a',
     action: ({tableRef, selectedRowKeysRef}) => {
-      console.log('tableRef, selectedRowKeysRef: ', tableRef, selectedRowKeysRef);
+      console.log('tableRef, selectedRowKeysRef: 1111111', tableRef, selectedRowKeysRef);
     }
   },
   {

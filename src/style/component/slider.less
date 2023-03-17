@@ -11,7 +11,7 @@
     padding: 0 10px;
     z-index: 0;
     .vue-slider {
-      height: 10px!important;
+      height: 6px!important;
       padding: 0!important;
       margin-left: 0!important;
       &::before {
@@ -20,7 +20,7 @@
         left: -10px;
         bottom: 0;
         width: 11px;
-        height: 10px;
+        height: 6px;
         background-color: @btn-light-color;
         border-radius: 15px 0 0 15px;
         z-index: 2;
@@ -31,7 +31,7 @@
         right: -10px;
         bottom: 0;
         width: 10px;
-        height: 10px;
+        height: 6px;
         background-color: @slider-bg-color;
         border-radius: 0 15px 15px 0;
       }
@@ -67,7 +67,7 @@
   }
   .vue-slider-rail {
     background: @slider-bg-color;
-    height: 10px;
+    height: 6px;
     border-radius: 0;
   }
   .vue-slider-process {
@@ -124,14 +124,14 @@
     .vue-slider-mark-step {
       width: 50%;
       height: 50%;
-      top: 10px;
+      top: 6px;
     }
   } 
   &.vue-slider-rtl {
     .vue-slider-mark-step {
       width: 50%;
       height: 50%;
-      top: 10px;
+      top: 6px;
     }
   }
   .vue-slider-mark:first-child .vue-slider-mark-step, 
@@ -162,6 +162,17 @@
     }
     & > img {
       width: 10px;
+    }
+  }
+}
+.dotCircle {
+  .sc-dot-wrapper { 
+    height: 20px;
+    min-height: 20px;
+    width: 20px;
+    overflow: hidden;
+    .sc-dot {
+      height: 12px;
     }
   }
 }

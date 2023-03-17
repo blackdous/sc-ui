@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[baseClass+'-main']"
+    :class="[baseClass+'-main', dotCircle ? 'dotCircle' : '']"
   >
     <div 
       :class="[baseClass+'-container']"
@@ -23,23 +23,28 @@
             :color="infos[value]?.bgColor"
           >
             <template #title
-              v-if="infos[value]?.desc"
+              v-if="infos[value]?.desc || dotCircle"
             >
               <div 
                 :class="[baseClass+'-tooltip']"
                 :style="{ color: infos[value]?.color }"
+                v-if="!dotCircle || infos[value]?.desc"
               >
                 <component :is="getIcon(infos[value]?.Icon)"></component>
                 <p
-                :class="[baseClass+'-tooltip__title']"
+                  :class="[baseClass+'-tooltip__title']"
                 >
                   {{ infos[value]?.desc }}
                 </p>
               </div>
+              <div class v-else>
+                {{ value }} {{ newProps.unit }}
+              </div>
             </template>
-            <div class="sc-dot-wrapper"
+            <div 
+              :class="['sc-dot-wrapper']"
               :style="{
-                'min-width': pxToRem(newProps?.dotWidth)
+                'min-width': dotCircle ? 'auto' : pxToRem(newProps?.dotWidth)
               }"
             >
               <div :class="['sc-dot', { focus }]">
@@ -47,11 +52,12 @@
                   name="dot"
                   :value="value"
                   :focus="focus"
+                  v-if="!dotCircle"
                   >
                   <span 
                     v-if="infos[value]?.dotLabel || infos[value]?.label || infos.marker?.label"
                   >
-                    {{ infos[value]?.dotLabel || infos[value]?.label || infos.marker?.label}}
+                    {{ infos[value]?.dotLabel || infos[value]?.label || infos.marker?.label }}
                   </span>
                   <span v-else>
                     {{ value }} {{ newProps.unit }}
@@ -61,7 +67,7 @@
             </div>
           </Tooltip>
         </template>
-        <template v-slot:dot="{ value, focus }">
+        <template v-slot:dot="{ value, focus }" v-else>
           <slot
             name="dot"
             :value="value"

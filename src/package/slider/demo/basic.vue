@@ -21,6 +21,20 @@
     >
     </ScSlider>
   </div>
+  <div class="mb20">
+    <div> 最新版</div>
+    <ScSlider
+      :showMinMaxMarker="true"
+      :inputNumberOptions="{
+        placeholder: '请输入'
+      }"
+      dotCircle
+      :value="valueRef1"
+      @change="handleChange1"
+    >
+    </ScSlider>
+
+  </div>
 </template>
 
 <script lang='ts' setup>

@@ -20,7 +20,7 @@ export function useFilter (
     if (!multipleAction) {
       return multipleAction
     }
-    const { show, options } = cloneDeep(multipleAction)
+    const { show, options, triggerMultiple } = cloneDeep(multipleAction)
     if (!show) {
       multipleOptions.value = multipleAction
       return false
@@ -32,7 +32,7 @@ export function useFilter (
       }
       return item
     })
-    multipleOptions.value = { show, options: newmMutilpList }
+    multipleOptions.value = { show, options: newmMutilpList, triggerMultiple }
   }
 
   function clearAll () {

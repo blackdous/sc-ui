@@ -1,10 +1,23 @@
 <template>
-  <div>
+  <div class="mb20">
     <ScSlider
       :data="data"
       :infos="tooltipInfos"
       v-model:value="valueRef"
       unit="个月"
+      :customMarker="true"
+      @change="handleChange"
+    >
+    </ScSlider>
+  </div>
+  <div class="mb20">
+    <div>最新版</div>
+    <ScSlider
+      :data="data"
+      :infos="tooltipInfos"
+      v-model:value="valueRef"
+      unit="个月"
+      dotCircle
       :customMarker="true"
       @change="handleChange"
     >
@@ -88,6 +101,11 @@ const tooltipInfos = {
     
 
 </script>
+<style scoped>
+.mb20 {
+  margin-bottom: 20px;
+}
+</style>
 <style scoped>
 /* @import 'comment'; */
 </style>

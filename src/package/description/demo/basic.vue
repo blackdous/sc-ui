@@ -109,17 +109,17 @@ const mockData: Recordable = {
     certy: '3504256199xxxxxxxxx',
     tag: 'orange',
   };
-  const renderTitle = h('span', { class: '' }, ['使用h函数', h('i', { class: 'sc-ui sc-question-circle', style: { color: '#008CD3', marginLeft: '4px' } })])
+  const renderTitle = h('span', { class: '' }, ['使用h函数', h('i', { class: 'sc-ui sc-question-circle copy' })])
   const schema: DescItem[] = [
     {
       field: 'username',
-      label: h('span', { class: '' }, ['用户名', h('i', { class: 'sc-ui sc-question-circle', style: { color: '#008CD3', marginLeft: '4px' } })]),
+      label: h('span', { class: '' }, ['用户名', h('i', { class: 'sc-ui sc-question-circle copy' })]),
     },
     {
       field: 'nickName',
       label: '昵称',
       render: (curVal, data) => {
-        return h('span', { class: '' }, [curVal + '--' + data.username, h('i', { class: 'sc-ui sc-file-copy', style: { color: '#008CD3', marginLeft: '4px'} })])
+        return h('span', { class: '' }, [curVal + '--' + data.username, h('i', { class: 'sc-ui sc-file-copy copy' })])
       },
     },
     {
@@ -140,6 +140,19 @@ const mockData: Recordable = {
     },
   ];
 </script>
+<style scoped>
+.copy {
+  color: #008CD3;
+  margin-left: 4px;
+  cursor: pointer;
+}
+.copy:hover {
+  color: #45ABDF;
+}
+.copy:active {
+  color: #007DBD;
+}
+</style>
 <style scoped>
 /* @import 'comment'; */
 </style>

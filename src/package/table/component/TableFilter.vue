@@ -28,6 +28,7 @@
         <ScRadioTooltipGroup
           v-model:value="multipleValue"
           :options="multipleActionOptions.options"
+          :triggerMultiple="multipleActionOptions.triggerMultiple"
           @change="radioHandle"
         />
       </template>

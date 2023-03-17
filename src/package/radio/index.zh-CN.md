@@ -61,4 +61,19 @@ map:
 
 ## ScRadioGroup 新增属性
 
-<API src="./components/ScRadioGroup.vue" lang="zh"></API>
+| 属性 | 类型 | 默认值 | 可选值 | 说明 |
+| --- | --- | --- | --- | --- |
+| style-mode | string | - | 'scLine' | styleMode 可选值为 'scLine'|
+| triggerMultiple | boolean | false | - | 是否多次触发change事件 |
+| options | 'Array[TooltipButtonProps]' | - | - | 要展示radioGroup |
+
+```ts
+  export interface TooltipButtonProps {
+    toolOptions?: TooltipProps,
+    tooltipDes?: string,
+    label?: string,
+    value?: string | number,
+    disabled?: boolean,
+    overlayClassName?: string
+  }
+```

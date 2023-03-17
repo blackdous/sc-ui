@@ -95,6 +95,19 @@
     line-height: 14px;
     color: @heading-color;
   }
+  .ant-descriptions-item-label, .ant-descriptions-item-content {
+    & i.sc-ui {
+      cursor: pointer;
+      margin-left: 4px;
+      color: @primary-color;
+      &:hover {
+        color: @link-color1;
+      }
+      &:active {
+        color: @link-color;
+      }
+    }
+  }
   &.ant-descriptions-small .ant-descriptions-row > th {
     padding-bottom: 8px;
     background: transparent;

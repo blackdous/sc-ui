@@ -33,7 +33,7 @@
     color :@text-color;
     font-weight: 400;
     background: @radio-button-bg;
-    // box-shadow: 0px 1px 3px 0px rgba(96, 108, 128, 0.1);
+    box-shadow: 0px 1px 3px 0px rgba(96, 108, 128, 0.1);
     font-size: @font-mini;
     border-color: @radio-button-border;
   }
@@ -45,6 +45,14 @@
   .ant-radio-button-wrapper-disabled {
     background: @steps-wait-color;
     color: @disabled-color;
+  }
+  &.triggerMultiple {
+    .ant-radio-button-wrapper {
+      padding: 0;
+    }
+    .triggerMultiple-item {
+      padding: 0 15px;
+    }
   }
 }
 .ant-radio-checked {

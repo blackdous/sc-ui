@@ -62,6 +62,7 @@ realPath: src/package/slider/index.zh-CN.md
 | customMarker | 是否显示自定义`marker`; 结合`infos`数据使用  | Boolean | - | |
 | showMinMaxMarker | 是否显示最大值、最小值的marker;**与customMarker**冲突  | Boolean | - | |
 | inputNumberOptions | 是否显示`InputNumber`组件; 请在`value`值为`Number`类型是使用  | InputNumberOptions | - | |
+| dotCircle | 是否启用dot为原点交互 |  boolean | false | - |
 
 ```ts
 export interface Info {

@@ -3,6 +3,7 @@
     styleMode="scLine"
     v-model:value="radioValue"
     @change="handleChange"
+    :class="[props.triggerMultiple ? 'triggerMultiple' : '']"
   >
     <RadioButton
       v-for="item in props.options"
@@ -18,11 +19,15 @@
           <template #title>
             {{item.tooltipDes}}
           </template>
-          {{item.label}}
+          <span class="triggerMultiple-item" @click="() => { handleClick(item) }">
+            {{item.label}}
+          </span>
         </Tooltip>
       </template>
       <template v-else>
-        {{item.label}}
+        <span class="triggerMultiple-item" @click="() => { handleClick(item) }">
+          {{item.label}}
+        </span>
       </template>
     </RadioButton>
   </ScRadioGroup>
@@ -59,12 +64,20 @@ const props = defineProps({
   options: {
     type: Array<TooltipButtonProps>,
     default: () => []
+  },
+  triggerMultiple: {
+    type: Boolean,
+    default: () => {
+      return false
+    }
   }
 })
 
 const emits = defineEmits(['update:value', 'change', 'customChange'])
 
 const radioValue:Ref<string | number> = ref('')
+
+
 
 watch(
   () => props.value,
@@ -87,6 +100,14 @@ const handleChange = (e: Event) => {
   const currentItem = props.options.find((item: TooltipButtonProps) => item.value === e?.target?.value)
   // @ts-ignore
   emits('customChange', e?.target?.value, currentItem)
+}
+
+const handleClick = (item: TooltipButtonProps) => {
+  const isFlag = props.value === item.value
+  if (props.triggerMultiple && isFlag) {
+    emits('update:value', item.value)
+    emits('change', item.value)
+  }
 }
 
 </script>

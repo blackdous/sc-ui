@@ -620,6 +620,8 @@ export interface CreateButton {
     // 是否显示 单选按钮组
     show?: boolean,
     options?: Array<ButtonType>,
+    // 是否多次触发事件
+    triggerMultiple?: boolean,
     [key:string]: any
   }
 ```

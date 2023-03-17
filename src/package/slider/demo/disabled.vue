@@ -12,12 +12,29 @@
     </ScSlider>
   </div>
   <div class="mb20">
-      <!-- :showMinMaxMarker="true"
-      :inputNumberOptions="{
-        placeholder: '请输入'
-      }" -->
     <ScSlider
       disabled
+      :value="valueRef1"
+      @change="handleChange1"
+    >
+    </ScSlider>
+  </div>
+  <div class="mb20">
+    <div>最新版</div>
+    <ScSlider
+      disabled
+      :showMinMaxMarker="true"
+      :inputNumberOptions="{
+        placeholder: '请输入'
+      }"
+      dotCircle
+      v-model:value="valueRef"
+      @change="handleChange"
+    >
+    </ScSlider>
+    <ScSlider
+      disabled
+      dotCircle
       :value="valueRef1"
       @change="handleChange1"
     >

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb20">
     <ScSlider
       :data="data"
       :infos="tooltipInfos"
@@ -28,6 +28,38 @@
       <!-- data-label="id" -->
     </ScSlider>
   </div>
+  <div style="margin-top: 40px;">
+    <div>最新版</div>
+    <ScSlider
+      :data="data"
+      :infos="tooltipInfos"
+      v-model:value="valueRef1"
+      data-value="id"
+      data-label="id"
+      unit="个月"
+      dot-circle
+      :customMarker="true"
+      @change="handleChange"
+    >
+      <!-- :showMinMaxMarker="true" -->
+      <!-- data-label="id" -->
+    </ScSlider>
+    <ScSlider
+      :data="data"
+      :infos="tooltipInfos"
+      v-model:value="valueRef1"
+      data-value="id"
+      data-label="id"
+      unit="个月"
+      dot-circle
+      disabled
+      :customMarker="true"
+      @change="handleChange"
+    >
+      <!-- :showMinMaxMarker="true" -->
+      <!-- data-label="id" -->
+    </ScSlider>
+  </div>
 </template>
 
 <script lang='ts' setup>
@@ -35,6 +67,7 @@ import { ref, watch, h } from 'vue'
 import { ScSlider } from 'sc-ui'
 
 const valueRef = ref('1')
+const valueRef1 = ref('1')
 
 watch(() => valueRef.value, (val) => {
   console.log('val: ', val);

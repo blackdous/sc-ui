@@ -122,6 +122,7 @@ export interface CreateButton {
 export const multipleActionOptions = () => ({
   // 是否展示
   show: { type: Boolean, default: true },
+  triggerMultiple: { type: Boolean, default: false },
   // 操作列表
   options: {
     type: Array as PropType<Array<ButtonType>>
