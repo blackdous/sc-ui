@@ -80,7 +80,6 @@
         </template>
         <template #tableActive v-else>
           <slot name="tableActive">
-            1111111
           </slot>
         </template>
       </TableFilter>
