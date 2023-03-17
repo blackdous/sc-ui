@@ -1,16 +1,18 @@
 <template>
   <div>
     <!-- :pagination="false" -->
+      <!-- :create-button-options="{
+        show: true
+      }" -->
     <ScTable
       style="padding: 0;"
       class="aaaa"
       ref="scTableRef"
-      :filterRightStyle="{'justify-content': 'space-between'}"
       :data-source="data"
       :columns="columns"
       size="small"
       :create-button-options="{
-        show: true
+        show: false,
       }"
       :loading="loading"
       :scroll="{ x: true }"
@@ -28,6 +30,16 @@
         <span>
           {{text}}1111
         </span>
+      </template>
+      <template #tableActive>
+        <div>
+          <InputSearch
+            v-model:value="searchValue"
+            placeholder="请输入仓库名称"
+            style="width: 200px"
+            @search="onSearch"
+          />
+        </div>
       </template>
       <!-- <template #multipleBtns>
         <div>
@@ -54,8 +66,15 @@ import { ref, unref, h } from 'vue'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
+import { InputSearch } from 'ant-design-vue'
 
 const loading = ref(false)
+
+const searchValue = ref()
+
+const onSearch = () => {
+  
+}
 
 const list = ref([
   {

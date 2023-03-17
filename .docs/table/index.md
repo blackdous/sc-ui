@@ -46,7 +46,7 @@ realPath: src/package/table/index.zh-CN.md
 | --- | --- | --- |
 | change       | 分页、排序、筛选变化时触发  | Function(pagination, filters, sorter, { currentDataSource, fetchParams }) |
 
-## 带刷新&筛选column的组件
+<!-- ## 带刷新&筛选column的组件
 
 **支持自定义solt组件`#tableActive`**
 
@@ -821,7 +821,7 @@ export interface ActiveOptions {
 | multipleBtns           | 表格顶部左侧侧区域 |  |
 | search | 表格顶部右侧区域 搜索组件      |  |
 | tableActive | 表格顶部右侧区域 刷新、自定义列组件      |  |
-| EmptyVue | 表格空数据状态组件     |  | 
+| renderEmpty | 表格空数据状态组件     |  | 
 
 ## 组件
 
@@ -920,4 +920,4 @@ export interface ActionProps {
   title="指定rowSelected值"
   desc="指定rowSelected值"
   >
-</demo>
+</demo> -->

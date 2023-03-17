@@ -9,7 +9,7 @@
       :transformCellText="({ text }) => isEmptyText(text) ? text : '--'"
     >
       <TableFilter
-        v-if="isShowFilter || (Object.keys($slots).filter((item) => ['createButton', 'search', 'multipleBtns'].includes(item))).length"
+        v-if="isShowFilter || (Object.keys($slots).filter((item) => ['createButton', 'search', 'multipleBtns', 'tableActive'].includes(item))).length"
         v-model:selectValue="selectValue"
         v-model:textValue="textValue"
         :createButtonOptions="createButtonOptions"
@@ -79,7 +79,9 @@
           </Tooltip>
         </template>
         <template #tableActive v-else>
-          <slot name="tableActive"></slot>
+          <slot name="tableActive">
+            1111111
+          </slot>
         </template>
       </TableFilter>
       <FilterTagsVue
@@ -422,6 +424,7 @@ export default defineComponent({
     });
 
     const isTableActive = computed(() => {
+      console.log('Object.keys(slots).includes', Object.keys(slots).includes('tableActive'));
       return Object.keys(slots).includes('tableActive');
     });
     const isCustomFilter = computed(() => {
