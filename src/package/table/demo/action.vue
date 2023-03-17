@@ -115,6 +115,21 @@ const list = ref([
         key: 'dd',
         action: '2222',
         tooltipDes: '二级选项22222222',
+      },
+      {
+        label: '二级选项2222222',
+        isShow: true,
+        isDisabled: ({record}) => {
+          // console.log('record: ', record);
+          if (record.key === '17') {
+            return true
+          }
+          return false
+        },
+        loading: false,
+        key: 'ffff',
+        action: '44444444',
+        tooltipDes: '二级选项22222222',
       }
     ]
   }, {

@@ -33,7 +33,7 @@
     </template>
     <template v-if="filterShow.length > actionsOptions.showBtn">
       <Dropdown
-        :placement="placementRef"
+        placement="bottomRight"
         :overlayClassName="basePrefixCls + 'TableDropdown'"
         >
         <!-- :visible="true" -->
@@ -52,12 +52,12 @@
             >
               <template v-if="item?.children && item?.children?.length">
                 <SubMenu 
-                  v-for="(subItem) in item.children"
                   :key="item.label"
                   :title="item.label"
                   :disabled="!!item.isDisabled"
                 >
                   <MenuItem
+                    v-for="(subItem) in item.children"
                     :disabled="!!subItem.isDisabled"
                   >
                     <Button

@@ -90,6 +90,7 @@ export function useFilter (
   const isShowFilter = computed(() => {
     const isShow = (unref(propsRef)?.activeOptions?.reload?.show 
     || unref(propsRef)?.activeOptions?.columnDialog?.show
+    || unref(propsRef)?.createButton?.show
     || unref(propsRef)?.activeOptions?.download?.show
     || unref(propsRef)?.multipleOptions?.show 
     || unref(propsRef)?.searchOptions?.show)

@@ -1,10 +1,12 @@
 <template>
   <div>
+    <!-- :api="demoListApi" -->
     <ScTable 
       ref="scTableRef"
       :columns="columns"
       :loading="false"
-      :api="demoListApi"
+      :data-source="data"
+      :scroll="{ y: 300 }"
       :row-selection="{ 
         selectedRowKeys: state.selectedRowKeys, 
         onChange: onSelectChange,
@@ -27,14 +29,14 @@
 import { ref, reactive } from 'vue'
 import { ScTable } from 'sc-ui'
 
-import { demoListApi } from './tableData'
-import { setTime } from '../../picker/utils/timeUtil';
+// import { demoListApi } from './tableData'
+// import { setTime } from '../../picker/utils/timeUtil';
 type Key = string | number
 
 const scTableRef = ref()
 // @ts-ignore
 const columns = [
-  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
+  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name'},
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,

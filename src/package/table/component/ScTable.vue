@@ -176,7 +176,9 @@
       </ColumnDialogVue>
       <template #renderEmpty>
         <EmptyVue v-if="!isRenderEmpty"></EmptyVue>
-        <slot name="renderEmpty" v-else></slot>
+        <slot name="renderEmpty" v-else>
+          
+        </slot>
       </template>
     </ConfigProvider>
   </div>
@@ -416,7 +418,7 @@ export default defineComponent({
       return Object.keys(slots).includes('action');
     });
     const isRenderEmpty = computed(() => {
-      return Object.keys(slots).includes('empty');
+      return Object.keys(slots).includes('renderEmpty');
     });
 
     const isTableActive = computed(() => {
