@@ -45,7 +45,7 @@ map:
 | --- | --- | --- |
 | change       | 分页、排序、筛选变化时触发  | Function(pagination, filters, sorter, { currentDataSource, fetchParams }) |
 
-<!-- ## 带刷新&筛选column的组件
+## 带刷新&筛选column的组件
 
 **支持自定义solt组件`#tableActive`**
 
@@ -919,4 +919,4 @@ export interface ActionProps {
   title="指定rowSelected值"
   desc="指定rowSelected值"
   >
-</demo> -->
+</demo>
