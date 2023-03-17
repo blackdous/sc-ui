@@ -3,9 +3,13 @@
     v-bind="vBind"
     :class="className"
   >
+    <template #icon v-if="isShowDefaultErrorIcon">
+      <ExclamationCircleFilled />
+    </template>
     <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
+    
   </Alert>
 </template>
 
@@ -13,15 +17,18 @@
 import { defineComponent, computed } from 'vue'
 import { basePrefixCls } from '../../../constant'
 import { Alert } from 'ant-design-vue'
+import {
+  ExclamationCircleFilled,
+} from '@ant-design/icons-vue';
 
 import { alertProps } from './type'
 
 export default defineComponent({
   name: 'ScAlert',
   inheritAttrs: false,
-  components: { Alert },
+  components: { Alert, ExclamationCircleFilled },
   props: alertProps(),
-  setup (props, { attrs }) {
+  setup (props, { attrs, slots }) {
     const vBind = computed(() => {
       return {...props,...attrs}
     })
@@ -32,9 +39,16 @@ export default defineComponent({
       }
       return classNames
     })
+
+    const isShowDefaultErrorIcon = computed(() => {
+      const isTypeError = props.type === 'error'
+      const isSlotIcon = Object.keys(slots).includes('icon')
+      return isTypeError && !isSlotIcon
+    })
     return {
       vBind,
-      className
+      className,
+      isShowDefaultErrorIcon
     }
   }
 })

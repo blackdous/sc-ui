@@ -12,7 +12,7 @@
           <InfoCircleFilled v-if="curProps.type === 'info'" />
           <CheckCircleFilled v-else-if="curProps.type === 'success'" />
           <ExclamationCircleFilled v-else-if="curProps.type === 'warning'" />
-          <CloseCircleFilled v-else-if="curProps.type === 'error'" />
+          <ExclamationCircleFilled v-else-if="curProps.type === 'error'" />
         </span>
         <p :class="[modalPrefixCls + '-txt']">
           {{ curProps.infoDes }}
