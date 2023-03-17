@@ -647,12 +647,14 @@ export default defineComponent({
       setFilterColumnDisabled
     };
     createTableContext({ ...tableAction, wrapRef, getBindValues: tableBindValue });
-
+    const resetFilterInputValue = () => {
+      tableFilter?.value.resetInput()
+    }
     expose({
       ...tableAction,
       fetch,
       getAutoCreateKey,
-      
+      resetFilterInputValue
     })
     emit('register', tableAction)
     return {

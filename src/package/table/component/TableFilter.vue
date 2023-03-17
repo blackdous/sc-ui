@@ -240,7 +240,7 @@ export default defineComponent({
       },
       set: (val) => {
         selectedItem.value = unref(searchOptions)?.typeList?.find((item: any)=> item.value === val)
-        textValue.value = ''
+        // textValue.value = ''
         validatorResult.value = {
           result: true,
           tip: ''
@@ -294,6 +294,10 @@ export default defineComponent({
     const resetSearch = () => {
       textValue.value = ''
       selectValue.value = ''
+    }
+
+    const resetInput = () => {
+      textValue.value = ''
     }
 
     const resetMutilp = () => {
@@ -356,6 +360,7 @@ export default defineComponent({
     expose({
       resetMutilp,
       resetSearch,
+      resetInput,
       clearAll
     })
 
