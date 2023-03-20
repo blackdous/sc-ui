@@ -1,6 +1,5 @@
 import { ComputedRef, ref, watchEffect, isRef, unref, Ref, watch, nextTick, onMounted, computed} from "vue"
-import { CreateButton, MutilpActionOptions, SearchOptions } from "../types/table"
-// import cloneDeep from 'lodash/cloneDeep'
+import { CreateButton, MultipleActionOptions, SearchOptions } from "../types/table"
 import lodash from 'lodash'
 
 import { isFunction } from "@vueuse/core"
@@ -16,7 +15,7 @@ export function useFilter (
   const multipleOptions = ref<Recordable>({})
   const searchOptions = ref<Recordable>({})
 
-  function setMutilpAction (multipleAction: MutilpActionOptions) {
+  function setMultipleAction (multipleAction: MultipleActionOptions) {
     if (!multipleAction) {
       return multipleAction
     }
@@ -41,7 +40,7 @@ export function useFilter (
     }
   }
 
-  function getMutilpAction () {
+  function getMultipleAction () {
     return unref(multipleOptions)
   }
 
@@ -113,14 +112,14 @@ export function useFilter (
     [() => selectedRowKeysRef],
     () => {
       nextTick(() => {
-        setMutilpAction(unref(propsRef).multipleOptions as MutilpActionOptions)
+        setMultipleAction(unref(propsRef).multipleOptions as MultipleActionOptions)
       })
     },
     { deep: true }
   )
 
   onMounted(() => {
-    setMutilpAction(unref(propsRef).multipleOptions as MutilpActionOptions)
+    setMultipleAction(unref(propsRef).multipleOptions as MultipleActionOptions)
   })
 
   watchEffect(() => {
@@ -139,8 +138,8 @@ export function useFilter (
     isActiveFilter,
     setSearchOptions,
     getSearchOptions,
-    setMutilpAction,
-    getMutilpAction,
+    setMultipleAction,
+    getMultipleAction,
     clearAll
   }
 }

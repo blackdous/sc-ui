@@ -139,13 +139,13 @@ interface ButtonType {
   action?: string | ((...args: any) => void)
 }
 
-export interface MutilpActionOptions {
+export interface MultipleActionOptions {
   show?: boolean,
   options?: Array<ButtonType>,
   [key:string]: any
 }
 
-// export declare type MutilpActionOptions = ExtractPropTypes<typeof multipleActionOptions>
+// export declare type MultipleActionOptions = ExtractPropTypes<typeof multipleActionOptions>
 
 
 export const searchOptions = () => ({
@@ -158,14 +158,20 @@ export const searchOptions = () => ({
   loading: { type: Boolean, default: false },
   // 查询方法
   action: Function as PropType<(fetchParams: FetchParams) => void>,
-  selectOptions: Object as PropType<{placeholder: string, width: string}>,
+  selectOptions: Object as PropType<{
+    placeholder: string, 
+    width: string, 
+    clearInput: boolean, 
+    defaultValue: string
+  }>,
   inputOptions: Object as PropType<{
     placeholder: (key:string) => string | string,
     validator: (key:string) => string | string,
     validatorTrigger: 'all' | 'search' | 'change',
     maxlength: number, 
     width: string, 
-    allowClear: boolean
+    allowClear: boolean,
+    defaultValue: string
   }>
 })
 
@@ -269,7 +275,7 @@ export const tableProps = () => ({
     }
   },
   multipleOptions: {
-    type: Object as PropType<MutilpActionOptions>
+    type: Object as PropType<MultipleActionOptions>
   },
   searchOptions: {
     type: Object as PropType<SearchOptions>
@@ -430,7 +436,6 @@ export const tableProps = () => ({
       return 30
     }
   }
-  
 })
 
 export interface TableProps {
@@ -439,7 +444,7 @@ export interface TableProps {
   upTitle: string,
   downTitle: string,
   createButtonOptions?: CreateButton,
-  multipleOptions?: MutilpActionOptions,
+  multipleOptions?: MultipleActionOptions,
   searchOptions?: SearchOptions,
   actionsOptions?: ActionOptions,
   customFilter?: boolean,
@@ -579,7 +584,7 @@ export interface TableActionType {
   getShowPagination: () => boolean;
   clearFilterDropdownRef: (column: Column) => void,
   setSearchOptions: (searchOptions: SearchOptions) => void,
-  setMutilpAction: (multipleActionOptions: MutilpActionOptions) => void,
+  setMultipleAction: (multipleActionOptions: MultipleActionOptions) => void,
   setFilterColumnRef: (columns: Column[]) => void,
   setFilterColumnChecked: (colKeys: string[] | number[]) => void,
   setFilterColumnDisabled: (colKeys: string[] | number[]) => void,

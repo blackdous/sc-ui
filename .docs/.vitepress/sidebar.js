@@ -30,7 +30,8 @@ export const sidebar = {
         { text: 'Tabs', link: '/en/tabs/' },
         { text: 'Table', link: '/en/table/' },
         { text: 'Tooltip', link: '/en/tooltip/' },
-        { text: 'Description', link: '/description/' },
+        { text: 'Description', link: '/en/description/' },
+        { text: 'Link', link: '/en/link' }
       ]
     },
     {
@@ -119,6 +120,7 @@ export const sidebar = {
         { text: '表格 Table', link: '/table/' },
         { text: '文字提示 Tooltip', link: '/tooltip/' },
         { text: '描述列表 Description', link: '/description/' },
+        { text: '链接 Link', link: '/link/' }
       ]
     },
     {

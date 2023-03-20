@@ -1,4 +1,8 @@
 <template>
+  <div style="margin-top: 20px;">
+    <ScButton @click="handleSetProps">setProps</ScButton>
+    <ScButton @click="handleClearSelectedRowKeys">clearSelectedRowKeys</ScButton>
+  </div>
   <div>
     <ScTable 
       ref="scTableRef"
@@ -47,11 +51,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, ComputedRef, reactive, h } from 'vue'
-import { ScTable } from 'sc-ui'
+import { ref, Ref, ComputedRef, reactive, h, unref } from 'vue'
+import { ScTable, ScButton } from 'sc-ui'
 
 import type { TooltipButtonPropsType } from 'sc-ui'
-import { setTime } from '../../picker/utils/timeUtil';
+import lodash from 'lodash'
+
+const { cloneDeep } = lodash
 
 const scTableRef = ref()
 type Key = string | number
@@ -87,12 +93,13 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
     toolOptions: {},
     tooltipDes: "测试tooltip",
     label: '按钮A',
-    disabled: ({tableRef, selectedRowKeysRef}) => {
-      if (selectedRowKeysRef.length > 3) {
-        return true
-      }
-      return false
-    },
+    // disabled: ({tableRef, selectedRowKeysRef}) => {
+    //   if (selectedRowKeysRef.length > 3) {
+    //     return true
+    //   }
+    //   return false
+    // },
+    disabled: true,
     value: 'a',
     action: ({tableRef, selectedRowKeysRef}) => {
       console.log('tableRef, selectedRowKeysRef: 1111111', tableRef, selectedRowKeysRef);
@@ -217,6 +224,28 @@ let data: DataItem[] = [
     address: 'London London',
   },
 ];
+
+const handleSetProps = () => {
+  const tableRef = unref(scTableRef)
+  console.log('tableRef: ', tableRef);
+  const radioListClone = cloneDeep(unref(radioList))
+  radioListClone[0].disabled = false
+  console.log('radioListClone: ', radioListClone);
+  // tableRef?.clearSelectedRowKeys()
+  tableRef?.setProps({
+    multipleOptions: {
+      show: true,
+      triggerMultiple: true,
+      options: radioListClone
+    }
+  })
+}
+
+const handleClearSelectedRowKeys = () => {
+  const tableRef = unref(scTableRef)
+  tableRef?.clearSelectedRowKeys()
+  console.log('tableRef: ', tableRef);
+}
 
 const state = reactive<{
   selectedRowKeys: Key[];

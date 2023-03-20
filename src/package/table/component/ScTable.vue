@@ -318,7 +318,7 @@ export default defineComponent({
       multipleOptions,
       searchOptions,
       setSearchOptions,
-      setMutilpAction,
+      setMultipleAction,
       clearAll,
     } = useFilter(newProps, selectedRowKeysRef, fetchParams)
 
@@ -379,18 +379,6 @@ export default defineComponent({
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);
       fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, selectedRowRef, setLoading, pagination: getPaginationInfo}
-      // console.log('1111', {
-      //   ...attrs,
-      //   ...unref(newProps),
-      //   columns: toRaw(unref(getColumnsRef)),
-      //   rowSelection: unref(getRowSelectionRef),
-      //   rowKey: unref(getRowKey),
-      //   ...unref(getExpandOption),
-      //   dataSource,
-      //   loading: unref(getLoading),
-      //   pagination: toRaw(unref(getPaginationInfo)),
-      //   change: undefined
-      // });
       return {
         ...attrs,
         ...unref(newProps),
@@ -423,7 +411,6 @@ export default defineComponent({
     });
 
     const isTableActive = computed(() => {
-      console.log('Object.keys(slots).includes', Object.keys(slots).includes('tableActive'));
       return Object.keys(slots).includes('tableActive');
     });
     const isCustomFilter = computed(() => {
@@ -431,8 +418,11 @@ export default defineComponent({
     });
 
     function setProps(props: Partial<TableProps>) {
-        innerPropsRef.value = { ...unref(innerPropsRef), ...props };
+      innerPropsRef.value = { ...unref(innerPropsRef), ...props };
+      if (props.multipleOptions) {
+        setMultipleAction(props.multipleOptions)
       }
+    }
 
     const handle = (action: ActionItemProps, record: any) => {
       if (isFunction(action.action)) {
@@ -641,7 +631,7 @@ export default defineComponent({
       clearFilter: clearAll,
       clearFilterDropdownRef,
       setSearchOptions,
-      setMutilpAction,
+      setMultipleAction,
       setFilterColumnRef,
       setFilterColumnChecked,
       setFilterColumnDisabled

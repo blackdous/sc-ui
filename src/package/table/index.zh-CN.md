@@ -360,7 +360,7 @@ const dataSource = [
 
 **setMutilpAction**
 
-类型：`(props: Partial<MutilpActionOptions>) => void`
+类型：`(props: Partial<MultipleActionOptions>) => void`
 
 说明: 用于设置单选按钮组配置
 
@@ -570,7 +570,7 @@ const dataSource = [
 | pagination              | `any`                                              | -       | -      | 分页信息配置，为 `false` 不显示分页                                                             |      |
 | loading                 | `boolean`                                          | `false` | -      | 表格 loading 状态                                                                               |      |
 | scroll                  | `any`                                              | -       | -      | 参考官方文档 scroll                                                                             |      |
-| multipleActionOptions                  | `MutilpActionOptions`                                              | -       | -      |  用于展示单选按钮组                                                                           |      |
+| multipleActionOptions                  | `MultipleActionOptions`                                              | -       | -      |  用于展示单选按钮组                                                                           |      |
 | searchOptions                  | `SearchOptions`                                              | -       | -      |   头部搜索组件配置数据                                                                        |      |
 | activeOptions                  | `ActiveOptions`                                              | -       | -      |   用于配置是否显示刷新、自定列按钮                                                                     |      |
 | actionsOptions                  | `ActionsOptions`                                              | -       | -      |   用于全局配置操作列数据；会被record 上的 数据覆盖                                                     |      |
@@ -599,7 +599,7 @@ export interface CreateButton {
 }
 ```
 
-### MutilpActionOptions
+### MultipleActionOptions
 
 ```ts
   interface ButtonType {
@@ -619,7 +619,7 @@ export interface CreateButton {
     action?: string | ((...args: any) => void)
   }
 
-  export interface MutilpActionOptions {
+  export interface MultipleActionOptions {
     // 是否显示 单选按钮组
     show?: boolean,
     options?: Array<ButtonType>,
@@ -648,8 +648,10 @@ export interface SearchOptions {
   selectOptions?: {
     placeholder?: string,
     width?: string,
+    // 是否清除input中的值
+    clearInput: boolean,
     // 默认值
-    defaultValue: string
+    defaultValue: string,
   },
   // input 站位字符串、宽度、最大输入长度、是否出现清空按钮
   inputOptions?: {
@@ -730,13 +732,17 @@ export interface ActiveOptions {
     action?: string | (() => void)
   }
 
-  export interface ActionProps {
+  export interface ActionsOptions {
     // 默认展示2个按钮，其他按钮收缩
     showBtn?: number,
     // 按钮组数据
     actions?: Array<ActionItemProps>,
     // 当前行数据
-    record?: any
+    record?: any,
+    // 当前表格所有参数
+    fetchParams?: any,
+    // dropdown组件参数
+    dropdownProps?: DropdownProps
   }
 ```
 
@@ -874,7 +880,7 @@ export interface ActionItemProps {
 }
 
 // TableActions 组件需要的参数
-export interface ActionProps {
+export interface ActionsOptions {
   // 显示几个btn，其他btn隐藏
   showBtn?: number,
   // 操作按钮数据
@@ -883,6 +889,8 @@ export interface ActionProps {
   record?: any,
   // 当前表格储存的参数
   fetchParams?: any
+  // dropdown组件参数
+  dropdownProps?: DropdownProps
 }
 ```
 

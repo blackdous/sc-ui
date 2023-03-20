@@ -239,8 +239,11 @@ export default defineComponent({
         return props.selectValue || (!loading ? defaultValue : undefined) || typeList[0]?.value
       },
       set: (val) => {
+        const { clearInput } = props?.searchOptions?.selectOptions || {}
         selectedItem.value = unref(searchOptions)?.typeList?.find((item: any)=> item.value === val)
-        // textValue.value = ''
+        if (clearInput) {
+          textValue.value = ''
+        }
         validatorResult.value = {
           result: true,
           tip: ''
