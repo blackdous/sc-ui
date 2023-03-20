@@ -1,5 +1,5 @@
 <template>
-  <div class="disFlex">
+  <div class="disFlex" v-if="isFilter">
     <template
       v-for="columnItem in filterList"
       :key="columnItem.dataIndex"

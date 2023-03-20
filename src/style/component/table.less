@@ -7,6 +7,11 @@
 .@{tableScope} {
   padding: @space-6;
 }
+// .disFlex {
+//   & + .ant-table-wrapper {
+//     margin-top: 8px;
+//   }
+// }
 .@{tableScope}, .ant-table {
   .ant-table-thead > tr > th {
     height: 40px;
@@ -133,9 +138,17 @@
 
 .@{tableFilterScope} {
   display: flex;
-  padding-bottom: @space-4;
+  // padding-bottom: 16px;
+  // padding-bottom: @space-4;
   justify-content: space-between;
   white-space: nowrap;
+
+  & + .ant-table-wrapper {
+    margin-top: 16px;
+  }
+  & + .disFlex {
+    margin-top: 8px;
+  }
   &-left {
     div:last-child {
       margin-left: @space-2;
@@ -239,12 +252,13 @@
     position: relative;
     .input-describe {
       position: absolute;
-      line-height: 20px;
+      line-height: 16px;
       color: @error-color;
     }
   }
   .ant-radio-group-outline.ant-radio-group .ant-radio-button-wrapper {
     box-shadow: none;
+    background: @white-color;
   }
 }
 .@{tableActionsScope} {
@@ -501,4 +515,3 @@
     }
   }
 }
-// .vp-doc uo

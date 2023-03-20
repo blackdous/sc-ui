@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <template>
   <div :class="[basePrefixCls + 'Actions']">
     <template
@@ -34,6 +35,7 @@
     <template v-if="filterShow.length > actionsOptions.showBtn">
       <Dropdown
         placement="bottomRight"
+        v-bind="actionsOptions.dropdownProps"
         :overlayClassName="basePrefixCls + 'TableDropdown'"
         >
         <!-- :visible="true" -->
@@ -116,7 +118,6 @@
 
 
 <script lang="ts">
-// @ts-nocheck
 export default {
   name: 'ScTableAction',
   inheritAttrs: false
@@ -127,6 +128,7 @@ export default {
 import { computed, defineProps, defineEmits, ref, unref, watch } from 'vue'
 import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
+import type { DropdownProps } from 'ant-design-vue'
 
 import { basePrefixCls } from '../../../constant'
 import { isArray, isFunction } from '../../../utils/is'
@@ -155,6 +157,7 @@ export interface ActionProps {
   record?: any,
   fetchParams?: any,
   data?: any
+  dropdownProps?: DropdownProps
 }
 
 const props = withDefaults(defineProps<ActionProps>(), {
@@ -164,7 +167,12 @@ const props = withDefaults(defineProps<ActionProps>(), {
 const filterShow = ref([] as Array<ActionItemProps>)
 
 const actionsOptions = computed(() => {
-  return props.record?.actionsOptions || { showBtn: props.showBtn, actions: props.actions }
+  // console.log('props: ', props, props.getPopupContainer);
+  return props.record?.actionsOptions || { 
+    showBtn: props.showBtn, 
+    actions: props.actions,
+    dropdownProps: props.dropdownProps || {}
+  }
 })
 
 const fetchParams = computed(() => {

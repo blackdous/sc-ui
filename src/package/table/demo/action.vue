@@ -196,6 +196,12 @@ const data: DataItem[] = [
 
 const actionProps = ref({
   showBtn: 2,
+  dropdownProps: {
+    getPopupContainer: (triggerNode) => {
+      console.log('triggerNode: ', triggerNode);
+      return document.body
+    },
+  },
   actions: list
 })
 

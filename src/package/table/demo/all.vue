@@ -13,18 +13,16 @@
         reload: {
           text: '刷新',
           show: true,
-          showTooltip: true,
           action: refresh
         },
         columnDialog: {
           text: '定制列',
           show: true,
-          showTooltip: true
+          okModal: handleOkModal
         },
         download: {
           text: '下载',
           show: true,
-          showTooltip: true,
           href: ''
         }
       }"
@@ -262,6 +260,15 @@ const actionProps = ref({
   showBtn: 2,
   actions: list
 })
+
+const handleOkModal = (keys, checkedList) => {
+  console.log('checkedList: ', checkedList);
+  console.log('keys: ', keys);
+  // console.log('val: ', val);
+  // const { keys, checkedList } = val
+  // console.log('checkedList: ', checkedList);
+  // console.log('keys: ', keys);
+}
 
 interface DataItem {
   key: string;

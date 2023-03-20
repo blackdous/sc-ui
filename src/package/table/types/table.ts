@@ -213,7 +213,9 @@ export interface ActiveOptions {
   columnDialog?: {
     text?: string,
     show?: boolean,
-    isDisabled?: boolean
+    isDisabled?: boolean,
+    okModal?: Fn,
+    cancelModal: Fn
   },
   // customActiveList: Array<VNode | { 
   //   icon?: string | VNode,

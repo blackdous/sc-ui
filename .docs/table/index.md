@@ -76,7 +76,11 @@ const activeOptions = {
     columnDialog: {
       text: '定制列',
       show: true,
-      showTooltip: true
+      showTooltip: true,
+      // 点击自定义列确定按钮回调方法；参数包含 val: { keys: string[], checkedList: any, delItemKeys: string[] }
+      okModal: Fn,
+      // 点击自定义列取消按钮回调方法；参数包含 val: { keys: string[], checkedList: any }
+      cancelModal: Fn
     }
   }
 ```
@@ -685,7 +689,11 @@ export interface ActiveOptions {
     // 是否显示
     show?: boolean,
     // 点击事件是否可用
-    isDisabled?: boolean
+    isDisabled?: boolean,
+    // 点击自定义列确定按钮回调方法；参数包含 val: { keys: string[], checkedList: any, delItemKeys: string[] }
+    okModal?: Fn,
+    // 点击自定义列取消按钮回调方法；参数包含 val: { keys: string[], checkedList: any }
+    cancelModal: Fn
   },
   download?: {
     // tooltip 显示 文字

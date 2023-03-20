@@ -40,9 +40,12 @@ const handleCancel = () => {
 }
 
 const handleChange = (val: { keys: string[], checkedList: any, delItemKeys: string[] }) => {
-  // console.log('val: ', val);
-  const { keys, delItemKeys } = val
-  console.log('delItemKeys: ', delItemKeys);
+  console.log('val: ', val);
+  const { keys, checkedList, delItemKeys } = val
+  console.log('delItemKeys: keys', checkedList);
+  console.log('delItemKeys:checkedList ', keys);
+  console.log('delItemKeys:handleChange ', delItemKeys);
+  console.log('delItemKeys:handleChange ', delItemKeys);
   visible.value = false
   checkList.value = list.map(item => {
     if (keys.includes(item.key)) {

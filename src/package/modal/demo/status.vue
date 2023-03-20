@@ -57,7 +57,7 @@ const openModal = (infoDes: string) => {
       break;
     case 'success':
       Modal.confirm({
-        type: 'info',
+        type: 'success',
         title: () => 'This is a success message',
         icon: () => createVNode(CheckCircleFilled),
         content: () => h('div', {}, [

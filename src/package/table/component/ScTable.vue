@@ -553,18 +553,18 @@ export default defineComponent({
     }
     //@ts-ignore
     const cancelModal = ({ keys, checkedList }) => {
-      const cancelModal = unref(newProps).cancelModal
+      const cancelModal = unref(activeOptions)?.columnDialog?.cancelModal || unref(newProps).cancelModal
       if (isFunction(cancelModal)) {
-        cancelModal(keys, checkedList)
+        cancelModal({ keys, checkedList })
       }
     }
     //@ts-ignore
-    const okModal = ({ keys, checkedList }) => {
+    const okModal = ({ keys, checkedList, delItemKeys }) => {
       visible.value = false
       setFilterColumnChecked(keys)
-      const okModal = unref(newProps).okModal
+      const okModal = unref(activeOptions)?.columnDialog?.okModal || unref(newProps).okModal
       if (isFunction(okModal)) {
-        okModal(keys, checkedList)
+        okModal({keys, checkedList, delItemKeys})
       }
     }
 

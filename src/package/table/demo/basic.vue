@@ -61,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref, h } from 'vue'
+import { ref, unref } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy } from 'sc-ui'

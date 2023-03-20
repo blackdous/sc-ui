@@ -53,7 +53,7 @@ export default defineComponent({
   .mt20 {
     margin-top: 20px;
   }
-  .ant-btn:not(.ant-btn-icon-only) .sc-xinjian, .sc-upload {
+  .ant-btn:not(.ant-btn-icon-only) .sc-xinjian, .ant-btn:not(.ant-btn-icon-only) .sc-upload {
     margin-right: 4px;
   } 
 </style>
