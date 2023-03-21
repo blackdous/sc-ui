@@ -26,6 +26,7 @@ import { ScBreadcrumb, ScBreadcrumbItem } from './package/breadcrumb'
 import { useMessage } from './hooks'
 import { ScSlider } from './package/slider'
 import { ScIcon } from './package/icon'
+import { ScLink } from './package/link'
 import useIcon from './hooks/useIcon'
 import ScDatePicker, {
   ScMonthPicker,
@@ -77,6 +78,7 @@ const components = [
   ColumnDialog,
   Empty,
   ScIcon,
+  ScLink,
 
   ScLoading,
   ScButton,
@@ -147,6 +149,7 @@ export {
   ColumnDialog,
   Empty,
   ScIcon,
+  ScLink,
 
   ScLoading,
   ScButton,

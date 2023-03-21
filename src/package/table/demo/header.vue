@@ -34,7 +34,8 @@
         selectOptions: {
           placeholder: '请选择',
           width: '100px',
-          defaultValue: 'bb'
+          defaultValue: 'bb',
+          clearInput: false
         },
         inputOptions: {
           placeholder: '请输入',

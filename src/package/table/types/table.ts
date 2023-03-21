@@ -184,7 +184,8 @@ export interface SearchOptions {
   selectOptions?: {
     placeholder?: string,
     width?: string,
-    defaultValue: string
+    defaultValue?: string,
+    clearInput?: boolean,
   },
   inputOptions?: {
     placeholder?: (key:string) => string | string,

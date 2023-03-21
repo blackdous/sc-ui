@@ -62,7 +62,26 @@
                     v-for="(subItem) in item.children"
                     :disabled="!!subItem.isDisabled"
                   >
+                    <template v-if="subItem.tooltipDes">
+                      <Tooltip
+                        overlayClassName = 'scTooltip-white'
+                      >
+                        <template #title>
+                          {{ subItem.tooltipDes }}
+                        </template>
+                        <Button
+                          type="link"
+                          class="actionBtn"
+                          :loading="!!subItem.loading"
+                          :disabled="!!subItem.isDisabled"
+                          @click="handle(subItem)"
+                        >
+                          {{ subItem.label }}
+                        </Button>
+                      </Tooltip>
+                    </template>
                     <Button
+                      v-else
                       type="link"
                       class="actionBtn"
                       :loading="!!subItem.loading"
@@ -118,6 +137,7 @@
 
 
 <script lang="ts">
+// @ts-nocheck
 export default {
   name: 'ScTableAction',
   inheritAttrs: false
@@ -125,6 +145,7 @@ export default {
 </script>
 
 <script lang='ts' setup>
+// @ts-nocheck
 import { computed, defineProps, defineEmits, ref, unref, watch } from 'vue'
 import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'

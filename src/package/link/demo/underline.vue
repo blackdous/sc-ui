@@ -1,20 +1,18 @@
 <template>
   <Space direction="vertical" :size="12">
     <div class="ml20">
-      <ScLink type="primary">
+      <ScLink type="primary" underline>
         跳转链接
       </ScLink>
-
-      <ScLink>
+      <ScLink underline>
         跳转链接
       </ScLink>
     </div>
     <div class="ml20">
-      <ScLink type="primary" disabled>
+      <ScLink type="primary" disabled underline>
         跳转链接
       </ScLink>
-
-      <ScLink disabled>
+      <ScLink disabled underline>
         跳转链接
       </ScLink>
     </div>
@@ -25,6 +23,7 @@
 import { Space } from 'ant-design-vue';
 import { ScLink } from 'sc-ui';
 </script>
+
 <style scoped>
 .ml20 .scLink + .scLink {
   margin-left: 20px;

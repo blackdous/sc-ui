@@ -241,7 +241,8 @@ export default defineComponent({
       set: (val) => {
         const { clearInput } = props?.searchOptions?.selectOptions || {}
         selectedItem.value = unref(searchOptions)?.typeList?.find((item: any)=> item.value === val)
-        if (clearInput) {
+        const newClearInput = (clearInput ?? true)
+        if (newClearInput) {
           textValue.value = ''
         }
         validatorResult.value = {

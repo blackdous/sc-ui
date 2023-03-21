@@ -6,12 +6,7 @@
       <ScIcon :type="currentProps.icon" v-if="isString(currentProps.icon)"></ScIcon>
       <component v-else :is="currentProps.icon"></component>
     </span>
-    <span
-      v-if="$slots.default"
-      :class="[baseClass + '-inner']"
-    >
-      <slot name="default"></slot>
-    </span>
+    <span v-if="$slots.default" :class="[baseClass + '-inner']" ><slot name="default"></slot></span>
     <slot v-if="$slots.icon" name="icon" />
   </a>
 </template>
@@ -40,7 +35,8 @@ export default defineComponent({
       baseClass,
       unref(currentProps)?.type ? baseClass + '-' + unref(currentProps)?.type : '',
       unref(currentProps).disabled ? 'isDisabled' : '',
-      unref(currentProps).underline ? 'isUnderline' : ''
+      unref(currentProps).underline ? 'isUnderline' : '',
+      unref(currentProps).size ? baseClass + '-' + unref(currentProps).size : ''
     ]
     return {
       currentProps,

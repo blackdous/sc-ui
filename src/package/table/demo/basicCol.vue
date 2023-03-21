@@ -63,8 +63,8 @@ const columns = [
     //   }
     // }
   },
-  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160, checked: false },
-  { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
+  { title: 'Column 2', dataIndex: 'age2', width: 160, checked: false },
+  { title: 'Column 3', dataIndex: 'age3', width: 160 }
 ];
 
 interface DataItem {
@@ -82,12 +82,16 @@ const data: DataItem[] = [
     key: '1',
     name: 'John Brown',
     age: 32,
+    age2: 32,
+    age3: 32,
     address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd',
   },
   {
     key: '2',
     name: 'Jim Green',
     age: 40,
+    age2: 40,
+    age3: 40,
     address: 'London London',
   },
 ];
@@ -97,6 +101,8 @@ for(let i = 10; i < 12; i++) {
     key: i + '',
     name: 'John Brown',
     age: i,
+    age2: i,
+    age3: i,
     address: 'New London',
   })
 }

@@ -129,7 +129,13 @@ const list = ref([
         loading: false,
         key: 'ffff',
         action: '44444444',
-        tooltipDes: '二级选项22222222',
+        // tooltipDes: '二级选项22222222',
+        tooltipDes: ({record}: {record: any}) => {
+          // console.log('record: ', record);
+          if (record.status % 2 === 1) {
+            return '显示'
+          }
+        }
       }
     ]
   }, {

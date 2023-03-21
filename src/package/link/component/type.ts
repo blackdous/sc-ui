@@ -23,7 +23,7 @@ export const linkProps = () => ({
    */
   underline: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   /**
    * @description whether the component is disabled

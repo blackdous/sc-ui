@@ -51,15 +51,12 @@ export default defineComponent({
     const delItemKeys = ref()
     const columnList = computed(() => {
       const newColumnList = cloneDeep(props.columnList)
-      // sourceList.value = cloneDeep(props.columnList)
       return newColumnList
     })
     const sourceList = computed(() => {
       const newColumnList = cloneDeep(props.columnList)
       return newColumnList
     })
-    console.log('sourceList.value: ', sourceList.value);
-    console.log('columnList: ', columnList.value);
     const curKeys = ref<string[]>()
     const curCheckedList = ref<Column[]>()
     const visible = computed({
@@ -83,8 +80,6 @@ export default defineComponent({
       curKeys.value = keys
       curCheckedList.value = checkedList
       checkInfo.value = (checkedList || []).length + ''
-
-      console.log('sourceList: ', sourceList);
 
       delItemKeys.value = unref(sourceList).filter((item:Column) => { return item.checked }).map((item:string) => item.key || item.dataIndex).filter((item:string) => !keys.includes(item))
     }

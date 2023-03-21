@@ -68,9 +68,7 @@ export function useColumn (
         //   return item?.filteredValue?.includes(_item.key)
         // })
         item.filterSelected = item?.filteredValue?.map(_item => {
-          console.log('_item: ', _item);
           const newItem = findNode(item?.filterList, (node:FilterItem) => node.key === _item, { key: 'key' })
-          console.log('newItem: ', newItem);
           return newItem ? newItem : null
         })
       }
@@ -228,10 +226,16 @@ export function useColumn (
         item.label = item.title
         if (item.titleType) {
           item.label = item.titleType.props.text
+          // @ts-ignore
           item.describe =  item.titleType.componentName.indexOf('thUnit') > -1 ? item.titleType.props.unit : ''
         }
         // @ts-ignore
         item.value = item.key
+        if (!item.key) {
+          item.key = item.dataIndex
+          // @ts-ignore
+          item.value = item.dataIndex
+        }
         item.disabled = item.disabled || false
         if (item.checked === false) {
           item.checked = false
@@ -284,7 +288,7 @@ export function useColumn (
     if (!isArray(columnIds)) {
       return false
     }
-    const columns = unref(columnsRef).map((item: Column) => {
+    const columns = unref(getFilterColumnRef).map((item: Column) => {
       // @ts-ignore
       item.checked = columnIds.includes(item.key)
       return item

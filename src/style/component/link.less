@@ -1,1 +1,90 @@
 @linkScope: ~'@{prefixCls}Link';
+
+a.@{linkScope} {
+
+  font-family: 'PingFang SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: @heading-color;
+  &:hover {
+  color: @link-color1;
+  }
+  &:active, &:link {
+    color: @link-color;
+  }
+  &.isDisabled {
+    color: @disabled-color;
+  }
+  &.isUnderline {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  &-primary {
+    color: @primary-color;
+    &.isDisabled {
+      color: @disabled-link-color;
+    }
+  }
+  &-success {
+    color: @link-success-color;
+    &:hover {
+      color: @link-hover-success-color;
+    }
+    &:active {
+      color: @link-active-success-color;
+    }
+    &.isDisabled {
+      color: @link-disabled-success-color;
+    }
+  }
+  &-warning {
+    color: @link-warning-color;
+    &:hover {
+      color: @link-hover-warning-color;
+    }
+    &:active {
+      color: @link-active-warning-color;
+    }
+    &.isDisabled {
+      color: @link-disabled-warning-color;
+    }
+  }
+  &-info {
+    color: @primary-color;
+    &.isDisabled {
+      color: @disabled-link-color;
+    }
+  }
+  &-danger {
+    color: @link-danger-color;
+    &:hover {
+      color: @link-hover-danger-color;
+    }
+    &:active {
+      color: @link-active-danger-color;
+    }
+    &.isDisabled {
+      color: @link-disabled-danger-color;
+    }
+  }
+  &-large {
+    font-size: 16px;
+    line-height: 24px;
+    .scLink-inner {
+      & + * {
+        font-size: 16px;
+      }
+    }
+  }
+  &-small {
+    font-size: 12px;
+    line-height: 20px;
+    .scLink-inner {
+      & + * {
+        font-size: 12px;
+      }
+    }
+  }
+}
