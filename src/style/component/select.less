@@ -18,6 +18,9 @@
       .ant-select-selector {
         padding: 0 28px 0 30px;
       }
+      .ant-select-selector {
+        padding-left: var(--preWidth);
+      }
     }
   }
 
@@ -149,17 +152,11 @@ div.ant-select-dropdown {
       .ant-select-item-option-content {
         padding:9px 8px;
       }
-      // :global{
-      //   @select-dropdown-height: 40px; // select option 高度
-      //   @select-dropdown-line-height: 40px;// select option line-height 高度
-      // }
     }
   }
   &.dropdown-small {
     .ant-select-item {
       font-size: 12px;
-      // @select-dropdown-height: 22px; // select option 高度
-      // @select-dropdown-line-height: 22px;// select option line-height 高度
       .ant-select-item-option-content {
         padding:0 8px;
       }
@@ -179,12 +176,6 @@ div.ant-select-dropdown {
     .ant-select-selection-item-content {
       margin-right: 6px;
     }
-    // .anticon-close {
-    //   position: relative;
-    // }
-  }
-  &:hover {
-
   }
   &.ant-select-sm {
     .ant-select-item-option-content {
@@ -254,7 +245,7 @@ div.ant-select-dropdown {
     position: absolute;
     z-index: 2;
   }
-  &.is-prefix {
+  .is-prefix {
     position: relative;
   }
   &-prefix {
@@ -263,6 +254,7 @@ div.ant-select-dropdown {
     top: 50%;
     transform: translateY(-50%);
     font-size: 16px;
+    line-height: 30px;
     z-index: 1;
   }
   &.is-disabled {

@@ -1,49 +1,60 @@
 <template>
-  <div :class="[ baseClass, uuid, vBind.widthSize ? baseClass + '-' + vBind.widthSize : '', isPrefixIcon ? 'is-prefix' : '', newProps.disabled ? 'is-disabled' : '']"
+  <div 
+    :class="[ 
+      baseClass, 
+      uuid, 
+      vBind.widthSize ? baseClass + '-' + vBind.widthSize : '', 
+      newProps.disabled ? 'is-disabled' : ''
+    ]"
+    :style="{'--preWidth': prefixWidth }"
   >
-    <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
-      <slot name="prefixIcon"></slot>
-    </span>
-    <Select
-      :class="[isPrefixIcon ? 'is-prefix' : '']"
-      v-bind="vBind"
-      v-model:value="initValue"
-      :disabled="newProps.disabled"
-      :dropdownClassName="dropdownClassName"
-      >
-      <!-- @change="handleChange" -->
-      <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
-        <slot :name="item" v-bind="data || {}"></slot>
-      </template> 
-  
-      <template #suffixIcon>
-        <i 
-          v-if="!isSuffixIcon"
-          class="sc-ui sc-you" 
-        />
-        <slot v-else slot="suffixIcon" />
-      </template>
-      <template #clearIcon>
-        <CloseCircleFilled class="clearSelect" v-if="!isClearIcon" />
-        <span v-else class="clearSelect">
-          <slot  slot="clearIcon">
-          </slot>
-        </span>
-      </template>
-    </Select>
+    <div :class="[
+      isPrefixIcon ? 'is-prefix' : ''
+    ]">
+      <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
+        <slot name="prefixIcon"></slot>
+      </span>
+      <Select
+        :class="[isPrefixIcon ? 'is-prefix' : '']"
+        v-bind="vBind"
+        v-model:value="initValue"
+        :disabled="newProps.disabled"
+        :dropdownClassName="dropdownClassName"
+        >
+        <!-- @change="handleChange" -->
+        <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
+          <slot :name="item" v-bind="data || {}"></slot>
+        </template> 
+    
+        <template #suffixIcon>
+          <i 
+            v-if="!isSuffixIcon"
+            class="sc-ui sc-you" 
+          />
+          <slot v-else slot="suffixIcon" />
+        </template>
+        <template #clearIcon>
+          <CloseCircleFilled class="clearSelect" v-if="!isClearIcon" />
+          <span v-else class="clearSelect">
+            <slot  slot="clearIcon">
+            </slot>
+          </span>
+        </template>
+      </Select>
+    </div>
   </div>
 </template>
 
-<script lang="ts" >
+<script lang="ts">
 
-import { computed, defineComponent, unref, onMounted } from 'vue'
+import { computed, defineComponent, unref, onMounted, onBeforeUnmount, nextTick, ref } from 'vue'
 import { Select, CheckboxGroup, Checkbox, SelectOption } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 // import cloneDeep from 'lodash/cloneDeep'
 import lodash from 'lodash'
 
 import { basePrefixCls } from '../../../constant'
-import { buildUUID } from '../../../utils'
+import { buildUUID, pxToRem } from '../../../utils'
 import { findParentDom } from '../../../utils/domHelper'
 import { props } from './type'
 
@@ -63,6 +74,8 @@ export default defineComponent({
   },
   setup(props, { emit, slots, attrs }) {
     const baseClass = basePrefixCls + 'Select'
+
+    const prefixWidth = ref()
     const initValue = computed({
       get:() => {
         return props.optionMode === 'checkbox' ? props.value === undefined ? [] : props.value : props.value
@@ -118,14 +131,27 @@ export default defineComponent({
       return Object.keys(slots).includes('clearIcon')
     })
 
-    onMounted(() => {
-      const dom = document.querySelector(`.${uuid}`) as HTMLElement
-      dom && dom.addEventListener('mousedown', (event) => {
+    const clearCall = (event: Event) => {
         const isParent = findParentDom(event.target, 5, (dom) => { return String(dom.className).includes('clearSelect') ? dom : false })
         if (isParent) {
           emit('allowClear', initValue.value)
         }
+      }
+
+    onMounted(() => {
+      const dom = document.querySelector(`.${uuid}`) as HTMLElement
+      dom && dom.addEventListener('mousedown', clearCall)
+
+      nextTick(() => {
+        const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
+        // console.log('prefixDom: ', prefixDom.clientWidth, prefixDom.offsetWidth, prefixDom.scrollWidth);
+        prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 12) || 0))
       })
+    })
+
+    onBeforeUnmount(() => {
+      const dom = document.querySelector(`.${uuid}`) as HTMLElement
+      dom && dom.removeEventListener('mousedown', clearCall)
     })
     
     return {
@@ -138,6 +164,7 @@ export default defineComponent({
       isClearIcon,
       dropdownClassName,
       vBind,
+      prefixWidth
     }
   }
 })

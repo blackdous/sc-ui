@@ -142,14 +142,16 @@
 
       const renderDesc = () => {
         const isTitle = Object.keys(slots).includes('title')
+        const isDefault = Object.keys(slots).includes('default')
         return (
           <Descriptions 
             class={`${prefixCls}`} {...(unref(getDescriptionsProps) as any)}
             v-slots={{
-              [isTitle && !unref(useWrapper) ? 'title' : '']: () => (isTitle && !unref(useWrapper) ? getSlot(slots, 'title') : null)
+              [isTitle && !unref(useWrapper) ? 'title' : '']: () => (isTitle && !unref(useWrapper) ? getSlot(slots, 'title') : null),
+              [isDefault ? 'default' : '']: () => (isDefault ? getSlot(slots, 'default') : null)
             }}
           >
-            {renderItem()}
+            { renderItem()}
           </Descriptions>
         );
       };

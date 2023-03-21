@@ -4,14 +4,19 @@
       title="通过title字段设置"
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
       :column="4"
-      :data="mockData"
-      :schema="schema"
       layout="vertical"
       :bordered="false"
       :useCollapse="false"
       >
+        <DescriptionsItem label="UserName">Zhou Maomao</DescriptionsItem>
+        <DescriptionsItem label="Telephone">1810000000</DescriptionsItem>
+        <DescriptionsItem label="Live">Hangzhou, Zhejiang</DescriptionsItem>
+        <DescriptionsItem label="Remark">empty</DescriptionsItem>
+        <DescriptionsItem label="Address">
+          No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+        </DescriptionsItem>
     </ScDescription>
-    <ScDescription
+    <!-- <ScDescription
       :title="renderTitle"
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
       :column="4"
@@ -36,7 +41,7 @@
           通过template #title字段设置
         </span>
       </template>
-    </ScDescription>
+    </ScDescription> -->
     <!-- <ScDescription
       title="通过title字段设置"
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
@@ -96,6 +101,7 @@
 <script setup lang="ts">
 import { h } from 'vue'
 import { ScDescription } from 'sc-ui'
+import { DescriptionsItem } from 'ant-design-vue';
 
 const mockData: Recordable = {
     username: 'test',

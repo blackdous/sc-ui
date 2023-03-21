@@ -3,6 +3,8 @@
     <ScInputNumber
       placeholder="请输入内容"
       v-model:value="inputValueRef"
+      :step="1"
+      :precision="0"
       @change="handleChange"
     >
     </ScInputNumber>
