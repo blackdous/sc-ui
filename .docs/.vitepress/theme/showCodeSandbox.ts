@@ -142,7 +142,7 @@ export const initLineCode = () => {
         // console.log('THEY DID IT AGAIN! replaceState 111111');
       });
       clearTimeout(timer)
-    }, 1500)
+    }, 1000)
   }
 }
 

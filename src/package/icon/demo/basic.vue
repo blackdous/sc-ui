@@ -1,5 +1,6 @@
 <template>
   <div class="disFlex">
+    <ScIcon type="icon-add1"></ScIcon>
     <ScIcon type="icon-tiaozhuan"></ScIcon>
     <ScIcon type="icon-wodepingzheng"></ScIcon>
     <ScIcon type="icon-Frame1"></ScIcon>
