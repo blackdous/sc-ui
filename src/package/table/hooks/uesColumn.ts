@@ -220,7 +220,7 @@ export function useColumn (
 
   const getFilterColumnRef = computed(() => {
     // console.log('filterColumn: ', filterColumn, cloneDeep(unref(filterColumn)));
-    const columns = cloneDeep(unref(filterColumn)).map((item: Column) => {
+    const columns = cloneDeep(unref(filterColumn))?.map((item: Column) => {
       if (!item.default) {
         // @ts-ignore
         item.label = item.title
@@ -247,7 +247,7 @@ export function useColumn (
       return item
     })
     // console.log('columns: ', columns);
-    return columns
+    return columns || []
   })
 
   const getColumnsRef = computed(() => {

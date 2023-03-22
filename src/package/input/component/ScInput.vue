@@ -52,7 +52,6 @@ export default defineComponent({
         return props.value || props.modelValue
       },
       set: (val) => {
-        console.log('val: ', val);
         emit('update:value', val)
       }
     })

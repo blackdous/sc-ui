@@ -157,7 +157,6 @@ export default defineComponent({
     }
 
     const handleSelectCheck = (checked: boolean) => {
-      // console.log('checked: ', checked);
       if (checkStrictly.value) {
         doCheck(checked)
         if (props.node.loaded) {

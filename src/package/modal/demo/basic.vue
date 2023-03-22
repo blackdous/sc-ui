@@ -4,7 +4,6 @@
     :visible="visible === 1"
     title="Basic Modal"
     destroyOnClose
-    width="100px"
     @ok="handleOk"
     cancel-text="取消"
     ok-text="确认"
@@ -12,7 +11,10 @@
     maskClosable
   >
   <!-- @dragChange="handleDrag" -->
-  <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
+  <!-- <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div> -->
+    <ScTable
+      :columns="columns"
+    ></ScTable>
   </ScModal>
   <ScModal 
     :visible="visible === 2"
@@ -99,13 +101,35 @@ import { ref } from 'vue'
 import type { Ref } from 'vue'
 
 import { Button, Modal } from 'ant-design-vue'
-import { ScModal } from 'sc-ui'
+import { ScModal, ScTable } from 'sc-ui'
 import { DraggableType } from '../component/type'
 
 const visible: Ref<number> = ref(0)
 const visible1: Ref<boolean> = ref(false)
 const visible2: Ref<boolean> = ref(false)
 const visible3: Ref<boolean> = ref(false)
+
+const columns = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    sorter: true,
+    width: '20%',
+    slots: { customRender: 'name' },
+  },
+  {
+    title: 'Gender',
+    dataIndex: 'gender',
+    filters: [
+      { text: 'Male', value: 'male' },
+      { text: 'Female', value: 'female' },
+    ],
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+  },
+];
 
 const openModal = (num:number) => {
   console.log('num: ', num);

@@ -5,6 +5,19 @@
 //   }
 // }
 .@{modalScope}, .ant-modal {
+  .scTable {
+    padding: 0;
+    .tableEmpty {
+      min-height: auto;
+      padding-top: 8px;
+      padding-bottom: 0;
+    }
+    .tableEmpty-text {
+      position: relative;
+      padding-top: 0;
+      top: -8px;
+    }
+  }
   .ant-modal-content {
     border-radius: @border-r-6;
   }
@@ -151,7 +164,7 @@
       margin-top: -24px;
     }
   }
-  &:not(.ant-modal-confirm) .anticon-close {
+  &:not(.ant-modal-confirm) .ant-modal-header .anticon-close {
     &::after {
       color: @white-color;
       font-size: 18px;

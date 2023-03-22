@@ -12,7 +12,6 @@ export default function useIcon<ExtraCommonProps extends { [key: string]: any } 
       scriptUrl = window.iconfontUrl
     }
   }
-  console.log('scriptUrl: ', scriptUrl);
   const ScIconComponent = createFromIconfontCN({
     scriptUrl: scriptUrl, // 在 iconfont.cn 上生成,
     extraCommonProps: extraCommonProps

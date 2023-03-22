@@ -25,7 +25,6 @@ export default defineComponent({
     const uuid = 'sc' + buildUUID()
 
     const bindValue = computed(() => {
-      console.log('...props: ', props);
       return {
         ...props,
         ...attrs

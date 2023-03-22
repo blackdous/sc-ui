@@ -123,7 +123,6 @@ export default defineComponent({
     }
 
     const handleCancelText = async (e:Event) => {
-      console.log('e: ', e);
       e.stopPropagation();
       if (isFunction(getProps.value?.cancelBeforeFun)) {
         const isClose = await getProps.value?.cancelBeforeFun()

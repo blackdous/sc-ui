@@ -64,7 +64,6 @@ export default defineComponent({
   setup (props, { emit }) {
     const checkAll = ref(true)
     const sourceList = ref(props.columnList as Array<Column | FilterItem>)
-    console.log('sourceList: ', sourceList.value);
     const checkedListKeys = ref([] as Array<string>)
     const checkedItems = ref([] as Array<Column | FilterItem>)
     const { setItemChecked, getCheckedKeys, getCheckedItems } = useChecked(props.columnList as Array<Column>)
@@ -72,7 +71,6 @@ export default defineComponent({
     checkedItems.value = getCheckedItems()
 
     watch(() => props.columnList, (val) => {
-      // console.log('val: columnList', val);
       sourceList.value = val
       const { getCheckedKeys, getCheckedItems } = useChecked(val as Array<Column>)
       checkedListKeys.value = getCheckedKeys()
@@ -85,7 +83,6 @@ export default defineComponent({
 
     const handleGroup = (item:any) => {
       const { keys, list, checkedList } = setItemChecked(item)
-      // console.log('keys, list, checkedList: ', keys.value, list.value, checkedList.value);
       emit('change', { keys: unref(keys), checkedList: unref(checkedList), list: unref(list) })
       checkAll.value = checkedListKeys.value.length === sourceList.value.length
       if (checkedListKeys.value.length === 0) {
@@ -113,7 +110,6 @@ export default defineComponent({
         checkedListKeys.value = unref(sourceList).filter(item => item.disabled).map(item => { return item.key  })
       }
       const { keys, list, checkedList } = setItemChecked(checkedListKeys.value)
-      console.log('checkedListKeys.value: ', checkedListKeys.value);
       emit('change', { keys: unref(keys), checkedList: unref(checkedList), list: unref(list) })
     }
     return {

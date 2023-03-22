@@ -89,7 +89,6 @@ export default defineComponent({
 
     const ns = basePrefixCls + 'Cascader'
     const config = useCascaderConfig(props)
-    // console.log('config: ', config);
 
     let store: Nullable<Store> = null
     const initialLoaded = ref(true)

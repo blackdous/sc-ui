@@ -69,7 +69,6 @@ export default defineComponent({
       
     })
     const getProps = computed(() => {
-      // console.log('attrs: ', attrs);
       return {
         ...props,
         ...attrs,

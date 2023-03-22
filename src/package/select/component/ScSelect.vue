@@ -81,7 +81,6 @@ export default defineComponent({
         return props.optionMode === 'checkbox' ? props.value === undefined ? [] : props.value : props.value
       },
       set: (val) => {
-        // console.log('val: ', val);
         emit('update:value',  val)
         emit('change', val)
       }
@@ -144,7 +143,6 @@ export default defineComponent({
 
       nextTick(() => {
         const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
-        // console.log('prefixDom: ', prefixDom.clientWidth, prefixDom.offsetWidth, prefixDom.scrollWidth);
         prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 12) || 0))
       })
     })

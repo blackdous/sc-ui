@@ -91,7 +91,6 @@
     },
     emits: ['toggle-advanced'],
     setup(props, { emit }) {
-      // console.log('props: ', props);
       const formAction = [basePrefixCls + 'FormAction']
       const actionColOpt = computed(() => {
         const { showAdvancedButton, actionSpan: span, actionColOptions } = props;

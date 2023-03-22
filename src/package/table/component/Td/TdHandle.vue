@@ -52,7 +52,6 @@ export default defineComponent({
     const newProps = computed(() => {
       return props
     })
-    // console.log('newProps: ', unref(newProps));
     const id = computed(() => {
       return `tb_btn_${unref(newProps).index}_${unref(newProps).column?.type?.componentName}_${unref(newProps).record.key}`
     })

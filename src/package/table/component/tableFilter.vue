@@ -354,7 +354,6 @@ export default defineComponent({
         }
       }
       const { result } = unref(validatorResult)
-      // console.log('result: ', result);
       if (!result) {
         return false
       }

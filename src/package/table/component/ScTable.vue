@@ -584,9 +584,6 @@ export default defineComponent({
       }
     }
 
-    const handleExpand = (expandedRows:any) => {
-      console.log('expandedRows: ', expandedRows);
-    }
 
     onMounted(() => {
       nextTick(() => {
@@ -596,7 +593,6 @@ export default defineComponent({
 
     // const aa = [{ "width":60,"dataIndex":"age","key":"age","slots":{"customRender":"status1","title":"thDescribe"},"titleType":{"componentName":"thDescribe","props":{"text":"Column 2","describe":"提示内容"}},"value":"age","disabled":false,"checked":true,"default":true},{"dataIndex":"address","key":"1","width":160,"type":{"componentName":"tdEllipsis","props":{"lineheigth":2}},"titleType":{"componentName":"thDescribe","props":{"text":"Column 1","describe":"提示内容"}},"slots":{"customRender":"tdEllipsis","title":"thDescribe"},"value":"address","disabled":false,"checked":true,"default":true},{"dataIndex":"age","key":"2","width":160,"titleType":{"componentName":"thUnit","props":{"text":"Column 2","unit":"(元)"}},"slots":{"customRender":"copy1","title":"thUnit"},"value":"age","disabled":false,"checked":true,"default":true}]
 
-    // console.log(unref(tableBindValue).columns.filter((item:any) => !!item.titleType))
 
     const tableAction: TableActionType = {
       reload,
@@ -704,8 +700,7 @@ export default defineComponent({
       okModal,
       handleSelectChange,
       handleCloseTag,
-      getEvent,
-      handleExpand
+      getEvent
     };
   },
 });

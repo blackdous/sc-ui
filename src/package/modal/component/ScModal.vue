@@ -232,7 +232,6 @@ export default defineComponent({
     function setModalProps(props: Partial<ModalProps>): void {
       // Keep the last setModalProps
       propsRef.value = deepMerge(unref(propsRef) || ({} as any), props);
-      // console.log('propsRef: ', propsRef);
       if (Reflect.has(props, 'visible')) {
         visibleRef.value = !!props?.visible;
       }

@@ -188,7 +188,6 @@ const props = withDefaults(defineProps<ActionProps>(), {
 const filterShow = ref([] as Array<ActionItemProps>)
 
 const actionsOptions = computed(() => {
-  // console.log('props: ', props, props.getPopupContainer);
   return props.record?.actionsOptions || { 
     showBtn: props.showBtn, 
     actions: props.actions,

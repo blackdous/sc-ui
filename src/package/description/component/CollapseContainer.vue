@@ -101,7 +101,6 @@
       })
       
       const isTitle = computed(() => {
-        console.log('title', isVNode(unref(newProps).title))
         return Object.keys(slots).includes('title')
       })
 

@@ -427,7 +427,6 @@ export default defineComponent({
       )
         return false
 
-      console.log('!!checkedNodes.value.length: ', !!checkedNodes.value.length);
       return !!checkedNodes.value.length
     })
     const presentText = computed(() => {
@@ -445,7 +444,6 @@ export default defineComponent({
         return cloneDeep(props.modelValue) as CascaderValue
       },
       set(val) {
-        console.log('val: ', val);
         emit(UPDATE_MODEL_EVENT, val)
         emit(CHANGE_EVENT, val)
         if (props.validateEvent) {
@@ -457,11 +455,9 @@ export default defineComponent({
     const popperPaneRef = ref()
 
     const togglePopperVisible = (visible?: boolean) => {
-      // console.log('visible: ', visible);
       if (isDisabled.value) return
 
       visible = visible ?? !popperVisible.value
-      // console.log('visible: ', visible);
 
       if (visible !== popperVisible.value) {
         popperVisible.value = visible
@@ -590,7 +586,6 @@ export default defineComponent({
 
     const updateStyle = () => {
       const inputInner = input.value?.input?.input
-      // console.log('inputInner: ', inputInner);
       const tagWrapperEl = tagWrapper.value
       const suggestionPanelEl = suggestionPanel.value?.$el
 
@@ -764,7 +759,6 @@ export default defineComponent({
 
     onMounted(() => {
       const inputInner = input.value?.input?.input
-      // console.log('inputInner: ', inputInner);
 
       const inputInnerHeight =
         Number.parseFloat(
