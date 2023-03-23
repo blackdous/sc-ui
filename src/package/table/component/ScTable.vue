@@ -186,7 +186,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw } from 'vue'
+import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw, watch } from 'vue'
 import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
 import { FilterFilled } from '@ant-design/icons-vue'
 
@@ -559,6 +559,9 @@ export default defineComponent({
     }
 
     const searchClickHandle = ({value, type}:any) => {
+      // console.log('type: ', type);
+      // console.log('value: ', value);
+      setPagination({ current: 1})
       const search = unref(searchOptions)
       fetchParams.value = {...unref(fetchParams), searchSelect: type, searchText: value}
       if (isFunction(search?.action)) {

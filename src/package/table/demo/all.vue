@@ -1,11 +1,15 @@
 <template>
   <div>
+    <ScButton @click="handlePagination">setPagination</ScButton>
+  </div>
+  <div>
     <!-- :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }" -->
     <ScTable 
       ref="scTableRef"
       :columns="columns"
       rowKey="id"
       :loading="false"
+      :pagination="pagination"
       :api="demoListApi"
       :before-fetch="beforeFetch"
       :actionsOptions="actionProps"
@@ -72,7 +76,7 @@
 <script setup lang="ts">
 import { ComputedRef, reactive, ref, unref } from 'vue'
 import type { Ref } from 'vue'
-import { ScTable } from 'sc-ui'
+import { ScTable, ScButton } from 'sc-ui'
 //@ts-ignore
 import { list as ColumnList } from '../types/column'
 import { demoListApi } from './tableData'
@@ -86,6 +90,14 @@ const sortedInfo = ref();
 const scTableRef = ref()
 
 const columnList = ref()
+
+const pagination = reactive({
+  total: 100,
+  current: 1,
+  pageSize: 10,
+  size: 'default',
+  defaultPageSize: 10,
+})
 
 // const filtered = filteredInfo.value || {};
 const sorted = sortedInfo.value || {};
@@ -219,6 +231,12 @@ const columns = [
     slots: { customRender: 'action' },
   },
 ];
+
+const handlePagination = (event: Event) => {
+  console.log('event: handlePagination', event);
+  pagination.total = 11
+  console.log('pagination: ', pagination);
+}
 
 const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
   {

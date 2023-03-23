@@ -22,6 +22,9 @@ export function usePagination(refProps: ComputedRef<Recordable>) {
         };
       }
     },
+    {
+      deep: true
+    }
   );
 
   const getPaginationInfo = computed((): PaginationProps | boolean => {

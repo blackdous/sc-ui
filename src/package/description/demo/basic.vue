@@ -1,17 +1,29 @@
 <template>
   <div>
+    <!-- layout="vertical" -->
     <ScDescription
       title="通过title字段设置"
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
-      :column="4"
-      layout="vertical"
+      :column="3"
       :bordered="false"
       :useCollapse="false"
       >
-        <DescriptionsItem label="UserName">Zhou Maomao</DescriptionsItem>
-        <DescriptionsItem label="Telephone">1810000000</DescriptionsItem>
-        <DescriptionsItem label="Live">Hangzhou, Zhejiang</DescriptionsItem>
-        <DescriptionsItem label="Remark">empty</DescriptionsItem>
+        <DescriptionsItem label="UserName">Zhou Maomao 
+          <ScIcon type="icon-a-chevron-rightdouble"
+            :style="{fontSize: '20px'}"
+          ></ScIcon> 
+        </DescriptionsItem>
+        <DescriptionsItem label="Telephone">
+          1810000000
+          <ScIcon type="icon-a-chevron-rightdouble"
+          ></ScIcon> 
+        </DescriptionsItem>
+        <DescriptionsItem label="Live">Hangzhou, Zhejiang
+          <i class="sc-ui sc-a-chevron-rightdouble" :style="{fontSize: '20px'}"></i>
+        </DescriptionsItem>
+        <DescriptionsItem label="Remark">empty
+          <i class="sc-ui sc-a-chevron-rightdouble"></i>
+        </DescriptionsItem>
         <DescriptionsItem label="Address">
           No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
         </DescriptionsItem>
@@ -100,7 +112,7 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { ScDescription } from 'sc-ui'
+import { ScDescription, ScIcon } from 'sc-ui'
 import { DescriptionsItem } from 'ant-design-vue';
 
 const mockData: Recordable = {
