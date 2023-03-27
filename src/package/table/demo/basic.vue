@@ -176,7 +176,7 @@ const handleTd = ({column, record}: any) => {
 const scTableRef = ref()
 // @ts-ignore
 const columns = [
-  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left'},
+  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', ellipsis: true},
   { 
     // title: 'age',
     width: 60,

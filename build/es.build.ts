@@ -9,7 +9,7 @@ export const esBuild = {
   sourcemap: true,
   rollupOptions: {
     // 确保外部化处理那些你不想打包进库的依赖
-    external: ['vue', 'vue-slider-component', /^lodash(\/.+|$)/, 'moment', /^dayjs(\/.+|$)/, /^ant-design-vue(\/.+|$)/, /^@ant-design\/icons-vue/],
+    external: ['vue', 'vue-slider-component', /^lodash(\/.+|$)/, 'moment', /^dayjs(\/.+|$)/, 'ant-design-vue', /^@ant-design\/icons-vue/],
     output: [
       {
         format: 'es',

@@ -73,7 +73,9 @@ export default defineComponent({
     const vBind = computed(() => {
       return {
         ...unref(newProps),
-        ...attrs
+        ...attrs,
+        class: undefined,
+        style: undefined
       }
     })
 
