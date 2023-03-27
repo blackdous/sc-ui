@@ -199,32 +199,9 @@ import FilterDropDownVue from './FilterDropDown.vue'
 import ColumnDialogVue from './ColumnDialog.vue'
 import EmptyVue from './Empty.vue'
 import FilterTagsVue from './FilterTags.vue'
-import { TdCopy, TdEllipsis, TdStatus, TdHandle } from './Td'
-// ant-design-vue 2.2.8 表格不能指定为同一个组件，只能通过组件名区分；不能动态加载组, 不然 basic项目 打包会报错
-import { 
-  ThUnit,
-  ThUnit1,
-  ThUnit2,
-  ThUnit3,
-  ThUnit4,
-  ThUnit5,
-  ThUnit6,
-  ThUnit7,
-  ThUnit8,
-  ThUnit9,
-  ThUnit10,
-  ThDescribe,
-  ThDescribe1,
-  ThDescribe2,
-  ThDescribe3,
-  ThDescribe4,
-  ThDescribe5,
-  ThDescribe6,
-  ThDescribe7,
-  ThDescribe8,
-  ThDescribe9,
-  ThDescribe10 
-} from './Th'
+// import { TdCopy, TdEllipsis, TdStatus, TdHandle } from './Td'
+import TdComponents from './Td'
+import THComponents from './Th'
 
 //@ts-ignore
 import { tableProps, TableProps, ButtonType, TableActionType, SorterResult, PaginationProps } from '../types/table'
@@ -265,31 +242,9 @@ export default defineComponent({
     ConfigProvider,
     EmptyVue,
     FilterTagsVue,
-    TdCopy, TdEllipsis, TdStatus, TdHandle,
-    ThUnit,
-    ThUnit1,
-    ThUnit2,
-    ThUnit3,
-    ThUnit4,
-    ThUnit5,
-    ThUnit6,
-    ThUnit7,
-    ThUnit8,
-    ThUnit9,
-    ThUnit10,
-    ThDescribe,
-    ThDescribe1,
-    ThDescribe2,
-    ThDescribe3,
-    ThDescribe4,
-    ThDescribe5,
-    ThDescribe6,
-    ThDescribe7,
-    ThDescribe8,
-    ThDescribe9,
-    ThDescribe10,
-    // ...TdComponents,
-    // ...THComponents
+    // TdCopy, TdEllipsis, TdStatus, TdHandle,
+    ...TdComponents,
+    ...THComponents
   },
   emits: ['change', 'register', 'onAction', 'searchClick', 'onAction', 'createClick', 'selectChange', 'multipleChange', 'refresh', 'filter'],
   setup(props, { attrs, slots, emit, expose }) {
