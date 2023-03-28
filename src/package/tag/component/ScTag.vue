@@ -49,7 +49,7 @@ export default defineComponent({
         size ? baseClass + '--' + size : '',
         status ? 'is-' + status : '',
         type ? baseClass + '-' + type : '',
-        selected ? unref(checked) ? 'is-selected' : '' : '',
+        selected ? unref(checked) ? 'is-selected onSelect' : 'onSelect' : '',
         disabled ? 'is-disabled' : ''
       ]
     })

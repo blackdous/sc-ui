@@ -10,6 +10,14 @@
       >
         默认标签
       </ScTag>
+      <ScTag
+        v-model:checked="checked2"
+        selected
+        type="dark"
+        @change="handleChange"
+      >
+        默认标签
+      </ScTag>
     </div>
   </Space>
 </template>
@@ -20,6 +28,7 @@ import { Space } from 'ant-design-vue';
 import { ScTag } from 'sc-ui'
 
 const checked1 = ref(false)
+const checked2 = ref(false)
 
 const handleChange = (checked: boolean) => {
   console.log('checked: change', checked)
