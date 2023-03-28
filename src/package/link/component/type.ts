@@ -8,7 +8,7 @@ export const iconPropType = definePropType<string | Component>([
 export const linkProps = () => ({
   size: {
     type: String,
-    validator: (v:string) => ['size', 'default', 'large', 'medium'].includes(v) 
+    validator: (v:string) => ['small', 'default', 'large', 'medium'].includes(v) 
   },
   /**
  * @description type

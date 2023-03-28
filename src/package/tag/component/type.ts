@@ -2,7 +2,7 @@ import type { ExtractPropTypes } from "vue"
 export const tagProps = () => ({
   size: {
     type: String,
-    validator: (v:string) => ['size', 'default', 'large', 'medium'].includes(v) 
+    validator: (v:string) => ['small', 'default', 'large', 'medium'].includes(v) 
   },
   /**
  * @description type
@@ -18,7 +18,8 @@ export const tagProps = () => ({
     default: 'default',
   },
   checked: Boolean,
-  selected: Boolean
+  selected: Boolean,
+  disabled: Boolean
 })
 
 export type TagProps = ExtractPropTypes<typeof tagProps>

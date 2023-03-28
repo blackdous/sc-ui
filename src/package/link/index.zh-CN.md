@@ -56,3 +56,22 @@ map:
   title="组件大小"
   >
 </demo>
+
+## props
+
+| 属性         | 类型                         | 默认值  | 可选值 | 说明                     |
+| ------------------ | --------------------------- | ------- | ------ | ------------------------ |
+| size      | string     | medium |  medium、small、large   |  设置Link 组件大小 |
+| type      | string     | default |  'primary', 'success', 'warning', 'info', 'danger', 'default'   |  设置tag样式模式 |
+| underline      | boolean     | -  | - |  是否显示下划线 |
+| disabled      | boolean     | false |  -   |  组件禁用状态 |
+| href      | string     | -  |  -   |  原生 href 属性 |
+| icon      | string / Component     | -  |  -   |  图标组件 |
+
+## Slots
+
+| 名字 | 说明 | 参数 | 版本 |
+| --- | --- | --- | --- |
+| default | 自定义默认内容 |  -  | - |
+| icon | 自定义图标组件 |  -  | - |
+

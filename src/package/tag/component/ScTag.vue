@@ -1,6 +1,7 @@
 <template>
   <Tag
     v-bind="$attrs"
+    :disable="compProps.disabled"
     :class="classNames"
     @click="handleChange"
   >
@@ -41,22 +42,28 @@ export default defineComponent({
     })
     
     const classNames = computed(() => {
-      const { type, size, status, selected } = unref(compProps)
+      const { type, size, status, selected, disabled } = unref(compProps)
       return [
         attrs.class,
         baseClass,
         size ? baseClass + '--' + size : '',
         status ? 'is-' + status : '',
         type ? baseClass + '-' + type : '',
-        selected ? unref(checked) ? 'is-selected' : '' : ''
+        selected ? unref(checked) ? 'is-selected' : '' : '',
+        disabled ? 'is-disabled' : ''
       ]
     })
     const handleChange = () => {
+      const { disabled } = unref(compProps)
+      if (disabled) {
+        return false
+      }
       emit('update:checked', !checked.value)
       emit('change', !checked.value)
     }
     return {
       classNames,
+      compProps,
       handleChange
     }
   }

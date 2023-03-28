@@ -43,9 +43,102 @@
   &.ant-tag > span + .anticon {
     margin-left: 2px;
   }
-  &.is-selected {
+
+  &.is-selected, &.is-primary {
     background: @primary-color;
     border-color: @primary-color;
     color: @white-color;
+    &.@{tagScope}-light {
+      background: fade(@primary-color, 6%);
+      border-color: fade(@primary-color, 6%);
+      color: @primary-color;
+    }
+    &.@{tagScope}-outline {
+      background: transparent;
+      border-color: @primary-color;
+      color: @primary-color;
+    }
+    &.@{tagScope}-lightOutline {
+      background: fade(@primary-color, 6%);
+      border-color: @primary-color;
+      color: @primary-color;
+    }
+  }
+  &.is-success {
+    background: @link-success-color;
+    border-color: @link-success-color;
+    color: @white-color;
+    &.@{tagScope}-light {
+      background: fade(@link-success-color, 6%);
+      border-color: fade(@link-success-color, 6%);
+      color: @link-success-color;
+    }
+    &.@{tagScope}-outline {
+      background: transparent;
+      border-color: @link-success-color;
+      color: @link-success-color;
+    }
+    &.@{tagScope}-lightOutline {
+      background: fade(@link-success-color, 6%);
+      border-color: @link-success-color;
+      color: @link-success-color;
+    }
+  }
+  &.is-warning {
+    background: @link-warning-color;
+    border-color: @link-warning-color;
+    color: @white-color;
+    &.@{tagScope}-light {
+      background: fade(@link-warning-color, 6%);
+      border-color: fade(@link-warning-color, 6%);
+      color: @link-warning-color;
+    }
+    &.@{tagScope}-outline {
+      background: transparent;
+      border-color: @link-warning-color;
+      color: @link-warning-color;
+    }
+    &.@{tagScope}-lightOutline {
+      background: fade(@link-warning-color, 6%);
+      border-color: @link-warning-color;
+      color: @link-warning-color;
+    }
+  }
+  &.is-error {
+    background: @link-danger-color;
+    border-color: @link-danger-color;
+    color: @white-color;
+    &.@{tagScope}-light {
+      background: fade(@link-danger-color, 6%);
+      border-color: fade(@link-danger-color, 6%);
+      color: @link-danger-color;
+    }
+    &.@{tagScope}-outline {
+      background: transparent;
+      border-color: @link-danger-color;
+      color: @link-danger-color;
+    }
+    &.@{tagScope}-lightOutline {
+      background: fade(@link-danger-color, 6%);
+      border-color: @link-danger-color;
+      color: @link-danger-color;
+    }
+  }
+
+  &--small {
+    line-height: 16px;
+    padding: 1px 4px;
+  }
+
+  &--large {
+    font-size: 14px;
+    padding: 5px 11px;
+  }
+
+  &.is-disabled {
+    border-color: @border-color-base;
+    background: @disabled-bg-color;
+    color: @disabled-color;
+    cursor: not-allowed;
   }
 }

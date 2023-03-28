@@ -4,6 +4,7 @@
       <ScTag
         v-model:checked="checked1"
         selected
+        disabled
         type="dark"
         @change="handleChange"
       >
