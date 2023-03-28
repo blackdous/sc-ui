@@ -27,6 +27,7 @@ import { useMessage } from './hooks'
 import { ScSlider } from './package/slider'
 import { ScIcon } from './package/icon'
 import { ScLink } from './package/link'
+import { ScTag } from './package/tag'
 import useIcon from './hooks/useIcon'
 import ScDatePicker, {
   ScMonthPicker,
@@ -49,6 +50,7 @@ import {
   useForm
 } from './package/form'
 
+// 指令
 import { installGlobalDirectives } from './directives'
 import ClickOutside from './directives/clickOutside'
 import TextCollapse from './directives/textCollapse'
@@ -79,6 +81,7 @@ const components = [
   Empty,
   ScIcon,
   ScLink,
+  ScTag,
 
   ScLoading,
   ScButton,
@@ -127,7 +130,7 @@ const install = (app: App) => {
 };
 
 const ScUi = {
-  version: '0.0.95',
+  version: '0.0.96',
   install,
 };
 
@@ -150,6 +153,7 @@ export {
   Empty,
   ScIcon,
   ScLink,
+  ScTag,
 
   ScLoading,
   ScButton,

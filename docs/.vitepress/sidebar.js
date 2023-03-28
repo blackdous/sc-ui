@@ -31,7 +31,8 @@ export const sidebar = {
         { text: 'Table', link: '/en/table/' },
         { text: 'Tooltip', link: '/en/tooltip/' },
         { text: 'Description', link: '/en/description/' },
-        { text: 'Link', link: '/en/link' }
+        { text: 'Link', link: '/en/link' },
+        { text: 'Tag', link: '/en/tag/' },
       ]
     },
     {
@@ -110,7 +111,8 @@ export const sidebar = {
         { text: '步骤条 Steps', link: '/steps/' },
         { text: '分页 Pagination', link: '/pagination/' },
         { text: '下拉菜单 Dropdown', link: '/dropdown/' },
-        { text: '面包屑 Breadcrumb', link: '/breadcrumb/' }
+        { text: '面包屑 Breadcrumb', link: '/breadcrumb/' },
+        { text: '标签 Tag', link: '/tag/' },
       ]
     },
     {

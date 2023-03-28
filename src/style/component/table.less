@@ -263,7 +263,10 @@
 }
 .@{tableActionsScope} {
   height: 22px;
-  > span + .ant-btn-link { 
+  & > span + .ant-btn-link, 
+  & > .ant-btn-link + span,  
+  & > .ant-btn-link + .ant-btn-link,
+  & > span + span  { 
     position: relative;
     &::after {
       position: absolute;
@@ -310,18 +313,18 @@
       }
     }
   }
-  .ant-btn-link:not(:last-child) {
-    position: relative;
-    &::after {
-      position: absolute;
-      content: "";
-      right: 0;
-      top: 4px;
-      width: 1px;
-      height: 16px;
-      background: @table-border-color;
-    }
-  }
+  // .ant-btn-link:not(:last-child) {
+  //   position: relative;
+  //   &::after {
+  //     position: absolute;
+  //     content: "";
+  //     right: 0;
+  //     top: 4px;
+  //     width: 1px;
+  //     height: 16px;
+  //     background: @table-border-color;
+  //   }
+  // }
   .ant-btn.ant-btn-loading:not(.ant-btn-circle):not(.ant-btn-circle-outline):not(.ant-btn-icon-only) {
     padding-left: 0;
   }

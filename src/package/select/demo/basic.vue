@@ -3,6 +3,7 @@
     <ScSelect
       v-model:value="value"
       @change="handleChange"
+      class="aaaa"
     >
       <SelectOption
         v-for="item in list"

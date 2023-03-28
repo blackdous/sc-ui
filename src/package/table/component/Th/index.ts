@@ -14,5 +14,4 @@ for (const [key, value] of Object.entries(components)) {
   }
 }
 
-console.log('THComponents: ', THComponents);
 export default THComponents

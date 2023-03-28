@@ -4,9 +4,10 @@
       baseClass, 
       uuid, 
       vBind.widthSize ? baseClass + '-' + vBind.widthSize : '', 
-      newProps.disabled ? 'is-disabled' : ''
+      newProps.disabled ? 'is-disabled' : '',
+      $attrs.class
     ]"
-    :style="{'--preWidth': prefixWidth }"
+    :style="{'--preWidth': prefixWidth, ...$attrs.style }"
   >
     <div :class="[
       isPrefixIcon ? 'is-prefix' : ''
@@ -101,7 +102,9 @@ export default defineComponent({
         dropdownStyle: {
           ...(attrs.dropdownStyle || {}),
         },
-        onChange: undefined
+        onChange: undefined,
+        class: undefined,
+        style: undefined
       }
     })    
     const dropdownClassName = computed(() => {

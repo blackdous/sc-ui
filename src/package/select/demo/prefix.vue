@@ -4,6 +4,7 @@
       <ScSelect
         v-model:value="value"
         :options="options"
+        class="test11"
       >
         <template #prefixIcon>
           <i class="sc-ui sc-tiaozhuan"></i>
