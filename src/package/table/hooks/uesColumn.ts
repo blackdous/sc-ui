@@ -62,11 +62,6 @@ export function useColumn (
         item.filtered =  item.filtered ?? true
       }
       if (item.filteredValue) {
-        // console.log('item.filteredValue: ', item?.filteredValue?.includes(item.key));
-        // item.filterSelected = item.filterList?.map(_item => {
-          
-        //   return item?.filteredValue?.includes(_item.key)
-        // })
         item.filterSelected = item?.filteredValue?.map(_item => {
           const newItem = findNode(item?.filterList, (node:FilterItem) => node.key === _item, { key: 'key' })
           return newItem ? newItem : null
@@ -218,6 +213,17 @@ export function useColumn (
     })
   }
 
+  const thColumn = computed(() => {
+    const newColumn = cloneDeep(unref(getFilterColumnRef).filter((item:Column) => !!item.titleType))
+    return newColumn
+  })
+
+  const getColumnsRef = computed(() => {
+    const columns = cloneDeep(unref(getFilterColumnRef)).filter((item: Column) => item.checked)
+    // console.log('filterColumn: ', columns);
+    return columns
+  })
+
   const getFilterColumnRef = computed(() => {
     // console.log('filterColumn: ', filterColumn, cloneDeep(unref(filterColumn)));
     const columns = cloneDeep(unref(filterColumn))?.map((item: Column) => {
@@ -250,26 +256,6 @@ export function useColumn (
     return columns || []
   })
 
-  const getColumnsRef = computed(() => {
-    const columns = cloneDeep(unref(getFilterColumnRef)).filter((item: Column) => item.checked)
-    // console.log('filterColumn: ', columns);
-    return columns
-  })
-
-  const thColumn = computed(() => {
-    const newColumn = cloneDeep(unref(getFilterColumnRef).filter((item:Column) => !!item.titleType))
-    return newColumn
-  })
-
-  const getTypeComponent = (type:string) => {
-    // 预设组件
-    if (unref(customComponentKey).includes(type)) {
-      return type.charAt(0).toLocaleUpperCase() + type.slice(1)
-    } else {
-      // 不识别组件
-      return type
-    }
-  }
   const getTitleComponent = (type:string) => {
     // 预设组件
     if (unref(customComponentHeaderKey).includes(type)) {
@@ -280,20 +266,14 @@ export function useColumn (
     }
   }
 
-  function setFilterColumnRef (columns: Column[]) {
-    filterColumn.value = columns || []
-  }
-
-  function setFilterColumnChecked (columnIds: string[]) {
-    if (!isArray(columnIds)) {
-      return false
+  const getTypeComponent = (type:string) => {
+    // 预设组件
+    if (unref(customComponentKey).includes(type)) {
+      return type.charAt(0).toLocaleUpperCase() + type.slice(1)
+    } else {
+      // 不识别组件
+      return type
     }
-    const columns = unref(getFilterColumnRef).map((item: Column) => {
-      // @ts-ignore
-      item.checked = columnIds.includes(item.key)
-      return item
-    })
-    filterColumn.value = columns
   }
 
   function setFilterColumnDisabled (columnIds: string[]) {
@@ -308,6 +288,17 @@ export function useColumn (
     filterColumn.value = columns
   }
 
+  function setFilterColumnChecked (columnIds: string[]) {
+    if (!isArray(columnIds)) {
+      return false
+    }
+    const columns = unref(getFilterColumnRef).map((item: Column) => {
+      // @ts-ignore
+      item.checked = columnIds.includes(item.key)
+      return item
+    })
+    filterColumn.value = columns
+  }
 
   function getColumns(opt?: GetColumnsParams) {
     const { ignoreIndex, ignoreAction } = opt || {};
@@ -320,6 +311,10 @@ export function useColumn (
     }
 
     return columns;
+  }
+
+  function setFilterColumnRef (columns: Column[]) {
+    filterColumn.value = columns || []
   }
 
 

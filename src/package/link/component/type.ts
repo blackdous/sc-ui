@@ -38,7 +38,8 @@ export const linkProps = () => ({
    */
   icon: {
     type: iconPropType,
-  }
+  },
+  handle: Function
 })
 
 export type LinkProps = ExtractPropTypes<typeof linkProps>

@@ -58,6 +58,14 @@ realPath: src/package/link/index.zh-CN.md
   >
 </demo>
 
+## href && handle
+
+<demo src="./demo/href.vue"
+  language="vue"
+  title="href && handle"
+  >
+</demo>
+
 ## props
 
 | 属性         | 类型                         | 默认值  | 可选值 | 说明                     |
@@ -68,6 +76,7 @@ realPath: src/package/link/index.zh-CN.md
 | disabled      | boolean     | false |  -   |  组件禁用状态 |
 | href      | string     | -  |  -   |  原生 href 属性 |
 | icon      | string / Component     | -  |  -   |  图标组件 |
+| handle      | Function    | -  |  -   |  点击事件回调 |
 
 ## Slots
 

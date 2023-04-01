@@ -1,6 +1,8 @@
 <template>
   <a
     :class="classNames"
+    :href="!currentProps.disabled && currentProps.href ? currentProps.href : 'javascript: void(0)'"
+    @click="handleClick"
   >
     <span class="prepend" v-if="currentProps.icon">
       <ScIcon :type="currentProps.icon" v-if="isString(currentProps.icon)"></ScIcon>
@@ -16,7 +18,7 @@ import { defineComponent, computed, unref, isVNode } from 'vue';
 
 import { linkProps } from './type';
 import { basePrefixCls } from '../../../constant';
-import { isString } from '../../../utils/is';
+import { isString, isFunction } from '../../../utils/is';
 import { ScIcon } from '../../icon';
 
 export default defineComponent({
@@ -38,12 +40,20 @@ export default defineComponent({
       unref(currentProps).underline ? 'isUnderline' : '',
       unref(currentProps).size ? baseClass + '-' + unref(currentProps).size : ''
     ]
+    const handleClick = () => {
+      const { handle, disabled } = currentProps.value
+      // handle()
+      if (isFunction(handle) && !disabled) {
+        handle()
+      }
+    }
     return {
       currentProps,
       baseClass,
       classNames,
       isString,
-      isVNode
+      isVNode,
+      handleClick
     }
   }
 })
