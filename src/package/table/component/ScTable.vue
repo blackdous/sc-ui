@@ -437,6 +437,7 @@ export default defineComponent({
 
     const handleSelectChange = (item: string) => {
       const selectItem = unref(searchOptions).typeList.find((_item: ButtonType) => item === _item.value)
+      // console.log('selectItem: ', selectItem);
       if (item) {
         fetchParams.value = {...unref(fetchParams), selectValue: item}
       }

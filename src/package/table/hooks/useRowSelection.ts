@@ -74,11 +74,13 @@ export function useRowSelection(
         children: propsRef.value.childrenColumnName ?? 'children',
       },
     );
+    console.log('allSelectedRows: ', allSelectedRows);
     const trueSelectedRows: any[] = [];
     rowKeys.forEach((key: string) => {
       const found = allSelectedRows.find((item) => item[unref(getRowKey) as string] === key);
       found && trueSelectedRows.push(found);
     });
+    console.log('trueSelectedRows: ', trueSelectedRows);
     selectedRowRef.value = trueSelectedRows;
   }
 

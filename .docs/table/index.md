@@ -361,7 +361,7 @@ const dataSource = [
 
 **setMultipleAction**
 
-类型：`(props: Partial<MultipleActionOptions>) => void`
+类型：`(props: Partial<MultipleOptions>) => void`
 
 说明: 用于设置单选按钮组配置
 
@@ -571,7 +571,7 @@ const dataSource = [
 | pagination              | `any`                                              | -       | -      | 分页信息配置，为 `false` 不显示分页                                                             |      |
 | loading                 | `boolean`                                          | `false` | -      | 表格 loading 状态                                                                               |      |
 | scroll                  | `any`                                              | -       | -      | 参考官方文档 scroll                                                                             |      |
-| multipleActionOptions                  | `MultipleActionOptions`                                              | -       | -      |  用于展示单选按钮组                                                                           |      |
+| multipleOptions                  | `MultipleOptions`                                              | -       | -      |  用于展示单选按钮组                                                                           |      |
 | searchOptions                  | `SearchOptions`                                              | -       | -      |   头部搜索组件配置数据                                                                        |      |
 | activeOptions                  | `ActiveOptions`                                              | -       | -      |   用于配置是否显示刷新、自定列按钮                                                                     |      |
 | actionsOptions                  | `ActionsOptions`                                              | -       | -      |   用于全局配置操作列数据；会被record 上的 数据覆盖                                                     |      |
@@ -600,7 +600,7 @@ export interface CreateButton {
 }
 ```
 
-### MultipleActionOptions
+### MultipleOptions
 
 ```ts
   interface ButtonType {
@@ -620,7 +620,7 @@ export interface CreateButton {
     action?: string | ((...args: any) => void)
   }
 
-  export interface MultipleActionOptions {
+  export interface MultipleOptions {
     // 是否显示 单选按钮组
     show?: boolean,
     options?: Array<ButtonType>,

@@ -2,10 +2,12 @@
   <div style="margin-top: 20px;">
     <ScButton @click="handleSetProps">setProps</ScButton>
     <ScButton @click="handleClearSelectedRowKeys">clearSelectedRowKeys</ScButton>
+    <ScButton @click="handleMultipleShow">handleMultipleShow</ScButton>
   </div>
   <div>
     <ScTable 
       ref="scTableRef"
+      rowKey="code"
       :data-source="data"
       :columns="columns"
       :loading="loading"
@@ -21,9 +23,9 @@
         action: createClick
       }"
       :multiple-options="{
-        show: true,
+        show: multipleShow,
         triggerMultiple: true,
-        options: radioList
+        options: radioList.slice(0, 1)
       }"
       :search-options="{
         show: true,
@@ -46,6 +48,7 @@
       }"
       @change="handleChange"
       @selectChange="handleSelectChange"
+      @selection-change="handleSelectionChange"
       >
     </ScTable>
   </div>
@@ -66,6 +69,18 @@ type Key = string | number
 const searchDefaultValue = ref<string>('测试默认值')
 
 const loading = ref(false)
+
+const multipleShow = ref(true)
+
+const handleMultipleShow = () => {
+  // multipleShow.value = !unref(multipleShow)
+  scTableRef.value.setMultipleAction({
+    show: !multipleShow.value,
+    triggerMultiple: true,
+    options: unref(radioList).slice(0, 1)
+  })
+  multipleShow.value = !multipleShow.value
+}
 
 const pagination = reactive({
       total: 100,
@@ -100,9 +115,9 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
     //   }
     //   return false
     // },
-    disabled: true,
+    disabled: false,
     value: 'a',
-    action: ({tableRef, selectedRowKeysRef}) => {
+    action: ({tableRef, selectedRowKeysRef}: any) => {
       console.log('tableRef, selectedRowKeysRef: 1111111', tableRef, selectedRowKeysRef);
     }
   },
@@ -202,7 +217,8 @@ const columns = [
 ];
 
 interface DataItem {
-  key: string;
+  key?: string;
+  code?: string;
   name: string;
   age: number;
   address: string;
@@ -213,13 +229,13 @@ interface DataItem {
 
 let data: DataItem[] = [
   {
-    key: '1',
+    code: '1',
     name: 'John Brown',
     age: 32,
     address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd',
   },
   {
-    key: '2',
+    code: '2',
     name: 'Jim Green',
     age: 40,
     address: 'London London',
@@ -277,7 +293,7 @@ const searchHanle = (aaa: ComputedRef) => {
   }, 100)
   // console.log('Data: ', data);
   data.push(  {
-    key: '2asdasdad',
+    code: '2asdasdad',
     name: 'Jim Green112222222',
     age: 4022222,
     address: 'London London32222',
@@ -292,7 +308,7 @@ const multipleChangeHandle = ({tableRef, selectedRowKeysRef}) => {
 
 for(let i = 10; i < 12; i++) {
   data.push({
-    key: i + '',
+    code: i + '',
     name: 'John Brown',
     age: i,
     address: 'New London',
@@ -301,6 +317,11 @@ for(let i = 10; i < 12; i++) {
 
 const handleSelectChange = (val:string) => {
   console.log('val: ', val);
+}
+
+const handleSelectionChange = ({ keys, rows }: any) => {
+  console.log('rows: ', rows);
+  console.log('keys: ', keys);
 }
 
 setTimeout(() => {
