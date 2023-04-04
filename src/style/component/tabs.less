@@ -47,7 +47,7 @@
         border-right: 4px solid @white-color;
         box-sizing: content-box;
         visibility: initial;
-        margin-left: -3px;
+        margin-left: -4px;
         z-index: 51;
       }
       &.ant-tabs-card-bar {
@@ -87,7 +87,7 @@
           height: 32px;
           line-height: 30px;
           padding: 0 28px 0 24px;
-          min-width: 88px;
+          min-width: 100px;
           font-family: 'PingFang SC';
           font-style: normal;
           font-weight: 400;
@@ -252,4 +252,10 @@
 }
 .ant-tabs-ink-bar {
   background-color: @primary-color;
+}
+.app-container {
+  .ant-tabs.ant-tabs-card.ant-tabs-top > .ant-tabs-bar .ant-tabs-ink-bar, 
+  .ant-tabs.ant-tabs-card.gradient.ant-tabs-top > .ant-tabs-bar .ant-tabs-ink-bar {
+    margin-left: -0.26rem;
+  }
 }

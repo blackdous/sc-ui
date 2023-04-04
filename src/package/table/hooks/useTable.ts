@@ -1,4 +1,4 @@
-import type { TableProps, TableActionType, FetchParams, BasicColumn, SearchOptions, MutilpActionOptions } from '../types/table'
+import type { TableProps, TableActionType, FetchParams, BasicColumn, SearchOptions, MultipleActionOptions } from '../types/table'
 import type { Column } from '../types/column'
 import type { PaginationProps } from '../types/pagination'
 import type { DynamicProps } from '../../../../types/utils'
@@ -145,8 +145,8 @@ export function useTable(tableProps?: Props): [
     setSearchOptions: (searchOptions: SearchOptions) => {
       return toRaw(getTableInstance().setSearchOptions(searchOptions));
     },
-    setMutilpAction: (multipleActionOptions: MutilpActionOptions) => {
-      return toRaw(getTableInstance().setMutilpAction(multipleActionOptions));
+    setMultipleAction: (multipleActionOptions: MultipleActionOptions) => {
+      return toRaw(getTableInstance().setMultipleAction(multipleActionOptions));
     },
     setFilterColumnRef: (columns: Column[]) => {
       return toRaw(getTableInstance().setFilterColumnRef(columns));

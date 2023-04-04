@@ -256,6 +256,16 @@ export function useColumn (
     return columns || []
   })
 
+  const getTypeComponent = (type:string) => {
+    // 预设组件
+    if (unref(customComponentKey).includes(type)) {
+      return type.charAt(0).toLocaleUpperCase() + type.slice(1)
+    } else {
+      // 不识别组件
+      return type
+    }
+  }
+
   const getTitleComponent = (type:string) => {
     // 预设组件
     if (unref(customComponentHeaderKey).includes(type)) {
@@ -266,14 +276,17 @@ export function useColumn (
     }
   }
 
-  const getTypeComponent = (type:string) => {
-    // 预设组件
-    if (unref(customComponentKey).includes(type)) {
-      return type.charAt(0).toLocaleUpperCase() + type.slice(1)
-    } else {
-      // 不识别组件
-      return type
+  function getColumns(opt?: GetColumnsParams) {
+    const { ignoreIndex, ignoreAction } = opt || {};
+    let columns = toRaw(unref(getColumnRef));
+    if (ignoreIndex) {
+      columns = columns.filter((item) => item.flag !== 'INDEX');
     }
+    if (ignoreAction) {
+      columns = columns.filter((item) => item.flag !== 'ACTION');
+    }
+
+    return columns;
   }
 
   function setFilterColumnDisabled (columnIds: string[]) {
@@ -298,19 +311,6 @@ export function useColumn (
       return item
     })
     filterColumn.value = columns
-  }
-
-  function getColumns(opt?: GetColumnsParams) {
-    const { ignoreIndex, ignoreAction } = opt || {};
-    let columns = toRaw(unref(getColumnRef));
-    if (ignoreIndex) {
-      columns = columns.filter((item) => item.flag !== 'INDEX');
-    }
-    if (ignoreAction) {
-      columns = columns.filter((item) => item.flag !== 'ACTION');
-    }
-
-    return columns;
   }
 
   function setFilterColumnRef (columns: Column[]) {

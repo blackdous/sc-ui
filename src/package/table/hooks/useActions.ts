@@ -2,7 +2,7 @@
 import { ComputedRef, ref, Ref, onMounted, unref, watch, nextTick } from "vue"
 
 // import { isArray, isFunction } from '../../../utils/is'
-import type { ActionProps as ActionOptions, ActionItemProps } from '../component/TableAction.vue'
+import type { ActionProps as ActionOptions } from '../component/TableAction.vue'
 // import { TableProps } from "../types/table"
 // import cloneDeep from 'lodash/cloneDeep'
 import lodash from 'lodash'
@@ -13,7 +13,6 @@ const { cloneDeep } = lodash
 export function useActions (
   propsRef: ComputedRef<Recordable>,
   selectedRowKeysRef?: Ref<Recordable[]>,
-  fetchParams?: Ref<Recordable>
   ) {
     const actionsOptions = ref<Recordable>({})
 

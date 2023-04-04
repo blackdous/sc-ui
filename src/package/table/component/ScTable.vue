@@ -143,6 +143,7 @@
             :data="getDataSourceRef"
             :fetchParams="fetchParams"
             v-bind="actionsOptions"
+            :dataIndex="dataIndex"
             @onAction="(action) => { handle(action, record) }"
           />
         </template>

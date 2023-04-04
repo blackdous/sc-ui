@@ -359,7 +359,7 @@ const dataSource = [
 
 说明: 用于设置搜索组件配置
 
-**setMutilpAction**
+**setMultipleAction**
 
 类型：`(props: Partial<MultipleActionOptions>) => void`
 

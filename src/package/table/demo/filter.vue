@@ -106,6 +106,7 @@ const columns = ref([
     filterMultiple: true,
     filterList: () => list,
     filterLoading: true,
+    filteredValue: ['ee', '4444']
   },
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
     sorter: (a: DataItem, b: DataItem) => a.age - b.age,

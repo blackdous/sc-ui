@@ -32,9 +32,10 @@
       style-mode="shadow"
     >
       <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
-      <TabPane key="3" tab="Tab 3" style="height: 100px">Content of Tab Pane 3</TabPane>
-      <TabPane key="4" tab="Tab 4" style="height: 100px">Content of Tab Pane 4</TabPane>
-      <TabPane key="5" tab="Tab 4" style="height: 100px">
+      <TabPane key="3" tab="Tab 32222" style="height: 100px">Content of Tab Pane 3</TabPane>
+      <TabPane key="7" tab="Tab 7" style="height: 100px">Content of Tab Pane 4</TabPane>
+      <TabPane key="8" tab="Tab 8111111" style="height: 100px">Content of Tab Pane 4</TabPane>
+      <TabPane key="17" tab="Tab 17" style="height: 100px">
         <Tabs
           type="card"
         >
