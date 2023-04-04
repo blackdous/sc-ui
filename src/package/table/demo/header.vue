@@ -7,7 +7,7 @@
   <div>
     <ScTable 
       ref="scTableRef"
-      rowKey="code"
+      row-key="key"
       :data-source="data"
       :columns="columns"
       :loading="loading"
@@ -229,13 +229,13 @@ interface DataItem {
 
 let data: DataItem[] = [
   {
-    code: '1',
+    key: '1',
     name: 'John Brown',
     age: 32,
     address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd',
   },
   {
-    code: '2',
+    key: '2',
     name: 'Jim Green',
     age: 40,
     address: 'London London',
@@ -308,7 +308,7 @@ const multipleChangeHandle = ({tableRef, selectedRowKeysRef}) => {
 
 for(let i = 10; i < 12; i++) {
   data.push({
-    code: i + '',
+    key: i + '',
     name: 'John Brown',
     age: i,
     address: 'New London',

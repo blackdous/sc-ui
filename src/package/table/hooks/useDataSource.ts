@@ -7,6 +7,7 @@ import type { PaginationProps } from '../types/pagination'
 import { FetchParams, SorterResult } from '../types/table'
 import { buildUUID } from '../../../utils/uuid'
 import { useTimeoutFn } from '../../../hooks/useTimeoutFn'
+import { SELECTION_ROW_KEY } from '../../../constant'
 // import cloneDeep from 'lodash/cloneDeep'
 // import get from 'lodash/get'
 // import merge from 'lodash/merge'
@@ -263,6 +264,7 @@ export const useDataSource = (
       beforeFetch,
       afterFetch,
       pagination,
+      rowKey
     } = unref(propsRef);
     if (!api || !isFunction(api)) return;
     try {
@@ -322,7 +324,12 @@ export const useDataSource = (
       if (afterFetch && isFunction(afterFetch)) {
         resultItems = (await afterFetch(resultItems)) || resultItems;
       }
-      dataSourceRef.value = resultItems;
+      dataSourceRef.value = resultItems.map((item: any) => {
+        if (isFunction(rowKey)) {
+          item[SELECTION_ROW_KEY] = rowKey(item)
+        }
+        return item
+      });
       setPagination({
         total: resultTotal || 0,
       });
@@ -363,8 +370,13 @@ export const useDataSource = (
   watch(
     () => unref(propsRef).dataSource,
     () => {
-      const { dataSource, api } = unref(propsRef);
-      !api && dataSource && (dataSourceRef.value = dataSource);
+      const { dataSource, api, rowKey } = unref(propsRef);
+      !api && dataSource && (dataSourceRef.value = dataSource.map((item:any) => {
+        if (isFunction(rowKey)) {
+          item[SELECTION_ROW_KEY] = rowKey(item)
+        }
+        return item
+      }));
     },
     {
       immediate: true,

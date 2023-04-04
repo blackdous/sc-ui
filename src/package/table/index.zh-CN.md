@@ -7,7 +7,7 @@ map:
 
 基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件, 部分方法是从`vben`的table上拿过来的
 
-## 基础组件
+<!-- ## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -84,7 +84,7 @@ const activeOptions = {
   }
 ```
 
-reload参数中的`action`方法，参数为`fetchParams`
+reload参数中的`action`方法，参数为`fetchParams` -->
 
 ## 带头部操作的表格
 
@@ -176,7 +176,7 @@ interface ButtonType {
 | selectChange | 搜索组件中的select组件选中时的回调 | Function(fetchPrams) |
 | searchClick | 搜索组件点击搜索icon时的回调 | Function(fetchPrams) |
 
-## 自定义Action列
+<!-- ## 自定义Action列
 
 支持自定义`solt`，slot名称`#action`
 
@@ -935,4 +935,4 @@ export interface ActionsOptions {
   title="指定rowSelected值"
   desc="指定rowSelected值"
   >
-</demo>
+</demo> -->

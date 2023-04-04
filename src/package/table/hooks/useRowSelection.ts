@@ -1,7 +1,7 @@
 import { isFunction } from '../../../utils/is';
 import type { TableRowSelection } from '../types/table';
 import { computed, ComputedRef, nextTick, Ref, ref, toRaw, unref, watch } from 'vue';
-import { ROW_KEY } from '../../../constant';
+import { ROW_KEY, SELECTION_ROW_KEY } from '../../../constant';
 // import omit from 'lodash/omit'
 import lodash from 'lodash'
 import { findNodeAll } from '../../../utils/treeHelper'
@@ -62,7 +62,7 @@ export function useRowSelection(
 
   const getRowKey = computed(() => {
     const { rowKey } = unref(propsRef);
-    return unref(getAutoCreateKey) ? ROW_KEY : rowKey;
+    return unref(getAutoCreateKey) ? ROW_KEY : isFunction(rowKey) ? SELECTION_ROW_KEY : rowKey;
   });
 
   function setSelectedRowKeys(rowKeys: string[]) {
@@ -74,13 +74,11 @@ export function useRowSelection(
         children: propsRef.value.childrenColumnName ?? 'children',
       },
     );
-    console.log('allSelectedRows: ', allSelectedRows);
     const trueSelectedRows: any[] = [];
     rowKeys.forEach((key: string) => {
       const found = allSelectedRows.find((item) => item[unref(getRowKey) as string] === key);
       found && trueSelectedRows.push(found);
     });
-    console.log('trueSelectedRows: ', trueSelectedRows);
     selectedRowRef.value = trueSelectedRows;
   }
 
@@ -107,7 +105,13 @@ export function useRowSelection(
 
   function getSelectRows<T = Recordable>() {
     // const ret = toRaw(unref(selectedRowRef)).map((item) => toRaw(item));
-    return unref(selectedRowRef) as T[];
+    const { rowKey } = unref(propsRef);
+    return unref(selectedRowRef).map((item: any) => {
+      if (isFunction(rowKey)) {
+        Reflect.deleteProperty(item, SELECTION_ROW_KEY)
+      }
+      return item
+    }) as T[];
   }
 
   function getRowSelection() {
