@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "initial-scan docs && vitepress dev .docs --host",
-    "build": "rimraf rm -f dist &&  yarn build:umd && yarn build:es",
+    "build": "rimraf rm -f dist && yarn build:umd && yarn build:es",
     "build:es": "cross-env build=es vite build",
     "build:umd": "cross-env build=umd vite build",
     "site:build": "cross-env NODE_ENV=production vitepress build .docs",

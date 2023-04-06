@@ -14,6 +14,7 @@ export const sidebar = {
       items: [
         { text: 'Guide', link: '/en/' },
         { text: 'Theme', link: '/en/theme/' },
+        { text: 'Changelog', link: '/en/changelog/' },
       ],
     },
     {
@@ -95,6 +96,7 @@ export const sidebar = {
       items: [
         { text: '简介 Guide', link: '/' },
         { text: '主题变量 Theme', link: '/theme/' },
+        { text: '变更记录 Changelog', link: '/changelog/' },
       ],
     },
     {
