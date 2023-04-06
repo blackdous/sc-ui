@@ -101,7 +101,7 @@ const state = reactive<{
   selectedRowKeys: Key[];
   loading: boolean;
 }>({
-  selectedRowKeys: [1], // Check here to configure the default column
+  selectedRowKeys: ['1'], // Check here to configure the default column
   loading: false,
 });
 
@@ -111,7 +111,7 @@ const onSelectChange = (selectedRowKeys: Key[]) => {
 };
 
 setTimeout(() => {
-  state.selectedRowKeys = [2]
+  state.selectedRowKeys = ['2']
   console.log('state: ', state);
 }, 1500)
 
