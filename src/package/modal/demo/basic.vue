@@ -2,11 +2,11 @@
   <!-- wrap-class-name="aaaaaa" -->
   <ScModal 
     :visible="visible === 1"
-    title="Basic Modal"
+    :title="null"
     destroyOnClose
     @ok="handleOk"
-    cancel-text="取消"
     ok-text="确认"
+    :show-cancel-btn="false"
     @cancel="handleCancel"
     maskClosable
   >

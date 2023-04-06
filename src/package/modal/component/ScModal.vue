@@ -46,6 +46,7 @@
       <div :class="footerClassName" v-if="!isSlotFooter">
         <slot name="insertFooter"></slot>
         <ScButton
+          v-if="curProps.showCancelBtn"
           :class="[modalPrefixCls + '-footer__cancel']"
           status="info"
           v-bind="{...curProps, type: undefined, disabled: curProps?.cancelButtonProps?.disabled || curProps?.onCancelDisable}"
@@ -55,6 +56,7 @@
           {{ curProps.cancelText }}
         </ScButton>
         <ScButton
+          v-if="curProps.showOkBtn"
           :loading="curProps.confirmLoading"
           :class="[modalPrefixCls + '-footer__ok']"
           v-bind="{...curProps, type: undefined, disabled: curProps?.okButtonProps?.disabled || curProps?.onOkDisable}"
@@ -136,9 +138,8 @@ export default defineComponent({
       return {
         ...unref(vBind),
         ...propsRef.value,
-        okText: okText || antLocale?.Modal?.okText,
-        cancelText: cancelText || antLocale?.Modal.cancelText
-
+        okText: okText || antLocale?.Modal?.okText || '确认',
+        cancelText: cancelText || antLocale?.Modal.cancelText || '取消'
       }
     })
     const getBindValue = computed((): Recordable => {
@@ -160,9 +161,19 @@ export default defineComponent({
         ...attrs,
         visible: unref(visibleRef)
       };
-      
-      if (unref(curProps).footer === null) {
+      const { footer, showCancelBtn, showOkBtn, title } = unref(curProps)
+      if (
+          footer === null ||
+          footer === 'null' ||
+          (!showCancelBtn && !showOkBtn)
+        ) {
         attr.footer = null
+      }
+      if (
+        title === null ||
+        title === 'null'
+      ) {
+        attr.title = null
       }
       if (newProps.width) {
         if (isNumber(newProps.width)) {
