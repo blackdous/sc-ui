@@ -1,0 +1,20 @@
+@badgeScope: ~'@{prefixCls}BadgeCustom';
+
+.@{badgeScope} {
+  padding-left: 2px;
+  .ant-badge-status-dot {
+    width: 8px;
+    height: 8px;
+    box-shadow: 0px 0px 6px 0px #F0F3F7, 0px 4px 4px 0px var(--shadowInColor);
+    &::after {
+      position: absolute;
+      content: '';
+      width: 150%;
+      height: 150%;
+      left: -2px;
+      top: -2px;
+      border-radius: 50%;
+      box-shadow: 0px 0px 6px 0px #F0F3F7, 0px 3px 4px 0px var(--shadowOutColor);
+    }
+  }
+}

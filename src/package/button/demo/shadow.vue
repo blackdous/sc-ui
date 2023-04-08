@@ -3,9 +3,33 @@
     <ScButton type="shadow" shape="round">
       填充按钮
     </ScButton>
+    <ScButton type="shadow" shape="round" color="#008CD3">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#00A870">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#FF7D00">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#AEB1C1">
+      填充按钮
+    </ScButton>
   </div>
   <div class="mt20">
     <ScButton type="shadow" shape="round" disabled>
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#008CD3" disabled>
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#00A870" disabled>
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#FF7D00" disabled>
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#AEB1C1" disabled>
       填充按钮
     </ScButton>
   </div>

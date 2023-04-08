@@ -28,6 +28,7 @@ import { ScSlider } from './package/slider'
 import { ScIcon } from './package/icon'
 import { ScLink } from './package/link'
 import { ScTag } from './package/tag'
+import { ScBadge } from './package/badge'
 import useIcon from './hooks/useIcon'
 import ScDatePicker, {
   ScMonthPicker,
@@ -82,6 +83,7 @@ const components = [
   ScIcon,
   ScLink,
   ScTag,
+  ScBadge,
 
   ScLoading,
   ScButton,
@@ -130,7 +132,7 @@ const install = (app: App) => {
 };
 
 const ScUi = {
-  version: '0.0.98',
+  version: '0.0.99',
   install,
 };
 
@@ -154,6 +156,7 @@ export {
   ScIcon,
   ScLink,
   ScTag,
+  ScBadge,
 
   ScLoading,
   ScButton,

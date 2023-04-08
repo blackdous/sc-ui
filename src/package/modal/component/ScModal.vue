@@ -49,7 +49,7 @@
           v-if="curProps.showCancelBtn"
           :class="[modalPrefixCls + '-footer__cancel']"
           status="info"
-          v-bind="{...curProps, type: undefined, disabled: curProps?.cancelButtonProps?.disabled || curProps?.onCancelDisable}"
+          v-bind="{...curProps.cancelButtonProps, type: undefined, disabled: curProps?.cancelButtonProps?.disabled || curProps?.onCancelDisable}"
           title=""
           @click="closeVisible"
         >
@@ -59,7 +59,7 @@
           v-if="curProps.showOkBtn"
           :loading="curProps.confirmLoading"
           :class="[modalPrefixCls + '-footer__ok']"
-          v-bind="{...curProps, type: undefined, disabled: curProps?.okButtonProps?.disabled || curProps?.onOkDisable}"
+          v-bind="{...curProps.okButtonProps, type: undefined, disabled: curProps?.okButtonProps?.disabled || curProps?.onOkDisable}"
           type="primary"
           title=""
           @click="curProps.onOk"

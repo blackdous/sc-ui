@@ -1,4 +1,4 @@
-import type { PropType, CSSProperties, ComputedRef, ExtractPropTypes } from 'vue'
+import type { PropType, CSSProperties, ComputedRef, ExtractPropTypes, VNodeTypes } from 'vue'
 import type { LegacyButtonType, ButtonProps } from 'ant-design-vue/es/button/buttonTypes'
 import { PropTypes } from '../../../utils/propTypes'
 import { VueNode } from '../../../utils';
@@ -66,6 +66,7 @@ export const modalProps = () => ({
   wrapClassName: String,
   maskTransitionName: String,
   transitionName: String,
+  
   getContainer: {
     type: [String, Function, Boolean, Object] as PropType<
       string | HTMLElement | getContainerFunc | false
@@ -86,6 +87,15 @@ export const modalProps = () => ({
 
 
 export declare type ModalProps = Partial<ExtractPropTypes<typeof modalProps>> 
+
+export interface ModalFuncProps extends ModalProps {
+  autoFocusButton?: null | 'ok' | 'cancel',
+  content?: string | (() => VNodeTypes) | VNodeTypes,
+  icon?: (() => VNodeTypes) | VNodeTypes,
+  okType?: 'primary' | 'ghost' | 'dashed' | 'link' | 'text' | 'default' | 'shadow' | 'icon',
+  appContext?: any,
+  [key: string]: any
+}
 
 export interface ModalMethods {
   setModalProps: (props: Partial<ModalProps>) => void;

@@ -34,6 +34,7 @@ export const sidebar = {
         { text: 'Description', link: '/en/description/' },
         { text: 'Link', link: '/en/link' },
         { text: 'Tag', link: '/en/tag/' },
+        { text: 'Badge', link: '/en/Badge/' }
       ]
     },
     {
@@ -114,7 +115,6 @@ export const sidebar = {
         { text: '分页 Pagination', link: '/pagination/' },
         { text: '下拉菜单 Dropdown', link: '/dropdown/' },
         { text: '面包屑 Breadcrumb', link: '/breadcrumb/' },
-        { text: '标签 Tag', link: '/tag/' },
       ]
     },
     {
@@ -124,7 +124,9 @@ export const sidebar = {
         { text: '表格 Table', link: '/table/' },
         { text: '文字提示 Tooltip', link: '/tooltip/' },
         { text: '描述列表 Description', link: '/description/' },
-        { text: '链接 Link', link: '/link/' }
+        { text: '链接 Link', link: '/link/' },
+        { text: '标签 Tag', link: '/tag/' },
+        { text: '徽标数 Badge', link: '/Badge/' }
       ]
     },
     {

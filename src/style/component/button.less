@@ -221,6 +221,14 @@
     border: none;
     color: @white-color;
   }
+  &.customColor {
+    box-shadow: 0px 0px 6px 0px #F0F3F7, 0px 4px 4px 0px var(--shadowOutColor);
+    & > span {
+      background: var(--shadowBgColor);
+      box-shadow: 0px 0px 6px 0px #F0F3F7, 0px 4px 4px 0px var(--shadowInColor);
+    }
+  }
+
   &[disabled] {
     & > span {
       background: @disabled-bg-color;

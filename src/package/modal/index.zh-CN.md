@@ -7,6 +7,12 @@ map:
 
 对话框是一种临时窗口，通常在不想中断整体任务流程，但又需要为用户展示信息或获得用户响应时，在页面中打开一个对话框承载相应的信息及操作。
 
+<!-- <demo src="./demo/locale.vue"
+  language="vue"
+  title="locale"
+  >
+</demo> -->
+
 <!-- <demo src="./demo/confirm.vue"
   language="vue"
   title="confirm"
@@ -74,6 +80,14 @@ map:
 <demo src="./demo/status.vue"
   language="vue"
   title="status对话框"
+  >
+</demo>
+
+## ScModal.confirm
+
+<demo src="./demo/confirmStatus.vue"
+  language="vue"
+  title="confirmStatus"
   >
 </demo>
 
@@ -236,6 +250,8 @@ changeLoading(true);
 | closeFunc | 用于关闭之前使用，支持promise; return 一个 boolean 为 true | Function、promise | 无 |  |
 | onCancelDisable | 默认Cancel按钮是否可用 | boolean | 无 |  |
 | onOkDisable | 默认onOkDisable按钮是否可用 | boolean | 无 |  |
+| showCancelBtn | 是否显示取消按钮 | boolean | 无 |  |
+| showOkBtn | 是否显示确认按钮 | boolean | 无 |  |
 | isDraggable | 是否可拖拽 | boolean | true |  |
 | DragOptions | 使用的@vueuse/core 的 useDraggable，可传入初始值 | [UseDraggableOptions](https://vueuse.org/core/usedraggable/#type-declarations) | 无 |  |
 | dragChange | 拖拽时的一些属性x, y, style, position | [useDraggable](https://vueuse.org/core/usedraggable/#type-declarations) | 无 |  |

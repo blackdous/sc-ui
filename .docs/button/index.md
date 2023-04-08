@@ -99,5 +99,6 @@ realPath: src/package/button/index.zh-CN.md
 
 | 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
+| color      | string                                              | -  |  -  |  当type为shadow时，color才会生效，**传入的color 必须为hex格式，暂时不支持其他格式**  |
 | status      | string                                              | -  | 'error', 'warning', 'success', 'info'      |  用于有状态的按钮 |
 | type      | string                                              | -  | primary', 'ghost', 'dashed', 'link', 'text', 'default', 'shadow'      |  用于改变按钮模式；新增'shadow' 模式 |

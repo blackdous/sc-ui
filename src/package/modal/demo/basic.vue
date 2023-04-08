@@ -2,12 +2,13 @@
   <!-- wrap-class-name="aaaaaa" -->
   <ScModal 
     :visible="visible === 1"
-    :title="null"
+    title="Basic Modal"
     destroyOnClose
     @ok="handleOk"
     ok-text="确认"
     :show-cancel-btn="false"
     @cancel="handleCancel"
+    :closable="false"
     maskClosable
   >
   <!-- @dragChange="handleDrag" -->
@@ -81,6 +82,8 @@
     @cancel="handleCancel2"
     cancel-text="取消"
     ok-text="确认"
+    closable
+    :title="null"
     maskClosable
   >
     <template #title>

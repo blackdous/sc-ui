@@ -1,35 +1,43 @@
 <template>
-  <div class="confirm">
-    <ConfigProvider
-      :locale="locale === 'en' ? enUS : zhCN"
+  <div class="mrt20">
+    <Button class="btn1" @click="handleClick">
+      打开scModal.confirm
+    </Button>
+    <Button class="btn1" @click="handleClickModal">
+      打开Modal.confirm
+    </Button>
+    <!-- <ConfirmDialog
+      v-model="visibleRef"
     >
-      <Space direction="vertical">
-        <RadioGroup v-model:value="locale">
-          <RadioButton key="en" :value="enUS.locale">English</RadioButton>
-          <RadioButton key="cn" :value="zhCN.locale">中文</RadioButton>
-        </RadioGroup>
 
-        <div style="height: 20px;"></div>
-        <ConfirmInner :locale="locale"></ConfirmInner>
-      </Space>
-    </ConfigProvider>
+    </ConfirmDialog> -->
   </div>
 </template>
 
-<script setup>
-import { ref, watch } from 'vue'
-import { ConfigProvider, RadioButton, RadioGroup} from 'ant-design-vue'
-import enUS from 'ant-design-vue/es/locale/en_US';
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
+<script lang='ts' setup>
+// import { ref } from 'vue'
+import { Button, Modal } from 'ant-design-vue';
+import { ScModal } from 'sc-ui'
+// import ConfirmDialog from '../component/ConfirmDialog.tsx';
 
-import ConfirmInner from './ConfirmInner.vue'
+// const visibleRef = ref()
 
-const locale = ref(zhCN.locale)
-
-watch(() => locale.value, (val) => {
-  console.log('val: ', val);
-})
+const handleClick = () => {
+  // ConfirmDialog()
+  // visibleRef.value = true
+  ScModal.confirm({
+    type: 'warning',
+    title: '111111',
+    closable: true
+  })
+}
+const handleClickModal = () => {
+  // ConfirmDialog()
+  // visibleRef.value = true
+  Modal.confirm({
+    type: 'warning',
+    title: '111111',
+    closable: true
+  })
+}
 </script>
-
-<style lang="less">
-</style>

@@ -48,6 +48,7 @@ specifiers:
   lodash: ^4.17.21
   moment: ^2.29.4
   np: ^7.6.2
+  omit.js: ^2.0.2
   patch-vue-directive-ssr: ^0.0.1
   postcss: ^8.4.18
   postcss-flexbugs-fixes: ^5.0.2
@@ -136,6 +137,7 @@ devDependencies:
   lodash: 4.17.21
   moment: 2.29.4
   np: 7.6.2
+  omit.js: 2.0.2
   postcss: 8.4.18
   postcss-flexbugs-fixes: 5.0.2_postcss@8.4.18
   postcss-less: 6.0.0_postcss@8.4.18
