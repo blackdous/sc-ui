@@ -6,7 +6,21 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
-## [0.0.99](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.97...0.0.99) (2023-04-06)
+### [0.0.99](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.98...0.0.99) (2023-04-08)
+
+
+### Bug Fixes
+
+* 修改 ScModal showCancelBtn showOkBtn 属性无效; title 为 null 时穿透 属性 ([6381ac7](http://gitlab.voneyun.com/frontend/sc-ui/commit/6381ac7a784319bea60eec546438a5ef835a238a))
+
+
+### Features
+
+* 1. ScButton 组件新增color 属性,在 type="shadow" 时生效; 2. 新增Scbadge 组件, 支持color 属性 3. 新增 ScModal.confirm方法 初版 ([38c1da4](http://gitlab.voneyun.com/frontend/sc-ui/commit/38c1da4c562bd3109e30f261bf1588dc824f70e4))
+
+
+
+## [0.0.98](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.97...0.0.98) (2023-04-06)
 
 
 ### Features
