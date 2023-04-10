@@ -82,7 +82,7 @@ const tabs = parseTabList(flattenChildren(slots.default?.()));
 
 const isTransformLeft = ref(false)
 
-const prevActiveValue = ref(tabs[0].key)
+const prevActiveValue = ref(tabs[0]?.key || '')
 
 const initClass = ref(true)
 

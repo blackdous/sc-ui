@@ -3,7 +3,7 @@
     v-bind="getBindValue"
     :class="getButtonClass"
     @click="onClick"
-    :style="{'--shadowBgColor': varStyle.shadowBgColor, '--shadowOutColor': varStyle.shadowOutColor, '--shadowInColor': varStyle.shadowInColor}"
+    :style="{...varStyle}"
   >
     <template #icon v-if="isIcon">
       <span class="scButton-icon">
@@ -69,11 +69,13 @@ export default defineComponent({
       const rgbaColor = color ? parseColorString(color) : ''
       const shadowOutColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.18 })) : ''
       const shadowInColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.6 })) : ''
-
+      if (!color) {
+        return {}
+      }
       return {
-        shadowBgColor: color,
-        shadowOutColor,
-        shadowInColor
+        '--shadowBgColor': color,
+        '--shadowOutColor': shadowOutColor,
+        '--shadowInColor': shadowInColor
       }
     })
     const isIcon = computed(() => {

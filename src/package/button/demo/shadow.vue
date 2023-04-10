@@ -1,5 +1,22 @@
 <template>
   <div>
+    <ScButton type="shadow" shape="round" size="small">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#008CD3" size="small">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#00A870" size="small">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#FF7D00" size="small">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#AEB1C1" size="small">
+      填充按钮
+    </ScButton>
+  </div>
+  <div class="mt20">
     <ScButton type="shadow" shape="round">
       填充按钮
     </ScButton>
@@ -17,6 +34,23 @@
     </ScButton>
   </div>
   <div class="mt20">
+    <ScButton type="shadow" shape="round" size="large">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#008CD3" size="large">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#00A870" size="large">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#FF7D00" size="large">
+      填充按钮
+    </ScButton>
+    <ScButton type="shadow" shape="round" color="#AEB1C1" size="large">
+      填充按钮
+    </ScButton>
+  </div>
+  <div class="mt20">
     <ScButton type="shadow" shape="round" disabled>
       填充按钮
     </ScButton>
@@ -26,10 +60,10 @@
     <ScButton type="shadow" shape="round" color="#00A870" disabled>
       填充按钮
     </ScButton>
-    <ScButton type="shadow" shape="round" color="#FF7D00" disabled>
+    <ScButton type="shadow" shape="round" color="#FF7D00" disabled size="small">
       填充按钮
     </ScButton>
-    <ScButton type="shadow" shape="round" color="#AEB1C1" disabled>
+    <ScButton type="shadow" shape="round" color="#AEB1C1" disabled size="large">
       填充按钮
     </ScButton>
   </div>

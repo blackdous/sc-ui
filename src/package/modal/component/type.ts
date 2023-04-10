@@ -24,7 +24,7 @@ export const modalProps = () => ({
   showOkBtn: { type: Boolean, default: true },
   afterClose: Function as PropType<() => Promise<VueNode>>,
   closeFunc: Function as PropType<() => Promise<boolean>>,
-  type: String,
+  type: [String],
   infoDes: String,
   prefixCls: { type: String },
   onCancelDisable: { type: Boolean, default: false },
@@ -83,8 +83,10 @@ export const modalProps = () => ({
   wrapProps: Object,
   focusTriggerAfterClose: { type: Boolean, default: undefined },
   modalRender: Function as PropType<(arg: { originVNode: VueNode }) => VueNode>,
+  appContext: PropTypes.any,
+  autoFocusButton: [null, String]  as PropType< null | 'ok' | 'cancel'>,
+  content: PropTypes.any,
 });
-
 
 export declare type ModalProps = Partial<ExtractPropTypes<typeof modalProps>> 
 

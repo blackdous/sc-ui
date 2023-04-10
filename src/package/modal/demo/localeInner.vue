@@ -11,7 +11,7 @@
         </ScButton>
         <ScModal
           v-model:visible="visible"
-          
+          title="modal测试代码"
         >
           <div>
             测试代码
@@ -56,7 +56,7 @@ const locale = computed(() => {
 })
 
 const confirmHandle = () => {
-  Modal.confirm({
+  ScModal.confirm({
     type: 'warning',
     content: '测试代码'
   })

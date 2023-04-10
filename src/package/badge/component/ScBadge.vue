@@ -2,7 +2,7 @@
   <Badge
     v-bind="curProps"
     :class="baseClass"
-    :style="{'--shadowBgColor': varStyle.shadowBgColor, '--shadowOutColor': varStyle.shadowOutColor, '--shadowInColor': varStyle.shadowInColor}"
+    :style="{...varStyle}"
   >
     <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
       <slot :name="item" v-bind="data || {}"></slot>
@@ -44,11 +44,13 @@ export default defineComponent({
       const rgbaColor = color ? parseColorString(color) : ''
       const shadowOutColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.18 })) : undefined
       const shadowInColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.6 })) : undefined
-
+      if (!color) {
+        return {}
+      }
       return {
-        shadowBgColor: color,
-        shadowOutColor,
-        shadowInColor
+        '--shadowBgColor': color,
+        '--shadowOutColor': shadowOutColor,
+        '--shadowInColor': shadowInColor
       }
     })
 

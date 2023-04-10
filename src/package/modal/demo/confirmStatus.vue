@@ -13,10 +13,22 @@
       error
     </Button>
   </Space>
+
   <Space style="margin-top: 10px;">
-    <Button @click="() => { type = 'info'; openModalType('info') }">
-      ScModal.info
-    </Button>
+    <div>
+      <Button @click="() => { type = 'info'; openModalType('info') }">
+        ScModal.info
+      </Button>
+      <Button @click="updateInfo">
+        update ScModal.info
+      </Button>
+      <Button @click="destroyInfo">
+        destroy ScModal.info
+      </Button>
+    </div>
+  </Space>
+
+  <Space style="margin-top: 10px;">
     <Button @click="() => { type = 'success'; openModalType('success') }">
       ScModal.success
     </Button>
@@ -43,6 +55,7 @@ const info = ref<string>('infoinfoinfo')
 
 const openModal = (infoDes: string) => {
   info.value = infoDes
+  
   // visible.value = true
   switch (infoDes) {
     case 'info':
@@ -95,12 +108,13 @@ const openModal = (infoDes: string) => {
       break
   }
 }
+let modalInfo:any = undefined
 const openModalType = (infoDes: string) => {
   info.value = infoDes
   // visible.value = true
   switch (infoDes) {
     case 'info':
-      ScModal.info({
+      modalInfo = ScModal.info({
         title: () => 'This is a notification message',
         content: () => h('div', {}, [
           h('p', 'some messages...some messages...'),
@@ -147,6 +161,20 @@ const openModalType = (infoDes: string) => {
       });
       break
   }
+}
+
+const updateInfo = () => {
+  console.log('modalInfo: ', modalInfo);
+  modalInfo?.update({
+    title: '修改的标题',
+    content: '修改的内容',
+    visible: true
+  })
+}
+
+const destroyInfo = () => {
+  console.log('modalInfo: ', modalInfo);
+  modalInfo?.destroy()
 }
 
 // const handleOk = (e: MouseEvent) => {

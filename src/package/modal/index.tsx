@@ -9,6 +9,7 @@ import { withInstall } from "../../utils"
 import { ModalFuncProps } from "./component/type"
 import scModal from './component/ScModal.vue'
 import modalConfirm from './component/Confirm'
+import { changeConfirmLocale } from './component/locale'
 
 const info = function (props: ModalFuncProps) {
   const config = {
@@ -53,7 +54,6 @@ const warn = warning;
 
 const confirm = function confirmFn(props: ModalFuncProps) {
   const { type, icon } = props
-  console.log('icon: ', icon);
   let newIcon = icon
   if (!icon) {
     switch (type) {
@@ -86,6 +86,7 @@ scModal.error = error;
 scModal.warning = warning;
 scModal.warn = warn;
 scModal.confirm = confirm;
+scModal.changeConfirmLocale = changeConfirmLocale
 
 scModal.destroyAll = function destroyAllFn() {
   while (destroyFns.length) {
@@ -103,3 +104,4 @@ export { useModalContext } from './hooks/useModalContext'
 export { useModal, useModalInner } from './hooks/useModal'
 
 export * from './component/type'
+export { changeConfirmLocale }

@@ -290,3 +290,14 @@ changeLoading(true);
 | -------- | ------------------------------------ | ----------- |
 | cancel   | 点击遮罩层或右上角叉或取消按钮的回调 | function(e) |
 | ok       | 点击确定回调                         | function(e) |
+
+## ScModal.confirm 与 Modal.confrim 相同
+
+**新增多语言适配方法**
+
+```ts
+import enUS from 'ant-design-vue/es/locale/en_US'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
+ScModal.changeConfirmLocale(enUS)
+ScModal.changeConfirmLocale(zhCN)
+```

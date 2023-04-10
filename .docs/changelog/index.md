@@ -6,7 +6,7 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
-### [0.0.99](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.98...0.0.99) (2023-04-08)
+### [0.0.100](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.98...0.0.100) (2023-04-08)
 
 
 ### Bug Fixes
