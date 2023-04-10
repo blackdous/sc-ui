@@ -34,7 +34,7 @@ export const sidebar = {
         { text: 'Description', link: '/en/description/' },
         { text: 'Link', link: '/en/link' },
         { text: 'Tag', link: '/en/tag/' },
-        { text: 'Badge', link: '/en/Badge/' }
+        { text: 'Badge', link: '/en/badge/' }
       ]
     },
     {
@@ -126,7 +126,7 @@ export const sidebar = {
         { text: '描述列表 Description', link: '/description/' },
         { text: '链接 Link', link: '/link/' },
         { text: '标签 Tag', link: '/tag/' },
-        { text: '徽标数 Badge', link: '/Badge/' }
+        { text: '徽标数 Badge', link: '/badge/' }
       ]
     },
     {
