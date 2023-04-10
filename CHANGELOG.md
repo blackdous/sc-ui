@@ -1,3 +1,16 @@
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.100...0.0.2) (2023-04-10)
+
+
+
+## [0.0.100](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.99...0.0.100) (2023-04-10)
+
+
+### Features
+
+* 1. ScTabs 内部组件 TabPanel 为 异步数组循环时, 找不到第一key 报错问题 2. ScButton shadow为type 时,增加 size 适配 3.ScModal.confirm   新增 changeConfirmLocale   方法, 用于适配 多语言问题 ([93b4309](http://gitlab.voneyun.com/frontend/sc-ui/commit/93b43094ad12384bf6c0ede0e874155900732994))
+
+
+
 ## [0.0.99](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.98...0.0.99) (2023-04-08)
 
 
