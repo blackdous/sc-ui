@@ -1,5 +1,8 @@
 <template>
   <div class="basicFrom">
+    <div>
+      <ScButton @click="updateRules">更新rules</ScButton>
+    </div>
     <ScForm 
       @register="register"
       @submit="handleSubmit" 
@@ -9,7 +12,7 @@
 </template>
 <script lang="ts">
   import { defineComponent, ref, unref } from 'vue';
-  import { ScForm, FormSchema, useForm, useMessage } from 'sc-ui';
+  import { ScForm, FormSchema, useForm, useMessage, ScButton } from 'sc-ui';
 
   interface ListItem {
     label: string, 
@@ -37,7 +40,11 @@
         describe: '额外提示语，文字过多时输入框宽度折行'
       },
       className: 'mrb0',
-      required: true,
+      rules: [
+        { required: true, message: '请输入', trigger: 'change' },
+        // { pattern: /^1[3456789]\d{9}$/, message: '请输入正确的手机号' }
+      ],
+      // required: true,
     },
     {
       field: 'field2',
@@ -143,7 +150,8 @@
         span: 24
       },
       componentProps: {
-        wrapperWidth: '100%'
+        wrapperWidth: '100%',
+        dotCircle: true
       },
       required: true,
     },
@@ -167,95 +175,16 @@
       componentProps: {
 
       }
-    },
-
-
-    // {
-    //   field: 'field6',
-    //   component: '',
-    //   label: '多选框',
-    //   colProps: {
-    //     span: 24,
-    //   },
-    //   componentProps: {
-    //     options: [
-    //       {
-    //         label: '选项1',
-    //         value: '1',
-    //       },
-    //       {
-    //         label: '选项2',
-    //         value: '2',
-    //       },
-    //       {
-    //         label: '选项3',
-    //         value: '3',
-    //       }
-    //     ],
-    //   },
-    //   rules: [{ required: true }],
-    // },
-    // {
-    //   field: 'field441',
-    //   component: 'Input',
-    //   label: '自定义校验',
-    //   colProps: {
-    //     span: 24,
-    //   },
-    //   rules: [
-    //     {
-    //       required: true,
-    //       // @ts-ignore
-    //       validator: async (rule, value) => {
-    //         if (!value) {
-    //           /* eslint-disable-next-line */
-    //           return Promise.reject('值不能为空');
-    //         }
-    //         if (value === '1') {
-    //           /* eslint-disable-next-line */
-    //           return Promise.reject('值不能为1');
-    //         }
-    //         return Promise.resolve();
-    //       },
-    //       trigger: 'change',
-    //     },
-    //   ],
-    // },
-    // {
-    //   field: 'field8',
-    //   component: 'Input',
-    //   label: '后端异步验证',
-    //   colProps: {
-    //     span: 24,
-    //   },
-    //   helpMessage: ['本字段演示异步验证', '本地规则：必须填写', '后端规则：不能包含admin'],
-    //   rules: [
-    //     {
-    //       required: true,
-    //       message: '请输入数据',
-    //     },
-    //     {
-    //       validator(_, value) {
-    //         return new Promise((resolve, reject) => {
-    //           isAccountExist(value)
-    //             .then(() => resolve())
-    //             .catch((err) => {
-    //               reject(err || '验证失败');
-    //             });
-    //         });
-    //       },
-    //     },
-    //   ],
-    // },
+    }
   ];
 
   export default defineComponent({
-    components: { ScForm },
+    components: { ScForm, ScButton },
     setup() {
       const { createCloseMessage } = useMessage();
       const [
         register,
-        { validateFields, clearValidate, getFieldsValue, resetFields, setFieldsValue },
+        { validateFields, clearValidate, getFieldsValue, resetFields, setFieldsValue, updateSchema },
       ] = useForm({
         labelWidth: 130,
         labelAlign: 'left',
@@ -288,6 +217,11 @@
           field3: '2020-12-12',
         });
       }
+      function updateRules () {
+        updateSchema({ field: 'field1', rules: [
+        { pattern: /^1[3456789]\d{9}$/, message: '请输入正确的手机号' }
+        ] });
+      }
       return {
         register,
         schemas,
@@ -300,6 +234,7 @@
         validateForm,
         resetValidate,
         resetFields,
+        updateRules
       };
     },
   });

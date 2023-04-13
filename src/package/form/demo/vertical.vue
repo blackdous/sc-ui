@@ -12,7 +12,6 @@
   import { defineComponent, ref, unref } from 'vue';
   import { ScForm, FormSchema, useForm, useMessage } from 'sc-ui';
 
-  import { isAccountExist } from './formData';
 
   interface ListItem {
     label: string, 
@@ -141,7 +140,8 @@
         span: 24
       },
       componentProps: {
-        wrapperWidth: '100%'
+        wrapperWidth: '100%',
+        dotCircle: true
       },
       required: true,
     },

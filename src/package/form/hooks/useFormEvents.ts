@@ -213,6 +213,7 @@ export function useFormEvents({
       });
     });
     _setDefaultValue(schema);
+    console.log('schema: ', schema);
 
     schemaRef.value = uniqBy(schema, 'field');
   }

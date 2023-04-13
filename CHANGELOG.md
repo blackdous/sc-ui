@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.100...0.0.2) (2023-04-10)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.101...0.0.2) (2023-04-13)
+
+
+
+## [0.0.101](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.100...0.0.101) (2023-04-13)
+
+
+### Features
+
+* 1. 完善ScCascaderNew 组件功能 2. 调整 ScTable 展开样式问题 \ 列筛选,分页数据重置为 第一页 3. v-loading 指令, 不传fullScreen 字段,给当前元素增加 position: relative 属性 4. ScCascaderNew 组件完善部分文档\demo ([33cdfdd](http://gitlab.voneyun.com/frontend/sc-ui/commit/33cdfddf8115f394189e0a2935bb454b59e43e0f))
 
 
 

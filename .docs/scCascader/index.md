@@ -117,16 +117,16 @@ realPath: src/package/scCascader/index.zh-CN.md
 
 | 插槽名  |   说明    |   作用域    |
 | --- | --- | --- |
-| default | 自定义备选项的节点内容，分别为当前节点的 Node 对象和数据 | `object:{ node: any, data: any }` |
+| default | 自定义备选项的节点内容，分别为当前节点的 Node 对象和数据 | object:{ node: any, data: any } |
 | empty | 无匹配选项时的内容 | - |
 
 ## Exposes
 
 | 事件名  |   说明    |   类型    |
 | --- | --- | --- |
-| getCheckedNodes | 获取一个当前选中节点的数组。(仅仅是传单) 是否只返回叶选中的节点，默认是 false | `Function: (leafOnly: boolean) => CascaderNode[]` | -  |
-| cascaderPanelRef | cascader 面板的 ref | `object: ComputedRef<any>`  |
-| togglePopperVisible | 切换 popper 可见状态 | `Function: (visible?: boolean) => void`  |
+| getCheckedNodes | 获取一个当前选中节点的数组。(仅仅是传单) 是否只返回叶选中的节点，默认是 false | Function: (leafOnly: boolean) => CascaderNode[] | undefined  |
+| cascaderPanelRef | cascader 面板的 ref | object: ComputedRef<any>  |
+| togglePopperVisible | 切换 popper 可见状态 | Function: (visible?: boolean) => void  |
 
 ## Props 字段参数
 
@@ -144,4 +144,5 @@ realPath: src/package/scCascader/index.zh-CN.md
 | disabled | 指定选项的子选项为选项对象的某个属性值 | string  | 'disabled' | - | |
 | leaf | 指定选项的叶子节点的标志位为选项对象的某个属性值 | string  | 'leaf' | - | |
 | hoverThreshold | hover 时展开菜单的灵敏度阈值 | number  | 500 | - | |
+
 
