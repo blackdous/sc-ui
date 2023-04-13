@@ -1,9 +1,11 @@
 <template>
   <Tag
     v-bind="$attrs"
+    :color="compProps.color"
     :disable="compProps.disabled"
     :class="classNames"
     @click="handleChange"
+    :style="varStyle"
   >
     <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
       <slot :name="item" v-bind="data || {}"></slot>
@@ -12,11 +14,12 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, unref, computed, ref, watch } from 'vue';
-import { Tag } from 'ant-design-vue';
+import { defineComponent, unref, computed, ref, watch } from 'vue'
+import { Tag } from 'ant-design-vue'
 
-import { basePrefixCls } from '../../../constant';
+import { basePrefixCls } from '../../../constant'
 import { tagProps } from './type'
+import { parseColorString, toRgbaString } from '../../../utils/hextorgba'
 
 export default defineComponent({
   name: 'ScTag',
@@ -42,7 +45,7 @@ export default defineComponent({
     })
     
     const classNames = computed(() => {
-      const { type, size, status, selected, disabled } = unref(compProps)
+      const { type, size, status, selected, disabled, color } = unref(compProps)
       return [
         attrs.class,
         baseClass,
@@ -50,9 +53,24 @@ export default defineComponent({
         status ? 'is-' + status : '',
         type ? baseClass + '-' + type : '',
         selected ? unref(checked) ? 'is-selected onSelect' : 'onSelect' : '',
-        disabled ? 'is-disabled' : ''
+        disabled ? 'is-disabled' : '',
+        color ? 'is-custom-color' : ''
       ]
     })
+
+    const varStyle = computed(() => {
+      const { color } = props;
+      const rgbaColor = color ? parseColorString(color) : ''
+      const shadowOutColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.06 })) : ''
+      if (!color) {
+        return {}
+      }
+      return {
+        '--customColor': color,
+        '--customBgColor': shadowOutColor,
+      }
+    })
+
     const handleChange = () => {
       const { disabled } = unref(compProps)
       if (disabled) {
@@ -64,7 +82,8 @@ export default defineComponent({
     return {
       classNames,
       compProps,
-      handleChange
+      handleChange,
+      varStyle
     }
   }
 })

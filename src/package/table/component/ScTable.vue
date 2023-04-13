@@ -392,6 +392,7 @@ export default defineComponent({
         dataSource,
         loading: unref(getLoading),
         pagination: toRaw(unref(getPaginationInfo)),
+        indentSize: newProps.value?.indentSize || 30,
         change: undefined,
         style: undefined,
         class: undefined
@@ -485,6 +486,7 @@ export default defineComponent({
       column: any,
     ) => {
       confirm()
+      setPagination({ current: 1})
       setFilterDropdownRef(column, items)
       fetchParams.value = {
         ...unref(fetchParams),

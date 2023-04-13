@@ -31,13 +31,33 @@
   &-dark {
     border-color: @border-color;
     background: @border-color;
+    &.is-custom-color {
+      border-color: var(--customColor);
+    }
   }
   &-light {
     border-color: @select-hover-bg;
     background: @select-hover-bg;
+    &.is-custom-color {
+      border-color: var(--customBgColor);
+      background-color: var(--customBgColor) !important;
+      color: var(--customColor);
+    }
   }
   &-outline {
     background: transparent;
+    &.is-custom-color {
+      border-color: var(--customColor);
+      background-color: transparent !important;
+      color: var(--customColor);
+    }
+  }
+  &-lightOutline {
+    &.is-custom-color {
+      border-color: var(--customColor);
+      background-color: var(--customBgColor) !important;
+      color: var(--customColor);
+    }
   }
   &.ant-tag > .anticon + span, 
   &.ant-tag > span + .anticon {
@@ -137,6 +157,9 @@
 
   &.onSelect {
     cursor: pointer;
+  }
+  &.is-custom-color:not(.scTag-light):not(.scTag-outline):not(.scTag-lightOutline) {
+    color: @white-color;
   }
 
   &.is-disabled {

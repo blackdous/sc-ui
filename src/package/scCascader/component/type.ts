@@ -86,3 +86,5 @@ export const tagProps = () => ({
   round: Boolean,
 } as const)
 export type TagProps = ExtractPropTypes<typeof tagProps>
+
+export type ScCascaderNewProps = CascaderProps

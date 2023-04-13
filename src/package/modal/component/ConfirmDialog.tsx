@@ -32,6 +32,9 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
     maskStyle,
     okButtonProps,
     cancelButtonProps,
+    showCancelBtn,
+    showOkBtn,
+    tooltipDes,
   } = props
 
   const okType = props.okType || 'primary';
@@ -94,6 +97,9 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
       style={style}
       width={width}
       zIndex={zIndex}
+      showCancelBtn={showCancelBtn}
+      showOkBtn={showOkBtn}
+      tooltipDes={tooltipDes}
       // afterClose={afterClose}
       keyboard={keyboard}
       centered={centered}

@@ -1,28 +1,68 @@
 <template>
-  <div class="mt20">
-    <ScCascaderPanel 
-      v-model:modelValue="value"
+  <div class="mt-20">
+    <p>普通多选</p>
+    <ScCascaderNew 
+      v-model="value" 
+      allowClear
+      :props="props"
+      :options="options" 
+      @change="handleChange" 
+    />
+  </div>
+  <div class="mt-20">
+    <p>只展示最后一级多选</p>
+    <ScCascaderNew 
+      v-model="value1" 
+      allowClear
+      :props="props"
       :options="options"
-      @change="handleChange"
-      @expandChange="handleExpandChange"
-    >
-    </ScCascaderPanel>
+      :showAllLevels="false"
+      @change="handleChange" 
+    />
+  </div>
+  <div class="mt-20">
+    <p>只展示最后一级多选，折叠选中</p>
+    <ScCascaderNew 
+      v-model="value2" 
+      allowClear
+      :props="props"
+      :options="options"
+      collapse-tags
+      @change="handleChange" 
+    />
+      <!-- :showAllLevels="false" -->
+  </div>
+  <div class="mt-20">
+    <p>只展示最后一级多选，折叠选中，使用tooltip显示</p>
+    <ScCascaderNew 
+      v-model="value3" 
+      allowClear
+      :props="props"
+      :options="options"
+      collapse-tags
+      collapseTagsTooltip
+      @change="handleChange" 
+    />
+      <!-- :showAllLevels="false" -->
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, watch } from 'vue'
-import { ScCascaderPanel } from 'sc-ui'
-const value = ref(['guide', 'disciplines', 'feedback'])
+<script lang="ts" setup>
+import { ref } from 'vue'
 
-watch(() => value.value, (val) => {
-  console.log('val: watch', val);
-})
-const handleChange = (val:any) => {
-  console.log('val: handleChange', val);
+import { ScCascaderNew } from 'sc-ui';
+
+const value = ref([])
+const value1 = ref([])
+const value2 = ref([])
+const value3 = ref([])
+
+const props = {
+  multiple: true
 }
-const handleExpandChange = (val:any) => {
-  console.log('val: handleExpandChange', val);
+
+const handleChange = (value:any) => {
+  console.log(value)
 }
 
 const options = [
@@ -33,11 +73,11 @@ const options = [
       {
         value: 'disciplines',
         label: 'Disciplines',
+        disabled: true,
         children: [
           {
             value: 'consistency',
             label: 'Consistency',
-            disabled: true
           },
           {
             value: 'feedback',
@@ -60,6 +100,7 @@ const options = [
           {
             value: 'side nav',
             label: 'Side Navigation',
+            disabled: true,
           },
           {
             value: 'top nav',
@@ -84,7 +125,6 @@ const options = [
           {
             value: 'color',
             label: 'Color',
-            disabled: true
           },
           {
             value: 'typography',
@@ -93,6 +133,7 @@ const options = [
           {
             value: 'icon',
             label: 'Icon',
+            disabled: true,
           },
           {
             value: 'button',
@@ -279,7 +320,6 @@ const options = [
   {
     value: 'resource',
     label: 'Resource',
-    disabled: true,
     children: [
       {
         value: 'axure',
@@ -288,7 +328,6 @@ const options = [
       {
         value: 'sketch',
         label: 'Sketch Templates',
-        disabled: true
       },
       {
         value: 'docs',
@@ -299,10 +338,7 @@ const options = [
 ]
 </script>
 <style scoped>
-/* @import 'comment'; */
-</style>
-<style scoped>
-.mt20 {
+.mt-20 {
   margin-top: 20px;
 }
 </style>

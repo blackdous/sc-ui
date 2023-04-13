@@ -36,6 +36,7 @@ export default defineComponent({
     Input
   },
   props: props(),
+  emits: ['update:value', 'input'],
   setup (props, { attrs, emit, slots }) {
     const baseClass = basePrefixCls + 'Input'
     
@@ -53,6 +54,7 @@ export default defineComponent({
       },
       set: (val) => {
         emit('update:value', val)
+        emit('input', val)
       }
     })
 

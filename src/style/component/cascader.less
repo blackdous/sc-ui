@@ -118,7 +118,124 @@ div.ant-cascader-menu {
 }
 
 .@{cascaderNewScope} {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  font-size: 14px;
+  line-height: 32px;
+  outline: none;
+  .scInput {
+    display: flex;
+  }
+  &-tags {
+    position: absolute;
+    left: 0;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    line-height: normal;
+    text-align: left;
+    box-sizing: border-box;
+    .scTag:not(.isTooltipTag) {
+      display: flex;
+      align-items: center;
+      max-width: 100%;
+      text-overflow: ellipsis;
+      margin: 0 0 0 8px;
+      & > span {
+        max-width: 90%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+    .scTag {
+      &.isTooltipTag {
+        margin-left: 8px;
+      }
+    }
+    .scTag + .scTag {
+      margin-top: 2px;
+    }
+  }
   &-dropdown {
     max-width: none;
+    .ant-tooltip-inner {
+      padding: 0;
+    }
+    &.ant-tooltip-placement-bottom, 
+    &.ant-tooltip-placement-bottomLeft, 
+    &.ant-tooltip-placement-bottomRight {
+      padding-top: 0;
+      .ant-tooltip-arrow {
+        display: none;
+      }
+    }
+  }
+  .ant-input-suffix {
+    .sc-xiangxia {
+      color: @disabled-color;
+      height: 22px;
+      line-height: 22px;
+      &.isReverse {
+        transform: rotate(180deg);
+      }
+    }
+    .sc-error-fill {
+      font-size: 12px;
+      width: 16px;
+      color: @text-color-secondary;
+      cursor: pointer;
+    }
+  }
+  &.isMultiple {
+    .ant-input-affix-wrapper {
+      padding: 0 4px 0 8px;
+    }
+    .ant-input-suffix {
+      .sc-xiangxia {
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+  }
+  &-suggestion {
+    &-panel {
+      min-width: 190px;
+      text-align: center;
+    }
+    &-list {
+      margin-bottom: 0;
+      padding: 4px 0;
+    }
+    &-item {
+      line-height: 22px;
+      padding: 3px 8px;
+      margin: 2px 6px;
+      cursor: pointer;
+      border-radius: @border-r-3;
+      text-align: left;
+      &:hover {
+        background-color: @item-hover-bg;
+      }
+      .ant-checkbox-wrapper {
+        pointer-events: none;
+      }
+    }
+  }
+  &-search {
+    &-input {
+      font-size: 14px;
+      padding-left: 9px;
+      line-height: 22px;
+    }
+  }
+  &-collapse {
+    &-tag {
+      & + & {
+        margin-top: 2px;
+      }
+    }
   }
 }

@@ -176,7 +176,7 @@ const data: DataItem[] = [
   },
 ];
 
-for(let i = 10; i < 14; i++) {
+for(let i = 10; i < 24; i++) {
   data.push({
     key: i + '',
     name: 'John Brown',

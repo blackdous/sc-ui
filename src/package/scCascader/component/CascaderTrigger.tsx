@@ -63,7 +63,6 @@ function PickerTrigger(props: PickerTriggerProps, { slots }) {
     dropdownAlign,
     transitionName,
     getPopupContainer,
-    range,
     popupPlacement,
     direction,
   } = useMergeProps(props);
@@ -87,7 +86,6 @@ function PickerTrigger(props: PickerTriggerProps, { slots }) {
       popupAlign={dropdownAlign}
       popupVisible={visible}
       popupClassName={classNames(dropdownClassName, {
-        [`${dropdownPrefixCls}-range`]: range,
         [`${dropdownPrefixCls}-rtl`]: direction === 'rtl',
       })}
       popupStyle={popupStyle}

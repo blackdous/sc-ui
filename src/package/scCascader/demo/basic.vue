@@ -1,15 +1,15 @@
 <template>
-  <div class="m-4">
-    <p>Child options expand when clicked (default)</p>
-    <ScCascaderNew v-model="value" :options="options" @change="handleChange" />
+  <div class="mt-20">
+    <p>展开子节点click(默认)</p>
+    <ScCascaderNew v-model="value" :options="options" @change="handleChange" popupClassName="bbbb" popperClass="aaaa" />
   </div>
-  <div class="m-4">
-    <p>Child options expand when hovered</p>
+  <div class="mt-20">
+    <p>展开子节点hover</p>
     <ScCascaderNew
-      v-model="value"
+      v-model="value1"
       :options="options"
       :props="props"
-      @change="handleChange"
+      @change="handleChange1"
     />
   </div>
 </template>
@@ -17,15 +17,19 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import { ScCascaderNew } from '..';
+import { ScCascaderNew } from 'sc-ui';
 
-const value = ref([])
+const value = ref(['component', 'form', 'checkbox'])
+const value1 = ref([])
 
 const props = {
   expandTrigger: 'hover' as const,
 }
 
-const handleChange = (value) => {
+const handleChange = (value:any) => {
+  console.log(value)
+}
+const handleChange1 = (value:any) => {
   console.log(value)
 }
 
@@ -298,3 +302,8 @@ const options = [
   },
 ]
 </script>
+<style scoped>
+.mt-20 {
+  margin-top: 20px;
+}
+</style>

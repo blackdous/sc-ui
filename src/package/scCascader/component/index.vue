@@ -1,9 +1,11 @@
 <template>
+  <!-- :overlayStyle="{'display': isDefaultValue ? 'static' : 'none'}" -->
   <Tooltip
     ref="tooltipRef"
     :visible="popperVisible"
     :teleported="teleported"
-    :overlayClassName="`${[nsCascader + '-dropdown', popperClass, uuid].join(' ')}`"
+    :overlayClassName="`${[nsCascader + '-dropdown', popperClass, popupClassName, uuid].join(' ')}`"
+    :overlayStyle="popupStyle"
     :popper-options="popperOptions"
     :fallback-placements="[
       'bottomLeft',
@@ -15,12 +17,14 @@
     ]"
     :stop-popper-mouse-event="false"
     :gpu-acceleration="false"
-    placement="bottomLeft"
+    :placement="popupPlacement || 'bottomLeft'"
     :transition="`${nsCascader}-zoom-in-top`"
     effect="light"
     pure
     persistent
     @visible-change="hideSuggestionPanel"
+    trigger="click"
+    :get-popup-container="getPopupContainer"
   >
     <template #default>
       <div
@@ -31,6 +35,7 @@
           isDisabled ? 'isDisabled' : '',
           // nsCascader.is('disabled', isDisabled),
           $attrs.class,
+          multiple ? 'isMultiple' : ''
         ]"
         :style="$attrs.style"
         @click="() => togglePopperVisible(readonly ? undefined : true)"
@@ -39,9 +44,12 @@
         @mouseleave="inputHover = false"
       >
       <!-- nsCascader.is('focus', popperVisible) -->
+        <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
+          <slot name="prefixIcon"></slot>
+        </span>
         <ScInput
           ref="input"
-          v-model="inputValue"
+          v-model:value="inputValue"
           :placeholder="currentPlaceholder"
           :readonly="readonly"
           :disabled="isDisabled"
@@ -72,80 +80,65 @@
               key="arrow-down"
               @click.stop="togglePopperVisible()"
             >
-
             </i>
-            <!-- <el-icon
-              v-if="clearBtnVisible"
-              key="clear"
-              :class="[nsInput.e('icon'), 'icon-circle-close']"
-              @click.stop="handleClear"
-            >
-              <circle-close />
-            </el-icon>
-            <el-icon
-              v-else
-              key="arrow-down"
-              :class="[
-                nsInput.e('icon'),
-                'icon-arrow-down',
-                nsCascader.is('reverse', popperVisible),
-              ]"
-              @click.stop="togglePopperVisible()"
-            >
-              <arrow-down />
-            </el-icon> -->
           </template>
         </ScInput>
 
         <div v-if="multiple" ref="tagWrapper" :class="nsCascader + '-tags'">
-          <Tag
+          <ScTag
             v-for="tag in presentTags"
             :key="tag.key"
             :type="tagType"
             :size="tagSize"
             :hit="tag.hitState"
             :closable="tag.closable"
+            :class="[tag.isCollapseTag ? 'isTooltipTag' : '']"
             disable-transitions
             @close="deleteTag(tag)"
           >
             <template v-if="tag.isCollapseTag === false">
-              <span>{{ tag.text }}</span>
+              <span >{{ tag.text }}</span>
             </template>
             <template v-else>
-              <Tooltip
-                :disabled="popperVisible || !collapseTagsTooltip"
-                :fallback-placements="['bottom', 'top', 'right', 'left']"
-                placement="bottom"
-                effect="light"
-              >
-                <template #default>
+              <template v-if="collapseTagsTooltip === false">
                   <span>{{ tag.text }}</span>
-                </template>
-                <template #content>
-                  <div :class="nsCascader + '-collapse-tags'">
-                    <div
-                      v-for="(tag2, idx) in allPresentTags.slice(1)"
-                      :key="idx"
-                      :class="nsCascader + '-collapse-tag'"
-                    >
-                      <Tag
-                        :key="tag2.key"
-                        class="in-tooltip"
-                        :type="tagType"
-                        :size="tagSize"
-                        :hit="tag2.hitState"
-                        :closable="tag2.closable"
-                        disable-transitions
-                        @close="deleteTag(tag2)"
+              </template>
+              <template v-else>
+                <Tooltip
+                  :disabled="popperVisible || !collapseTagsTooltip"
+                  :fallback-placements="['bottom', 'top', 'right', 'left']"
+                  placement="bottom"
+                  effect="light"
+                >
+                  <template #default>
+                    <span>{{ tag.text }}</span>
+                  </template>
+                  <template #title>
+                    <div :class="nsCascader + '-collapse-tags'">
+                      <div
+                        v-for="(tag2, idx) in allPresentTags.slice(1)"
+                        :key="idx"
+                        :class="nsCascader + '-collapse-tag'"
                       >
-                        <span>{{ tag2.text }}</span>
-                      </Tag>
+                        <ScTag
+                          :key="tag2.key"
+                          :class="['in-tooltip', '22222']"
+                          :type="tagType"
+                          :size="tagSize"
+                          :hit="tag2.hitState"
+                          :closable="tag2.closable"
+                          disable-transitions
+                          @close="deleteTag(tag2)"
+                        >
+                          <span class="22222">{{ tag2.text }}</span>
+                        </ScTag>
+                      </div>
                     </div>
-                  </div>
-                </template>
-              </Tooltip>
+                  </template>
+                </Tooltip>
+              </template>
             </template>
-          </Tag>
+          </ScTag>
           <input
             v-if="filterable && !isDisabled"
             v-model="searchInputValue"
@@ -194,12 +187,13 @@
               // nsCascader.is('checked', item.checked),
             ]"
             :tabindex="-1"
-            @click="handleSuggestionClick(item)"
+            @click=" handleSuggestionClick(item)"
           >
-            <span>{{ item.text }}</span>
-            <!-- <el-icon v-if="item.checked">
-              <check />
-            </el-icon> -->
+            <Checkbox
+              v-model:checked="item.checked"
+            >
+              <span>{{ item.text }}</span>
+            </Checkbox>
           </li>
         </template>
         <slot v-else name="empty">
@@ -227,9 +221,8 @@ import {
 import { ScInput } from '../../input'
 
 import { ScScrollbar } from '../../scrollbar'
-import { Tooltip, Tag } from 'ant-design-vue'
-// import ElIcon from '@element-plus/components/icon'
-
+import { ScTag } from '../../tag'
+import { Tooltip, Checkbox } from 'ant-design-vue'
 import ClickOutside from '../../../directives/clickOutside'
 
 import {
@@ -291,11 +284,8 @@ export default defineComponent({
     ScInput,
     Tooltip,
     ScScrollbar,
-    Tag,
-    // ElIcon,
-    // CircleClose,
-    // Check,
-    // ArrowDown,
+    ScTag,
+    Checkbox
   },
 
   directives: {
@@ -312,8 +302,12 @@ export default defineComponent({
       type: String,
     },
     disabled: Boolean,
-    clearable: Boolean,
+    allowClear: Boolean,
+    popupClassName: String,
+    popupStyle: Object,
     filterable: Boolean,
+    popupPlacement: String,
+    getPopupContainer: Function as PropType<(triggerNode: HTMLElement) => void>,
     filterMethod: {
       type: Function as PropType<
         (node: CascaderNode, keyword: string) => boolean
@@ -347,8 +341,7 @@ export default defineComponent({
       default: '',
     },
     teleported: Object,
-    // eslint-disable-next-line vue/require-prop-types
-    tagType: { ...tagProps.type, default: 'info' },
+    tagType: { ...tagProps.type, default: 'dark' },
     validateEvent: {
       type: Boolean,
       default: true,
@@ -365,7 +358,7 @@ export default defineComponent({
     'remove-tag',
   ],
 
-  setup(props, { emit }) {
+  setup(props, { emit, slots }) {
     let inputInitialHeight = 0
     let pressDeleteCount = 0
 
@@ -391,8 +384,15 @@ export default defineComponent({
     const allPresentTags: Ref<TagType[]> = ref([])
     const suggestions: Ref<CascaderNode[]> = ref([])
     const isOnComposition = ref(false)
+    const isDefaultValue = ref(false)
+
+    // const defaultValue = ref()calculateCheckedValue
 
     // const isDisabled = computed(() => props.disabled || form?.disabled)
+
+    const isPrefixIcon = computed(() => {
+      return Object.keys(slots).includes('prefixIcon')
+    })
     const isDisabled = computed(() => props.disabled)
     const inputPlaceholder = computed(
       () => props.placeholder || '请选择'
@@ -420,7 +420,7 @@ export default defineComponent({
     )
     const clearBtnVisible = computed(() => {
       if (
-        !props.clearable ||
+        !props.allowClear ||
         isDisabled.value ||
         filtering.value ||
         !inputHover.value
@@ -441,6 +441,12 @@ export default defineComponent({
 
     const checkedValue = computed<CascaderValue>({
       get() {
+        if (props.modelValue !== undefined && !isDefaultValue.value) {
+          popperVisible.value = true
+          requestAnimationFrame(() => {
+            popperVisible.value = false
+          })
+        }
         return cloneDeep(props.modelValue) as CascaderValue
       },
       set(val) {
@@ -452,7 +458,12 @@ export default defineComponent({
       },
     })
 
+    // const popperPaneRef = computed(() => {
+    //   console.log('tooltipRef: ', tooltipRef.value);
+    //   return tooltipRef.value?.popperRef?.contentRef
+    // })
     const popperPaneRef = ref()
+    const multipleOptionRef = ref()
 
     const togglePopperVisible = (visible?: boolean) => {
       if (isDisabled.value) return
@@ -474,8 +485,12 @@ export default defineComponent({
       }
 
       nextTick(() => {
-        const cascaderPanelPop = document && document.querySelector('.'+uuid)
-        popperPaneRef.value = cascaderPanelPop
+        const timer = setTimeout(() => {
+          const cascaderPanelPop = document && document.querySelector('.'+uuid)
+          popperPaneRef.value = cascaderPanelPop
+          multipleOptionRef.value = suggestionPanel.value?.wrapRef
+          clearTimeout(timer)
+        }, 100)
       })
     }
 
@@ -595,7 +610,9 @@ export default defineComponent({
         const suggestionList = suggestionPanelEl.querySelector(
           `.${nsCascader + 'suggestion-list'}`
         )
-        suggestionList.style.minWidth = `${inputInner.offsetWidth}px`
+        if (suggestionList) {
+          suggestionList.style.minWidth = `${inputInner.offsetWidth}px`
+        }
       }
 
       if (tagWrapperEl) {
@@ -610,7 +627,7 @@ export default defineComponent({
     }
 
     const getCheckedNodes = (leafOnly: boolean) => {
-      return panel.value?.getCheckedNodes(leafOnly)
+      return panel?.value?.getCheckedNodes(leafOnly)
     }
 
     const handleExpandChange = (value: CascaderValue) => {
@@ -670,7 +687,6 @@ export default defineComponent({
 
     const handleSuggestionClick = (node: CascaderNode) => {
       const { checked } = node
-
       if (multiple.value) {
         panel.value?.handleCheckChange(node, !checked, false)
       } else {
@@ -802,6 +818,9 @@ export default defineComponent({
       nsCascader,
       nsInput,
       uuid,
+      isDefaultValue,
+      multipleOptionRef,
+      isPrefixIcon,
 
       // t,
       togglePopperVisible,

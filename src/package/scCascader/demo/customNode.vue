@@ -1,30 +1,14 @@
 <template>
-  <div class="mt20">
-    <ScCascaderPanel 
-      v-model:modelValue="value"
-      :options="options"
-      @change="handleChange"
-      @expandChange="handleExpandChange"
-    >
-    </ScCascaderPanel>
-  </div>
+  <ScCascaderNew :options="options">
+    <template #default="{ node, data }">
+      <span>{{ data.label }}</span>
+      <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+    </template>
+  </ScCascaderNew>
 </template>
 
-<script setup lang="ts">
-import { ref, watch } from 'vue'
-import { ScCascaderPanel } from 'sc-ui'
-const value = ref(['guide', 'disciplines', 'feedback'])
-
-watch(() => value.value, (val) => {
-  console.log('val: watch', val);
-})
-const handleChange = (val:any) => {
-  console.log('val: handleChange', val);
-}
-const handleExpandChange = (val:any) => {
-  console.log('val: handleExpandChange', val);
-}
-
+<script lang="ts" setup>
+import { ScCascaderNew } from 'sc-ui';
 const options = [
   {
     value: 'guide',
@@ -37,7 +21,6 @@ const options = [
           {
             value: 'consistency',
             label: 'Consistency',
-            disabled: true
           },
           {
             value: 'feedback',
@@ -84,7 +67,6 @@ const options = [
           {
             value: 'color',
             label: 'Color',
-            disabled: true
           },
           {
             value: 'typography',
@@ -279,7 +261,6 @@ const options = [
   {
     value: 'resource',
     label: 'Resource',
-    disabled: true,
     children: [
       {
         value: 'axure',
@@ -288,7 +269,6 @@ const options = [
       {
         value: 'sketch',
         label: 'Sketch Templates',
-        disabled: true
       },
       {
         value: 'docs',
@@ -298,11 +278,3 @@ const options = [
   },
 ]
 </script>
-<style scoped>
-/* @import 'comment'; */
-</style>
-<style scoped>
-.mt20 {
-  margin-top: 20px;
-}
-</style>

@@ -3,10 +3,14 @@ import type { Directive, App } from 'vue';
 
 const LoadingDirective: Directive = {
   mounted(el, binding) {
+    // console.log('binding: ', binding);
     const tip = el.getAttribute('loading-tip');
     const background = el.getAttribute('loading-background');
     const size = el.getAttribute('loading-size');
     const fullscreen = !!binding.modifiers.fullscreen;
+    if (!fullscreen) {
+      el.style.position = 'relative'
+    }
     const instance = createLoading(
       {
         tip,

@@ -5,6 +5,7 @@
       v-model:value="inputValueRef"
       allowClear
       @allowClear="handleClear"
+      @input="handleInput"
     >
     </ScInput>
   </div>
@@ -18,6 +19,9 @@ const inputValueRef = ref('')
 
 const handleClear = (val:string) => {
   console.log('val: ', val);
+}
+const handleInput = (val: string) => {
+  console.log('val: handleInput', val);
 }
 
 </script>

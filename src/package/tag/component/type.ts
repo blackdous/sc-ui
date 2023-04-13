@@ -1,5 +1,6 @@
 import type { ExtractPropTypes } from "vue"
 export const tagProps = () => ({
+  color: String,
   size: {
     type: String,
     validator: (v:string) => ['small', 'default', 'large', 'medium'].includes(v) 

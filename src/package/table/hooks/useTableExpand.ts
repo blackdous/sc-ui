@@ -75,9 +75,8 @@ export const useTableExpand = (
         })
       } else {
         return h('span', {
-          class: `ant-table-row-expand-icon ant-table-row-spaced`
+          class: `ant-table-row-indent`
         })
-  
       }
     }
   }

@@ -1,28 +1,23 @@
 <template>
-  <div class="mt20">
-    <ScCascaderPanel 
-      v-model:modelValue="value"
-      :options="options"
-      @change="handleChange"
-      @expandChange="handleExpandChange"
-    >
-    </ScCascaderPanel>
+  <div class="mt-20">
+    <p>禁用子节点</p>
+    <ScCascaderNew v-model="value" :options="options" @change="handleChange" />
+  </div>
+  <div class="mt-20">
+    <p>禁用整个组件</p>
+    <ScCascaderNew v-model="value" disabled :options="options" @change="handleChange" />
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, watch } from 'vue'
-import { ScCascaderPanel } from 'sc-ui'
-const value = ref(['guide', 'disciplines', 'feedback'])
+<script lang="ts" setup>
+import { ref } from 'vue'
 
-watch(() => value.value, (val) => {
-  console.log('val: watch', val);
-})
-const handleChange = (val:any) => {
-  console.log('val: handleChange', val);
-}
-const handleExpandChange = (val:any) => {
-  console.log('val: handleExpandChange', val);
+import { ScCascaderNew } from 'sc-ui';
+
+const value = ref([])
+
+const handleChange = (value:any) => {
+  console.log(value)
 }
 
 const options = [
@@ -33,11 +28,11 @@ const options = [
       {
         value: 'disciplines',
         label: 'Disciplines',
+        disabled: true,
         children: [
           {
             value: 'consistency',
             label: 'Consistency',
-            disabled: true
           },
           {
             value: 'feedback',
@@ -60,6 +55,7 @@ const options = [
           {
             value: 'side nav',
             label: 'Side Navigation',
+            disabled: true,
           },
           {
             value: 'top nav',
@@ -84,7 +80,6 @@ const options = [
           {
             value: 'color',
             label: 'Color',
-            disabled: true
           },
           {
             value: 'typography',
@@ -93,6 +88,7 @@ const options = [
           {
             value: 'icon',
             label: 'Icon',
+            disabled: true,
           },
           {
             value: 'button',
@@ -279,7 +275,6 @@ const options = [
   {
     value: 'resource',
     label: 'Resource',
-    disabled: true,
     children: [
       {
         value: 'axure',
@@ -288,7 +283,6 @@ const options = [
       {
         value: 'sketch',
         label: 'Sketch Templates',
-        disabled: true
       },
       {
         value: 'docs',
@@ -299,10 +293,7 @@ const options = [
 ]
 </script>
 <style scoped>
-/* @import 'comment'; */
-</style>
-<style scoped>
-.mt20 {
+.mt-20 {
   margin-top: 20px;
 }
 </style>

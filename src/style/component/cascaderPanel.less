@@ -61,10 +61,6 @@
           }
         }
       }
-      &.isDisabled {
-        cursor: not-allowed;
-        color: @disabled-color;
-      }
       &-label {
         flex: 1;
         text-align: left;
@@ -88,6 +84,20 @@
       .ant-checkbox-wrapper {
         & + .@{cascaderScope}-node-label {
           padding-left: 10px;
+        }
+      }
+      .arrow-right {
+        .sc-you {
+          color: @text-color;
+        }
+      }
+      &.isDisabled {
+        cursor: not-allowed;
+        color: @disabled-color;
+        .arrow-right {
+          .sc-you {
+            color: @disabled-color;
+          }
         }
       }
     }
