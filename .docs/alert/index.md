@@ -75,7 +75,7 @@ realPath: src/package/alert/index.zh-CN.md
 
 ## props
 
-除 参考官方 [Button 配置](https://2x.antdv.com/components/alert-cn#API)外，扩展以下参数
+除 参考官方 [Alert 配置](https://2x.antdv.com/components/alert-cn#API)外，扩展以下参数
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |

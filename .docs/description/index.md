@@ -43,7 +43,7 @@ const [register] = useDescription(Props);
 
 ## Api
 
-除 参考官方 [Button 配置](https://2x.antdv.com/components/description-cn#API)外，扩展以下参数
+除 参考官方 [Description 配置](https://2x.antdv.com/components/description-cn#API)外，扩展以下参数
 
 | 属性 | 类型 | 默认值 | 可选值 | 说明 |
 | --- | --- | --- | --- | --- |
