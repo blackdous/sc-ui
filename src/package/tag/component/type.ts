@@ -15,7 +15,7 @@ export const tagProps = () => ({
   },
   status: {
     type: String,
-    values: ['success', 'warning', 'error', 'primary', 'default'],
+    values: ['success', 'warning', 'error', 'primary', 'default', 'process', 'freeze'],
     default: 'default',
   },
   checked: Boolean,

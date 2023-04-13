@@ -8,13 +8,31 @@
       <ScTag type="dark" status="error">默认标签</ScTag>
       <ScTag type="dark" color="#87d068">默认标签</ScTag>
     </div>
-    <div>
-      <ScTag type="light">默认标签</ScTag>
-      <ScTag type="light" status="primary">默认标签</ScTag>
-      <ScTag type="light" status="success">默认标签</ScTag>
-      <ScTag type="light" status="warning">默认标签</ScTag>
-      <ScTag type="light" status="error">默认标签</ScTag>
-      <ScTag type="light" color="#87d068">默认标签</ScTag>
+    <div class="light-demo">
+      <div>
+        <ScTag type="light">未绑定/未启用</ScTag>
+      </div>
+      <div>
+        <ScTag type="light" status="primary">待确认/待审核/待挂载/恢复中</ScTag>
+      </div>
+      <div>
+        <ScTag type="light" status="process">处理中/开票中/退票中/运行中/创建中</ScTag>
+      </div>
+      <div>
+        <ScTag type="light" status="success">已开通/启用/成功/正常/使用中</ScTag>
+      </div>
+      <div>
+        <ScTag type="light" status="warning">部分异常/禁用/待补充信息/删除/删除中</ScTag>
+      </div>
+      <div>
+        <ScTag type="light" status="error">开通失败/授权失败</ScTag>
+      </div>
+      <div>
+        <ScTag type="light" status="freeze">已停用/已结单/已关机/已过期/已冻结</ScTag>
+      </div>
+      <div>
+        <ScTag type="light" color="#87d068">默认标签</ScTag>
+      </div>
     </div>
     <div>
       <ScTag type="outline">默认标签</ScTag>
@@ -39,3 +57,9 @@
 import { Space } from 'ant-design-vue';
 import { ScTag } from 'sc-ui'
 </script>
+
+<style scoped>
+.light-demo > div {
+  padding-top: 10px;
+}
+</style>

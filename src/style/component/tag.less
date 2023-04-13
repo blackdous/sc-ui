@@ -39,7 +39,7 @@
     border-color: @select-hover-bg;
     background: @select-hover-bg;
     &.is-custom-color {
-      border-color: var(--customBgColor);
+      border-color: var(--customBorderColor);
       background-color: var(--customBgColor) !important;
       color: var(--customColor);
     }
@@ -65,83 +65,125 @@
   }
 
   &.is-selected, &.is-primary {
-    background: @primary-color;
-    border-color: @primary-color;
+    background: @tag-select-color;
+    border-color: @tag-select-color;
     color: @white-color;
     &.@{tagScope}-light {
-      background: fade(@primary-color, 6%);
-      border-color: fade(@primary-color, 6%);
-      color: @primary-color;
+      background: @tag-select-bgColor;
+      border-color: @tag-select-bgColor;
+      color: @tag-select-color;
     }
     &.@{tagScope}-outline {
       background: transparent;
       border-color: @primary-color;
-      color: @primary-color;
+      color: @tag-select-color;
     }
     &.@{tagScope}-lightOutline {
-      background: fade(@primary-color, 6%);
-      border-color: @primary-color;
-      color: @primary-color;
+      background: @tag-select-bgColor;
+      border-color:@tag-select-color;
+      color: @tag-select-color;
     }
   }
   &.is-success {
-    background: @link-success-color;
-    border-color: @link-success-color;
+    background: @tag-success-color;
+    border-color: @tag-success-color;
     color: @white-color;
     &.@{tagScope}-light {
-      background: fade(@link-success-color, 6%);
-      border-color: fade(@link-success-color, 6%);
-      color: @link-success-color;
+      background: @tag-success-bgColor;
+      border-color: @tag-success-bgColor;
+      color: @tag-success-color;
     }
     &.@{tagScope}-outline {
       background: transparent;
-      border-color: @link-success-color;
-      color: @link-success-color;
+      border-color: @tag-success-color;
+      color: @tag-success-color;
     }
     &.@{tagScope}-lightOutline {
-      background: fade(@link-success-color, 6%);
-      border-color: @link-success-color;
-      color: @link-success-color;
+      background: @tag-success-bgColor;
+      border-color: @tag-success-color;
+      color: @tag-success-color;
     }
   }
   &.is-warning {
-    background: @link-warning-color;
-    border-color: @link-warning-color;
+    background: @tag-warning-color;
+    border-color: @tag-warning-color;
     color: @white-color;
     &.@{tagScope}-light {
-      background: fade(@link-warning-color, 6%);
-      border-color: fade(@link-warning-color, 6%);
-      color: @link-warning-color;
+      background: @tag-warning-bgColor;
+      border-color: @tag-warning-bgColor;
+      color: @tag-warning-color;
     }
     &.@{tagScope}-outline {
       background: transparent;
-      border-color: @link-warning-color;
-      color: @link-warning-color;
+      border-color: @tag-warning-color;
+      color:@tag-warning-color;
     }
     &.@{tagScope}-lightOutline {
-      background: fade(@link-warning-color, 6%);
-      border-color: @link-warning-color;
-      color: @link-warning-color;
+      background: @tag-warning-bgColor;
+      border-color: @tag-warning-color;
+      color: @tag-warning-color;
     }
   }
   &.is-error {
-    background: @link-danger-color;
-    border-color: @link-danger-color;
+    background: @tag-error-color;
+    border-color: @tag-error-color;
     color: @white-color;
     &.@{tagScope}-light {
-      background: fade(@link-danger-color, 6%);
-      border-color: fade(@link-danger-color, 6%);
-      color: @link-danger-color;
+      background: @tag-error-bgColor;
+      border-color: @tag-error-bgColor;
+      color: @tag-error-color;
     }
     &.@{tagScope}-outline {
       background: transparent;
-      border-color: @link-danger-color;
-      color: @link-danger-color;
+      border-color: @tag-error-color;
+      color: @tag-error-color;
     }
     &.@{tagScope}-lightOutline {
-      background: fade(@link-danger-color, 6%);
-      border-color: @link-danger-color;
-      color: @link-danger-color;
+      background: @tag-error-bgColor;
+      border-color: @tag-error-color;
+      color: @tag-error-color;
+    }
+  }
+
+  &.is-process {
+    background: @tag-process-color;
+    border-color: @tag-process-color;
+    color: @white-color;
+    &.@{tagScope}-light {
+      background: @tag-process-bgColor;
+      border-color: fade(@tag-process-color, 0.01);
+      color: @tag-process-color;
+    }
+    &.@{tagScope}-outline {
+      background: transparent;
+      border-color: @tag-process-color;
+      color: @tag-process-color;
+    }
+    &.@{tagScope}-lightOutline {
+      background: @tag-process-bgColor;
+      border-color: @tag-process-color;
+      color: @tag-process-color;
+    }
+  }
+
+  &.is-freeze {
+    background: @tag-freeze-color;
+    border-color: @tag-freeze-color;
+    color: @white-color;
+    &.@{tagScope}-light {
+      background: @tag-freeze-bgColor;
+      border-color: @tag-freeze-bgColor;
+      color: @tag-freeze-color;
+    }
+    &.@{tagScope}-outline {
+      background: transparent;
+      border-color: @tag-freeze-color;
+      color: @tag-freeze-color;
+    }
+    &.@{tagScope}-lightOutline {
+      background: @tag-freeze-bgColor;
+      border-color: @tag-freeze-color;
+      color: @tag-freeze-color;
     }
   }
 
@@ -163,7 +205,7 @@
   }
 
   &.is-disabled {
-    border-color: @border-color-base;
+    border-color: @disabled-bg-color;
     background: @disabled-bg-color;
     color: @disabled-color;
     cursor: not-allowed;

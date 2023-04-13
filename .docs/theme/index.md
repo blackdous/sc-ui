@@ -33,6 +33,8 @@ realPath: src/package/theme/index.zh-CN.md
 
 @primary-color: #008CD3; // 全局主色
 @link-color: #007DBD; // 链接色
+@link-color1: #45ABDF; // 特殊链接色
+@disabled-link-color: #BEDAFF; // link禁用色
 @success-color: #00A870; // 成功色
 @warning-color: #FF7D00; // 警告色
 @error-color: #E34D59; // 错误色
@@ -65,6 +67,7 @@ realPath: src/package/theme/index.zh-CN.md
 @shadow-outset-color: 0px 0px 0px 3px #F0F3F7, 0px 4px 4px 0px rgb(35 166 243 / 13%);
 @shadow-outset-tabs-active-color: 0px 0px 6px 0px #e2ecfa, 0px 4px 4px 0px rgb(35 166 243 / 20%);
 @shadow-outset-tabs-color: 0px 4px 4px rgba(35, 166, 243, 0.08), 0px 0px 6px #F0F3F7;
+@shadow-outset-disabled: 0px 4px 4px rgba(166, 166, 166, 0.08), 0px 0px 6px #F0F3F7;
 
 
 @item-hover-bg: #f5f5f5;
@@ -74,7 +77,7 @@ realPath: src/package/theme/index.zh-CN.md
 // @border-color-split: hsv(0, 0, 94%);
 @calendar-bg: @bg-color;
 @picker-panel-cell-width: 36px;
-@picker-border-color: @border-color-base;
+@picker-border-color: @border-color;
 @picker-time-panel-column-width: 56px;
 @picker-time-panel-column-height: 224px;
 @picker-time-panel-cell-height: 30px;
@@ -101,7 +104,9 @@ realPath: src/package/theme/index.zh-CN.md
 
 // @tabs-shadow-outset-color: 0px 0px 6px 0px #e2ecfa, 0px 4px 4px 0px rgb(35 166 243 / 20%);
 
-@primary-shadow: 0px 2px 5px 0px #23A6F3; // 祖逖渐变色
+@primary-shadow: 0px 2px 5px 0px fade(#23A6F3, 60%); // 祖逖渐变色
+
+// @primary-shadow: 0px 2px 5px 0px rgba(35, 166, 243, 0.7);
 
 @error-shadow: 0px 2px 5px 0px rgba(245, 63, 63, 0.5); // 祖逖渐变色
 
@@ -211,4 +216,43 @@ realPath: src/package/theme/index.zh-CN.md
 @today-bg-color: @table-Menu-bg;
 @input-hover-bg: #f3f3f3;
 @input-focus-color: #e7e7e7;
+
+
+// ********************** link
+
+@link-success-color: #2BA471;
+@link-hover-success-color: #56C08D;
+@link-active-success-color: #008858;
+@link-disabled-success-color: #92DAB2;
+
+@link-warning-color: #E37318;
+@link-hover-warning-color: #FA9550;
+@link-active-warning-color: #BE5A00;
+@link-disabled-warning-color: #FFB98C;
+
+@link-danger-color: #D54941;
+@link-hover-danger-color: #F6685D;
+@link-active-danger-color: #AD352F;
+@link-disabled-danger-color: #FFB9B0;
+
+// *********************** tag
+
+@tag-select-color: @primary-color; 
+@tag-select-bgColor: #E5F3FB;
+
+@tag-process-color: #0FC6C2; 
+@tag-process-bgColor: rgba(15, 198, 194, 0.01);
+
+@tag-success-color: #00A870; 
+@tag-success-bgColor: #E8F8F2;
+
+@tag-warning-color: @warning-color; 
+@tag-warning-bgColor: #FFF7E8;
+
+@tag-error-color: @error-color; 
+@tag-error-bgColor: #FDECEE;
+
+@tag-freeze-color: @text-color; 
+@tag-freeze-bgColor: #F3F3F3;
+
 ```

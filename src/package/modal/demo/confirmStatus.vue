@@ -66,8 +66,8 @@ const openModal = (infoDes: string) => {
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
         ]),
-        cancelText: '取消',
-        okText: '确认',
+        // cancelText: '取消',
+        // okText: '确认',
         onCancel () {
           console.log('cancel');
         },
@@ -84,8 +84,8 @@ const openModal = (infoDes: string) => {
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
         ]),
-        cancelText: '取消',
-        okText: '确认',
+        // cancelText: '取消',
+        // okText: '确认',
       });
       break;
     case 'warning':
@@ -93,8 +93,8 @@ const openModal = (infoDes: string) => {
         type: 'warning',
         title: () => 'This is a warning message',
         content: () => 'some messages...some messages...',
-        cancelText: '取消',
-        okText: '确认',
+        // cancelText: '取消',
+        // okText: '确认',
       });
       break;
     case 'error':
@@ -102,8 +102,8 @@ const openModal = (infoDes: string) => {
         type: 'error',
         title: () => 'This is an error message',
         content: () => 'some messages...some messages...',
-        cancelText: '取消',
-        okText: '确认',
+        // cancelText: '取消',
+        // okText: '确认',
       });
       break
   }
@@ -120,8 +120,8 @@ const openModalType = (infoDes: string) => {
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
         ]),
-        cancelText: '取消',
-        okText: '确认',
+        // cancelText: '取消',
+        // okText: '确认',
         onCancel () {
           console.log('cancel');
         },
@@ -138,8 +138,8 @@ const openModalType = (infoDes: string) => {
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
         ]),
-        cancelText: '取消',
-        okText: '确认',
+        // cancelText: '取消',
+        // okText: '确认',
       });
       break;
     case 'warning':
@@ -147,8 +147,8 @@ const openModalType = (infoDes: string) => {
         // type: 'warning',
         title: () => 'This is a warning message',
         content: () => 'some messages...some messages...',
-        cancelText: '取消',
-        okText: '确认',
+        // cancelText: '取消',
+        // okText: '确认',
       });
       break;
     case 'error':
@@ -156,8 +156,8 @@ const openModalType = (infoDes: string) => {
         // type: 'error',
         title: () => 'This is an error message',
         content: () => 'some messages...some messages...',
-        cancelText: '取消',
-        okText: '确认',
+        // cancelText: '取消',
+        // okText: '确认',
       });
       break
   }

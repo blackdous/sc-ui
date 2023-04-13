@@ -35,9 +35,9 @@ const localeValues: Locale = {
     cancelSort: 'Click to cancel sorting',
   },
   Modal: {
-    okText: 'OK',
-    cancelText: 'Cancel',
-    justOkText: 'OK',
+    okText: '确认',
+    cancelText: '取消',
+    justOkText: '确认',
   },
   Popconfirm: {
     okText: 'OK',

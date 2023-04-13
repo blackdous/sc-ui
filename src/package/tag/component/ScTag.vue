@@ -61,13 +61,15 @@ export default defineComponent({
     const varStyle = computed(() => {
       const { color } = props;
       const rgbaColor = color ? parseColorString(color) : ''
-      const shadowOutColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.06 })) : ''
+      const shadowOutColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.1 })) : ''
+      const borderOutColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0 })) : ''
       if (!color) {
         return {}
       }
       return {
         '--customColor': color,
         '--customBgColor': shadowOutColor,
+        '--customBorderColor': borderOutColor,
       }
     })
 
