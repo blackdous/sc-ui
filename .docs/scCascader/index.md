@@ -107,26 +107,26 @@ realPath: src/package/scCascader/index.zh-CN.md
 
 | 事件名  |   说明    |   类型    |
 | --- | --- | --- |
-| change | 当绑定值变化时触发的事件 | Function: (value: CascaderValue) => void  |
-| expand-change | 当展开节点发生变化时触发 | Function: (value: CascaderValue) => void  |
-| blur | 当失去焦点时触发 | Function: (event: FocusEvent) => void  |
-| visible-change | 下拉框出现/隐藏时触发 | Function: (value: boolean) => void  |
-| remove-tag | 在多选模式下，移除Tag时触发 | Function: (value: CascaderNode['valueByOption']) => void  |
+| change | 当绑定值变化时触发的事件 | `Function: (value: CascaderValue) => void`  |
+| expand-change | 当展开节点发生变化时触发 | `Function: (value: CascaderValue) => void`  |
+| blur | 当失去焦点时触发 | `Function: (event: FocusEvent) => void` |
+| visible-change | 下拉框出现/隐藏时触发 | `Function: (value: boolean) => void`  |
+| remove-tag | 在多选模式下，移除Tag时触发 | `Function: (value: CascaderNode['valueByOption']) => void`  |
 
 ## Slots
 
 | 插槽名  |   说明    |   作用域    |
 | --- | --- | --- |
-| default | 自定义备选项的节点内容，分别为当前节点的 Node 对象和数据 | object:{ node: any, data: any } |
+| default | 自定义备选项的节点内容，分别为当前节点的 Node 对象和数据 | `object:{ node: any, data: any }` |
 | empty | 无匹配选项时的内容 | - |
 
 ## Exposes
 
 | 事件名  |   说明    |   类型    |
 | --- | --- | --- |
-| getCheckedNodes | 获取一个当前选中节点的数组。(仅仅是传单) 是否只返回叶选中的节点，默认是 false | Function: (leafOnly: boolean) => CascaderNode[] | undefined  |
-| cascaderPanelRef | cascader 面板的 ref | object: ComputedRef<any>  |
-| togglePopperVisible | 切换 popper 可见状态 | Function: (visible?: boolean) => void  |
+| getCheckedNodes | 获取一个当前选中节点的数组。(仅仅是传单) 是否只返回叶选中的节点，默认是 false | `Function: (leafOnly: boolean) => CascaderNode[]` | -  |
+| cascaderPanelRef | cascader 面板的 ref | `object: ComputedRef<any>`  |
+| togglePopperVisible | 切换 popper 可见状态 | `Function: (visible?: boolean) => void`  |
 
 ## Props 字段参数
 
@@ -137,12 +137,10 @@ realPath: src/package/scCascader/index.zh-CN.md
 | checkStrictly | 是否严格的遵守父子节点不互相关联 | boolean  | false | - | |
 | emitPath | 在选中节点改变时，是否返回由该节点所在的各级菜单的值所组成的数组，若设置 false，则只返回该节点的值 | boolean  | true | - | |
 | lazy | 是否动态加载子节点，需与 lazyLoad 方法结合使用 | boolean  | false | - | |
-| lazyLoad | 加载动态数据的方法，仅在 lazy 为 true 时有效 | Function: (node: Node, resolve: Resolve) => void  | false | - | |
+| lazyLoad | 加载动态数据的方法，仅在 lazy 为 true 时有效 | `Function: (node: Node, resolve: Resolve) => void`  | false | - | |
 | label | 指定选项标签为选项对象的某个属性值 | string  | 'label' | - | |
 | value | 指定选项标签为选项对象的某个属性值 | string  | 'value' | - | |
 | children | 指定选项的子选项为选项对象的某个属性值 | string  | 'children' | - | |
 | disabled | 指定选项的子选项为选项对象的某个属性值 | string  | 'disabled' | - | |
 | leaf | 指定选项的叶子节点的标志位为选项对象的某个属性值 | string  | 'leaf' | - | |
 | hoverThreshold | hover 时展开菜单的灵敏度阈值 | number  | 500 | - | |
-
-
