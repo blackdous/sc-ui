@@ -78,7 +78,7 @@ map:
 | ------------------ | --------------------------- | ------- | ------ | ------------------------ |
 | size      | string     | medium |  medium、small、large   |  设置tag大小 |
 | type      | string     | lightOutline |  'dark', 'light', 'outline', 'lightOutline'   |  设置tag样式模式 |
-| status      | string     | -  | 'success', 'warning', 'error', 'primary', 'default'  |  设置显示状态样式 |
+| status      | string     | -  | 'success', 'warning', 'error', 'primary', 'default', 'process', 'freeze' |  设置显示状态样式 |
 | checked      | boolean     | -  |  -   |  当前按钮是否为选中状态结合selected属性使用 |
 | selected      | boolean     | -  |  -   |  当前按钮是否可以选中 |
 | disabled      | boolean     | -  |  -   |  当前按钮是否为禁用状态 |
