@@ -107,6 +107,9 @@ const openModal = (infoDes: string) => {
         content: () => 'some messages...some messages...',
         // cancelText: '取消',
         // okText: '确认',
+        onOk() {
+          console.log('ok');
+        }
       });
       break;
     case 'error':
@@ -151,6 +154,9 @@ const openModalType = (infoDes: string) => {
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
         ]),
+        onOk() {
+          console.log('ok');
+        }
         // cancelText: '取消',
         // okText: '确认',
       });

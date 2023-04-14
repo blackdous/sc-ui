@@ -251,7 +251,6 @@ export default defineComponent({
 
     const handleOk = async () => {
       const { onOk, isConfirm } = curProps.value
-      console.log('onOk: ', onOk);
       if (onOk && isFunction(onOk)) {
         const ret = onOk()
         if(ret && ret.then) {
@@ -262,6 +261,10 @@ export default defineComponent({
               visibleRef.value = false
             }
           })
+        } else {
+          if (isConfirm) {
+              visibleRef.value = false
+            }
         }
       } else {
         if (isConfirm) {
