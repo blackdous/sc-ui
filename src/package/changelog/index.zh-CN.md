@@ -5,6 +5,15 @@ map:
 
 # 变更记录
 
+## [0.0.103](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.102...0.0.103) (2023-04-14)
+
+
+### Bug Fixes
+
+* scModal.confirm 点击 ok按钮 不自动关闭 问题 ([694bbd9](http://gitlab.voneyun.com/frontend/sc-ui/commit/694bbd93e6164859121684280a6df6921603477e))
+
+
+
 ## [0.0.102](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.101...0.0.102) (2023-04-14)
 
 
