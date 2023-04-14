@@ -14,7 +14,7 @@ realPath: src/package/button/index.zh-CN.md
   >
 </demo> -->
 
-<!-- ## 组件类型
+## 组件类型
 
 ## 基础按钮
 
@@ -47,17 +47,17 @@ realPath: src/package/button/index.zh-CN.md
   language="vue"
   title="Block 按钮"
   >
-</demo> -->
+</demo>
 
 ## 组件状态
 
-<!-- ## 按钮状态
+## 按钮状态
 
 <demo src="./demo/status.vue"
   language="vue"
   title="按钮状态"
   >
-</demo> -->
+</demo>
 
 ### loading
 
@@ -67,7 +67,7 @@ realPath: src/package/button/index.zh-CN.md
   >
 </demo>
 
-<!-- ## 组件样式
+## 组件样式
 
 ### 按钮尺寸
 
@@ -101,4 +101,4 @@ realPath: src/package/button/index.zh-CN.md
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
 | color      | string                                              | -  |  -  |  当type为shadow时，color才会生效，**传入的color 必须为hex格式，暂时不支持其他格式**  |
 | status      | string                                              | -  | 'error', 'warning', 'success', 'info'      |  用于有状态的按钮 |
-| type      | string                                              | -  | primary', 'ghost', 'dashed', 'link', 'text', 'default', 'shadow'      |  用于改变按钮模式；新增'shadow' 模式 | -->
+| type      | string                                              | -  | primary', 'ghost', 'dashed', 'link', 'text', 'default', 'shadow'      |  用于改变按钮模式；新增'shadow' 模式 |
