@@ -17,19 +17,19 @@
     </ScButton>
   </div>
   <div class="mt20">
-    <ScButton type="primary" :loading="true">
+    <ScButton type="primary" :loading="loadingRef">
       填充按钮
     </ScButton>
-    <ScButton status="info" :loading="true">
+    <ScButton status="info" :loading="loadingRef">
       填充按钮
     </ScButton>
-    <ScButton :loading="true">
+    <ScButton :loading="loadingRef">
       描边按钮
     </ScButton>
-    <ScButton type="text" :loading="true">
+    <ScButton type="text" :loading="loadingRef">
       文字按钮
     </ScButton>
-    <ScButton type="link" :loading="true">
+    <ScButton type="link" :loading="loadingRef">
       文字按钮
     </ScButton>
   </div>
@@ -48,16 +48,16 @@
     </ScButton>
   </div>
   <div class="mt20">
-    <ScButton status="info" :loading="true">
+    <ScButton status="info" :loading="loadingRef">
       填充按钮
     </ScButton>
-    <ScButton status="error" :loading="true">
+    <ScButton status="error" :loading="loadingRef">
       描边按钮
     </ScButton>
-    <ScButton status="warning" :loading="true">
+    <ScButton status="warning" :loading="loadingRef">
       文字按钮
     </ScButton>
-    <ScButton status="success" :loading="true">
+    <ScButton status="success" :loading="loadingRef">
       文字按钮
     </ScButton>
   </div>
@@ -65,7 +65,7 @@
 
 <script lang="ts">
 import { ScButton } from 'sc-ui'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'basic',
@@ -74,8 +74,12 @@ export default defineComponent({
     ScButton
   },
   setup () {
+    const loadingRef = ref(true)
+    setTimeout(() => {
+      loadingRef.value = false
+    }, 1500)
     return {
-
+      loadingRef
     }
   }
 })

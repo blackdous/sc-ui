@@ -21,7 +21,7 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
     icon,
     footerAlign = 'right',
     onOk,
-    close,
+    onCancel,
     closable = false,
     zIndex,
     // afterClose,
@@ -83,7 +83,7 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
     <ScModal
       prefixCls={prefixCls}
       wrapClassName={classString}
-      onCancel={e => { close({ triggerCancel: true }, e);} }
+      onCancel={onCancel}
       onOk={onOk}
       visible={visible}
       title={null}
@@ -102,6 +102,7 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
       tooltipDes={tooltipDes}
       // afterClose={afterClose}
       keyboard={keyboard}
+      isConfirm={true}
       centered={centered}
       getContainer={getContainer}
       closable={closable}

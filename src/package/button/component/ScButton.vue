@@ -55,10 +55,11 @@ export default defineComponent({
     });
 
     const getBindValue = computed(() => {
-      const { type } = props;
+      const { type, loading } = props;
       return { 
         ...unref(attrs), 
         ...props, 
+        loading,
         type: ['shadow', 'icon'].includes(type) ? undefined : type,
         color: undefined
       }

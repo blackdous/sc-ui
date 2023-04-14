@@ -57,12 +57,12 @@
         </ScButton>
         <ScButton
           v-if="curProps.showOkBtn"
-          :loading="curProps.confirmLoading"
+          :loading="loadingRef || curProps.confirmLoading"
           :class="[modalPrefixCls + '-footer__ok']"
           v-bind="{...curProps.okButtonProps, type: undefined, disabled: curProps?.okButtonProps?.disabled || curProps?.onOkDisable}"
           type="primary"
           title=""
-          @click="curProps.onOk"
+          @click="$event => handleOk()"
         >
           {{curProps.okText}}
         </ScButton>
@@ -130,6 +130,8 @@ export default defineComponent({
 
     const visibleRef = ref(false)
     const propsRef = ref();
+
+    const loadingRef = ref(false)
 
     const curProps = computed(() => {
       const { okText, cancelText } = unref(vBind)
@@ -247,6 +249,27 @@ export default defineComponent({
       }
     }
 
+    const handleOk = async () => {
+      const { onOk, isConfirm } = curProps.value
+      console.log('onOk: ', onOk);
+      if (onOk && isFunction(onOk)) {
+        const ret = onOk()
+        if(ret && ret.then) {
+          loadingRef.value = true
+          ret.then((res:any) => {
+            loadingRef.value = false
+            if (isConfirm) {
+              visibleRef.value = false
+            }
+          })
+        }
+      } else {
+        if (isConfirm) {
+          visibleRef.value = false
+        }
+      }
+    }
+
     const modalMethods: ModalMethods = {
       setModalProps,
       emitVisible: undefined
@@ -296,6 +319,8 @@ export default defineComponent({
       visibleRef,
       modalTitleRef,
       curProps,
+      loadingRef,
+      handleOk,
       closeVisible
     }
   },

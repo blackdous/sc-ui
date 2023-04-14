@@ -17,6 +17,7 @@ export interface DraggableType {
 }
 export const modalProps = () => ({
   showTooltip: { type: Boolean, default: false },
+  isConfirm: { type: Boolean, default: false },
   tooltipDes: { type: String, default: '' },
   //显示取消按钮
   showCancelBtn: { type: Boolean, default: true },

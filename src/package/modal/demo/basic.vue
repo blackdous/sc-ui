@@ -4,12 +4,13 @@
     :visible="visible === 1"
     title="Basic Modal"
     destroyOnClose
-    @ok="handleOk"
     ok-text="确认"
     :show-cancel-btn="false"
+    @ok="handleOk"
     @cancel="handleCancel"
     :closable="false"
     maskClosable
+    :confirm-loading="loadingRef"
   >
   <!-- @dragChange="handleDrag" -->
   <!-- <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div> -->
@@ -112,6 +113,8 @@ const visible1: Ref<boolean> = ref(false)
 const visible2: Ref<boolean> = ref(false)
 const visible3: Ref<boolean> = ref(false)
 
+const loadingRef = ref(false)
+
 const columns = [
   {
     title: 'Name',
@@ -148,7 +151,7 @@ const handle2 = () => {
 
 const handleOk = (e: MouseEvent) => {
   console.log(e);
-  visible.value = 0;
+  // visible.value = 0;
 };
 
 const handleCancel = () => {

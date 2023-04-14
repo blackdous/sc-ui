@@ -53,6 +53,20 @@ import { ScModal } from 'sc-ui';
 const type = ref<string>('info')
 const info = ref<string>('infoinfoinfo')
 
+const handleOk1 = async (e: MouseEvent) => {
+  console.log(e);
+  // loadingRef.value = true
+
+  const newPromise = new Promise((resolve) => {
+    const timer = setTimeout(async () => {
+      console.log('异步更新')
+      resolve(true)
+      clearTimeout(timer)
+    }, 3500)
+  })
+  await newPromise
+};
+
 const openModal = (infoDes: string) => {
   info.value = infoDes
   
@@ -71,9 +85,7 @@ const openModal = (infoDes: string) => {
         onCancel () {
           console.log('cancel');
         },
-        onOk() {
-          console.log('ok');
-        },
+        onOk: handleOk1
       })
       break;
     case 'success':
@@ -102,6 +114,7 @@ const openModal = (infoDes: string) => {
         type: 'error',
         title: () => 'This is an error message',
         content: () => 'some messages...some messages...',
+        onOk: handleOk1
         // cancelText: '取消',
         // okText: '确认',
       });
@@ -149,6 +162,7 @@ const openModalType = (infoDes: string) => {
         content: () => 'some messages...some messages...',
         // cancelText: '取消',
         // okText: '确认',
+        onOk: handleOk1
       });
       break;
     case 'error':
