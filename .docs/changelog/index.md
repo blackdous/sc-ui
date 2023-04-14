@@ -6,7 +6,22 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
-## [0.0.102](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.100...0.0.102) (2023-04-13)
+## [0.0.102](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.101...0.0.102) (2023-04-14)
+
+
+### Bug Fixes
+
+* 1. 调整 Sctag Status 属性值 2. ScModal.confirm 默认使用 中文字符 ([6cdcdab](http://gitlab.voneyun.com/frontend/sc-ui/commit/6cdcdabdc5f7aea71cf0c2d52555da43b60e8aba))
+
+
+### Features
+
+* scModa.confirm 确认按钮 支持传入 异步 函数, 自动触发 确认 loading状态 ([e2eb6bd](http://gitlab.voneyun.com/frontend/sc-ui/commit/e2eb6bd2fbddea3b60ebcb19c4902dce31ddfe39))
+* sctable 新增 updateTableDataRecord updateTableData 方法 ([e3ee6e6](http://gitlab.voneyun.com/frontend/sc-ui/commit/e3ee6e6eadd001c0c9e3900b45c912301c0e817a))
+
+
+
+## [0.0.101](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.100...0.0.101) (2023-04-13)
 
 
 ### Features
@@ -516,3 +531,6 @@ realPath: src/package/changelog/index.zh-CN.md
 * 更新 文档 ([48005e9](http://gitlab.voneyun.com/frontend/sc-ui/commit/48005e9fe1eccd814ac6aa7b2929967b332896b7))
 * 更新 文档描述 readme.md ([97e4b3e](http://gitlab.voneyun.com/frontend/sc-ui/commit/97e4b3e7b1930c325232ef5240803ba1ec5f6d8f))
 * 解决 vue-slider-component 打包问题 ([386272f](http://gitlab.voneyun.com/frontend/sc-ui/commit/386272fc8d654791dd136ae746f4fe798306d666))
+
+
+
