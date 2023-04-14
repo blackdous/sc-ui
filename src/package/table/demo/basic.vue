@@ -4,9 +4,14 @@
       <!-- :create-button-options="{
         show: true
       }" -->
+    <div>
+      <ScButton @click="handleUpdateRecord">updateTableDataRecord</ScButton>
+      <ScButton @click="handleUpdate">updateTableData</ScButton>
+    </div>
     <ScTable
       style="padding: 0;"
       class="aaaa"
+      row-key="key"
       ref="scTableRef"
       :data-source="data"
       :columns="columns"
@@ -64,7 +69,7 @@
 import { ref, unref } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
-import { ScTable, Copy } from 'sc-ui'
+import { ScTable, Copy, ScButton } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
 import { InputSearch } from 'ant-design-vue'
 
@@ -72,9 +77,10 @@ const loading = ref(false)
 
 const searchValue = ref()
 
-const onSearch = () => {
-  
+const onSearch = (val:any) => {
+  console.log('val: ', val);
 }
+
 
 const list = ref([
   {
@@ -174,6 +180,17 @@ const handleTd = ({column, record}: any) => {
   console.log('record, type: ', column, record);
 }
 const scTableRef = ref()
+
+const handleUpdateRecord = () => {
+  const { updateTableDataRecord } = scTableRef.value
+  updateTableDataRecord('17', { name: 'updateTableDataRecord John Brown John Brown John Brown'})
+}
+
+const handleUpdate = () => {
+  const { updateTableData } = scTableRef.value
+  updateTableData(3, 'name', 'updateTableData John Brown John Brown John Brown')
+}
+
 // @ts-ignore
 const columns = [
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', ellipsis: true},
@@ -342,7 +359,7 @@ const data: DataItem[] = [
   },
 ];
 
-for(let i = 10; i < 11; i++) {
+for(let i = 10; i < 21; i++) {
   data.push({
     key: i + '',
     name: 'John Brown',

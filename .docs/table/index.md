@@ -511,7 +511,7 @@ const dataSource = [
 
 类型： `(rowKey: string | number, record: Recordable) => Recordable | void`
 
-说明： 根据唯一的 `rowKey` 更新指定行的数据.可用于不刷新整个表格而局部更新数据
+说明： 根据唯一的 `rowKey` 更新指定行的数据.可用于不刷新整个表格而局部更新数据; *必须设置rowKey*
 
 **deleteTableDataRecord**
 
