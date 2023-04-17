@@ -10,7 +10,7 @@
       全屏 Loading
     </Button>
     <Button class="my-16" @click="openCompAbsolute"> 容器内 Loading </Button>
-    <ScLoading :loading="loading" :absolute="absolute" :theme="theme" :isFullPage="isFullPage" :background="background" :tip="tip" />
+    <ScLoading :loading="loading" :absolute="absolute" :isFullPage="isFullPage" />
 
     <h3>
       函数方式

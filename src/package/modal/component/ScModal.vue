@@ -251,25 +251,32 @@ export default defineComponent({
 
     const handleOk = async () => {
       const { onOk, isConfirm } = curProps.value
-      if (onOk && isFunction(onOk)) {
-        const ret = onOk()
-        if(ret && ret.then) {
-          loadingRef.value = true
-          ret.then((res:any) => {
-            loadingRef.value = false
+      try {
+        if (onOk && isFunction(onOk)) {
+          const ret = onOk()
+          if(ret && ret.then) {
+            loadingRef.value = true
+            ret.then((res:any) => {
+              loadingRef.value = false
+              if (isConfirm) {
+                visibleRef.value = false
+              }
+            }).catch((error: any) => {
+              console.log('error: ', error);
+              loadingRef.value = false
+            })
+          } else {
             if (isConfirm) {
-              visibleRef.value = false
-            }
-          })
+                visibleRef.value = false
+              }
+          }
         } else {
           if (isConfirm) {
-              visibleRef.value = false
-            }
+            visibleRef.value = false
+          }
         }
-      } else {
-        if (isConfirm) {
-          visibleRef.value = false
-        }
+      } catch (error) {
+        console.log('error: ', error);
       }
     }
 

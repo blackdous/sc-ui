@@ -2,6 +2,7 @@
   <div>
     <ScTabs
       type="line"
+      @change="handleChange"
     >
       <TabPane key="1" tab="Tab 1" style="height: 100px">Content of Tab Pane 1</TabPane>
       <TabPane key="2" tab="Tab 2" style="height: 100px">Content of Tab Pane 2</TabPane>
@@ -66,6 +67,10 @@ for (let i = 0; i < 5; i++) {
     label: 'Tab ' + i,
     text: 'Content of Tab Pane ' + i
   }]
+}
+
+const handleChange = (val:string) => {
+  console.log('val: ', val);
 }
 </script>
 <style scoped>

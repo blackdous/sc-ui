@@ -19,7 +19,7 @@ export default {
 
 <script lang='ts' setup>
 import { Tabs } from 'ant-design-vue'
-import { computed, ref, useSlots, camelize, nextTick } from 'vue'
+import { computed, ref, useSlots, camelize, nextTick, defineEmits } from 'vue'
 import { flattenChildren, isValidElement } from '../../../utils'
 
 export interface TabsProps {
@@ -37,6 +37,9 @@ const props = withDefaults(defineProps<TabsProps>(), {
 })
 
 const slots = useSlots()
+
+
+const emit = defineEmits(['change'])
 
 function parseTabList(children: any[]): Tab[] {
   return children
@@ -105,5 +108,6 @@ const handleChange = (activeKey: string) => {
   nextTick(() => {
     prevActiveValue.value = activeKey
   })
+  emit('change', activeKey)
 }
 </script>

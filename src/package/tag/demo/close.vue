@@ -22,5 +22,5 @@
 
 <script lang='ts' setup>
 import { Space } from 'ant-design-vue';
-import { ScTag } from 'sc-ui'
+import { ScTag, ScIcon } from 'sc-ui'
 </script>
