@@ -6,7 +6,15 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
-## [0.0.104](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.102...0.0.104) (2023-04-14)
+## [0.0.104](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.103...0.0.104) (2023-04-17)
+
+### Bug Fixes
+
+* 1. 去除ScTabs change 事件 警告 2. ScModal ok按钮回调 新增try cache 防止报错 ([7599734](http://gitlab.voneyun.com/frontend/sc-ui/commit/75997341b393ddd4312650f912e4014fab2f0701))
+
+
+
+## [0.0.103](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.102...0.0.103) (2023-04-14)
 
 
 ### Bug Fixes
@@ -540,6 +548,3 @@ realPath: src/package/changelog/index.zh-CN.md
 * 更新 文档 ([48005e9](http://gitlab.voneyun.com/frontend/sc-ui/commit/48005e9fe1eccd814ac6aa7b2929967b332896b7))
 * 更新 文档描述 readme.md ([97e4b3e](http://gitlab.voneyun.com/frontend/sc-ui/commit/97e4b3e7b1930c325232ef5240803ba1ec5f6d8f))
 * 解决 vue-slider-component 打包问题 ([386272f](http://gitlab.voneyun.com/frontend/sc-ui/commit/386272fc8d654791dd136ae746f4fe798306d666))
-
-
-

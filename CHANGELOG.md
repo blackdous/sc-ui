@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.103...0.0.2) (2023-04-14)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.104...0.0.2) (2023-04-17)
+
+
+
+## [0.0.104](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.103...0.0.104) (2023-04-17)
+
+
+### Bug Fixes
+
+* 1. 去除ScTabs change 事件 警告 2. ScModal ok按钮回调 新增try cache 防止报错 ([7599734](http://gitlab.voneyun.com/frontend/sc-ui/commit/75997341b393ddd4312650f912e4014fab2f0701))
 
 
 
