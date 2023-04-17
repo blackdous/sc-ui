@@ -57,14 +57,27 @@ const handleOk1 = async (e: MouseEvent) => {
   console.log(e);
   // loadingRef.value = true
 
-  const newPromise = new Promise((resolve) => {
-    const timer = setTimeout(async () => {
-      console.log('异步更新')
-      resolve(true)
-      clearTimeout(timer)
-    }, 3500)
-  })
-  await newPromise
+  // const newPromise = new Promise((resolve) => {
+  //   const timer = setTimeout(async () => {
+  //     console.log('异步更新')
+  //     resolve(true)
+  //     clearTimeout(timer)
+  //   }, 3500)
+  // })
+  try {
+    const aaa =  await new Promise((resolve) => {
+      const timer = setTimeout(async () => {
+        console.log('异步更新')
+        resolve(true)
+        clearTimeout(timer)
+      }, 3500)
+    })
+    
+    console.log('aaa: ', aaa);
+  } finally {
+    console.log(1111)
+  }
+
 };
 
 const openModal = (infoDes: string) => {
