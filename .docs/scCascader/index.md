@@ -127,6 +127,7 @@ realPath: src/package/scCascader/index.zh-CN.md
 | --- | --- | --- |
 | default | 自定义备选项的节点内容，分别为当前节点的 Node 对象和数据 | `object:{ node: any, data: any }` |
 | empty | 无匹配选项时的内容 | - |
+| prefixIcon | 新增组件前缀icon | - |
 
 ## Exposes
 

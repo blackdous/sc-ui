@@ -44,9 +44,6 @@
         @mouseleave="inputHover = false"
       >
       <!-- nsCascader.is('focus', popperVisible) -->
-        <span :class="[nsCascader+'-prefix']" v-if="isPrefixIcon">
-          <slot name="prefixIcon"></slot>
-        </span>
         <ScInput
           ref="input"
           v-model:value="inputValue"
@@ -63,6 +60,9 @@
           @blur="(e) => $emit('blur', e)"
           @input="handleInput"
         >
+          <template #prefix v-if="isPrefixIcon">
+            <slot name="prefixIcon"></slot>
+          </template>
           <template #suffix>
             <i
               v-if="clearBtnVisible"
