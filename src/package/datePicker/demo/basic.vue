@@ -85,9 +85,9 @@ export default defineComponent({
     const value = ref<Dayjs>()
     console.log('value: ', value.value);
     const value1 = ref<Dayjs>()
-    const value2 = ref<Dayjs>()
+    const value2 = ref<Dayjs>('2019-03')
     const value3 = ref<Dayjs>()
-    const value4 = ref<Dayjs>()
+    const value4 = ref<Dayjs>('2022')
 
     const handleChange = (val:any) => {
       console.log('val: ', val);

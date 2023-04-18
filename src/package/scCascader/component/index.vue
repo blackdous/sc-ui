@@ -44,7 +44,7 @@
         @mouseleave="inputHover = false"
       >
       <!-- nsCascader.is('focus', popperVisible) -->
-        <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
+        <span :class="[nsCascader+'-prefix']" v-if="isPrefixIcon">
           <slot name="prefixIcon"></slot>
         </span>
         <ScInput
@@ -153,6 +153,20 @@
             @compositionend="handleComposition"
           />
         </div>
+
+        <div v-if="!isDefaultValue" style="height: 0; opacity: 0; width: 0; overflow: hidden; position: relative;">
+          <ScCascaderPanel
+            v-show="!filtering"
+            ref="panel"
+            v-model="checkedValue"
+            :options="options"
+            :props="props"
+            :border="false"
+            :render-label="$slots.default"
+            @expand-change="handleExpandChange"
+            @close="$nextTick(() => togglePopperVisible(false))"
+          />
+        </div>
       </div>
     </template>
 
@@ -252,6 +266,7 @@ import type {
 } from '../../cascaderPanel'
 
 import type { ComponentSize } from './type'
+import { setTime } from '../../picker/utils/timeUtil'
 
 const { cloneDeep, debounce } = lodash
 
@@ -441,12 +456,6 @@ export default defineComponent({
 
     const checkedValue = computed<CascaderValue>({
       get() {
-        if (props.modelValue !== undefined && !isDefaultValue.value) {
-          popperVisible.value = true
-          requestAnimationFrame(() => {
-            popperVisible.value = false
-          })
-        }
         return cloneDeep(props.modelValue) as CascaderValue
       },
       set(val) {
@@ -456,6 +465,15 @@ export default defineComponent({
           // formItem?.validate('change').catch((err) => debugWarn(err))
         }
       },
+    })
+
+    watch(() => popperVisible.value, (val) => {
+      if (val) {
+        const timer = setTimeout(() => {
+          isDefaultValue.value = true
+          clearTimeout(timer)
+        })
+      }
     })
 
     // const popperPaneRef = computed(() => {

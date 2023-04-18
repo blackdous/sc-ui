@@ -48,6 +48,14 @@ realPath: src/package/scCascader/index.zh-CN.md
   >
 </demo>
 
+## prefixIcon
+
+<demo src="./demo/prefix.vue"
+  language="vue"
+  title="prefixIcon"
+  >
+</demo>
+
 ## 懒加载
 
 <demo src="./demo/lazy.vue"
