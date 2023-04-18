@@ -1,4 +1,14 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.104...0.0.2) (2023-04-17)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.105...0.0.2) (2023-04-18)
+
+
+
+## [0.0.105](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.104...0.0.105) (2023-04-18)
+
+
+### Bug Fixes
+
+* scSlider watch value 更新时机问题 ([6e62d53](http://gitlab.voneyun.com/frontend/sc-ui/commit/6e62d5342c14c25e4e5bc45bd9fec1a5e8b85703))
+* 修复 scModal.confirm type 背景样式问题 ([69568a9](http://gitlab.voneyun.com/frontend/sc-ui/commit/69568a9b7b8cf1a8c060b4f5cfee29d24a4fa456))
 
 
 
