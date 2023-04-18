@@ -39,6 +39,7 @@ const openModal = (infoDes: string) => {
     case 'info':
       Modal.confirm({
         type: 'info',
+        closable: true,
         title: () => 'This is a notification message',
         icon: () => createVNode(InfoCircleFilled),
         content: () => h('div', {}, [

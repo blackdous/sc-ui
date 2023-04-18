@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { ref, h } from 'vue'
 
-import { Button, Space, Modal } from 'ant-design-vue'
+import { Button, Space } from 'ant-design-vue'
 import { ScModal } from 'sc-ui';
 // import { ScModal } from 'sc-ui'
 // import "ant-design-vue/dist/antd.css"
@@ -91,6 +91,7 @@ const openModal = (infoDes: string) => {
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
         ]),
+        closable: true,
         // cancelText: '取消',
         // okText: '确认',
         onCancel () {
@@ -103,6 +104,7 @@ const openModal = (infoDes: string) => {
       ScModal.confirm({
         type: 'success',
         title: () => 'This is a success message',
+        closable: true,
         content: () => h('div', {}, [
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
