@@ -1,11 +1,18 @@
 <template>
   <div class="mb20">
+    <ScButton @click="handleMin">
+      更新
+    </ScButton>
+  </div>
+  <div class="mb20">
     <ScSlider
       :showMinMaxMarker="true"
       :inputNumberOptions="{
         placeholder: '请输入'
       }"
-      v-model:value="valueRef"
+       :max="obj1.max"
+      :min="obj1.min"
+      v-model:value="valueRef.size"
       @change="handleChange"
     >
     </ScSlider>
@@ -33,18 +40,40 @@
       @change="handleChange1"
     >
     </ScSlider>
-
   </div>
 </template>
 
 <script lang='ts' setup>
-import { ref } from 'vue'
-import { ScSlider } from 'sc-ui'
-const valueRef = ref(12)
+import { ref, reactive } from 'vue'
+import { ScSlider, ScButton } from 'sc-ui'
+// const valueRef = ref(12)
 const valueRef1 = ref(13)
 const handleChange = (val:number) => {
   console.log('val: handleChange', val);
 }
+
+const obj1 = reactive({
+  max: undefined,
+  min: undefined
+})
+
+const valueRef = reactive({
+})
+
+const handleMin = () => {
+  setTimeout(() => {
+    obj1.min = 30
+    obj1.max = 500
+    valueRef.size = 40
+    console.log('valueRef: ', JSON.parse(JSON.stringify(valueRef)));
+  }, 500)
+}
+
+setTimeout(() => {
+  obj1.min = 20
+  obj1.max = 500
+}, 500)
+
 const handleChange1 = (val:number) => {
   console.log('val: handleChange1', val);
   valueRef1.value = val

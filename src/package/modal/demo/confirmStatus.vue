@@ -15,7 +15,6 @@
   </Space>
 
   <Space style="margin-top: 10px;">
-    <div>
       <Button @click="() => { type = 'info'; openModalType('info') }">
         ScModal.info
       </Button>
@@ -25,7 +24,6 @@
       <Button @click="destroyInfo">
         destroy ScModal.info
       </Button>
-    </div>
   </Space>
 
   <Space style="margin-top: 10px;">

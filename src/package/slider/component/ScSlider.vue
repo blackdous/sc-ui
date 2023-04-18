@@ -188,7 +188,7 @@ export default defineComponent({
       valueRef.value = unref(newProps).inputNumberOptions ? Number(props.value) : props.value
       valueSliderRef.value = unref(newProps).inputNumberOptions ? Number(props.value) : props.value
     }, {
-      flush: 'post'
+      deep: true
     })
     watch(() => valueRef.value, (val) => {
       if (unref(newProps).inputNumberOptions) {
