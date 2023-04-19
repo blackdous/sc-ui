@@ -1,4 +1,20 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.105...0.0.2) (2023-04-18)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.106...0.0.2) (2023-04-19)
+
+
+
+## [0.0.106](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.105...0.0.106) (2023-04-19)
+
+
+### Bug Fixes
+
+* scSteps ScModal.confirm 去除  warning 警告 ([b12f1a5](http://gitlab.voneyun.com/frontend/sc-ui/commit/b12f1a5e6136a286dc0b1781166ea56a0a847a2c))
+* 修复 ScCascaderNew 组件,多选 panel 收回问题\ 默认值显示问题 ([3f48572](http://gitlab.voneyun.com/frontend/sc-ui/commit/3f4857298fb7aad8743465d3378ec575fafea129))
+* 更新 ScModal.confirm 关闭按钮 样式 ([37d53f8](http://gitlab.voneyun.com/frontend/sc-ui/commit/37d53f824c03a382bbef4a0a1d7983c6d6ebf75c))
+
+
+### Features
+
+* 组件 ScCascaderNew 组件 新增 prefixIcon slot ([ff3c26f](http://gitlab.voneyun.com/frontend/sc-ui/commit/ff3c26fca2964f2f5e4ee8d8ff182dcc6f8a58fd))
 
 
 
