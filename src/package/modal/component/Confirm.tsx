@@ -1,10 +1,10 @@
 import { createVNode, render as vueRender } from 'vue'
 import ConfirmDialog from './ConfirmDialog'
 import type { ModalFuncProps } from './type'
-import { destroyFns } from '../index';
+import { destroyFns } from '../index'
 
 
-import Omit from 'omit.js';
+import Omit from 'omit.js'
 
 const confirm = (config: ModalFuncProps) => {
   const div = document.createElement('div')

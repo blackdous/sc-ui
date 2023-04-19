@@ -10,7 +10,7 @@ export default {
 }
 </script>
 <script setup lang="ts">
-import { defineProps, provide, watch, ref, computed } from 'vue'
+import { defineProps, provide, watch, ref, computed, defineEmits } from 'vue'
 import type { Ref } from 'vue'
 
 import { CHANGE_EVENT } from '../../../constant'

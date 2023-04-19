@@ -55,7 +55,7 @@
   export default defineComponent({
     name: 'ScCollapseContainer',
     props: {
-      title: { type: String, default: '' },
+      title: { type: [String, Object], default: '' },
       loading: { type: Boolean },
       /**
        *  Can it be expanded

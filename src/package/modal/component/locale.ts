@@ -1,4 +1,4 @@
-import defaultLocale from '../../../locale/default';
+import defaultLocale from '../../../locale/default'
 
 export interface ModalLocale {
   okText: string;
