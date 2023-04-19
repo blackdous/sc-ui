@@ -6,13 +6,13 @@ realPath: src/package/description/index.zh-CN.md
 
 # 详情组件
 
-<!-- ## 组件类型
+## 组件类型
 
 <demo src="./demo/basic.vue"
   language="vue"
   title="通过schema和data渲染 description 组件"
 >
-</demo> -->
+</demo>
 
 ## 带折叠框的
 
@@ -22,13 +22,12 @@ realPath: src/package/description/index.zh-CN.md
 >
 </demo>
 
-<!-- ## layout属性
+## layout属性
 
 <demo src="./demo/layout.vue"
   language="vue"
 >
 </demo>
-
 
 ## useDescription
 
@@ -39,7 +38,7 @@ realPath: src/package/description/index.zh-CN.md
 
 ```ts
 const [register] = useDescription(Props);
-``` -->
+```
 
 ## Api
 
