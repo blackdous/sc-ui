@@ -27,6 +27,7 @@
       allowClear
       :props="props"
       :options="options"
+      style="width: 300px;"
       collapse-tags
       @change="handleChange" 
     />
@@ -41,6 +42,7 @@
       :options="options"
       collapse-tags
       collapseTagsTooltip
+      style="width: 300px;"
       @change="handleChange" 
     />
       <!-- :showAllLevels="false" -->

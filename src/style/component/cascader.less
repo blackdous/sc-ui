@@ -155,7 +155,7 @@ div.ant-cascader-menu {
         margin-left: 8px;
       }
     }
-    .scTag + .scTag {
+    .scTag + .scTag:not(.isTooltipTag) {
       margin-top: 2px;
     }
   }
@@ -198,6 +198,9 @@ div.ant-cascader-menu {
         height: 30px;
         line-height: 30px;
       }
+    }
+    .scInput {
+      max-width: 100%;
     }
   }
   &-suggestion {

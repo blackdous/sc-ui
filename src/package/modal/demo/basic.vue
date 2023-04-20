@@ -5,10 +5,10 @@
     title="Basic Modal"
     destroyOnClose
     ok-text="确认"
+    closable
     :show-cancel-btn="false"
     @ok="handleOk1"
     @cancel="handleCancel"
-    :closable="false"
     maskClosable
     :confirm-loading="loadingRef"
   >
@@ -170,6 +170,7 @@ const handleOk1 = async (e: MouseEvent) => {
       const timer = setTimeout(async () => {
         console.log('异步更新')
         resolve(true)
+        visible.value = 0
         clearTimeout(timer)
       }, 3500)
     })
