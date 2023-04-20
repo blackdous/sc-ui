@@ -31,6 +31,7 @@
       :options="options"
       collapse-tags
       collapseTagsTooltip
+      style="width: 300px;"
       @change="handleChange" 
     />
   </div>

@@ -108,13 +108,17 @@
                   :disabled="popperVisible || !collapseTagsTooltip"
                   :fallback-placements="['bottom', 'top', 'right', 'left']"
                   placement="bottom"
+                  overlay-class-name="isTooltipTag-pd0"
                   effect="light"
                 >
                   <template #default>
                     <span>{{ tag.text }}</span>
                   </template>
                   <template #title>
-                    <div :class="nsCascader + '-collapse-tags'">
+                    <ScScrollbar
+                      :max-height="searchHeight"
+                      :view-class="nsCascader + '-collapse-tags'"
+                    >
                       <div
                         v-for="(tag2, idx) in allPresentTags.slice(1)"
                         :key="idx"
@@ -122,7 +126,7 @@
                       >
                         <ScTag
                           :key="tag2.key"
-                          :class="['in-tooltip', '22222']"
+                          :class="['in-tooltip']"
                           :type="tagType"
                           :size="tagSize"
                           :hit="tag2.hitState"
@@ -130,10 +134,10 @@
                           disable-transitions
                           @close="deleteTag(tag2)"
                         >
-                          <span class="22222">{{ tag2.text }}</span>
+                          <span>{{ tag2.text }}</span>
                         </ScTag>
                       </div>
-                    </div>
+                    </ScScrollbar>
                   </template>
                 </Tooltip>
               </template>
@@ -187,6 +191,7 @@
         v-show="filtering"
         ref="suggestionPanel"
         tag="ul"
+        :max-height="searchHeight"
         :class="nsCascader + '-suggestion-panel'"
         :view-class="nsCascader + '-suggestion-list'"
         @keydown="handleSuggestionKeyDown"
@@ -256,6 +261,8 @@ import {
 import type { Options } from './type'
 import { tagProps } from './type'
 
+import { pxToRem } from '../../../utils'
+
 import { buildUUID } from '../../../utils/uuid'
 
 import type { ComputedRef, PropType, Ref } from 'vue'
@@ -266,7 +273,6 @@ import type {
 } from '../../cascaderPanel'
 
 import type { ComponentSize } from './type'
-import { setTime } from '../../picker/utils/timeUtil'
 
 const { cloneDeep, debounce } = lodash
 
@@ -400,6 +406,8 @@ export default defineComponent({
     const suggestions: Ref<CascaderNode[]> = ref([])
     const isOnComposition = ref(false)
     const isDefaultValue = ref(false)
+
+    const searchHeight = pxToRem(260)
 
     // const defaultValue = ref()calculateCheckedValue
 
@@ -839,6 +847,7 @@ export default defineComponent({
       isDefaultValue,
       multipleOptionRef,
       isPrefixIcon,
+      searchHeight,
 
       // t,
       togglePopperVisible,
