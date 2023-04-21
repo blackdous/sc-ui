@@ -20,7 +20,8 @@ export const tagProps = () => ({
   },
   checked: Boolean,
   selected: Boolean,
-  disabled: Boolean
+  disabled: Boolean,
+  loading: Boolean
 })
 
 export type TagProps = ExtractPropTypes<typeof tagProps>

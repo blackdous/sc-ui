@@ -83,6 +83,7 @@ realPath: src/package/tag/index.zh-CN.md
 | checked      | boolean     | -  |  -   |  当前按钮是否为选中状态结合selected属性使用 |
 | selected      | boolean     | -  |  -   |  当前按钮是否可以选中 |
 | disabled      | boolean     | -  |  -   |  当前按钮是否为禁用状态 |
+| loading      | boolean     | -  |  -   |  是否开启loading状态 |
 
 ## 事件
 

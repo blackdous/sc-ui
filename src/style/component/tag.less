@@ -28,13 +28,18 @@
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
+  .@{tagScope}-loading {
+    background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @heading-color 360deg);
+  }
   &-dark {
     border-color: @border-color;
     background: @border-color;
     &.is-custom-color {
       border-color: var(--customColor);
     }
+    
   }
+  
   &-light {
     border-color: @select-hover-bg;
     background: @select-hover-bg;
@@ -42,6 +47,9 @@
       border-color: var(--customBorderColor);
       background-color: var(--customBgColor) !important;
       color: var(--customColor);
+      .@{tagScope}-loading {
+        background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @white-color 360deg);
+      }
     }
   }
   &-outline {
@@ -83,6 +91,9 @@
       border-color:@tag-select-color;
       color: @tag-select-color;
     }
+    .@{tagScope}-loading {
+      background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @tag-select-color 360deg);
+    }
   }
   &.is-success {
     background: @tag-success-color;
@@ -102,6 +113,9 @@
       background: @tag-success-bgColor;
       border-color: @tag-success-color;
       color: @tag-success-color;
+    }
+    .@{tagScope}-loading {
+      background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @tag-success-color 360deg);
     }
   }
   &.is-warning {
@@ -123,6 +137,9 @@
       border-color: @tag-warning-color;
       color: @tag-warning-color;
     }
+    .@{tagScope}-loading {
+      background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @tag-warning-color 360deg);
+    }
   }
   &.is-error {
     background: @tag-error-color;
@@ -143,8 +160,10 @@
       border-color: @tag-error-color;
       color: @tag-error-color;
     }
+    .@{tagScope}-loading {
+      background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @tag-error-color 360deg);
+    }
   }
-
   &.is-process {
     background: @tag-process-color;
     border-color: @tag-process-color;
@@ -164,8 +183,10 @@
       border-color: @tag-process-color;
       color: @tag-process-color;
     }
+    .@{tagScope}-loading {
+      background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @tag-process-color 360deg);
+    }
   }
-
   &.is-freeze {
     background: @tag-freeze-color;
     border-color: @tag-freeze-color;
@@ -185,6 +206,32 @@
       border-color: @tag-freeze-color;
       color: @tag-freeze-color;
     }
+    .@{tagScope}-loading {
+      background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @tag-freeze-color 360deg);
+    }
+  }
+
+  &-dark:not(.is-default) {
+    .@{tagScope}-loading {
+      background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @white-color 360deg);
+    }
+  }
+
+  &-dark {
+    &.is-custom-color {
+      .@{tagScope}-loading {
+        background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, @white-color 360deg);
+      }
+    }
+  }
+
+  &-loading {
+    display: inline-flex;
+    top: 2px;
+    margin-right: 4px;
+    width: 1em;
+    height: 1em;
+    
   }
 
   &--small {
@@ -202,6 +249,11 @@
   }
   &.is-custom-color:not(.scTag-light):not(.scTag-outline):not(.scTag-lightOutline) {
     color: @white-color;
+  }
+  &.is-custom-color:not(.scTag-dark) {
+    .@{tagScope}-loading {
+      background: conic-gradient(from 90deg at 50% 50%, rgba(255, 255, 255, 0.0001) 0deg, var(--customColor) 360deg);
+    }
   }
 
   &.is-disabled {

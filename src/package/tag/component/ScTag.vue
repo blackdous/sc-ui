@@ -8,7 +8,12 @@
     :style="varStyle"
   >
     <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
-      <slot :name="item" v-bind="data || {}"></slot>
+      <span
+        v-if="compProps.loading"
+        :class="['loading-transition', baseClass + '-loading']">
+      </span>
+      <slot :name="item" v-bind="data || {}">
+      </slot>
     </template>
   </Tag>
 </template>
@@ -82,6 +87,7 @@ export default defineComponent({
       emit('change', !checked.value)
     }
     return {
+      baseClass,
       classNames,
       compProps,
       handleChange,
