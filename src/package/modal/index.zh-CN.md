@@ -227,14 +227,14 @@ useModal((data: any) => {
 changeOkLoading(true);
 ```
 
-#### changeLoading
+<!-- #### changeLoading
 
 用于修改 modal 的 `loading` 状态
 
 ```ts
 // true or false
 changeLoading(true);
-```
+``` -->
 
 #### setModalProps
 

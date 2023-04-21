@@ -20,6 +20,7 @@ export default ({ command }: ConfigEnv): UserConfig => {
   const isUmd = process.env.build === 'umd'
 
   return {
+    mode: 'production',
     resolve: {
       alias: [
         { find: /^~/, replacement: '' },

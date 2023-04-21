@@ -154,6 +154,9 @@ div.ant-cascader-menu {
       &.isTooltipTag {
         margin-left: 8px;
       }
+      & + .scCascaderNew-search-input {
+        height: 22px;
+      }
     }
     .scTag + .scTag:not(.isTooltipTag) {
       margin-top: 2px;
@@ -232,6 +235,14 @@ div.ant-cascader-menu {
       font-size: 14px;
       padding-left: 9px;
       line-height: 22px;
+      border: none;
+      margin-left: 1px;
+      height: 30px;
+      width: 100%;
+      color: @text-color-secondary;
+      &:focus, &:hover {
+        outline: none;
+      }
     }
   }
   &-collapse {
@@ -244,7 +255,6 @@ div.ant-cascader-menu {
         margin-top: 2px;
       }
     }
-    
   }
 }
 

@@ -9,6 +9,7 @@
     :show-cancel-btn="false"
     @ok="handleOk1"
     @cancel="handleCancel"
+    :loading="true"
     maskClosable
     :confirm-loading="loadingRef"
   >
@@ -35,20 +36,20 @@
   </ScModal>
   <ScModal
     v-model:visible="visible1"
-    title="Basic Modal"
+    title="Basic Modal22222222"
     destroyOnClose
     @ok="handleOk"
     @cancel="handleCancel1"
     cancel-text="取消"
     ok-text="确认"
-    :onOkDisable="true"
-    maskClosable
+    :maskClosable="false"
+    :confirm-loading="true"
     >
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>
   <ScModal 
     v-model:visible="visible2"
-    title="Basic Modal"
+    title="Basic Modal111111111"
     destroyOnClose
     @ok="handleOk"
     @cancel="handleCancel2"

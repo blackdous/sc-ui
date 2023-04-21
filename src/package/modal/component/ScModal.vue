@@ -227,6 +227,10 @@ export default defineComponent({
 
     const closeVisible = async (e: Event) => {
       e?.stopPropagation();
+      const { confirmLoading } = curProps.value
+      if (confirmLoading) {
+        return false
+      }
       if (unref(vBind).closeFunc && isFunction(unref(vBind).closeFunc)) {
         const isClose: boolean = await unref(vBind).closeFunc();
         emit('update:visible', isClose)

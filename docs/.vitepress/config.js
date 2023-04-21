@@ -61,6 +61,7 @@ export default defineConfig({
     },
   },
   vite: {
+    mode: 'production',
     plugins: [genTemp(), genApiDoc(),vueJsx()],
     resolve: {
       alias: [
