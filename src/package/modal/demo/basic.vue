@@ -1,6 +1,6 @@
 <template>
   <!-- wrap-class-name="aaaaaa" -->
-  <ScModal 
+  <ScModal
     :visible="visible === 1"
     title="Basic Modal"
     destroyOnClose

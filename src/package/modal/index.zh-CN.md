@@ -19,6 +19,12 @@ map:
   >
 </demo> -->
 
+<!-- <demo src="./demo/vIf.vue"
+  language="vue"
+  title="confirm"
+  >
+</demo> -->
+
 ## 默认对话框
 
 <demo src="./demo/basic.vue"
@@ -226,15 +232,6 @@ useModal((data: any) => {
 ```ts
 changeOkLoading(true);
 ```
-
-<!-- #### changeLoading
-
-用于修改 modal 的 `loading` 状态
-
-```ts
-// true or false
-changeLoading(true);
-``` -->
 
 #### setModalProps
 
