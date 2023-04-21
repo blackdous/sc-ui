@@ -47,7 +47,7 @@
         <ScInput
           ref="input"
           v-model:value="inputValue"
-          :placeholder="currentPlaceholder"
+          :placeholder="multiple ? '' : currentPlaceholder"
           :readonly="readonly"
           :disabled="isDisabled"
           :validate-event="false"
@@ -152,6 +152,8 @@
             @input="(e) => handleInput(searchInputValue, e)"
             @click.stop="togglePopperVisible(true)"
             @keydown.delete="handleDelete"
+            @focus="(e) => $emit('focus', e)"
+            @blur="(e) => $emit('blur', e)"
             @compositionstart="handleComposition"
             @compositionupdate="handleComposition"
             @compositionend="handleComposition"
@@ -160,8 +162,7 @@
 
         <div v-if="!isDefaultValue" style="height: 0; opacity: 0; width: 0; overflow: hidden; position: relative;">
           <ScCascaderPanel
-            v-show="!filtering"
-            ref="panel"
+            ref="panel1"
             v-model="checkedValue"
             :options="options"
             :props="props"
@@ -395,6 +396,7 @@ export default defineComponent({
     const input: Ref<inputType | null> = ref(null)
     const tagWrapper = ref(null)
     const panel: Ref<cascaderPanelType | null> = ref(null)
+    const panel1: Ref<cascaderPanelType | null> = ref(null)
     const suggestionPanel: Ref<suggestionPanelType | null> = ref(null)
     const popperVisible = ref(false)
     const inputHover = ref(false)
@@ -408,6 +410,7 @@ export default defineComponent({
     const isDefaultValue = ref(false)
 
     const searchHeight = pxToRem(260)
+
 
     // const defaultValue = ref()calculateCheckedValue
 
@@ -438,7 +441,7 @@ export default defineComponent({
     )
     const checkedNodes: ComputedRef<CascaderNode[]> = computed(
       () => {
-        return panel.value?.checkedNodes || []
+        return panel.value?.checkedNodes || panel1.value?.checkedNodes || []
       }
     )
     const clearBtnVisible = computed(() => {
@@ -476,7 +479,7 @@ export default defineComponent({
     })
 
     watch(() => popperVisible.value, (val) => {
-      if (val) {
+      if (val && !isDefaultValue.value) {
         const timer = setTimeout(() => {
           isDefaultValue.value = true
           clearTimeout(timer)
@@ -820,6 +823,7 @@ export default defineComponent({
       input,
       tagWrapper,
       panel,
+      panel1,
       suggestionPanel,
       popperVisible,
       inputHover,

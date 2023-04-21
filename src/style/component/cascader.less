@@ -243,6 +243,9 @@ div.ant-cascader-menu {
       &:focus, &:hover {
         outline: none;
       }
+      &::placeholder {
+        color: @disabled-color;
+      }
     }
   }
   &-collapse {
@@ -253,6 +256,17 @@ div.ant-cascader-menu {
       padding: 0 4px;
       & + & {
         margin-top: 2px;
+      }
+    }
+  }
+
+  &.ant-tooltip-open {
+    &.isMultiple {
+      & > .scInput {
+        .ant-input-affix-wrapper {
+          border-color: @primary-color;
+          box-shadow: 0 0 0 2px fade(@primary-color, 20%);
+        }
       }
     }
   }
