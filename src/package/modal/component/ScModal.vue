@@ -286,6 +286,7 @@ export default defineComponent({
           }
         }
       } catch (error) {
+        loadingRef.value = false
         console.log('error: ', error);
       }
     }

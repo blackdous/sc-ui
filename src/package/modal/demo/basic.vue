@@ -74,7 +74,7 @@
     </Button>
   </div>
 
-  <!-- <Modal
+  <Modal
     v-model:visible="visible3"
     destroyOnClose
     @ok="handleOk"
@@ -89,7 +89,7 @@
       Basic Modal
     </template>
   <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
-  </Modal> -->
+  </Modal>
 
   <div class="mrt20">
     <Button class="btn1" @click="handleSource1">
