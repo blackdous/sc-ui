@@ -49,7 +49,11 @@
           v-if="curProps.showCancelBtn"
           :class="[modalPrefixCls + '-footer__cancel']"
           status="info"
-          v-bind="{...curProps.cancelButtonProps, type: undefined, disabled: curProps?.cancelButtonProps?.disabled || curProps?.onCancelDisable}"
+          v-bind="{
+            ...curProps.cancelButtonProps, 
+            type: undefined, 
+            disabled: curProps?.cancelButtonProps?.disabled || curProps?.onCancelDisable || curProps.confirmLoading
+          }"
           title=""
           @click="closeVisible"
         >
@@ -72,12 +76,14 @@
 
     <template #closeIcon>
       <i 
-        class="sc-ui sc-guanbi" v-if="!isClose"
+        :class="['sc-ui', 'sc-guanbi', curProps.confirmLoading || loadingRef ? 'not-allow' : '']" 
+        v-if="!isClose"
         @click="closeVisible"
       >
       </i>
       <span 
         v-else
+        :class="[curProps.confirmLoading || loadingRef ? 'not-allow' : '']"
         @click="closeVisible"
       >
         <slot name="closeIcon"></slot>
@@ -228,7 +234,7 @@ export default defineComponent({
     const closeVisible = async (e: Event) => {
       e?.stopPropagation();
       const { confirmLoading } = curProps.value
-      if (confirmLoading) {
+      if (confirmLoading || loadingRef.value) {
         return false
       }
       if (unref(vBind).closeFunc && isFunction(unref(vBind).closeFunc)) {

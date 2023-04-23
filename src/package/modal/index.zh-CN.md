@@ -33,7 +33,7 @@ map:
   >
 </demo>
 
-## 自定义title 对话框
+<!-- ## 自定义title 对话框
 
 <demo src="./demo/selftHeader.vue"
   language="vue"
@@ -297,4 +297,4 @@ import enUS from 'ant-design-vue/es/locale/en_US'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 ScModal.changeConfirmLocale(enUS)
 ScModal.changeConfirmLocale(zhCN)
-```
+``` -->

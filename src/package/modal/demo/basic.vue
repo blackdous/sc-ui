@@ -11,10 +11,7 @@
     @cancel="handleCancel"
     :loading="true"
     maskClosable
-    :confirm-loading="loadingRef"
   >
-  <!-- @dragChange="handleDrag" -->
-  <!-- <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div> -->
     <ScTable
       :columns="columns"
     ></ScTable>
@@ -43,7 +40,7 @@
     cancel-text="取消"
     ok-text="确认"
     :maskClosable="false"
-    :confirm-loading="true"
+    :confirm-loading="loadingRef"
     >
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScModal>
@@ -77,7 +74,7 @@
     </Button>
   </div>
 
-  <Modal
+  <!-- <Modal
     v-model:visible="visible3"
     destroyOnClose
     @ok="handleOk"
@@ -92,7 +89,7 @@
       Basic Modal
     </template>
   <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
-  </Modal>
+  </Modal> -->
 
   <div class="mrt20">
     <Button class="btn1" @click="handleSource1">
@@ -115,6 +112,7 @@ const visible2: Ref<boolean> = ref(false)
 const visible3: Ref<boolean> = ref(false)
 
 const loadingRef = ref(false)
+
 
 const columns = [
   {
@@ -145,6 +143,10 @@ const openModal = (num:number) => {
 
 const handle1 = () => {
   visible1.value = true
+  loadingRef.value = true
+  setTimeout(() => {
+    loadingRef.value = false
+  }, 10000)
 }
 const handle2 = () => {
   visible2.value = true
