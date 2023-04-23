@@ -1,4 +1,23 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.106...0.0.2) (2023-04-19)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.107...0.0.2) (2023-04-23)
+
+
+
+## [0.0.107](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.106...0.0.107) (2023-04-23)
+
+
+### Bug Fixes
+
+* scCascaderNew 组件 多选搜索 递归报错 修复 ([90fa6c0](http://gitlab.voneyun.com/frontend/sc-ui/commit/90fa6c0dc937c13c44b7661e69ff448527de263d))
+* 调整 ScCascaderNew 组件 宽度问题 ([c7de0f3](http://gitlab.voneyun.com/frontend/sc-ui/commit/c7de0f3f70aaa21a7819c778c35a0a8de4a86fd9))
+
+
+### Features
+
+* scCascaderNew 组件, 搜索结果 isTooltip 新增 滚动条展示 ([6168a45](http://gitlab.voneyun.com/frontend/sc-ui/commit/6168a4532285b5c9a6a1693513406b9d0b781e86))
+* scModal confirmLoading 属性增加为ture 增加 取消按钮交互状态 ([5c2c0a3](http://gitlab.voneyun.com/frontend/sc-ui/commit/5c2c0a37bb377a6581eac73841edf820b311389f))
+* scModal 更新 confirmLoading 为 true; 不能关闭 弹窗 ([516892c](http://gitlab.voneyun.com/frontend/sc-ui/commit/516892cc51a2539bf4c18b162f7395c502d75684))
+* scTable empty 字段占位符-- 改为 - ([ef67fee](http://gitlab.voneyun.com/frontend/sc-ui/commit/ef67feebd775c1920806bede868bd7f8539fb9d4))
+* scTag 新增 loading 状态 ([494e97d](http://gitlab.voneyun.com/frontend/sc-ui/commit/494e97d3e87a08fcaf2eb9d396e350ff221bb85d))
 
 
 
