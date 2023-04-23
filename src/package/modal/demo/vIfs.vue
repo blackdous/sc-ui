@@ -1,21 +1,38 @@
 <template>
-  <Modal
+  <!-- <Modal
     v-model:visible="visible"
     @cancel="handleCancel"
   >
     1111111111111
-  </Modal>
+  </Modal> -->
+  <VIfss 
+    v-model:visible="visibleRef"
+    @cancel="handleCancel"
+  >
+  </VIfss>
 </template>
 
 <script lang='ts' setup>
-import { defineProps, defineEmits, onMounted } from 'vue'
+import { defineProps, defineEmits, onMounted, computed } from 'vue'
 // import { ScModal } from 'sc-ui'
-import { Modal } from 'ant-design-vue'
+// import { Modal } from 'ant-design-vue'
+import VIfss from './vIfss.vue'
 
 const props = defineProps({
   visible: {
     type: Boolean,
     default: false
+  }
+})
+
+const visibleRef = computed({
+  get () {
+    console.log('props.visible: ', props.visible);
+    return props.visible
+  },
+  set (val) {
+    console.log('val: ', val)
+    emits('update:visible', val)
   }
 })
 console.log('props: ', props);
@@ -32,8 +49,8 @@ console.log('props: ', props);
 const emits = defineEmits(['update:visible'])
 
 const handleCancel = (val: boolean) => {
-  console.log('val: ', props.visible);
-  emits('update:visible', props.visible)
+  // visibleRef.value = false
+  emits('update:visible', visibleRef.value)
 }
 
 onMounted(() => {

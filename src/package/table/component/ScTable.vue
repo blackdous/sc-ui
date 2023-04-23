@@ -6,7 +6,7 @@
   >
   <!-- :locale="newProps.langLocale" -->
     <ConfigProvider 
-      :transformCellText="({ text }) => isEmptyText(text) ? text : '--'"
+      :transformCellText="({ text }) => isEmptyText(text) ? text : '-'"
     >
       <TableFilter
         v-if="isShowFilter || (Object.keys($slots).filter((item) => ['createButton', 'search', 'multipleBtns', 'tableActive'].includes(item))).length"

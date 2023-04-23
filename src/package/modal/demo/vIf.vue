@@ -1,6 +1,6 @@
 <template>
+  <!-- v-if="visibleRef" -->
   <Vifs 
-    v-if="visibleRef"
     v-model:visible="visibleRef">
   </Vifs>
 
