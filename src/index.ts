@@ -50,6 +50,7 @@ import {
   ApiCascader,
   useForm
 } from './package/form'
+import { ScIp } from './package/formIp'
 
 // 指令
 import { installGlobalDirectives } from './directives'
@@ -84,6 +85,7 @@ const components = [
   ScLink,
   ScTag,
   ScBadge,
+  ScIp,
 
   ScLoading,
   ScButton,
@@ -157,6 +159,7 @@ export {
   ScLink,
   ScTag,
   ScBadge,
+  ScIp,
 
   ScLoading,
   ScButton,

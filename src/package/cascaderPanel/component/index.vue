@@ -167,7 +167,6 @@ export default defineComponent({
       emitClose = true
     ) => {
       const { checkStrictly, multiple } = config.value
-      console.log('multiple: ', multiple);
       const oldNode = checkedNodes.value[0]
       manualChecked = true
 

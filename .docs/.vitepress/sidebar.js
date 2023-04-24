@@ -87,7 +87,8 @@ export const sidebar = {
         { text: 'Empty', link: '/en/empty/' },
         { text: 'TableColumn', link: '/en/tableColumn/' },
         { text: 'Copy', link: '/en/copy/' },
-        { text: 'Icon', link: '/en/icon/' }
+        { text: 'Icon', link: '/en/icon/' },
+        { text: 'FormIp', link: '/en/formIp/' }
       ]
     }
   ],
@@ -167,10 +168,11 @@ export const sidebar = {
     {
       text: '其他',
       items: [
-        { text: '空组件', link: '/empty/' },
+        { text: '空组件 Empty', link: '/empty/' },
         { text: '表格Column', link: '/tableColumn/' },
         { text: '复制Copy', link: '/copy/' },
-        { text: 'Icon', link: '/icon/' }
+        { text: 'Icon 图标', link: '/icon/' },
+        { text: 'FormIp ip输入框', link: '/formIp/' }
       ]
     }
   ],

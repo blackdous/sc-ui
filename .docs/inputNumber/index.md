@@ -10,7 +10,7 @@ realPath: src/package/inputNumber/index.zh-CN.md
 
 ## 组件类型
 
-### 双侧调整数字输入框
+## 双侧调整数字输入框
 
 <demo src="./demo/bothSides.vue"
   language="vue"
@@ -19,7 +19,7 @@ realPath: src/package/inputNumber/index.zh-CN.md
   >
 </demo>
 
-### 右侧调整数字输入框
+## 右侧调整数字输入框
 
 <demo src="./demo/internal.vue"
   language="vue"
@@ -54,8 +54,9 @@ realPath: src/package/inputNumber/index.zh-CN.md
 
 | 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
-| mode      | `Mode`                                                 | 'bothSides'  |  'bothSides'、'internal'     | 每列筛选的数据源 |
-| size      | `Size`                                                 | 'default'  |  'large'、'default'、'small'     | 每列筛选的数据源 |
+| mode      | `Mode`                                                 | 'bothSides'  |  'bothSides'、'internal'     | 用于切换 + 、- 交互模式 |
+| size      | `Size`                                                 | 'default'  |  'large'、'default'、'small'     | 用于控制组件大小 |
+| showControl      |  boolean                                               | -  |      -     |  是否显示控制按钮  |
 
 ```ts
 type Mode = 'bothSides' | 'internal' 

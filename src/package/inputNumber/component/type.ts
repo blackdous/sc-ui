@@ -18,6 +18,11 @@ export const props = () => ({
       return 'bothSides'
     }
   },
+  autoFocus: Boolean,
+  showControl: {
+    type: Boolean,
+    default: true
+  },
   // 'large' | 'small'
   size: String,
   step: {

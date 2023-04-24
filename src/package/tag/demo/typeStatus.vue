@@ -1,13 +1,6 @@
 <template>
   <Space direction="vertical" :size="12">
-    <div>
-      <ScTag type="dark">默认标签</ScTag>
-      <ScTag type="dark" status="primary">默认标签</ScTag>
-      <ScTag type="dark" status="success">默认标签</ScTag>
-      <ScTag type="dark" status="warning">默认标签</ScTag>
-      <ScTag type="dark" status="error">默认标签</ScTag>
-      <ScTag type="dark" color="#87d068">默认标签</ScTag>
-    </div>
+    <div style="color: red;font-size: 16px;">*优先使用tag</div>
     <div class="light-demo">
       <div>
         <ScTag type="light">未绑定/未启用</ScTag>
@@ -59,6 +52,16 @@
       <div>
         <ScTag type="light" color="#87d068" :loading="loadingRef">默认标签</ScTag>
       </div>
+    </div>
+
+    <div>其他tag类型</div>
+    <div>
+      <ScTag type="dark">默认标签</ScTag>
+      <ScTag type="dark" status="primary">默认标签</ScTag>
+      <ScTag type="dark" status="success">默认标签</ScTag>
+      <ScTag type="dark" status="warning">默认标签</ScTag>
+      <ScTag type="dark" status="error">默认标签</ScTag>
+      <ScTag type="dark" color="#87d068">默认标签</ScTag>
     </div>
     <div>
       <ScTag type="outline">默认标签</ScTag>

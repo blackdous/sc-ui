@@ -1,25 +1,28 @@
 <template>
-  <div :class="[baseClass, newProps.mode, newProps.disabled ? 'isDisabled' : '', newProps.size]">
+  <div :class="classNames">
     <Button
+      v-if="newProps.showControl"
       :class="[baseClass+'-btn']"
       @click="changeVal('reduce')"
-      :disabled="newProps.disabled || buttonDis || minDisabled"
+      :disabled="newProps.disabled || minDisabled"
       :size="newProps.size"
     >
       <i class="sc-ui sc-remove"></i>
     </Button>
     <InputNumber
+      ref="inputNumberRef"
       v-model:value="text"
       :disabled="newProps.disabled"
       :min="min"
       :max="max"
-      v-bind="$attrs"
+      v-bind="vBind"
     />
       <!-- @keydown.enter.prevent="handlePressEnter" -->
     <Button
+      v-if="newProps.showControl"
       :class="[baseClass+'-btn']"
       @click="changeVal('add')"
-      :disabled="newProps.disabled || buttonDis || maxDisabled"
+      :disabled="newProps.disabled || maxDisabled"
     >
       <i class="sc-ui sc-xinjian"></i>
     </Button>
@@ -28,7 +31,7 @@
 
 <script lang="ts" >
 
-import { ref, watch, computed, defineComponent } from 'vue'
+import { ref, watch, computed, defineComponent, onMounted, nextTick } from 'vue'
 import { InputNumber, Button } from 'ant-design-vue'
 import { basePrefixCls } from '../../../constant'
 import { props } from './type'
@@ -43,13 +46,11 @@ export default defineComponent({
     Button,
   },
   emits: ['change', 'update:value'],
-  setup(props, { emit, attrs }) {
+  setup(props, { emit, attrs, expose }) {
 
     const baseClass = basePrefixCls + 'InputNumber'
-    const buttonDis = computed(() => {
-      return attrs.disabled
-    })
     const text = ref(0)
+    const inputNumberRef = ref()
 
     const maxDisabled = computed(() => {
       return text.value >= props.max
@@ -60,6 +61,22 @@ export default defineComponent({
 
     const newProps = computed(() => {
       return props
+    })
+
+    const vBind = computed(() => {
+      return {
+        ...attrs,
+      }
+    })
+
+    const classNames = computed(() => {
+      return [
+        baseClass,
+        newProps.value.mode,
+        newProps.value.disabled ? 'isDisabled' : '',
+        newProps.value.size,
+        !newProps.value.showControl ? 'notControl' : ''
+      ]
     })
 
     watch(
@@ -81,7 +98,11 @@ export default defineComponent({
     watch(
       () => text.value,
       (val) => {
-        if (!isNumber(val)) {
+        const { max, min, disabled } = newProps.value
+        if (!isNumber(val) || val > max || min > val) {
+          return false
+        }
+        if (disabled) {
           return false
         }
         emit('update:value', val)
@@ -104,6 +125,27 @@ export default defineComponent({
       }
     }
 
+    onMounted(() => {
+      nextTick(() => {
+        const { autoFocus } = newProps.value
+        if (autoFocus) {
+          const timer = setTimeout(() => {
+            inputNumberRef?.value?.focus()
+            clearTimeout(timer)
+          }, 200);
+        }
+      })
+    })
+
+    expose({
+      focus: () => {
+        inputNumberRef.value?.focus()
+      },
+      blur: () => {
+        inputNumberRef.value?.blur()
+      }
+    })
+
     // const handlePressEnter = (e:KeyboardEvent) => {
     //   if (e.keyCode === 13) {
     //     emit('pressEnter', text.value)
@@ -115,9 +157,11 @@ export default defineComponent({
       baseClass,
       text,
       newProps,
-      buttonDis,
       maxDisabled,
       minDisabled,
+      classNames,
+      vBind,
+      inputNumberRef,
       changeVal,
       // handlePressEnter
     }

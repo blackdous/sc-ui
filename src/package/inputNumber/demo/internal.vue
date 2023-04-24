@@ -11,6 +11,16 @@
   <div class="mt10">
     <ScInputNumber
       placeholder="请输入内容"
+      v-model:value="inputValueRef1"
+      @pressEnter="handleChange"
+      mode="internal"
+      :showControl="false"
+    >
+    </ScInputNumber>
+  </div>
+  <div class="mt10">
+    <ScInputNumber
+      placeholder="请输入内容"
       v-model:value="inputValueRef"
       @pressEnter="handleChange"
       mode="internal"
@@ -26,6 +36,7 @@ import { ref } from 'vue'
 import { ScInputNumber } from 'sc-ui'
 
 const inputValueRef = ref()
+const inputValueRef1 = ref()
 
 const handleChange = (val:string) => {
   console.log('val: ', val);
