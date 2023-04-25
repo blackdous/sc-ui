@@ -6,11 +6,16 @@
       v-for="(item, index) in ipListRec"
     >
       <span
-        v-if="!isLabelSeparatorSlot && index !== 0"
-        :class="[baseClass + '-labelSeparator']"
+        v-if="index !== 0"
+        :class="[baseClass + '-separatorInner']"
       >
+        <span
+          v-if="!isLabelSeparatorSlot "
+          :class="[baseClass + '-labelSeparator']"
+        >
+        </span>
+        <slot v-else name="labelSeparator"></slot>
       </span>
-      <slot v-else name="labelSeparator"></slot>
       <ScInputNumber
         :ref="ipList[index].ipRef"
         v-model:value="item.value"

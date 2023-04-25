@@ -14,6 +14,14 @@ realPath: src/package/formIp/index.zh-CN.md
   >
 </demo>
 
+## labelSeparator
+
+<demo src="./demo/slot.vue"
+  language="labelSeparator"
+  title="labelSeparator"
+  >
+</demo>
+
 ## props
 
 | 属性名              | 类型                               | 默认值  | 可选值 | 说明                          |
