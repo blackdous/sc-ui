@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, reactive, watch, unref, isRef } from 'vue'
+import { defineComponent, ref, computed, reactive, watch, unref } from 'vue'
 
 import { ScInputNumber } from '../../inputNumber'
 import { scIpProps } from './type'

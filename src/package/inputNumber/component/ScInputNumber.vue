@@ -16,6 +16,7 @@
       :min="min"
       :max="max"
       v-bind="vBind"
+      @blur="handleBlur"
     />
       <!-- @keydown.enter.prevent="handlePressEnter" -->
     <Button
@@ -51,6 +52,7 @@ export default defineComponent({
     const baseClass = basePrefixCls + 'InputNumber'
     const text = ref(0)
     const inputNumberRef = ref()
+    const prevVal = ref()
 
     const maxDisabled = computed(() => {
       return text.value >= props.max
@@ -97,19 +99,25 @@ export default defineComponent({
 
     watch(
       () => text.value,
-      (val) => {
-        const { max, min, disabled } = newProps.value
-        if (!isNumber(val) || val > max || min > val) {
-          return false
+      (val, oldVal) => {
+        prevVal.value = oldVal
+        // console.log('val !!==', val, oldVal, val !== '');
+        // @ts-ignore
+        if (val !== '' && val !== null) {
+          const { max, min, disabled } = newProps.value
+          if (!isNumber(val) || val > max || min > val) {
+            return false
+          }
+          if (disabled) {
+            return false
+          }
+          emit('update:value', val)
+          emit('change', val)
         }
-        if (disabled) {
-          return false
-        }
-        emit('update:value', val)
-        emit('change', val)
       },
       { deep: true }
     )
+    
 
     const changeVal = (type: any) => {
       if (type === 'add') {
@@ -122,6 +130,13 @@ export default defineComponent({
         if (text.value < props.min) {
           text.value = props.min
         }
+      }
+    }
+
+    const handleBlur = () => {
+      // @ts-ignore
+      if (text.value === '' || text.value === null) {
+        text.value = prevVal.value
       }
     }
 
@@ -163,6 +178,7 @@ export default defineComponent({
       vBind,
       inputNumberRef,
       changeVal,
+      handleBlur
       // handlePressEnter
     }
   }
