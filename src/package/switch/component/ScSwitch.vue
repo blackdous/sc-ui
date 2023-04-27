@@ -2,7 +2,6 @@
   <Switch
     :class="[baseClass]"
     v-bind="bindValue"
-    v-model:checked="checkedValue"
   >
     <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
       <slot :name="item" v-bind="data || {}"></slot>
@@ -27,27 +26,18 @@ export default defineComponent({
     let baseClass = computed(() => {
       return basePrefixCls + 'Switch ' + (props.size === 'large' ? 'ant-switch-large' : '')
     })
-
-    const checkedValue = computed({
-      get: () => {
-        return props.checked
-      },
-      set: (val) => {
-        emit('update:checked', val)
-      }
-    })
     
-
     const bindValue = computed(() => {
       return {
         ...attrs,
         ...props,
+        size: props.size === 'large' ? 'default' : props.size
       }
     })
 
     return {
       baseClass,
-      checkedValue,
+      // checkedValue,
       bindValue
     }
   }

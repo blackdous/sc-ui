@@ -14,6 +14,7 @@
       :min="obj1.min"
       v-model:value="valueRef.size"
       @change="handleChange"
+      isShowNextUnit
     >
     </ScSlider>
   </div>

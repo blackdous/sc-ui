@@ -30,6 +30,7 @@ export const Props = () => ({
       return 'none'
     }
   },
+  isShowNextUnit: Boolean,
   value: {
     type: [Number, String],
     default: 0

@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.108...0.0.2) (2023-04-25)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.109...0.0.2) (2023-04-26)
+
+
+
+## [0.0.109](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.108...0.0.109) (2023-04-26)
+
+
+### Bug Fixes
+
+* scInputNumber 输入为空时, 失焦重新复制为最后一次非空值 ([63962c2](http://gitlab.voneyun.com/frontend/sc-ui/commit/63962c2e5f40196dedccdf2e9b6896f7f810c9bd))
 
 
 

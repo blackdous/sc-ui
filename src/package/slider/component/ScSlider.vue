@@ -110,6 +110,14 @@
       <!-- @pressEnter="handleChange" -->
 
     </ScInputNumber>
+    <span
+      v-if="newProps.isShowNextUnit"
+      :class="[baseClass + '-nextUnit']"
+    >
+      {{
+        newProps.unit
+      }}
+    </span>
   </div>
 </template>
 
