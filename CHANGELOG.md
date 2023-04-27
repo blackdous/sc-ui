@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.109...0.0.2) (2023-04-26)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.110...0.0.2) (2023-04-27)
+
+
+
+## [0.0.110](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.109...0.0.110) (2023-04-27)
+
+
+### Features
+
+* scSlider 新增 单位显示 ScSwitch 警告去除 ([ae7dc7b](http://gitlab.voneyun.com/frontend/sc-ui/commit/ae7dc7b93dfeebec208f25580bf64c309c1a9005))
 
 
 

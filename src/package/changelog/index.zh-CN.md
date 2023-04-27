@@ -5,6 +5,12 @@ map:
 
 # 变更记录
 
+## [0.0.110](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.109...0.0.110) (2023-04-27)
+
+### Features
+
+* scSlider 新增 单位显示 ScSwitch 警告去除 ([ae7dc7b](http://gitlab.voneyun.com/frontend/sc-ui/commit/ae7dc7b93dfeebec208f25580bf64c309c1a9005))
+
 ## [0.0.109](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.108...0.0.109) (2023-04-26)
 
 ### Bug Fixes

@@ -47,7 +47,6 @@ map:
 
 `props`请参考[vue-slider-component/props](https://nightcatsama.github.io/vue-slider-component/#/api/props)；只标注新增API
 
-
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | wrapperWidth | 滚动条宽度 |  [Number, String] | 480 | -|
@@ -56,6 +55,7 @@ map:
 | min | 最小值 |  [Number] | 0 | |
 | max | 最大值 |  [Number] | 100 | |
 | dotWidth | 拖拽模块的最宽度 |  [Number, String] | 0 | |
+| isShowNextUnit | 是否在组件最后显示单位 |  Boolean | - | |
 | unit | 单位；用于拖拽块的内容显示 | String | 'Mbps' | |
 | infos | 用于默认自定义 `tooltip`、`marker`的数据 | Infos | - | |
 | customMarker | 是否显示自定义`marker`; 结合`infos`数据使用  | Boolean | - | |
