@@ -10,8 +10,9 @@
       :inputNumberOptions="{
         placeholder: '请输入'
       }"
-       :max="obj1.max"
+      :max="obj1.max"
       :min="obj1.min"
+      :interval="20"
       v-model:value="valueRef.size"
       @change="handleChange"
       isShowNextUnit

@@ -57,6 +57,7 @@ map:
 | dotWidth | 拖拽模块的最宽度 |  [Number, String] | 0 | |
 | isShowNextUnit | 是否在组件最后显示单位 |  Boolean | - | |
 | unit | 单位；用于拖拽块的内容显示 | String | 'Mbps' | |
+| interval| 两个值的间隔。取值必须大于 0，并且可被 (max - min) 整除。 | Number | - | |
 | infos | 用于默认自定义 `tooltip`、`marker`的数据 | Infos | - | |
 | customMarker | 是否显示自定义`marker`; 结合`infos`数据使用  | Boolean | - | |
 | showMinMaxMarker | 是否显示最大值、最小值的marker;**与customMarker**冲突  | Boolean | - | |
