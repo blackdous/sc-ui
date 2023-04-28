@@ -17,6 +17,13 @@ realPath: src/package/table/index.zh-CN.md
   >
 </demo>
 
+<!-- <demo src="./demo/serverPackageTable.vue"
+  language="vue"
+  title="基础表格table表格"
+  desc="基础表格"
+  >
+</demo> -->
+
 ### 新增相关APi
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |

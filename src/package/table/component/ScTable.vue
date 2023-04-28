@@ -247,7 +247,7 @@ export default defineComponent({
     ...TdComponents,
     ...THComponents
   },
-  emits: ['change', 'register', 'onAction', 'searchClick', 'onAction', 'createClick', 'selectChange', 'multipleChange', 'refresh', 'filter'],
+  emits: ['change', 'register', 'onAction', 'searchClick', 'onAction', 'expanded-rows-change', 'fetch-success', 'createClick', 'selectChange', 'selection-change', 'multipleChange', 'refresh', 'filter'],
   setup(props, { attrs, slots, emit, expose }) {
     const tableRef = ref()
     const wrapRef = ref()
