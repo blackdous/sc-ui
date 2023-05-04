@@ -6,7 +6,14 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
-## [0.0.111](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.109...0.0.111) (2023-04-27)
+## [0.0.111](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.110...0.0.111) (2023-05-04)
+
+### Bug Fixes
+
+* 修改 ScTable rowSelection问题; 去除警告 ([92445c5](http://gitlab.voneyun.com/frontend/sc-ui/commit/92445c5c503a872f1c17868c81add22d048ea076))
+* scTable 去除 expanded-rows-change selection-change 事件警告 ([f1feeca](http://gitlab.voneyun.com/frontend/sc-ui/commit/f1feeca8da44ac8c7249abbd3854d861967695b4))
+
+## [0.0.110](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.109...0.0.110) (2023-04-27)
 
 ### Features
 
