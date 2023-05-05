@@ -48,7 +48,7 @@
     },
     {
       field: 'field2',
-      label: '单选选择容器',
+      label: '单选选择容器单选选择容器单选选择容器',
       colProps: {
         span: 24,
       },
@@ -62,7 +62,7 @@
     {
       field: 'field3',
       component: 'Select',
-      label: '多选选择器',
+      label: '多选选择器多选选择器',
       colProps: {
         span: 24,
       },

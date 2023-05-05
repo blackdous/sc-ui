@@ -296,25 +296,34 @@
 
       function renderLabelHelpMessage() {
         const { label, helpMessage, helpComponentProps, subLabel } = props.schema;
-        const renderLabel = subLabel ? (
-          <span>
-            {label} <span class="text-secondary">{subLabel}</span>
-          </span>
-        ) : (
-          label
-        );
         const getHelpMessage = isFunction(helpMessage)
           ? helpMessage(unref(getValues))
           : helpMessage;
-        if (!getHelpMessage || (Array.isArray(getHelpMessage) && getHelpMessage.length === 0)) {
-          return renderLabel;
-        }
-        return (
-          <span>
-            {renderLabel}
-            <ScHelp placement="top" class="mx-1" text={getHelpMessage} {...helpComponentProps} />
+        const renderLabel = subLabel ? (
+          <span class="text-label">
+            {label} <span class="text-secondary">{subLabel}</span>
+            {
+              !getHelpMessage || (Array.isArray(getHelpMessage) && getHelpMessage.length === 0) ? '' : <ScHelp placement="top" class="mx-1" text={getHelpMessage} {...helpComponentProps} />
+            }
+          </span>
+        ) : (
+          <span class="text-label">
+            {label}
+            {
+              !getHelpMessage || (Array.isArray(getHelpMessage) && getHelpMessage.length === 0) ? '' : <ScHelp placement="top" class="mx-1" text={getHelpMessage} {...helpComponentProps} />
+            }
           </span>
         );
+        return renderLabel
+        // if (!getHelpMessage || (Array.isArray(getHelpMessage) && getHelpMessage.length === 0)) {
+        //   return renderLabel;
+        // }
+        // return (
+        //   <span>
+        //     {renderLabel}
+            
+        //   </span>
+        // );
       }
 
       function renderItem() {
