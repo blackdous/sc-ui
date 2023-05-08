@@ -202,7 +202,7 @@ const TimeBody = defineComponent({
         showMinute,
         showSecond,
         use12Hours,
-        hideDisabledOptions,
+        hideDisabledOptions = true,
         onSelect,
       } = props;
 

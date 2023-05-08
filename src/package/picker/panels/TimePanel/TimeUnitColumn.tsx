@@ -29,6 +29,7 @@ export default defineComponent<TimeUnitColumnProps>({
     const scrollRef = ref<Function>();
     let ticking = false; 
     let notScroll = false;
+    let isDefault = true;
 
     watch(
       () => props.value,
@@ -47,16 +48,30 @@ export default defineComponent<TimeUnitColumnProps>({
       waitElementReady(ulRef.value, () => {
         const { onSelect } = props;
         ulRef.value.addEventListener('scroll', (event) => {
-          if (!ticking && !notScroll) {
+          const ulRefOffsetTop = event?.target?.scrollTop || 0
+          // console.log('ulRefOffsetTop: ', ulRefOffsetTop);
+          if (!ticking && !notScroll && !isDefault) {
             window?.requestAnimationFrame(() => {
-              const selectItem = Math.round((parseInt(event.target.scrollTop)) / 30);
-              // console.log('event: ', event.target.scrollTop, (parseInt(event.target.scrollTop)) / 24, selectItem);
-              onSelect!(selectItem);
-              ticking = false;
+              // console.log(liRefs.value)
+              let keyValue = props.value
+              liRefs.value && liRefs.value.forEach((liRef: any) => {
+                const liRefOffsetTop = liRef.offsetTop - 100
+                // console.log('liRefOffsetTop: ', liRefOffsetTop);
+                if ((liRefOffsetTop - 15) < ulRefOffsetTop &&  ulRefOffsetTop < (liRefOffsetTop + 15)) {
+                  // console.log('liRef.textContent: ', liRef.textContent);
+                  keyValue = parseInt(liRef.textContent)
+                }
+              })
+              onSelect!(keyValue)
+              // console.log('keyValue: ', keyValue);
+              ticking = false
               const li = liRefs.value.get(props.value!);
               if (li && open.value !== false) {
                 scrollTo(ulRef.value!, li.offsetTop - 100, 120);
               }
+              // const timer = setTimeout(() => {
+              //   clearTimeout(timer)
+              // }, 80)
             })
             ticking = true;
           }
@@ -74,9 +89,12 @@ export default defineComponent<TimeUnitColumnProps>({
             const li = liRefs.value.get(props.value!);
             if (li) {
               scrollRef.value = waitElementReady(li, () => {
-                scrollTo(ulRef.value!, li.offsetTop - 100, 0);
+                scrollTo(ulRef.value!, li.offsetTop - 100, 0)
               });
             }
+            setTimeout(() => {
+              isDefault = false
+            }, 500)
           }
         });
       },

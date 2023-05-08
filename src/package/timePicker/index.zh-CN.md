@@ -59,6 +59,14 @@ map:
   >
 </demo>
 
+## disabledItem
+
+<demo src="./demo/disabled.vue"
+  language="vue"
+  title="disabledItem"
+  >
+</demo>
+
 ## API
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
