@@ -192,6 +192,11 @@ export default defineComponent({
       return getFlattedNodes(leafOnly)?.filter((node) => node.checked !== false)
     }
 
+    const getCheckedNodeKeys = (leafOnly: boolean) => {
+      const nodes = getFlattedNodes(leafOnly)?.filter((node) => node.checked !== false)
+      return nodes?.map(item => item.pathValues)
+    }
+
     const clearCheckedNodes = () => {
       checkedNodes.value.forEach((node) => node.doCheck(false))
       calculateCheckedValue()
@@ -381,6 +386,7 @@ export default defineComponent({
       handleCheckChange,
       getFlattedNodes,
       getCheckedNodes,
+      getCheckedNodeKeys,
       clearCheckedNodes,
       calculateCheckedValue,
       scrollToExpandingNode,

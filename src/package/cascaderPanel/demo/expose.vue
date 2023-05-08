@@ -23,6 +23,10 @@ const handleChange = (val:any) => {
   console.log('leafOnlyArr: ', leafOnlyArr);
   const notLeafOnlyArr = unref(cascaderRef).getCheckedNodes()
   console.log('notLeafOnlyArr: ', notLeafOnlyArr);
+  const nodeKeys = unref(cascaderRef).getCheckedNodeKeys(true)
+  console.log('nodeKeys: ', nodeKeys);
+  const nodeKeys1 = unref(cascaderRef).getCheckedNodeKeys()
+  console.log('nodeKeys1: ', nodeKeys1);
 }
 const handleExpandChange = (val:any) => {
   console.log('val: handleExpandChange', val);

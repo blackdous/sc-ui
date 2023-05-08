@@ -100,6 +100,7 @@ export interface OptionsItem {
 | 方法名 | 说明 | 参数 | 版本 |
 | --- | --- | --- | --- |
 | getCheckedNodes | 获取一个当前选中节点的数组。是否只返回叶选中的节点，默认是 false | leafOnly:boolean  | |
+| getCheckedNodeKeys | 获取一个当前选中节点的keys数组。是否只返回叶选中的节点，默认是 false | leafOnly:boolean  | |
 | clearCheckedNodes | 清空选中的节点 | -  | |
 
 ## slots

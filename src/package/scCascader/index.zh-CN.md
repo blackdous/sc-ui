@@ -133,6 +133,7 @@ map:
 | 事件名  |   说明    |   类型    |
 | --- | --- | --- |
 | getCheckedNodes | 获取一个当前选中节点的数组。(仅仅是传单) 是否只返回叶选中的节点，默认是 false | `Function: (leafOnly: boolean) => CascaderNode[]` | -  |
+| getCheckedNodeKeys | 获取一个当前选中节点的keys数组。是否只返回叶选中的节点，默认是 false | leafOnly:boolean  | |
 | cascaderPanelRef | cascader 面板的 ref | `object: ComputedRef<any>`  |
 | togglePopperVisible | 切换 popper 可见状态 | `Function: (visible?: boolean) => void`  |
 
