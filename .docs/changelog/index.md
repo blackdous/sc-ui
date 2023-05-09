@@ -6,6 +6,19 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.112](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.111...0.0.112) (2023-05-09)
+
+### Bug Fixes
+
+* 修复ScModal 关闭icon 样式问题 ([93f18aa](http://gitlab.voneyun.com/frontend/sc-ui/commit/93f18aaaf3ad7f81c86f5551c4c09508f35f5455))
+* sctimePicker 组件,禁用部分时分秒, 滚动选中报错问题 ([8c95bc6](http://gitlab.voneyun.com/frontend/sc-ui/commit/8c95bc66db68121fd2cdff207037fc7cc65887c1))
+
+### Features
+
+* 调整 ScForm 组件左侧label宽度 折行实现 ([f52485e](http://gitlab.voneyun.com/frontend/sc-ui/commit/f52485eee8465e47a8b454b47b6dc5f4bf38f153))
+* scModal 内容区域新增 ScScrollBar 组件, 用于控制区域滚动 ([f2dc6a6](http://gitlab.voneyun.com/frontend/sc-ui/commit/f2dc6a6329b646afe18034b99b21e03817c30657))
+* scPanelCascader 组件 / CascaderPanel 组件 新增 全局方法getCheckedNodeKeys ([4d7cd10](http://gitlab.voneyun.com/frontend/sc-ui/commit/4d7cd1004336cadb89a308fea7d9d650b1603b9e))
+
 ## [0.0.111](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.110...0.0.111) (2023-05-04)
 
 ### Bug Fixes
