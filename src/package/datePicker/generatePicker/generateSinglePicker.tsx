@@ -117,6 +117,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
 
         const value = computed(() => {
           if (props.value) {
+            // console.log('props.value: ', props.value);
             return props.valueFormat
               ? generateConfig.toDate(props.value as string | DateType, props.valueFormat)
               : props.value;
@@ -125,6 +126,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
         });
         const defaultValue = computed(() => {
           if (props.defaultValue) {
+            // console.log('props.defaultValue: ', props.defaultValue);
             return props.valueFormat
               ? generateConfig.toDate(props.defaultValue as string | DateType, props.valueFormat)
               : props.defaultValue;
@@ -133,6 +135,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
         });
         const defaultPickerValue = computed(() => {
           if (props.defaultPickerValue) {
+            // console.log('props.defaultPickerValue: ', props.defaultPickerValue);
             return props.valueFormat
               ? generateConfig.toDate(
                   props.defaultPickerValue as string | DateType,

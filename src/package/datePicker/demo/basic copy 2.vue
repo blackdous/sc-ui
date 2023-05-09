@@ -3,26 +3,34 @@
     <ConfigProvider
       :locale="zh_CN"
     >
-      <!-- <ScDatePicker
+      <ScDatePicker
         v-model:value="value1"
-        format="YYYY-MM-DD HH:mm:ss"
-        :disabled-date="disabledDate"
-        :disabled-time="disabledDateTime"
-        :show-time="{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }"
-      /> -->
-      <!-- <ScDatePicker v-model:value="value2" :disabled-date="disabledDate" picker="month" /> -->
-      <ScRangePicker v-model:value="value3" :disabled-date="disabledDate" />
+      />
+        <!-- :show-time="{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }" -->
+      <ScDatePicker v-model:value="value2" picker="month" />
+      <!-- <ScRangePicker v-model:value="value3" :disabled-date="disabledDate" />
+      <ScRangePicker v-model:value="value4" :disabled-date="disabledDate" /> -->
+      <!-- :disabled-time="disabledRangeTime" -->
       <ScRangePicker
         v-model:value="value4"
-        style="width: 400px"
         :disabled-date="disabledDate"
-        :disabled-time="disabledRangeTime"
+        style="width: 400px"
         :show-time="{
           hideDisabledOptions: true,
           defaultValue: [dayjs('00:00:00', 'HH:mm:ss'), dayjs('11:59:59', 'HH:mm:ss')],
         }"
         format="YYYY-MM-DD HH:mm:ss"
       />
+      <!-- <ScRangePicker
+        v-model:value="value3"
+        :disabled-date="disabledDate"
+        style="width: 400px"
+        :show-time="{
+          hideDisabledOptions: true,
+          defaultValue: [dayjs('00:00:00', 'HH:mm:ss'), dayjs('11:59:59', 'HH:mm:ss')],
+        }"
+        format="YYYY-MM-DD HH:mm:ss"
+      /> -->
     </ConfigProvider>
   </Space>
 </template>
@@ -32,7 +40,6 @@ import { defineComponent, ref, watch } from 'vue';
 import { Space, ConfigProvider } from 'ant-design-vue';
 import { ScDatePicker, ScRangePicker } from 'sc-ui';
 import { zh_CN } from '../../../utils/zh_CN'
-// console.log('zhCN: ', zh_CN);
 
 export default defineComponent({
   components: {

@@ -8,6 +8,14 @@ realPath: src/package/datePicker/index.zh-CN.md
 
 用于选择某一具体日期或某一段日期区间。
 
+<!-- ## basic copy 2
+
+<demo src="./demo/basic copy 2.vue"
+  language="vue"
+  title="basic copy 2"
+  >
+</demo> -->
+
 ## 通过ConfigProvider设置国际化
 
 ```vue
