@@ -19,7 +19,12 @@
         </p>
       </div>
       <div :class="[modalPrefixCls + '-content']">
-        <slot :name="item" v-bind="data || {}" ></slot>
+        <ScScrollbar
+          ref="scrollbarRef"
+          v-bind="curProps.scrollOptions"
+        >
+          <slot :name="item" v-bind="data || {}" ></slot>
+        </ScScrollbar>
       </div>
     </template>
     
@@ -99,6 +104,7 @@ import { defineComponent, computed, ref, watchEffect, watch, unref, nextTick, ge
 import { useModalDraggable } from '../hooks/useModalDraggable'
 import { Modal, Tooltip } from 'ant-design-vue'
 import { ScButton } from '../../button';
+import { ScScrollbar } from '../../scrollbar';
 import {
   QuestionCircleOutlined,
   InfoCircleFilled,
@@ -121,13 +127,14 @@ export default defineComponent({
     Modal,
     ScButton,
     Tooltip,
+    ScScrollbar,
     QuestionCircleOutlined,
     InfoCircleFilled,
     CheckCircleFilled,
     ExclamationCircleFilled,
     CloseCircleFilled
   },
-  setup (props, { slots, attrs, emit}) {
+  setup (props, { slots, attrs, emit, expose}) {
     const modalPrefixCls = basePrefixCls + 'Modal'
     // const emit = defineemit(['update:visible', 'dragChange', 'register', 'visible-change', 'cancel'])
     const vBind = computed(() => {
@@ -135,7 +142,8 @@ export default defineComponent({
     })
 
     const visibleRef = ref(false)
-    const propsRef = ref();
+    const propsRef = ref()
+    const scrollbarRef = ref()
 
     const loadingRef = ref(false)
 
@@ -182,12 +190,18 @@ export default defineComponent({
       ) {
         attr.title = null
       }
+      // @ts-ignore
       if (newProps.width) {
+        // @ts-ignore
         if (isNumber(newProps.width)) {
+          // @ts-ignore
           attr.width = pxToRem(newProps.width)
+          // @ts-ignore
         } else if (String(newProps.width).includes('%')){
+          // @ts-ignore
           attr.width = newProps.width
         } else {
+          // @ts-ignore
           attr.width = pxToRem(parseInt(newProps.width))
         }
       }
@@ -238,6 +252,7 @@ export default defineComponent({
         return false
       }
       if (unref(vBind).closeFunc && isFunction(unref(vBind).closeFunc)) {
+        // @ts-ignore
         const isClose: boolean = await unref(vBind).closeFunc();
         emit('update:visible', isClose)
         visibleRef.value = isClose
@@ -255,6 +270,7 @@ export default defineComponent({
       // Keep the last setModalProps
       propsRef.value = deepMerge(unref(propsRef) || ({} as any), props);
       if (Reflect.has(props, 'visible')) {
+        // @ts-ignore
         visibleRef.value = !!props?.visible;
       }
     }
@@ -327,6 +343,10 @@ export default defineComponent({
     );
     // onMounted(() => {
     // })
+
+    expose({
+      scrollbarRef
+    })
     
     return {
       className,
@@ -341,6 +361,7 @@ export default defineComponent({
       modalTitleRef,
       curProps,
       loadingRef,
+      scrollbarRef,
       handleOk,
       closeVisible
     }

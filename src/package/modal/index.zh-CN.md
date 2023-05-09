@@ -242,6 +242,7 @@ changeOkLoading(true);
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | showTooltip | title是否显示tooltip | boolean | 无 |  |
+| scrollOptions | [ScScrollbar配置](http://sc-ui.voneyun.com/scrollbar/#api) | ScrollbarProps | `{ maxHeight: 740 }` |  |
 | tooltipDes | tooltip显示的内容，结合showTooltip 使用 | string | 无 |  |
 | type | 'info'、'warning'、'success'、'error' | string | 无 |  |
 | closeFunc | 用于关闭之前使用，支持promise; return 一个 boolean 为 true | Function、promise | 无 |  |
@@ -298,3 +299,9 @@ import zhCN from 'ant-design-vue/es/locale/zh_CN'
 ScModal.changeConfirmLocale(enUS)
 ScModal.changeConfirmLocale(zhCN)
 ```
+
+## expose
+
+| 方法名 | 说明 | 参数 | 版本 |
+| --- | --- | --- | --- |
+| scrollbarRef | 导出ScScrollbar实例，可以通过实例方法`update`更新滚动条状态 | -  | |

@@ -66,10 +66,12 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
       const docCur = document.querySelectorAll(`.${uuid} .scModal-footer .ant-btn`)
       if (autoFocusButton === 'ok') {
         docCur?.forEach(item => {
+          // @ts-ignore
           item.className.includes('scModal-footer__ok') ? item?.focus() : ''
         })
       } else if (autoFocusButton === 'cancel') {
         docCur?.forEach(item => {
+          // @ts-ignore
           item.className.includes('scModal-footer__cancel') ? item?.focus() : ''
         })
       }

@@ -3,6 +3,7 @@ import type { LegacyButtonType, ButtonProps } from 'ant-design-vue/es/button/but
 import { PropTypes } from '../../../utils/propTypes'
 import { VueNode } from '../../../utils';
 import { UseDraggableOptions } from '../../../types/draggable'
+import { ScrollbarProps } from '../../scrollbar';
 
 type getContainerFunc = () => HTMLElement;
 export interface DraggableType {
@@ -33,6 +34,14 @@ export const modalProps = () => ({
   isDraggable: { type: Boolean, default: true },
   DragOptions: {
     type: Object as PropType<UseDraggableOptions>
+  },
+  scrollOptions: {
+    type: Object as PropType<ScrollbarProps>,
+    default () {
+      return {
+        maxHeight: '740'
+      }
+    }
   },
   dragChange : Function as PropType<(draggable: DraggableType) => void>,
   footerAlign: {
