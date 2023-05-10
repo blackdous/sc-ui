@@ -43,6 +43,10 @@ export const Props = () => ({
     type: [Number, String],
     default: 100
   },
+  silent: {
+    type: Boolean,
+    default: true
+  },
   step: {
     type: [Number, String],
     default: 10

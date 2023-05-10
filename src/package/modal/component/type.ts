@@ -39,7 +39,7 @@ export const modalProps = () => ({
     type: Object as PropType<ScrollbarProps>,
     default () {
       return {
-        maxHeight: '740'
+        maxHeight: '640'
       }
     }
   },
@@ -58,7 +58,7 @@ export const modalProps = () => ({
   'onUpdate:visible': Function as PropType<(visible: boolean) => void>,
   onChange: Function as PropType<(visible: boolean) => void>,
   // afterClose: Function as PropType<() => void>,
-  centered: { type: Boolean, default: undefined },
+  centered: { type: Boolean, default: true },
   width: {
     type: [String, Number],
     default: '480px'
