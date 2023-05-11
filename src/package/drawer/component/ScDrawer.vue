@@ -45,7 +45,7 @@
       >
       </ScAlert>
       <ScScrollbar
-        v-loading="curProps.loading"
+        v-loading="vBind.loading"
         ref="scrollBarRef"
         :wrapClass="baseClass + '-scrollbar'"
         :height="scrollbarProps.height"
@@ -55,7 +55,7 @@
         <slot name="default"></slot>
       </ScScrollbar>
       <div
-        :class="[baseClass + '-footer', curProps.footerAlign ? curProps.footerAlign : '']"
+        :class="[baseClass + '-footer', curProps.footerAlign ? 'text-' + curProps.footerAlign : '']"
       >
         <ScButton
           v-if="!$slots.footer && curProps.showFooter && curProps.showCancelBtn"
@@ -180,7 +180,7 @@ export default defineComponent({
       visibleRef.value = !!(unref(vBind).visible)
     })
 
-        /**
+    /**
      * @description: 设置modal参数
     */
     function setDrawerProps(props: Partial<DrawerProps>): void {
