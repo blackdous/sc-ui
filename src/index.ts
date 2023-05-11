@@ -51,6 +51,7 @@ import {
   useForm
 } from './package/form'
 import { ScIp } from './package/formIp'
+import { ScDrawer, useDrawer, useDrawerInner } from './package/drawer'
 
 // 指令
 import { installGlobalDirectives } from './directives'
@@ -75,6 +76,7 @@ const components = [
   ScRadioTooltipGroup,
   ScAlert,
   ScModal,
+  ScDrawer,
 
   ScTable,
   Copy,
@@ -148,6 +150,7 @@ export {
   ScRadioTooltipGroup,
   ScAlert,
   ScModal,
+  ScDrawer,
 
   ScTable,
   
@@ -215,7 +218,9 @@ export {
   useMessage,
   useDescription,
   useForm,
-  useIcon
+  useIcon,
+  useDrawer, 
+  useDrawerInner
 }
 
 export default ScUi;

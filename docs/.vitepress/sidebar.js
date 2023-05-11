@@ -72,7 +72,8 @@ export const sidebar = {
         { text: 'Modal', link: '/en/modal/' },
         { text: 'ContextMenu', link: '/en/contextMenu/' },
         { text: 'Popconfirm', link: '/en/popconfirm/' },
-        { text: 'Message', link: '/en/message/' }
+        { text: 'Message', link: '/en/message/' },
+        { text: 'Drawer', link: '/en/drawer/' },
       ]
     },
     {
@@ -157,6 +158,7 @@ export const sidebar = {
         { text: '鼠标右键 ContextMenu', link: '/contextMenu/' },
         { text: '气泡确认框 Popconfirm', link: '/popconfirm/' },
         { text: '全局提示 Message', link: '/message/' },
+        { text: '抽屉 Drawer', link: '/drawer/' },
       ]
     },
     {

@@ -1,9 +1,7 @@
-import { ExtractPropTypes } from "vue/dist/vue"
 
 import { withInstall } from "../../utils/index"
-import scAlert from './component/ScDrawer.vue'
-import { alertProps } from "./component/type"
+import scDrawer from './component/ScDrawer.vue'
 
-export const ScAlert = withInstall(scAlert)
-
-export declare type AlertProps = Partial<ExtractPropTypes<typeof alertProps>> 
+export const ScDrawer = withInstall(scDrawer)
+export * from './component/typing';
+export { useDrawer, useDrawerInner } from './component/useDrawer';
