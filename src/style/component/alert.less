@@ -4,6 +4,9 @@
   padding: 10px 24px;
   min-height: 32px;
   border-color: transparent;
+  &.ant-alert-info, &.ant-alert-error, &.ant-alert-warning, &.ant-alert-success  {
+    border-color: transparent;
+  }
   .ant-alert-icon {
     font-size: 18px;
     align-self: flex-start;
@@ -63,5 +66,8 @@
       color: @warning-color;
     }
     background-color: @alert-warning;
+  }
+  &--mini {
+    padding: 6px 24px;
   }
 }

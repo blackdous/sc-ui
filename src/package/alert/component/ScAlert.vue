@@ -29,15 +29,18 @@ export default defineComponent({
   components: { Alert, ExclamationCircleFilled },
   props: alertProps(),
   setup (props, { attrs, slots }) {
+    const baseClass = basePrefixCls + 'Alert'
     const vBind = computed(() => {
       return {...props,...attrs}
     })
     const className = computed(() => {
-      const classNames = [basePrefixCls + 'Alert']
-      if (props.textColor) {
-        classNames.push('textColor');
-      }
-      return classNames
+      // const classNames = 
+      const { textColor, size } = props
+      return [
+        baseClass,
+        textColor ? 'textColor' : '',
+        size ? baseClass + '--' + size : ''
+      ]
     })
 
     const isShowDefaultErrorIcon = computed(() => {

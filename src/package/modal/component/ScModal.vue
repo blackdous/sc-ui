@@ -314,19 +314,19 @@ export default defineComponent({
 
     const instance = getCurrentInstance();
     if (instance) {
-      emit('register', modalMethods, instance.uid);
+      emit('register', modalMethods, instance.uid)
     }
 
     watchEffect(() => {
-      visibleRef.value = !!(unref(vBind).visible);
-    });
+      visibleRef.value = !!(unref(vBind).visible)
+    })
 
     const modalTitleRef = ref()
     watch(
       () => unref(visibleRef),
       (v) => {
-        emit('visible-change', v);
-        emit('update:visible', v);
+        emit('visible-change', v)
+        emit('update:visible', v)
         instance && modalMethods.emitVisible?.(v, instance.uid);
         if (v) {
           const timer = setTimeout(() => {
@@ -345,7 +345,8 @@ export default defineComponent({
     // })
 
     expose({
-      scrollbarRef
+      scrollbarRef,
+      setModalProps
     })
     
     return {

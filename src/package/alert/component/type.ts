@@ -27,6 +27,10 @@ export const alertProps = () => ({
   closeIcon: PropTypes.any,
   onClose: Function as PropType<NodeMouseEventHandler>,
   textColor: { type: Boolean, default: undefined },
+  size: {
+    type: String,
+    validator: (v:string) => ['mini', 'default', 'large'].includes(v)
+  }
 });
 
 export const api = alertProps();

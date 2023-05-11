@@ -8,6 +8,7 @@ const LoadingDirective: Directive = {
     const background = el.getAttribute('loading-background');
     const size = el.getAttribute('loading-size');
     const fullscreen = !!binding.modifiers.fullscreen;
+    // console.log('fullscreen: ', fullscreen)
     if (!fullscreen) {
       el.style.position = 'relative'
     }
@@ -15,9 +16,10 @@ const LoadingDirective: Directive = {
       {
         tip,
         background,
-        size: size || 'large',
+        size: size,
         loading: !!binding.value,
         absolute: !fullscreen,
+        isFullPage: fullscreen
       },
       fullscreen ? document.body : el,
     );
