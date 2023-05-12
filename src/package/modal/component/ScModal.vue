@@ -23,8 +23,10 @@
       </div>
       <div :class="[modalPrefixCls + '-content']">
         <ScScrollbar
-          ref="scrollbarRef"
+          ref="scrollBarRef"
           v-bind="scrollbarProps"
+          :fullscreen="false"
+          :loading-tip="getBindValue.loadingText || '加载中...'"
         >
           <slot :name="item" v-bind="data || {}" ></slot>
         </ScScrollbar>
@@ -82,6 +84,7 @@
         >
           {{curProps.okText}}
         </ScButton>
+        <slot name="afterFooter"></slot>
       </div>
       <slot v-else name="footer"> </slot>
     </template>
@@ -123,9 +126,10 @@ import {
 import { modalProps, ModalProps, ModalMethods } from './type'
 import { basePrefixCls } from '../../../constant'
 import { optimizedResize } from '../../../utils/dom/addEventListener'
-import { isFunction } from '../../../utils/is';
+import { isFunction } from '../../../utils/is'
 import { deepMerge, pxToRem, isNumber, buildUUID } from '../../../utils'
-import useLocale from '../../../hooks/useLocale';
+import useLocale from '../../../hooks/useLocale'
+import LoadingDirective from '../../../directives/loading'
 
 export default defineComponent({
   name: 'ScModal',
@@ -141,6 +145,9 @@ export default defineComponent({
     CheckCircleFilled,
     ExclamationCircleFilled,
     CloseCircleFilled
+  },
+  directives: {
+    loading: LoadingDirective
   },
   setup (props, { slots, attrs, emit, expose}) {
     const modalPrefixCls = basePrefixCls + 'Modal'
@@ -365,10 +372,12 @@ export default defineComponent({
         emit('update:visible', v)
         instance && modalMethods.emitVisible?.(v, instance.uid);
         if (v) {
+          nextTick(() => {
+            updateMaxHeight()
+          })
           const timer = setTimeout(() => {
             nextTick(() => {
               useModalDraggable(modalTitleRef, visibleRef, vBind, emit)
-              updateMaxHeight()
               clearTimeout(timer)
             })
           }, 300)

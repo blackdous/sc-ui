@@ -74,10 +74,18 @@
     @cancel="handleCancel1"
     cancel-text="取消"
     ok-text="确认"
+    :loading="loadingRef"
     :maskClosable="false"
     :confirm-loading="loadingRef"
     >
+    <Button @click="handleAsyncData"> async loading Data</Button>
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
+    <div
+        v-for="(item, index) in list"
+        :key="index"
+      >
+        {{ item }}
+      </div>
   </ScModal>
   <ScModal 
     v-model:visible="visible2"
@@ -147,6 +155,7 @@ const visible2: Ref<boolean> = ref(false)
 const visible3: Ref<boolean> = ref(false)
 
 const loadingRef = ref(false)
+const list = ref()
 
 
 const columns = [
@@ -185,6 +194,20 @@ const handle1 = () => {
 }
 const handle2 = () => {
   visible2.value = true
+}
+
+const handleAsyncData = () => {
+  const newList:Array<string> = []
+  for (let i = 10; i < 20; i++) {
+    newList.push((i + '').padEnd(5))
+  }
+  loadingRef.value = true
+  setTimeout(() => {
+    // resolve(newList)
+    list.value = newList
+    loadingRef.value = false
+    console.log('更新数据值')
+  }, 1000)
 }
 
 const handleOk = (e: MouseEvent) => {

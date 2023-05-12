@@ -52,37 +52,41 @@
       <ScScrollbar
         v-loading="vBind.loading"
         ref="scrollBarRef"
-        :wrapClass="baseClass + '-scrollbar'"
         v-bind="scrollbarProps"
+        :wrapClass="baseClass + '-scrollbar'"
         :fullscreen="false"
         :loading-tip="curProps.loadingText || '加载中...'"
       >
         <slot name="default"></slot>
       </ScScrollbar>
       <footer
-        v-if="curProps.showFooter"
+        v-if="curProps.showFooter || $slots.footer"
         :class="[baseClass + '-footer', curProps.footerAlign ? 'text-' + curProps.footerAlign : '']"
       >
-        <ScButton
-          v-if="!$slots.footer && curProps.showCancelBtn"
-          v-bind="curProps.cancelButtonProps"
-          status="info"
-          :loading="cancelLoadingRef"
-          :disabled="curProps.confirmLoading || loadingRef"
-          @click="handleClose"
-        > 
-          {{ curProps.cancelText || '取消' }}
-        </ScButton>
-        <ScButton 
-          v-if="!$slots.footer && curProps.showOkBtn"
-          type="primary"
-          v-bind="curProps.okButtonProps"
-          :loading="curProps.confirmLoading || loadingRef"
-          @click="$event => handleOk()"
-        >
-          {{ curProps.okText || '确定' }}
-        </ScButton>
-        <slot name="footer" v-if="$slots.footer"></slot>
+        <template v-if="curProps.showFooter && !$slots.footer">
+          <slot name="insertFooter"></slot>
+          <ScButton
+            v-if="curProps.showCancelBtn"
+            v-bind="curProps.cancelButtonProps"
+            status="info"
+            :loading="cancelLoadingRef"
+            :disabled="curProps.confirmLoading || loadingRef"
+            @click="handleClose"
+          > 
+            {{ curProps.cancelText || '取消' }}
+          </ScButton>
+          <ScButton 
+            v-if="curProps.showOkBtn"
+            type="primary"
+            v-bind="curProps.okButtonProps"
+            :loading="curProps.confirmLoading || loadingRef"
+            @click="$event => handleOk()"
+          >
+            {{ curProps.okText || '确定' }}
+          </ScButton>
+          <slot name="afterFooter"></slot>
+        </template>
+        <slot name="footer" v-else="$slots.footer"></slot>
       </footer>
     </template>
   </Drawer>

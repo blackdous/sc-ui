@@ -44,6 +44,8 @@ export const modalProps = () => ({
     default: 'center'
   },
   visible: { type: Boolean, default: false },
+  loading: { type: Boolean, default: false },
+  loadingText: { type: String },
   confirmLoading: { type: Boolean, default: undefined },
   title: PropTypes.any,
   closable: { type: Boolean, default: undefined },
