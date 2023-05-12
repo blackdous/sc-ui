@@ -7,7 +7,10 @@
     >
     <!-- :style="{'--model-width': getBindValue.width}" -->
     <template #[item]="data" v-for="item in ['default']">
-      <div v-if="curProps.type" :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + curProps.type]">
+      <div 
+        v-if="curProps.type" 
+        :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + curProps.type]"
+      >
         <span v-if="props.type" :class="[modalPrefixCls + '-status-icon']">
           <InfoCircleFilled v-if="curProps.type === 'info'" />
           <CheckCircleFilled v-else-if="curProps.type === 'success'" />
@@ -21,7 +24,7 @@
       <div :class="[modalPrefixCls + '-content']">
         <ScScrollbar
           ref="scrollbarRef"
-          v-bind="curProps.scrollOptions"
+          v-bind="scrollbarProps"
         >
           <slot :name="item" v-bind="data || {}" ></slot>
         </ScScrollbar>
@@ -29,7 +32,11 @@
     </template>
     
     <template #title>
-      <header ref="modalTitleRef" :class="{'draggable-event': curProps?.isDraggable}">
+      <header
+        ref="modalTitleRef"
+        :class="{'draggable-event': curProps?.isDraggable}"
+        v-if="curProps.title || isSlotTitle"
+      >
         <slot name="title" v-if="isSlotTitle"></slot>
         <span v-else>
           {{ curProps.title }}
@@ -98,7 +105,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, ref, watchEffect, watch, unref, nextTick, getCurrentInstance } from 'vue'
+import { defineComponent, computed, ref, watchEffect, watch, unref, nextTick, getCurrentInstance, onMounted } from 'vue'
 // import type { CSSProperties } from 'vue'
 // import { useDraggable } from '@vueuse/core';
 import { useModalDraggable } from '../hooks/useModalDraggable'
@@ -115,8 +122,9 @@ import {
 
 import { modalProps, ModalProps, ModalMethods } from './type'
 import { basePrefixCls } from '../../../constant'
+import { optimizedResize } from '../../../utils/dom/addEventListener'
 import { isFunction } from '../../../utils/is';
-import { deepMerge, pxToRem, isNumber } from '../../../utils'
+import { deepMerge, pxToRem, isNumber, buildUUID } from '../../../utils'
 import useLocale from '../../../hooks/useLocale';
 
 export default defineComponent({
@@ -136,14 +144,16 @@ export default defineComponent({
   },
   setup (props, { slots, attrs, emit, expose}) {
     const modalPrefixCls = basePrefixCls + 'Modal'
+    const uuid = modalPrefixCls + buildUUID()
     // const emit = defineemit(['update:visible', 'dragChange', 'register', 'visible-change', 'cancel'])
     const vBind = computed(() => {
       return props
     })
-
+    
     const visibleRef = ref(false)
     const propsRef = ref()
     const scrollbarRef = ref()
+    const maxHeight = ref()
 
     const loadingRef = ref(false)
 
@@ -208,8 +218,19 @@ export default defineComponent({
       return attr
     });
 
+    const scrollbarProps = computed(() => {
+      const { scrollOptions } = unref(curProps)
+      return {
+        ...scrollOptions,
+        // @ts-ignore
+        maxHeight: scrollOptions?.maxHeight ? scrollOptions?.maxHeight :  maxHeight.value,
+        // @ts-ignore
+        // height: scrollOptions?.maxHeight ? scrollOptions?.maxHeight :  maxHeight.value
+      }
+    })
+
     const className = computed(() => {
-      const classNames = [modalPrefixCls]
+      const classNames = [modalPrefixCls, uuid]
       if (unref(vBind).type) {
         classNames.push(modalPrefixCls + '-container-' + unref(vBind).type)
         classNames.push(modalPrefixCls + '-container-status')
@@ -317,13 +338,28 @@ export default defineComponent({
       emit('register', modalMethods, instance.uid)
     }
 
+    const updateMaxHeight = () => {
+      if (window) {
+        const headerHeight:number = document.querySelector('.' + uuid + ' .ant-modal-header')?.scrollHeight || 0
+        const footerHeight:number = document.querySelector('.' + uuid + ' .ant-modal-footer')?.scrollHeight || 0
+        const alertHeight:number = (document.querySelector('.' + uuid + ' .scModal-status')?.scrollHeight || 0) + 4
+        const innerHeightView:number = (window && window?.innerHeight) || 0
+        maxHeight.value = pxToRem(innerHeightView - headerHeight - footerHeight - alertHeight - 88 + 'px')
+      }
+    }
+
+    onMounted(() => {
+      // updateMaxHeight()
+      optimizedResize.add(updateMaxHeight)
+    })
+
     watchEffect(() => {
       visibleRef.value = !!(unref(vBind).visible)
     })
 
     const modalTitleRef = ref()
     watch(
-      () => unref(visibleRef),
+      () => visibleRef.value,
       (v) => {
         emit('visible-change', v)
         emit('update:visible', v)
@@ -332,6 +368,7 @@ export default defineComponent({
           const timer = setTimeout(() => {
             nextTick(() => {
               useModalDraggable(modalTitleRef, visibleRef, vBind, emit)
+              updateMaxHeight()
               clearTimeout(timer)
             })
           }, 300)
@@ -350,6 +387,7 @@ export default defineComponent({
     })
     
     return {
+      uuid,
       className,
       getBindValue,
       isClose,
@@ -363,6 +401,7 @@ export default defineComponent({
       curProps,
       loadingRef,
       scrollbarRef,
+      scrollbarProps,
       handleOk,
       closeVisible
     }

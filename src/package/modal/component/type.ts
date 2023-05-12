@@ -36,12 +36,7 @@ export const modalProps = () => ({
     type: Object as PropType<UseDraggableOptions>
   },
   scrollOptions: {
-    type: Object as PropType<ScrollbarProps>,
-    default () {
-      return {
-        maxHeight: '640'
-      }
-    }
+    type: Object as PropType<ScrollbarProps>
   },
   dragChange : Function as PropType<(draggable: DraggableType) => void>,
   footerAlign: {

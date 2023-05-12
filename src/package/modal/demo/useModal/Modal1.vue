@@ -16,11 +16,9 @@
       <div class="empty-tips">加载中，稍等3秒……</div>
     </template>
     <template v-if="!loading">
-      <ScScrollbar minHeight="100px" maxHeight="300px">
-        <ul>
-          <li v-for="index in lines" :key="index">加载完成{{ index }}！</li>
-        </ul>
-      </ScScrollbar>
+      <ul>
+        <li v-for="index in lines" :key="index">加载完成{{ index }}！</li>
+      </ul>
     </template>
   </ScModal>
 </template>

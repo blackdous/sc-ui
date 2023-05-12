@@ -24,19 +24,19 @@
   <div>
     <ScDrawer
       v-model:visible="visibleRef"
-      title="标题名称"
+      :title="titleRef"
       placement="right"
       help-info="1111111"
       destroy-on-close
+      :loading="loadingRef"
+      :widthSize="widthSize"
+      :width="widthRef"
       :alert-options="{
         message: '被授权主体支持用户、用户组、角色',
         type: 'info',
         textColor: true,
         showIcon: true
       }"
-      :loading="loadingRef"
-      :widthSize="widthSize"
-      :width="widthRef"
     >
       <div>1111111111122222222222</div>
       <div>1111111111122222222222</div>
@@ -61,7 +61,7 @@ import { Space } from 'ant-design-vue'
 import "ant-design-vue/dist/antd.css"
 
 const visibleRef = ref(false)
-
+const titleRef = ref()
 const list = ref()
 const loadingRef = ref(false)
 const widthRef = ref()
@@ -72,11 +72,13 @@ const handleClick = (size:string) => {
   visibleRef.value = true
   widthSize.value = size
   widthRef.value = undefined
+  titleRef.value = '标题名称'
   console.log('visibleRef.value: ', visibleRef.value)
 }
 
 const handleClick1 = () => {
   visibleRef.value = true
+  titleRef.value = ''
   widthRef.value = '200px'
 }
 

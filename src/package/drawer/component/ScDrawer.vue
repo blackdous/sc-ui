@@ -10,21 +10,26 @@
     </template> -->
 
     <template #title>
-      <div :class="[baseClass + '-title']"  v-if="!$slots.title">
-        <span :class="[baseClass + '-txt']">
-          {{ curProps.title }}
-          <Tooltip placement="bottomRight" trigger="hover">
-            <i class="sc-ui sc-question-circle"></i>
-            <template #title>
-              {{ curProps.helpInfo }}
-            </template>
-          </Tooltip>
-        </span>
-        <span v-if="$slots.titleToolbar" :class="[baseClass + '-toolbar']">
-          <slot name="titleToolbar"></slot>
-        </span>
-      </div>
-      <slot name="title" v-else></slot>
+      <header
+        v-if="curProps.title || $slots.title"
+        :class="[baseClass + '-header']"
+      >
+        <div :class="[baseClass + '-title']"  v-if="!$slots.title">
+          <span :class="[baseClass + '-txt']">
+            {{ curProps.title }}
+            <Tooltip placement="bottomRight" trigger="hover">
+              <i class="sc-ui sc-question-circle"></i>
+              <template #title>
+                {{ curProps.helpInfo }}
+              </template>
+            </Tooltip>
+          </span>
+          <span v-if="$slots.titleToolbar" :class="[baseClass + '-toolbar']">
+            <slot name="titleToolbar"></slot>
+          </span>
+        </div>
+        <slot name="title" v-else></slot>
+      </header>
     </template>
     <template #default>
       <span 
@@ -41,24 +46,25 @@
         v-bind="curProps.alertOptions"
         ref="alertRef"
         size="mini"
-        :class="[uuid]"
+        :class="[baseClass + '-alert']"
       >
       </ScAlert>
       <ScScrollbar
         v-loading="vBind.loading"
         ref="scrollBarRef"
         :wrapClass="baseClass + '-scrollbar'"
-        :height="scrollbarProps.height"
+        v-bind="scrollbarProps"
         :fullscreen="false"
         :loading-tip="curProps.loadingText || '加载中...'"
       >
         <slot name="default"></slot>
       </ScScrollbar>
-      <div
+      <footer
+        v-if="curProps.showFooter"
         :class="[baseClass + '-footer', curProps.footerAlign ? 'text-' + curProps.footerAlign : '']"
       >
         <ScButton
-          v-if="!$slots.footer && curProps.showFooter && curProps.showCancelBtn"
+          v-if="!$slots.footer && curProps.showCancelBtn"
           v-bind="curProps.cancelButtonProps"
           status="info"
           :loading="cancelLoadingRef"
@@ -68,7 +74,7 @@
           {{ curProps.cancelText || '取消' }}
         </ScButton>
         <ScButton 
-          v-if="!$slots.footer && curProps.showFooter && curProps.showOkBtn"
+          v-if="!$slots.footer && curProps.showOkBtn"
           type="primary"
           v-bind="curProps.okButtonProps"
           :loading="curProps.confirmLoading || loadingRef"
@@ -77,7 +83,7 @@
           {{ curProps.okText || '确定' }}
         </ScButton>
         <slot name="footer" v-if="$slots.footer"></slot>
-      </div>
+      </footer>
     </template>
   </Drawer>
 </template>
@@ -106,7 +112,8 @@ export default defineComponent({
     loading: LoadingDirective
   },
   setup (props, { attrs, emit, expose }) {
-    const uuid = 'sc' + buildUUID()
+    const baseClass = basePrefixCls + 'Drawer'
+    const uuid = baseClass + buildUUID()
     const maxHeight = ref()
     const drawerRef = ref()
     const loadingRef = ref(false)
@@ -134,9 +141,8 @@ export default defineComponent({
         maskClosable: confirmLoading ? false : maskClosable
       }
     })
-    const baseClass = basePrefixCls + 'Drawer'
     const className = computed(() => {
-      const classNames = [baseClass]
+      const classNames = [baseClass, uuid]
       return classNames
     })
 
@@ -159,13 +165,15 @@ export default defineComponent({
     })
     const updateMaxHeight = () => {
       if (window) {
-        const drawerAlertDom = document.querySelector('.' + uuid)
-        const alertHeight = (drawerAlertDom?.clientHeight || 0) + 4
-        maxHeight.value = pxToRem(window.innerHeight - 124 - alertHeight + 'px')
+        const headerHeight:number = document.querySelector('.' + uuid + ' .ant-drawer-header')?.scrollHeight || 0
+        const footerHeight:number = document.querySelector('.' + uuid + ' .scDrawer-footer')?.scrollHeight || 0
+        const alertHeight:number = (document.querySelector('.' + uuid + ' .scDrawer-alert')?.scrollHeight || 0) + 4
+        const innerHeightView:number = (window && window?.innerHeight) || 0
+        maxHeight.value = pxToRem(innerHeightView - headerHeight - footerHeight - alertHeight + 'px')
       }
     }
     onMounted(() => {
-      updateMaxHeight()
+      // updateMaxHeight()
       optimizedResize.add(updateMaxHeight)
     })
 
