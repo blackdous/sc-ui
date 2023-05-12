@@ -235,7 +235,12 @@ changeLoading(true);
 | close          | `(e)=>void`               | 点击关闭回调       |
 | ok             | `(e)=>void`               | 点击确定回调       |
 
-## expose
+## slot
+
+| 名称              | 说明             |  版本  |
+| ----------------- | ---------------- | -- |
+| insertFooter        | footer内部默认按钮左侧 | - |
+| afterFooter        | footer内部默认按钮右侧 | - |
 
 ## expose
 

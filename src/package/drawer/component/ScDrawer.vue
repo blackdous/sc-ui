@@ -263,6 +263,7 @@ export default defineComponent({
 
     expose({
       setDrawerProps,
+      updateMaxHeight,
       scrollbarRef,
       alertRef
     })

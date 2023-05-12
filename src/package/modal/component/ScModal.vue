@@ -188,10 +188,12 @@ export default defineComponent({
           }
         }
       }, {})
+      // const { confirmLoading, maskClosable } = unref(curProps)
       const attr = {
         ...newProps,
         ...attrs,
-        visible: unref(visibleRef)
+        visible: unref(visibleRef),
+        // maskClosable: confirmLoading || loadingRef ? false : maskClosable
       };
       const { footer, showCancelBtn, showOkBtn, title } = unref(curProps)
       if (
@@ -391,8 +393,9 @@ export default defineComponent({
     // })
 
     expose({
-      scrollbarRef,
-      setModalProps
+      updateMaxHeight,
+      setModalProps,
+      scrollbarRef
     })
     
     return {

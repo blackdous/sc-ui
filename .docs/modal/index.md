@@ -301,9 +301,17 @@ ScModal.changeConfirmLocale(enUS)
 ScModal.changeConfirmLocale(zhCN)
 ```
 
+## slot
+
+| 名称              | 说明             |  版本  |
+| ----------------- | ---------------- | -- |
+| insertFooter        | footer内部默认按钮左侧 | - |
+| afterFooter        | footer内部默认按钮右侧 | - |
+
 ## expose
 
 | 方法名 | 说明 | 参数 | 版本 |
 | --- | --- | --- | --- |
 | scrollbarRef | 导出ScScrollbar实例，可以通过实例方法`update`更新滚动条状态 | -  | |
 | setModalProps | 设置当前ScModal的props | -  | |
+| updateMaxHeight | 触发一次计算内容高度方法 | -  | |
