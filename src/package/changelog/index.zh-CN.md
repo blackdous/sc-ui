@@ -5,6 +5,22 @@ map:
 
 # 变更记录
 
+## [0.0.113](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.112...0.0.113) (2023-05-12)
+
+### Bug Fixes
+
+* 调整ScModal 滚动条样式 \ 去除ScSlider 错误警告 ([75c1225](http://gitlab.voneyun.com/frontend/sc-ui/commit/75c1225b63ad2443e9090cd7c2e3025ad3efc3f8))
+* 修复 ConfigProvider 组件包裹 ScDatePicker 造成递归 死循环问题修复 ([27a1337](http://gitlab.voneyun.com/frontend/sc-ui/commit/27a133790d900391d109a5dab08d4ce0bf8fbda2))
+* 修复 ScModal ScDrawer 视口最大高度, 内部出现滚动条 ([d27752e](http://gitlab.voneyun.com/frontend/sc-ui/commit/d27752ef4ff082bf2ea298d9a3d837175c9b98a6))
+
+### Features
+
+* 1. ScAlert 组件 新增 size 属性 2. v-loading 适配 fullscreen 属性适配 ([503e8ed](http://gitlab.voneyun.com/frontend/sc-ui/commit/503e8eda88faa692c43886a98a70d8d0e38f8846))
+* 更新 ScDrawer confirmLoading 状态下 不能关闭 窗口 ([0162d62](http://gitlab.voneyun.com/frontend/sc-ui/commit/0162d6235452aa9e77bf753e666faa2f4217b037))
+* 完善 ScDrawer 组件功能 ([893d470](http://gitlab.voneyun.com/frontend/sc-ui/commit/893d470bbb4cc505e54e2f2f0b3bcb1441375fea))
+* scDrawer 组件 功能开发,初始版 ([634ecae](http://gitlab.voneyun.com/frontend/sc-ui/commit/634ecaef1891aeb4adc1619d4bf870070291d1e3))
+* scModal 组件 新增loading 属性 ([ec4a80b](http://gitlab.voneyun.com/frontend/sc-ui/commit/ec4a80b8e7d3b056ff9ad715cbe95191ac14436e))
+
 ## [0.0.112](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.111...0.0.112) (2023-05-09)
 
 ### Bug Fixes
