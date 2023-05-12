@@ -201,7 +201,7 @@ changeLoading(true);
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| scrollOptions | [ScScrollbar配置](http://sc-ui.voneyun.com/scrollbar/#api) | ScrollbarProps | `{ maxHeight: 740 }` |  |
+| scrollOptions | [ScScrollbar配置](http://sc-ui.voneyun.com/scrollbar/#api) 根据当前视口计算内容区域高度，可以通过updateMaxHeight主动触发 | ScrollbarProps | - |  |
 | helpInfo | tooltip显示的内容，结合showTooltip 使用 | string | 无 |  |
 | alterOptions | 用于显示提示信息 | AlertProps | 无 |  |
 | closeFunc | 用于关闭之前使用，支持promise; return 一个 boolean 为 true | Function、promise | 无 |  |
@@ -213,6 +213,8 @@ changeLoading(true);
 | cancelText | 取消按钮文字 | string\| slot | 取消 |  |
 | closable | 是否显示右上角的关闭按钮 | boolean | true |  |
 | confirmLoading | 确定按钮 loading | boolean | 无 |  |
+| loading | 内容区域加载状态 | boolean | 无 |  |
+| loadingText | 内容区域加载文字 | string | 无 |  |
 | destroyOnClose | 关闭时销毁 Modal 里的子元素 | boolean | false |  |
 | getContainer | 指定 Modal 挂载的 HTML 节点 | (instance): HTMLElement | () => document.body |  |
 | keyboard | 是否支持键盘 esc 关闭 | boolean | true |  |
@@ -249,3 +251,4 @@ changeLoading(true);
 | scrollbarRef | 导出ScScrollbar实例，可以通过实例方法`update`更新滚动条状态 | -  | |
 | alertRef | 当前Alert提示实例 | -  | |
 | setDrawerProps | 设置当前ScDrawer的props | -  | |
+| updateMaxHeight | 触发一次计算内容高度方法 | -  | |
