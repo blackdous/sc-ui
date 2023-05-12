@@ -29,7 +29,7 @@
     <template #default>
       <span 
         v-if="curProps.closable && curProps.visible" 
-        :class="[baseClass + '-close']"
+        :class="[baseClass + '-close', curProps.confirmLoading || loadingRef ? 'not-allow' : '']"
         @click="handleClose"
       >
         <span :class="[baseClass + '-close__btn']">
@@ -62,6 +62,7 @@
           v-bind="curProps.cancelButtonProps"
           status="info"
           :loading="cancelLoadingRef"
+          :disabled="curProps.confirmLoading || loadingRef"
           @click="handleClose"
         > 
           {{ curProps.cancelText || '取消' }}
@@ -122,14 +123,15 @@ export default defineComponent({
       }
     })
     const vBind = computed(() => {
-      const { widthSize, width } = props
+      const { widthSize, width, confirmLoading, maskClosable } = props
       return {
         ...props,
         ...attrs,
         ...propsRef.value,
         title: undefined,
         width: width ? width : (widthSize === 'middle' ? 500 : widthSize === 'large' ? 760 : 300),
-        closable: false
+        closable: false,
+        maskClosable: confirmLoading ? false : maskClosable
       }
     })
     const baseClass = basePrefixCls + 'Drawer'

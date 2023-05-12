@@ -50,7 +50,7 @@ export const basicProps = {
   },
   widthSize: {
     type: String,
-    validator: (v:string) => ['default', 'middle', 'large'].includes(v)
+    validator: (v:string) => ['mini', 'middle', 'large'].includes(v)
   },
   maskClosable: { type: Boolean, default: true },
   getContainer: {

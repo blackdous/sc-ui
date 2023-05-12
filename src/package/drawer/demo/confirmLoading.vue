@@ -5,8 +5,6 @@
     @ok="handleOk"
     @cancel="handleCancel"
     :confirm-loading="confirmLoading"
-    maskClosable
-    :closable="false"
   >
     <div>我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
   </ScDrawer>
@@ -30,7 +28,7 @@ const openModal = () => {
   confirmLoading.value = true
   setTimeout(() => {
     confirmLoading.value = false
-  }, 1500)
+  }, 6500)
 }
 
 const handleOk = (e: MouseEvent) => {
