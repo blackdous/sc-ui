@@ -177,7 +177,7 @@ export default defineComponent({
       }
     }
     onMounted(() => {
-      // updateMaxHeight()
+      updateMaxHeight()
       optimizedResize.add(updateMaxHeight)
     })
 
