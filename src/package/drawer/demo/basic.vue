@@ -27,6 +27,7 @@
       title="标题名称"
       placement="right"
       help-info="1111111"
+      destroy-on-close
       :alert-options="{
         message: '被授权主体支持用户、用户组、角色',
         type: 'info',
@@ -70,6 +71,7 @@ const widthSize = ref('large')
 const handleClick = (size:string) => {
   visibleRef.value = true
   widthSize.value = size
+  widthRef.value = undefined
   console.log('visibleRef.value: ', visibleRef.value)
 }
 

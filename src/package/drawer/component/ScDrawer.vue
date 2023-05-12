@@ -128,7 +128,7 @@ export default defineComponent({
         ...attrs,
         ...propsRef.value,
         title: undefined,
-        width: width ? width: (widthSize === 'middle' ? 500 : widthSize === 'large' ? 760 : 300),
+        width: width ? width : (widthSize === 'middle' ? 500 : widthSize === 'large' ? 760 : 300),
         closable: false
       }
     })

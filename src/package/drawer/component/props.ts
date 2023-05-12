@@ -46,8 +46,7 @@ export const basicProps = {
   closable: { type: Boolean, default: true },
   loading: { type: Boolean },
   width: {
-    type: [Number, String],
-    default: 300
+    type: [Number, String]
   },
   widthSize: {
     type: String,
