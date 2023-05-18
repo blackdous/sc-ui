@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="isEmptyText(newProps.text)"
+    v-if="!newProps.notText || isEmptyText(newProps.text)"
     :id="`tb_btn_${index}_copy`"
     class="tbCopy"
     v-bind="$attrs"
@@ -57,6 +57,10 @@ const props = () => ({
     type: [String, Number],
     default: '',
     require: true
+  },
+  notText: {
+    type: Boolean,
+    default: true
   }
 })
 

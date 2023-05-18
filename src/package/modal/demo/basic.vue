@@ -11,6 +11,7 @@
     @cancel="handleCancel"
     :loading="true"
     maskClosable
+
   >
     <ScTable
       :columns="columns"
@@ -27,7 +28,6 @@
     cancel-text="取消"
     ok-text="确认"
     maskClosable
-    :footer="null"
     >
     <div>22222是文案限制长度，我是文案限制长度</div>
     <div>22222是文案限制长度，我是文案限制长度</div>

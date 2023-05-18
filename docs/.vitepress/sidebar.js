@@ -89,7 +89,8 @@ export const sidebar = {
         { text: 'TableColumn', link: '/en/tableColumn/' },
         { text: 'Copy', link: '/en/copy/' },
         { text: 'Icon', link: '/en/icon/' },
-        { text: 'FormIp', link: '/en/formIp/' }
+        { text: 'FormIp', link: '/en/formIp/' },
+        { text: 'LottieIcon', link: '/en/lottieicon/' }
       ]
     }
   ],
@@ -174,7 +175,8 @@ export const sidebar = {
         { text: '表格Column', link: '/tableColumn/' },
         { text: '复制Copy', link: '/copy/' },
         { text: 'Icon 图标', link: '/icon/' },
-        { text: 'FormIp ip输入框', link: '/formIp/' }
+        { text: 'FormIp ip输入框', link: '/formIp/' },
+        { text: 'LottieIcon 动态Icon', link: '/lottieicon/' }
       ]
     }
   ],

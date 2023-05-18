@@ -113,3 +113,24 @@
     }
   }
 }
+
+/*************************** from表单  **************************************/ // 去除horizontal状态下label后面的冒号
+.ant-form-horizontal {
+  .ant-form-item-label > label::after {
+    content: '';
+  }
+}
+
+// 表单label非必填占位
+.ant-form-item-label {
+  > label {
+    &:before {
+      display: inline-block;
+      margin-right: 4px;
+      color: transparent;
+      font-size: 14px;
+      line-height: 1;
+      content: '*';
+    }
+  }
+}

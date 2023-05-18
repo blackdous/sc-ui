@@ -769,7 +769,6 @@ export interface ActiveOptions {
 | titleType      | `TitleType`                                           | -   |   `thDescribe`、 `thUnit` | 头部内置自定义组件(**如需使用多个 请把componentName命名为 thDescribe1、thDescribe2 依次递增**) |
 |  slots      |   `customRender`、  `title`                                     | -   |   - | `customRender`不要和`tdStatus 、 tdCopy 、 tdEllipsis 、tdHandle` 重名； `title` 不要和 `thDescribe`、 `thUnit` 重名 |
 
-
 ### filterType
 
 ```js
@@ -780,6 +779,17 @@ export interface ActiveOptions {
     checked?: boolean, 
   }
 ```
+
+### tdEllipsis
+
+```js
+  interface TdEllipsisProps {
+    lineheigth: number // 显示行数
+    text: string // 显示内容
+    copy: boolean // 是否显示copy 组件；复制当前 text 内容
+  }
+```
+
 ### Type
 
 ```ts

@@ -119,7 +119,6 @@
             :is="getTypeComponent(slotItem.type.componentName)"
             v-bind="{ ...slotProps, tableName: slotItem.type.componentName }"
             :key="slotItem.dataIndex"
-            
             v-on="{...getEvent(slotItem.type.componentName)}"
           />
         </template>

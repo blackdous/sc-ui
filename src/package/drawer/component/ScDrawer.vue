@@ -60,7 +60,7 @@
         <slot name="default"></slot>
       </ScScrollbar>
       <footer
-        v-if="curProps.showFooter || $slots.footer"
+        v-if="curProps.showFooter || $slots.footer || $slots.insertFooter || $slots.afterFooter"
         :class="[baseClass + '-footer', curProps.footerAlign ? 'text-' + curProps.footerAlign : '']"
       >
         <template v-if="curProps.showFooter && !$slots.footer">

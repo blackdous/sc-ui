@@ -48,6 +48,7 @@ const openModal = (infoDes: string) => {
         ]),
         cancelText: '取消',
         okText: '确认',
+        centered: true,
         onCancel () {
           console.log('cancel');
         },
@@ -65,6 +66,7 @@ const openModal = (infoDes: string) => {
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),
         ]),
+        centered: true,
         cancelText: '取消',
         okText: '确认',
       });
@@ -76,6 +78,7 @@ const openModal = (infoDes: string) => {
         icon: () => createVNode(ExclamationCircleFilled),
         content: () => 'some messages...some messages...',
         cancelText: '取消',
+        centered: true,
         okText: '确认',
       });
       break;
@@ -86,6 +89,7 @@ const openModal = (infoDes: string) => {
         icon: () => createVNode(CloseCircleFilled),
         content: () => 'some messages...some messages...',
         cancelText: '取消',
+        centered: true,
         okText: '确认',
       });
       break

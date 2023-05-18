@@ -217,7 +217,8 @@ const columns = [
     type: {
       componentName: 'tdEllipsis',
       props: {
-        lineheigth: 2
+        lineheigth: 3,
+        copy: true
       }
     },
     titleType: {
@@ -349,7 +350,7 @@ const data: DataItem[] = [
     key: '1',
     name: 'John Brown',
     age: 32,
-    address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd',
+    address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd'
   },
   {
     key: '2',

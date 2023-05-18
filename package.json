@@ -123,6 +123,7 @@
     "deepmerge": "^4.2.2",
     "dom-align": "^1.12.4",
     "fflate": "^0.7.4",
+    "lottie-web": "^5.11.0",
     "patch-vue-directive-ssr": "^0.0.1",
     "resize-observer-polyfill": "^1.5.1"
   },

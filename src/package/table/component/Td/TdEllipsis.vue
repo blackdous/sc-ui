@@ -13,6 +13,7 @@
       >
         {{newProps.text}}
       </p>
+      <TdCopy v-if="newProps.column.type.props.copy || newProps.copy" :copyTxt="newProps.copyText" :notText="false"/>
     </div>
   </Tooltip>
 </template>
@@ -20,6 +21,8 @@
 <script lang='ts'>
 import { computed, defineComponent } from 'vue'
 import { Tooltip } from 'ant-design-vue'
+
+import TdCopy from './TdCopy.vue'
 // import { isEmptyText } from '../../../../utils/is'
 
 const props = () =>({
@@ -42,6 +45,10 @@ const props = () =>({
   key: {
     type: [String, Number],
     default: 0
+  },
+  copy: {
+    type: Boolean,
+    default: false
   }
 })
 export default defineComponent({
@@ -49,7 +56,8 @@ export default defineComponent({
   inheritAttrs: false,
   props: props(),
   components: {
-    Tooltip
+    Tooltip,
+    TdCopy
   },
   setup (props) {
     const handle = async () => {
@@ -68,7 +76,10 @@ export default defineComponent({
     })
 
     const newProps = computed(() => {
-      return props
+      return {
+        ...props,
+        copyText: String(props.text) || props.text
+      }
     })
 
     return {
@@ -82,3 +93,10 @@ export default defineComponent({
 
 
 </script>
+
+<style>
+.tdEllipsisCon {
+  display: flex;
+  align-items: flex-end;
+}
+</style>
