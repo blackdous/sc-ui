@@ -8,7 +8,7 @@ realPath: src/__docs__/index.zh-CN.md
 
 ant-design-vue vue3 ts ui
 
-**最新版本0.0.113**
+**最新版本0.0.114**
 
 [文档地址](http://sc-ui.voneyun.com/)
 
