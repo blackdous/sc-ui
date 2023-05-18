@@ -1,16 +1,24 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.113...0.0.2) (2023-05-12)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.114...0.0.2) (2023-05-18)
 
+## [0.0.114](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.113...0.0.114) (2023-05-18)
 
+### Bug Fixes
+
+* scModal ScDrawer 组件中的 updateMaxHeight 默认执行一遍 ([3af8f0b](http://gitlab.voneyun.com/frontend/sc-ui/commit/3af8f0b3dcf88fe8fc83f5028286d6da8b050e47))
+
+### Features
+
+* 更新 ScScroll 样式 ([06dbe2b](http://gitlab.voneyun.com/frontend/sc-ui/commit/06dbe2b8eee849f8390f92914cfc760d8fb39d6e))
+* 更新样式 ([ba5ffb3](http://gitlab.voneyun.com/frontend/sc-ui/commit/ba5ffb38bb7462200127814b42d807abca4d1e2f))
+* scTable TdEllipsis 组件 新增copy 属性, 是否显示copy 按钮 ([271f055](http://gitlab.voneyun.com/frontend/sc-ui/commit/271f055061cca65bddac074c578bb3c88dda7284))
 
 ## [0.0.113](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.112...0.0.113) (2023-05-12)
-
 
 ### Bug Fixes
 
 * 调整ScModal 滚动条样式 \ 去除ScSlider 错误警告 ([75c1225](http://gitlab.voneyun.com/frontend/sc-ui/commit/75c1225b63ad2443e9090cd7c2e3025ad3efc3f8))
 * 修复 ConfigProvider 组件包裹 ScDatePicker 造成递归 死循环问题修复 ([27a1337](http://gitlab.voneyun.com/frontend/sc-ui/commit/27a133790d900391d109a5dab08d4ce0bf8fbda2))
 * 修复 ScModal ScDrawer 视口最大高度, 内部出现滚动条 ([d27752e](http://gitlab.voneyun.com/frontend/sc-ui/commit/d27752ef4ff082bf2ea298d9a3d837175c9b98a6))
-
 
 ### Features
 
@@ -20,16 +28,12 @@
 * scDrawer 组件 功能开发,初始版 ([634ecae](http://gitlab.voneyun.com/frontend/sc-ui/commit/634ecaef1891aeb4adc1619d4bf870070291d1e3))
 * scModal 组件 新增loading 属性 ([ec4a80b](http://gitlab.voneyun.com/frontend/sc-ui/commit/ec4a80b8e7d3b056ff9ad715cbe95191ac14436e))
 
-
-
 ## [0.0.112](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.111...0.0.112) (2023-05-09)
-
 
 ### Bug Fixes
 
 * 修复ScModal 关闭icon 样式问题 ([93f18aa](http://gitlab.voneyun.com/frontend/sc-ui/commit/93f18aaaf3ad7f81c86f5551c4c09508f35f5455))
 * sctimePicker 组件,禁用部分时分秒, 滚动选中报错问题 ([8c95bc6](http://gitlab.voneyun.com/frontend/sc-ui/commit/8c95bc66db68121fd2cdff207037fc7cc65887c1))
-
 
 ### Features
 
@@ -37,54 +41,38 @@
 * scModal 内容区域新增 ScScrollBar 组件, 用于控制区域滚动 ([f2dc6a6](http://gitlab.voneyun.com/frontend/sc-ui/commit/f2dc6a6329b646afe18034b99b21e03817c30657))
 * scPanelCascader 组件 / CascaderPanel 组件 新增 全局方法getCheckedNodeKeys ([4d7cd10](http://gitlab.voneyun.com/frontend/sc-ui/commit/4d7cd1004336cadb89a308fea7d9d650b1603b9e))
 
-
-
 ## [0.0.111](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.110...0.0.111) (2023-05-04)
-
 
 ### Bug Fixes
 
 * 修改 ScTable rowSelection问题; 去除警告 ([92445c5](http://gitlab.voneyun.com/frontend/sc-ui/commit/92445c5c503a872f1c17868c81add22d048ea076))
 * scTable 去除 expanded-rows-change selection-change 事件警告 ([f1feeca](http://gitlab.voneyun.com/frontend/sc-ui/commit/f1feeca8da44ac8c7249abbd3854d861967695b4))
 
-
-
 ## [0.0.110](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.109...0.0.110) (2023-04-27)
-
 
 ### Features
 
 * scSlider 新增 单位显示 ScSwitch 警告去除 ([ae7dc7b](http://gitlab.voneyun.com/frontend/sc-ui/commit/ae7dc7b93dfeebec208f25580bf64c309c1a9005))
 
-
-
 ## [0.0.109](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.108...0.0.109) (2023-04-26)
-
 
 ### Bug Fixes
 
 * scInputNumber 输入为空时, 失焦重新复制为最后一次非空值 ([63962c2](http://gitlab.voneyun.com/frontend/sc-ui/commit/63962c2e5f40196dedccdf2e9b6896f7f810c9bd))
 
-
-
 ## [0.0.108](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.107...0.0.108) (2023-04-25)
-
 
 ### Features
 
 * 完善 ScIp 组件 ([592320b](http://gitlab.voneyun.com/frontend/sc-ui/commit/592320bbe8ee6ef5ec58e296738686522fb02876))
 * 新增 ScIp 组合 输入框 初版 ([4ee4a63](http://gitlab.voneyun.com/frontend/sc-ui/commit/4ee4a63e08d90f4bc666cfac1b9db487491d69ab))
 
-
-
 ## [0.0.107](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.106...0.0.107) (2023-04-23)
-
 
 ### Bug Fixes
 
 * 调整 ScCascaderNew 组件 宽度问题 ([c7de0f3](http://gitlab.voneyun.com/frontend/sc-ui/commit/c7de0f3f70aaa21a7819c778c35a0a8de4a86fd9))
 * scCascaderNew 组件 多选搜索 递归报错 修复 ([90fa6c0](http://gitlab.voneyun.com/frontend/sc-ui/commit/90fa6c0dc937c13c44b7661e69ff448527de263d))
-
 
 ### Features
 
@@ -94,10 +82,7 @@
 * scTable empty 字段占位符-- 改为 - ([ef67fee](http://gitlab.voneyun.com/frontend/sc-ui/commit/ef67feebd775c1920806bede868bd7f8539fb9d4))
 * scTag 新增 loading 状态 ([494e97d](http://gitlab.voneyun.com/frontend/sc-ui/commit/494e97d3e87a08fcaf2eb9d396e350ff221bb85d))
 
-
-
 ## [0.0.106](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.105...0.0.106) (2023-04-19)
-
 
 ### Bug Fixes
 
@@ -105,90 +90,63 @@
 * 修复 ScCascaderNew 组件,多选 panel 收回问题\ 默认值显示问题 ([3f48572](http://gitlab.voneyun.com/frontend/sc-ui/commit/3f4857298fb7aad8743465d3378ec575fafea129))
 * scSteps ScModal.confirm 去除  warning 警告 ([b12f1a5](http://gitlab.voneyun.com/frontend/sc-ui/commit/b12f1a5e6136a286dc0b1781166ea56a0a847a2c))
 
-
 ### Features
 
 * 组件 ScCascaderNew 组件 新增 prefixIcon slot ([ff3c26f](http://gitlab.voneyun.com/frontend/sc-ui/commit/ff3c26fca2964f2f5e4ee8d8ff182dcc6f8a58fd))
 
-
-
 ## [0.0.105](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.104...0.0.105) (2023-04-18)
-
 
 ### Bug Fixes
 
 * 修复 scModal.confirm type 背景样式问题 ([69568a9](http://gitlab.voneyun.com/frontend/sc-ui/commit/69568a9b7b8cf1a8c060b4f5cfee29d24a4fa456))
 * scSlider watch value 更新时机问题 ([6e62d53](http://gitlab.voneyun.com/frontend/sc-ui/commit/6e62d5342c14c25e4e5bc45bd9fec1a5e8b85703))
 
-
-
 ## [0.0.104](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.103...0.0.104) (2023-04-17)
-
 
 ### Bug Fixes
 
 * 1. 去除ScTabs change 事件 警告 2. ScModal ok按钮回调 新增try cache 防止报错 ([7599734](http://gitlab.voneyun.com/frontend/sc-ui/commit/75997341b393ddd4312650f912e4014fab2f0701))
 
-
-
 ## [0.0.103](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.102...0.0.103) (2023-04-14)
-
 
 ### Bug Fixes
 
 * scModal.confirm 点击 ok按钮 不自动关闭 问题 ([694bbd9](http://gitlab.voneyun.com/frontend/sc-ui/commit/694bbd93e6164859121684280a6df6921603477e))
 
-
-
 ## [0.0.102](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.101...0.0.102) (2023-04-14)
-
 
 ### Bug Fixes
 
 * 1. 调整 Sctag Status 属性值 2. ScModal.confirm 默认使用 中文字符 ([6cdcdab](http://gitlab.voneyun.com/frontend/sc-ui/commit/6cdcdabdc5f7aea71cf0c2d52555da43b60e8aba))
-
 
 ### Features
 
 * scModa.confirm 确认按钮 支持传入 异步 函数, 自动触发 确认 loading状态 ([e2eb6bd](http://gitlab.voneyun.com/frontend/sc-ui/commit/e2eb6bd2fbddea3b60ebcb19c4902dce31ddfe39))
 * sctable 新增 updateTableDataRecord updateTableData 方法 ([e3ee6e6](http://gitlab.voneyun.com/frontend/sc-ui/commit/e3ee6e6eadd001c0c9e3900b45c912301c0e817a))
 
-
-
 ## [0.0.101](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.100...0.0.101) (2023-04-13)
-
 
 ### Features
 
 * 1. 完善ScCascaderNew 组件功能 2. 调整 ScTable 展开样式问题 \ 列筛选,分页数据重置为 第一页 3. v-loading 指令, 不传fullScreen 字段,给当前元素增加 position: relative 属性 4. ScCascaderNew 组件完善部分文档\demo ([33cdfdd](http://gitlab.voneyun.com/frontend/sc-ui/commit/33cdfddf8115f394189e0a2935bb454b59e43e0f))
 
-
-
 ## [0.0.100](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.99...0.0.100) (2023-04-10)
-
 
 ### Features
 
 * 1. ScTabs 内部组件 TabPanel 为 异步数组循环时, 找不到第一key 报错问题 2. ScButton shadow为type 时,增加 size 适配 3.ScModal.confirm   新增 changeConfirmLocale   方法, 用于适配 多语言问题 ([93b4309](http://gitlab.voneyun.com/frontend/sc-ui/commit/93b43094ad12384bf6c0ede0e874155900732994))
 
-
-
 ## [0.0.99](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.98...0.0.99) (2023-04-08)
-
 
 ### Bug Fixes
 
 * 修改 ScModal showCancelBtn showOkBtn 属性无效; title 为 null 时穿透 属性 ([6381ac7](http://gitlab.voneyun.com/frontend/sc-ui/commit/6381ac7a784319bea60eec546438a5ef835a238a))
 
-
 ### Features
 
 * 1. ScButton 组件新增color 属性,在 type="shadow" 时生效; 2. 新增Scbadge 组件, 支持color 属性 3. 新增 ScModal.confirm方法 初版 ([38c1da4](http://gitlab.voneyun.com/frontend/sc-ui/commit/38c1da4c562bd3109e30f261bf1588dc824f70e4))
 
-
-
 ## [0.0.98](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.97...0.0.98) (2023-04-06)
-
 
 ### Features
 
@@ -196,10 +154,7 @@
 * 1. 调整 ScTable rowKey 参数,支持 Function 参数 ([aef0d03](http://gitlab.voneyun.com/frontend/sc-ui/commit/aef0d03742e000a232ba70aa4e4889077d4cf846))
 * 1. 更新 ScTable 组件 文档 ([75aa19b](http://gitlab.voneyun.com/frontend/sc-ui/commit/75aa19b4f41bdf525286509d78ab8a04d97367cd))
 
-
-
 ## [0.0.97](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.96...0.0.97) (2023-04-01)
-
 
 ### Features
 
@@ -207,29 +162,20 @@
 * 1. 完善 ScTag 组件 文档 ([2a33584](http://gitlab.voneyun.com/frontend/sc-ui/commit/2a33584cb1a8182b9178dd15959c3ca8f78fdbd6))
 * 1. 完善 tag 组件及文档 2. 完善link组件 文档 ([84caefb](http://gitlab.voneyun.com/frontend/sc-ui/commit/84caefb385d05d02d307e6fb3bdcd6a3078ae611))
 
-
-
 ## [0.0.96](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.95...0.0.96) (2023-03-28)
-
 
 ### Features
 
 * 1. 新增ScTag 组件 2. 调整 ScSelect class 样式穿透 3. 调整 ScTable 内部组件Actions 组件 样式 ([c998ccb](http://gitlab.voneyun.com/frontend/sc-ui/commit/c998ccb617804709bc16edd01f5d0d7c9bf45529))
 * 优化 ScTable 内置组件引入方式 ([df9cf48](http://gitlab.voneyun.com/frontend/sc-ui/commit/df9cf48ad9c1f18eebb263f65a113f6c8c0722d5))
 
-
-
 ## [0.0.95](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.94...0.0.95) (2023-03-27)
-
 
 ### Features
 
 * 1. 修改ScCascader 组件 class 穿透 2. 修复 basic 项目 分包问题 ([c33de7b](http://gitlab.voneyun.com/frontend/sc-ui/commit/c33de7bd7c4df389d3940825b3541cd3a661ff22))
 
-
-
 ## [0.0.94](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.93...0.0.94) (2023-03-23)
-
 
 ### Features
 
@@ -237,75 +183,52 @@
 * 调整 ScModal 内包含 ScTable 样式 ([e16ff06](http://gitlab.voneyun.com/frontend/sc-ui/commit/e16ff06350b576a4b6cc1644facb53eda5bb0518))
 * scIcon 组件 新增 全局配置 加载地址; 地址配置到window.iconfontUrl ([4e90807](http://gitlab.voneyun.com/frontend/sc-ui/commit/4e90807c09049477e5697e63b412304b4791d570))
 
-
-
 ## [0.0.91](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.90...0.0.91) (2023-03-22)
-
 
 ### Features
 
 * 1. ScDescription 支持 传入默认组件 2. ScSelect组件 prefix 初始化计算宽度 ([855334a](http://gitlab.voneyun.com/frontend/sc-ui/commit/855334a412eb6970dded4bacea0abacc104b2a25))
 
-
-
 ## [0.0.90](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.89...0.0.90) (2023-03-21)
-
 
 ### Features
 
 * 1. 新增 ScLink 组件; 2. ScTable 组件中filter 组件 修改, columnDialog 组件 如果没有key 取 dataIndex ([5b922b5](http://gitlab.voneyun.com/frontend/sc-ui/commit/5b922b5e20a75e811461c0ee2662a8fbd657fefc))
 
-
-
 ## [0.0.89](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.88...0.0.89) (2023-03-20)
-
 
 ### Features
 
 * 新增 setProps 触发 setMultipleAction 重新赋值 ([c50aad1](http://gitlab.voneyun.com/frontend/sc-ui/commit/c50aad1df376dc1dcf222acfdf280e516d65a260))
 
-
-
 ## [0.0.88](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.87...0.0.88) (2023-03-20)
-
 
 ### Bug Fixes
 
 * 根据 最新 设计, 更新 样式细节 ([926ea17](http://gitlab.voneyun.com/frontend/sc-ui/commit/926ea17b73989b801892d07bfa27cd8ad532fd9d))
 
-
-
 ## [0.0.87](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.86...0.0.87) (2023-03-17)
-
 
 ### Bug Fixes
 
 * 去除ScTable 中无用代码 ([e76cc2f](http://gitlab.voneyun.com/frontend/sc-ui/commit/e76cc2fc1adfa0911cc25d4897a84527623f6d95))
 
-
 ### Features
 
 * table 中filter组件 select切换, input值 不清空 ([b89bdd8](http://gitlab.voneyun.com/frontend/sc-ui/commit/b89bdd84ab547988f6588032b33e4605ed173fdf))
 
-
-
 ## [0.0.86](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.85...0.0.86) (2023-03-17)
-
 
 ### Bug Fixes
 
 * 1. ScTable filter组件 只存在tableActive 不显示问题 2. 调整 slider circle大小 ([972aa53](http://gitlab.voneyun.com/frontend/sc-ui/commit/972aa53191d34a2b7e0906c6f4ea185771d5e4c1))
-
 
 ### Features
 
 * 1. radioButtonGroup 新增 triggerMultiple 属性;可以多次触发 change事件; 2. slider 新增dotCircle 属性 ([ddb0947](http://gitlab.voneyun.com/frontend/sc-ui/commit/ddb09475c95b9971c8993d563b6c68739891d538))
 * 更新 scModal \ alert 组件 type 为 error 的 icon ([af3c2cc](http://gitlab.voneyun.com/frontend/sc-ui/commit/af3c2ccd8de33398279629249bad6c97162711b6))
 
-
-
 ## [0.0.85](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.84...0.0.85) (2023-03-17)
-
 
 ### Bug Fixes
 
@@ -313,128 +236,90 @@
 * 调整 table 选中颜色 ([8523bf1](http://gitlab.voneyun.com/frontend/sc-ui/commit/8523bf10c771824f415f039413c7c543c10f589a))
 * 调整 table action 循环 ([91bb329](http://gitlab.voneyun.com/frontend/sc-ui/commit/91bb329c645507a11ab0428c469ea5d8ebaa996c))
 
-
 ### Features
 
 * 更新 iconfont ([efadbe0](http://gitlab.voneyun.com/frontend/sc-ui/commit/efadbe0aa0290edea8a3800b9c447d0feb444f67))
 
-
-
 ## [0.0.84](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.83...0.0.84) (2023-03-14)
-
 
 ### Features
 
 * 新增 Icon ([e5e0cfd](http://gitlab.voneyun.com/frontend/sc-ui/commit/e5e0cfdedf85f94ff6e9f7e9f09611ea52b32106))
 
-
-
 ## [0.0.83](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.82...0.0.83) (2023-03-14)
-
 
 ### Bug Fixes
 
 * table filter 输入框点击 后 自动清空 输入值;因为默认值监听的影响 ([3a23e58](http://gitlab.voneyun.com/frontend/sc-ui/commit/3a23e58fb7fb375f14373042270960ece834ebd6))
-
 
 ### Features
 
 * 调整table filter textValue 只能赋值一次 ([49a0ec7](http://gitlab.voneyun.com/frontend/sc-ui/commit/49a0ec73e2196026289f5df18748b73f51feb869))
 * 新增 语言适配 ([f6d6bdb](http://gitlab.voneyun.com/frontend/sc-ui/commit/f6d6bdbd7f19ab39cb05d97f0722457f65f6cc86))
 
-
-
 ## [0.0.82](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.81...0.0.82) (2023-03-08)
-
 
 ### Features
 
 * 新增 copy默认 提示信息 ([fd860db](http://gitlab.voneyun.com/frontend/sc-ui/commit/fd860dbd8aef247575635f8eca303a6ff7cdfaa8))
 
-
-
 ## [0.0.81](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.80...0.0.81) (2023-03-08)
-
 
 ### Features
 
 * 兼容 业务代码中的slider ([810a8c5](http://gitlab.voneyun.com/frontend/sc-ui/commit/810a8c5c24125fb80b23141860fcd95bea4de2eb))
 
-
-
 ## [0.0.80](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.79...0.0.80) (2023-03-07)
-
 
 ### Bug Fixes
 
 * vite 打包 优化,不兼容webpack, 需要再调整,暂时方案回退 ([6e75239](http://gitlab.voneyun.com/frontend/sc-ui/commit/6e75239aa2c73a98caa8ade6f04a08357a0d26ce))
 
-
 ### Features
 
 * 更新 package.json 版本号 ([bd955be](http://gitlab.voneyun.com/frontend/sc-ui/commit/bd955be0e53d02cb15a842d193a34819e14fb7a8))
 
-
-
 ## [0.0.79](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.78...0.0.79) (2023-03-07)
-
 
 ### Bug Fixes
 
 * dataRangPicker 选中 change事件触发 3 次修改 ([4171467](http://gitlab.voneyun.com/frontend/sc-ui/commit/41714676f5fb67fa12e77d5f5d51037e7a26e941))
 
-
 ### Features
 
 * 完善 新scCascader 组件 功能 ([0c9cb4e](http://gitlab.voneyun.com/frontend/sc-ui/commit/0c9cb4e50eb0a4f1a7f6bf4198bc29ae082547e2))
 
-
-
 ## [0.0.77](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.76...0.0.77) (2023-03-03)
-
 
 ### Bug Fixes
 
 * 0.0.76 打包问题处理 ([a1cb0af](http://gitlab.voneyun.com/frontend/sc-ui/commit/a1cb0affc79aa1f8e9997227da5b2420b2a8adb9))
 
-
-
 ## [0.0.76](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.75...0.0.76) (2023-03-03)
-
 
 ### Features
 
 * 调整 dataPicker 国际化 配置 ([75f0fbc](http://gitlab.voneyun.com/frontend/sc-ui/commit/75f0fbc47f1e4549ae6dcd01ad5821a1b57d62cf))
 * scTable 组件 头部 filter 新增 默认值传入 功能 ([61cef01](http://gitlab.voneyun.com/frontend/sc-ui/commit/61cef01d7c557cb490472898121b25fe013bdc22))
 
-
-
 ## [0.0.75](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.74...0.0.75) (2023-02-28)
-
 
 ### Bug Fixes
 
 * 修改 modal.confirm close 样式问题 ([97bae65](http://gitlab.voneyun.com/frontend/sc-ui/commit/97bae65717b3c05a4cd34637a7ca8f4eac9cfec3))
 
-
-
 ## [0.0.74](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.73...0.0.74) (2023-02-28)
-
 
 ### Features
 
 * 更新 在线示例 代码为 codesandbox ([c9c4137](http://gitlab.voneyun.com/frontend/sc-ui/commit/c9c4137e2054aae857a0f05dc029b1c057e7c560))
 
-
-
 ## [0.0.73](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.72...0.0.73) (2023-02-27)
-
 
 ### Bug Fixes
 
 * 修复 文档 copy 目录大小写问题 ([ca1bd33](http://gitlab.voneyun.com/frontend/sc-ui/commit/ca1bd337d0593e05743334f971cb19c957976135))
 * scTable 过滤 传入监听 rowSelected 值 ([198f5bf](http://gitlab.voneyun.com/frontend/sc-ui/commit/198f5bf43aa1c748408ef00998543061290a3bfc))
-
 
 ### Features
 
@@ -442,91 +327,64 @@
 * scCascaderPanel 组件初始版本完成 ([fac21d5](http://gitlab.voneyun.com/frontend/sc-ui/commit/fac21d5d4b434184d375a4515161011033f3e0fc))
 * scCascaderPanel 组件功能完善 ([7f9ba1c](http://gitlab.voneyun.com/frontend/sc-ui/commit/7f9ba1cfa8429f8729816fa645c6144722a7be27))
 
-
-
 ## [0.0.72](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.71...0.0.72) (2023-02-23)
-
 
 ### Features
 
 * 提取 Copy 组件 ([88a763f](http://gitlab.voneyun.com/frontend/sc-ui/commit/88a763f079e52fe4246fb1e779b73bd7162b086b))
 
-
-
 ## [0.0.71](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.70...0.0.71) (2023-02-21)
-
 
 ### Bug Fixes
 
 * scSlider 更新disabled 状态 ScInputNumber不同步问题 ([8726822](http://gitlab.voneyun.com/frontend/sc-ui/commit/87268220f3d085a71c99dfeda09ce5f7691ca741))
 
-
 ### Features
 
 * slider disabled 状态样式更新 ([7dcd380](http://gitlab.voneyun.com/frontend/sc-ui/commit/7dcd380bde56d1a9bba40bc3ac89c4bb89afecf0))
 
-
-
 ## [0.0.70](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.69...0.0.70) (2023-02-17)
-
 
 ### Bug Fixes
 
 * 修改 全局 close icon ([9940784](http://gitlab.voneyun.com/frontend/sc-ui/commit/9940784fea143f5563cc2aeb1b680c197eb05738))
 
-
-
 ## [0.0.69](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.68...0.0.69) (2023-02-16)
-
 
 ### Bug Fixes
 
 * 修改 ScSlider :value 绑定值; 拖拽 InputNumber 组件不实时更新问题 ([670c9f3](http://gitlab.voneyun.com/frontend/sc-ui/commit/670c9f3be363c5d5353ecf1b0e6e6a73eee7bdde))
 
-
 ### Features
 
-* - table 创建按钮新增loading状态; table actionProps 中的 tooltipDes 支持 方法，并且 data更新 触发 tooltipDes 方法执行; InputNumber、ScSlider 中的 InputNumber 组件 过滤非Number 触发change; ScSteps 组件新增 changeIndex 事件 ([126cad7](http://gitlab.voneyun.com/frontend/sc-ui/commit/126cad7b92364193048f3b3d218416b3fe09e1fe))
+  * - table 创建按钮新增loading状态; table actionProps 中的 tooltipDes 支持 方法，并且 data更新 触发 tooltipDes 方法执行; InputNumber、ScSlider 中的 InputNumber 组件 过滤非Number 触发change; ScSteps 组件新增 changeIndex 事件 ([126cad7](http://gitlab.voneyun.com/frontend/sc-ui/commit/126cad7b92364193048f3b3d218416b3fe09e1fe))
 * 0.0.69版本 ([f8a8c25](http://gitlab.voneyun.com/frontend/sc-ui/commit/f8a8c25fc88d4e0dcdc2843d46c20288566d77d0))
 
-
-
 ## [0.0.68](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.67...0.0.68) (2023-02-14)
-
 
 ### Features
 
 * 更新 tableColumn 样式 ([a4243f1](http://gitlab.voneyun.com/frontend/sc-ui/commit/a4243f1944e22346378ea0c2e3cf2c0047532b62))
 * tableColumn 新增 取消选中key 集合返回 ([70bce4a](http://gitlab.voneyun.com/frontend/sc-ui/commit/70bce4a3445ba62dbb0171759d9f058920f7cb8f))
 
-
-
 ## [0.0.67](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.66...0.0.67) (2023-02-14)
-
 
 ### Bug Fixes
 
 * tableColumn 组件 初始化数据 在okModal 事件中透传 ([b4bd1e7](http://gitlab.voneyun.com/frontend/sc-ui/commit/b4bd1e71a6bd30f32fb7196982702b1f0130e9f3))
 
-
-
 ## [0.0.66](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.65...0.0.66) (2023-02-14)
-
 
 ### Bug Fixes
 
 * scSlider 默认刻度 转换 ([70e0560](http://gitlab.voneyun.com/frontend/sc-ui/commit/70e056048e216e0b9d535c1307b2baaf1a257770))
 
-
-
 ## [0.0.65](http://gitlab.voneyun.com/frontend/sc-ui/compare/v0.0.56...0.0.65) (2023-02-13)
-
 
 ### Bug Fixes
 
 * 修改 ScSlider change 事件 多次触发问题 ([89d7bdf](http://gitlab.voneyun.com/frontend/sc-ui/commit/89d7bdfde49a1adfce096470c23d7f9fdf81fc7e))
 * slider 组件 样式修改 ([7ce1545](http://gitlab.voneyun.com/frontend/sc-ui/commit/7ce1545a88e8f2b02eb708ab60c77360ea9a5480))
-
 
 ### Features
 
@@ -536,10 +394,7 @@
 * 修改 form 样式 ([c3d79b1](http://gitlab.voneyun.com/frontend/sc-ui/commit/c3d79b10d71c8cc54042bd459229e65212bee9f0))
 * tableColumn 组件提取 \ Empty 组件提取 ([d520bd0](http://gitlab.voneyun.com/frontend/sc-ui/commit/d520bd0e0f135ebbe311a459024a9498b85e94e6))
 
-
-
 ## [0.0.56](http://gitlab.voneyun.com/frontend/sc-ui/compare/v0.0.55...v0.0.56) (2023-02-07)
-
 
 ### Bug Fixes
 
@@ -557,7 +412,6 @@
 * modal cancel 事件回调 ([a4b33cd](http://gitlab.voneyun.com/frontend/sc-ui/commit/a4b33cdd74b0b314451ad297155e1aca29c7c43f))
 * scCascader 默认值 不显示; value 值警告问题 ([ed5e71c](http://gitlab.voneyun.com/frontend/sc-ui/commit/ed5e71c444f764c76146de457d694192d175075b))
 * table 排序问题 ([683d8e4](http://gitlab.voneyun.com/frontend/sc-ui/commit/683d8e4437809db588f0122b37452861cd9804b0))
-
 
 ### Features
 
@@ -665,6 +519,3 @@
 * update table ([b135c56](http://gitlab.voneyun.com/frontend/sc-ui/commit/b135c56e2a5c26a824e54d33768153c0a7c1ad0c))
 * update table component ([e0ebf1f](http://gitlab.voneyun.com/frontend/sc-ui/commit/e0ebf1f094c6946110dda614f6ff9f1515317e38))
 * update tableAction ([69e65cb](http://gitlab.voneyun.com/frontend/sc-ui/commit/69e65cb00cb0185168c9dc67d93f8da2df8f66e5))
-
-
-
