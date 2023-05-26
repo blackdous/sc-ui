@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.116...0.0.2) (2023-05-26)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.117...0.0.2) (2023-05-26)
+
+
+
+## [0.0.117](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.116...0.0.117) (2023-05-26)
+
+
+### Bug Fixes
+
+* datePickerRange 第一次选中 为当前时间 ([a254f8a](http://gitlab.voneyun.com/frontend/sc-ui/commit/a254f8a4ae4b84aaa565d39195faa106674cf00a))
 
 
 

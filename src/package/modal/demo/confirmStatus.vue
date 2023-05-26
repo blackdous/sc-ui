@@ -94,6 +94,7 @@ const openModal = (infoDes: string) => {
         closable: true,
         // cancelText: '取消',
         // okText: '确认',
+        footerAlign: 'center',
         onCancel () {
           console.log('cancel');
         },
@@ -105,6 +106,7 @@ const openModal = (infoDes: string) => {
         type: 'success',
         title: () => 'This is a success message',
         closable: true,
+        footerAlign: 'center',
         content: () => h('div', {}, [
           h('p', 'some messages...some messages...'),
           h('p', 'some messages...some messages...'),

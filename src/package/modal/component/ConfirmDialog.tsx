@@ -17,7 +17,7 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
 
   const {
     icon,
-    footerAlign = 'right',
+    footerAlign = 'center',
     onOk,
     onCancel,
     closable = false,
