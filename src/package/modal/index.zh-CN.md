@@ -242,6 +242,7 @@ changeOkLoading(true);
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | showTooltip | title是否显示tooltip | boolean | 无 |  |
+| infoDes | 辅助提示信息 | string\array | 无 |  |
 | scrollOptions | [ScScrollbar配置](http://sc-ui.voneyun.com/scrollbar/#api) 根据当前视口计算内容区域高度，可以通过updateMaxHeight主动触发 | ScrollbarProps | - |  |
 | tooltipDes | tooltip显示的内容，结合showTooltip 使用 | string | 无 |  |
 | type | 'info'、'warning'、'success'、'error' | string | 无 |  |

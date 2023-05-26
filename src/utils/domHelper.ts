@@ -62,8 +62,8 @@ export function findChildrenDom<T = any> (
 
 // px转rem单位
 export const pxToRem = (px:string) => {
-  if (isNaN(parseFloat(px))) {
+  // if (isNaN(parseFloat(px))) {
     return px
-  }
-  return parseFloat(px) / 16 + 'rem'
+  // }
+  // return parseFloat(px) / 16 + 'rem'
 }

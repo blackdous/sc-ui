@@ -27,7 +27,7 @@ export const modalProps = () => ({
   afterClose: Function as PropType<() => Promise<VueNode>>,
   closeFunc: Function as PropType<() => Promise<boolean>>,
   type: [String],
-  infoDes: String,
+  infoDes: [String, Array],
   prefixCls: { type: String },
   onCancelDisable: { type: Boolean, default: false },
   onOkDisable: { type: Boolean, default: false },

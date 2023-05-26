@@ -30,6 +30,7 @@
   <ScScrollbar
     height="100px"
     @scroll="handleScroll"
+    view-class="pd14"
     ref="scrollRef"
   >
     <div class="scrollbar-flex-content" v-for="lineItem in 10">

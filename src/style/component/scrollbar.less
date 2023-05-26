@@ -49,6 +49,10 @@
     background-color: var(--sc-scrollbar-bg-color, var(--sc-text-color-secondary));
     transition: var(--sc-transition-duration) background-color;
     opacity: var(--sc-scrollbar-opacity, .3);
+    &:hover, &:active, &:focus {
+      opacity: 0.5;
+      cursor: pointer;
+    }
   }
   // ::-webkit-scrollbar-thumb {
   //   background-color: #0003;

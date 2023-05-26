@@ -36,10 +36,10 @@ import { ScModal } from 'sc-ui'
 
 const visible: Ref<boolean> = ref(false)
 const type = ref<string>('info')
-const info = ref<string>('infoinfoinfo')
+const info = ref<string | Array<string>>('infoinfoinfo')
 
 const openModal = (infoDes: string) => {
-  info.value = infoDes
+  info.value = [infoDes, infoDes]
   visible.value = true
 }
 

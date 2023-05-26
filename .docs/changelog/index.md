@@ -6,7 +6,19 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
-## [0.0.114](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.112...0.0.114) (2023-05-12)
+## [0.0.114](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.113...0.0.114) (2023-05-18)
+
+### Bug Fixes
+
+* scModal ScDrawer 组件中的 updateMaxHeight 默认执行一遍 ([3af8f0b](http://gitlab.voneyun.com/frontend/sc-ui/commit/3af8f0b3dcf88fe8fc83f5028286d6da8b050e47))
+
+### Features
+
+* 更新 ScScroll 样式 ([06dbe2b](http://gitlab.voneyun.com/frontend/sc-ui/commit/06dbe2b8eee849f8390f92914cfc760d8fb39d6e))
+* 更新样式 ([ba5ffb3](http://gitlab.voneyun.com/frontend/sc-ui/commit/ba5ffb38bb7462200127814b42d807abca4d1e2f))
+* scTable TdEllipsis 组件 新增copy 属性, 是否显示copy 按钮 ([271f055](http://gitlab.voneyun.com/frontend/sc-ui/commit/271f055061cca65bddac074c578bb3c88dda7284))
+
+## [0.0.113](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.112...0.0.113) (2023-05-12)
 
 ### Bug Fixes
 

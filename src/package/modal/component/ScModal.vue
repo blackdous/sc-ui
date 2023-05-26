@@ -17,9 +17,14 @@
           <ExclamationCircleFilled v-else-if="curProps.type === 'warning'" />
           <ExclamationCircleFilled v-else-if="curProps.type === 'error'" />
         </span>
-        <p :class="[modalPrefixCls + '-txt']">
-          {{ curProps.infoDes }}
-        </p>
+        <div>
+          <p
+            :class="[modalPrefixCls + '-txt']"
+            v-for="item in (curProps.infoDes || [])"
+          >
+            {{ item }}
+          </p>
+        </div>
       </div>
       <div :class="[modalPrefixCls + '-content']">
         <ScScrollbar
@@ -126,7 +131,7 @@ import {
 import { modalProps, ModalProps, ModalMethods } from './type'
 import { basePrefixCls } from '../../../constant'
 import { optimizedResize } from '../../../utils/dom/addEventListener'
-import { isFunction } from '../../../utils/is'
+import { isFunction, isArray, isString } from '../../../utils/is'
 import { deepMerge, pxToRem, isNumber, buildUUID } from '../../../utils'
 import useLocale from '../../../hooks/useLocale'
 import LoadingDirective from '../../../directives/loading'
@@ -193,6 +198,7 @@ export default defineComponent({
         ...newProps,
         ...attrs,
         visible: unref(visibleRef),
+        infoDes: isArray(unref(curProps).infoDes) ? unref(curProps).infoDes : isString(unref(curProps).infoDes) ? [unref(curProps).infoDes] : unref(curProps).infoDes
         // maskClosable: confirmLoading || loadingRef ? false : maskClosable
       };
       const { footer, showCancelBtn, showOkBtn, title } = unref(curProps)

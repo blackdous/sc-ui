@@ -1,5 +1,5 @@
 <template>
-  <ScScrollbar max-height="400px">
+  <ScScrollbar max-height="400px" view-class="pd14">
     <p v-for="item in list" :key="item" class="scrollbar-demo-item">{{ item }}</p>
   </ScScrollbar>
 </template>

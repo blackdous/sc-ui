@@ -135,7 +135,7 @@
   &-unit {
     padding-left: 4px;
     color: @text-color-secondary;
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -170,8 +170,12 @@
 ::-webkit-scrollbar-thumb {
   width: 6px;
   border-radius: 10px;
-  background-color: #dfdfdf;
+  background-color: rgba(0, 0, 0, 0.1);
   transition: all .2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 }
 
 // .ant-table-hide-scrollbar {
@@ -181,7 +185,6 @@
 .rc-virtual-list-scrollbar {
   .rc-virtual-list-scrollbar-thumb {
     width: 6px !important;
-    // height: 35px !important;
     border-radius: 10px !important;
     background-color: rgba(0, 0, 0, 0.1) !important;
   }

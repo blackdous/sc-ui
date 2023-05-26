@@ -1,5 +1,5 @@
 <template>
-  <ScScrollbar>
+  <ScScrollbar view-class="pd14">
     <div class="scrollbar-flex-content">
       <p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>
     </div>
