@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.115...0.0.2) (2023-05-26)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.116...0.0.2) (2023-05-26)
+
+
+
+## [0.0.116](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.115...0.0.116) (2023-05-26)
+
+
+### Bug Fixes
+
+* 调整 样式 ([5e16752](http://gitlab.voneyun.com/frontend/sc-ui/commit/5e16752cab3bab5a488b579c9775048eed554d56))
 
 
 

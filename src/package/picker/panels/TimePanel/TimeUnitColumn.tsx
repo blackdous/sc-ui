@@ -35,9 +35,14 @@ export default defineComponent<TimeUnitColumnProps>({
       () => props.value,
       () => {
         const li = liRefs.value.get(props.value!);
+        notScroll = true
         if (li && open.value !== false) {
           scrollTo(ulRef.value!, li.offsetTop - 100, 120);
         }
+        const timer = setTimeout(() => {
+          notScroll = false
+          clearTimeout(timer)
+        }, 300)
       },
     );
     onBeforeUnmount(() => {
@@ -54,6 +59,7 @@ export default defineComponent<TimeUnitColumnProps>({
             window?.requestAnimationFrame(() => {
               // console.log(liRefs.value)
               let keyValue = props.value
+              console.log('keyValue: ', keyValue);
               liRefs.value && liRefs.value.forEach((liRef: any) => {
                 const liRefOffsetTop = liRef.offsetTop - 100
                 // console.log('liRefOffsetTop: ', liRefOffsetTop);
