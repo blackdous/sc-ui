@@ -46,6 +46,7 @@
     <ScInput
       placeholder="请输入内容 widthSize x"
       v-model:value="inputValueLargeRef"
+      width-size="x"
     >
     </ScInput>
   </div>

@@ -78,7 +78,7 @@ const handleClick = (size:string) => {
 
 const handleClick1 = () => {
   visibleRef.value = true
-  titleRef.value = ''
+  titleRef.value = '标题名称'
   widthRef.value = '200px'
 }
 

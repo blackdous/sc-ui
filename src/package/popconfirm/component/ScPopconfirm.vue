@@ -23,7 +23,8 @@
           getProps.type ? baseClass + '-' + getProps.type : ''
         ]"
       >
-        <i class="sc-ui sc-warning-circle-fill"></i>
+        <i v-if="getProps.type !== 'success'" class="sc-ui sc-warning-circle-fill"></i>
+        <i v-else class="sc-ui sc-success"></i>
       </span>
     </template>
     <template #title>

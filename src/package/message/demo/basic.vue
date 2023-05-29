@@ -37,24 +37,38 @@
 import { h } from 'vue'
 import { message } from 'ant-design-vue'
 import { ScButton, useMessage } from 'sc-ui'
+import { ExclamationCircleFilled } from '@ant-design/icons-vue'
 
 const successHandle = () => {
-  message.success('用于表示普通操作信息提示，可关闭，通常信息较长', 3000)
+  message.success({
+    content: '用于表示普通操作信息提示，可关闭，通常信息较长',
+    duration: 3
+  })
 }
 const errorHandle = () => {
-  message.error('用于表示普通操作信息提示，可关闭，通常信息较长', 3000)
+  message.error({
+    content: '用于表示普通操作信息提示，可关闭，通常信息较长',
+    duration: 300,
+    icon: h(ExclamationCircleFilled, { class: 'sc-ui sc-warning-circle-fill', style: { fontSize: '18px', marginRight: '8px' } })
+  })
 }
 const infoHandle = () => {
-  message.info('用于表示普通操作信息提示，可关闭，通常信息较长', 3000)
+  message.info({
+    content: '用于表示普通操作信息提示，可关闭，通常信息较长',
+    duration: 3
+  })
 }
 const warningHandle = () => {
-  message.warning('用于表示普通操作信息提示，可关闭，通常信息较长', 30000)
+  message.warning({
+    content: '用于表示普通操作信息提示，可关闭，通常信息较长',
+    duration: 300
+  })
 }
 const loadingHandle = () => {
   message.loading({
     content: '用于表示普通操作信息提示，可关闭，通常信息较长',
     icon: h('span', { class: 'loading-transition' }),
-    duration: 3000
+    duration: 3
   })
 }
 const { createCloseMessage } = useMessage()
@@ -62,7 +76,7 @@ const closeHandle = () => {
   createCloseMessage({
     type: 'warning',
     content: '用于表示普通操作信息提示，可关闭，通常信息较长',
-    duration: 30000
+    duration: 3
   })
 }
 </script>

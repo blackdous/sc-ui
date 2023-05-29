@@ -20,7 +20,8 @@
       component: 'Input',
       label: '字段1',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       required: true,
     },
@@ -29,7 +30,8 @@
       component: 'Input',
       label: '字段2',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       required: true,
     },
@@ -46,7 +48,8 @@
       component: 'DatePicker',
       label: '字段3',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       required: true,
     },
@@ -55,7 +58,8 @@
       component: 'DatePicker',
       label: '字段33',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       componentProps: {
         valueFormat: 'YYYY-MM-DD',
@@ -67,7 +71,8 @@
       component: 'InputCountDown',
       label: '验证码',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       required: true,
     },
@@ -76,7 +81,8 @@
       component: 'Select',
       label: '字段4',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       componentProps: {
         mode: 'multiple',
@@ -106,7 +112,8 @@
       component: 'Input',
       label: '自定义校验',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       rules: [
         {
@@ -132,7 +139,8 @@
       component: 'CheckboxGroup',
       label: '字段5',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       componentProps: {
         options: [
@@ -153,7 +161,8 @@
       component: 'RadioGroup',
       label: '字段7',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       componentProps: {
         options: [
@@ -174,7 +183,8 @@
       component: 'Input',
       label: '后端异步验证',
       colProps: {
-        span: 12,
+        span: 10,
+        offset: 1
       },
       helpMessage: ['本字段演示异步验证', '本地规则：必须填写', '后端规则：不能包含admin'],
       rules: [
@@ -207,6 +217,7 @@
       ] = useForm({
         labelWidth: 120,
         schemas,
+        labelAlign: 'left',
         actionColOptions: {
           span: 24,
         },

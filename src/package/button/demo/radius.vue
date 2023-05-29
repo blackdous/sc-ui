@@ -6,7 +6,7 @@
     <ScButton type="primary" shape="round">
       填充按钮
     </ScButton>
-    <ScButton type="primary">
+    <ScButton type="primary" style="padding: 4px 11px;">
       T
     </ScButton>
     <ScButton type="primary" shape="circle">
@@ -20,7 +20,7 @@
     <ScButton status="info" shape="round">
       填充按钮
     </ScButton>
-    <ScButton status="info">
+    <ScButton status="info" style="padding: 4px 11px;">
       T
     </ScButton>
     <ScButton status="info" shape="circle">
@@ -34,7 +34,7 @@
     <ScButton shape="round">
       填充按钮
     </ScButton>
-    <ScButton>
+    <ScButton style="padding: 4px 11px;">
       T
     </ScButton>
     <ScButton shape="circle">
@@ -48,7 +48,7 @@
     <ScButton status="error" shape="round">
       填充按钮
     </ScButton>
-    <ScButton status="error">
+    <ScButton status="error" style="padding: 4px 11px;">
       T
     </ScButton>
     <ScButton status="error" shape="circle">

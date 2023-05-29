@@ -7,7 +7,7 @@
       :disabled="newProps.disabled || minDisabled"
       :size="newProps.size"
     >
-      <i class="sc-ui sc-remove"></i>
+      <i class="sc-ui sc-remove1"></i>
     </Button>
     <InputNumber
       ref="inputNumberRef"
@@ -25,7 +25,7 @@
       @click="changeVal('add')"
       :disabled="newProps.disabled || maxDisabled"
     >
-      <i class="sc-ui sc-xinjian"></i>
+      <i class="sc-ui sc-add2"></i>
     </Button>
   </div>
 </template>

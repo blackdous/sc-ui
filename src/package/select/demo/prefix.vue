@@ -7,8 +7,8 @@
         class="test11"
       >
         <template #prefixIcon>
-          <i class="sc-ui sc-tiaozhuan"></i>
-          <span style="font-size: 12px;">
+          <i class="sc-ui sc-tiaozhuan" style="color: rgba(0,0,0,.4)"></i>
+          <span style="font-size: 14px;color: rgba(0,0,0,.6)">
             你好啊:
           </span>
         </template>

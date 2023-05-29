@@ -6,7 +6,7 @@
     >
     </Textarea>
   </div>
-  <div>
+  <div style="width: 400px;">
     <Textarea
       placeholder="请输入内容"
       showCount

@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.117...0.0.2) (2023-05-26)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.118...0.0.2) (2023-05-26)
+
+
+
+## [0.0.118](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.117...0.0.118) (2023-05-26)
+
+
+### Features
+
+* 调整modal btns默认为居中 ([2c2bc79](http://gitlab.voneyun.com/frontend/sc-ui/commit/2c2bc79d50ec5309e0d5f07e1acf22e7c68f2071))
 
 
 

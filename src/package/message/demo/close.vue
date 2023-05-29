@@ -29,14 +29,20 @@
 </template>
 
 <script setup lang="ts">
+import { h } from 'vue'
 import { ScButton, useMessage } from 'sc-ui'
+import { ExclamationCircleFilled } from '@ant-design/icons-vue'
 
 const { createCloseMessage } = useMessage()
 const successHandle = () => {
   createCloseMessage({type: 'success', content: '用于表示普通操作信息提示，可关闭，通常信息较长'})
 }
 const errorHandle = () => {
-  createCloseMessage({type: 'error', content: '用于表示普通操作信息提示，可关闭，通常信息较长'})
+  createCloseMessage({
+    type: 'error', 
+    content: '用于表示普通操作信息提示，可关闭，通常信息较长',
+    icon: h(ExclamationCircleFilled, { class: 'sc-ui sc-warning-circle-fill', style: { fontSize: '18px', marginRight: '8px' } })
+  })
 }
 const infoHandle = () => {
   createCloseMessage({type: 'info', content: '用于表示普通操作信息提示，可关闭，通常信息较长'})
