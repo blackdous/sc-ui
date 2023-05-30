@@ -17,6 +17,8 @@ export interface TooltipInfo {
 
 export interface InputNumberOptions {
   placeholder?: string
+  readonly?: boolean
+  stepStrictly?: boolean
 }
 
 export interface TooltipInfos {

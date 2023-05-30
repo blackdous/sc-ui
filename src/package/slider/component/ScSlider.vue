@@ -99,12 +99,12 @@
     </div>
     <ScInputNumber
       v-if="newProps.inputNumberOptions"
-      :placeholder="newProps?.inputNumberOptions.placeholder"
       v-model:value="valueRef"
       :min="newProps.min"
       :max="newProps.max"
       :step="newProps.step"
       :disabled="newProps.disabled"
+      v-bind="newProps?.inputNumberOptions"
     >
       <!-- @change="handleInputNumberChange" -->
       <!-- @pressEnter="handleChange" -->

@@ -3,10 +3,13 @@
     <ScInputNumber
       placeholder="请输入内容"
       v-model:value="inputValueRef"
-      :step="1"
-      :defaultValue="22"
+      :step="30"
+      :min="0"
+      :max="300"
+      :defaultValue="30"
       :autoFocus="true"
       :precision="0"
+      stepStrictly
       @change="handleChange"
       @blur="handleBlur"
     >
@@ -41,7 +44,7 @@ import { ref, watch } from 'vue'
 // import { Input } from 'ant-design-vue'
 import { ScInputNumber } from 'sc-ui'
 
-const inputValueRef = ref(22)
+const inputValueRef = ref(30)
 const inputValueRef2 = ref(22)
 const inputValueRef1 = ref(11)
 

@@ -32,11 +32,14 @@
 
 <script lang="ts" >
 
-import { ref, watch, computed, defineComponent, onMounted, nextTick } from 'vue'
+import { ref, watch, computed, defineComponent, onMounted, nextTick, unref } from 'vue'
 import { InputNumber, Button } from 'ant-design-vue'
+import lodash from 'lodash'
 import { basePrefixCls } from '../../../constant'
 import { props } from './type'
 import { isNumber } from '../../../utils'
+
+const { debounce } = lodash
 
 export default defineComponent({
   name: 'ScInputNumber',
@@ -46,13 +49,14 @@ export default defineComponent({
     InputNumber,
     Button,
   },
-  emits: ['change', 'update:value'],
+  emits: ['change', 'update:value', 'blur'],
   setup(props, { emit, attrs, expose }) {
 
     const baseClass = basePrefixCls + 'InputNumber'
     const text = ref(0)
     const inputNumberRef = ref()
     const prevVal = ref()
+    const isBlur = ref(false)
 
     const maxDisabled = computed(() => {
       return text.value >= props.max
@@ -96,10 +100,25 @@ export default defineComponent({
       },
       { deep: true, immediate: true }
     )
+    const debounceStepStrictly = debounce(() => {
+      const val = text.value
+      const { step } = unref(newProps)
+      const curStep = Math.ceil(val / step) * step
+      text.value = curStep
+      if (val % step === 0) {
+        emit('update:value', curStep)
+        emit('change', curStep)
+      }
+      inputNumberRef.value.blur()
+      window && window.requestAnimationFrame(() => {
+        inputNumberRef.value.focus()
+      })
+    }, 900)
 
     watch(
       () => text.value,
       (val, oldVal) => {
+        const { stepStrictly } = unref(newProps)
         prevVal.value = oldVal
         // console.log('val !!==', val, oldVal, val !== '');
         // @ts-ignore
@@ -111,8 +130,12 @@ export default defineComponent({
           if (disabled) {
             return false
           }
-          emit('update:value', val)
-          emit('change', val)
+          if (stepStrictly) {
+            debounceStepStrictly()
+          } else {
+            emit('update:value', val)
+            emit('change', val)
+          }
         }
       },
       { deep: true }

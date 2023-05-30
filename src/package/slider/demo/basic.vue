@@ -8,11 +8,13 @@
     <ScSlider
       :showMinMaxMarker="true"
       :inputNumberOptions="{
-        placeholder: '请输入'
+        placeholder: '请输入',
+        stepStrictly: true
       }"
       :max="obj1.max"
       :min="obj1.min"
       :interval="20"
+      :step="20"
       v-model:value="valueRef.size"
       @change="handleChange"
       isShowNextUnit
@@ -55,11 +57,12 @@ const handleChange = (val:number) => {
 }
 
 const obj1 = reactive({
-  max: undefined,
-  min: undefined
+  max: 200,
+  min: 0
 })
 
 const valueRef = reactive({
+  size: 20
 })
 
 const handleMin = () => {
@@ -71,10 +74,10 @@ const handleMin = () => {
   }, 500)
 }
 
-setTimeout(() => {
-  obj1.min = 20
-  obj1.max = 500
-}, 500)
+// setTimeout(() => {
+//   obj1.min = 20
+//   obj1.max = 500
+// }, 500)
 
 const handleChange1 = (val:number) => {
   console.log('val: handleChange1', val);

@@ -25,6 +25,7 @@ export const props = () => ({
   },
   // 'large' | 'small'
   size: String,
+  stepStrictly: Boolean,
   step: {
     type: Number,
     default: 1
