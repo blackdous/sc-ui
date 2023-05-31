@@ -165,11 +165,11 @@ export default defineComponent({
     const handleBlur = (event:Event) => {
       const { stepStrictly } = unref(newProps)
       if (stepStrictly) {
-        // console.log('stepStrictly: ', stepStrictly);
         // console.log('isBlur.value: ', isBlur.value);
         if (!isBlur.value) {
-          isBlur.value = false
           debounceStepStrictly()
+        } else {
+          isBlur.value = false
         }
       } else {
         // @ts-ignore
