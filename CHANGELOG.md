@@ -1,4 +1,25 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.118...0.0.2) (2023-05-26)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.120...0.0.2) (2023-05-31)
+
+
+
+## [0.0.120](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.119...0.0.120) (2023-05-31)
+
+
+### Features
+
+* scSlider 组件 stepStrictly: true 失焦后校验步进器的值 ([cb9aaf2](http://gitlab.voneyun.com/frontend/sc-ui/commit/cb9aaf2843fca68e5cbdf62f6dc93b282279ca69))
+
+
+
+## [0.0.119](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.118...0.0.119) (2023-05-31)
+
+
+### Features
+
+* 调整 滚动条 样式  调整ScSlider ([31a2686](http://gitlab.voneyun.com/frontend/sc-ui/commit/31a2686f1cc639ae2bcac79792cd033b060fe419))
+* 调整 ScInputNumber 自动 失焦事件 监听 ([3f8053a](http://gitlab.voneyun.com/frontend/sc-ui/commit/3f8053a134d0bb33544d59ee2722c43565147503))
+* 根据最新 设计规范 修改 组件样式 ([b63a001](http://gitlab.voneyun.com/frontend/sc-ui/commit/b63a001d627776754bfb94366e7fb7161255537d))
+* scInputNumber 组件 新增 stepStrictly 属性, 输入 900ms 之后校验 是否为 step 的正整数倍数 ([8108417](http://gitlab.voneyun.com/frontend/sc-ui/commit/81084179cdc0c5566179c1c1059e58221ef6fd64))
 
 
 

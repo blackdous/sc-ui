@@ -6,6 +6,39 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.120](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.119...0.0.120) (2023-05-31)
+
+### Features
+
+* scSlider 组件 stepStrictly: true 失焦后校验步进器的值 ([cb9aaf2](http://gitlab.voneyun.com/frontend/sc-ui/commit/cb9aaf2843fca68e5cbdf62f6dc93b282279ca69))
+
+## [0.0.119](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.118...0.0.119) (2023-05-31)
+
+### Features
+
+* 调整 滚动条 样式  调整ScSlider ([31a2686](http://gitlab.voneyun.com/frontend/sc-ui/commit/31a2686f1cc639ae2bcac79792cd033b060fe419))
+* 调整 ScInputNumber 自动 失焦事件 监听 ([3f8053a](http://gitlab.voneyun.com/frontend/sc-ui/commit/3f8053a134d0bb33544d59ee2722c43565147503))
+* 根据最新 设计规范 修改 组件样式 ([b63a001](http://gitlab.voneyun.com/frontend/sc-ui/commit/b63a001d627776754bfb94366e7fb7161255537d))
+* scInputNumber 组件 新增 stepStrictly 属性, 输入 900ms 之后校验 是否为 step 的正整数倍数 ([8108417](http://gitlab.voneyun.com/frontend/sc-ui/commit/81084179cdc0c5566179c1c1059e58221ef6fd64))
+
+## [0.0.118](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.117...0.0.118) (2023-05-26)
+
+### Features
+
+* 调整modal btns默认为居中 ([2c2bc79](http://gitlab.voneyun.com/frontend/sc-ui/commit/2c2bc79d50ec5309e0d5f07e1acf22e7c68f2071))
+
+## [0.0.117](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.116...0.0.117) (2023-05-26)
+
+### Bug Fixes
+
+* datePickerRange 第一次选中 为当前时间 ([a254f8a](http://gitlab.voneyun.com/frontend/sc-ui/commit/a254f8a4ae4b84aaa565d39195faa106674cf00a))
+
+## [0.0.116](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.115...0.0.116) (2023-05-26)
+
+### Bug Fixes
+
+* 调整 样式 ([5e16752](http://gitlab.voneyun.com/frontend/sc-ui/commit/5e16752cab3bab5a488b579c9775048eed554d56))
+
 ## [0.0.115](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.114...0.0.115) (2023-05-26)
 
 ### Features
@@ -369,7 +402,7 @@ realPath: src/package/changelog/index.zh-CN.md
 
 ### Features
 
-  * - table 创建按钮新增loading状态; table actionProps 中的 tooltipDes 支持 方法，并且 data更新 触发 tooltipDes 方法执行; InputNumber、ScSlider 中的 InputNumber 组件 过滤非Number 触发change; ScSteps 组件新增 changeIndex 事件 ([126cad7](http://gitlab.voneyun.com/frontend/sc-ui/commit/126cad7b92364193048f3b3d218416b3fe09e1fe))
+* - table 创建按钮新增loading状态; table actionProps 中的 tooltipDes 支持 方法，并且 data更新 触发 tooltipDes 方法执行; InputNumber、ScSlider 中的 InputNumber 组件 过滤非Number 触发change; ScSteps 组件新增 changeIndex 事件 ([126cad7](http://gitlab.voneyun.com/frontend/sc-ui/commit/126cad7b92364193048f3b3d218416b3fe09e1fe))
 * 0.0.69版本 ([f8a8c25](http://gitlab.voneyun.com/frontend/sc-ui/commit/f8a8c25fc88d4e0dcdc2843d46c20288566d77d0))
 
 ## [0.0.68](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.67...0.0.68) (2023-02-14)
