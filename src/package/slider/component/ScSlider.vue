@@ -105,6 +105,7 @@
       :step="newProps.step"
       :disabled="newProps.disabled"
       v-bind="newProps?.inputNumberOptions"
+      @blur="handleBlur"
     >
       <!-- @change="handleInputNumberChange" -->
       <!-- @pressEnter="handleChange" -->
@@ -144,7 +145,7 @@ export default defineComponent({
     Tooltip,
     ScInputNumber
   },
-  emits: ['change', 'update:value'],
+  emits: ['change', 'update:value', 'blur'],
   setup (props, { slots, attrs, emit }) {
     const valueRef = ref(props.value)
     const valueSliderRef = ref(props.value)
@@ -222,6 +223,10 @@ export default defineComponent({
     const handleChange = (val:any) => {
       valueRef.value = val
     }
+
+    const handleBlur = (event: Event) => {
+      emit('blur', event)
+    }
     
     return {
       baseClass,
@@ -238,6 +243,7 @@ export default defineComponent({
       isVNode,
       getIcon,
       handleChange,
+      handleBlur
       // handleInputNumberChange
     }
   }

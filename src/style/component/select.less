@@ -90,7 +90,7 @@ div.ant-select-dropdown {
     // line-height: 28px;
     padding: 0;
     .ant-select-item-option-content {
-      margin: 0 10px 0 6px;
+      margin: 0 14px 0 6px;
       padding: 4px 8px;
       border-radius: @border-r-3;
     }
@@ -250,12 +250,13 @@ div.ant-select-dropdown {
   }
   &-prefix {
     position: absolute;
-    left: 8px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 16px;
     line-height: 30px;
     z-index: 1;
+    pointer-events: none;
   }
   &.is-disabled {
     .@{selectScope}-prefix {

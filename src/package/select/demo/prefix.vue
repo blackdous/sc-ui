@@ -7,9 +7,22 @@
         class="test11"
       >
         <template #prefixIcon>
-          <i class="sc-ui sc-tiaozhuan" style="color: rgba(0,0,0,.4)"></i>
-          <span style="font-size: 14px;color: rgba(0,0,0,.6)">
-            你好啊:
+          <i class="sc-ui sc-tiaozhuan" style="color: rgba(0,0,0,.4); font-size: 14px;"></i>
+          <span style="font-size: 14px;color: rgba(0,0,0,.6);padding-left: 2px;">
+            标题
+          </span>
+        </template>
+      </ScSelect>
+    </div>
+    <div class="ml20">
+      <ScSelect
+        v-model:value="value"
+        :options="options"
+        class="test11"
+      >
+        <template #prefixIcon>
+          <span style="font-size: 14px;color: rgba(0,0,0,.6);padding-left: 2px;">
+            账单类型
           </span>
         </template>
       </ScSelect>

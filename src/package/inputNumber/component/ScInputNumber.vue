@@ -56,7 +56,6 @@ export default defineComponent({
     const text = ref(0)
     const inputNumberRef = ref()
     const prevVal = ref()
-    const isBlur = ref(false)
 
     const maxDisabled = computed(() => {
       return text.value >= props.max
@@ -123,8 +122,8 @@ export default defineComponent({
         // console.log('val !!==', val, oldVal, val !== '');
         // @ts-ignore
         if (val !== '' && val !== null) {
-          const { max, min, disabled } = newProps.value
-          if (!isNumber(val) || val > max || min > val) {
+          const { max, disabled } = newProps.value
+          if (!isNumber(val) || val > max) {
             return false
           }
           if (disabled) {
@@ -156,11 +155,12 @@ export default defineComponent({
       }
     }
 
-    const handleBlur = () => {
+    const handleBlur = (event:Event) => {
       // @ts-ignore
       if (text.value === '' || text.value === null) {
         text.value = prevVal.value
       }
+      emit('blur', event)
     }
 
     onMounted(() => {

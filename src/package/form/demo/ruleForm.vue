@@ -215,11 +215,12 @@
         register,
         { validateFields, clearValidate, getFieldsValue, resetFields, setFieldsValue },
       ] = useForm({
-        labelWidth: 120,
+        labelWidth: 130,
         schemas,
         labelAlign: 'left',
         actionColOptions: {
           span: 24,
+          offset: 1
         },
       });
       async function validateForm() {

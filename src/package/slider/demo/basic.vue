@@ -17,6 +17,7 @@
       :step="20"
       v-model:value="valueRef.size"
       @change="handleChange"
+      @blur="handleBlur"
       isShowNextUnit
     >
     </ScSlider>
@@ -83,6 +84,11 @@ const handleChange1 = (val:number) => {
   console.log('val: handleChange1', val);
   valueRef1.value = val
   // console.log('val: handleChange', val);
+}
+
+const handleBlur = (event:any) => {
+  console.log('event: ', event);
+
 }
 </script>
 <style scoped>

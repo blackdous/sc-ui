@@ -12,6 +12,23 @@
     .ant-switch-inner {
       margin-right: 19px;
       margin-left: 3px;
+      & > .anticon-check {
+        & > svg {
+          display: none;
+        }
+        &::after {
+          content: "\e682";
+          font-family: "sc-ui" !important;
+          font-size: 16px;
+          font-style: normal;
+          color: @white-color;
+          -webkit-font-smoothing: antialiased;
+          position: absolute;
+          left: 1px;
+          line-height: 16px;
+          top: 1px;
+        }
+      }
     }
   }
   &-inner {
@@ -19,6 +36,8 @@
     margin-left: 19px;
     & > .anticon-close {
       &::after {
+        content: '\e683';
+        left: -2px;
         color: @white-color;
       }
     }

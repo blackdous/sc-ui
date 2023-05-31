@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "35742386",
+      "name": "开关_开启icon",
+      "font_class": "kaiguan_kaiqiicon",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "35742387",
+      "name": "开关_关闭icon",
+      "font_class": "kaiguan_guanbiicon",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
       "icon_id": "35711844",
       "name": "add数字输入框",
       "font_class": "add2",

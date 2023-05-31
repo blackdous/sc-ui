@@ -84,7 +84,9 @@ export interface Infos {
 }
 
 export interface InputNumberOptions {
-  placeholder?: ''
+  placeholder?: string
+  readonly?: boolean
+  stepStrictly?: boolean
 }
 
 ```

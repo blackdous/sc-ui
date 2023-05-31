@@ -56,6 +56,8 @@ map:
 | mode      | `Mode`                                                 | 'bothSides'  |  'bothSides'、'internal'     | 用于切换 + 、- 交互模式 |
 | size      | `Size`                                                 | 'default'  |  'large'、'default'、'small'     | 用于控制组件大小 |
 | showControl      |  boolean                                               | -  |      -     |  是否显示控制按钮  |
+| readonly      |  boolean                                               | -  |      -     |  是否可以输入  |
+|  stepStrict     |  boolean                                               | -  |      -     |  900ms后校验 输入的值是否为step 正整倍数  |
 
 ```ts
 type Mode = 'bothSides' | 'internal' 

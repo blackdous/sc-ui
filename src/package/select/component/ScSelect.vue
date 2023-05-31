@@ -146,7 +146,7 @@ export default defineComponent({
 
       nextTick(() => {
         const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
-        prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 12) || 0))
+        prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 24) || 0))
       })
     })
 
