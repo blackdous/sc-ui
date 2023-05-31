@@ -151,7 +151,7 @@ export default defineComponent({
     const valueSliderRef = ref(props.value)
     const uuid = basePrefixCls + buildUUID()
     const baseClass = basePrefixCls+'Slider'
-    const formItemContext = useInjectFormItemContext();
+    const formItemContext = useInjectFormItemContext()
 
     const newProps = computed(() => {
       return {

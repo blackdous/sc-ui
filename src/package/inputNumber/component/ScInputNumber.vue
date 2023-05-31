@@ -56,6 +56,7 @@ export default defineComponent({
     const text = ref(0)
     const inputNumberRef = ref()
     const prevVal = ref()
+    const isBlur = ref(false)
 
     const maxDisabled = computed(() => {
       return text.value >= props.max
@@ -108,9 +109,11 @@ export default defineComponent({
         emit('update:value', curStep)
         emit('change', curStep)
       }
+      isBlur.value = true
       inputNumberRef.value.blur()
       window && window.requestAnimationFrame(() => {
         inputNumberRef.value.focus()
+        isBlur.value = false
       })
     }, 900)
 
@@ -160,7 +163,9 @@ export default defineComponent({
       if (text.value === '' || text.value === null) {
         text.value = prevVal.value
       }
-      emit('blur', event)
+      if (!isBlur.value) {
+        emit('blur', event)
+      }
     }
 
     onMounted(() => {
