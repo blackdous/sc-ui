@@ -6,7 +6,14 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
-## [0.0.121](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.119...0.0.121) (2023-05-31)
+## [0.0.121](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.120...0.0.121) (2023-05-31)
+
+### Bug Fixes
+
+* 更新 ScSlider 步进器问题 ([0c4c95f](http://gitlab.voneyun.com/frontend/sc-ui/commit/0c4c95f3ebf4d0e24cc0fcb906415da4d8665e17))
+* scSlider 步进器问题 ([61707ae](http://gitlab.voneyun.com/frontend/sc-ui/commit/61707ae37050c31a16f526466ea3c29ec7f67d2b))
+
+## [0.0.120](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.119...0.0.120) (2023-05-31)
 
 ### Features
 
