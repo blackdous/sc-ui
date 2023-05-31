@@ -96,3 +96,5 @@ export interface InputNumberOptions {
 | 事件名称 | 说明                 | 回调参数                | 版本 |
 | -------- | -------------------- | ----------------------- | ---- |
 | change    | 拖拽、输入时触发 | (e: val) => void | -    |
+| blur    | ScInputNumber 组件 失焦事件 | (e: val) => void | -    |
+| focus    | ScInputNumber 组件 聚焦事件 | (e: val) => void | -    |

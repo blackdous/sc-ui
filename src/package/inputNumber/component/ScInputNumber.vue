@@ -17,6 +17,7 @@
       :max="max"
       v-bind="vBind"
       @blur="handleBlur"
+      @focus="handleFocus"
     />
       <!-- @keydown.enter.prevent="handlePressEnter" -->
     <Button
@@ -49,7 +50,7 @@ export default defineComponent({
     InputNumber,
     Button,
   },
-  emits: ['change', 'update:value', 'blur'],
+  emits: ['change', 'update:value', 'blur', 'focus'],
   setup(props, { emit, attrs, expose }) {
 
     const baseClass = basePrefixCls + 'InputNumber'
@@ -162,6 +163,11 @@ export default defineComponent({
       }
     }
 
+    const handleFocus = () => {
+      isBlur.value = false
+      emit('focus')
+    }
+
     const handleBlur = (event:Event) => {
       const { stepStrictly } = unref(newProps)
       if (stepStrictly) {
@@ -218,7 +224,8 @@ export default defineComponent({
       vBind,
       inputNumberRef,
       changeVal,
-      handleBlur
+      handleBlur,
+      handleFocus
       // handlePressEnter
     }
   }
