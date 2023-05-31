@@ -3,7 +3,7 @@
     <Button
       v-if="newProps.showControl"
       :class="[baseClass+'-btn']"
-      @click="changeVal('reduce')"
+      @mousedown="changeVal('reduce')"
       :disabled="newProps.disabled || minDisabled"
       :size="newProps.size"
     >
@@ -22,7 +22,7 @@
     <Button
       v-if="newProps.showControl"
       :class="[baseClass+'-btn']"
-      @click="changeVal('add')"
+      @mousedown="changeVal('add')"
       :disabled="newProps.disabled || maxDisabled"
     >
       <i class="sc-ui sc-add2"></i>
@@ -34,12 +34,12 @@
 
 import { ref, watch, computed, defineComponent, onMounted, nextTick, unref } from 'vue'
 import { InputNumber, Button } from 'ant-design-vue'
-import lodash from 'lodash'
+// import lodash from 'lodash'
 import { basePrefixCls } from '../../../constant'
 import { props } from './type'
 import { isNumber } from '../../../utils'
 
-const { debounce } = lodash
+// const { debounce } = lodash
 
 export default defineComponent({
   name: 'ScInputNumber',
@@ -56,7 +56,7 @@ export default defineComponent({
     const text = ref(0)
     const inputNumberRef = ref()
     const prevVal = ref()
-    // const isBlur = ref(false)
+    const isBlur = ref(false)
 
     const maxDisabled = computed(() => {
       return text.value >= props.max
@@ -100,7 +100,7 @@ export default defineComponent({
       },
       { deep: true, immediate: true }
     )
-    const debounceStepStrictly = debounce(() => {
+    const debounceStepStrictly = () => {
       const val = text.value
       // console.log('text.value: ', text.value, val)
       const { step, min } = unref(newProps)
@@ -108,7 +108,7 @@ export default defineComponent({
       text.value = curStep
       emit('update:value', curStep || min)
       emit('change', curStep || min)
-    }, 200)
+    }
 
     watch(
       () => text.value,
@@ -138,6 +138,11 @@ export default defineComponent({
     
 
     const changeVal = (type: any) => {
+      const { stepStrictly, min } = unref(newProps)
+      if (stepStrictly) {
+        isBlur.value = true
+        debounceStepStrictly()
+      }
       if (type === 'add') {
         text.value += props.step || 1
         if (text.value > props.max) {
@@ -149,12 +154,23 @@ export default defineComponent({
           text.value = props.min
         }
       }
+      if (stepStrictly) {
+        // console.log('text.value: ', text.value);
+        emit('update:value', text.value || min)
+        emit('change', text.value || min)
+        inputNumberRef.value.blur()
+      }
     }
 
     const handleBlur = (event:Event) => {
       const { stepStrictly } = unref(newProps)
       if (stepStrictly) {
-        debounceStepStrictly()
+        // console.log('stepStrictly: ', stepStrictly);
+        // console.log('isBlur.value: ', isBlur.value);
+        if (!isBlur.value) {
+          isBlur.value = false
+          debounceStepStrictly()
+        }
       } else {
         // @ts-ignore
         if (text.value === '' || text.value === null) {
