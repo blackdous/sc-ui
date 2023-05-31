@@ -9,7 +9,6 @@
       :showMinMaxMarker="true"
       :inputNumberOptions="{
         placeholder: '请输入',
-        stepStrictly: true
       }"
       :max="obj1.max"
       :min="obj1.min"
