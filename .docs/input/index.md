@@ -46,6 +46,15 @@ realPath: src/package/input/index.zh-CN.md
   >
 </demo>
 
+## prefix
+
+<demo src="./demo/prefix.vue"
+  language="vue"
+  title="prefix"
+  desc="prefix"
+  >
+</demo>
+
 ## 组件状态
 
 ### 基础状态
