@@ -6,7 +6,13 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
-## [0.0.122](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.120...0.0.122) (2023-05-31)
+## [0.0.122](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.121...0.0.122) (2023-05-31)
+
+### Bug Fixes
+
+* scInputNumber 组件 修改聚焦事件 ([1f3784d](http://gitlab.voneyun.com/frontend/sc-ui/commit/1f3784d41f0492b2c6bb60ad4d897075256fef6d))
+
+## [0.0.121](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.120...0.0.121) (2023-05-31)
 
 ### Bug Fixes
 

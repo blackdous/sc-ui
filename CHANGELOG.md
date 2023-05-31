@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.121...0.0.2) (2023-05-31)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.122...0.0.2) (2023-05-31)
+
+
+
+## [0.0.122](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.121...0.0.122) (2023-05-31)
+
+
+### Bug Fixes
+
+* scInputNumber 组件 修改聚焦事件 ([1f3784d](http://gitlab.voneyun.com/frontend/sc-ui/commit/1f3784d41f0492b2c6bb60ad4d897075256fef6d))
 
 
 
@@ -7,7 +16,7 @@
 
 ### Bug Fixes
 
-* 更新 ScSlider 步进器问题 ([0c4c95f](http://gitlab.voneyun.com/frontend/sc-ui/commit/0c4c95f3ebf4d0e24cc0fcb906415da4d8665e17))
+* 更显 ScSlider 步进器问题 ([0c4c95f](http://gitlab.voneyun.com/frontend/sc-ui/commit/0c4c95f3ebf4d0e24cc0fcb906415da4d8665e17))
 * scSlider 步进器问题 ([61707ae](http://gitlab.voneyun.com/frontend/sc-ui/commit/61707ae37050c31a16f526466ea3c29ec7f67d2b))
 
 
