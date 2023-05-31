@@ -56,7 +56,7 @@ export default defineComponent({
     const text = ref(0)
     const inputNumberRef = ref()
     const prevVal = ref()
-    const isBlur = ref(false)
+    // const isBlur = ref(false)
 
     const maxDisabled = computed(() => {
       return text.value >= props.max
@@ -102,27 +102,20 @@ export default defineComponent({
     )
     const debounceStepStrictly = debounce(() => {
       const val = text.value
-      const { step } = unref(newProps)
+      // console.log('text.value: ', text.value, val)
+      const { step, min } = unref(newProps)
       const curStep = Math.ceil(val / step) * step
       text.value = curStep
-      if (val % step === 0) {
-        emit('update:value', curStep)
-        emit('change', curStep)
-      }
-      isBlur.value = true
-      inputNumberRef.value.blur()
-      window && window.requestAnimationFrame(() => {
-        inputNumberRef.value.focus()
-        isBlur.value = false
-      })
-    }, 900)
+      emit('update:value', curStep || min)
+      emit('change', curStep || min)
+    }, 200)
 
     watch(
       () => text.value,
       (val, oldVal) => {
         const { stepStrictly } = unref(newProps)
+        // console.log('stepStrictly: ', stepStrictly);
         prevVal.value = oldVal
-        // console.log('val !!==', val, oldVal, val !== '');
         // @ts-ignore
         if (val !== '' && val !== null) {
           const { max, disabled } = newProps.value
@@ -133,7 +126,7 @@ export default defineComponent({
             return false
           }
           if (stepStrictly) {
-            debounceStepStrictly()
+            // debounceStepStrictly()
           } else {
             emit('update:value', val)
             emit('change', val)
@@ -159,13 +152,16 @@ export default defineComponent({
     }
 
     const handleBlur = (event:Event) => {
-      // @ts-ignore
-      if (text.value === '' || text.value === null) {
-        text.value = prevVal.value
+      const { stepStrictly } = unref(newProps)
+      if (stepStrictly) {
+        debounceStepStrictly()
+      } else {
+        // @ts-ignore
+        if (text.value === '' || text.value === null) {
+          text.value = prevVal.value
+        }
       }
-      if (!isBlur.value) {
-        emit('blur', event)
-      }
+      emit('blur', event)
     }
 
     onMounted(() => {

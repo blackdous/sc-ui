@@ -4,6 +4,25 @@
       更新
     </ScButton>
   </div>
+  <!-- <div class="mb20">
+    <div>stepStrictly: true</div>
+    <ScSlider
+      :showMinMaxMarker="true"
+      :inputNumberOptions="{
+        placeholder: '请输入',
+        stepStrictly: true
+      }"
+      :max="obj1.max"
+      :min="obj1.min"
+      :interval="20"
+      :step="20"
+      v-model:value="valueRef.size"
+      @change="handleChange"
+      @blur="handleBlur"
+      isShowNextUnit
+    >
+    </ScSlider>
+  </div> -->
   <div class="mb20">
     <ScSlider
       :showMinMaxMarker="true"
