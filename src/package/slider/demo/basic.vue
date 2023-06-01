@@ -28,6 +28,7 @@
       :showMinMaxMarker="true"
       :inputNumberOptions="{
         placeholder: '请输入',
+        stepStrictly: true
       }"
       dotCircle
       :max="obj1.max"
@@ -41,7 +42,7 @@
     >
     </ScSlider>
   </div>
-  <div class="mb20">
+  <!-- <div class="mb20">
     <ScSlider
       :showMinMaxMarker="true"
       :inputNumberOptions="{
@@ -64,7 +65,7 @@
       @change="handleChange1"
     >
     </ScSlider>
-  </div>
+  </div> -->
 </template>
 
 <script lang='ts' setup>

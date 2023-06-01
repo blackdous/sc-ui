@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.122...0.0.2) (2023-05-31)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.123...0.0.2) (2023-06-01)
+
+
+
+## [0.0.123](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.122...0.0.123) (2023-06-01)
+
+
+### Bug Fixes
+
+* scSlider 组件 内部 ScInputNumber 组件调整 ([eb5044c](http://gitlab.voneyun.com/frontend/sc-ui/commit/eb5044cbab1612af6e9839a4986d56b61daa7b5a))
 
 
 

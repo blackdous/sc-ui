@@ -67,6 +67,7 @@ export default defineComponent({
     })
 
     const newProps = computed(() => {
+      // console.log('props: ', props)
       return props
     })
 
@@ -159,7 +160,7 @@ export default defineComponent({
         }
       }
       if (stepStrictly) {
-        console.log('text.value: ', Math.max(text.value, min));
+        // console.log('text.value: ', Math.max(text.value, min), text.value, min);
         emit('update:value', Math.max(text.value, min))
         emit('change', Math.max(text.value, min))
         inputNumberRef.value.blur()
@@ -172,11 +173,12 @@ export default defineComponent({
     }
 
     const handleBlur = (event:Event) => {
-      const { stepStrictly } = unref(newProps)
+      const { stepStrictly, min } = unref(newProps)
       if (stepStrictly) {
         // console.log('isBlur.value: ', isBlur.value);
         if (!isBlur.value) {
           debounceStepStrictly(false)
+          text.value = Math.max(text.value, min)
         } else {
           isBlur.value = false
         }
