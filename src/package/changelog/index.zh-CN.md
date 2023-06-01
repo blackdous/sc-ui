@@ -5,6 +5,12 @@ map:
 
 # 变更记录
 
+## [0.0.124](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.123...0.0.124) (2023-06-01)
+
+### Bug Fixes
+
+* scSlider 最小值 校验 修改 ([45d68a9](http://gitlab.voneyun.com/frontend/sc-ui/commit/45d68a900ff7bee47fc1148261782bc2fb9d86e4))
+
 ## [0.0.123](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.122...0.0.123) (2023-06-01)
 
 ### Bug Fixes
