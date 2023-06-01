@@ -42,7 +42,7 @@
     >
     </ScSlider>
   </div>
-  <!-- <div class="mb20">
+  <div class="mb20">
     <ScSlider
       :showMinMaxMarker="true"
       :inputNumberOptions="{
@@ -65,7 +65,7 @@
       @change="handleChange1"
     >
     </ScSlider>
-  </div> -->
+  </div>
 </template>
 
 <script lang='ts' setup>
@@ -83,7 +83,7 @@ const obj1 = reactive({
 })
 
 const valueRef = reactive({
-  size: 150
+  size: 50
 })
 
 watch(() => valueRef.size, (val) => {

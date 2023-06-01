@@ -17,7 +17,7 @@ map:
   >
 </demo>
 
-<!-- ## disabled
+## disabled
 
 <demo src="./demo/disabled.vue"
   language="vue"
@@ -96,4 +96,4 @@ export interface InputNumberOptions {
 | -------- | -------------------- | ----------------------- | ---- |
 | change    | 拖拽、输入时触发 | (e: val) => void | -    |
 | blur    | ScInputNumber 组件 失焦事件 | (e: val) => void | -    |
-| focus    | ScInputNumber 组件 聚焦事件 | (e: val) => void | -    | -->
+| focus    | ScInputNumber 组件 聚焦事件 | (e: val) => void | -    |
