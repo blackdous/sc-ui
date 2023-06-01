@@ -28,12 +28,12 @@
       :showMinMaxMarker="true"
       :inputNumberOptions="{
         placeholder: '请输入',
-        stepStrictly: true
       }"
+      dotCircle
       :max="obj1.max"
       :min="obj1.min"
-      :interval="20"
-      :step="20"
+      :interval="50"
+      :step="50"
       v-model:value="valueRef.size"
       @change="handleChange"
       @blur="handleBlur"
@@ -68,7 +68,7 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import { ScSlider, ScButton } from 'sc-ui'
 // const valueRef = ref(12)
 const valueRef1 = ref(13)
@@ -77,12 +77,16 @@ const handleChange = (val:number) => {
 }
 
 const obj1 = reactive({
-  max: 200,
-  min: 0
+  max: 500,
+  min: 150
 })
 
 const valueRef = reactive({
-  size: 20
+  size: 150
+})
+
+watch(() => valueRef.size, (val) => {
+  console.log('val: ', val);
 })
 
 const handleMin = () => {

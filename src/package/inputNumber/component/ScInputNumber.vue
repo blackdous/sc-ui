@@ -101,14 +101,17 @@ export default defineComponent({
       },
       { deep: true, immediate: true }
     )
-    const debounceStepStrictly = () => {
+    const debounceStepStrictly = (isClick: boolean) => {
       const val = text.value
       // console.log('text.value: ', text.value, val)
       const { step, min } = unref(newProps)
       const curStep = Math.ceil(val / step) * step
       text.value = curStep
-      emit('update:value', curStep || min)
-      emit('change', curStep || min)
+      if (!isClick) {
+        emit('update:value', Math.max(text.value, min))
+        emit('change', curStep || min)
+      }
+      // console.log('text.value: ', Math.max(text.value, min))
     }
 
     watch(
@@ -141,8 +144,8 @@ export default defineComponent({
     const changeVal = (type: any) => {
       const { stepStrictly, min } = unref(newProps)
       if (stepStrictly) {
-        isBlur.value = true
-        debounceStepStrictly()
+        // isBlur.value = true
+        debounceStepStrictly(true)
       }
       if (type === 'add') {
         text.value += props.step || 1
@@ -156,9 +159,9 @@ export default defineComponent({
         }
       }
       if (stepStrictly) {
-        // console.log('text.value: ', text.value);
-        emit('update:value', text.value || min)
-        emit('change', text.value || min)
+        console.log('text.value: ', Math.max(text.value, min));
+        emit('update:value', Math.max(text.value, min))
+        emit('change', Math.max(text.value, min))
         inputNumberRef.value.blur()
       }
     }
@@ -173,7 +176,7 @@ export default defineComponent({
       if (stepStrictly) {
         // console.log('isBlur.value: ', isBlur.value);
         if (!isBlur.value) {
-          debounceStepStrictly()
+          debounceStepStrictly(false)
         } else {
           isBlur.value = false
         }
