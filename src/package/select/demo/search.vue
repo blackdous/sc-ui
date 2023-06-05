@@ -31,7 +31,7 @@
     </ScSelect>
   </div>
   <div class="mt20">
-    <Select
+    <ScSelect
       class="customSelect"
       v-model:value="value"
       :options="list"
@@ -39,7 +39,7 @@
       :show-arrow="false"
       @change="handleChange"
     >
-    </Select>
+    </ScSelect>
   </div>
   <div class="mt20">
     <Select
