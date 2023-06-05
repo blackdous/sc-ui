@@ -84,6 +84,7 @@ specifiers:
   vue-slider-component: 4.1.0-beta.7
   vue-tsc: ^1.0.9
   vue-types: ^4.2.1
+  vue3-useanimations: ^0.0.17
   windicss: ^3.5.6
 
 dependencies:
@@ -172,6 +173,7 @@ devDependencies:
   vue-slider-component: 4.1.0-beta.7
   vue-tsc: 1.0.9
   vue-types: 4.2.1_vue@3.2.25
+  vue3-useanimations: 0.0.17
   windicss: 3.5.6
 
 packages:
@@ -1272,7 +1274,7 @@ packages:
   /@simonwep/pickr/1.8.2:
     resolution: {integrity: sha512-/l5w8BIkrpP6n1xsetx9MWPWlU6OblN5YgZZphxan0Tq4BByTCETL6lyIeY8lagalS2Nbt4F2W034KHLIiunKA==}
     dependencies:
-      core-js: 3.26.0
+      core-js: 3.30.2
       nanopop: 2.2.0
     dev: true
 
@@ -3228,6 +3230,11 @@ packages:
 
   /core-js/3.26.0:
     resolution: {integrity: sha512-+DkDrhoR4Y0PxDz6rurahuB+I45OsEUv8E1maPTB6OuHRohMMcznBq9TMpdpDMm/hUPob/mJJS3PqgbHpMTQgw==}
+    requiresBuild: true
+    dev: true
+
+  /core-js/3.30.2:
+    resolution: {integrity: sha512-uBJiDmwqsbJCWHAwjrx3cvjbMXP7xD72Dmsn5LOJpiRmE3WbBbN5rCqQ2Qh6Ek6/eOrjlWngEynBWo4VxerQhg==}
     requiresBuild: true
     dev: true
 
@@ -6544,7 +6551,6 @@ packages:
 
   /lottie-web/5.11.0:
     resolution: {integrity: sha512-9vSt0AtdOH98GKDXwD5LPfFg9Pcmxt5+1BllAbudKM5iqPxpJnJUfuGaP45OyudDrESCOBgsjnntVUTygBNlzw==}
-    dev: false
 
   /loupe/2.3.5:
     resolution: {integrity: sha512-KNGVjhsXDxvY/cYE8GNi7SBaJSfJIT+/+/8GlprqBXpoU6cSR7/RT7OBJOsoYtyxq0L3q6oIcO8tX7dbEEXr3A==}
@@ -10262,6 +10268,13 @@ packages:
       '@vue/runtime-dom': 3.2.41
       '@vue/server-renderer': 3.2.41_vue@3.2.41
       '@vue/shared': 3.2.41
+    dev: true
+
+  /vue3-useanimations/0.0.17:
+    resolution: {integrity: sha512-Fh8UQ7sfF8wCXpp+vLa66QdEw/cA3KTc3141Qf3IkxAsNUCjGDE7LqXIhZskj8YkqZBMlgTt5HkmB3DeVgTO0g==}
+    dependencies:
+      core-js: 3.30.2
+      lottie-web: 5.11.0
     dev: true
 
   /warning/4.0.3:
