@@ -90,10 +90,11 @@ div.ant-select-dropdown {
     // line-height: 28px;
     padding: 0;
     .ant-select-item-option-content {
-      margin: 0 14px 0 6px;
+      margin: 0 6px 0 6px;
       padding: 4px 8px;
       border-radius: @border-r-3;
     }
+    
     border-radius: @border-r-3;
     color: @heading-color;
     & + .ant-select-item {
@@ -160,6 +161,11 @@ div.ant-select-dropdown {
       .ant-select-item-option-content {
         padding:0 8px;
       }
+    }
+  }
+  &.isSelectScroll {
+    .ant-select-item-option-content {
+      margin: 0 10px 0 6px;
     }
   }
 }
@@ -287,6 +293,7 @@ div.ant-select-dropdown {
     }
   }
 }
+
 .@{scDropdownCheckbox}.ant-select-dropdown {
   .ant-select-item {
     position: relative;

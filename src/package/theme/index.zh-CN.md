@@ -3,7 +3,83 @@ map:
   path: /theme
 ---
 
-# 主题变量
+# less 公用样式
+
+## scrollbar 宽度
+
+```less
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+.scrollbar4::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+.scrollbar4::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/*定义滑块 内阴影+圆角*/
+.scrollbar4::-webkit-scrollbar-thumb {
+  width: 4px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+.scrollbar6::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+.scrollbar6::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/*定义滑块 内阴影+圆角*/
+.scrollbar6::-webkit-scrollbar-thumb {
+  width: 6px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.scrollbar8::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+.scrollbar8::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/*定义滑块 内阴影+圆角*/
+.scrollbar8::-webkit-scrollbar-thumb {
+  width: 8px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+```
+
+## 主题变量
 
 ```less
 

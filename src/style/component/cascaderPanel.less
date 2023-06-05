@@ -8,6 +8,12 @@
   font-style: normal;
   border-radius: @border-r-3;
   box-shadow: 0 2px 8px fade(@color-000, 26);
+  .scScrollbar-bar.is-vertical {
+    width: 4px;
+  }
+  .scScrollbar-bar.is-horizontal {
+    height: 4px;
+  }
   .@{cascaderScope} {
     &-menu {
       display: inline-block;
@@ -26,9 +32,14 @@
         position: relative;
         min-height: 100%;
         margin: 0;
-        padding: 4px 6px 4px 0;
+        padding: 4px 0 4px 0;
         list-style: none;
         box-sizing: border-box;
+        &.isVerticalScroll {
+          &:hover {
+            padding: 4px 4px 4px 0
+          }
+        }
       }
       &-hover-zone {
         width: 204px;

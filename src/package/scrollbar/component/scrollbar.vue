@@ -84,7 +84,12 @@ const wrapKls = computed(() => {
 })
 
 const resizeKls = computed(() => {
-  return [ baseClass + '-view', props.viewClass]
+  return [ 
+    baseClass + '-view', 
+    props.viewClass, 
+    sizeHeight.value ? 'isVerticalScroll' : '', 
+    sizeWidth.value ? 'isHorizontalScroll' : ''
+  ]
 })
 
 const handleScroll = () => {
@@ -132,23 +137,24 @@ const update = () => {
   if (!wrapRef.value) return
   const offsetHeight = wrapRef.value.offsetHeight - GAP
   const offsetWidth = wrapRef.value.offsetWidth - GAP
-
+  
   const originalHeight = offsetHeight ** 2 / wrapRef.value.scrollHeight
   const originalWidth = offsetWidth ** 2 / wrapRef.value.scrollWidth
   const height = Math.max(originalHeight, props.minSize)
   const width = Math.max(originalWidth, props.minSize)
-
+  
   ratioY.value =
-    originalHeight /
-    (offsetHeight - originalHeight) /
-    (height / (offsetHeight - height))
+  originalHeight /
+  (offsetHeight - originalHeight) /
+  (height / (offsetHeight - height))
   ratioX.value =
-    originalWidth /
-    (offsetWidth - originalWidth) /
-    (width / (offsetWidth - width))
-
+  originalWidth /
+  (offsetWidth - originalWidth) /
+  (width / (offsetWidth - width))
+  
   sizeHeight.value = height + GAP < offsetHeight ? `${height}px` : ''
   sizeWidth.value = width + GAP < offsetWidth ? `${width}px` : ''
+  // console.log('sizeHeight: ', sizeHeight.value);
 }
 
 watch(

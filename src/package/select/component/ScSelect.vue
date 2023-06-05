@@ -21,6 +21,7 @@
         v-model:value="initValue"
         :disabled="newProps.disabled"
         :dropdownClassName="dropdownClassName"
+        @dropdownVisibleChange="handleDropdownVisibleChange"
         >
         <!-- @change="handleChange" -->
         <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
@@ -108,7 +109,7 @@ export default defineComponent({
       }
     })    
     const dropdownClassName = computed(() => {
-      const dropdownClass = ['dropdown' + uuid, 'selectDropdown']
+      const dropdownClass = ['dropdown ' + uuid, 'scSelectDropdown', 'selectDropdown']
       if (attrs.size) {
         dropdownClass.push('dropdown-' + attrs.size)
       }
@@ -134,11 +135,24 @@ export default defineComponent({
     })
 
     const clearCall = (event: Event) => {
-        const isParent = findParentDom(event.target, 5, (dom) => { return String(dom.className).includes('clearSelect') ? dom : false })
-        if (isParent) {
-          emit('allowClear', initValue.value)
-        }
+      const isParent = findParentDom(event.target, 5, (dom) => { return String(dom.className).includes('clearSelect') ? dom : false })
+      if (isParent) {
+        emit('allowClear', initValue.value)
       }
+    }
+
+    const handleDropdownVisibleChange = (val:boolean) => {
+      if (val) {
+        setTimeout(() => {
+          const doc = document.querySelector(`.${uuid} .rc-virtual-list-scrollbar-show`)
+          if (doc) {
+            const docu = document.querySelector(`.${uuid}.selectDropdown`)
+            console.log('docu: ', docu?.className);
+            docu && (docu.className.includes('isSelectScroll') ? '' : docu.className = docu.className + ' isSelectScroll')
+          }
+        }, 200)
+      }
+    }
 
     onMounted(() => {
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
@@ -165,7 +179,8 @@ export default defineComponent({
       isClearIcon,
       dropdownClassName,
       vBind,
-      prefixWidth
+      prefixWidth,
+      handleDropdownVisibleChange
     }
   }
 })

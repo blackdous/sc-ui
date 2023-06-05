@@ -11,6 +11,7 @@
         :disabled="newProps.disabled"
         :dropdownClassName="dropdownClassName"
       >
+        <!-- @popupVisibleChange="handlePopupVisibleChange" -->
         <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
           <slot :name="item" v-bind="data || {}"></slot>
         </template> 
@@ -57,7 +58,6 @@ export default defineComponent({
   setup(props, { emit, slots, attrs }) {
     const baseClass = basePrefixCls + 'Cascader'
 
-    // const initValue = computed(() => props.value)
     const value = computed({
       get: () => {
         return props.value
@@ -66,6 +66,7 @@ export default defineComponent({
         emit('update:value', val)
       }
     })
+    
     const newProps = computed(() => {
       return props
     })
@@ -103,6 +104,9 @@ export default defineComponent({
     const isClearIcon = computed(() => {
       return Object.keys(slots).includes('clearIcon')
     })
+    // watch(() => value.value, (val:any) => {
+    //   console.log('val: ', val);
+    // })
     
     return {
       uuid,
@@ -114,6 +118,7 @@ export default defineComponent({
       isPrefixIcon,
       isClearIcon,
       dropdownClassName,
+      // handlePopupVisibleChange
       // handleChange
     }
   }
