@@ -112,6 +112,13 @@
 
 }
 
+.underline-dashed {
+  text-decoration: underline dashed;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
 .ellipsisText {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -129,6 +136,19 @@
       color: @primary-color;
     }
   }
+  &-text {
+    text-decoration: underline dashed;
+    text-decoration-thickness: from-font;
+    text-underline-offset: 4px;
+    cursor: pointer;
+  }
+}
+
+.tdTooltip {
+  text-decoration: underline dashed;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 4px;
+  cursor: pointer;
 }
 
 .unitTh {

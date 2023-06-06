@@ -13,7 +13,7 @@
 
 <script lang='ts' setup>
 import { ref } from 'vue'
-import { UseAnimations } from 'vue3-useanimations'
+import UseAnimations from 'vue3-useanimations'
 import radioButton from 'vue3-useanimations/dist/types/lib/radioButton'
 
 const checked = ref(false)

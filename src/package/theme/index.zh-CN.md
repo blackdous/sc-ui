@@ -5,6 +5,21 @@ map:
 
 # less 公用样式
 
+## 去除table Scroll 站位问题
+
+```less
+.not-table-scroll-empty {
+  .ant-table-fixed-header {
+    .ant-table-scroll .ant-table-header {
+      overflow: auto !important;
+    }
+  }
+  .ant-table-fixed-header > .ant-table-content > .ant-table-scroll > .ant-table-body {
+    overflow: auto !important;
+  }
+}
+```
+
 ## scrollbar 宽度
 
 ```less

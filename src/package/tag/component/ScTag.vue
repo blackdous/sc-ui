@@ -12,15 +12,24 @@
         v-if="compProps.loading"
         :class="['loading-transition', baseClass + '-loading']">
       </span>
-      <slot :name="item" v-bind="data || {}">
-      </slot>
+      <Tooltip
+        placement="top"
+      >
+        <template #title v-if="compProps.tooltipDes">
+          {{ tooltipDes }}
+        </template>
+        <span :class="[compProps.tooltipDes ? 'underline-dashed ' : '']">
+          <slot :name="item" v-bind="data || {}">
+          </slot>
+        </span>
+      </Tooltip>
     </template>
   </Tag>
 </template>
 
 <script lang='ts'>
 import { defineComponent, unref, computed, ref, watch } from 'vue'
-import { Tag } from 'ant-design-vue'
+import { Tag, Tooltip } from 'ant-design-vue'
 
 import { basePrefixCls } from '../../../constant'
 import { tagProps } from './type'
@@ -30,7 +39,8 @@ export default defineComponent({
   name: 'ScTag',
   inheritAttrs: false,
   components: {
-    Tag
+    Tag,
+    Tooltip
   },
   props: tagProps(),
   emits: ['change', 'update:checked'],

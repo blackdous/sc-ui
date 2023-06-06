@@ -28,7 +28,7 @@ realPath: src/package/table/index.zh-CN.md
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| type | { componentName: 'tdCopy'、 'tdEllipsis' 、 ’tdHandle‘ 、’tdStatus‘, props: { text: string } } 用于设置组件内部提供的组件 | Object | 无 | |
+| type | { componentName: 'tdCopy'、'tdTooltip'、 'tdEllipsis' 、 ’tdHandle‘ 、’tdStatus‘, props: { text: string } } 用于设置组件内部提供的组件 | Object | 无 | |
 | pagination | [pagination](https://2x.antdv.com/components/pagination/) | object | 无 | |
 | scroll | { x: string, y: string } 设定滚动高度、宽度 默认滚动高度为 460px | Object | 无 |  |
 | loading | true & false 设定loading状态 | boolean | false |  |
@@ -762,12 +762,12 @@ export interface ActiveOptions {
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
 | filterList      | `FilterItem[]`                                                 | -   | -      | 每列筛选的数据源 |
 | filterSelected      | `FilterItem[]`                                                 | -   | -      | 每列已经筛选的数据项 |
-| type      | `Type`                                                 | -   | `tdStatus 、 tdCopy 、 tdEllipsis 、tdHandle`     | 每列使用内置组件配置 |
+| type      | `Type`                                                 | -   | `tdStatus 、 tdCopy 、 tdEllipsis 、tdTooltip 、tdHandle`     | 每列使用内置组件配置 |
 | filtered      | boolean                                           | -   |   -    | 选中之后filtericon 会高亮 |
 | filterMultiple      | boolean                                           | -   |   -    | filter是否可以多选 |
 | notShowFilter      | boolean                                           | -   |   -    | 是否在自定义列中显示 |
 | titleType      | `TitleType`                                           | -   |   `thDescribe`、 `thUnit` | 头部内置自定义组件(**如需使用多个 请把componentName命名为 thDescribe1、thDescribe2 依次递增**) |
-|  slots      |   `customRender`、  `title`                                     | -   |   - | `customRender`不要和`tdStatus 、 tdCopy 、 tdEllipsis 、tdHandle` 重名； `title` 不要和 `thDescribe`、 `thUnit` 重名 |
+|  slots      |   `customRender`、  `title`                                     | -   |   - | `customRender`不要和`tdStatus 、 tdCopy 、 tdEllipsis 、tdTooltip 、tdHandle` 重名； `title` 不要和 `thDescribe`、 `thUnit` 重名 |
 
 ### filterType
 

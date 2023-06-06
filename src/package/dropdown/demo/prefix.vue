@@ -80,7 +80,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { Dropdown, Menu, SubMenu, MenuItem, Button } from 'ant-design-vue'
+import { Dropdown, Menu, SubMenu, MenuItem, Button, Tooltip } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'basic',
@@ -90,7 +90,8 @@ export default defineComponent({
     Menu,
     SubMenu,
     MenuItem,
-    Button
+    Button,
+    Tooltip
   },
   setup() {
     const valueRef = ref()

@@ -58,3 +58,14 @@
 .pd14 {
   padding: 14px;
 }
+
+.not-table-scroll-empty {
+  .ant-table-fixed-header {
+    .ant-table-scroll .ant-table-header {
+      overflow: auto !important;
+    }
+  }
+  .ant-table-fixed-header > .ant-table-content > .ant-table-scroll > .ant-table-body {
+    overflow: auto !important;
+  }
+}

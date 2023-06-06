@@ -18,7 +18,7 @@
         <ScTag type="light" status="warning">部分异常/禁用/待补充信息/删除/删除中</ScTag>
       </div>
       <div>
-        <ScTag type="light" status="error">开通失败/授权失败</ScTag>
+        <ScTag type="light" status="error" tooltip-des="开通失败/授权失败开通失败/授权失败">开通失败/授权失败</ScTag>
       </div>
       <div>
         <ScTag type="light" status="freeze">已停用/已结单/已关机/已过期/已冻结</ScTag>

@@ -80,7 +80,11 @@
         background-color: @menu-hover-bg;
         color: @primary-color;
       }
-      &.ant-menu-item-active:not(.ant-menu-item-selected) {
+      &.ant-menu-item-active:not(.ant-menu-item-selected):not(.ant-menu-item-disabled) {
+        background-color: @menu-bg-color;
+        color: @heading-color;
+      }
+      &:not(.ant-menu-item-selected):not(.ant-menu-item-disabled):hover {
         background-color: @menu-bg-color;
         color: @heading-color;
       }

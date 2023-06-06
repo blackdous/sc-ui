@@ -2,18 +2,18 @@
   <span
     :class="[preFixClass]"
   >
-    <span
-      :class="[preFixClass+'-text']"
-    >
-      {{propsRef.text}}
-    </span>
     <Tooltip
       overlayClassName="scTooltip-white"
     >
       <template #title>
         {{propsRef.describe}}
       </template>
-      <i @click.stop class="sc-ui sc-question-circle-fill"></i>
+      <span
+        :class="[preFixClass+'-text']"
+      >
+        {{propsRef.text}}
+      </span>
+      <!-- <i @click.stop class="sc-ui sc-question-circle-fill"></i> -->
     </Tooltip>
   </span>
 </template>

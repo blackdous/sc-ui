@@ -8,56 +8,44 @@
         填充按钮
       </Button>
       <template #overlay>
-          <Menu>
-            <template
-              v-for="(item) in listRef"
-              :key="item.label"
-            >
-              <template v-if="item?.children && item?.children?.length">
-                <SubMenu 
-                  v-for="(subItem) in item.children"
-                  :key="item.label"
-                  :title="item.label"
-                  :disabled="item.isDisabled"
-                >
-                  <MenuItem
-                    :disabled="subItem.isDisabled"
-                  >
-                    <Button
-                      type="link"
-                      class="actionBtn"
-                      :loading="subItem.loading"
-                      :disabled="subItem.isDisabled"
-                      @click="handle(subItem)"
-                    >
-                      {{ subItem.label }}
-                    </Button>
-                  </MenuItem>
-                </SubMenu>
-              </template>
-              <MenuItem
+        <Menu>
+          <template
+            v-for="(item) in listRef"
+            :key="item.key"
+          >
+            <template v-if="item?.children && item?.children?.length">
+              <SubMenu 
+                v-for="(subItem) in item.children"
+                :key="item.key"
+                :title="item.label"
                 :disabled="item.isDisabled"
-                v-else
               >
-                <template v-if="item.isDisabled && item.tooltipDes">
-                  <Tooltip
-                    overlayClassName = 'scTooltip-white'
+                <MenuItem
+                  :disabled="subItem.isDisabled"
+                >
+                  <Button
+                    type="link"
+                    class="actionBtn"
+                    :loading="subItem.loading"
+                    :disabled="subItem.isDisabled"
+                    @click="handle(subItem)"
                   >
-                    <template #title>
-                      {{ item.tooltipDes }}
-                    </template>
-                    <Button
-                      type="link"
-                      class="actionBtn"
-                      :loading="item.loading"
-                      :disabled="item.isDisabled"
-                      @click="handle(item)"
-                    >
-                      {{ item.label }}
-                    </Button>
-                  </Tooltip>
-                </template>
-                <template v-else>
+                    {{ subItem.label }}
+                  </Button>
+                </MenuItem>
+              </SubMenu>
+            </template>
+            <MenuItem
+              :disabled="item.isDisabled"
+              v-else
+            >
+              <template v-if="item.isDisabled && item.tooltipDes">
+                <Tooltip
+                  overlayClassName = 'scTooltip-white'
+                >
+                  <template #title>
+                    {{ item.tooltipDes }}
+                  </template>
                   <Button
                     type="link"
                     class="actionBtn"
@@ -67,18 +55,30 @@
                   >
                     {{ item.label }}
                   </Button>
-                </template>
-              </MenuItem>
-            </template>
-          </Menu>
-        </template>
+                </Tooltip>
+              </template>
+              <template v-else>
+                <Button
+                  type="link"
+                  class="actionBtn"
+                  :loading="item.loading"
+                  :disabled="item.isDisabled"
+                  @click="handle(item)"
+                >
+                  {{ item.label }}
+                </Button>
+              </template>
+            </MenuItem>
+          </template>
+        </Menu>
+      </template>
     </ScDropDown>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { Dropdown, Menu, SubMenu, MenuItem, Button } from 'ant-design-vue'
+import { Dropdown, Menu, SubMenu, MenuItem, Button, Tooltip} from 'ant-design-vue'
 import { ScDropDown } from 'sc-ui'
 
 export default defineComponent({
@@ -90,7 +90,8 @@ export default defineComponent({
     SubMenu,
     MenuItem,
     Button,
-    ScDropDown
+    ScDropDown,
+    Tooltip
   },
   setup() {
     const isBrowser = () => typeof window !== 'undefined';
@@ -101,7 +102,7 @@ export default defineComponent({
         label: '创建快照',
         isShow: true,
         loading: false,
-        key: 'aa',
+        key: '',
         isDisabled: false,
         action: (data: any) => {
           console.log('====================================');
@@ -115,7 +116,7 @@ export default defineComponent({
         label: '续费',
         isShow: true,
         isDisabled: false,
-        key: 'bb',
+        key: 0,
         loading: false,
         action: 'bb',
         tooltip: false,

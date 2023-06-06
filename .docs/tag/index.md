@@ -84,6 +84,7 @@ realPath: src/package/tag/index.zh-CN.md
 | selected      | boolean     | -  |  -   |  当前按钮是否可以选中 |
 | disabled      | boolean     | -  |  -   |  当前按钮是否为禁用状态 |
 | loading      | boolean     | -  |  -   |  是否开启loading状态 |
+| tooltipDes      | string     | -  |  -   |  是否嵌套tooltip组件 |
 
 ## 事件
 

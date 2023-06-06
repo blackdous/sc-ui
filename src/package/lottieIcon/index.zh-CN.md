@@ -3,7 +3,7 @@ map:
   path: /lottieicon
 ---
 
-# LottieIcon 组件
+<!-- # LottieIcon 组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -28,7 +28,7 @@ map:
   title="render函数"
   desc="render函数"
   >
-</demo>
+</demo> -->
 
 ## props
 

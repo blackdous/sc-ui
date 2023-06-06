@@ -5,6 +5,7 @@ export const tagProps = () => ({
     type: String,
     validator: (v:string) => ['small', 'default', 'large', 'medium'].includes(v) 
   },
+  tooltipDes: String,
   /**
  * @description type
  */

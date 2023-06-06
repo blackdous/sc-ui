@@ -20,7 +20,7 @@
         show: false,
       }"
       :loading="loading"
-      :scroll="{ x: true }"
+      :scroll="{ x: true, y: 300 }"
       @change="handleChange"
       >
       <!-- :langLocale="zhCN" -->
@@ -61,6 +61,13 @@
           </span>
         </Tooltip>
       </template> -->
+      <template #status="{record}">
+        <ScTag
+          v-bind="record.tagOptions"
+        >
+          {{ record.statusStr === 0 ? '成功' : record.statusStr === 1 ? '错误' : '警告' }}
+        </ScTag>
+      </template>
     </ScTable>
   </div>
 </template>
@@ -69,7 +76,7 @@
 import { ref, unref } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
-import { ScTable, Copy, ScButton } from 'sc-ui'
+import { ScTable, Copy, ScButton, ScTag } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
 import { InputSearch } from 'ant-design-vue'
 
@@ -94,7 +101,7 @@ const list = ref([
       }
       return false
     },
-    key: 'aa',
+    key: '',
     isDisabled: false,
     action: (data:any) => {
       console.log('====================================');
@@ -110,11 +117,11 @@ const list = ref([
     isDisabled: ({tableRef, selectedRowKeysRef}) => {
       console.log('selectedRowKeysRef: ', selectedRowKeysRef);
       if (selectedRowKeysRef.length > 3) {
-        return true
+        return false
       }
       return false
     },
-    key: 'bb',
+    key: 0,
     loading: false,
     action: 'bb',
     tooltip: false,
@@ -131,7 +138,7 @@ const list = ref([
     },
     isDisabled: false,
     loading: false,
-    key: 'cc',
+    key: '',
     action: '1111',
     tooltip: false,
     tooltipDes: '一级选项111111111',
@@ -196,7 +203,7 @@ const columns = [
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', ellipsis: true},
   { 
     // title: 'age',
-    width: 60,
+    width: 160,
     dataIndex: 'age', 
     key: 'age',
     disabled: true,
@@ -213,12 +220,13 @@ const columns = [
     sorter: true
   },
   {
-    dataIndex: 'address', key: 'address', width: 160,
+    dataIndex: 'address', key: 'address', width: 180,
     type: {
-      componentName: 'tdEllipsis',
+      componentName: 'tdTooltip',
       props: {
-        lineheigth: 3,
-        copy: true
+        // lineheigth: 3,
+        tooltipDesKey: 'addressDesc'
+        // copy: true
       }
     },
     titleType: {
@@ -250,10 +258,8 @@ setTimeout(() => {
     sorter: true
   })
   columns.push({  dataIndex: 'age3', key: 'age3', width: 160,
-    type: {
-      componentName: 'tdHandle',
-      props: {
-      }
+    slots: {
+      customRender: 'status'
     },
     titleType: {
       componentName: 'thDescribe2',
@@ -350,13 +356,27 @@ const data: DataItem[] = [
     key: '1',
     name: 'John Brown',
     age: 32,
-    address: '111111111112333333333333333asdasdasdasdasdqweqweqweqweqweqweasdasdqweqweqweqwdadasdasd'
+    address: 'sdaeqweqwdadasda',
+    addressDesc: 'sdaeqweqwdadasdasdaeqweqwdadasdasdaeqweqwdadasdasdaeqweqwdadasdasdaeqweqwdadasda',
+    tagOptions: {
+      type: 'light',
+      status: 'success',
+      tooltipDes: 'sdaeqweqwdadasda'
+    },
+    statusStr: 0
   },
   {
     key: '2',
     name: 'Jim Green',
     age: 40,
-    address: 'London London',
+    address: 'LondonLondonLondon',
+    addressDesc: 'LondonLondonLondonLondonLondonLondonLondonLondonLondonLondonLondonLondonLondonLondonLondon',
+    tagOptions: {
+      type: 'light',
+      status: 'error',
+      tooltipDes: 'LondonLondonLondonLondonLondonLondonLondonLondonLondon'
+    },
+    statusStr: 1
   },
 ];
 
@@ -365,7 +385,14 @@ for(let i = 10; i < 21; i++) {
     key: i + '',
     name: 'John Brown',
     age: i,
-    address: 'New London',
+    tagOptions: {
+      type: 'light',
+      status: 'warning',
+      tooltipDes: 'New London LondonNew London London'
+    },
+    statusStr: 2,
+    address: 'New London London',
+    addressDesc: 'New London London London LondonNew London LondonNew London LondonNew London London'
   })
 }
 // @ts-ignore

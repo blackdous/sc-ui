@@ -36,7 +36,7 @@
 
 <script lang='ts' setup>
 // import { onMounted } from 'vue'
-import { UseAnimations } from 'vue3-useanimations'
+import UseAnimations from 'vue3-useanimations'
 import { Space } from 'ant-design-vue'
 // import { UseAnimations } from '../component/index'
 import visibility2 from 'vue3-useanimations/dist/types/lib/visibility2'

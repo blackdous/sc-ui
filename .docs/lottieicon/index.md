@@ -4,7 +4,7 @@ map:
 realPath: src/package/lottieIcon/index.zh-CN.md
 ---
 
-# LottieIcon 组件
+<!-- # LottieIcon 组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -29,7 +29,7 @@ realPath: src/package/lottieIcon/index.zh-CN.md
   title="render函数"
   desc="render函数"
   >
-</demo>
+</demo> -->
 
 ## props
 
