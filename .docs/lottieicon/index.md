@@ -160,8 +160,6 @@ const handleClick = () => {
 }
 </script>
 
-
-
 ```
 
 ## props

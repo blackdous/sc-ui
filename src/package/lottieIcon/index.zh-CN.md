@@ -159,8 +159,6 @@ const handleClick = () => {
 }
 </script>
 
-
-
 ```
 
 ## props
