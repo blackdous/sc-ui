@@ -5,6 +5,15 @@ map:
 
 # 变更记录
 
+## [0.0.125](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.124...0.0.125) (2023-06-06)
+
+### Features
+
+* 调整Scrollbar 样式 ([09a4243](http://gitlab.voneyun.com/frontend/sc-ui/commit/09a4243ba3596f907f21729f114d17b4966ed6cc))
+* 根据 最新 ui 调整 css; 调整 ScTable 头部 ThDescribe \ 新增 TdTooltip 组件; ScTag 新增 tooltipDes 属性 ([1ddbc13](http://gitlab.voneyun.com/frontend/sc-ui/commit/1ddbc134bbf704386e17039fe00638a7bb8f514a))
+* 更新 Select 样式 ([044abcb](http://gitlab.voneyun.com/frontend/sc-ui/commit/044abcb3f411db15835d8399e9f21a9fb78d6258))
+* 完善 lottieIcon 文档 ([3faf18d](http://gitlab.voneyun.com/frontend/sc-ui/commit/3faf18d9b41e0977aec16c9c0c603e791a16e0d3))
+
 ## [0.0.124](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.123...0.0.124) (2023-06-01)
 
 ### Bug Fixes
