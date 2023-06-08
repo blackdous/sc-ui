@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.126...0.0.2) (2023-06-08)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.127...0.0.2) (2023-06-08)
+
+
+
+## [0.0.127](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.126...0.0.127) (2023-06-08)
+
+
+### Bug Fixes
+
+* scInputNumber 组件 步进器模式, 输入值/ step 四舍五入 ([922847d](http://gitlab.voneyun.com/frontend/sc-ui/commit/922847d1b6d191faa64cf248601955cd49a840c5))
 
 
 
