@@ -66,7 +66,7 @@ map:
 | size      | `Size`                                                 | 'default'  |  'large'、'default'、'small'     | 用于控制组件大小 |
 | showControl      |  boolean                                               | -  |      -     |  是否显示控制按钮  |
 | readonly      |  boolean                                               | -  |      -     |  是否可以输入  |
-|  stepStrict     |  boolean                                               | -  |      -     |  失焦后 校验输入值 / step 四舍五入为 step 正整倍数  |
+|  stepStrictly     |  boolean                                               | -  |      -     |  失焦后 校验输入值 / step 四舍五入为 step 正整倍数  |
 
 ```ts
 type Mode = 'bothSides' | 'internal' 
