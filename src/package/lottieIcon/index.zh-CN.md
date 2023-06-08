@@ -5,12 +5,8 @@ map:
 
 # LottieIcon 组件
 
-<!-- <demo src="./demo/basic.vue"
-  language="vue"
-  title="LottieIcon"
-  desc="LottieIcon"
-  >
-</demo> -->
+在线演示地址[vue3-useanimations](https://blackdous.github.io/vue3-useanimations/)
+
 ```vue
 <template>
   <div> CLICK_PLAY_AND_BACKWARDS </div>

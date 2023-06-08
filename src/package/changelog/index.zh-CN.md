@@ -5,6 +5,12 @@ map:
 
 # 变更记录
 
+## [0.0.126](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.125...0.0.126) (2023-06-08)
+
+### Bug Fixes
+
+* scDarwer 新增v-if 情况下, 计算高度不准确 ([0ed7ec6](http://gitlab.voneyun.com/frontend/sc-ui/commit/0ed7ec6df57b05e667facdb0250fb62d852ce62b))
+
 ## [0.0.125](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.124...0.0.125) (2023-06-06)
 
 ### Features

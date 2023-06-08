@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.125...0.0.2) (2023-06-06)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.126...0.0.2) (2023-06-08)
+
+
+
+## [0.0.126](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.125...0.0.126) (2023-06-08)
+
+
+### Bug Fixes
+
+* scDarwer 新增v-if 情况下, 计算高度不准确 ([0ed7ec6](http://gitlab.voneyun.com/frontend/sc-ui/commit/0ed7ec6df57b05e667facdb0250fb62d852ce62b))
 
 
 
