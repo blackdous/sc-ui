@@ -25,6 +25,14 @@ map:
   >
 </demo>
 
+## 自定义Alert 内容
+
+<demo src="./demo/customAlert.vue"
+  language="vue"
+  title="自定义Alert 内容"
+  >
+</demo>
+
 ## 带tooltip的 对话框
 
 <demo src="./demo/tooltip.vue"
@@ -229,6 +237,7 @@ changeLoading(true);
 | width | 宽度 | string\|number | 300 |  |
 | wrapClassName | 对话框外层容器的类名 | string | - |  |
 | zIndex | 设置 Modal 的 `z-index` | number | 1000 |  |
+| showFooter | 是否显示默认footer | boolean | true |  |
 
 ## Events
 
@@ -243,6 +252,8 @@ changeLoading(true);
 | ----------------- | ---------------- | -- |
 | insertFooter        | footer内部默认按钮左侧 | - |
 | afterFooter        | footer内部默认按钮右侧 | - |
+|   info     | 提示信息 | - |
+|   title     | 头部内容 | - |
 
 ## expose
 

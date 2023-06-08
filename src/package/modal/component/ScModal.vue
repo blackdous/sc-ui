@@ -369,7 +369,7 @@ export default defineComponent({
         const footerHeight:number = document.querySelector('.' + uuid + ' .ant-modal-footer')?.scrollHeight || 0
         const alertHeight:number = (document.querySelector('.' + uuid + ' .scModal-status')?.scrollHeight || 0) + 4
         const innerHeightView:number = (window && window?.innerHeight) || 0
-        maxHeight.value = pxToRem(innerHeightView - headerHeight - footerHeight - alertHeight - 88 + 'px')
+        maxHeight.value = innerHeightView - headerHeight - footerHeight - alertHeight - 88 + 'px'
       }
     }
 

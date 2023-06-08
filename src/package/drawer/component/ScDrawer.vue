@@ -42,13 +42,19 @@
         </span>
       </span>
       <ScAlert
-        v-if="curProps.alertOptions"
+        v-if="!$slots.info || curProps.alertOptions"
         v-bind="curProps.alertOptions"
         ref="alertRef"
         size="mini"
         :class="[baseClass + '-alert']"
       >
       </ScAlert>
+      <div
+        v-else
+        :class="[baseClass + '-alert']"
+      >
+      <slot name="info"></slot>
+      </div>
       <ScScrollbar
         v-loading="vBind.loading"
         ref="scrollBarRef"
@@ -93,7 +99,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted, ref, unref, watch, nextTick, watchEffect, getCurrentInstance } from 'vue'
+import { defineComponent, computed, onMounted, ref, unref, watch, watchEffect, getCurrentInstance } from 'vue'
 import { Drawer, Tooltip } from 'ant-design-vue'
 
 import { ScAlert } from '../../alert'
@@ -101,7 +107,7 @@ import { ScScrollbar } from '../../scrollbar'
 import { ScButton } from '../../button'
 import { basePrefixCls } from '../../../constant'
 import { optimizedResize } from '../../../utils/dom/addEventListener'
-import { pxToRem, buildUUID, isFunction, deepMerge } from '../../../utils'
+import { buildUUID, isFunction, deepMerge } from '../../../utils'
 import { basicProps } from './props'
 import { DrawerMethods, DrawerProps } from './typing'
 import LoadingDirective from '../../../directives/loading'
@@ -173,7 +179,7 @@ export default defineComponent({
         const footerHeight:number = document.querySelector('.' + uuid + ' .scDrawer-footer')?.scrollHeight || 0
         const alertHeight:number = (document.querySelector('.' + uuid + ' .scDrawer-alert')?.scrollHeight || 0) + 4
         const innerHeightView:number = (window && window?.innerHeight) || 0
-        maxHeight.value = pxToRem(innerHeightView - headerHeight - footerHeight - alertHeight + 'px')
+        maxHeight.value = innerHeightView - headerHeight - footerHeight - alertHeight + 'px'
       }
     }
     onMounted(() => {
@@ -184,9 +190,10 @@ export default defineComponent({
     watch(() => visibleRef.value, (val) => {
       emit('update:visible', val)
       if (val) {
-        nextTick(() => {
+        const timer = setTimeout(() => {
           updateMaxHeight()
-        })
+          clearTimeout(timer)
+        }, 200)
       }
     })
 

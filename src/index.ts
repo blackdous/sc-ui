@@ -136,7 +136,7 @@ const install = (app: App) => {
 };
 
 const ScUi = {
-  version: '0.0.125',
+  version: '0.0.126',
   install,
 };
 

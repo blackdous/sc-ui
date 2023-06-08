@@ -62,8 +62,9 @@ export function findChildrenDom<T = any> (
 
 // px转rem单位
 export const pxToRem = (px:string) => {
+  // console.log('px: ', px);
   if (isNaN(parseFloat(px))) {
     return px
   }
-  return parseFloat(px) / 16 + 'rem'
+  return (String(px).includes('%') || String(px).includes('rem') || String(px).includes('vh') || String(px).includes('vw')) ? px : px + 'px'
 }
