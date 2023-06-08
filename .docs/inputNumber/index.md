@@ -28,6 +28,15 @@ realPath: src/package/inputNumber/index.zh-CN.md
   >
 </demo>
 
+## 步进器
+
+<demo src="./demo/stepStrictly.vue"
+  language="vue"
+  title="步进器"
+  desc="步进器"
+  >
+</demo>
+
 ## 组件大小
 
 **双侧调整数字输入框（提供小、中（默认）、大 3 种尺寸，高度分别为24px、32px和40px**

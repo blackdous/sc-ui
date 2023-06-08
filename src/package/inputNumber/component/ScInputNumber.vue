@@ -106,7 +106,8 @@ export default defineComponent({
       const val = text.value
       // console.log('text.value: ', text.value, val)
       const { step, min } = unref(newProps)
-      const curStep = Math.ceil(val / step) * step
+      // console.log('Math.ceil(val / step): ', val / step, Math.round(val / step));
+      const curStep = Math.round(val / step) * step
       text.value = curStep
       if (!isClick) {
         emit('update:value', Math.max(text.value, min))
