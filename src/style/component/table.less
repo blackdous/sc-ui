@@ -195,11 +195,17 @@
       &:not(.ant-btn-primary) {
         margin-left: 8px;
       }
-      // & + .ant-btn {
+      // &:not(.ant-btn-primary):visited, &:not(.ant-btn-primary):link {
+      //   border-color: @primary-color;
+      //   color: @primary-color;
       // }
-      &:not(.ant-btn-primary):focus, &:not(.ant-btn-primary):visited, &:not(.ant-btn-primary):link {
-        border-color: @primary-color;
-        color: @primary-color;
+      // &[ant-click-animating-without-extra-node=true] {
+      //   border-color: @primary-color;
+      //   color: @primary-color;
+      // }
+      &:not(.ant-btn-primary):active {
+          border-color: @primary-color;
+          color: @primary-color;
       }
     }
     .ant-select {
