@@ -42,7 +42,7 @@
         </span>
       </span>
       <ScAlert
-        v-if="!$slots.info || curProps.alertOptions"
+        v-if="!$slots.info && curProps.alertOptions"
         v-bind="curProps.alertOptions"
         ref="alertRef"
         size="mini"
@@ -50,7 +50,7 @@
       >
       </ScAlert>
       <div
-        v-else
+        v-if="$slots.info"
         :class="[baseClass + '-alert']"
       >
       <slot name="info"></slot>
