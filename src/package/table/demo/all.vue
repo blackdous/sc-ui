@@ -26,6 +26,7 @@
         },
         download: {
           text: '下载',
+          loading: true,
           show: true,
           href: ''
         }

@@ -44,6 +44,7 @@
             </template>
             <Button
               :disabled="activeOptions?.reload?.isDisabled"
+              :loading="activeOptions?.reload?.loading"
               @click="refresh"
             >
               <i class="sc-ui sc-sync"></i>
@@ -58,6 +59,7 @@
             </template>
             <Button
               :disabled="activeOptions?.columnDialog?.isDisabled"
+              :loading="activeOptions?.columnDialog?.loading"
               @click="handleModal"
             >
               <i class="sc-ui sc-setting"></i>
@@ -72,6 +74,7 @@
             </template>
             <Button
               :disabled="activeOptions?.download?.isDisabled"
+              :loading="activeOptions?.download?.loading"
               @click="handleDownload"
             >
               <i class="sc-ui sc-download"></i>

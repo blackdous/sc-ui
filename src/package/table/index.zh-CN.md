@@ -686,6 +686,8 @@ export interface ActiveOptions {
     text?: string,
     // 是否显示
     show?: boolean,
+    // loading状态
+    loading?:boolean,
     // 点击事件是否可用
     isDisabled?: boolean,
     // 自定义方法，点击按钮执行action方法，如果不传，刷新当前页面
@@ -698,6 +700,8 @@ export interface ActiveOptions {
     show?: boolean,
     // 点击事件是否可用
     isDisabled?: boolean,
+    // loading状态
+    loading?:boolean,
     // 点击自定义列确定按钮回调方法；参数包含 val: { keys: string[], checkedList: any, delItemKeys: string[] }
     okModal?: Fn,
     // 点击自定义列取消按钮回调方法；参数包含 val: { keys: string[], checkedList: any }
@@ -708,6 +712,8 @@ export interface ActiveOptions {
     text?: string,
     // 是否显示
     show?: boolean,
+     // loading状态
+    loading?:boolean,
      // 点击事件是否可用
     isDisabled?: boolean,
     // 自定义方法，点击按钮执行action方法，如果不传，href有值直接执行

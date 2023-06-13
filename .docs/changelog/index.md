@@ -6,6 +6,20 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.129](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.128...0.0.129) (2023-06-13)
+
+### Bug Fixes
+
+* 调整 pxToRem 方法 实现 ([8793a20](http://gitlab.voneyun.com/frontend/sc-ui/commit/8793a2086a0a93e5c120d237d3ccaf113f6672a6))
+* 修复 ScCascaderNew 组件 mutilple 默认下 placeholder 无效问题 ([521c588](http://gitlab.voneyun.com/frontend/sc-ui/commit/521c5888749ad4f1e7d0b97288c01d21e8a26131))
+* 修改 ScDrawer alert 判断问题 ([339a42c](http://gitlab.voneyun.com/frontend/sc-ui/commit/339a42c8621518b2d6d3283298ccdf403069e4a5))
+
+## [0.0.128](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.127...0.0.128) (2023-06-12)
+
+### Style
+
+* 调整样式问题
+
 ## [0.0.127](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.126...0.0.127) (2023-06-08)
 
 ### Bug Fixes

@@ -208,12 +208,14 @@ export interface ActiveOptions {
     text?: string,
     show?: boolean,
     isDisabled?: boolean,
+    loading?: boolean,
     action?: Fn
   },
   download?: {
     text?: string,
     show?: boolean,
     isDisabled?: boolean,
+    loading?: boolean,
     action?: Fn,
     href?: string
   },
@@ -221,6 +223,7 @@ export interface ActiveOptions {
     text?: string,
     show?: boolean,
     isDisabled?: boolean,
+    loading?: boolean,
     okModal?: Fn,
     cancelModal: Fn
   },
