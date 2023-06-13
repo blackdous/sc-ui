@@ -47,7 +47,7 @@
         <ScInput
           ref="input"
           v-model:value="inputValue"
-          :placeholder="multiple ? '' : currentPlaceholder"
+          :placeholder="multiple ? inputPlaceholder : currentPlaceholder"
           :readonly="readonly"
           :disabled="isDisabled"
           :validate-event="false"

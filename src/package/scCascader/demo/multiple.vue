@@ -14,6 +14,7 @@
     <ScCascaderNew 
       v-model="value1" 
       allowClear
+      placeholder="只展示最后一级多选"
       :props="props"
       :options="options"
       :showAllLevels="false"
