@@ -66,5 +66,5 @@ export const pxToRem = (px:string) => {
   if (isNaN(parseFloat(px))) {
     return px
   }
-  return (String(px).includes('%') || String(px).includes('rem') || String(px).includes('vh') || String(px).includes('vw')) ? px : px + 'px'
+  return (String(px).includes('%') || String(px).includes('rem') || String(px).includes('vh') || String(px).includes('vw') || String(px).includes('vw')) ? px : px + 'px'
 }

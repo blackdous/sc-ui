@@ -41,7 +41,7 @@ export function isEmpty<T = unknown>(val: T): val is T {
 }
 
 export function transformPxtoRem (val: string | number) {
-  const newVal = (String(val).includes('%') || String(val).includes('rem') || String(val).includes('vh') || String(val).includes('vw')) ? val : pxToRem(val)
+  const newVal = (String(val).includes('%') || String(val).includes('rem') || String(val).includes('vh') || String(val).includes('vw') || String(val).includes('px')) ? val : pxToRem(val)
   return newVal
 }
 
