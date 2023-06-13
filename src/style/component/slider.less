@@ -151,6 +151,15 @@
   }
   .vue-slider-mark-label {
     color: @slider-marker-color;
+
+  }
+  .vue-slider-marks {
+    .vue-slider-mark:first-child {
+      .vue-slider-mark-label {
+        transform: translateX(0);
+        left: -9px;
+      }
+    }
   }
   &-marker__text {
     font-family: 'Montserrat';
