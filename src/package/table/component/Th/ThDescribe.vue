@@ -6,7 +6,8 @@
       overlayClassName="scTooltip-white"
     >
       <template #title>
-        {{propsRef.describe}}
+        {{isVNode(propsRef.describe) ? '' : propsRef.describe}}
+        <component v-if="isVNode(propsRef.describe)" :is='propsRef.describe'></component>
       </template>
       <span
         :class="[preFixClass+'-text']"
@@ -19,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, isVNode } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 
 const preFixClass = 'describeTh'
@@ -52,7 +53,8 @@ export default defineComponent({
     })
     return {
       propsRef,
-      preFixClass
+      preFixClass,
+      isVNode
     }
   }
 

@@ -4,19 +4,21 @@
     placement="top"
   >
     <template #title v-if="tooltipDes">
-      {{tooltipDes}}
+      {{ isVNode(tooltipDes) ? '' : tooltipDes}}
+      <component v-if="isVNode(tooltipDes)" :is='tooltipDes'></component>
     </template>
     <span 
       :class="className"
       @click="handle"
     >
-      {{newProps.text}}
+      {{ isVNode(newProps.text) ? '' : newProps.text }}
+      <component v-if="isVNode(newProps.text)" :is='newProps.text'></component>
     </span>
   </Tooltip>
 </template>
 
 <script lang='ts'>
-import { computed, defineComponent, watch, ref } from 'vue'
+import { computed, defineComponent, watch, ref, isVNode } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 
 import TdCopy from './TdCopy.vue'
@@ -90,6 +92,7 @@ export default defineComponent({
       className,
       tooltipDes,
       handle,
+      isVNode
       // isEmptyText
     }
   }

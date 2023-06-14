@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref } from 'vue'
+import { ref, unref, h } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy, ScButton, ScTag } from 'sc-ui'
@@ -233,7 +233,7 @@ const columns = [
       componentName: 'thDescribe1',
       props: {
         text: 'Column 1',
-        describe: '提示内容'
+        describe: h('div', {}, ['提示内容提示内容提示内容', h('span', { style: { color: '#FF7D00' }}, 'Column 1Column 1'), '提示内容提示内容提示内容'])
       }
     },
     filterList: list,

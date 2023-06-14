@@ -4,14 +4,16 @@
     :id="`tb_${String(index)}_${key}_ellipsis`"
   >
     <template #title>
-      {{newProps.text}}
+      {{ isVNode(newProps.text) ? '' : newProps.text }}
+      <component v-if="isVNode(newProps.text)" :is='newProps.text'></component>
     </template>
     <div class="tdEllipsisCon" @click="handle">
       <p 
         :class="className"
         :style="{width: newProps.column.width - 32 + 'px', '-webkit-line-clamp': newProps.column.type.props.lineheigth}"
       >
-        {{newProps.text}}
+        {{ isVNode(newProps.text) ? '' : newProps.text }}
+        <component v-if="isVNode(newProps.text)" :is='newProps.text'></component>
       </p>
       <TdCopy v-if="newProps.column.type.props.copy || newProps.copy" :copyTxt="newProps.copyText" :notText="false"/>
     </div>
@@ -19,7 +21,7 @@
 </template>
 
 <script lang='ts'>
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, isVNode } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 
 import TdCopy from './TdCopy.vue'
@@ -86,6 +88,7 @@ export default defineComponent({
       newProps,
       className,
       handle,
+      isVNode
       // isEmptyText
     }
   }
