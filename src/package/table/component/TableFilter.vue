@@ -64,7 +64,7 @@
             <InputSearch
               v-model:value="textValue"
               :maxlength="searchOptions.inputOptions?.maxlength"
-              :style="{width: transformPxtoRem(searchOptions.inputOptions?.width) || transformPxtoRem('120px')}"
+              :style="{width: transformPxtoRem(searchOptions.inputOptions?.width) || transformPxtoRem('240px')}"
               :placeholder="searchOptionsRef.inputOptions?.placeholder"
               :class="['scSearch', !validatorResult.result ? 'isError' : '']"
               @change="updateTextValue"
