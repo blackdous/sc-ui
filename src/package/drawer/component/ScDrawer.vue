@@ -186,7 +186,7 @@ export default defineComponent({
       }
     }
     onMounted(() => {
-      // updateMaxHeight()
+      updateMaxHeight()
       optimizedResize.add(updateMaxHeight)
     })
 
@@ -196,7 +196,7 @@ export default defineComponent({
         const timer = setTimeout(() => {
           updateMaxHeight()
           clearTimeout(timer)
-        }, 200)
+        }, 150)
       }
     })
 
