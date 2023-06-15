@@ -66,3 +66,9 @@ realPath: src/package/select/index.zh-CN.md
 | 事件名称 | 说明                                 | 回调参数    |
 | -------- | ------------------------------------ | ----------- |
 | allowClear   | 点击清除按钮时触发 | function(e) |
+
+## expose
+
+| 事件名称 | 说明                                 | 回调参数    |
+| -------- | ------------------------------------ | ----------- |
+|  computePrefixWidth  | 计算prefix 传入元素宽度 | function(e) |

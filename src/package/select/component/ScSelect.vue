@@ -74,7 +74,7 @@ export default defineComponent({
     Checkbox,
     CloseCircleFilled,
   },
-  setup(props, { emit, slots, attrs }) {
+  setup(props, { emit, slots, attrs, expose }) {
     const baseClass = basePrefixCls + 'Select'
 
     const prefixWidth = ref()
@@ -143,30 +143,40 @@ export default defineComponent({
 
     const handleDropdownVisibleChange = (val:boolean) => {
       if (val) {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
           const doc = document.querySelector(`.${uuid} .rc-virtual-list-scrollbar-show`)
           if (doc) {
             const docu = document.querySelector(`.${uuid}.selectDropdown`)
             console.log('docu: ', docu?.className);
             docu && (docu.className.includes('isSelectScroll') ? '' : docu.className = docu.className + ' isSelectScroll')
           }
+          clearTimeout(timer)
         }, 200)
       }
+    }
+
+    const computePrefixWidth = () => {
+      const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
+        prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 24) || 0))
     }
 
     onMounted(() => {
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
       dom && dom.addEventListener('mousedown', clearCall)
 
-      nextTick(() => {
-        const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
-        prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 24) || 0))
-      })
+      const timer = setTimeout(() => {
+        computePrefixWidth()
+        clearTimeout(timer)
+      }, 200)
     })
-
+    
     onBeforeUnmount(() => {
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
       dom && dom.removeEventListener('mousedown', clearCall)
+    })
+
+    expose({
+      computePrefixWidth
     })
     
     return {
