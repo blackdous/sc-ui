@@ -5,6 +5,19 @@ map:
 
 # 变更记录
 
+## [0.0.131](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.130...0.0.131) (2023-06-15)
+
+### Bug Fixes
+
+* scDrawer 新增 minusDefaultMaxHeight 参数 ([c7e7760](http://gitlab.voneyun.com/frontend/sc-ui/commit/c7e77604edf8ad5ec8b1974b642bbf867fb5787c))
+
+## [0.0.130](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.129...0.0.130) (2023-06-14)
+
+### Features
+
+* 调整 ScTable Tooltip 组件,支持 h 函数 ([185c2a3](http://gitlab.voneyun.com/frontend/sc-ui/commit/185c2a3e084b5bffd1a998c9a4927aea937030f4))
+* scTable 新增loading属性 ([6ede0c4](http://gitlab.voneyun.com/frontend/sc-ui/commit/6ede0c4ed0aedf50e528d17ccb64a124487a6c68))
+
 ## [0.0.129](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.128...0.0.129) (2023-06-13)
 
 ### Bug Fixes
