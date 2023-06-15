@@ -174,16 +174,19 @@ export default defineComponent({
       }
     })
     const updateMaxHeight = () => {
-      if (window) {
+      const { minusDefaultMaxHeight } = curProps.value
+      if (window && visibleRef.value) {
+        const contentHeight:number = document.querySelector('.' + uuid)?.scrollHeight || 0
+        // console.log('contentHeight: ', contentHeight);
         const headerHeight:number = document.querySelector('.' + uuid + ' .ant-drawer-header')?.scrollHeight || 0
         const footerHeight:number = document.querySelector('.' + uuid + ' .scDrawer-footer')?.scrollHeight || 0
         const alertHeight:number = (document.querySelector('.' + uuid + ' .scDrawer-alert')?.scrollHeight || 0) + 4
         const innerHeightView:number = (window && window?.innerHeight) || 0
-        maxHeight.value = innerHeightView - headerHeight - footerHeight - alertHeight + 'px'
+        maxHeight.value = (contentHeight || innerHeightView) - minusDefaultMaxHeight - headerHeight - footerHeight - alertHeight + 'px'
       }
     }
     onMounted(() => {
-      updateMaxHeight()
+      // updateMaxHeight()
       optimizedResize.add(updateMaxHeight)
     })
 

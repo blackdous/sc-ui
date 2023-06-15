@@ -164,6 +164,8 @@ export interface DrawerProps extends DrawerFooterProps {
    */
   height?: string | number;
 
+  minusDefaultMaxHeight?: number;
+
   /**
    * The z-index of the Drawer.
    * @default 1000

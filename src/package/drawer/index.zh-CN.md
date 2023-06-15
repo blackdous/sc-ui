@@ -237,6 +237,7 @@ changeLoading(true);
 | width | 宽度 | string\|number | 300 |  |
 | wrapClassName | 对话框外层容器的类名 | string | - |  |
 | zIndex | 设置 Modal 的 `z-index` | number | 1000 |  |
+| minusDefaultMaxHeight | 自动计算高度时默认要去除的高度 | number | 0 |  |
 | showFooter | 是否显示默认footer | boolean | true |  |
 
 ## Events

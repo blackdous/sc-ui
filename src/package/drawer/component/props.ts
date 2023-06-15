@@ -36,6 +36,12 @@ export const basicProps = {
   alertOptions: {
     type: Object as PropType<AlertProps>
   },
+  minusDefaultMaxHeight: {
+    type: Number,
+    default () {
+      return 0
+    }
+  },
 
   onOk: Function as PropType<(e:MouseEvent) => void>,
   onCancel: Function as PropType<(e:MouseEvent) => void>,
