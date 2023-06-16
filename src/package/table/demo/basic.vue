@@ -203,7 +203,7 @@ const columns = [
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', ellipsis: true},
   { 
     // title: 'age',
-    width: 160,
+    width: 200,
     dataIndex: 'age', 
     key: 'age',
     disabled: true,
@@ -244,7 +244,7 @@ const columns = [
 ];
 
 setTimeout(() => {
-  columns.push({ dataIndex: 'age2', key: 'age2', width: 160,
+  columns.push({ dataIndex: 'age2', key: 'age2', width: 180,
     titleType: {
       componentName: 'thUnit3',
       props: {
@@ -257,7 +257,7 @@ setTimeout(() => {
     },
     sorter: true
   })
-  columns.push({  dataIndex: 'age3', key: 'age3', width: 160,
+  columns.push({  dataIndex: 'age3', key: 'age3', width: 200,
     slots: {
       customRender: 'status'
     },

@@ -1,7 +1,7 @@
 <template>
   <div 
     ref="wrapRef" 
-    :class="[className, $attrs.class]"
+    :class="[...className, $attrs.class]"
     :style="$attrs.style"
   >
   <!-- :locale="newProps.langLocale" -->
@@ -74,7 +74,7 @@
             </template>
             <Button
               :disabled="activeOptions?.download?.isDisabled"
-              :loading="activeOptions?.download?.loading"
+              :loading="activeOptions?.columnDialog?.loading"
               @click="handleDownload"
             >
               <i class="sc-ui sc-download"></i>
@@ -401,7 +401,12 @@ export default defineComponent({
       }
     })
     const className = computed(() => {
-      const classNames = [tablePrefixCls];
+      const { scroll } = newProps.value
+      // console.log('scroll: ', scroll, scroll.y);
+      const classNames = [
+        tablePrefixCls,
+        scroll?.y ? 'not-table-scroll-empty' : ''
+      ];
       return classNames;
     });
 
