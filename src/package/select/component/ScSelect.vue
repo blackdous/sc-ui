@@ -49,7 +49,7 @@
 
 <script lang="ts">
 
-import { computed, defineComponent, unref, onMounted, onBeforeUnmount, nextTick, ref } from 'vue'
+import { computed, defineComponent, unref, onMounted, onBeforeUnmount, ref } from 'vue'
 import { Select, CheckboxGroup, Checkbox, SelectOption } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 // import cloneDeep from 'lodash/cloneDeep'
@@ -59,6 +59,7 @@ import { basePrefixCls } from '../../../constant'
 import { buildUUID, pxToRem } from '../../../utils'
 import { findParentDom } from '../../../utils/domHelper'
 import { props } from './type'
+import { waitElementReady } from '../../../utils/dom/waitElementReady'
 
 const { cloneDeep } = lodash
 
@@ -164,10 +165,14 @@ export default defineComponent({
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
       dom && dom.addEventListener('mousedown', clearCall)
 
-      const timer = setTimeout(() => {
+      // const timer = setTimeout(() => {
+      //   computePrefixWidth()
+      //   clearTimeout(timer)
+      // }, 200)
+      const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
+      waitElementReady(prefixDom, () => {
         computePrefixWidth()
-        clearTimeout(timer)
-      }, 200)
+      })
     })
     
     onBeforeUnmount(() => {
