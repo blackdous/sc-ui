@@ -5,6 +5,20 @@ map:
 
 # 变更记录
 
+## [0.0.133](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.132...0.0.133) (2023-06-19)
+
+### Bug Fixes
+
+* 调整ScSelect 样式; 修复ScInputNumber 默认值 多次赋值 触发 change 事件 ([7736677](http://gitlab.voneyun.com/frontend/sc-ui/commit/77366778bb7c14a5ef45ce576b6730d323ab3bd9))
+* scSelect 组件 prefixSlot 异步 传入,计算宽度问题 修复 ([29012a6](http://gitlab.voneyun.com/frontend/sc-ui/commit/29012a6f495ec4f422249095b04edb9f570528c0))
+
+## [0.0.132](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.131...0.0.132) (2023-06-16)
+
+### Bug Fixes
+
+* 解决 ScSelect 异步 传入prefixIcon slot 宽度计算不正确问题 ([f13d82a](http://gitlab.voneyun.com/frontend/sc-ui/commit/f13d82a298fd70d2e42ff304818c1270c09f151a))
+* scTable 消除 滚动条兼容样式 ([5896cb8](http://gitlab.voneyun.com/frontend/sc-ui/commit/5896cb81a80f06e3b594d90d75151e412aaa0994))
+
 ## [0.0.131](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.130...0.0.131) (2023-06-15)
 
 ### Bug Fixes
