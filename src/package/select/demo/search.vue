@@ -13,6 +13,11 @@
       >
         {{item.label}}
       </SelectOption>
+      <template #prefixIcon>
+        <span style="font-size: 14px;color: rgba(0,0,0,.6);padding-left: 2px;">
+          账单类型
+        </span>
+      </template>
     </ScSelect>
   </div>
   <div class="mt20">
@@ -28,6 +33,11 @@
       >
         {{item.label}}
       </SelectOption>
+      <template #prefixIcon>
+        <span style="font-size: 14px;color: rgba(0,0,0,.6);padding-left: 2px;">
+          账单类型
+        </span>
+      </template>
     </ScSelect>
   </div>
   <div class="mt20">

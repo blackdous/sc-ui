@@ -58,6 +58,7 @@ export default defineComponent({
     const inputNumberRef = ref()
     const prevVal = ref()
     const isBlur = ref(false)
+    const isProps = ref(false)
 
     const maxDisabled = computed(() => {
       return text.value >= props.max
@@ -98,6 +99,7 @@ export default defineComponent({
           text.value = props.max
           return
         }
+        isProps.value = true
         text.value = val
       },
       { deep: true, immediate: true }
@@ -134,6 +136,10 @@ export default defineComponent({
           if (stepStrictly) {
             // debounceStepStrictly()
           } else {
+            if (isProps.value) {
+              isProps.value = false
+              return false
+            }
             emit('update:value', val)
             emit('change', val)
           }

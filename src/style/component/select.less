@@ -71,7 +71,7 @@
 .ant-select-single {
   .ant-select-selector {
     .ant-select-selection-search {
-      left: 8px;
+      left: 7px;
     }
   }
 }
@@ -377,6 +377,35 @@ div.ant-select-dropdown {
           z-index: 2;
         }
       }
+    }
+  }
+}
+.@{selectScope} {
+  .ant-select-single {
+    .ant-select-selector {
+      .ant-select-selection-search {
+        left: var(--preWidth);
+      }
+    }
+  }
+}
+.ant-select-show-arrow.ant-select-show-search.ant-select-open {
+  .sc-you {
+    display: none !important;
+  }
+}
+
+.ant-select-show-arrow.ant-select-show-search.ant-select-focused {
+  .ant-select-arrow {
+    &::after {
+      display: none;
+    }
+  }
+}
+.ant-select-show-arrow.ant-select-show-search.ant-select-focused.ant-select-open {
+  .ant-select-arrow {
+    &::after {
+      display: inline-block;
     }
   }
 }

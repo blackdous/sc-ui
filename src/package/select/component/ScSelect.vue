@@ -7,7 +7,7 @@
       newProps.disabled ? 'is-disabled' : '',
       $attrs.class
     ]"
-    :style="{'--preWidth': prefixWidth, ...$attrs.style }"
+    :style="{'--preWidth': prefixWidth || '7px', ...$attrs.style }"
   >
     <div :class="[
       isPrefixIcon ? 'is-prefix' : ''
