@@ -118,7 +118,7 @@
     "windicss": "^3.5.6"
   },
   "dependencies": {
-    "vue3-useanimations": "^0.0.31",
+    "vue3-useanimations": "^0.0.34",
     "@iconify/vue": "^4.0.0",
     "@vue/shared": "^3.2.47",
     "deepmerge": "^4.2.2",
