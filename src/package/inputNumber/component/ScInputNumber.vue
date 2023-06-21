@@ -166,6 +166,7 @@ export default defineComponent({
           text.value = props.min
         }
       }
+      isProps.value = false
       if (stepStrictly) {
         // console.log('text.value: ', Math.max(text.value, min), text.value, min);
         emit('update:value', Math.max(text.value, min))

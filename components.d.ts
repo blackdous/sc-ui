@@ -7,6 +7,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ACascader: typeof import('ant-design-vue/es')['Cascader']
+    ACol: typeof import('ant-design-vue/es')['Col']
+    ATree: typeof import('ant-design-vue/es')['Tree']
     ATreeSelect: typeof import('ant-design-vue/es')['TreeSelect']
   }
 }

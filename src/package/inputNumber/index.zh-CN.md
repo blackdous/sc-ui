@@ -18,7 +18,7 @@ map:
   >
 </demo>
 
-<!-- ## 右侧调整数字输入框
+## 右侧调整数字输入框
 
 <demo src="./demo/internal.vue"
   language="vue"
@@ -75,4 +75,4 @@ type Size = 'large' | 'default' | 'small'
 
 ## 事件
 
-事件与官方 [InputNumber 事件](https://2x.antdv.com/components/input-number-cn#API) 相同 -->
+事件与官方 [InputNumber 事件](https://2x.antdv.com/components/input-number-cn#API) 相同

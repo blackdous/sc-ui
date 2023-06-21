@@ -9,8 +9,23 @@
       :defaultValue="30"
       :autoFocus="true"
       :precision="0"
-      stepStrictly
       @change="handleChange"
+      @blur="handleBlur"
+    >
+    </ScInputNumber>
+  </div>
+  <div class="mt10">
+    <ScInputNumber
+      placeholder="请输入内容"
+      v-model:value="inputValueRef3"
+      :step="30"
+      :min="0"
+      :max="300"
+      :defaultValue="30"
+      :autoFocus="true"
+      :precision="0"
+      stepStrictly
+      @change="handleChange1"
       @blur="handleBlur"
     >
     </ScInputNumber>
@@ -45,11 +60,16 @@ import { ref, watch } from 'vue'
 import { ScInputNumber } from 'sc-ui'
 
 const inputValueRef = ref(30)
+const inputValueRef3 = ref(30)
 const inputValueRef2 = ref(22)
 const inputValueRef1 = ref(11)
 
 const handleChange = (val:string) => {
   console.log('val: ', val);
+}
+
+const handleChange1 = (val:string) => {
+  console.log('valhandleChange1: ', val);
 }
 
 const handleBlur = (val:boolean) => {
