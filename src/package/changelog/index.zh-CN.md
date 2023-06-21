@@ -5,6 +5,12 @@ map:
 
 # 变更记录
 
+## [0.0.134](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.133...0.0.134) (2023-06-21)
+
+### Bug Fixes
+
+* scInputNumber 调整 第一次点击 按钮 未触发change事件 ([dc74511](http://gitlab.voneyun.com/frontend/sc-ui/commit/dc7451186f8a6a8db9a52bea2916ac57b81e1644))
+
 ## [0.0.133](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.132...0.0.133) (2023-06-19)
 
 ### Bug Fixes
