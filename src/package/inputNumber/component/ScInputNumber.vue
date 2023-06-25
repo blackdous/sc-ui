@@ -18,6 +18,7 @@
       v-bind="vBind"
       @blur="handleBlur"
       @focus="handleFocus"
+      @change="handleChange"
     />
       <!-- @keydown.enter.prevent="handlePressEnter" -->
     <Button
@@ -108,16 +109,13 @@ export default defineComponent({
     )
     const debounceStepStrictly = (isClick: boolean) => {
       const val = text.value
-      // console.log('text.value: ', text.value, val)
       const { step, min } = unref(newProps)
-      // console.log('Math.ceil(val / step): ', val / step, Math.round(val / step));
       const curStep = Math.round(val / step) * step
       text.value = curStep
       if (!isClick) {
         emit('update:value', Math.max(text.value, min))
         emit('change', curStep || min)
       }
-      // console.log('text.value: ', Math.max(text.value, min))
     }
 
     watch(
@@ -148,8 +146,11 @@ export default defineComponent({
       },
       { deep: true }
     )
-    
 
+    const handleChange = () => {
+      isProps.value = false
+    }
+    
     const changeVal = (type: any) => {
       const { stepStrictly, min } = unref(newProps)
       if (stepStrictly) {
@@ -220,14 +221,6 @@ export default defineComponent({
         inputNumberRef.value?.blur()
       }
     })
-
-    // const handlePressEnter = (e:KeyboardEvent) => {
-    //   if (e.keyCode === 13) {
-    //     emit('pressEnter', text.value)
-    //   }
-    //   return false
-    // }
-
     return {
       baseClass,
       text,
@@ -239,7 +232,8 @@ export default defineComponent({
       inputNumberRef,
       changeVal,
       handleBlur,
-      handleFocus
+      handleFocus,
+      handleChange
       // handlePressEnter
     }
   }
