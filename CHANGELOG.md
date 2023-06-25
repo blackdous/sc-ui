@@ -1,4 +1,14 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.134...0.0.2) (2023-06-21)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.135...0.0.2) (2023-06-25)
+
+
+
+## [0.0.135](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.134...0.0.135) (2023-06-25)
+
+
+### Bug Fixes
+
+* 修复 ScInputNumber 第一次输入未触发change事件 ([75f8fe9](http://gitlab.voneyun.com/frontend/sc-ui/commit/75f8fe94f2fb6208a565bc688ddabe51b9238933))
+* 修复ScInputNumber 组件输入不触发 change 事件\ 修复ScSlider 组件 默认最小值 ([b8586a0](http://gitlab.voneyun.com/frontend/sc-ui/commit/b8586a00ba71139007ac586a3d8f869ca4899984))
 
 
 
