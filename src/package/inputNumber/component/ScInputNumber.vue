@@ -99,7 +99,9 @@ export default defineComponent({
           text.value = props.max
           return
         }
-        isProps.value = true
+        if (val !== text.value) {
+          isProps.value = true
+        }
         text.value = val
       },
       { deep: true, immediate: true }
@@ -122,7 +124,6 @@ export default defineComponent({
       () => text.value,
       (val, oldVal) => {
         const { stepStrictly } = unref(newProps)
-        // console.log('stepStrictly: ', stepStrictly);
         prevVal.value = oldVal
         // @ts-ignore
         if (val !== '' && val !== null) {

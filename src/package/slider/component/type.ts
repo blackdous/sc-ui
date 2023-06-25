@@ -38,11 +38,11 @@ export const Props = () => ({
     default: 0
   },
   min: {
-    type: [Number, String],
+    type: [Number],
     default: 0
   },
   max: {
-    type: [Number, String],
+    type: [Number],
     default: 100
   },
   silent: {

@@ -65,7 +65,7 @@ const inputValueRef2 = ref(22)
 const inputValueRef1 = ref(11)
 
 const handleChange = (val:string) => {
-  console.log('val: ', val);
+  console.log('val: handleChange', val);
 }
 
 const handleChange1 = (val:string) => {
@@ -77,11 +77,15 @@ const handleBlur = (val:boolean) => {
 }
 
 watch([() => inputValueRef.value, () => inputValueRef1.value], (val => {
-  console.log('val:2222222222 ', val);
-  console.log('val1: ', val[0]);
-  console.log('val2222: ', val[1]);
+  console.log('val:watch ', val);
+  console.log('val1: watch', val[0]);
+  console.log('val2222: watch', val[1]);
 
 }))
+
+setTimeout(() => {
+  inputValueRef.value = 60
+}, 1500)
 
 </script>
 <style scoped>

@@ -195,10 +195,12 @@ export default defineComponent({
       }
     })
     watch(() => props.value, () => {
+      const value = Number(props.value) > props.max ? props.max : Number(props.value) < props.min ? props.min : props.value
       valueRef.value = unref(newProps).inputNumberOptions ? Number(props.value) : props.value
-      valueSliderRef.value = unref(newProps).inputNumberOptions ? Number(props.value) : props.value
+      valueSliderRef.value = value
     }, {
-      deep: true
+      deep: true,
+      immediate: true
     })
     watch(() => valueRef.value, (val) => {
       if (unref(newProps).inputNumberOptions) {
