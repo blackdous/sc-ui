@@ -59,7 +59,7 @@ import { ref, watch } from 'vue'
 // import { Input } from 'ant-design-vue'
 import { ScInputNumber } from 'sc-ui'
 
-const inputValueRef = ref(30)
+const inputValueRef = ref('30')
 const inputValueRef3 = ref(30)
 const inputValueRef2 = ref(22)
 const inputValueRef1 = ref(11)
@@ -83,9 +83,9 @@ watch([() => inputValueRef.value, () => inputValueRef1.value], (val => {
 
 }))
 
-setTimeout(() => {
-  inputValueRef.value = 60
-}, 1500)
+// setTimeout(() => {
+//   inputValueRef.value = 60
+// }, 1500)
 
 </script>
 <style scoped>

@@ -39,7 +39,7 @@ import { InputNumber, Button } from 'ant-design-vue'
 // import lodash from 'lodash'
 import { basePrefixCls } from '../../../constant'
 import { props } from './type'
-import { isNumber } from '../../../utils'
+import { isNumber, isEmptyText, isString } from '../../../utils'
 
 // const { debounce } = lodash
 
@@ -103,7 +103,7 @@ export default defineComponent({
         if (val !== text.value) {
           isProps.value = true
         }
-        text.value = val
+        text.value = isEmptyText(val) ? isString(val) ?  parseFloat(val) : val : val
       },
       { deep: true, immediate: true }
     )
