@@ -1,14 +1,46 @@
 <template>
   <Space direction="vertical" :size="12">
     <div>
-      <p>日期区间选择器</p>
-      <!-- @change="handleChange" -->
+      <p>日期区间选择器 -- 年</p>
+      <ScRangePicker
+        v-model:value="dateReactive.year"
+        picker="year"
+        @change="onChange"
+      >
+      </ScRangePicker>
+    </div>
+    <div>
+      <p>日期区间选择器 -- 月</p>
+      <ScRangePicker
+        v-model:value="dateReactive.month"
+        picker="month"
+        @change="onChange"
+      >
+      </ScRangePicker>
+    </div>
+    <div>
+      <p>日期区间选择器 -- 日</p>
       <ScRangePicker
         v-model:value="dateReactive.date"
-        value-format="YYYY-MM-DD"
-        format="YYYY-MM-DD"
-        :disabledDate="onDisabledDate"
-        allow-clear
+        picker="year"
+        @change="onChange"
+      >
+      </ScRangePicker>
+    </div>
+    <div>
+      <p>日期区间选择器 -- 周</p>
+      <ScRangePicker
+        v-model:value="dateReactive.week"
+        picker="week"
+        @change="onChange"
+      >
+      </ScRangePicker>
+    </div>
+    <div>
+      <p>日期区间选择器 -- 季度</p>
+      <ScRangePicker
+        v-model:value="dateReactive.quarter"
+        picker="quarter"
         @change="onChange"
       >
       </ScRangePicker>
@@ -32,7 +64,11 @@ export default defineComponent({
   setup () {
     // const value = ref<Dayjs>()
     const dateReactive = reactive({
-      date: []
+      date: [],
+      year: [],
+      month: [],
+      week: [],
+      quarter: []
     })
     const onChange = (value: Dayjs, dateString: string) => {
       console.log('Selected Time: ', value);

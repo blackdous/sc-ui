@@ -300,7 +300,12 @@ function PickerPanel<DateType>() {
           onPanelChange &&
           (mergedMode.value !== nextMode || isEqual(generateConfig, viewDate.value, viewDate.value))
         ) {
-          onPanelChange(viewValue, nextMode);
+          if (isArray(onPanelChange)) {
+            onPanelChange?.[1]?.(viewValue, nextMode);
+          }
+          if (isFunction(onPanelChange)) {
+            onPanelChange(viewValue, nextMode);
+          }
         }
       };
 
