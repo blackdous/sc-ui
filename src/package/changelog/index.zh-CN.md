@@ -5,6 +5,13 @@ map:
 
 # 变更记录
 
+## [0.0.136](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.135...0.0.136) (2023-07-03)
+
+### Bug Fixes
+
+* 修复 ScRangeDate pickerDate 为 month 选中报错 ([70bedc1](http://gitlab.voneyun.com/frontend/sc-ui/commit/70bedc1e760365e62ce7a62c8c2591f08593a7cd))
+* scInputNumber 组件 修复 传入值非 number 类型 ([9edfe0c](http://gitlab.voneyun.com/frontend/sc-ui/commit/9edfe0cd0964bce7dc1133e58b175639d69ee3fd))
+
 ## [0.0.135](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.134...0.0.135) (2023-06-25)
 
 ### Bug Fixes
