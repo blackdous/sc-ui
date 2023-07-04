@@ -148,7 +148,6 @@ export default defineComponent({
           const doc = document.querySelector(`.${uuid} .rc-virtual-list-scrollbar-show`)
           if (doc) {
             const docu = document.querySelector(`.${uuid}.selectDropdown`)
-            console.log('docu: ', docu?.className);
             docu && (docu.className.includes('isSelectScroll') ? '' : docu.className = docu.className + ' isSelectScroll')
           }
           clearTimeout(timer)

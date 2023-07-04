@@ -98,7 +98,7 @@ const mockFetch = () => {
 
 for (let i = 0;i < 100;  i++) {
   list.value = [...unref(list), {
-    label: 'Jack' + i,
+    label: 'JackJackJackJackJackJackJackJackJackJackJackJackJackJack' + i,
     value: i,
     key: 'Jack' + i
   }]
@@ -124,7 +124,14 @@ onMounted(() => {
 /* @import 'comment'; */
 </style>
 <style scoped>
+.aaaa {
+  width: 100px;
+}
 .mt20 {
   margin-top: 20px;
 }
+</style>
+
+<style>
+
 </style>
