@@ -79,6 +79,14 @@
       <ScTag type="lightOutline" status="error">默认标签</ScTag>
       <ScTag type="lightOutline" color="#87d068">默认标签</ScTag>
     </div>
+    <div>
+      <ScTag type="outline" :border="false">默认标签</ScTag>
+      <ScTag type="outline" status="primary" :border="false">默认标签</ScTag>
+      <ScTag type="outline" status="success" :border="false">默认标签</ScTag>
+      <ScTag type="outline" status="warning" :border="false">默认标签</ScTag>
+      <ScTag type="outline" status="error" :border="false">默认标签</ScTag>
+      <ScTag type="outline" color="#87d068" :border="false">默认标签</ScTag>
+    </div>
   </Space>
 </template>
 
@@ -88,6 +96,7 @@ import { Space } from 'ant-design-vue';
 import { ScTag } from 'sc-ui'
 
 const loadingRef = ref(true)
+
 </script>
 
 <style scoped>

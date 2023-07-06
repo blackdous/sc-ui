@@ -8,17 +8,17 @@
       :bordered="false"
       :useCollapse="false"
       >
-        <DescriptionsItem label="UserName">Zhou Maomao 
-          <ScIcon type="icon-a-chevron-rightdouble"
+        <DescriptionsItem label="UserName">Zhou Maomao
+          <!-- <ScIcon type="icon-a-chevron-rightdouble"
             :style="{fontSize: '20px'}"
-          ></ScIcon> 
+          ></ScIcon>  -->
         </DescriptionsItem>
         <DescriptionsItem label="Telephone">
-          1810000000
+          1810000000181000000018100000001810000000
           <ScIcon type="icon-a-chevron-rightdouble"
           ></ScIcon> 
         </DescriptionsItem>
-        <DescriptionsItem label="Live">Hangzhou, Zhejiang
+        <DescriptionsItem label="Live">Hangzhou, ZhejiangHangzhou, ZhejiangHangzhou, ZhejiangHangzhou, Zhejiang
           <i class="sc-ui sc-a-chevron-rightdouble" :style="{fontSize: '20px'}"></i>
         </DescriptionsItem>
         <DescriptionsItem label="Remark">empty

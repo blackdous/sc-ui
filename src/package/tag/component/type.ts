@@ -19,6 +19,10 @@ export const tagProps = () => ({
     values: ['success', 'warning', 'error', 'primary', 'default', 'process', 'freeze'],
     default: 'default',
   },
+  border: {
+    type: Boolean,
+    default: true
+  },
   checked: Boolean,
   selected: Boolean,
   disabled: Boolean,

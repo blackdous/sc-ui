@@ -35,11 +35,12 @@ export default defineComponent({
     })
     const className = computed(() => {
       // const classNames = 
-      const { textColor, size } = props
+      const { textColor, size, message } = props
       return [
         baseClass,
         textColor ? 'textColor' : '',
-        size ? baseClass + '--' + size : ''
+        size ? baseClass + '--' + size : '',
+        message || slots.message ? '' : 'notMessage'
       ]
     })
 

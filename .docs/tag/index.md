@@ -8,6 +8,14 @@ realPath: src/package/tag/index.zh-CN.md
 
 定义：标签常用于标记、分类和选择。
 
+## 常用
+
+<demo src="./demo/common.vue"
+  language="vue"
+  title="常用"
+  >
+</demo>
+
 ## 组件类型
 
 ## 基础标签

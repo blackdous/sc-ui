@@ -22,7 +22,9 @@
 .@{tagScope} {
   border: 1px solid @border-color-base;
   background: @select-hover-bg;
-  padding: 1px 8px;
+  padding: 1px 7px;
+  min-width: 64px;
+  text-align: center;
   color: @heading-color;
   font-family: 'PingFang SC';
   font-style: normal;
@@ -261,5 +263,13 @@
     background: @disabled-bg-color;
     color: @disabled-color;
     cursor: not-allowed;
+  }
+  &.notBorder {
+    font-size: 10px;
+    border: none;
+    padding: 0 4px;
+    min-width: auto;
+    height: 20px;
+    overflow: hidden;
   }
 }
