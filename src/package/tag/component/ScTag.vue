@@ -60,7 +60,7 @@ export default defineComponent({
     })
     
     const classNames = computed(() => {
-      const { type, size, status, selected, disabled, color, border } = unref(compProps)
+      const { type, size, status, selected, disabled, color, border, loading } = unref(compProps)
       return [
         attrs.class,
         baseClass,
@@ -70,7 +70,8 @@ export default defineComponent({
         selected ? unref(checked) ? 'is-selected onSelect' : 'onSelect' : '',
         disabled ? 'is-disabled' : '',
         color ? 'is-custom-color' : '',
-        border ? '' : 'notBorder'
+        border ? '' : 'notBorder',
+        loading ? 'is-loading' : ''
       ]
     })
 

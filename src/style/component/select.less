@@ -110,7 +110,10 @@ div.ant-select-dropdown {
       color: @primary-color;
     }
   }
-  .ant-select-item-option-active:not(.ant-select-item-option-disabled):not(.ant-select-item-option-selected) {
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+    background-color: transparent;
+  }
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled):not(.ant-select-item-option-selected):hover {
     background-color: transparent;
     .ant-select-item-option-content {
       background-color: @select-hover-bg;

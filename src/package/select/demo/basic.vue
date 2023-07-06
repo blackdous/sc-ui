@@ -7,7 +7,8 @@
     >
       <SelectOption
         v-for="item in list"
-        ::key="item.label"
+        :key="item.label"
+        :disabled="item.value === 4"
         :value="item.value"
       >
         {{item.label}}
