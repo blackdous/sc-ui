@@ -99,9 +99,9 @@ export default defineComponent({
     const ipListRec = reactive(ipList.value)
 
     watch(() => ipListRec.map((item:any) => item.value), val => {
+      console.log('val: ', val);
       const { joinSeparator, disabled } = props
       const curValue = val?.join(joinSeparator)
-      console.log('isProps.value: ', isProps.value);
       if (!disabled && !isProps.value) {
         emit('update:value', curValue)
         emit('change', curValue)
@@ -174,7 +174,11 @@ export default defineComponent({
                   return valueItem
                 })
                 newList?.forEach((item: any, index: number) => {
-                  isProps.value = true
+                  if (index !== 3) {
+                    isProps.value = true
+                  } else {
+                    isProps.value = false
+                  }
                   ipListRec[index].value = parseInt(item) || 0
                 })
               }
