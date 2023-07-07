@@ -3,7 +3,7 @@
     :class="classNames"
   >
     <template
-      v-for="(item, index) in ipList"
+      v-for="(item, index) in ipListRec"
     >
       <span
         v-if="index !== 0"
@@ -20,6 +20,7 @@
         :ref="ipList[index].ipRef"
         v-model:value="item.value"
         v-bind="{...item}"
+        @change="handleChange"
         @keydown="($event: Event) => handleKeyDown(index, $event)"
         ></ScInputNumber>
     </template>
@@ -27,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, watch, unref, onMounted, nextTick } from 'vue'
+import { defineComponent, ref, computed, watch, reactive, unref, onMounted, nextTick } from 'vue'
 import { message } from 'ant-design-vue'
 
 import { ScInputNumber } from '../../inputNumber'
@@ -56,6 +57,8 @@ export default defineComponent({
 
     const uuid = basePrefixCls + buildUUID()
 
+    const isProps = ref(false)
+
     const classNames = computed(() => {
       return [
         uuid,
@@ -72,7 +75,7 @@ export default defineComponent({
     const ipList = computed(() => {
       const { parseSeparator, inputNumberOptions, disabledIndex, disabled } = props
       const list = (valueRef.value)?.split(`${parseSeparator}`)
-      return list?.map((item: string, index: number) => {
+      const newList = list?.map((item: string, index: number) => {
         let newItem = {
           value: parseInt(item) || 0,
           disabled: disabledIndex?.includes(index)  || disabled,
@@ -89,16 +92,21 @@ export default defineComponent({
         }
         return newItem
       }) || []
+      return newList
     })
+    
 
+    const ipListRec = reactive(ipList.value)
 
-    watch(() => ipList.value.map((item:any) => item.value), val => {
+    watch(() => ipListRec.map((item:any) => item.value), val => {
       const { joinSeparator, disabled } = props
       const curValue = val?.join(joinSeparator)
-      if (!disabled) {
+      console.log('isProps.value: ', isProps.value);
+      if (!disabled && !isProps.value) {
         emit('update:value', curValue)
         emit('change', curValue)
         isDefaultValue.value = false
+        isProps.value = false
       }
     }, {
       deep: true
@@ -106,6 +114,12 @@ export default defineComponent({
 
     watch(() => props.value, (val:any) => {
       valueRef.value = val || '...'
+      const { parseSeparator } = props
+      const list = (val || '...')?.split(`${parseSeparator}`)
+      list?.forEach((item: any, index: number) => {
+        isProps.value = true
+        ipListRec[index].value = parseInt(item) || 0
+      })
     }, {
       immediate: true
     })
@@ -137,6 +151,10 @@ export default defineComponent({
       }
     }
 
+    const handleChange = () => {
+      isProps.value = false
+    }
+
     onMounted(() => {
       nextTick(() => {
         const inputList = document.querySelectorAll(`.${uuid} .ant-input-number-input`)
@@ -146,7 +164,7 @@ export default defineComponent({
             const currList = String(valueRef.value)?.split(parseSeparator)
             event.preventDefault()
             let pasteStr = (event?.clipboardData || window?.clipboardData).getData("text");
-            const pasteList = ipv4Region.test(pasteStr) ? pasteStr.split(parseSeparator) : false
+            const pasteList = ipv4Region.test(pasteStr.trim()) ? pasteStr.split(parseSeparator) : false
             if (pasteList) {
               if (pasteList.length === 4) {
                 const newList = currList.map((valueItem, _index) => {
@@ -155,7 +173,10 @@ export default defineComponent({
                   }
                   return valueItem
                 })
-                valueRef.value = newList.join(parseSeparator)
+                newList?.forEach((item: any, index: number) => {
+                  isProps.value = true
+                  ipListRec[index].value = parseInt(item) || 0
+                })
               }
             } else {
               message.warning('粘贴不符合ipv4格式')
@@ -169,10 +190,11 @@ export default defineComponent({
       baseClass,
       classNames,
       ipList,
-      // ipListRec,
+      ipListRec,
       ipListSourceRef,
       isLabelSeparatorSlot,
 
+      handleChange,
       handleKeyDown
     }
   }
