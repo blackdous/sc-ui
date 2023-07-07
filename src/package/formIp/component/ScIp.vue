@@ -3,7 +3,7 @@
     :class="classNames"
   >
     <template
-      v-for="(item, index) in ipListRec"
+      v-for="(item, index) in ipList"
     >
       <span
         v-if="index !== 0"
@@ -27,12 +27,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, reactive, watch, unref } from 'vue'
+import { defineComponent, ref, computed, watch, unref, onMounted, nextTick } from 'vue'
+import { message } from 'ant-design-vue'
 
 import { ScInputNumber } from '../../inputNumber'
 import { scIpProps } from './type'
 import { basePrefixCls } from '../../../constant'
 import { isObject, isArray } from '../../../utils/is'
+import { buildUUID } from '../../../utils'
 
 export default defineComponent({
   name: 'ScIp',
@@ -44,31 +46,25 @@ export default defineComponent({
   setup (props, { slots, emit }) {
     const ipListSourceRef = ref(props.modalValue)
 
-    // const curProps = computed(() => {
-    //   return props
-    // })
-
     const isDefaultValue = ref(true)
 
     const focusIndex = ref(0)
 
     const baseClass = basePrefixCls + 'Ips'
 
+    const ipv4Region = /^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$/
+
+    const uuid = basePrefixCls + buildUUID()
+
     const classNames = computed(() => {
       return [
+        uuid,
         baseClass
       ]
     })
 
-    const valueRef = computed(() => {
-      const { value } = props
-      if (!value) {
-        // return parseType === 'ipv4' ? '...' : parseType === 'ipv6' ? '......' : '...'
-        return '...'
-      }
-      return value
-    })
-
+    const valueRef = ref(props.value || '...')
+    
     const isLabelSeparatorSlot = computed(() => {
       return Object.keys(slots).includes('labelSeparator')
     })
@@ -95,18 +91,9 @@ export default defineComponent({
       }) || []
     })
 
-    const ipListRec = reactive(ipList.value)
 
-    watch(() => ipListRec.map((item:any) => item.value), val => {
-      // console.log('val: ', val);
+    watch(() => ipList.value.map((item:any) => item.value), val => {
       const { joinSeparator, disabled } = props
-      // const list = val.map((item: any) => { 
-      //   if (isRef(item.value)) {
-      //     return parseInt(unref(item.value))
-      //   } else {
-      //     return parseInt(item.value)
-      //   }
-      // })
       const curValue = val?.join(joinSeparator)
       if (!disabled) {
         emit('update:value', curValue)
@@ -117,12 +104,18 @@ export default defineComponent({
       deep: true
     })
 
+    watch(() => props.value, (val:any) => {
+      valueRef.value = val || '...'
+    }, {
+      immediate: true
+    })
+
     const handleKeyDown = (index: number, event: any) => {
       // 往右切换
       if (
         event.keyCode === 39 && 
-        index !== (ipListRec.length - 1) &&
-        event.currentTarget?.selectionStart === (ipListRec[index].value.toString().length)
+        index !== (ipList.value.length - 1) &&
+        event.currentTarget?.selectionStart === (ipList.value[index].value.toString().length)
       ) {
         const { disabled, ipRef, value } = unref(ipList)[index + 1]
         if (disabled) {
@@ -144,11 +137,39 @@ export default defineComponent({
       }
     }
 
+    onMounted(() => {
+      nextTick(() => {
+        const inputList = document.querySelectorAll(`.${uuid} .ant-input-number-input`)
+        inputList?.forEach((item: HTMLInputElement) => {
+          item.addEventListener('paste', (event: Event) => {
+            const { disabledIndex, parseSeparator } = props
+            const currList = String(valueRef.value)?.split(parseSeparator)
+            event.preventDefault()
+            let pasteStr = (event?.clipboardData || window?.clipboardData).getData("text");
+            const pasteList = ipv4Region.test(pasteStr) ? pasteStr.split(parseSeparator) : false
+            if (pasteList) {
+              if (pasteList.length === 4) {
+                const newList = currList.map((valueItem, _index) => {
+                  if (!disabledIndex.includes(_index)) {
+                    valueItem = pasteList[_index]
+                  }
+                  return valueItem
+                })
+                valueRef.value = newList.join(parseSeparator)
+              }
+            } else {
+              message.warning('粘贴不符合ipv4格式')
+            }
+          })
+        })
+      })
+    }) 
+
     return {
       baseClass,
       classNames,
       ipList,
-      ipListRec,
+      // ipListRec,
       ipListSourceRef,
       isLabelSeparatorSlot,
 

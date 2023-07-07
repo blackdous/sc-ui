@@ -1,10 +1,14 @@
-import { PropType } from "vue"
 
 export const scIpProps = () => ({
   modalValue: [String, Array],
   value: [String, Array],
   disabled: Boolean,
-  disabledIndex: Array,
+  disabledIndex: {
+    type: Array,
+    default () {
+      return []
+    }
+  },
   parseSeparator: {
     type: String,
     default () {
@@ -17,12 +21,6 @@ export const scIpProps = () => ({
       return '.'
     }
   },
-  // parseType: {
-  //   type: String as PropType<'ipv4' | 'ipv6'>,
-  //   default () {
-  //     return 'ipv4'
-  //   }
-  // },
   inputNumberOptions: {
     type: [Object, Array],
     default () {

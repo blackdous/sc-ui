@@ -28,6 +28,9 @@ watch(() => valueRef.value, (val) => {
   console.log('val: valueRef', val);
 })
 
+setTimeout(() => {
+  valueRef.value = '10.12.255.255'
+}, 1500)
 const handleChange = (val) => {
   console.log('val: handleChange', val);
 
