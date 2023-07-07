@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.137...0.0.2) (2023-07-06)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.138...0.0.2) (2023-07-07)
+
+
+
+## [0.0.138](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.137...0.0.138) (2023-07-07)
+
+
+### Bug Fixes
+
+* 修复 ScIp 粘贴 值问题 ([5bc958d](http://gitlab.voneyun.com/frontend/sc-ui/commit/5bc958df86622a44319b946e795cfe4f543ebb1c))
 
 
 
