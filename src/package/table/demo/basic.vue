@@ -13,12 +13,18 @@
       class="aaaa"
       row-key="key"
       ref="scTableRef"
-      :data-source="data"
+      :data-source="sourceData.list"
       :columns="columns"
       size="small"
       :create-button-options="{
         show: false,
       }"
+      :multiple-options="{
+        show: true,
+        triggerMultiple: true,
+        options: radioList
+      }"
+      :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
       :loading="loading"
       :scroll="{ x: true, y: 300 }"
       @change="handleChange"
@@ -73,7 +79,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref, h } from 'vue'
+// @ts-ignore
+import { ref, unref, h, reactive } from 'vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy, ScButton, ScTag } from 'sc-ui'
@@ -198,6 +205,19 @@ const handleUpdate = () => {
   updateTableData(3, 'name', 'updateTableData John Brown John Brown John Brown')
 }
 
+const state = reactive<{
+  selectedRowKeys: Key[];
+  loading: boolean;
+}>({
+  selectedRowKeys: [], // Check here to configure the default column
+  loading: false,
+});
+
+const onSelectChange = (selectedRowKeys: Key[]) => {
+  console.log('selectedRowKeys changed: ', selectedRowKeys);
+  state.selectedRowKeys = selectedRowKeys;
+};
+
 // @ts-ignore
 const columns = [
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', ellipsis: true},
@@ -305,42 +325,6 @@ setTimeout(() => {
   }, 1000)
 }, 2000)
 
-const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
-  {
-    toolOptions: {},
-    tooltipDes: "测试tooltip",
-    label: '按钮A',
-    disabled: false,
-    value: 'a',
-    action: ({tableRef, selectedRowKeysRef, selectedRowRef}) => {
-      console.log('selectedRowRef: ', selectedRowRef);
-      console.log('tableRef, selectedRowKeysRef: ', tableRef, selectedRowKeysRef);
-    }
-  },
-  {
-    toolOptions: {},
-    tooltipDes: "",
-    label: '按钮B',
-    value: 'b'
-  },
-  {
-    toolOptions: {},
-    tooltipDes: "测试tooltip",
-    label: '按钮C',
-    value: 'c'
-  }
-])
-
-const promiseTypelist = new Promise ((resolve) => {
-    setTimeout(() => {
-      resolve(unref(radioList))
-    }, 1500)
-  }).then((data) => {
-    return data
-  }).catch(error => {
-    console.log('error: ', error);
-  })
-
 interface DataItem {
   key: string;
   name: string;
@@ -351,7 +335,11 @@ interface DataItem {
   actionsOptions?: []
 }
 
-const data: DataItem[] = [
+
+const sourceData = reactive({
+  list: []
+})
+sourceData.list = [
   {
     key: '1',
     name: 'John Brown',
@@ -381,7 +369,7 @@ const data: DataItem[] = [
 ];
 
 for(let i = 10; i < 21; i++) {
-  data.push({
+  sourceData.list.push({
     key: i + '',
     name: 'John Brown',
     age: i,
@@ -395,6 +383,53 @@ for(let i = 10; i < 21; i++) {
     addressDesc: 'New London London London LondonNew London LondonNew London LondonNew London London'
   })
 }
+
+
+const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
+  {
+    toolOptions: {},
+    tooltipDes: "测试tooltip",
+    label: '按钮A',
+    disabled: ({ selectedRowRef }) => {
+      return !selectedRowRef.find((item: any) => item.statusStr === 1)
+    },
+    value: 'a',
+    action: ({tableRef, selectedRowKeysRef, selectedRowRef}) => {
+      setTimeout(() => {
+        sourceData.list = sourceData.list.map((item, index) => {
+          index === 1 ? item.statusStr = 2 : ''
+          return item
+        })
+        console.log('data: ', sourceData.list);
+      }, 1500)
+      // console.log('selectedRowRef: ', selectedRowRef);
+      // console.log('tableRef, selectedRowKeysRef: ', tableRef, selectedRowKeysRef);
+    }
+  },
+  {
+    toolOptions: {},
+    tooltipDes: "",
+    label: '按钮B',
+    value: 'b'
+  },
+  {
+    toolOptions: {},
+    tooltipDes: "测试tooltip",
+    label: '按钮C',
+    value: 'c'
+  }
+])
+
+const promiseTypelist = new Promise ((resolve) => {
+    setTimeout(() => {
+      resolve(unref(radioList))
+    }, 1500)
+  }).then((data) => {
+    return data
+  }).catch(error => {
+    console.log('error: ', error);
+  })
+
 // @ts-ignore
 const refresh = ({tableRef, selectedRowKeysRef}) => {
   scTableRef.value.setLoading(true)

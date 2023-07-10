@@ -105,7 +105,7 @@ const handleChange = (e: Event) => {
 
 const handleClick = (item: TooltipButtonProps) => {
   const isFlag = props.value === item.value
-  if (props.triggerMultiple && isFlag) {
+  if (props.triggerMultiple && isFlag && !item.disabled) {
     emits('update:value', item.value)
     emits('change', item.value)
   }

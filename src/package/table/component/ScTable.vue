@@ -315,17 +315,6 @@ export default defineComponent({
       deleteSelectRowByKey,
       setSelectedRowKeys,
     } = useRowSelection(newProps, tableData, emit)
-    
-    const {
-      isShowFilter,
-      isActiveFilter,
-      createButtonOptions,
-      multipleOptions,
-      searchOptions,
-      setSearchOptions,
-      setMultipleAction,
-      clearAll,
-    } = useFilter(newProps, selectedRowKeysRef, fetchParams)
 
     const {
       actionsOptions
@@ -359,6 +348,17 @@ export default defineComponent({
       emit,
       fetchParams
     );
+
+    const {
+      isShowFilter,
+      isActiveFilter,
+      createButtonOptions,
+      multipleOptions,
+      searchOptions,
+      setSearchOptions,
+      setMultipleAction,
+      clearAll,
+    } = useFilter(newProps, selectedRowKeysRef, fetchParams, tableFilter.value, getDataSourceRef)
 
     const {
       customComponentKey,
@@ -478,6 +478,7 @@ export default defineComponent({
     };
 
     const multipleChangeHandle = (value: any) => {
+      console.log('value: ', value);
       fetchParams.value = {...unref(fetchParams), multipleValue: value}
       if (isFunction(value.action)) {
         value.action(unref(fetchParams))

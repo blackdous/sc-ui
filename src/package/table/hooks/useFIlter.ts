@@ -9,7 +9,8 @@ export function useFilter (
   propsRef: ComputedRef<Recordable>,
   selectedRowKeysRef?: Ref<Recordable[]>,
   fetchParams?: Ref<Recordable>,
-  tableFilter?: ComputedRef<Recordable>
+  tableFilter?: ComputedRef<Recordable>,
+  getDataSourceRef?: Ref<Recordable>
   ) {
   const createButtonOptions = ref<CreateButton>({})
   const multipleOptions = ref<Recordable>({})
@@ -109,7 +110,7 @@ export function useFilter (
   })
 
   watch(
-    [() => selectedRowKeysRef],
+    [() => selectedRowKeysRef, getDataSourceRef],
     () => {
       nextTick(() => {
         setMultipleAction(unref(propsRef).multipleOptions as MultipleActionOptions)
