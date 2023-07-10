@@ -74,6 +74,7 @@ export default defineComponent({
 
     const ipList = computed(() => {
       const { parseSeparator, inputNumberOptions, disabledIndex, disabled } = props
+      // console.log('disabledIndex: ', disabledIndex);
       const list = (valueRef.value)?.split(`${parseSeparator}`)
       const newList = list?.map((item: string, index: number) => {
         let newItem = {
@@ -99,7 +100,6 @@ export default defineComponent({
     const ipListRec = reactive(ipList.value)
 
     watch(() => ipListRec.map((item:any) => item.value), val => {
-      console.log('val: ', val);
       const { joinSeparator, disabled } = props
       const curValue = val?.join(joinSeparator)
       if (!disabled && !isProps.value) {
@@ -110,6 +110,20 @@ export default defineComponent({
       }
     }, {
       deep: true
+    })
+
+    watch(() => props.disabledIndex, (val: number[]) => {
+      const { disabled } = props
+      ipListRec.forEach((item: any, index: number) => {
+        if (val.includes(index)) {
+          item.disabled = true || disabled
+        } else {
+          item.disabled = false || disabled
+        }
+        
+      })
+    }, {
+      immediate: true
     })
 
     watch(() => props.value, (val:any) => {
