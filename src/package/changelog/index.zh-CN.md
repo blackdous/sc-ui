@@ -5,6 +5,30 @@ map:
 
 # 变更记录
 
+## [0.0.142](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.141...0.0.142) (2023-07-11)
+
+### Bug Fixes
+
+* 去除 ScIp 自动聚焦功能; 去除 ScSelect 警告信息 ([88a80ff](http://gitlab.voneyun.com/frontend/sc-ui/commit/88a80ff571157dea2eb5b75ca67a158caa70df39))
+
+### Features
+
+* 调整 form input 样式 ([4bfb2af](http://gitlab.voneyun.com/frontend/sc-ui/commit/4bfb2afda8cdf3d5027cf8a14a512be968ddc03f))
+
+## [0.0.141](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.140...0.0.141) (2023-07-10)
+
+### Features
+
+* scIp 新增 监听 disabledIndex 功能 ([1354069](http://gitlab.voneyun.com/frontend/sc-ui/commit/1354069c19952921b5686869487da5ad8b5676a3))
+
+## [0.0.140](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.139...0.0.140) (2023-07-10)
+
+### Bug Fixes
+
+* 修复 ScIp  粘贴 未触发change 问题 ([8fbc546](http://gitlab.voneyun.com/frontend/sc-ui/commit/8fbc5466bd85ffdaaa0261ac17eeed8a279c6bc2))
+* 修复 ScTable 更新 data-source 值  multipleOptions 内部 disabled 无效 ([a010263](http://gitlab.voneyun.com/frontend/sc-ui/commit/a0102636492bd9fee053d3f37ca77f2b92ffb971))
+* 修复ScIp 输入 不触发change事件问题 ([aefbd48](http://gitlab.voneyun.com/frontend/sc-ui/commit/aefbd485d1547704053d90923be72e0699f41f86))
+
 ## [0.0.138](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.137...0.0.138) (2023-07-07)
 
 ### Bug Fixes
