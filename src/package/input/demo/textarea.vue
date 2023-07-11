@@ -7,11 +7,11 @@
     </Textarea>
   </div>
   <div style="width: 400px;">
+    <!-- showCount -->
     <Textarea
-      placeholder="请输入内容"
-      showCount
+      placeholder="请输入内容(0~50字符)"
       v-model:value="inputValueLengthRef"
-      :maxlength="150"
+      :maxlength="50"
     >
     </Textarea>
   </div>

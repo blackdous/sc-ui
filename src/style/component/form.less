@@ -125,6 +125,15 @@
   .ant-form-item-label>label {
     color: @text-color;
   }
+  .ant-form-item-label > label.ant-form-item-required::before {
+    display: none;
+  }
+  .ant-form-item-label > label.ant-form-item-no-colon .text-label {
+    padding-left: 0;
+  }
+  &.ant-form-vertical .ant-form-item-label .ant-form-item-required .text-label {
+    padding-left: 0;
+  }
 }
 
 // // 表单label非必填占位

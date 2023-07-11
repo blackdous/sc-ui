@@ -94,7 +94,7 @@ const schemas: FormSchema[] = [
     slot: 'selectA',
     defaultValue: [],
     colProps: {
-      span: 8,
+      span: 12,
     },
   },
   {
@@ -104,7 +104,7 @@ const schemas: FormSchema[] = [
     slot: 'selectB',
     defaultValue: [],
     colProps: {
-      span: 8,
+      span: 12,
     },
   },
 ]
