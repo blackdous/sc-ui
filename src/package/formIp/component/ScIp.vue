@@ -86,10 +86,7 @@ export default defineComponent({
           newItem = {...newItem, ...inputNumberOptions}
         }
         if (isArray(inputNumberOptions)) {
-          newItem = {...newItem, ...inputNumberOptions[index] || { max: 255, min: 0, precision: 0, showControl: false} }
-        }
-        if (focusIndex.value === index) {
-          newItem.autoFocus = true
+          newItem = {...{ max: 255, min: 0, precision: 0, showControl: false}, ...newItem, ...inputNumberOptions[index] }
         }
         return newItem
       }) || []

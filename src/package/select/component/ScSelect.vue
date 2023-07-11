@@ -67,7 +67,7 @@ export default defineComponent({
   name: 'ScSelect',
   inheritAttrs: false,
   props: props(),
-  emits: ['change', 'update:value', 'allowClear'],
+  emits: ['change', 'update:value', 'allowClear', 'dropdownVisibleChange'],
   components: {
     Select,
     CheckboxGroup,
@@ -97,6 +97,7 @@ export default defineComponent({
     const uuid = 'sc' + buildUUID()
     const vBind = computed(() => {
       let newOptions = cloneDeep(attrs.options)
+      // console.log('newOptions: ', newOptions);
       return {
         ...unref(newProps),
         ...attrs,
@@ -153,6 +154,7 @@ export default defineComponent({
           clearTimeout(timer)
         }, 200)
       }
+      emit('dropdownVisibleChange')
     }
 
     const computePrefixWidth = () => {
