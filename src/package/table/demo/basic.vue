@@ -15,7 +15,6 @@
       ref="scTableRef"
       :data-source="sourceData.list"
       :columns="columns"
-      size="small"
       :create-button-options="{
         show: false,
       }"
