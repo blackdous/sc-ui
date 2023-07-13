@@ -3,7 +3,7 @@
     :overlayClassName="newProps.column.type.props.className"
     :id="`tb_${String(index)}_${key}_ellipsis`"
   >
-    <template #title>
+    <template #title v-if="newProps.column.type.props.isShow ?? true">
       {{ isVNode(newProps.text) ? '' : newProps.text }}
       <component v-if="isVNode(newProps.text)" :is='newProps.text'></component>
     </template>
