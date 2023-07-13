@@ -1,4 +1,13 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.142...0.0.2) (2023-07-11)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.143...0.0.2) (2023-07-13)
+
+
+
+## [0.0.143](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.142...0.0.143) (2023-07-13)
+
+
+### Features
+
+* 修改 textarea 样式; 新增Sctable 属性 ([8e84baf](http://gitlab.voneyun.com/frontend/sc-ui/commit/8e84baf3e8809fba24599b32d35d48660d81b344))
 
 
 
