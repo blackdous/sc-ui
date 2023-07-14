@@ -2,7 +2,7 @@
 
 ant-design-vue vue3 ts ui
 
-**最新版本0.0.144**
+**最新版本0.0.145**
 
 [文档地址](http://sc-ui.voneyun.com/)
 
