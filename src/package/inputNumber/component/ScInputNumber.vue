@@ -55,7 +55,7 @@ export default defineComponent({
   setup(props, { emit, attrs, expose }) {
 
     const baseClass = basePrefixCls + 'InputNumber'
-    const text = ref(0)
+    const text = ref()
     const inputNumberRef = ref()
     const prevVal = ref()
     const isBlur = ref(false)
@@ -91,19 +91,23 @@ export default defineComponent({
 
     watch(
       () => props.value,
-      (val) => {
-        if (val < props.min) {
-          text.value = props.min
-          return
+      (val, oldVal) => {
+        const { needDefault } = props
+        if (needDefault) {
+          if (val < props.min) {
+            text.value = props.min
+            return
+          }
+          if (val > props.max) {
+            text.value = props.max
+            return
+          }
+          if (val !== text.value) {
+            isProps.value = true
+          }
+          text.value = isEmptyText(val) ? isString(val) ?  parseFloat(val) : val : val
+
         }
-        if (val > props.max) {
-          text.value = props.max
-          return
-        }
-        if (val !== text.value) {
-          isProps.value = true
-        }
-        text.value = isEmptyText(val) ? isString(val) ?  parseFloat(val) : val : val
       },
       { deep: true, immediate: true }
     )

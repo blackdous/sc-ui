@@ -5,6 +5,22 @@
       <RadioButton value="a">可用区A</RadioButton>
       <RadioButton value="b">可用区B</RadioButton>
       <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
     </ScRadioGroup>
   </div>
 </template>

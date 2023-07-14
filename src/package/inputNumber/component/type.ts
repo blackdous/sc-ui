@@ -18,6 +18,12 @@ export const props = () => ({
       return 'bothSides'
     }
   },
+  needDefault: {
+    type: Boolean,
+    default () {
+      return true
+    }
+  },
   autoFocus: Boolean,
   showControl: {
     type: Boolean,

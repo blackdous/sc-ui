@@ -8,22 +8,25 @@
     >
     </ScIp>
   </div>
-  <div class="mrt20">
+  <!-- <div class="mrt20">
     <ScIp
       v-model:value="valueRef1"
       :disabled-index="[2]"
       disabled
     >
     </ScIp>
-  </div>
+  </div> -->
+  <ScInputNumber v-model:value="undefined" :need-default="false"></ScInputNumber>
+  <InputNumber v-model:value="undefined"></InputNumber>
 </template>
 
 <script lang='ts' setup>
 import { ref, watch } from 'vue'
-import { ScIp, ScButton } from 'sc-ui'
+import { ScIp, ScButton, ScInputNumber } from 'sc-ui'
+import { InputNumber } from 'ant-design-vue'
 
-const valueRef = ref('0.222.104.11')
-const valueRef1 = ref('0.222.104.11')
+const valueRef = ref(null)
+const valueRef1 = ref('undefined.undefined.undefined.undefined')
 
 const disabledIndex = ref([2, 4])
 
@@ -31,9 +34,9 @@ watch(() => valueRef.value, (val) => {
   console.log('val: valueRef', val);
 })
 
-setTimeout(() => {
-  valueRef.value = '10.12.255.255'
-}, 1500)
+// setTimeout(() => {
+//   valueRef.value = '10.12.255.255'
+// }, 1500)
 const handleChange = (val:any) => {
   console.log('val: handleChange', val);
 }
