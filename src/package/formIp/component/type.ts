@@ -21,6 +21,12 @@ export const scIpProps = () => ({
       return '.'
     }
   },
+  needDefault: {
+    type: Boolean,
+    default () {
+      return true
+    }
+  },
   inputNumberOptions: {
     type: [Object, Array],
     default () {

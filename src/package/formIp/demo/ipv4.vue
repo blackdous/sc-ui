@@ -4,6 +4,7 @@
     <ScIp
       v-model:value="valueRef"
       :disabled-index="disabledIndex"
+      :need-default="false"
       @change="handleChange"
     >
     </ScIp>

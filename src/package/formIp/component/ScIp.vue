@@ -71,15 +71,15 @@ export default defineComponent({
     })
 
     const ipList = computed(() => {
-      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, value } = props
+      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, value, needDefault } = props
       // console.log('disabledIndex: ', disabledIndex);
       const list = (valueRef.value)?.split(`${parseSeparator}`)
       const newList = list?.map((item: string, index: number) => {
         let newItem = {
-          value: value === null ? undefined : parseInt(item) || 0,
+          value: needDefault ? undefined : parseInt(item) || 0,
           disabled: disabledIndex?.includes(index)  || disabled,
           ipRef: ref(),
-          needDefault: value === null ? false : true,
+          needDefault: needDefault,
         }
         if (isObject(inputNumberOptions)) {
           newItem = {...newItem, ...inputNumberOptions}
@@ -124,8 +124,8 @@ export default defineComponent({
 
     watch(() => props.value, (val:any) => {
       valueRef.value = val || '...'
-      const { parseSeparator } = props
-      if (val !== null) {
+      const { parseSeparator, needDefault } = props
+      if (needDefault) {
         const list = (val || '...')?.split(`${parseSeparator}`)
         list?.forEach((item: any, index: number) => {
           isProps.value = true
