@@ -125,7 +125,7 @@ export default defineComponent({
     watch(
       () => text.value,
       (val, oldVal) => {
-        const { stepStrictly } = unref(newProps)
+        const { stepStrictly, needDefault } = unref(newProps)
         prevVal.value = oldVal
         // @ts-ignore
         if (val !== '' && val !== null) {
@@ -146,6 +146,10 @@ export default defineComponent({
             emit('update:value', val)
             emit('change', val)
           }
+        }
+        if (!needDefault && (val === '' || val === null)) {
+          emit('update:value', val)
+          emit('change', val)
         }
       },
       { deep: true }
@@ -187,7 +191,7 @@ export default defineComponent({
     }
 
     const handleBlur = (event:Event) => {
-      const { stepStrictly, min } = unref(newProps)
+      const { stepStrictly, min, needDefault } = unref(newProps)
       if (stepStrictly) {
         // console.log('isBlur.value: ', isBlur.value);
         if (!isBlur.value) {
@@ -198,8 +202,11 @@ export default defineComponent({
         }
       } else {
         // @ts-ignore
-        if (text.value === '' || text.value === null) {
+        if ((text.value === '' || text.value === null) && needDefault) {
           text.value = prevVal.value
+        }
+        if (!needDefault && (text.value === '' || text.value === null)) {
+          text.value = undefined
         }
       }
       emit('blur', event)

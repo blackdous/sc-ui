@@ -16,13 +16,24 @@
         </span>
         <slot v-else name="labelSeparator"></slot>
       </span>
-      <ScInputNumber
+      <!-- <ScInputNumber
         :ref="ipList[index].ipRef"
         v-model:value="item.value"
         v-bind="{...item}"
         @change="handleChange"
         @keydown="($event: Event) => handleKeyDown(index, $event)"
-        ></ScInputNumber>
+        ></ScInputNumber> -->
+        <input
+          :class="[baseClass + '-input', 'ant-input']"
+          :ref="ipList[index].ipRef"
+          v-model="item.value"
+          v-bind="{...item}"
+          @keydown="($event: Event) => handleKeyDown(index, $event)"
+          @change="handleChange"
+          @blur="($event: Event) => handleBlur(index, $event)"
+          @keyup="($event: Event) => handleInput(index, $event)"
+        >
+          <!-- @input="handleInput" -->
     </template>
   </div>
 </template>
@@ -57,6 +68,7 @@ export default defineComponent({
 
     const isProps = ref(false)
 
+
     const classNames = computed(() => {
       return [
         uuid,
@@ -71,7 +83,7 @@ export default defineComponent({
     })
 
     const ipList = computed(() => {
-      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, value, needDefault } = props
+      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, value, needDefault, type } = props
       // console.log('disabledIndex: ', disabledIndex);
       const list = (valueRef.value)?.split(`${parseSeparator}`)
       const newList = list?.map((item: string, index: number) => {
@@ -80,6 +92,7 @@ export default defineComponent({
           disabled: disabledIndex?.includes(index)  || disabled,
           ipRef: ref(),
           needDefault: needDefault,
+          type: type
         }
         if (isObject(inputNumberOptions)) {
           newItem = {...newItem, ...inputNumberOptions}
@@ -87,6 +100,7 @@ export default defineComponent({
         if (isArray(inputNumberOptions)) {
           newItem = {...{ max: 255, min: 0, precision: 0, showControl: false}, ...newItem, ...inputNumberOptions[index] }
         }
+        console.log('newItem: ', newItem);
         return newItem
       }) || []
       return newList
@@ -94,6 +108,7 @@ export default defineComponent({
     
 
     const ipListRec = reactive(ipList.value)
+    // console.log('ipListRec: ', ipListRec);
 
     watch(() => ipListRec.map((item:any) => item.value), val => {
       const { joinSeparator, disabled } = props
@@ -141,11 +156,11 @@ export default defineComponent({
       if (
         event.keyCode === 39 && 
         index !== (ipList.value.length - 1) &&
-        event.currentTarget?.selectionStart === (ipList.value[index].value.toString().length)
+        event.currentTarget?.selectionStart === (ipList.value[index].value?.toString().length || 0)
       ) {
         const { disabled, ipRef, value } = unref(ipList)[index + 1]
         if (disabled) {
-          handleKeyDown(index + 1, { keyCode: 39, currentTarget: { selectionStart: value.toString().length} })
+          handleKeyDown(index + 1, { keyCode: 39, currentTarget: { selectionStart: value?.toString().length || 0} })
         } else {
           unref(ipList)?.ipRef?.value[0]?.blur()
           ipRef?.value[0]?.focus()
@@ -163,9 +178,32 @@ export default defineComponent({
       }
     }
 
-    const handleChange = (val) => {
-      console.log('val: ', val);
+    const handleChange = (val:any) => {
+      // console.log('val: ', val);
       isProps.value = false
+    }
+
+    const handleBlur = (index: number, event: Event) => {
+      // console.log('event: ', event.target.value);
+      const curRef = ipListRec[index].ipRef
+      console.log('curRef: ', curRef);
+      // ipListRec[index].value = event
+    }
+
+    const handleInput = (index: number, event: Event) => {
+      const { type } = props
+      const inputNumberOptions = 
+      if (type === 'number') {
+        // const _value = event?.target?.value?.replace(/\D/g, '')
+        // isProps.value = false
+        // ipListRec[index].value = _value
+        // console.log('_value: ', _value);
+      }
+      // const isNumber = (/D/g).test(_value)
+      // console.log('isNumber: ', isNumber);
+      // // return false
+      // event.stopPropagation()
+      // event.preventDefault()
     }
 
     onMounted(() => {
@@ -212,6 +250,8 @@ export default defineComponent({
       isLabelSeparatorSlot,
 
       handleChange,
+      handleInput,
+      handleBlur,
       handleKeyDown
     }
   }

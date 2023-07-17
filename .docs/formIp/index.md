@@ -14,13 +14,13 @@ realPath: src/package/formIp/index.zh-CN.md
   >
 </demo>
 
-## labelSeparator
+<!-- ## labelSeparator
 
 <demo src="./demo/slot.vue"
   language="labelSeparator"
   title="labelSeparator"
   >
-</demo>
+</demo> -->
 
 ## props
 
@@ -31,7 +31,7 @@ realPath: src/package/formIp/index.zh-CN.md
 | disabledIndex      | array[number]                 | - |  -     |  根据下标控制单个输入框disabled状态 |
 | parseSeparator      | string              | '.' |  -     |  传入value，通过split('parseSeparator') 切割数组 |
 | joinSeparator      | string              | '.' |  -     |  输入完成，返回数据拼接字符 |
-| inputNumberOptions      | ScInputNumberProps、Array(ScInputNumberProps)            | `{ max: 255, min: 0, precision: 0, showControl: false, autoFocus: false }` |  -  |  配置所有InputNumber，或者配置当个输入框InputNumber |
+<!-- | inputNumberOptions      | ScInputNumberProps、Array(ScInputNumberProps)            | `{ max: 255, min: 0, precision: 0, showControl: false, autoFocus: false }` |  -  |  配置所有InputNumber，或者配置当个输入框InputNumber | -->
 <!-- | parseType      | string              | 'ipv4' |  'ipv4'、‘ipv6’     |  切换默认值`...`、`......` | -->
 
 ## 事件
