@@ -27,7 +27,25 @@
       :loading="loading"
       :scroll="{ x: true, y: 300 }"
       @change="handleChange"
-      >
+    >
+      <template #expandIcon="props">
+        <span v-if="props.record"> 
+          <div
+            v-if="props.expanded" 
+            class="pointer arrow" 
+            @click="(e: any) => { props.onExpand(props.record, e) }"
+          >
+            <DoubleLeftOutlined />
+          </div>
+          <div
+            v-else 
+            class="pointer arrow"
+            @click=" (e: any) => { props.onExpand(props.record, e) }"
+          >
+            <DoubleRightOutlined /> 
+          </div> 
+        </span>
+      </template>
       <!-- :langLocale="zhCN" -->
       <template #copy1="{text, record, index, column}">
         <Copy v-bind="{text, record, index, column}">
@@ -85,6 +103,10 @@ import { ref, unref, h, reactive } from 'vue'
 import { ScTable, Copy, ScButton, ScTag } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
 import { InputSearch } from 'ant-design-vue'
+import {
+  DoubleLeftOutlined,
+  DoubleRightOutlined
+} from '@ant-design/icons-vue'
 
 const loading = ref(false)
 

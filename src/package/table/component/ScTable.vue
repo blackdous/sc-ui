@@ -100,7 +100,6 @@
         ref="tableRef"
         v-bind="tableBindValue"
         :rowClassName="getRowClassName"
-        :expand-icon="expandIconFnc"
         @change="handleTableChange"
       >
         <template
@@ -397,7 +396,8 @@ export default defineComponent({
         indentSize: newProps.value?.indentSize || 30,
         change: undefined,
         style: undefined,
-        class: undefined
+        class: undefined,
+        expandIcon: isExpandIcon.value ? null : (expandIconFnc || newProps?.expandIcon)
       }
     })
     const className = computed(() => {
@@ -426,6 +426,10 @@ export default defineComponent({
     });
     const isCustomFilter = computed(() => {
       return props.customFilter;
+    });
+
+    const isExpandIcon = computed(() => {
+      return Object.keys(slots).includes('expandIcon');
     });
 
     function setProps(props: Partial<TableProps>) {
@@ -696,6 +700,7 @@ export default defineComponent({
       thColumn,
       isShowFilter,
       getFilterDropdownRef,
+      isExpandIcon,
 
       getRowClassName,
       isEmptyText,
