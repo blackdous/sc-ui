@@ -212,27 +212,26 @@ export default defineComponent({
         inputList?.forEach((item: HTMLInputElement) => {
           item.addEventListener('paste', (event: Event) => {
             const { disabledIndex, parseSeparator } = props
+            console.log('disabledIndex: ', disabledIndex);
             const currList = String(valueRef.value)?.split(parseSeparator)
             event.preventDefault()
             let pasteStr = (event?.clipboardData || window?.clipboardData).getData("text");
             const pasteList = ipv4Region.test(pasteStr.trim()) ? pasteStr.split(parseSeparator) : false
-            if (pasteList) {
-              if (pasteList.length === 4) {
-                const newList = currList.map((valueItem, _index) => {
-                  if (!disabledIndex.includes(_index)) {
-                    valueItem = pasteList[_index]
-                  }
-                  return valueItem
-                })
-                newList?.forEach((item: any, index: number) => {
-                  if (index !== 3) {
-                    isProps.value = true
-                  } else {
-                    isProps.value = false
-                  }
-                  ipListRec[index].value = parseInt(item) || 0
-                })
-              }
+            if (pasteList && pasteList.length === 4) {
+              const newList = currList.map((valueItem, _index) => {
+                if (!disabledIndex.includes(_index)) {
+                  valueItem = pasteList[_index]
+                }
+                return valueItem
+              })
+              newList?.forEach((item: any, index: number) => {
+                if (index !== 3) {
+                  isProps.value = true
+                } else {
+                  isProps.value = false
+                }
+                ipListRec[index].value = parseInt(item) || 0
+              })
             } else {
               message.warning('粘贴不符合ipv4格式')
             }

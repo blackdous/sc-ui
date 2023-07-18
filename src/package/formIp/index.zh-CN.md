@@ -13,13 +13,13 @@ map:
   >
 </demo>
 
-<!-- ## labelSeparator
+## labelSeparator
 
 <demo src="./demo/slot.vue"
   language="labelSeparator"
   title="labelSeparator"
   >
-</demo> -->
+</demo>
 
 ## props
 
@@ -30,7 +30,9 @@ map:
 | disabledIndex      | array[number]                 | - |  -     |  根据下标控制单个输入框disabled状态 |
 | parseSeparator      | string              | '.' |  -     |  传入value，通过split('parseSeparator') 切割数组 |
 | joinSeparator      | string              | '.' |  -     |  输入完成，返回数据拼接字符 |
-<!-- | inputNumberOptions      | ScInputNumberProps、Array(ScInputNumberProps)            | `{ max: 255, min: 0, precision: 0, showControl: false, autoFocus: false }` |  -  |  配置所有InputNumber，或者配置当个输入框InputNumber | -->
+| inputNumberOptions      | ScInputNumberProps、Array(ScInputNumberProps)            | `{ max: 255, min: 0 }` |  -  |  配置所有Input，或者配置当个输入框Input |
+| needDefault      | boolean            | true |  -  |  是否需要自动填充`0` |
+| copyDisabled      | boolean            | false |  -  |  粘贴是否填充disabled中的值 |
 <!-- | parseType      | string              | 'ipv4' |  'ipv4'、‘ipv6’     |  切换默认值`...`、`......` | -->
 
 ## 事件

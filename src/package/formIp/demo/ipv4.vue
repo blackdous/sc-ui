@@ -3,10 +3,11 @@
   <div>
     <ScIp
       v-model:value="valueRef"
-      :disabled-index="disabledIndex"
-      :need-default="false"
       @change="handleChange"
-    >
+      :need-default="false"
+      :disabled-index="disabledIndex"
+      >
+      <!-- :copyDisabled="true" -->
     </ScIp>
   </div>
   <div class="mrt20">
@@ -23,7 +24,7 @@
 import { ref, watch } from 'vue'
 import { ScIp, ScButton } from 'sc-ui'
 
-const valueRef = ref('...')
+const valueRef = ref(null)
 const valueRef1 = ref('undefined.undefined.undefined.undefined')
 
 const disabledIndex = ref([2, 4])

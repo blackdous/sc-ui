@@ -9,6 +9,12 @@ export const scIpProps = () => ({
       return []
     }
   },
+  type: {
+    type: String,
+    default () {
+      return 'number'
+    }
+  },
   parseSeparator: {
     type: String,
     default () {
@@ -27,6 +33,12 @@ export const scIpProps = () => ({
       return true
     }
   },
+  copyDisabled: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
   inputNumberOptions: {
     type: [Object, Array],
     default () {
@@ -40,3 +52,11 @@ export const scIpProps = () => ({
     }
   }
 })
+
+export interface IpItemType {
+  value?: string | number,
+  max?: string | number,
+  min?: string | number,
+  autoFocus?: boolean,
+  [key:string]: any
+}
