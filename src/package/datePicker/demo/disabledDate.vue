@@ -8,6 +8,9 @@
       :show-time="{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }"
     />
     <ScDatePicker v-model:value="value2" :disabled-date="disabledDate" picker="month" />
+    <ScDatePicker v-model:value="value2" :disabled-date="disabledDate" picker="year" />
+    <ScDatePicker v-model:value="value2" :disabled-date="disabledDate" picker="week" />
+    <ScDatePicker v-model:value="value2" :disabled-date="disabledDate" picker="quarter" />
     <ScRangePicker v-model:value="value3" :disabled-date="disabledDate" />
     <ScRangePicker
       v-model:value="value4"

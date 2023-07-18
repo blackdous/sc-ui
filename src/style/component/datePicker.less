@@ -416,6 +416,9 @@
     display: flex;
     flex-direction: column;
     width: @picker-panel-width;
+    // .scPicker-cell-disabled::before {
+    //   background: transparent;
+    // }
   }
 
   // ======================= Header =======================
@@ -1443,4 +1446,20 @@ _:-ms-fullscreen,
 .scPicker-panel-container .scPicker-panel .scPicker-content, 
 .scPicker-panel-container .scPicker-panel table {
   text-align: center;
+}
+
+.@{datePickerScope} {
+  &-dropdown:not(.scPicker-dropdown-range) {
+    .scPicker-decade-panel,
+    .scPicker-year-panel,
+    .scPicker-quarter-panel,
+    .scPicker-month-panel,
+    .scPicker-week-panel,
+    .scPicker-date-panel,
+    .scPicker-time-panel {
+      .scPicker-cell-disabled::before {
+        background: transparent;
+      }
+    }
+  }
 }
