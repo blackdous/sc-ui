@@ -127,8 +127,7 @@ export default defineComponent({
     })
 
     watch(() => props.value, (val:any) => {
-      valueRef.value = val
-      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, needDefault } = props
+      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, needDefault, joinSeparator } = props
       const list = (val || '...')?.split(`${parseSeparator}`)
       const newList = list?.map((item: string, index: number) => {
         let newItem = {
@@ -146,6 +145,7 @@ export default defineComponent({
         return newItem
       }) || []
       ipListRec.list = newList
+      valueRef.value = newList.map((item: IpItemType) => item.value).join(joinSeparator)
       refList.value = list.map((item:any) => {
         return ref()
       })
@@ -154,23 +154,34 @@ export default defineComponent({
     })
 
     const jumpLeft = (index: number) => {
-      const { disabled } = ipListRec.list[index - 1]
+      const { disabled, value } = ipListRec.list[index - 1]
       if (disabled) {
         jumpLeft(index - 1)
       } else {
         const ipRef = unref(refList)[index - 1]
         ipRef?.value[0].focus()
+        ipRef?.value[0].setSelectionRange(value.length, value.length)
       }
     }
 
     const jumpRight = (index: number) => {
-      const { disabled } = ipListRec.list[index + 1]
+      const { disabled, value } = ipListRec.list[index + 1]
       if (disabled) {
         jumpRight(index + 1)
       } else {
         const ipRef = unref(refList)[index + 1]
         ipRef?.value[0].focus()
+        ipRef?.value[0].setSelectionRange(value.length, value.length)
       }
+    }
+
+    const emitValue = () => {
+      const { joinSeparator, disabled } = props
+      const curValue = ipListRec.list.map((item: IpItemType) => item.value)?.join(joinSeparator)
+        if (!disabled) {
+          emit('update:value', curValue)
+          emit('change', curValue)
+        }
     }
 
     const checkIpVal = (index: number, event: any) => {
@@ -185,11 +196,7 @@ export default defineComponent({
         } else {
           ipListRec.list[index].value = ''
         }
-        const curValue = ipListRec.list.map((item: IpItemType) => item.value)?.join(joinSeparator)
-        if (!disabled) {
-          emit('update:value', curValue)
-          emit('change', curValue)
-        }
+        emitValue()
         return
       }
       val = val < min ? min : val
@@ -236,6 +243,7 @@ export default defineComponent({
           item.addEventListener('paste', (event: Event) => {
             const { disabledIndex, parseSeparator, copyDisabled } = props
             const currList = String(valueRef.value || '...')?.split(parseSeparator)
+            console.log('currList: ', currList);
             event.preventDefault()
             let pasteStr = (event?.clipboardData || window?.clipboardData).getData("text");
             const pasteList = ipv4Region.test(pasteStr.trim()) ? pasteStr.split(parseSeparator) : false
@@ -247,13 +255,9 @@ export default defineComponent({
                 return valueItem
               })
               newList?.forEach((item: any, index: number) => {
-                if (index !== 3) {
-                  isProps.value = true
-                } else {
-                  isProps.value = false
-                }
-                ipListRec.list[index].value = parseInt(item) || ''
+                ipListRec.list[index].value = item
               })
+              emitValue()
             } else {
               message.warning('粘贴不符合ipv4格式')
             }

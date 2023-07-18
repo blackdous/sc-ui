@@ -4,9 +4,9 @@
     <ScIp
       v-model:value="valueRef"
       @change="handleChange"
-      :need-default="false"
       :disabled-index="disabledIndex"
       >
+      <!-- :need-default="false" -->
       <!-- :copyDisabled="true" -->
     </ScIp>
   </div>
