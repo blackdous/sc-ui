@@ -1,4 +1,48 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.143...0.0.2) (2023-07-13)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.147...0.0.2) (2023-07-19)
+
+
+
+## [0.0.147](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.146...0.0.147) (2023-07-19)
+
+
+### Bug Fixes
+
+* 修复 ScDrawer 组件 helpinfo 默认显示问题 ([14c5b1d](http://gitlab.voneyun.com/frontend/sc-ui/commit/14c5b1d22631a3ab490b6632ec39359a1c3ba65a))
+
+
+
+## [0.0.146](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.145...0.0.146) (2023-07-19)
+
+
+### Bug Fixes
+
+* 调整 ScIp 组件 ([d9db815](http://gitlab.voneyun.com/frontend/sc-ui/commit/d9db815813437b599ac0447d103995c4e0cbcd0e))
+* 修复 template 传入 expandIcon 无效问题 ([9e571a7](http://gitlab.voneyun.com/frontend/sc-ui/commit/9e571a7b9b5b64f41eeee4f0d270e59bd3646c0a))
+
+
+### Features
+
+* 根据最新 ui调整 组件样式 ([305b71f](http://gitlab.voneyun.com/frontend/sc-ui/commit/305b71ff67bf33b9b334dfcbf8a95f2e5a3f07f4))
+* 重写ScIp 组件;完善功能 ([1e7b870](http://gitlab.voneyun.com/frontend/sc-ui/commit/1e7b8703b1d67a1580c1e9cbde2cc2705c5f1316))
+* scIp 删除,左右切换 从最后位置显示光标 ([09b1da6](http://gitlab.voneyun.com/frontend/sc-ui/commit/09b1da6b64e95bdce79759c86672b40975436720))
+
+
+
+## [0.0.145](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.144...0.0.145) (2023-07-14)
+
+
+### Bug Fixes
+
+* 修复 ScIp 默认值填充字段 needDefault ([8a67960](http://gitlab.voneyun.com/frontend/sc-ui/commit/8a67960fa671cd81de20abc9fe05ac765b73b0f7))
+
+
+
+## [0.0.144](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.143...0.0.144) (2023-07-14)
+
+
+### Features
+
+* scIp 组件传值为 null 时 不自动填充为 0 ([c27fe96](http://gitlab.voneyun.com/frontend/sc-ui/commit/c27fe96845d5fc86b0b25ca3507bc8eaeb727bbd))
 
 
 
