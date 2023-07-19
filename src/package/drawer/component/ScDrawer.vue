@@ -17,7 +17,7 @@
         <div :class="[baseClass + '-title']"  v-if="!$slots.title">
           <span :class="[baseClass + '-txt']">
             {{ curProps.title }}
-            <Tooltip placement="bottomRight" trigger="hover">
+            <Tooltip placement="bottomRight" trigger="hover" v-if="curProps.helpInfo">
               <i class="sc-ui sc-question-circle"></i>
               <template #title>
                 {{ curProps.helpInfo }}
