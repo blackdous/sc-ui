@@ -9,6 +9,7 @@
       :defaultValue="30"
       :autoFocus="true"
       :precision="0"
+      :emitEmpty="true"
       @change="handleChange"
       @blur="handleBlur"
     >

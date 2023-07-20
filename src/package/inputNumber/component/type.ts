@@ -24,6 +24,12 @@ export const props = () => ({
       return true
     }
   },
+  emitEmpty: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
   autoFocus: Boolean,
   showControl: {
     type: Boolean,

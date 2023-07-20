@@ -91,7 +91,7 @@ export default defineComponent({
 
     watch(
       () => props.value,
-      (val, oldVal) => {
+      (val) => {
         const { needDefault } = props
         if (needDefault) {
           if (val < props.min) {
@@ -126,7 +126,10 @@ export default defineComponent({
       () => text.value,
       (val, oldVal) => {
         const { stepStrictly, needDefault } = unref(newProps)
-        prevVal.value = oldVal
+        // Number.isNaN()
+        if (isNaN(oldVal)) {
+          prevVal.value = oldVal
+        }
         // @ts-ignore
         if (val !== '' && val !== null) {
           const { max, disabled } = newProps.value
@@ -155,7 +158,9 @@ export default defineComponent({
       { deep: true }
     )
 
-    const handleChange = () => {
+    const handleChange = (val:any) => {
+      // console.log('val: ', val);
+      
       isProps.value = false
     }
     
@@ -191,7 +196,7 @@ export default defineComponent({
     }
 
     const handleBlur = (event:Event) => {
-      const { stepStrictly, min, needDefault } = unref(newProps)
+      const { stepStrictly, min, needDefault, emitEmpty } = unref(newProps)
       if (stepStrictly) {
         // console.log('isBlur.value: ', isBlur.value);
         if (!isBlur.value) {
@@ -202,9 +207,13 @@ export default defineComponent({
         }
       } else {
         // @ts-ignore
-        // if ((text.value === '' || text.value === null) && needDefault) {
-        //   text.value = prevVal.value
-        // }
+        if ((text.value === '' || text.value === null) && needDefault) {
+          text.value = isNaN(prevVal.value) ? '' : prevVal.value
+        }
+        if (emitEmpty && (text.value === '' || text.value === null)) {
+          emit('update:value', null)
+          emit('change', null)
+        }
         if (!needDefault && (text.value === '' || text.value === null)) {
           text.value = undefined
         }
