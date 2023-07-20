@@ -202,9 +202,9 @@ export default defineComponent({
         }
       } else {
         // @ts-ignore
-        if ((text.value === '' || text.value === null) && needDefault) {
-          text.value = prevVal.value
-        }
+        // if ((text.value === '' || text.value === null) && needDefault) {
+        //   text.value = prevVal.value
+        // }
         if (!needDefault && (text.value === '' || text.value === null)) {
           text.value = undefined
         }

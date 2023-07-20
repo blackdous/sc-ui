@@ -68,8 +68,8 @@ export default defineComponent({
     const varStyle = computed(() => {
       const { color } = props;
       const rgbaColor = color ? parseColorString(color) : ''
-      const shadowOutColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.18 })) : ''
-      const shadowInColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.6 })) : ''
+      const shadowOutColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.38 })) : ''
+      const shadowInColor = rgbaColor ? toRgbaString(Object.assign(rgbaColor, { a: 0.5 })) : ''
       if (!color) {
         return {}
       }

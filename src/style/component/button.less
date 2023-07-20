@@ -1,3 +1,6 @@
+// .ant-btn-sm {
+//   line-height: 24px;
+// }
 .ant-btn{
   border-radius: @border-r-3;
   color: @heading-color;
@@ -9,6 +12,7 @@
   }
   &-sm {
     font-size: 12px;
+    line-height: 24px;
     padding: 0 7px;
   }
   &.is-default {
@@ -222,19 +226,20 @@
     color: @white-color;
   }
   &.customColor {
-    box-shadow: 0px 0px 6px 0px #F0F3F7, 0px 4px 4px 0px var(--shadowOutColor);
+    // box-shadow: 0px 0px 6px 0px #F0F3F7, 0px 4px 4px 0px var(--shadowOutColor);
+    box-shadow: 0px 0px 6px 0px #F0F3F7, 0px 2px 4px var(--shadowOutColor);
     & > span {
       background: var(--shadowBgColor);
-      box-shadow: 0px 0px 6px 0px #F0F3F7, 0px 4px 4px 0px var(--shadowInColor);
+      box-shadow: 0px 2px 5px var(--shadowInColor);
     }
   }
   &.ant-btn-sm {
     padding: 0 4px;
+    font-size: 10px;
     & > span {
-      padding: 0 7px;
-      font-size: 12px;
+      display: inline;
+      padding: 3px 4px;
       height: 16px;
-      line-height: 16px;
     }
   }
 
