@@ -6,7 +6,6 @@
       @change="handleChange"
       :disabled-index="disabledIndex"
       >
-      <!-- :need-default="false" -->
       <!-- :copyDisabled="true" -->
     </ScIp>
   </div>
@@ -25,7 +24,7 @@ import { ref, watch } from 'vue'
 import { ScIp, ScButton } from 'sc-ui'
 
 const valueRef = ref(null)
-const valueRef1 = ref('undefined.undefined.undefined.undefined')
+const valueRef1 = ref('12.3.4.266')
 
 const disabledIndex = ref([2, 4])
 

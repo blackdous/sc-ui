@@ -126,12 +126,22 @@ export default defineComponent({
       immediate: true
     })
 
+    const checkValue = (value: string, options: IpItemType) => {
+      const { needDefault } = props
+      const { max, min } = options as IpItemType
+      // 当输入的是空格时，值赋为空
+      let val = parseInt(value + '')
+      val = val < min ? min : val
+      val = val > max ? max : val
+      return !needDefault ? val || '' : val || 0
+    }
+
     watch(() => props.value, (val:any) => {
       const { parseSeparator, inputNumberOptions, disabledIndex, disabled, needDefault, joinSeparator } = props
       const list = (val || '...')?.split(`${parseSeparator}`)
       const newList = list?.map((item: string, index: number) => {
         let newItem = {
-          value: !needDefault ? item || '' : parseInt(item) || 0,
+          // value: !needDefault ? parseInt(item) || '' : parseInt(item) || 0,
           disabled: disabledIndex?.includes(index)  || disabled,
           type: 'text'
         }
@@ -141,10 +151,12 @@ export default defineComponent({
         if (isArray(inputNumberOptions)) {
           newItem = {...{ max: 255, min: 0, precision: 0, showControl: false}, ...newItem, ...inputNumberOptions[index] }
         }
+        newItem.value = checkValue(item, newItem)
         isProps.value = true
         return newItem
       }) || []
       ipListRec.list = newList
+      // console.log('newList: ', newList);
       valueRef.value = newList.map((item: IpItemType) => item.value).join(joinSeparator)
       refList.value = list.map((item:any) => {
         return ref()
@@ -192,7 +204,7 @@ export default defineComponent({
       // console.log('is Number', (/^[1-9]\d*$/).test(val + ''));
       if (isNaN(val)) {
         if (needDefault) {
-          ipListRec.list[index].value = 0
+          ipListRec.list[index].value = ''
         } else {
           ipListRec.list[index].value = ''
         }
@@ -243,7 +255,7 @@ export default defineComponent({
           item.addEventListener('paste', (event: Event) => {
             const { disabledIndex, parseSeparator, copyDisabled } = props
             const currList = String(valueRef.value || '...')?.split(parseSeparator)
-            console.log('currList: ', currList);
+            // console.log('currList: ', currList);
             event.preventDefault()
             let pasteStr = (event?.clipboardData || window?.clipboardData).getData("text");
             const pasteList = ipv4Region.test(pasteStr.trim()) ? pasteStr.split(parseSeparator) : false
