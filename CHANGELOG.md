@@ -1,4 +1,25 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.147...0.0.2) (2023-07-19)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.149...0.0.2) (2023-07-21)
+
+
+
+## [0.0.149](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.148...0.0.149) (2023-07-21)
+
+
+### Bug Fixes
+
+* 修复 ScTable Filter 组件默认值 问题 ([26f4493](http://gitlab.voneyun.com/frontend/sc-ui/commit/26f4493dd8927a622f9631847c92f46fe933c073))
+* 修复 ScTable InputPlaceholder 默认值显示 错误问题 ([0f887e2](http://gitlab.voneyun.com/frontend/sc-ui/commit/0f887e21f3164774ab83be20d2df57079fb47cc8))
+* 修复ScInputNumber 输入 非整数字符 重置未触发 change 事件 ([0f37d84](http://gitlab.voneyun.com/frontend/sc-ui/commit/0f37d84dfebf686d7f66a8b9c372fb4b50c7cbc8))
+
+
+
+## [0.0.148](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.147...0.0.148) (2023-07-20)
+
+
+### Bug Fixes
+
+* 修复 ScInputNumber 输入 非数字问题 ([d207820](http://gitlab.voneyun.com/frontend/sc-ui/commit/d207820a612095942d5247199ef5f743dfec4f87))
+* 修复props传入值不不符合ipv4格式校验 修改 ([b06da01](http://gitlab.voneyun.com/frontend/sc-ui/commit/b06da0179ab20178fbeb8b50fef4db407d4f9841))
 
 
 
