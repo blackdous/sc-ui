@@ -7,14 +7,14 @@ map:
 
 基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件, 部分方法是从`vben`的table上拿过来的
 
-<!-- ## 基础组件
+## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
   title="基础表格table表格"
   desc="基础表格"
   >
-</demo> -->
+</demo>
 
 <!-- <demo src="./demo/serverPackageTable.vue"
   language="vue"
@@ -23,7 +23,7 @@ map:
   >
 </demo> -->
 
-<!-- ### 新增相关APi
+### 新增相关APi
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -89,7 +89,7 @@ const activeOptions = {
       cancelModal: Fn
     }
   }
-``` -->
+```
 
 reload参数中的`action`方法，参数为`fetchParams`
 
@@ -102,7 +102,7 @@ reload参数中的`action`方法，参数为`fetchParams`
   >
 </demo>
 
-<!-- ### CreateBtn组件
+### CreateBtn组件
 
 **组件支持`solt`传入(`createButton`)**
 
@@ -958,4 +958,4 @@ export interface ActionsOptions {
   title="指定rowSelected值"
   desc="指定rowSelected值"
   >
-</demo> -->
+</demo>
