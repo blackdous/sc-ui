@@ -40,7 +40,9 @@
           clearInput: false
         },
         inputOptions: {
-          placeholder: '请输入',
+          placeholder: (selectItem: any) => {
+            return '请输入' + selectItem?.label
+          },
           width: '200px',
           maxlength: 40,
           defaultValue: searchDefaultValue

@@ -236,6 +236,9 @@ export default defineComponent({
         if (!props.selectValue && typeList) {
           selectedItem.value = typeList[0]
         }
+        if (defaultValue && typeList && typeList.length) {
+          selectedItem.value = typeList.find((item: any) => item.value === defaultValue)
+        }
         return props.selectValue || (!loading ? defaultValue : undefined) || typeList[0]?.value
       },
       set: (val) => {
@@ -270,6 +273,7 @@ export default defineComponent({
         const newSearchOptions = {
           ...cloneSearchOptions
         }
+        console.log('selectedItem: ', selectedItem.value);
         if (newSearchOptions.inputOptions?.placeholder) {
           if (isFunction(newSearchOptions.inputOptions.placeholder)) {
             newSearchOptions.inputOptions.placeholder = newSearchOptions.inputOptions.placeholder(unref(selectedItem))
