@@ -236,10 +236,10 @@ export default defineComponent({
         if (!props.selectValue && typeList) {
           selectedItem.value = typeList[0]
         }
-        if (defaultValue && typeList && typeList.length) {
-          selectedItem.value = typeList.find((item: any) => item.value === defaultValue)
+        if (!props.selectValue && !loading && typeList.length) {
+          selectedItem.value = typeList.find((item:any) => item.value === defaultValue)
         }
-        return props.selectValue || (!loading ? defaultValue : undefined) || typeList[0]?.value
+        return props.selectValue || (!loading ? (defaultValue) : undefined) || typeList[0]?.value
       },
       set: (val) => {
         const { clearInput } = props?.searchOptions?.selectOptions || {}
@@ -273,7 +273,7 @@ export default defineComponent({
         const newSearchOptions = {
           ...cloneSearchOptions
         }
-        console.log('selectedItem: ', selectedItem.value);
+        // console.log('selectedItem: ', selectedItem.value);
         if (newSearchOptions.inputOptions?.placeholder) {
           if (isFunction(newSearchOptions.inputOptions.placeholder)) {
             newSearchOptions.inputOptions.placeholder = newSearchOptions.inputOptions.placeholder(unref(selectedItem))
