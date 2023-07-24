@@ -66,7 +66,15 @@ const data: DataItem[] = [
         key: '12',
         name: 'Jim Green',
         age: 40,
-        address: 'London London'
+        address: 'London London1111111111111111',
+        children: [
+          {
+            key: '12',
+            name: 'Jim Green',
+            age: 40,
+            address: 'London London1111111111111111'
+          }
+        ],
       }
     ],
   },
@@ -75,6 +83,14 @@ const data: DataItem[] = [
     name: 'Jim Green',
     age: 40,
     address: 'London London',
+    children: [
+      {
+        key: '12',
+        name: 'Jim Green',
+        age: 40,
+        address: 'London London1111111111111111'
+      }
+    ],
   },
 ];
 

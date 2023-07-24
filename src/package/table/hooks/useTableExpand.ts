@@ -68,7 +68,7 @@ export const useTableExpand = (
     if (isTreeTable) {
       if (record?.children?.length > 0) {
         return h('i', {
-          class: `sc-ui ${expanded ? 'sc-up-circle' : 'sc-down-circle'}`,
+          class: `sc-ui sc-a-chevron-rightdouble ${expanded ? 'icon-downArrow' : 'icon-upArrow'}`,
           onClick: (event: Event) => {
             onExpand(record, event);
           }
