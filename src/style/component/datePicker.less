@@ -552,6 +552,14 @@
       transition: all @animation-duration-slow;
       content: '';
     }
+    &:last-child::before {
+      right: 16px;
+      border-radius: 0 3px 3px 0;
+    }
+    &:first-child::before {
+      left: 16px;
+      border-radius: 3px 0 0 3px;
+    }
 
     // >>> Default
     .@{cellClassName} {
@@ -567,7 +575,7 @@
 
     // >>> Hover
     &:hover:not(&-in-view),
-    &:hover:not(&-selected):not(&-today):not(&-range-start):not(&-range-end):not(&-range-hover-start):not(&-range-hover-end) {
+    &:hover:not(&-selected):not(&-today):not(&-range-start):not(&-range-end) {
       .@{cellClassName} {
         border: 1px solid @primary-color;
         line-height: 22px;
@@ -728,7 +736,7 @@
     &-in-view&-start&-range-hover-edge-start&-range-hover-edge-start-near-range::after,
     &-in-view&-range-hover-edge-start:not(&-range-hover-edge-start-near-range)::after,
     &-in-view&-range-hover-start::after {
-      left: 6px;
+      left: 16px;
       border-left: @border-width-base dashed @picker-date-hover-range-border-color;
       border-top-left-radius: @border-radius-base;
       border-bottom-left-radius: @border-radius-base;
@@ -740,7 +748,7 @@
     &-in-view&-end&-range-hover-edge-end&-range-hover-edge-end-near-range::after,
     &-in-view&-range-hover-edge-end:not(&-range-hover-edge-end-near-range)::after,
     &-in-view&-range-hover-end::after {
-      right: 6px;
+      right: 16px;
       border-right: @border-width-base dashed @picker-date-hover-range-border-color;
       border-top-right-radius: @border-radius-base;
       border-bottom-right-radius: @border-radius-base;
@@ -763,7 +771,25 @@
       border-color: @disabled-color;
     }
   }
-
+  &-quarter-panel, &-date-panel {
+    .scPicker-cell:last-child::before {
+      right: 0;
+    }
+    .scPicker-cell:first-child::before {
+      left: 0;
+    }
+    .scPicker-cell-in-view.scPicker-cell-range-hover-end:not(.scPicker-cell-in-range):not(.scPicker-cell-range-start):not(.scPicker-cell-range-end)::after {
+      right: 0;
+      left: 0;
+    }
+    tr > .scPicker-cell-in-view.scPicker-cell-range-hover:first-child::after {
+      left: 0;
+    }
+    tr > .scPicker-cell-in-view.scPicker-cell-range-hover:last-child::after {
+      right: 0;
+    }
+  }
+  
   &-cell {
     padding: 3px 0;
     color: @disabled-color;

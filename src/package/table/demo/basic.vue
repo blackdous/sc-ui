@@ -28,7 +28,7 @@
       :scroll="{ x: true, y: 300 }"
       @change="handleChange"
     >
-      <template #expandIcon="props">
+      <!-- <template #expandIcon="props">
         <span v-if="props.record"> 
           <div
             v-if="props.expanded" 
@@ -45,7 +45,7 @@
             <DoubleRightOutlined /> 
           </div> 
         </span>
-      </template>
+      </template> -->
       <!-- :langLocale="zhCN" -->
       <template #copy1="{text, record, index, column}">
         <Copy v-bind="{text, record, index, column}">
