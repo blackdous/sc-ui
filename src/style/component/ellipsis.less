@@ -1,0 +1,16 @@
+@ellipsisScope: ~'@{prefixCls}Ellipsis';
+
+.@{ellipsisScope} {
+  overflow: hidden;
+  cursor: pointer;
+  &:not(&-lineClamp) {
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: bottom;
+    max-width: 100%;
+  }
+  &-lineClamp {
+    display: -webkit-inline-box;
+    -webkit-box-orient: vertical;
+  }
+}

@@ -2,11 +2,11 @@
   <div
     v-if="!newProps.notText || isEmptyText(newProps.text)"
     :id="`tb_btn_${index}_copy`"
-    class="tbCopy"
+    class="tdCopy"
     v-bind="$attrs"
   >
     <span
-      class="tbCopy-prefix"
+      class="tdCopy-prefix"
       @click="handle"
     >
       <slot name="text" v-if="isCopyPrefix">

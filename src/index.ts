@@ -52,6 +52,7 @@ import {
 } from './package/form'
 import { ScIp } from './package/formIp'
 import { ScDrawer, useDrawer, useDrawerInner } from './package/drawer'
+import { ScEllipsis } from './package/ellipsis'
 
 // 指令
 import { installGlobalDirectives } from './directives'
@@ -77,6 +78,7 @@ const components = [
   ScAlert,
   ScModal,
   ScDrawer,
+  ScEllipsis,
 
   ScTable,
   Copy,
@@ -151,6 +153,7 @@ export {
   ScAlert,
   ScModal,
   ScDrawer,
+  ScEllipsis,
 
   ScTable,
   
