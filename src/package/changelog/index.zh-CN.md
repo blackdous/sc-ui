@@ -5,6 +5,13 @@ map:
 
 # 变更记录
 
+## [0.0.151](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.150...0.0.151) (2023-07-25)
+
+### Bug Fixes
+
+* 调整 Sctable 默认不换行问题 ([add21b1](http://gitlab.voneyun.com/frontend/sc-ui/commit/add21b1b8458fcd0fd4cbdc0ae3f77c52c3884d0))
+* scSlider 修复 删除 input输入框, 未重置为最小值问题 ([49cc2ad](http://gitlab.voneyun.com/frontend/sc-ui/commit/49cc2ad676c3d877eccf40d297aba00d3f47db3a))
+
 ## [0.0.150](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.149...0.0.150) (2023-07-25)
 
 ### Bug Fixes
