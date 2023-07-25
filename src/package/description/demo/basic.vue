@@ -4,31 +4,27 @@
     <ScDescription
       title="通过title字段设置"
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
-      :column="3"
+      :column="2"
       :bordered="false"
       :useCollapse="false"
       >
         <DescriptionsItem label="UserName">Zhou Maomao
-          <!-- <ScIcon type="icon-a-chevron-rightdouble"
-            :style="{fontSize: '20px'}"
-          ></ScIcon>  -->
         </DescriptionsItem>
         <DescriptionsItem label="Telephone">
-          1810000000181000000018100000001810000000
-          <ScIcon type="icon-a-chevron-rightdouble"
-          ></ScIcon> 
+          18100000001
         </DescriptionsItem>
-        <DescriptionsItem label="Live">Hangzhou, ZhejiangHangzhou, ZhejiangHangzhou, ZhejiangHangzhou, Zhejiang
-          <i class="sc-ui sc-a-chevron-rightdouble" :style="{fontSize: '20px'}"></i>
+        <DescriptionsItem label="Live">Hangzhou, Zhejiang
         </DescriptionsItem>
-        <DescriptionsItem label="Remark">empty
-          <i class="sc-ui sc-a-chevron-rightdouble"></i>
+        <DescriptionsItem label="Remark">
+          <ScLink hoverUnderline type="primary" href="https://www.baidu.com">安全组名称1</ScLink>
+          <ScLink hoverUnderline type="primary" href="https://www.baidu.com">安全组名称2</ScLink>
+          <ScLink hoverUnderline type="primary" href="https://www.baidu.com">安全组名称3</ScLink>
         </DescriptionsItem>
         <DescriptionsItem label="Address">
           No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
         </DescriptionsItem>
     </ScDescription>
-    <!-- <ScDescription
+    <ScDescription
       :title="renderTitle"
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
       :column="4"
@@ -53,8 +49,8 @@
           通过template #title字段设置
         </span>
       </template>
-    </ScDescription> -->
-    <!-- <ScDescription
+    </ScDescription>
+    <ScDescription
       title="通过title字段设置"
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
       :column="4"
@@ -63,8 +59,8 @@
       layout="vertical"
       :bordered="false"
       >
-    </ScDescription> -->
-    <!-- <ScDescription
+    </ScDescription>
+    <ScDescription
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
       :column="4"
       :data="mockData"
@@ -75,7 +71,7 @@
         <template #title>
           通过 solt=title 显示title
         </template>
-    </ScDescription> -->
+    </ScDescription>
     <!-- <ScDescription
       title="基础示例2"
       :collapseOptions="{ canExpand: true, describe: 'help me' }"
@@ -112,7 +108,7 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { ScDescription, ScIcon } from 'sc-ui'
+import { ScDescription, ScLink } from 'sc-ui'
 import { DescriptionsItem } from 'ant-design-vue';
 
 const mockData: Recordable = {

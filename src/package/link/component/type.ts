@@ -26,6 +26,13 @@ export const linkProps = () => ({
     default: false,
   },
   /**
+   * @description whether the component has underline
+   */
+  hoverUnderline: {
+    type: Boolean,
+    default: false,
+  },
+  /**
    * @description whether the component is disabled
    */
   disabled: { type: Boolean, default: false },

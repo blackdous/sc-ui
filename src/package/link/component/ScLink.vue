@@ -38,6 +38,7 @@ export default defineComponent({
       unref(currentProps)?.type ? baseClass + '-' + unref(currentProps)?.type : '',
       unref(currentProps).disabled ? 'isDisabled' : '',
       unref(currentProps).underline ? 'isUnderline' : '',
+      unref(currentProps).hoverUnderline ? 'isHoverUnderline' : '',
       unref(currentProps).size ? baseClass + '-' + unref(currentProps).size : ''
     ]
     const handleClick = () => {

@@ -8,6 +8,9 @@ a.@{linkScope} {
   font-size: 14px;
   line-height: 22px;
   color: @heading-color;
+  & + & {
+    margin-left: 4px;
+  }
   &:hover {
   color: @link-color1;
   }
@@ -20,6 +23,24 @@ a.@{linkScope} {
   &.isUnderline {
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+  &.isHoverUnderline {
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    &.@{linkScope}-primary {
+      color: @primary-color;
+    }
+    &.@{linkScope}-warning {
+      color: @link-warning-color;
+    }
+    &.@{linkScope}-danger {
+      color: @link-danger-color;
+    }
+    &.@{linkScope}-info {
+      color: @primary-color;
+    }
   }
   &-primary {
     color: @primary-color;

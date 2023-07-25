@@ -3,9 +3,8 @@
     <div class="ml20">
       <ScLink type="primary"
         href="http://console.voneyun.com/"
-      >
-        跳转链接
-      </ScLink>
+        :hoverUnderline="true"
+      >跳转链接</ScLink>
 
       <ScLink type="primary"
         href="http://console.voneyun.com/"
