@@ -104,7 +104,7 @@
       :max="newProps.max"
       :step="newProps.step"
       :disabled="newProps.disabled"
-      v-bind="newProps?.inputNumberOptions"
+      v-bind="{...newProps?.inputNumberOptions, stepStrictly: newProps?.inputNumberOptions.stepStrictly ?? true}"
       @blur="handleBlur"
       @focus="handleFocus"
     >
@@ -228,6 +228,7 @@ export default defineComponent({
     }
 
     const handleBlur = (event: Event) => {
+      console.log('event: ', event, valueRef.value);
       emit('blur', event)
     }
     const handleFocus = () => {

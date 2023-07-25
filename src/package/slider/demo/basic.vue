@@ -48,6 +48,7 @@
       :inputNumberOptions="{
         placeholder: '请输入'
       }"
+      :step="1"
       :value="valueRef1"
       @change="handleChange1"
     >
