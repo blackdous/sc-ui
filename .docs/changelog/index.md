@@ -6,6 +6,18 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.150](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.149...0.0.150) (2023-07-25)
+
+### Bug Fixes
+
+* 去除 ScIp 默认第一输入框聚焦操作 ([f595367](http://gitlab.voneyun.com/frontend/sc-ui/commit/f5953671d112fe2039ccd589a6315c89848524ee))
+
+### Features
+
+* 调整 ScTable expandRow 默认icon ([e76b6a8](http://gitlab.voneyun.com/frontend/sc-ui/commit/e76b6a89b445ca0444247d70fd0adfe60d192d4a))
+* 调整ScDescription样式\示例; 支持DescriptionsItem 参数 ([5c2b4e2](http://gitlab.voneyun.com/frontend/sc-ui/commit/5c2b4e2216b296f073eed0d93e3608b4b8ea1d51))
+* 新增ScEllipsis 组件 ([393338f](http://gitlab.voneyun.com/frontend/sc-ui/commit/393338f77e1502adb9c58595be9e97cd44323543))
+
 ## [0.0.149](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.148...0.0.149) (2023-07-21)
 
 ### Bug Fixes
