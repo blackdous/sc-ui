@@ -6,6 +6,19 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.152](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.151...0.0.152) (2023-07-26)
+
+### Bug Fixes
+
+* 修复 ScTable 获取语言 文件报错问题 ([6f07fa3](http://gitlab.voneyun.com/frontend/sc-ui/commit/6f07fa30ef777a8098dd43213789c392ba6c2559))
+* 修复 ScTable FilterTag 数据源 为异步, 接口返回请求数据前设置默认选中值报错 ([f2851ec](http://gitlab.voneyun.com/frontend/sc-ui/commit/f2851eceef1127fc1f00ba88bf645e52f37f648b))
+
+### Features
+
+* 根据最新ui 稿调整 多个组件样式 ([bffe010](http://gitlab.voneyun.com/frontend/sc-ui/commit/bffe010e004ad8409b0227a9ff92931a6294ba77))
+* scDatePicker ScDateRangePicker 组件新增 prefixText 属性 ([87f7806](http://gitlab.voneyun.com/frontend/sc-ui/commit/87f7806ed415200c9f6f522c8e15f3e3df9b3274))
+* scTable 新增 isShowExPandIcon 字段; 去除所有字体设置 ([31ad014](http://gitlab.voneyun.com/frontend/sc-ui/commit/31ad0141574dab773d0ae31fe4ecea009e56cfae))
+
 ## [0.0.151](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.150...0.0.151) (2023-07-25)
 
 ### Bug Fixes
