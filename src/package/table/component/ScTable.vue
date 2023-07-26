@@ -263,7 +263,7 @@ export default defineComponent({
     const enUS = ref({})
 
     const { antLocale } = useLocale()
-    // console.log('antLocale: ', antLocale);
+    console.log('antLocale: ', antLocale);
 
     const uuid = 'sc' + buildUUID()
 
@@ -410,7 +410,7 @@ export default defineComponent({
       const classNames = [
         tablePrefixCls,
         scroll?.y ? 'not-table-scroll-empty' : '',
-        antLocale.locale ? `${tablePrefixCls}-zh`: ''
+        (antLocale || {}).locale === 'zh-cn' ? `${tablePrefixCls}-zh`: ''
       ];
       return classNames;
     });

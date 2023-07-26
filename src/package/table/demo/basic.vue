@@ -8,9 +8,9 @@
       <ScButton @click="handleUpdateRecord">updateTableDataRecord</ScButton>
       <ScButton @click="handleUpdate">updateTableData</ScButton>
     </div>
-    <ConfigProvider
-      :locale="zhCN"
-    >
+    <!-- <ConfigProvider
+      :locale="enUS"
+    > -->
       <ScTable
         style="padding: 0;"
         class="aaaa"
@@ -95,7 +95,7 @@
           </ScTag>
         </template>
       </ScTable>
-    </ConfigProvider>
+    <!-- </ConfigProvider> -->
   </div>
 </template>
 
@@ -106,12 +106,14 @@ import { ref, unref, h, reactive } from 'vue'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy, ScButton, ScTag } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
-import { InputSearch, ConfigProvider } from 'ant-design-vue'
-import zhCN from 'ant-design-vue/es/locale/zh_CN'
-import {
-  DoubleLeftOutlined,
-  DoubleRightOutlined
-} from '@ant-design/icons-vue'
+import { InputSearch } from 'ant-design-vue'
+// import { InputSearch, ConfigProvider } from 'ant-design-vue'
+// import zhCN from 'ant-design-vue/es/locale/zh_CN'
+// import enUS from 'ant-design-vue/es/locale/en_US'
+// import {
+//   DoubleLeftOutlined,
+//   DoubleRightOutlined
+// } from '@ant-design/icons-vue'
 
 const loading = ref(false)
 
