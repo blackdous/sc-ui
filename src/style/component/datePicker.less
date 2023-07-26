@@ -71,6 +71,7 @@
 
     > input {
       .input();
+      color: @heading-color;
       flex: auto;
 
       // Fix Firefox flex not correct:
@@ -133,7 +134,7 @@
     position: absolute;
     top: 50%;
     right: 0;
-    color: @disabled-color;
+    color: @text-color-secondary;
     line-height: 1;
     background: @component-background;
     transform: translateY(-50%);
@@ -146,7 +147,7 @@
     }
 
     &:hover {
-      color: @text-color-secondary;
+      color: @text-color;
     }
   }
 
@@ -190,7 +191,7 @@
     }
     // Clear
     .@{picker-prefix-cls}-clear {
-      right: @input-padding-horizontal-base;
+      right: 8px;
     }
 
     &:hover {
@@ -575,7 +576,7 @@
 
     // >>> Hover
     &:hover:not(&-in-view),
-    &:hover:not(&-selected):not(&-today):not(&-range-start):not(&-range-end) {
+    &:hover:not(&-selected):not(&-range-start):not(&-range-end) {
       .@{cellClassName} {
         border: 1px solid @primary-color;
         line-height: 22px;
@@ -742,6 +743,12 @@
       border-bottom-left-radius: @border-radius-base;
     }
 
+    &-in-view&-start&-range-hover-edge-start&-range-hover-edge-start-near-range::after,
+    &-in-view&-range-hover-edge-start:not(&-range-hover-edge-start-near-range)::after,
+    &-in-view&-range-hover-start::after {
+      left: 0;
+    }
+
     // Edge end
     tr > &-in-view&-range-hover:last-child::after,
     tr > &-in-view&-range-hover-start:last-child::after,
@@ -752,6 +759,11 @@
       border-right: @border-width-base dashed @picker-date-hover-range-border-color;
       border-top-right-radius: @border-radius-base;
       border-bottom-right-radius: @border-radius-base;
+    }
+    &-in-view&-end&-range-hover-edge-end&-range-hover-edge-end-near-range::after,
+    &-in-view&-range-hover-edge-end:not(&-range-hover-edge-end-near-range)::after,
+    &-in-view&-range-hover-end::after {
+      right: 0;
     }
 
     // >>> Disabled
@@ -1432,6 +1444,16 @@ _:-ms-fullscreen,
     .@{picker-prefix-cls}-panel-rtl & {
       direction: ltr;
     }
+  }
+
+  &-prefix {
+    padding-right: 16px;
+    font-family: PingFang SC;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    white-space: nowrap;
+    color: @text-color;
   }
 }
 .scPicker-decade-panel .scPicker-content, 

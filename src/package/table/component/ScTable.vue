@@ -188,7 +188,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw, watch } from 'vue'
+import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw, inject } from 'vue'
 import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
 import { FilterFilled } from '@ant-design/icons-vue'
 
@@ -204,6 +204,7 @@ import FilterTagsVue from './FilterTags.vue'
 // import { TdCopy, TdEllipsis, TdStatus, TdHandle } from './Td'
 import TdComponents from './Td'
 import THComponents from './Th'
+import useLocale from '../../../hooks/useLocale'
 
 //@ts-ignore
 import { tableProps, TableProps, ButtonType, TableActionType, SorterResult, PaginationProps } from '../types/table'
@@ -260,6 +261,9 @@ export default defineComponent({
 
     const zhCN = ref({})
     const enUS = ref({})
+
+    const { antLocale } = useLocale()
+    // console.log('antLocale: ', antLocale);
 
     const uuid = 'sc' + buildUUID()
 
@@ -405,7 +409,8 @@ export default defineComponent({
       // console.log('scroll: ', scroll, scroll.y);
       const classNames = [
         tablePrefixCls,
-        scroll?.y ? 'not-table-scroll-empty' : ''
+        scroll?.y ? 'not-table-scroll-empty' : '',
+        antLocale.locale ? `${tablePrefixCls}-zh`: ''
       ];
       return classNames;
     });

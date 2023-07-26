@@ -8,90 +8,94 @@
       <ScButton @click="handleUpdateRecord">updateTableDataRecord</ScButton>
       <ScButton @click="handleUpdate">updateTableData</ScButton>
     </div>
-    <ScTable
-      style="padding: 0;"
-      class="aaaa"
-      row-key="key"
-      ref="scTableRef"
-      :data-source="sourceData.list"
-      :columns="columns"
-      :create-button-options="{
-        show: false,
-      }"
-      :multiple-options="{
-        show: true,
-        triggerMultiple: true,
-        options: radioList
-      }"
-      :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
-      :loading="loading"
-      :scroll="{ x: true, y: 300 }"
-      @change="handleChange"
+    <ConfigProvider
+      :locale="zhCN"
     >
-      <!-- <template #expandIcon="props">
-        <span v-if="props.record"> 
-          <div
-            v-if="props.expanded" 
-            class="pointer arrow" 
-            @click="(e: any) => { props.onExpand(props.record, e) }"
-          >
-            <DoubleLeftOutlined />
-          </div>
-          <div
-            v-else 
-            class="pointer arrow"
-            @click=" (e: any) => { props.onExpand(props.record, e) }"
-          >
-            <DoubleRightOutlined /> 
-          </div> 
-        </span>
-      </template> -->
-      <!-- :langLocale="zhCN" -->
-      <template #copy1="{text, record, index, column}">
-        <Copy v-bind="{text, record, index, column}">
-          <template #text>
-            11112222
-          </template>
-        </Copy>
-      </template>
-      <template #status1="{text}">
-        <span>
-          {{text}}1111
-        </span>
-      </template>
-      <template #tableActive>
-        <div>
-          <InputSearch
-            v-model:value="searchValue"
-            placeholder="请输入仓库名称"
-            style="width: 200px"
-            @search="onSearch"
-          />
-        </div>
-      </template>
-      <!-- <template #multipleBtns>
-        <div>
-          111111
-        </div>
-      </template> -->
-      <!-- <template #tableActive>
-        <Tooltip>
-          <template #title>
-            aaaaaa
-          </template>
-          <span>
-            11111
+      <ScTable
+        style="padding: 0;"
+        class="aaaa"
+        row-key="key"
+        ref="scTableRef"
+        :data-source="sourceData.list"
+        :columns="columns"
+        :create-button-options="{
+          show: false,
+        }"
+        :multiple-options="{
+          show: true,
+          triggerMultiple: true,
+          options: radioList
+        }"
+        :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
+        :loading="loading"
+        :scroll="{ x: true, y: 300 }"
+        @change="handleChange"
+      >
+        <!-- <template #expandIcon="props">
+          <span v-if="props.record"> 
+            <div
+              v-if="props.expanded" 
+              class="pointer arrow" 
+              @click="(e: any) => { props.onExpand(props.record, e) }"
+            >
+              <DoubleLeftOutlined />
+            </div>
+            <div
+              v-else 
+              class="pointer arrow"
+              @click=" (e: any) => { props.onExpand(props.record, e) }"
+            >
+              <DoubleRightOutlined /> 
+            </div> 
           </span>
-        </Tooltip>
-      </template> -->
-      <template #status="{record}">
-        <ScTag
-          v-bind="record.tagOptions"
-        >
-          {{ record.statusStr === 0 ? '成功' : record.statusStr === 1 ? '错误' : '警告' }}
-        </ScTag>
-      </template>
-    </ScTable>
+        </template> -->
+        <!-- :langLocale="zhCN" -->
+        <template #copy1="{text, record, index, column}">
+          <Copy v-bind="{text, record, index, column}">
+            <template #text>
+              11112222
+            </template>
+          </Copy>
+        </template>
+        <template #status1="{text}">
+          <span>
+            {{text}}1111
+          </span>
+        </template>
+        <template #tableActive>
+          <div>
+            <InputSearch
+              v-model:value="searchValue"
+              placeholder="请输入仓库名称"
+              style="width: 200px"
+              @search="onSearch"
+            />
+          </div>
+        </template>
+        <!-- <template #multipleBtns>
+          <div>
+            111111
+          </div>
+        </template> -->
+        <!-- <template #tableActive>
+          <Tooltip>
+            <template #title>
+              aaaaaa
+            </template>
+            <span>
+              11111
+            </span>
+          </Tooltip>
+        </template> -->
+        <template #status="{record}">
+          <ScTag
+            v-bind="record.tagOptions"
+          >
+            {{ record.statusStr === 0 ? '成功' : record.statusStr === 1 ? '错误' : '警告' }}
+          </ScTag>
+        </template>
+      </ScTable>
+    </ConfigProvider>
   </div>
 </template>
 
@@ -102,7 +106,8 @@ import { ref, unref, h, reactive } from 'vue'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN.js'
 import { ScTable, Copy, ScButton, ScTag } from 'sc-ui'
 import type { TooltipButtonPropsType } from 'sc-ui'
-import { InputSearch } from 'ant-design-vue'
+import { InputSearch, ConfigProvider } from 'ant-design-vue'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import {
   DoubleLeftOutlined,
   DoubleRightOutlined
