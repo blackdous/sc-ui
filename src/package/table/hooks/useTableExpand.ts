@@ -66,7 +66,7 @@ export const useTableExpand = (
     const {record, expanded, onExpand } = props;
     const { isTreeTable } = unref(propsRef);
     if (isTreeTable) {
-      if (record?.children?.length > 0) {
+      if (record?.children?.length > 0 || record?.isShowExPandIcon) {
         return h('i', {
           class: `sc-ui sc-a-chevron-rightdouble ${expanded ? 'icon-downArrow' : 'icon-upArrow'}`,
           onClick: (event: Event) => {

@@ -500,7 +500,6 @@
     }
   }
   &-text {
-    font-family: 'PingFang SC';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -555,12 +554,13 @@
   width: 48px;
   min-width: 48px;
 }
-.table-expandedRow  + .ant-table-expanded-row {
-  & > td:first-child {
-    border: 1px solid transparent;
-    visibility: hidden;
-  }
-}
+// .table-expandedRow, .ant-table-row {
+//   & + .ant-table-expanded-row {
+//     & > td:first-child {
+//       overflow: hidden;
+//     }
+//   }
+// }
 .icon-downArrow {
   display: inline-block;
   color: @primary-color;
@@ -572,11 +572,11 @@
 }
 .icon-downArrow, .icon-upArrow {
   cursor: pointer;
-  margin-right: 8px;
+  // margin-right: 8px;
 }
-.table-expandedRow {
-  .ant-table-row-cell-break-word {
-    white-space: nowrap;
-  }
-}
+// .table-expandedRow {
+//   .ant-table-row-cell-break-word {
+//     white-space: nowrap;
+//   }
+// }
 

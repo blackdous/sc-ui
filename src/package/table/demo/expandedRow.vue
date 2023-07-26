@@ -5,13 +5,13 @@
       :data-source="data"
       :columns="columns"
       :loading="false"
-      :is-tree-table="true"
       :indentSize="0"
+      :is-tree-table="true"
       @change="handleChange"
       >
-        <!-- <template #expandedRowRender>
+        <template #expandedRowRender>
           <p>11111111111</p>
-        </template> -->
+        </template>
     </ScTable>
   </div>
 </template>
@@ -23,7 +23,7 @@ import { ScTable } from 'sc-ui'
 const scTableRef = ref()
 // @ts-ignore
 const columns = [
-  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name'},
+  { title: 'Full Name', width: 350, dataIndex: 'name', key: 'name'},
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age'},
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
@@ -64,13 +64,13 @@ const data: DataItem[] = [
     children: [
       {
         key: '12',
-        name: 'Jim Green',
+        name: 'Jim Gree45455555555n',
         age: 40,
         address: 'London London1111111111111111',
         children: [
           {
-            key: '12',
-            name: 'Jim Green',
+            key: '1222212123123123122',
+            name: 'Jim Gree123123123n',
             age: 40,
             address: 'London London1111111111111111'
           }
@@ -84,12 +84,6 @@ const data: DataItem[] = [
     age: 40,
     address: 'London London',
     children: [
-      {
-        key: '12',
-        name: 'Jim Green',
-        age: 40,
-        address: 'London London1111111111111111'
-      }
     ],
   },
 ];
