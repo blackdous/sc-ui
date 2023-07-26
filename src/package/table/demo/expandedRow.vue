@@ -83,6 +83,7 @@ const data: DataItem[] = [
     name: 'Jim Green',
     age: 40,
     address: 'London London',
+    isShowExPandIcon: true,
     children: [
     ],
   },

@@ -13,7 +13,7 @@ map:
   desc="基础表格"
   >
 </demo> -->
-<!-- ## 基础组件
+## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -277,18 +277,18 @@ const dataSource = [
     },
   }
 ]
-```-->
+```
 
 ## 其他
 
-<!-- ### raido 单选table
+### raido 单选table
 
 <demo src="./demo/radio.vue"
   language="vue"
   title="radio table表格"
   desc="radio table表格"
   >
-</demo> -->
+</demo>
 
 ### expandedRow 展开
 
@@ -299,7 +299,7 @@ const dataSource = [
   >
 </demo>
 
-<!-- ## 自定义Filter组件
+## 自定义Filter组件
 
 <demo src="./demo/filter.vue"
   language="vue"
@@ -957,4 +957,4 @@ export interface ActionsOptions {
   title="指定rowSelected值"
   desc="指定rowSelected值"
   >
-</demo> -->
+</demo>
