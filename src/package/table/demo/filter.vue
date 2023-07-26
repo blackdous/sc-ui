@@ -95,6 +95,7 @@ const list = ref([
 //   console.log('error: ', error);
 // })
 const filtersList = ref([])
+const filtersList1 = ref([])
 // @ts-ignore
 const columns = ref([
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', 
@@ -104,12 +105,12 @@ const columns = ref([
     // },
     filtered: true,
     filterMultiple: true,
-    filterList: () => list,
+    filterList: filtersList1,
     filterLoading: true,
     filteredValue: ['ee', '4444']
   },
   { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
-    sorter: (a: DataItem, b: DataItem) => a.age - b.age,
+    sorter: (a: DataItem, b: DataItem) => a.age - b.ge,
   },
   {
     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
@@ -138,6 +139,11 @@ const columns = ref([
   { title: 'Column 2', dataIndex: 'age', key: '2', width: 160 },
   { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
 ]);
+
+
+setTimeout(() => {
+  filtersList1.value = list
+}, 1500);
 
 setTimeout(() => {
   columns.value = unref(columns).map((item, index) => {

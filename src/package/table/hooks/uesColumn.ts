@@ -61,10 +61,10 @@ export function useColumn (
         }
         item.filtered =  item.filtered ?? true
       }
-      if (item.filteredValue) {
+      if (item.filteredValue && isArray(item?.filterList)) {
         item.filterSelected = item?.filteredValue?.map(_item => {
-          const newItem = findNode(item?.filterList, (node:FilterItem) => node.key === _item, { key: 'key' })
-          return newItem ? newItem : null
+          const newItem = findNode(item?.filterList || [], (node:FilterItem) => node.key === _item, { key: 'key' })
+          return newItem ? newItem : {}
         })
       }
       // console.log('item: ', item);
