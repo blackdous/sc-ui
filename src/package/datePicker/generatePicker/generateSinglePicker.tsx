@@ -155,18 +155,20 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
             bordered = true,
             placeholder,
             suffixIcon = slots.suffixIcon?.(),
+            prefixText,
             showToday = true,
             transitionName,
             allowClear = true,
             dateRender = slots.dateRender,
             renderExtraFooter = slots.renderExtraFooter,
             monthCellRender = slots.monthCellRender ||
-              (props as any).monthCellContentRender ||
-              slots.monthCellContentRender,
+            (props as any).monthCellContentRender ||
+            slots.monthCellContentRender,
             clearIcon = slots.clearIcon?.(),
             id = formItemContext.id.value,
             ...restProps
           } = p;
+          // console.log('prefixText: ', prefixText);
           const showTime = p.showTime === '' ? true : p.showTime;
           const { format } = p as any;
 
@@ -221,6 +223,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
                 attrs.class,
               )}
               prefixCls={pre}
+              prefixText={prefixText}
               getPopupContainer={attrs.getCalendarContainer || getPopupContainer.value}
               generateConfig={generateConfig}
               prevIcon={slots.prevIcon?.() || <span class={`scPicker-prev-icon`} />}

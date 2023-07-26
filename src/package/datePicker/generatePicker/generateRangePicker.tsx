@@ -145,6 +145,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           bordered = true,
           placeholder,
           suffixIcon = slots.suffixIcon?.(),
+          prefixText,
           picker = 'date',
           transitionName,
           allowClear = true,
@@ -186,6 +187,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             suffixIcon={
               suffixIcon || (picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />)
             }
+            prefixText={prefixText}
             clearIcon={clearIcon || <CloseCircleFilled />}
             allowClear={allowClear}
             transitionName={transitionName || `${rootPrefixCls.value}-slide-up`}

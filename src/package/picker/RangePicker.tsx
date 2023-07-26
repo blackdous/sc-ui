@@ -85,6 +85,7 @@ export type RangeDateRender<DateType> = (props: {
 
 export type RangePickerSharedProps<DateType> = {
   id?: string;
+  prefixText?: string;
   value?: RangeValue<DateType>;
   defaultValue?: RangeValue<DateType>;
   defaultPickerValue?: [DateType, DateType];
@@ -178,6 +179,7 @@ function RangerPicker<DateType>() {
     props: [
       'prefixCls',
       'id',
+      'prefixText',
       'popupStyle',
       'dropdownClassName',
       'transitionName',
@@ -1006,6 +1008,7 @@ function RangerPicker<DateType>() {
           panelRender,
           allowClear,
           suffixIcon,
+          prefixText,
           clearIcon,
           inputReadOnly,
           renderExtraFooter,
@@ -1165,6 +1168,11 @@ function RangerPicker<DateType>() {
           suffixNode = <span class={`${prefixCls}-suffix`}>{suffixIcon}</span>;
         }
 
+        let prefixNode: VueNode;
+        if (prefixText || attrs.prefixText) {
+          prefixNode = <span class={`${prefixCls}-prefix`}>{prefixText || attrs.prefixText}</span>;
+        }
+
         let clearNode: VueNode;
         if (
           allowClear &&
@@ -1248,6 +1256,7 @@ function RangerPicker<DateType>() {
               onMouseup={onMouseup}
               {...getDataOrAriaProps(props)}
             >
+              {prefixNode}
               <div
                 class={classNames(`${prefixCls}-input`, {
                   [`${prefixCls}-input-active`]: mergedActivePickerIndex.value === 0,

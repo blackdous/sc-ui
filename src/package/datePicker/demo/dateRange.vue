@@ -3,6 +3,7 @@
     <div>
       <p>日期区间选择器 -- 年</p>
       <ScRangePicker
+        prefixText="提示文字"
         v-model:value="dateReactive.year"
         picker="year"
         @change="onChange"

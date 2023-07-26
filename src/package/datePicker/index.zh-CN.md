@@ -121,6 +121,7 @@ export default defineComponent({
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | allowClear | 是否显示清除按钮 | boolean | true |  |
+| prefixText | 显示提示问题 | string | - |  |
 | autofocus | 自动获取焦点 | boolean | false |  |
 | bordered | 是否有边框 | boolean | true |  |
 | dateRender | 自定义日期单元格的内容 | v-slot:dateRender="{current, today}" | - |  |

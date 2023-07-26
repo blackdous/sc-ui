@@ -101,6 +101,7 @@ export interface CommonProps<DateType> {
   defaultOpen?: boolean;
   inputReadOnly?: boolean;
   suffixIcon?: VueNode;
+  prefixText?: string;
   clearIcon?: VueNode;
   prevIcon?: VueNode;
   nextIcon?: VueNode;

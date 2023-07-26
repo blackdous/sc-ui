@@ -6,6 +6,7 @@
       <div>
         <p>年份选择器</p>
         <ScDatePicker
+          prefixText="账单时间"
           v-model:value="value4"
           picker="year"
           value-format="YYYY"

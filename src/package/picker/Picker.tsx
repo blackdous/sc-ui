@@ -67,6 +67,7 @@ export type PickerSharedProps<DateType> = {
 
   // Render
   suffixIcon?: VueNode;
+  prefixText?: string;
   clearIcon?: VueNode;
   prevIcon?: VueNode;
   nextIcon?: VueNode;
@@ -471,6 +472,7 @@ function Picker<DateType>() {
           picker = 'date',
           defaultOpenValue,
           suffixIcon,
+          prefixText,
           clearIcon,
           disabled,
           placeholder,
@@ -542,6 +544,11 @@ function Picker<DateType>() {
         let suffixNode: VueNode;
         if (suffixIcon) {
           suffixNode = <span class={`${prefixCls}-suffix`}>{suffixIcon}</span>;
+        }
+
+        let prefixNode: VueNode;
+        if (prefixText || attrs.prefixText) {
+          prefixNode = <span class={`${prefixCls}-prefix`}>{prefixText || attrs.prefixText}</span>;
         }
 
         let clearNode: VueNode;
@@ -638,6 +645,7 @@ function Picker<DateType>() {
                 })}
                 ref={inputDivRef}
               >
+                {prefixNode}
                 {inputNode}
                 {suffixNode}
                 {clearNode}
