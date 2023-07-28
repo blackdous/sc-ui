@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { ScDescription, useDescription } from 'sc-ui'
+import { ScDescription, useDescription, ScTag } from 'sc-ui'
 
 const mockData: Recordable = {
     username: 'test',
@@ -35,7 +35,7 @@ const mockData: Recordable = {
   const schema: DescItem[] = [
     {
       field: 'username',
-      label: h('span', { class: '' }, ['用户名', h('i', { class: 'sc-ui sc-question-circle' })]),
+      label: h(ScTag, { border: false, type: 'outline', tooltipDes: '提示内容' }, ['用户名']),
     },
     {
       field: 'nickName',

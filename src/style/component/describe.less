@@ -31,6 +31,7 @@
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
+    line-height: 24px;
     color: @heading-color;
     .sc-question-circle {
       color: @primary-color;
@@ -41,6 +42,8 @@
     }
   }
   &-action {
+    height: 24px;
+    overflow: hidden;
     .sc-xiangxia {
       display: inline-block;
       padding: 0 10px;
@@ -78,14 +81,27 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
+    // line-height: 22px;
+    height: 22px;
+    overflow: hidden;
     // line-height: 16px;
     color: @text-color-secondary;
     &::after {
       // display: none;
       content: '';
     }
+    .scTag.notBorder {
+      font-size: 14px;
+      color: @text-color-secondary;
+      .underline-dashed {
+        text-decoration-color: @text-color-secondary;
+      }
+    }
   }
   .ant-descriptions-item-container {
+    overflow: hidden;
+    height: 22px;
+    line-height: 22px;
     padding-right: 60px;
   }
   .ant-descriptions-item-content {
@@ -127,5 +143,9 @@
   .ant-descriptions-header {
     margin-bottom: 16px;
   }
-
+  &-vertical {
+    &.ant-descriptions-small .ant-descriptions-row:not(:last-child) > td {
+      padding-bottom: 24px;
+    }
+  }
 }

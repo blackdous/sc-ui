@@ -93,11 +93,11 @@
     .ant-form-item-label {
       line-height: 22px;
       padding: 0 0 4px;
-      color: @heading-color;
       // align-self: self-start;
       label {
         min-height: 22px;
         line-height: 22px;
+        color: @heading-color;
         &.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
           top: 6px;
         }
@@ -149,3 +149,18 @@
 //     }
 //   }
 // }
+.ant-form-item-explain, .ant-form-item-extra {
+  font-size: 12px;
+  min-height: 20px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.ant-form-item-explain.ant-form-item-explain-error {
+  color: #E34D59;
+}
+.ant-form-item-has-error .ant-input, 
+.ant-form-item-has-error .ant-input-affix-wrapper, 
+.ant-form-item-has-error .ant-input:hover, 
+.ant-form-item-has-error .ant-input-affix-wrapper:hover {
+  border-color: #E34D59;
+}

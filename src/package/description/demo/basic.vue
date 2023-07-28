@@ -108,7 +108,7 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { ScDescription, ScLink } from 'sc-ui'
+import { ScDescription, ScLink, ScTag } from 'sc-ui'
 import { DescriptionsItem } from 'ant-design-vue';
 
 const mockData: Recordable = {
@@ -116,7 +116,7 @@ const mockData: Recordable = {
     nickName: 'VB',
     age: '123',
     phone: '15695909xxx',
-    email: '190848757@qq.com',
+    email: '19057@qq.com',
     addr: '厦门市思明区',
     addr1: '厦门市思明区1111',
     sex: '男',
@@ -127,7 +127,7 @@ const mockData: Recordable = {
   const schema: DescItem[] = [
     {
       field: 'username',
-      label: h('span', { class: '' }, ['用户名', h('i', { class: 'sc-ui sc-question-circle copy' })]),
+      label: h(ScTag, { border: false, type: 'outline', tooltipDes: '提示内容' }, ['用户名']),
     },
     {
       field: 'nickName',
