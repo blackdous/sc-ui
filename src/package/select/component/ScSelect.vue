@@ -23,7 +23,6 @@
         :dropdownClassName="dropdownClassName"
         @dropdownVisibleChange="handleDropdownVisibleChange"
         >
-        <!-- @change="handleChange" -->
         <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
           <slot :name="item" v-bind="data || {}"></slot>
         </template> 
@@ -49,8 +48,8 @@
 
 <script lang="ts">
 
-import { computed, defineComponent, unref, onMounted, onBeforeUnmount, ref } from 'vue'
-import { Select, CheckboxGroup, Checkbox, SelectOption } from 'ant-design-vue'
+import { computed, defineComponent, unref, onMounted, onBeforeUnmount, ref, watch } from 'vue'
+import { Select, Tooltip, SelectOption } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 // import cloneDeep from 'lodash/cloneDeep'
 import lodash from 'lodash'
@@ -70,15 +69,23 @@ export default defineComponent({
   emits: ['change', 'update:value', 'allowClear', 'dropdownVisibleChange'],
   components: {
     Select,
-    CheckboxGroup,
     SelectOption,
-    Checkbox,
     CloseCircleFilled,
+    Tooltip
   },
   setup(props, { emit, slots, attrs, expose }) {
     const baseClass = basePrefixCls + 'Select'
 
     const prefixWidth = ref()
+    const tooltipDom = ref()
+
+    const divDom = document.createElement("div")
+    divDom.style.position = 'absolute'
+    divDom.style.top = '0px'
+    divDom.style.left = '0px'
+    divDom.style.width = '100%'
+    tooltipDom.value = divDom
+
     const initValue = computed({
       get:() => {
         return props.optionMode === 'checkbox' ? props.value === undefined ? [] : props.value : props.value
@@ -145,6 +152,7 @@ export default defineComponent({
 
     const handleDropdownVisibleChange = (val:boolean) => {
       if (val) {
+        const { tooltip } = props
         const timer = setTimeout(() => {
           const doc = document.querySelector(`.${uuid} .rc-virtual-list-scrollbar-show`)
           if (doc) {
@@ -152,6 +160,9 @@ export default defineComponent({
             docu && (docu.className.includes('isSelectScroll') ? '' : docu.className = docu.className + ' isSelectScroll')
           }
           clearTimeout(timer)
+          if (tooltip) {
+            showTooltip()
+          }
         }, 200)
       }
       emit('dropdownVisibleChange')
@@ -162,14 +173,67 @@ export default defineComponent({
         prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 24) || 0))
     }
 
+    const showTooltip = () => {
+      const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`)
+      dropdownDom?.addEventListener('mouseover', (event: any) => {
+        if (event.target.className.includes('ant-select-item-option')) {
+          event.target.title = ''
+        }
+        if (!event.target.className.includes('ant-select-item-option-content')) {
+          return false
+        }
+        const rect = event?.target?.getBoundingClientRect()
+        const bodyScrollLeft = document.documentElement.scrollLeft
+        const bodyScrollTop = document.documentElement.scrollTop
+        const scrollWidth = event?.target?.scrollWidth || event?.target?.clientWidth
+        const clientWidth = event?.target?.clientWidth
+        if (scrollWidth > clientWidth) {
+          const posLeft = rect.left + rect.width + bodyScrollLeft + 10
+          const posTop = rect.top + (rect.height / 2) + bodyScrollTop - rect.height
+          const innerText = event?.target.innerText
+          const tooltipHTML = `
+            <div>
+              <!---->
+              <div class="ant-tooltip ant-tooltip-placement-right" style="left: ${posLeft}px;top: ${posTop}px; /* display: none; */">
+                <div class="ant-tooltip-content">
+                  <div class="ant-tooltip-arrow">
+                    <span class="ant-tooltip-arrow-content"></span>
+                  </div>
+                  <div class="ant-tooltip-inner" role="tooltip">
+                    ${innerText}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+          divDom.innerHTML = tooltipHTML
+        } else {
+          divDom.innerHTML = ``
+        }
+      })
+      dropdownDom?.addEventListener('mouseout', () => {
+        divDom.innerHTML = ``
+      })
+    }
+
+    watch(() => props.tooltip, (val:boolean) => {
+      const isInset = document.body.contains(tooltipDom.value)
+      if (val) {
+        if (!isInset) {
+          document.body.appendChild(tooltipDom.value)
+        }
+      } else {
+        isInset && document.body.removeChild(tooltipDom.value)
+      }
+
+    }, {
+      immediate: true
+    })
+
     onMounted(() => {
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
       dom && dom.addEventListener('mousedown', clearCall)
 
-      // const timer = setTimeout(() => {
-      //   computePrefixWidth()
-      //   clearTimeout(timer)
-      // }, 200)
       const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
       waitElementReady(prefixDom, () => {
         computePrefixWidth()

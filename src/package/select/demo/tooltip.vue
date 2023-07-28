@@ -1,62 +1,21 @@
 <template>
   <div class="mt20">
     <ScSelect
-      v-model:value="value"
-      @change="handleChange"
       class="aaaa"
-    >
-      <SelectOption
-        v-for="item in list"
-        :key="item.label"
-        :disabled="item.value === 4"
-        :value="item.value"
-      >
-        {{item.label}}
-      </SelectOption>
-    </ScSelect>
-  </div>
-  <div class="mt20">
-    <ScSelect
+      autoAdjustOverflow
+      placement="top"
+      :tooltip="true"
       v-model:value="value"
       :options="list"
-      disabled
       @change="handleChange"
     >
     </ScSelect>
-  </div>
-  <div class="mt20">
-    <ScSelect
-      v-model:value="valueAsync"
-      :allow-clear="true"
-      @change="handleChange"
-    >
-      <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
-        {{item.label}}
-      </SelectOption>
-    </ScSelect>
-    <Select
-      v-model:value="valueAsync"
-      @change="handleChange"
-      >
-      <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
-        {{item.label}}
-      </SelectOption>
-    </Select>
-    <Select
-      v-model:value="valueAsync"
-      disabled
-      @change="handleChange"
-    >
-      <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
-        {{item.label}}
-      </SelectOption>
-    </Select>
   </div>
 </template>
 
 <script lang='ts' setup>
 import { ref, unref, onMounted, watch } from 'vue'
-import { SelectOption, Select } from 'ant-design-vue'
+// import { SelectOption } from 'ant-design-vue'
 import { ScSelect } from 'sc-ui'
 
 const value = ref('jack1')
@@ -98,7 +57,7 @@ const mockFetch = () => {
 
 for (let i = 0;i < 100;  i++) {
   list.value = [...unref(list), {
-    label: 'JackJackJackJackJackJackJackJackJackJackJackJackJackJack' + i,
+    label: i % 2 === 0 ? 'JackJackJackJackJackJackJackJackJackJackJackJackJackJack' + i : 'JackJack' + i,
     value: i,
     key: 'Jack' + i
   }]
@@ -129,6 +88,14 @@ onMounted(() => {
 }
 .mt20 {
   margin-top: 20px;
+}
+.posFixed {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 32px;
 }
 </style>
 

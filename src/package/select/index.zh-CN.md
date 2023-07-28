@@ -31,6 +31,14 @@ map:
   >
 </demo>
 
+## 带tooltip
+
+<demo src="./demo/tooltip.vue"
+  language="vue"
+  title="带tooltip"
+  >
+</demo>
+
 ## 标签选择器状态
 
 <demo src="./demo/checkbox.vue"
@@ -57,6 +65,7 @@ map:
 | optionMode      | string                                              | -  |  `checkbox`      |  如果使用`optionMode`属性 `#dropdownRender` slot 将无效|
 | prefixIcon      | slot                                            | -  |  -      |  支持自定义slot传入，通过`template='prefixIcon'` 来使用|
 | widthSize      | string                                            | `x`  |  `'l', 'xs', 'x', 'md', 'xl'`      |  控制select 宽度|
+| tooltip      | boolean                                            | false  |  -     |  文字长处最大宽度出现。。。,是否显示tooltip显示 |
 
 ## 事件
 
