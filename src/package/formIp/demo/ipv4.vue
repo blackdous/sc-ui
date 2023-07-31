@@ -1,11 +1,21 @@
 <template>
   <ScButton @click="updateDisabledIndex">更新disabledIndex</ScButton>
-  <div>
+  <div class="mrt20">
     <ScIp
       v-model:value="valueRef"
       @change="handleChange"
       :disabled-index="disabledIndex"
       >
+      <!-- :copyDisabled="true" -->
+    </ScIp>
+  </div>
+  <div class="mrt20">
+    <ScIp
+      v-model:value="valueRef2"
+      @change="handleChange"
+      :need-default="false"
+    >
+      <!-- :need-default="false" -->
       <!-- :copyDisabled="true" -->
     </ScIp>
   </div>
@@ -24,6 +34,7 @@ import { ref, watch } from 'vue'
 import { ScIp, ScButton } from 'sc-ui'
 
 const valueRef = ref(null)
+const valueRef2 = ref(null)
 const valueRef1 = ref('12.3.4.266')
 
 const disabledIndex = ref([2, 4])

@@ -3,7 +3,7 @@
     :class="classNames"
   >
     <template
-      v-for="(item, index) in ipListRec"
+      v-for="(item, index) in ipListRec.list"
     >
       <span
         v-if="index !== 0"
@@ -16,24 +16,14 @@
         </span>
         <slot v-else name="labelSeparator"></slot>
       </span>
-      <!-- <ScInputNumber
-        :ref="ipList[index].ipRef"
-        v-model:value="item.value"
+      <input
+        :class="[baseClass + '-input', 'ant-input']"
+        v-model="item.value"
         v-bind="{...item}"
-        @change="handleChange"
-        @keydown="($event: Event) => handleKeyDown(index, $event)"
-        ></ScInputNumber> -->
-        <input
-          :class="[baseClass + '-input', 'ant-input']"
-          :ref="ipList[index].ipRef"
-          v-model="item.value"
-          v-bind="{...item}"
-          @keydown="($event: Event) => handleKeyDown(index, $event)"
-          @change="handleChange"
-          @blur="($event: Event) => handleBlur(index, $event)"
-          @keyup="($event: Event) => handleInput(index, $event)"
-        >
-          <!-- @input="handleInput" -->
+        @input="($event) => checkIpVal(index as number, $event)"
+        @keydown="($event) => handleKeyboardDelete(index as number, $event)"
+        @keyup="($event) => turnIpPOS(index as number, $event)"
+      >
     </template>
   </div>
 </template>
@@ -42,23 +32,17 @@
 import { defineComponent, ref, computed, watch, reactive, unref, onMounted, nextTick } from 'vue'
 import { message } from 'ant-design-vue'
 
-import { ScInputNumber } from '../../inputNumber'
-import { scIpProps } from './type'
+import { scIpProps, IpItemType } from './type'
 import { basePrefixCls } from '../../../constant'
 import { isObject, isArray } from '../../../utils/is'
 import { buildUUID } from '../../../utils'
 
 export default defineComponent({
   name: 'ScIp',
-  components: {
-    ScInputNumber
-  },
   emits: ['update:value', 'change'],
   props: scIpProps(),
   setup (props, { slots, emit }) {
     const ipListSourceRef = ref(props.modalValue)
-
-    const isDefaultValue = ref(true)
 
     const baseClass = basePrefixCls + 'Ips'
 
@@ -68,6 +52,9 @@ export default defineComponent({
 
     const isProps = ref(false)
 
+    const keyDownSelectionStart = ref(0)
+
+    // const refList = ref([])
 
     const classNames = computed(() => {
       return [
@@ -81,51 +68,52 @@ export default defineComponent({
     const isLabelSeparatorSlot = computed(() => {
       return Object.keys(slots).includes('labelSeparator')
     })
-
-    const ipList = computed(() => {
-      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, value, needDefault, type } = props
-      // console.log('disabledIndex: ', disabledIndex);
-      const list = (valueRef.value)?.split(`${parseSeparator}`)
-      const newList = list?.map((item: string, index: number) => {
-        let newItem = {
-          value: !needDefault ? undefined : parseInt(item) || 0,
-          disabled: disabledIndex?.includes(index)  || disabled,
-          ipRef: ref(),
-          needDefault: needDefault,
-          type: type
-        }
-        if (isObject(inputNumberOptions)) {
-          newItem = {...newItem, ...inputNumberOptions}
-        }
-        if (isArray(inputNumberOptions)) {
-          newItem = {...{ max: 255, min: 0, precision: 0, showControl: false}, ...newItem, ...inputNumberOptions[index] }
-        }
-        console.log('newItem: ', newItem);
-        return newItem
-      }) || []
-      return newList
-    })
     
 
-    const ipListRec = reactive(ipList.value)
-    // console.log('ipListRec: ', ipListRec);
-
-    watch(() => ipListRec.map((item:any) => item.value), val => {
-      const { joinSeparator, disabled } = props
-      const curValue = val?.join(joinSeparator)
-      if (!disabled && !isProps.value) {
-        emit('update:value', curValue)
-        emit('change', curValue)
-        isDefaultValue.value = false
-        isProps.value = false
-      }
-    }, {
-      deep: true
+    const ipListRec = reactive<{list: IpItemType}>({
+      list: [
+        {
+          value: '',
+          type: 'text',
+          max: 255, 
+          min: 0
+        }, {
+          value: '',
+          type: 'text',
+          max: 255, 
+          min: 0
+        }, {
+          value: '',
+          type: 'text',
+          max: 255, 
+          min: 0
+        }, {
+          value: '',
+          type: 'text',
+          max: 255, 
+          min: 0
+        }
+      ]
     })
+
+
+    // watch(() => ipListRec.list.map((item:any) => item.value), val => {
+    //   // console.log('val: ', val);
+    //   const { joinSeparator, disabled } = props
+    //   const curValue = val?.join(joinSeparator)
+    //   if (!disabled && !isProps.value) {
+    //     emit('update:value', curValue)
+    //     emit('change', curValue)
+    //     isDefaultValue.value = false
+    //     isProps.value = false
+    //   }
+    // }, {
+    //   deep: true
+    // })
 
     watch(() => props.disabledIndex, (val: number[]) => {
       const { disabled } = props
-      ipListRec.forEach((item: any, index: number) => {
+      ipListRec.list.forEach((item: any, index: number) => {
         if (val.includes(index)) {
           item.disabled = true || disabled
         } else {
@@ -137,101 +125,156 @@ export default defineComponent({
       immediate: true
     })
 
+    const checkValue = (value: string, options: IpItemType) => {
+      const { needDefault } = props
+      const { max, min } = options as IpItemType
+      // 当输入的是空格时，值赋为空
+      let val = parseInt(value + '')
+      val = val < min ? min : val
+      val = val > max ? max : val
+      return !needDefault ? val || '' : val || 0
+    }
+
     watch(() => props.value, (val:any) => {
-      valueRef.value = val || '...'
-      const { parseSeparator, needDefault } = props
-      if (needDefault) {
-        const list = (val || '...')?.split(`${parseSeparator}`)
-        list?.forEach((item: any, index: number) => {
-          isProps.value = true
-          ipListRec[index].value = parseInt(item) || 0
-        })
-      }
+      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, needDefault, joinSeparator } = props
+      const list = (val || '...')?.split(`${parseSeparator}`)
+      const newList = list?.map((item: string, index: number) => {
+        let newItem = {
+          // value: !needDefault ? parseInt(item) || '' : parseInt(item) || 0,
+          disabled: disabledIndex?.includes(index)  || disabled,
+          type: 'text'
+        }
+        if (isObject(inputNumberOptions)) {
+          newItem = {...newItem, ...inputNumberOptions}
+        }
+        if (isArray(inputNumberOptions)) {
+          newItem = {...{ max: 255, min: 0, precision: 0, showControl: false}, ...newItem, ...inputNumberOptions[index] }
+        }
+        newItem.value = checkValue(item, newItem)
+        isProps.value = true
+        return newItem
+      }) || []
+      ipListRec.list = newList
+      // console.log('newList: ', newList);
+      valueRef.value = newList.map((item: IpItemType) => item.value).join(joinSeparator)
     }, {
       immediate: true
     })
 
-    const handleKeyDown = (index: number, event: any) => {
-      // 往右切换
+    const jumpLeft = (index: number) => {
+      const { disabled, value } = ipListRec.list[index - 1]
+      if (disabled) {
+        jumpLeft(index - 1)
+      } else {
+        const ipRef = getInput(index - 1)as HTMLInputElement
+        console.log('ipRef: ', ipRef);
+        ipRef?.focus()
+        ipRef?.setSelectionRange(value.length, value.length)
+      }
+    }
+
+    const jumpRight = (index: number) => {
+      const { disabled, value } = ipListRec.list[index + 1]
+      if (disabled) {
+        jumpRight(index + 1)
+      } else {
+        const ipRef = getInput(index + 1) as HTMLInputElement
+        console.log('ipRef: ', ipRef);
+        ipRef?.focus()
+        ipRef?.setSelectionRange(value.length, value.length)
+      }
+    }
+
+    const emitValue = () => {
+      const { joinSeparator, disabled } = props
+      const curValue = ipListRec.list.map((item: IpItemType) => item.value)?.join(joinSeparator)
+        if (!disabled) {
+          emit('update:value', curValue)
+          emit('change', curValue)
+        }
+    }
+
+    const checkIpVal = (index: number, event: any) => {
+      const { value, min, max } = ipListRec.list[index]
+      const { joinSeparator, disabled, needDefault } = props
+      // 当输入的是空格时，值赋为空
+      let val = parseInt(value + '')
+      // console.log('is Number', (/^[1-9]\d*$/).test(val + ''));
+      if (isNaN(val)) {
+        if (needDefault) {
+          ipListRec.list[index].value = ''
+        } else {
+          ipListRec.list[index].value = ''
+        }
+        emitValue()
+        return
+      }
+      val = val < min ? min : val
+      val = val > max ? max : val
+      ipListRec.list[index].value = val
+      if ((ipListRec.list[index].value + '').length === 3 && index !== 3) jumpRight(index)
+
+      const curValue = ipListRec.list.map((item: IpItemType) => item.value)?.join(joinSeparator)
+      if (!disabled) {
+        emit('update:value', curValue)
+        emit('change', curValue)
+      }
+    }
+
+    const getInput = (index: number) => {
+      const inputsDoc = document.querySelectorAll(`.${uuid} .scIps-input`) || []
+      return inputsDoc[index]
+    }
+
+    const handleKeyboardDelete = (index: number, event: any) => {
+      const e = event || window.event
+      const inputDoc = getInput(index)
+      keyDownSelectionStart.value = (inputDoc as HTMLInputElement).selectionStart || 0
+      console.log('keyDownSelectionStart.value: ', keyDownSelectionStart.value);
+      if (e.keyCode === 190 || e.keyCode === 110) {
+        e.preventDefault()
+        return false
+      }
+    }
+
+    const turnIpPOS = (index: number, event: any) => {
+      const e = event
+      // 左箭头向左跳转，左一不做任何措施
+      if (e.keyCode === 37 && index && keyDownSelectionStart.value === 0) jumpLeft(index)
+      // 删除键把当前数据删除完毕后会跳转到前一个input，左一不做任何处理
+      if (e.keyCode === 8 && index && e.currentTarget.selectionStart === 0 && keyDownSelectionStart.value === 0) jumpLeft(index)
+      // 右箭头、回车键、小键盘.、字母键盘.，右一不做任何措施
       if (
-        event.keyCode === 39 && 
-        index !== (ipList.value.length - 1) &&
-        event.currentTarget?.selectionStart === (ipList.value[index].value?.toString().length || 0)
-      ) {
-        const { disabled, ipRef, value } = unref(ipList)[index + 1]
-        if (disabled) {
-          handleKeyDown(index + 1, { keyCode: 39, currentTarget: { selectionStart: value?.toString().length || 0} })
-        } else {
-          unref(ipList)?.ipRef?.value[0]?.blur()
-          ipRef?.value[0]?.focus()
-        }
+        (e.keyCode === 39 || e.keyCode === 13 || e.keyCode === 110 || e.keyCode === 190) &&
+        index !== 3 &&
+        keyDownSelectionStart.value === ipListRec.list[index].value.toString().length
+        ) {
+          jumpRight(index)
       }
-       // 往左切换
-      if (event.keyCode === 37 && index !== 0 && event.currentTarget?.selectionStart === 0) {
-        const { disabled, ipRef } = unref(ipList)[index - 1]
-        if (disabled) {
-          handleKeyDown(index - 1, { keyCode: 37, currentTarget: { selectionStart: 0 } })
-        } else {
-          unref(ipList)?.ipRef?.value[0]?.blur()
-          ipRef?.value[0]?.focus()
-        }
-      }
-    }
-
-    const handleChange = (val:any) => {
-      // console.log('val: ', val);
-      isProps.value = false
-    }
-
-    const handleBlur = (index: number, event: Event) => {
-      // console.log('event: ', event.target.value);
-      const curRef = ipListRec[index].ipRef
-      console.log('curRef: ', curRef);
-      // ipListRec[index].value = event
-    }
-
-    const handleInput = (index: number, event: Event) => {
-      const { type } = props
-      const inputNumberOptions = 
-      if (type === 'number') {
-        // const _value = event?.target?.value?.replace(/\D/g, '')
-        // isProps.value = false
-        // ipListRec[index].value = _value
-        // console.log('_value: ', _value);
-      }
-      // const isNumber = (/D/g).test(_value)
-      // console.log('isNumber: ', isNumber);
-      // // return false
-      // event.stopPropagation()
-      // event.preventDefault()
     }
 
     onMounted(() => {
       nextTick(() => {
-        const inputList = document.querySelectorAll(`.${uuid} .ant-input-number-input`)
+        const inputList = document.querySelectorAll(`.${uuid} .scIps-input`)
         inputList?.forEach((item: HTMLInputElement) => {
           item.addEventListener('paste', (event: Event) => {
-            const { disabledIndex, parseSeparator } = props
-            console.log('disabledIndex: ', disabledIndex);
-            const currList = String(valueRef.value)?.split(parseSeparator)
+            const { disabledIndex, parseSeparator, copyDisabled } = props
+            const currList = String(valueRef.value || '...')?.split(parseSeparator)
+            // console.log('currList: ', currList);
             event.preventDefault()
             let pasteStr = (event?.clipboardData || window?.clipboardData).getData("text");
             const pasteList = ipv4Region.test(pasteStr.trim()) ? pasteStr.split(parseSeparator) : false
             if (pasteList && pasteList.length === 4) {
               const newList = currList.map((valueItem, _index) => {
-                if (!disabledIndex.includes(_index)) {
+                if (!disabledIndex.includes(_index) || copyDisabled) {
                   valueItem = pasteList[_index]
                 }
                 return valueItem
               })
               newList?.forEach((item: any, index: number) => {
-                if (index !== 3) {
-                  isProps.value = true
-                } else {
-                  isProps.value = false
-                }
-                ipListRec[index].value = parseInt(item) || 0
+                ipListRec.list[index].value = item
               })
+              emitValue()
             } else {
               message.warning('粘贴不符合ipv4格式')
             }
@@ -243,15 +286,13 @@ export default defineComponent({
     return {
       baseClass,
       classNames,
-      ipList,
       ipListRec,
       ipListSourceRef,
       isLabelSeparatorSlot,
 
-      handleChange,
-      handleInput,
-      handleBlur,
-      handleKeyDown
+      checkIpVal,
+      handleKeyboardDelete,
+      turnIpPOS
     }
   }
 })

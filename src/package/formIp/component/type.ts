@@ -46,8 +46,7 @@ export const scIpProps = () => ({
         max: 255,
         min: 0,
         precision: 0,
-        showControl: false,
-        focus: false
+        showControl: false
       }
     }
   }

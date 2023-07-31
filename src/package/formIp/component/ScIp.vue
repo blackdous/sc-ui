@@ -21,7 +21,8 @@
         :ref="refList[index as number]"
         v-model="item.value"
         v-bind="{...item}"
-        @input="($event) => checkIpVal(index as number, $event)"
+        @input="($event) => checkIpVal(index as number)"
+        @blur="($event) => setVal(index as number)"
         @keydown="($event) => handleKeyboardDelete(index as number, $event)"
         @keyup="($event) => turnIpPOS(index as number, $event)"
       >
@@ -134,10 +135,11 @@ export default defineComponent({
       val = val < min ? min : val
       val = val > max ? max : val
       return !needDefault ? val || '' : val || 0
+      // return val || ''
     }
 
     watch(() => props.value, (val:any) => {
-      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, needDefault, joinSeparator } = props
+      const { parseSeparator, inputNumberOptions, disabledIndex, disabled, joinSeparator } = props
       const list = (val || '...')?.split(`${parseSeparator}`)
       const newList = list?.map((item: string, index: number) => {
         let newItem = {
@@ -172,7 +174,7 @@ export default defineComponent({
       } else {
         const ipRef = unref(refList)[index - 1]
         ipRef?.value[0].focus()
-        ipRef?.value[0].setSelectionRange(value.length, value.length)
+        ipRef?.value[0].setSelectionRange((value + '').length, (value + '').length)
       }
     }
 
@@ -183,7 +185,7 @@ export default defineComponent({
       } else {
         const ipRef = unref(refList)[index + 1]
         ipRef?.value[0].focus()
-        ipRef?.value[0].setSelectionRange(value.length, value.length)
+        ipRef?.value[0].setSelectionRange((value + '').length, (value + '').length)
       }
     }
 
@@ -196,7 +198,7 @@ export default defineComponent({
         }
     }
 
-    const checkIpVal = (index: number, event: any) => {
+    const checkIpVal = (index: number) => {
       const { value, min, max } = ipListRec.list[index]
       const { joinSeparator, disabled, needDefault } = props
       // 当输入的是空格时，值赋为空
@@ -204,7 +206,7 @@ export default defineComponent({
       // console.log('is Number', (/^[1-9]\d*$/).test(val + ''));
       if (isNaN(val)) {
         if (needDefault) {
-          ipListRec.list[index].value = ''
+          ipListRec.list[index].value = 0
         } else {
           ipListRec.list[index].value = ''
         }
@@ -217,9 +219,17 @@ export default defineComponent({
       if ((ipListRec.list[index].value + '').length === 3 && index !== 3) jumpRight(index)
 
       const curValue = ipListRec.list.map((item: IpItemType) => item.value)?.join(joinSeparator)
+      console.log('curValue: ', curValue);
       if (!disabled) {
         emit('update:value', curValue)
         emit('change', curValue)
+      }
+    }
+
+    const setVal = (index: number) => {
+      const { needDefault } = props
+      if (needDefault && (ipListRec.list[index].value === '' || ipListRec.list[index].value === undefined)) {
+        ipListRec.list[index].value = 0
       }
     }
 
@@ -251,7 +261,7 @@ export default defineComponent({
     onMounted(() => {
       nextTick(() => {
         const inputList = document.querySelectorAll(`.${uuid} .scIps-input`)
-        inputList?.forEach((item: HTMLInputElement) => {
+        inputList?.forEach((item: HTMLInputElement, inputIndex: number) => {
           item.addEventListener('paste', (event: Event) => {
             const { disabledIndex, parseSeparator, copyDisabled } = props
             const currList = String(valueRef.value || '...')?.split(parseSeparator)
@@ -270,6 +280,13 @@ export default defineComponent({
                 ipListRec.list[index].value = item
               })
               emitValue()
+            } else if (!isNaN(pasteStr.trim())) {
+              currList?.forEach((item: any, index: number) => {
+                if (inputIndex === index) {
+                  ipListRec.list[index].value = checkValue(pasteStr.trim(), ipListRec.list[index])
+                }
+              })
+              emitValue()
             } else {
               message.warning('粘贴不符合ipv4格式')
             }
@@ -286,6 +303,7 @@ export default defineComponent({
       isLabelSeparatorSlot,
       refList,
 
+      setVal,
       checkIpVal,
       handleKeyboardDelete,
       turnIpPOS
