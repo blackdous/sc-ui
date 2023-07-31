@@ -31,7 +31,7 @@ const props = () =>({
     default: () => ({})
   },
   describe: {
-    type: [String, Number],
+    type: [String, Number, Object],
     default: ''
   },
   text: {

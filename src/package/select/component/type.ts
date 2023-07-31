@@ -10,7 +10,7 @@ export const props = () => ({
   tooltip: {
     type: Boolean,
     default () {
-      return false
+      return true
     }
   },
   widthSize: {
