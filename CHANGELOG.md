@@ -1,4 +1,29 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.152...0.0.2) (2023-07-26)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.154...0.0.2) (2023-08-02)
+
+
+
+## [0.0.154](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.153...0.0.154) (2023-08-02)
+
+
+### Bug Fixes
+
+* 去除 ScTable ThDescribe 组件警告 ([1b312c0](http://gitlab.voneyun.com/frontend/sc-ui/commit/1b312c0459df2a406c71820cce83e77a6ad7c318))
+
+
+### Features
+
+* 完善 ScEllipsis 组件 功能 ([37e5822](http://gitlab.voneyun.com/frontend/sc-ui/commit/37e58223b48c5ccd97b3ecaaa0b0bb8d1849e098))
+* 完善 ScEllipsis 组件复制功能 ([af3d726](http://gitlab.voneyun.com/frontend/sc-ui/commit/af3d726a4465682e7dc024911632728c845cacc1))
+
+
+
+## [0.0.153](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.152...0.0.153) (2023-07-31)
+
+
+### Features
+
+* scIp 组件,新增单个粘贴功能 ([337e22d](http://gitlab.voneyun.com/frontend/sc-ui/commit/337e22d564bcfcede3c7928b67185950c6e2f3ea))
+* scSelect 组件 新增 tooltip 属性,用于 超出文字显示...;通过tooltip 显示全量文本 ([8be5bba](http://gitlab.voneyun.com/frontend/sc-ui/commit/8be5bba69541e3d960befa02fdd8286c736a0ddd))
 
 
 
