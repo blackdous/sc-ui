@@ -12,5 +12,26 @@ export const ellipsisProps = () => ({
   },
   lineClamp: {
     type: [Number, String]
+  },
+  isCollapse: {
+    type: Boolean,
+    default (){
+      return false
+    }
+  },
+  hoverSuffix: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
+  edit: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
+  copyTxt: {
+    type: String
   }
 })

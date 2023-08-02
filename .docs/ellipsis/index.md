@@ -38,6 +38,30 @@ realPath: src/package/ellipsis/index.zh-CN.md
   >
 </demo>
 
+## suffix 自定义内容
+
+<demo src="./demo/suffix.vue"
+  language="vue"
+  title="suffix 自定义内容"
+  >
+</demo>
+
+## edit参数
+
+<demo src="./demo/edit.vue"
+  language="vue"
+  title="edit参数"
+  >
+</demo>
+
+## copy参数
+
+<demo src="./demo/copy.vue"
+  language="vue"
+  title="copy参数"
+  >
+</demo>
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
@@ -52,3 +76,4 @@ realPath: src/package/ellipsis/index.zh-CN.md
 | --- | --- | --- | --- |
 | default | 默认显示内容 |  -  | |
 | tooltip | 自定义tooltip 显示内容 |  -  | |
+| suffix | 后准显示内容 |  -  | |
