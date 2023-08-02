@@ -27,8 +27,9 @@
     width: 999vw;
     height: 999vw;
     position: absolute;
-    box-shadow: inset calc(100px - 999vw) calc(30px - 999vw) 0 0 #fff;
+    // box-shadow: inset calc(100px - 999vw) calc(30px - 999vw) 0 0 #fff;
     margin-left: -100px;
+    pointer-events: none;
   }
   &-btn, &-suffix{
     float: right;
@@ -47,16 +48,16 @@
   &-btn::before{
     content:'展开'
   }
-  .exp{
+  &-exp{
     display: none;
   }
-  .exp:checked + &-text{
-    -webkit-line-clamp: 999 !important;
-  }
-  .exp:checked + &-text::after{
+  // .exp:checked + &-text{
+  //   -webkit-line-clamp: 999 !important;
+  // }
+  &-exp:checked + &-text::after{
     visibility: hidden;
   }
-  .exp:checked + &-text &-btn::before{
+  &-exp:checked + &-text &-btn::before{
     content:'收起'
   }
   &-hoverSuffix {

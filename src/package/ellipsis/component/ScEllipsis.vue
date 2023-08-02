@@ -12,13 +12,12 @@
       @click="handleClick"
     >
       <!-- @click="handleClick" -->
-      <input id="exp1" class="exp"  type="checkbox" :checked="isChecked">
+      <input id="exp1" :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
       <div :class="[baseClass + '-text']" :style="lineClampStyle">
         <label v-if="isCollapse && !$slots.suffix" :class="[baseClass + '-btn']" for="exp1" @click="() => { isChecked = !isChecked }"></label>
         <span :class="[baseClass + '-suffix']" v-if="$slots.suffix || newProps.copyTxt || newProps.edit">
           <slot name="suffix"></slot>
-          <!-- <i v-if="newProps.copyTxt" class="sc-ui sc-file-copy" @click="handleCopy"></i> -->
-          <i class="sc-ui sc-file-copy"></i>
+          <i v-if="newProps.copyTxt" class="sc-ui sc-file-copy" @click="handleCopy"></i>
           <i v-if="newProps.edit" class="sc-ui sc-Frame2" @click="handleEdit"></i>
         </span>
         <slot name="default"></slot>
@@ -67,7 +66,7 @@ export default defineComponent({
     const lineClampStyle = computed(() => {
       const cssOss = Object.create({})
       if (props.lineClamp) {
-        cssOss["-webkit-line-clamp"] = props.lineClamp
+        cssOss["-webkit-line-clamp"] = isChecked.value ? '999' : props.lineClamp
       }
       return {
         ...cssOss
@@ -83,7 +82,6 @@ export default defineComponent({
     })
 
     const newProps = computed(() => {
-      console.log('props: ', props);
       return props
     })
 
@@ -98,6 +96,7 @@ export default defineComponent({
     })
     const handleCopy = async () => {
       const copyText = unref(newProps).copyTxt
+      // console.log('copyText: ', copyText);
       await copy(String(copyText))
       if (unref(newProps)?.successTxt === null) {
         return false
