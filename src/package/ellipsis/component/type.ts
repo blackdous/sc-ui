@@ -7,6 +7,7 @@ export interface EditType {
   maxLength?: number
   describe?: string
   confirmLoading?: boolean,
+  align?: string,
   [key: string]: any
 }
 

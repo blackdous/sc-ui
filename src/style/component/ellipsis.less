@@ -69,7 +69,6 @@
   }
   &-actives {
     padding-top: 16px;
-    text-align: right;
     .scbutton + .scbutton {
       margin-left: 8px;
     }
@@ -78,6 +77,14 @@
     .ant-popover-inner-content {
       padding: 8px;
       width: 240px;
+    }
+    &.ant-popover-placement-bottom, 
+    &.ant-popover-placement-bottomLeft, 
+    &.ant-popover-placement-bottomRight {
+      padding-top: 0;
+    }
+    .ant-popover-arrow {
+      display: none;
     }
   }
   &-edit--describe {

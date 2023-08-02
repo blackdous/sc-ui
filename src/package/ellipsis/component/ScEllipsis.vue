@@ -1,69 +1,47 @@
 <template>
-  <Tooltip
-    v-bind="tooltipProps"
-  >
+  <Tooltip v-bind="tooltipProps">
     <template #title v-if="isTooltip && !tooltipProps.title">
       <slot v-if="$slots.tooltip" name="tooltip"></slot>
       <slot v-else name="default"></slot>
     </template>
+    <Popover v-model:visible="popoverVisible" :title="null" trigger="click" overlayClassName="scEllipsis-popover"
+      placement="bottomLeft">
+      <template #content>
+        <Textarea v-model:value="textareaValue" v-bind="newProps.edit"></Textarea>
+        <p :class="[baseClass + '-edit--describe']">
+          {{ newProps?.edit?.describe }}
+        </p>
+        <div :class="[baseClass + '-actives']" :style="{
+          textAlign: newProps?.edit?.align || 'right'
+        }">
+          <ScButton status="info" size="small" @click="handleClose">
+            取消
+          </ScButton>
+          <ScButton type="primary" size="small" @click="handleEntry" :loading="newProps?.edit?.confirmLoading">
+            确定
+          </ScButton>
+        </div>
+      </template>
       <div
-        :class="className"
-        :style="styleProps"
+        :class="className" 
+        :style="styleProps" 
         @click="handleClick"
       >
         <!-- @click="handleClick" -->
         <input id="exp1" :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
         <div :class="[baseClass + '-text']" :style="lineClampStyle">
-          <label 
-            v-if="isCollapse && !$slots.suffix" 
-            :class="[baseClass + '-btn']" 
-            for="exp1" 
-            @click="() => { isChecked = !isChecked }"
-          ></label>
-          <span 
-            :class="[baseClass + '-suffix']" v-if="$slots.suffix || newProps?.copyTxt || newProps?.edit?.show"
-            :style="{ visibility: popoverVisible ? 'visible' : '' }"
-          >
+          <label v-if="isCollapse && !$slots.suffix" :class="[baseClass + '-btn']" for="exp1"
+            @click="() => { isChecked = !isChecked }"></label>
+          <span :class="[baseClass + '-suffix']" v-if="$slots.suffix || newProps?.copyTxt || newProps?.edit?.show"
+            :style="{ visibility: popoverVisible ? 'visible' : '' }">
             <slot name="suffix"></slot>
             <i v-if="newProps?.copyTxt" class="sc-ui sc-file-copy" @click="handleCopy"></i>
-            <Popover
-              v-model:visible="popoverVisible"
-              :title="null"
-              trigger="click"
-              overlayClassName="scEllipsis-popover"
-            >
-              <template #content>
-                <Textarea
-                  v-model:value="textareaValue"
-                  v-bind="newProps.edit"
-                ></Textarea>
-                <p :class="[baseClass + '-edit--describe']">
-                  {{ newProps?.edit?.describe }}
-                </p>
-                <div :class="[baseClass + '-actives']">
-                  <ScButton
-                    status="info"
-                    size="small"
-                    @click="handleClose"
-                  >
-                    取消
-                  </ScButton>
-                  <ScButton
-                    type="primary"
-                    size="small"
-                    @click="handleEntry"
-                    :loading="newProps?.edit?.confirmLoading"
-                  >
-                    确定
-                  </ScButton>
-                </div>
-              </template>
-              <i v-if="newProps?.edit?.show" class="sc-ui sc-Frame2" @click="handleEdit"></i>
-            </Popover>
+            <i v-if="newProps?.edit?.show" class="sc-ui sc-Frame2" @click="handleEdit"></i>
           </span>
           <slot name="default"></slot>
         </div>
       </div>
+    </Popover>
   </Tooltip>
 </template>
 
@@ -76,7 +54,7 @@ import { basePrefixCls } from '../../../constant'
 import { ScButton } from '../../button'
 //@ts-ignore
 import { ellipsisProps } from './type'
-import { isBoolean, isObject } from '../../../utils'
+import { isBoolean, isObject, buildUUID } from '../../../utils'
 import useLocale from '../../../hooks/useLocale'
 
 export default defineComponent({
@@ -89,12 +67,13 @@ export default defineComponent({
   },
   props: ellipsisProps(),
   emits: ['editConfirm'],
-  setup (props, { attrs, emit }) {
+  setup(props, { attrs, emit }) {
     const baseClass = basePrefixCls + 'Ellipsis'
     const isCollapse = ref(props.isCollapse)
     const isChecked = ref(false)
     const popoverVisible = ref(false)
     const textareaValue = ref()
+    const uuid = basePrefixCls + buildUUID()
 
     const styleProps = computed(() => {
       return {
@@ -105,6 +84,7 @@ export default defineComponent({
 
     const className = computed(() => {
       return [
+        uuid,
         baseClass,
         props.lineClamp ? baseClass + '-lineClamp' : '',
         props.hoverSuffix || popoverVisible.value ? baseClass + '-hoverSuffix' : ''
@@ -146,8 +126,14 @@ export default defineComponent({
       if (props.expandTrigger === 'click') {
         isChecked.value = !unref(isChecked)
       }
+      const { edit } = props
+      if (edit && edit.show) {
+        return false
+      }
+      window?.requestAnimationFrame(() => {
+        popoverVisible.value = false
+      })
     }
-
     const { copy, copied } = useClipboard({
       legacy: true
     })
@@ -163,10 +149,10 @@ export default defineComponent({
       }
     }
 
-    const handleEdit = () => {
-      popoverVisible.value = true
+    const handleEdit = (event: Event) => {
+      event.stopPropagation()
+      popoverVisible.value = !popoverVisible.value
     }
-
 
     return {
       className,

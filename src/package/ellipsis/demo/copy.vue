@@ -1,7 +1,6 @@
 <template>
   <ScEllipsis 
     style="max-width: 240px" 
-    hoverSuffix
     :tooltip="false"
     copyTxt="11111"
     line-clamp="3"
