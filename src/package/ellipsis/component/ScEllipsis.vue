@@ -6,32 +6,74 @@
       <slot v-if="$slots.tooltip" name="tooltip"></slot>
       <slot v-else name="default"></slot>
     </template>
-    <div
-      :class="className"
-      :style="styleProps"
-      @click="handleClick"
-    >
-      <!-- @click="handleClick" -->
-      <input id="exp1" :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
-      <div :class="[baseClass + '-text']" :style="lineClampStyle">
-        <label v-if="isCollapse && !$slots.suffix" :class="[baseClass + '-btn']" for="exp1" @click="() => { isChecked = !isChecked }"></label>
-        <span :class="[baseClass + '-suffix']" v-if="$slots.suffix || newProps.copyTxt || newProps.edit">
-          <slot name="suffix"></slot>
-          <i v-if="newProps.copyTxt" class="sc-ui sc-file-copy" @click="handleCopy"></i>
-          <i v-if="newProps.edit" class="sc-ui sc-Frame2" @click="handleEdit"></i>
-        </span>
-        <slot name="default"></slot>
+      <div
+        :class="className"
+        :style="styleProps"
+        @click="handleClick"
+      >
+        <!-- @click="handleClick" -->
+        <input id="exp1" :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
+        <div :class="[baseClass + '-text']" :style="lineClampStyle">
+          <label 
+            v-if="isCollapse && !$slots.suffix" 
+            :class="[baseClass + '-btn']" 
+            for="exp1" 
+            @click="() => { isChecked = !isChecked }"
+          ></label>
+          <span 
+            :class="[baseClass + '-suffix']" v-if="$slots.suffix || newProps?.copyTxt || newProps?.edit?.show"
+            :style="{ visibility: popoverVisible ? 'visible' : '' }"
+          >
+            <slot name="suffix"></slot>
+            <i v-if="newProps?.copyTxt" class="sc-ui sc-file-copy" @click="handleCopy"></i>
+            <Popover
+              v-model:visible="popoverVisible"
+              :title="null"
+              trigger="click"
+              overlayClassName="scEllipsis-popover"
+            >
+              <template #content>
+                <Textarea
+                  v-model:value="textareaValue"
+                  v-bind="newProps.edit"
+                ></Textarea>
+                <p :class="[baseClass + '-edit--describe']">
+                  {{ newProps?.edit?.describe }}
+                </p>
+                <div :class="[baseClass + '-actives']">
+                  <ScButton
+                    status="info"
+                    size="small"
+                    @click="handleClose"
+                  >
+                    取消
+                  </ScButton>
+                  <ScButton
+                    type="primary"
+                    size="small"
+                    @click="handleEntry"
+                    :loading="newProps?.edit?.confirmLoading"
+                  >
+                    确定
+                  </ScButton>
+                </div>
+              </template>
+              <i v-if="newProps?.edit?.show" class="sc-ui sc-Frame2" @click="handleEdit"></i>
+            </Popover>
+          </span>
+          <slot name="default"></slot>
+        </div>
       </div>
-    </div>
   </Tooltip>
 </template>
 
 <script lang='ts'>
 import { defineComponent, computed, ref, unref } from 'vue'
-import { Tooltip, message } from 'ant-design-vue'
+import { Tooltip, message, Popover, Textarea } from 'ant-design-vue'
 import { useClipboard } from '@vueuse/core'
 
 import { basePrefixCls } from '../../../constant'
+import { ScButton } from '../../button'
 //@ts-ignore
 import { ellipsisProps } from './type'
 import { isBoolean, isObject } from '../../../utils'
@@ -40,27 +82,33 @@ import useLocale from '../../../hooks/useLocale'
 export default defineComponent({
   name: 'ScEllipsis',
   components: {
-    Tooltip
+    Tooltip,
+    Popover,
+    Textarea,
+    ScButton
   },
   props: ellipsisProps(),
-  setup (props, { attrs }) {
+  emits: ['editConfirm'],
+  setup (props, { attrs, emit }) {
     const baseClass = basePrefixCls + 'Ellipsis'
-    const className = computed(() => {
-      return [
-        baseClass,
-        props.lineClamp ? baseClass + '-lineClamp' : '',
-        props.hoverSuffix ? baseClass + '-hoverSuffix' : ''
-      ]
-    })
-
     const isCollapse = ref(props.isCollapse)
     const isChecked = ref(false)
+    const popoverVisible = ref(false)
+    const textareaValue = ref()
 
     const styleProps = computed(() => {
       return {
         //@ts-ignore
         ...attrs.style
       }
+    })
+
+    const className = computed(() => {
+      return [
+        baseClass,
+        props.lineClamp ? baseClass + '-lineClamp' : '',
+        props.hoverSuffix || popoverVisible.value ? baseClass + '-hoverSuffix' : ''
+      ]
     })
 
     const lineClampStyle = computed(() => {
@@ -85,6 +133,15 @@ export default defineComponent({
       return props
     })
 
+    const handleClose = () => {
+      textareaValue.value = ''
+      popoverVisible.value = false
+    }
+
+    const handleEntry = () => {
+      emit('editConfirm', textareaValue.value, handleClose)
+    }
+
     const handleClick = () => {
       if (props.expandTrigger === 'click') {
         isChecked.value = !unref(isChecked)
@@ -96,22 +153,18 @@ export default defineComponent({
     })
     const handleCopy = async () => {
       const copyText = unref(newProps).copyTxt
-      // console.log('copyText: ', copyText);
       await copy(String(copyText))
-      if (unref(newProps)?.successTxt === null) {
-        return false
-      }
       const { curLocale } = useLocale()
-      if (copied && (unref(newProps).column?.type?.props?.successTxt || unref(newProps)?.successTxt) || curLocale?.copy?.successMessage) {
+      if (copied && curLocale?.copy?.successMessage) {
         message.success({
-          content: unref(newProps).column?.type?.props?.successTxt || unref(newProps).successTxt || curLocale?.copy?.successMessage,
+          content: curLocale?.copy?.successMessage,
           duration: 1.5
         })
       }
     }
 
     const handleEdit = () => {
-
+      popoverVisible.value = true
     }
 
 
@@ -125,6 +178,11 @@ export default defineComponent({
       isCollapse,
       isChecked,
       newProps,
+      popoverVisible,
+      textareaValue,
+
+      handleEntry,
+      handleClose,
       handleCopy,
       handleEdit,
       handleClick

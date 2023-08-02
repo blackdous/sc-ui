@@ -51,9 +51,6 @@
   &-exp{
     display: none;
   }
-  // .exp:checked + &-text{
-  //   -webkit-line-clamp: 999 !important;
-  // }
   &-exp:checked + &-text::after{
     visibility: hidden;
   }
@@ -62,12 +59,32 @@
   }
   &-hoverSuffix {
     .@{ellipsisScope}-suffix {
-      display: none;
+      visibility: hidden;
     }
     &:hover {
       .@{ellipsisScope}-suffix {
-        display: inline;
+        visibility: visible;
       }
     }
+  }
+  &-actives {
+    padding-top: 16px;
+    text-align: right;
+    .scbutton + .scbutton {
+      margin-left: 8px;
+    }
+  }
+  &-popover {
+    .ant-popover-inner-content {
+      padding: 8px;
+      width: 240px;
+    }
+  }
+  &-edit--describe {
+    padding-top: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    color: @text-color-secondary;
   }
 }

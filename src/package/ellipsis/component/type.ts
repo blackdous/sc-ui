@@ -1,8 +1,18 @@
 import { PropType } from "vue"
-import { TooltipProps } from "ant-design-vue"
+// import { TooltipProps } from "ant-design-vue"
+
+export interface EditType {
+  show?: boolean
+  placeholder?: string
+  maxLength?: number
+  describe?: string
+  confirmLoading?: boolean,
+  [key: string]: any
+}
+
 export const ellipsisProps = () => ({
   tooltip: {
-    type: [Boolean, Object as PropType<TooltipProps>],
+    type: [Boolean, Object],
     default () {
       return true
     }
@@ -26,9 +36,10 @@ export const ellipsisProps = () => ({
     }
   },
   edit: {
-    type: Boolean,
+    type: Object as PropType<EditType>,
     default () {
-      return false
+      return {
+      }
     }
   },
   copyTxt: {

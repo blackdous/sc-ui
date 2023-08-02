@@ -46,19 +46,19 @@ realPath: src/package/ellipsis/index.zh-CN.md
   >
 </demo>
 
-## edit参数
-
-<demo src="./demo/edit.vue"
-  language="vue"
-  title="edit参数"
-  >
-</demo>
-
 ## copy参数
 
 <demo src="./demo/copy.vue"
   language="vue"
   title="copy参数"
+  >
+</demo>
+
+## edit参数
+
+<demo src="./demo/edit.vue"
+  language="vue"
+  title="edit参数"
   >
 </demo>
 
@@ -68,7 +68,26 @@ realPath: src/package/ellipsis/index.zh-CN.md
 | --- | --- | --- | --- | --- |
 | expandTrigger | 'click' | string | - |  |
 | lineClamp | 最多显示几行 | [number, string] | - |  |
-| tooltip | 是否显示tooltip；tooltip配置属性 | [boolean , TooltipProps] |  -  |  |
+| tooltip | 是否显示tooltip；tooltip配置属性 | [boolean , TooltipProps] |  false  |  |
+| hoverSuffix | 是否hover状态显示；suffix 模块 | boolean |  false  |  |
+| isCollapse | 是否可以展开/隐藏 | boolean |  -  |  |
+| copyTxt | copy 内容; 默认在文本最后补充icon| string |  -  |  |
+| edit | 启用edit模式，使用popConfirm弹出修改内容和事件 | EditType |  -  |  |
+
+## EditType
+
+```js
+interface EditType {
+  show?: boolean
+  placeholder?: string
+  maxLength?: number
+  describe?: string
+  confirmLoading?: boolean,
+  [key: string]: any
+}
+```
+
+## events
 
 ## slots
 
