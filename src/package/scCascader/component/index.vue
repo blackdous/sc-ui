@@ -701,7 +701,18 @@ export default defineComponent({
     }
 
     const handleClear = () => {
-      panel.value?.clearCheckedNodes()
+      if (panel.value && panel.value.clearCheckedNodes) {
+        panel.value?.clearCheckedNodes()
+      } else {
+        window?.requestAnimationFrame(() => {
+          togglePopperVisible(true)
+          window?.requestAnimationFrame(() => {
+            panel.value?.clearCheckedNodes()
+            togglePopperVisible(false)
+          })
+        })
+        
+      }
       if (!popperVisible.value && props.filterable) {
         syncPresentTextValue()
       }
