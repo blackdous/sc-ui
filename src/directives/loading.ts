@@ -3,12 +3,10 @@ import type { Directive, App } from 'vue';
 
 const LoadingDirective: Directive = {
   mounted(el, binding) {
-    // console.log('binding: ', binding);
     const tip = el.getAttribute('loading-tip');
     const background = el.getAttribute('loading-background');
     const size = el.getAttribute('loading-size');
-    const fullscreen = !!binding.modifiers.fullscreen;
-    // console.log('fullscreen: ', fullscreen)
+    const fullscreen = !!binding.modifiers.fullscreen || !!binding.modifiers.isFullPage;
     if (!fullscreen) {
       el.style.position = 'relative'
     }

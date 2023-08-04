@@ -16,7 +16,6 @@ export const useDraggable = (
     const downY = e.clientY
     const { offsetX, offsetY } = transform
 
-    // console.log('targetRef: ', targetRef);
     const targetRect = targetRef.value!.getBoundingClientRect()
     const targetLeft = targetRect.left
     const targetTop = targetRect.top

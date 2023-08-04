@@ -133,7 +133,6 @@
         () => ({ ...attrs, ...props, ...unref(getProps) } as Recordable),
       );
         
-      // console.log('getBindValue: ', getBindValue.value);
       const getSchema = computed((): FormSchema[] => {
         const schemas: FormSchema[] = unref(schemaRef) || (unref(getProps).schemas as any);
         for (const schema of schemas) {

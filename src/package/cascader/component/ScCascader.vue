@@ -104,9 +104,6 @@ export default defineComponent({
     const isClearIcon = computed(() => {
       return Object.keys(slots).includes('clearIcon')
     })
-    // watch(() => value.value, (val:any) => {
-    //   console.log('val: ', val);
-    // })
     
     return {
       uuid,

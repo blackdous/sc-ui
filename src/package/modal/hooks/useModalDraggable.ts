@@ -49,13 +49,7 @@ export function useModalDraggable(
         startY.value;
       if (modalTitleRef.value && props.value.isDraggable && visibleRef.value) {
         const modalTitleDom = unref(modalTitleRef)?.parentNode?.parentNode?.parentNode?.parentNode
-        // const transformOrigin = modalTitleDom.style.transformOrigin.split(' ').map((item:string) => parseInt(item))
-        // console.log('transformOriginx: ', transformOrigin);
-        // const aa = `${parseInt(transformX.value + transformOrigin[0])}px ${parseInt(transformY.value + transformOrigin[1])}px`
-        // console.log('aa: ', aa);
         modalTitleDom.style.transform = `translate(${transformX.value}px, ${transformY.value}px)`
-        // modalTitleDom.style.left = `${transformX.value}px`
-        // modalTitleDom.style.top = `${transformY.value}px`
         emits('dragChange', { x, y, isDragging, style, position })
       }
     }

@@ -228,7 +228,6 @@ export default defineComponent({
     }
 
     const handleBlur = (event: Event) => {
-      console.log('event: ', event, valueRef.value);
       emit('blur', event)
     }
     const handleFocus = () => {

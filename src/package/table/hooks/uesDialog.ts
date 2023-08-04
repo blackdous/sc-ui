@@ -88,7 +88,6 @@ export function useChecked (columnList:Array<Column>) {
       }
     })
     keys.value = initKeys
-    console.log('keys: ', keys);
     checkedList.value = initChecked
   }
 

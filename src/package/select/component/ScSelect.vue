@@ -156,7 +156,6 @@ export default defineComponent({
           const { tooltip } = props
           const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`) as HTMLElement
           waitElementReady(dropdownDom, () => {
-            console.log('dropdownDom: ', dropdownDom);
             const doc = document.querySelector(`.${uuid} .rc-virtual-list-scrollbar-show`)
             if (doc) {
               const docu = document.querySelector(`.${uuid}.selectDropdown`)
@@ -167,6 +166,9 @@ export default defineComponent({
             }
           })
         })
+      } else {
+        const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`) as HTMLElement
+        dropdownDom && dropdownDom?.removeEventListener('mouseover', mouseoverEvent)
       }
       emit('dropdownVisibleChange')
     }
@@ -212,6 +214,10 @@ export default defineComponent({
           divDom.innerHTML = ``
         }
     }
+
+    // const mouseoutEvent = (event:any) => {
+
+    // }
 
     const showTooltip = () => {
       const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`)

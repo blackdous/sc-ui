@@ -177,7 +177,6 @@ export default defineComponent({
       const { minusDefaultMaxHeight } = curProps.value
       if (window && visibleRef.value) {
         const contentHeight:number = document.querySelector('.' + uuid)?.scrollHeight || 0
-        // console.log('contentHeight: ', contentHeight);
         const headerHeight:number = document.querySelector('.' + uuid + ' .ant-drawer-header')?.scrollHeight || 0
         const footerHeight:number = document.querySelector('.' + uuid + ' .scDrawer-footer')?.scrollHeight || 0
         const alertHeight:number = (document.querySelector('.' + uuid + ' .scDrawer-alert')?.scrollHeight || 0) + 4

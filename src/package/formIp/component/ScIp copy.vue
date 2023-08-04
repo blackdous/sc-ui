@@ -155,7 +155,6 @@ export default defineComponent({
         return newItem
       }) || []
       ipListRec.list = newList
-      // console.log('newList: ', newList);
       valueRef.value = newList.map((item: IpItemType) => item.value).join(joinSeparator)
     }, {
       immediate: true
@@ -167,7 +166,6 @@ export default defineComponent({
         jumpLeft(index - 1)
       } else {
         const ipRef = getInput(index - 1)as HTMLInputElement
-        console.log('ipRef: ', ipRef);
         ipRef?.focus()
         ipRef?.setSelectionRange(value.length, value.length)
       }
@@ -179,7 +177,6 @@ export default defineComponent({
         jumpRight(index + 1)
       } else {
         const ipRef = getInput(index + 1) as HTMLInputElement
-        console.log('ipRef: ', ipRef);
         ipRef?.focus()
         ipRef?.setSelectionRange(value.length, value.length)
       }
@@ -199,7 +196,6 @@ export default defineComponent({
       const { joinSeparator, disabled, needDefault } = props
       // 当输入的是空格时，值赋为空
       let val = parseInt(value + '')
-      // console.log('is Number', (/^[1-9]\d*$/).test(val + ''));
       if (isNaN(val)) {
         if (needDefault) {
           ipListRec.list[index].value = ''
@@ -260,7 +256,6 @@ export default defineComponent({
           item.addEventListener('paste', (event: Event) => {
             const { disabledIndex, parseSeparator, copyDisabled } = props
             const currList = String(valueRef.value || '...')?.split(parseSeparator)
-            // console.log('currList: ', currList);
             event.preventDefault()
             let pasteStr = (event?.clipboardData || window?.clipboardData).getData("text");
             const pasteList = ipv4Region.test(pasteStr.trim()) ? pasteStr.split(parseSeparator) : false

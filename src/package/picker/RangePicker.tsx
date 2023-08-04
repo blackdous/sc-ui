@@ -1095,7 +1095,6 @@ function RangerPicker<DateType>() {
             const rightPanel = renderPanel('right', {
               pickerValue: nextViewDate,
               onPickerValueChange: newViewDate => {
-                console.log('newViewDate: ', newViewDate);
                 setViewDate(
                   getClosingViewDate(newViewDate, picker, generateConfig, -1),
                   mergedActivePickerIndex.value,

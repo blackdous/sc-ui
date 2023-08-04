@@ -263,7 +263,6 @@ export default defineComponent({
     const enUS = ref({})
 
     const { antLocale } = useLocale()
-    console.log('antLocale: ', antLocale);
 
     const uuid = 'sc' + buildUUID()
 
@@ -487,7 +486,6 @@ export default defineComponent({
     };
 
     const multipleChangeHandle = (value: any) => {
-      console.log('value: ', value);
       fetchParams.value = {...unref(fetchParams), multipleValue: value}
       if (isFunction(value.action)) {
         value.action(unref(fetchParams))

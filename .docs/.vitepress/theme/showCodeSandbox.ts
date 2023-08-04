@@ -93,7 +93,6 @@ const initClick = () => {
   const codeDom = document && document.querySelectorAll('.vp-code-light code')
   Array.from(codeDom).map(item => {
     const ClickDom = item.parentNode?.parentNode?.previousSibling?.childNodes[0];
-    // console.log('item: ClickDom', item.innerText);
     if (ClickDom) {
       const sfcTemCode = `
         ${item?.innerText}
@@ -134,12 +133,12 @@ export const initLineCode = () => {
       history.replaceState = _wr('replaceState');
 
       window.addEventListener('replaceState', function(e) {
-        // console.log('replaceState: ', e);
+        // 
         const timer = setTimeout(() => {
           initClick();
           clearTimeout(timer)
         }, 1500)
-        // console.log('THEY DID IT AGAIN! replaceState 111111');
+        // 
       });
       clearTimeout(timer)
     }, 1000)

@@ -59,7 +59,6 @@ export default defineComponent<TimeUnitColumnProps>({
             window?.requestAnimationFrame(() => {
               // console.log(liRefs.value)
               let keyValue = props.value
-              console.log('keyValue: ', keyValue);
               liRefs.value && liRefs.value.forEach((liRef: any) => {
                 const liRefOffsetTop = liRef.offsetTop - 100
                 // console.log('liRefOffsetTop: ', liRefOffsetTop);
@@ -69,15 +68,11 @@ export default defineComponent<TimeUnitColumnProps>({
                 }
               })
               onSelect!(keyValue)
-              // console.log('keyValue: ', keyValue);
               ticking = false
               const li = liRefs.value.get(props.value!);
               if (li && open.value !== false) {
                 scrollTo(ulRef.value!, li.offsetTop - 100, 120);
               }
-              // const timer = setTimeout(() => {
-              //   clearTimeout(timer)
-              // }, 80)
             })
             ticking = true;
           }
