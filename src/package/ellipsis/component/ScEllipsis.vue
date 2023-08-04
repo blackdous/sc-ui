@@ -127,6 +127,7 @@ export default defineComponent({
         isChecked.value = !unref(isChecked)
       }
       const { edit } = props
+      textareaValue.value = edit.text
       if (edit && edit.show) {
         return false
       }

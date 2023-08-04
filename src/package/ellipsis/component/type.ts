@@ -6,8 +6,9 @@ export interface EditType {
   placeholder?: string
   maxLength?: number
   describe?: string
-  confirmLoading?: boolean,
-  align?: string,
+  confirmLoading?: boolean
+  align?: string
+  text?: string
   [key: string]: any
 }
 

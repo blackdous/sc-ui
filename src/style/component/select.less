@@ -425,3 +425,32 @@ div.ant-select-dropdown {
 .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
   padding-right: 6px;
 }
+
+.notAnimationDropdown.ant-select-dropdown {
+  &.slide-up-enter,
+  &.slide-up-appear {
+    animation: none !important;
+  }
+
+  .slide-up-leave {
+    animation: none !important;
+  }
+
+  &.slide-up-enter.slide-up-enter-active&-placement-bottomLeft,
+  &.slide-up-appear.slide-up-appear-active&-placement-bottomLeft {
+    animation: none !important;
+  }
+
+  &.slide-up-leave.slide-up-leave-active&-placement-bottomLeft {
+    animation: none !important;
+  }
+
+  &.slide-up-enter.slide-up-enter-active&-placement-topLeft,
+  &.slide-up-appear.slide-up-appear-active&-placement-topLeft {
+    animation: none !important;
+  }
+
+  &.slide-up-leave.slide-up-leave-active&-placement-topLeft {
+    animation: none !important;
+  }
+}

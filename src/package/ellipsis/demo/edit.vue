@@ -23,7 +23,8 @@ const editProps = reactive({
   placeholder: '请输入内容',
   describe: '长度为8-16个字符，以大小字母或中文开头，可包含数字、下划线(-)和连字。',
   maxLength: 16,
-  confirmLoading: false
+  confirmLoading: false,
+  text: 'Aa123456'
 })
 
 const handleConfirm = (val: string, closeFnc: () => any) => {
