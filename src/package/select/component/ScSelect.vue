@@ -48,7 +48,7 @@
 
 <script lang="ts">
 
-import { computed, defineComponent, unref, onMounted, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, defineComponent, unref, onMounted, onBeforeUnmount, ref, watch, nextTick } from 'vue'
 import { Select, Tooltip, SelectOption } from 'ant-design-vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
 // import cloneDeep from 'lodash/cloneDeep'
@@ -152,18 +152,21 @@ export default defineComponent({
 
     const handleDropdownVisibleChange = (val:boolean) => {
       if (val) {
-        const { tooltip } = props
-        const timer = setTimeout(() => {
-          const doc = document.querySelector(`.${uuid} .rc-virtual-list-scrollbar-show`)
-          if (doc) {
-            const docu = document.querySelector(`.${uuid}.selectDropdown`)
-            docu && (docu.className.includes('isSelectScroll') ? '' : docu.className = docu.className + ' isSelectScroll')
-          }
-          clearTimeout(timer)
-          if (tooltip) {
-            showTooltip()
-          }
-        }, 200)
+        nextTick(() => {
+          const { tooltip } = props
+          const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`) as HTMLElement
+          waitElementReady(dropdownDom, () => {
+            console.log('dropdownDom: ', dropdownDom);
+            const doc = document.querySelector(`.${uuid} .rc-virtual-list-scrollbar-show`)
+            if (doc) {
+              const docu = document.querySelector(`.${uuid}.selectDropdown`)
+              docu && (docu.className.includes('isSelectScroll') ? '' : docu.className = docu.className + ' isSelectScroll')
+            }
+            if (tooltip) {
+              showTooltip()
+            }
+          })
+        })
       }
       emit('dropdownVisibleChange')
     }
@@ -173,10 +176,8 @@ export default defineComponent({
         prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 24) || 0))
     }
 
-    const showTooltip = () => {
-      const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`)
-      dropdownDom?.addEventListener('mouseover', (event: any) => {
-        if (event.target.className.includes('ant-select-item-option')) {
+    const mouseoverEvent = (event:any) => {
+      if (event.target.className.includes('ant-select-item-option')) {
           event.target.title = ''
         }
         if (!event.target.className.includes('ant-select-item-option-content')) {
@@ -210,7 +211,11 @@ export default defineComponent({
         } else {
           divDom.innerHTML = ``
         }
-      })
+    }
+
+    const showTooltip = () => {
+      const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`)
+      dropdownDom?.addEventListener('mouseover', mouseoverEvent)
       dropdownDom?.addEventListener('mouseout', () => {
         divDom.innerHTML = ``
       })
