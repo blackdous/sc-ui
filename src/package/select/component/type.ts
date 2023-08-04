@@ -13,6 +13,12 @@ export const props = () => ({
       return true
     }
   },
+  isAddTooltipScrollHeight: {
+    type: Boolean,
+    default () {
+      return true
+    }
+  },
   widthSize: {
     type: String,
     validator: (v:string) => ['l', 'xs', 'x', 'md', 'xl'].includes(v)

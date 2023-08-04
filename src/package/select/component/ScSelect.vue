@@ -156,15 +156,19 @@ export default defineComponent({
           const { tooltip } = props
           const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`) as HTMLElement
           waitElementReady(dropdownDom, () => {
-            const doc = document.querySelector(`.${uuid} .rc-virtual-list-scrollbar-show`)
-            if (doc) {
-              const docu = document.querySelector(`.${uuid}.selectDropdown`)
-              docu && (docu.className.includes('isSelectScroll') ? '' : docu.className = docu.className + ' isSelectScroll')
-            }
             if (tooltip) {
               showTooltip()
             }
+            nextTick(() => {
+              const doc = document.querySelector(`.${uuid}.scSelectDropdown .rc-virtual-list-scrollbar-show`) as HTMLElement
+              if (doc) {
+                const docu = document.querySelector(`.${uuid}.selectDropdown`)
+                docu && (docu.className.includes('isSelectScroll') ? '' : docu.className = docu.className + ' isSelectScroll')
+
+              }
+            })
           })
+
         })
       } else {
         const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`) as HTMLElement
@@ -186,8 +190,9 @@ export default defineComponent({
           return false
         }
         const rect = event?.target?.getBoundingClientRect()
-        const bodyScrollLeft = document.documentElement.scrollLeft
-        const bodyScrollTop = document.documentElement.scrollTop
+        const { isAddTooltipScrollHeight } = props
+        const bodyScrollLeft = isAddTooltipScrollHeight ? document.documentElement.scrollLeft : 0
+        const bodyScrollTop = isAddTooltipScrollHeight ? document.documentElement.scrollTop : 0
         const scrollWidth = event?.target?.scrollWidth || event?.target?.clientWidth
         const clientWidth = event?.target?.clientWidth
         if (scrollWidth > clientWidth) {
