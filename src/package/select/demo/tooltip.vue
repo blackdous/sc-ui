@@ -57,7 +57,7 @@ const mockFetch = () => {
 
 for (let i = 0;i < 100;  i++) {
   list.value = [...unref(list), {
-    label: i % 2 === 0 ? 'JackJackJackJackJackJackJackJackJackJackJackJackJackJack' + i : 'JackJack' + i,
+    label: i % 2 === 0 ? 'JackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJackJack' + i : 'JackJack' + i,
     value: i,
     key: 'Jack' + i
   }]

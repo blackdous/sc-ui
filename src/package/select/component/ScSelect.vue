@@ -1,43 +1,33 @@
 <template>
-  <div 
-    :class="[ 
-      baseClass, 
-      uuid, 
-      vBind.widthSize ? baseClass + '-' + vBind.widthSize : '', 
-      newProps.disabled ? 'is-disabled' : '',
-      $attrs.class
-    ]"
-    :style="{'--preWidth': prefixWidth || '7px', ...$attrs.style }"
-  >
+  <div :class="[
+    baseClass,
+    uuid,
+    vBind.widthSize ? baseClass + '-' + vBind.widthSize : '',
+    newProps.disabled ? 'is-disabled' : '',
+    $attrs.class
+  ]" :style="{ '--preWidth': prefixWidth || '7px', ...$attrs.style }">
     <div :class="[
       isPrefixIcon ? 'is-prefix' : ''
     ]">
-      <span :class="[baseClass+'-prefix']" v-if="isPrefixIcon">
+      <span :class="[baseClass + '-prefix']" v-if="isPrefixIcon">
         <slot name="prefixIcon"></slot>
       </span>
-      <Select
-        :class="[isPrefixIcon ? 'is-prefix' : '']"
-        v-bind="vBind"
-        v-model:value="initValue"
-        :disabled="newProps.disabled"
-        :dropdownClassName="dropdownClassName"
-        @dropdownVisibleChange="handleDropdownVisibleChange"
-        >
-        <template #[item]="data" v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
+      <Select :class="[isPrefixIcon ? 'is-prefix' : '']" v-bind="vBind" v-model:value="initValue"
+        :disabled="newProps.disabled" :dropdownClassName="dropdownClassName"
+        @dropdownVisibleChange="handleDropdownVisibleChange">
+        <template #[item]="data"
+          v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
           <slot :name="item" v-bind="data || {}"></slot>
-        </template> 
-    
+        </template>
+
         <template #suffixIcon>
-          <i 
-            v-if="!isSuffixIcon"
-            class="sc-ui sc-you" 
-          />
+          <i v-if="!isSuffixIcon" class="sc-ui sc-you" />
           <slot v-else slot="suffixIcon" />
         </template>
         <template #clearIcon>
           <CloseCircleFilled class="clearSelect" v-if="!isClearIcon" />
           <span v-else class="clearSelect">
-            <slot  slot="clearIcon">
+            <slot slot="clearIcon">
             </slot>
           </span>
         </template>
@@ -87,11 +77,11 @@ export default defineComponent({
     tooltipDom.value = divDom
 
     const initValue = computed({
-      get:() => {
+      get: () => {
         return props.optionMode === 'checkbox' ? props.value === undefined ? [] : props.value : props.value
       },
       set: (val) => {
-        emit('update:value',  val)
+        emit('update:value', val)
         emit('change', val)
       }
     })
@@ -116,7 +106,7 @@ export default defineComponent({
         class: undefined,
         style: undefined
       }
-    })    
+    })
     const dropdownClassName = computed(() => {
       const dropdownClass = ['dropdown ' + uuid, 'scSelectDropdown', 'selectDropdown']
       if (attrs.size) {
@@ -150,7 +140,7 @@ export default defineComponent({
       }
     }
 
-    const handleDropdownVisibleChange = (val:boolean) => {
+    const handleDropdownVisibleChange = (val: boolean) => {
       if (val) {
         nextTick(() => {
           const { tooltip } = props
@@ -179,27 +169,38 @@ export default defineComponent({
 
     const computePrefixWidth = () => {
       const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
-        prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 24) || 0))
+      prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 24) || 0))
     }
 
-    const mouseoverEvent = (event:any) => {
+    const mouseoverEvent = (event: any) => {
       if (event.target.className.includes('ant-select-item-option')) {
-          event.target.title = ''
-        }
-        if (!event.target.className.includes('ant-select-item-option-content')) {
-          return false
-        }
-        const rect = event?.target?.getBoundingClientRect()
-        const { isAddTooltipScrollHeight } = props
-        const bodyScrollLeft = isAddTooltipScrollHeight ? document.documentElement.scrollLeft : 0
-        const bodyScrollTop = isAddTooltipScrollHeight ? document.documentElement.scrollTop : 0
-        const scrollWidth = event?.target?.scrollWidth || event?.target?.clientWidth
-        const clientWidth = event?.target?.clientWidth
-        if (scrollWidth > clientWidth) {
-          const posLeft = rect.left + rect.width + bodyScrollLeft + 10
-          const posTop = rect.top + (rect.height / 2) + bodyScrollTop - rect.height
-          const innerText = event?.target.innerText
-          const tooltipHTML = `
+        event.target.title = ''
+      }
+      if (!event.target.className.includes('ant-select-item-option-content')) {
+        return false
+      }
+      const rect = event?.target?.getBoundingClientRect()
+      const { isAddTooltipScrollHeight } = props
+      const bodyScrollLeft = isAddTooltipScrollHeight ? document.documentElement.scrollLeft : 0
+      const bodyScrollTop = isAddTooltipScrollHeight ? document.documentElement.scrollTop : 0
+      const scrollWidth = event?.target?.scrollWidth || event?.target?.clientWidth
+      const clientWidth = event?.target?.clientWidth
+      let tooltipDoc = document.createElement('div')
+      tooltipDoc.style.width = '250px'
+      tooltipDoc.innerHTML = `
+          <div class="ant-tooltip-inner" role="tooltip">
+            ${event?.target.innerText}
+          </div>
+        `
+      document.body.appendChild(tooltipDoc)
+      let contentHeight = 0
+      contentHeight = parseInt(window?.getComputedStyle(tooltipDoc).height || '0')
+      document.body.removeChild(tooltipDoc)
+      if (scrollWidth > clientWidth) {
+        const posLeft = rect.left + rect.width + bodyScrollLeft + 10
+        const posTop = rect.top + bodyScrollTop + (rect.height / 2) - (contentHeight / 2)
+        const innerText = event?.target.innerText
+        const tooltipHTML = `
             <div>
               <!---->
               <div class="ant-tooltip ant-tooltip-placement-right" style="left: ${posLeft}px;top: ${posTop}px; /* display: none; */">
@@ -214,15 +215,11 @@ export default defineComponent({
               </div>
             </div>
           `
-          divDom.innerHTML = tooltipHTML
-        } else {
-          divDom.innerHTML = ``
-        }
+        divDom.innerHTML = tooltipHTML
+      } else {
+        divDom.innerHTML = ``
+      }
     }
-
-    // const mouseoutEvent = (event:any) => {
-
-    // }
 
     const showTooltip = () => {
       const dropdownDom = document.querySelector(`.${uuid}.scSelectDropdown`)
@@ -232,7 +229,7 @@ export default defineComponent({
       })
     }
 
-    watch(() => props.tooltip, (val:boolean) => {
+    watch(() => props.tooltip, (val: boolean) => {
       const isInset = document.body.contains(tooltipDom.value)
       if (val) {
         if (!isInset) {
@@ -255,7 +252,7 @@ export default defineComponent({
         computePrefixWidth()
       })
     })
-    
+
     onBeforeUnmount(() => {
       const dom = document.querySelector(`.${uuid}`) as HTMLElement
       dom && dom.removeEventListener('mousedown', clearCall)
@@ -264,7 +261,7 @@ export default defineComponent({
     expose({
       computePrefixWidth
     })
-    
+
     return {
       uuid,
       baseClass,

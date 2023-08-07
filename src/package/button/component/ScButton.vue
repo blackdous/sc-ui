@@ -41,7 +41,7 @@ export default defineComponent({
   setup (props, { slots }) {
     const attrs = useAttrs({ excludeDefaultKeys: false });
     const getButtonClass = computed(() => {
-      const { status, disabled, type, color } = props;
+      const { status, disabled, type, color, linkHover } = props;
       return [
         basePrefixCls + 'button',
         type || status ? '' : 'is-default', 
@@ -50,6 +50,7 @@ export default defineComponent({
           [`is-disabled`]: disabled,
           [`ant-btn-${type}`]: !!type,
         },
+        linkHover ? 'link-hover' : '',
         color ? 'customColor' : ''
       ];
     });

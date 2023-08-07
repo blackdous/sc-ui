@@ -15,6 +15,9 @@
     <ScButton type="link">
       文字按钮
     </ScButton>
+    <ScButton type="link" linkHover>
+      文字按钮
+    </ScButton>
   </div>
   <div class="mt20">
     <ScButton type="primary" disabled>
@@ -30,6 +33,9 @@
       文字按钮
     </ScButton>
     <ScButton type="link" disabled>
+      文字按钮
+    </ScButton>
+    <ScButton type="link" linkHover disabled>
       文字按钮
     </ScButton>
   </div>

@@ -161,8 +161,17 @@
 .clearAll {
   line-height: 24px;
   font-size: 12px;
+  padding: 0 6px;
+  height: 24px;
+  border-radius: 4px;
   color: @primary-color;
   cursor: pointer;
+  &:hover {
+    background: @select-hover-bg;
+  }
+  &:active{
+    background: @cancel-btn-color;
+  }
 }
 .pdt16 {
   padding-top: 16px;

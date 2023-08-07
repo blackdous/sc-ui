@@ -6,6 +6,22 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.155](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.154...0.0.155) (2023-08-04)
+
+### Bug Fixes
+
+* 多选 placeHolder 问题修复 ([1971cdb](http://gitlab.voneyun.com/frontend/sc-ui/commit/1971cdb46a569a77b4b1e151e374df9ad25df542))
+* 去除 ScSelect 延迟操作 ([0b38ab7](http://gitlab.voneyun.com/frontend/sc-ui/commit/0b38ab7c57f56ea8f348978e199191e95bf9158b))
+* 修复 ScCascaderNew 传入默认值时;点击clear 按钮 报错问题修复 ([7bca742](http://gitlab.voneyun.com/frontend/sc-ui/commit/7bca742116f9a77708ccb480b3834bfcbaa68989))
+
+### Features
+
+* 去除 无用代码 ([e60568c](http://gitlab.voneyun.com/frontend/sc-ui/commit/e60568cb802e548b250b5c2ec6710a52b249390a))
+* 完善 ScEllipsis 功能 ([040608e](http://gitlab.voneyun.com/frontend/sc-ui/commit/040608e8b0527a279f57aa0931708d02183dbb47))
+* 完善 ScEllipsis 组件功能 文档 ([b74225f](http://gitlab.voneyun.com/frontend/sc-ui/commit/b74225fac1e5cb364d8707870691dc4f773f46c0))
+* scEllipsis 组件 edit功能 交互调整 ([fde38da](http://gitlab.voneyun.com/frontend/sc-ui/commit/fde38daba6391cd63a4ca5cab4f630d29e75fb85))
+* scSelect 新增 isAddTooltipScrollHeight 参数,用于控制tooltip 出现的位置 ([88eeaca](http://gitlab.voneyun.com/frontend/sc-ui/commit/88eeacaa86dcf088c3b4042db292060a26fc14d3))
+
 ## [0.0.154](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.153...0.0.154) (2023-08-02)
 
 ### Bug Fixes

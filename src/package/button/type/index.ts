@@ -6,6 +6,7 @@ export const buttonProps = {
   loading: { type: Boolean },
   disabled: { type: Boolean },
   onClick: { type: Function as PropType<(...args: any) => any>, default: null },
-  color: { type: String }
+  color: { type: String },
+  linkHover: { type: Boolean }
 };
 
