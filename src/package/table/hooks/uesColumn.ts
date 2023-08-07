@@ -123,7 +123,7 @@ export function useColumn (
     return filter
   })
 
-  function setColumnRef (columns: Column[]) {
+  function setColumns (columns: Column[]) {
     columnsRef.value = columns
   }
 
@@ -336,7 +336,7 @@ export function useColumn (
     setFilterDropdownRef,
     clearFilterDropdownRef,
     clearFilterAllDropdownRef,
-    setColumnRef,
+    setColumns,
     setFilterColumnRef,
     setFilterColumnChecked,
     setFilterColumnDisabled

@@ -373,6 +373,7 @@ export default defineComponent({
       getFetchFilter,
       thColumn,
       showSortTitle,
+      setColumns,
       getRowClassName,
       getColumns,
       getTypeComponent,
@@ -656,6 +657,7 @@ export default defineComponent({
       getPaginationRef: getPagination,
       // @ts-ignore
       getColumns,
+      setColumns,
       emit,
       updateTableData,
       setShowPagination,

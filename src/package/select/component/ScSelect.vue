@@ -185,25 +185,15 @@ export default defineComponent({
       const bodyScrollTop = isAddTooltipScrollHeight ? document.documentElement.scrollTop : 0
       const scrollWidth = event?.target?.scrollWidth || event?.target?.clientWidth
       const clientWidth = event?.target?.clientWidth
-      let tooltipDoc = document.createElement('div')
-      tooltipDoc.style.width = '250px'
-      tooltipDoc.innerHTML = `
-          <div class="ant-tooltip-inner" role="tooltip">
-            ${event?.target.innerText}
-          </div>
-        `
-      document.body.appendChild(tooltipDoc)
-      let contentHeight = 0
-      contentHeight = parseInt(window?.getComputedStyle(tooltipDoc).height || '0')
-      document.body.removeChild(tooltipDoc)
       if (scrollWidth > clientWidth) {
         const posLeft = rect.left + rect.width + bodyScrollLeft + 10
-        const posTop = rect.top + bodyScrollTop + (rect.height / 2) - (contentHeight / 2)
+        const posTop = rect.top + bodyScrollTop
+        // const posTop = rect.top + bodyScrollTop + (rect.height / 2) - (contentHeight / 2)
         const innerText = event?.target.innerText
         const tooltipHTML = `
             <div>
               <!---->
-              <div class="ant-tooltip ant-tooltip-placement-right" style="left: ${posLeft}px;top: ${posTop}px; /* display: none; */">
+              <div class="ant-tooltip ant-tooltip-placement-right scSelect-tooltip" style="left: ${posLeft}px;top: ${posTop}px; /* display: none; */">
                 <div class="ant-tooltip-content">
                   <div class="ant-tooltip-arrow">
                     <span class="ant-tooltip-arrow-content"></span>
