@@ -108,7 +108,7 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { ScDescription, ScLink, ScTag } from 'sc-ui'
+import { ScDescription, ScLink, ScTag, ScEllipsis } from 'sc-ui'
 import { DescriptionsItem } from 'ant-design-vue';
 
 const mockData: Recordable = {
@@ -133,7 +133,7 @@ const mockData: Recordable = {
       field: 'nickName',
       label: '昵称',
       render: (curVal, data) => {
-        return h('span', { class: '' }, [curVal + '--' + data.username, h('i', { class: 'sc-ui sc-file-copy copy' })])
+        return h(ScEllipsis, { hoverSuffix: true, copyTxt: '复制内容', tooltip: false }, curVal + '--' + data.username)
       },
     },
     {

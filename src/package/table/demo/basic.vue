@@ -126,7 +126,7 @@ const onSearch = (val:any) => {
 
 const list = ref([
   {
-    label: '创建快照',
+    label: '创建快照创建快照创建快照创建快照创建快照创建快照创建快照创建快照创建快照',
     isShow: true,
     loading: ({tableRef, selectedRowKeysRef, record}) => {
       console.log('record: ', record);

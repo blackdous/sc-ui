@@ -299,12 +299,12 @@ div.ant-cascader-menu {
   .scCascader-menu:first-child {
     .ant-checkbox-wrapper {
       display: none;
+      & + .scCascader-node-label {
+        padding-left: 0;
+      }
     }
     .scCascader-node-label {
       padding-left: 0;
     }
-  }
-  .scCascader-panel .scCascader-node .ant-checkbox-wrapper + .scCascader-node-label{
-    padding-left: 0;
   }
 }
