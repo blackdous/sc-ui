@@ -46,5 +46,8 @@ export const ellipsisProps = () => ({
   },
   copyTxt: {
     type: String
+  },
+  hrefLink: {
+    type: Boolean
   }
 })

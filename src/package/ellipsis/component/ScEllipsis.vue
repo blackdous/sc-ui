@@ -87,7 +87,8 @@ export default defineComponent({
         uuid,
         baseClass,
         props.lineClamp ? baseClass + '-lineClamp' : '',
-        props.hoverSuffix || popoverVisible.value ? baseClass + '-hoverSuffix' : ''
+        props.hoverSuffix || popoverVisible.value ? baseClass + '-hoverSuffix' : '',
+        props.hrefLink ?  baseClass + '-href--link' : ''
       ]
     })
 

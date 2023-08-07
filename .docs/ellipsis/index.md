@@ -62,6 +62,14 @@ realPath: src/package/ellipsis/index.zh-CN.md
   >
 </demo>
 
+## hrefLink参数
+
+<demo src="./demo/href.vue"
+  language="vue"
+  title="hrefLink参数"
+  >
+</demo>
+
 ## Props
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
