@@ -80,6 +80,7 @@ map:
 | isCollapse | 是否可以展开/隐藏 | boolean |  -  |  |
 | copyTxt | copy 内容; 默认在文本最后补充icon| string |  -  |  |
 | edit | 启用edit模式，使用popConfirm弹出修改内容和事件 | EditType |  -  |  |
+| hrefLink | 启用hrefLink 样式 | false |  -  |  |
 
 ## EditType
 

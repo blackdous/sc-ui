@@ -1,5 +1,16 @@
 <template>
   <div class="mt-20">
+    <p>去除第一行checkbox</p>
+    <ScCascaderNew 
+      v-model="value4" 
+      allowClear
+      :props="props"
+      :options="options" 
+      popupClassName="notFirstColumnCheckbox"
+      @change="handleChange" 
+    />
+  </div>
+  <div class="mt-20">
     <p>普通多选</p>
     <ScCascaderNew 
       v-model="value" 
@@ -59,6 +70,7 @@ const value = ref([["component","data","table"],["component","data","tag"],["res
 const value1 = ref([])
 const value2 = ref([])
 const value3 = ref([])
+const value4 = ref([])
 
 const props = {
   multiple: true

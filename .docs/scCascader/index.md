@@ -8,6 +8,10 @@ realPath: src/package/scCascader/index.zh-CN.md
 
 ## 组件类型
 
+**特殊class**
+
+- 去除第一行checkbox复选框`.notFirstColumnCheckbox`
+
 ## 基础组件
 
 <demo src="./demo/basic.vue"

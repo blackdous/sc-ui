@@ -188,7 +188,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw, inject } from 'vue'
+import { computed, ref, defineComponent, unref, onMounted, nextTick, toRaw, watch } from 'vue'
 import { Table, Tooltip, Button, Spin, ConfigProvider } from 'ant-design-vue'
 import { FilterFilled } from '@ant-design/icons-vue'
 
@@ -261,6 +261,8 @@ export default defineComponent({
 
     const zhCN = ref({})
     const enUS = ref({})
+    
+    const tableScrollHeaderClass = ref()
 
     const { antLocale } = useLocale()
 
@@ -345,7 +347,7 @@ export default defineComponent({
         getPaginationInfo,
         setLoading,
         setPagination,
-        clearSelectedRowKeys,
+        clearSelectedRowKeys
       },
       emit,
       fetchParams
@@ -408,7 +410,9 @@ export default defineComponent({
       // console.log('scroll: ', scroll, scroll.y);
       const classNames = [
         tablePrefixCls,
+        uuid,
         scroll?.y ? 'not-table-scroll-empty' : '',
+        tableScrollHeaderClass.value,
         (antLocale || {}).locale === 'zh-cn' ? `${tablePrefixCls}-zh`: ''
       ];
       return classNames;
@@ -608,11 +612,23 @@ export default defineComponent({
       }
     }
 
-
     onMounted(() => {
       nextTick(() => {
         fetchParams.value.tableRef = tableRef
       })
+    })
+
+    watch([() => props.scroll.y, () => props.dataSource], () => {
+      nextTick(() => {
+        const domTableBody = document.querySelector(`.${uuid}.not-table-scroll-empty .ant-table-fixed .ant-table-tbody`)
+        // console.log('domTableBody: ', domTableBody, domTableBody?.scrollHeight, domTableBody?.clientHeight);
+        const tableBodyScroll = domTableBody?.scrollHeight || domTableBody?.clientHeight || 0
+        if (tableBodyScroll > props.scroll.y) {
+          tableScrollHeaderClass.value = 'headerScroll'
+        }
+      })
+    }, {
+      immediate: true
     })
 
     // const aa = [{ "width":60,"dataIndex":"age","key":"age","slots":{"customRender":"status1","title":"thDescribe"},"titleType":{"componentName":"thDescribe","props":{"text":"Column 2","describe":"提示内容"}},"value":"age","disabled":false,"checked":true,"default":true},{"dataIndex":"address","key":"1","width":160,"type":{"componentName":"tdEllipsis","props":{"lineheigth":2}},"titleType":{"componentName":"thDescribe","props":{"text":"Column 1","describe":"提示内容"}},"slots":{"customRender":"tdEllipsis","title":"thDescribe"},"value":"address","disabled":false,"checked":true,"default":true},{"dataIndex":"age","key":"2","width":160,"titleType":{"componentName":"thUnit","props":{"text":"Column 2","unit":"(元)"}},"slots":{"customRender":"copy1","title":"thUnit"},"value":"age","disabled":false,"checked":true,"default":true}]

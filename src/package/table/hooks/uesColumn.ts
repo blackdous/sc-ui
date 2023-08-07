@@ -229,7 +229,7 @@ export function useColumn (
     const columns = cloneDeep(unref(filterColumn))?.map((item: Column) => {
       if (!item.default) {
         // @ts-ignore
-        item.label = item.title
+        item.label = item.title || item.label
         if (item.titleType) {
           item.label = item.titleType.props.text
           // @ts-ignore
