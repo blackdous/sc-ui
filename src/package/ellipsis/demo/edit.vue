@@ -22,8 +22,11 @@ const editProps = reactive({
   show: true,
   placeholder: '请输入内容',
   describe: '长度为8-16个字符，以大小字母或中文开头，可包含数字、下划线(-)和连字。',
-  maxLength: 16,
+  maxLength: 160,
   confirmLoading: false,
+  showMaxLength: true,
+  disabled: true,
+  confirmDisabled: true,
   text: 'Aa123456'
 })
 

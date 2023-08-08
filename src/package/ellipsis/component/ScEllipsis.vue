@@ -2,34 +2,43 @@
   <Tooltip v-bind="tooltipProps">
     <template #title v-if="isTooltip && !tooltipProps.title">
       <slot v-if="$slots.tooltip" name="tooltip"></slot>
-      <slot v-else name="default"></slot>
+      <slot v-if="!$slots.tooltip && !isDefaultTooltip" name="default"></slot>
     </template>
     <Popover v-model:visible="popoverVisible" :title="null" trigger="click" overlayClassName="scEllipsis-popover"
       placement="bottomLeft">
       <template #content>
-        <Textarea v-model:value="textareaValue" v-bind="newProps.edit"></Textarea>
-        <p :class="[baseClass + '-edit--describe']">
-          {{ newProps?.edit?.describe }}
-        </p>
+        <ScInput 
+          v-model:value="textareaValue" 
+          v-bind="newProps.edit"
+        >
+          <template #suffix v-if="newProps.edit.showMaxLength">
+            {{ (textareaValue + '').length }}/{{ newProps.edit.maxLength }}
+          </template>
+        </ScInput>
         <div :class="[baseClass + '-actives']" :style="{
           textAlign: newProps?.edit?.align || 'right'
         }">
           <ScButton status="info" size="small" @click="handleClose">
             取消
           </ScButton>
-          <ScButton type="primary" size="small" @click="handleEntry" :loading="newProps?.edit?.confirmLoading">
+          <ScButton
+            type="primary"
+            size="small"
+            :loading="newProps?.edit?.confirmLoading"
+            :disabled="newProps?.edit?.confirmDisabled"
+            @click="handleEntry"
+          >
             确定
           </ScButton>
         </div>
       </template>
-      <div
-        :class="className" 
-        :style="styleProps" 
-        @click="handleClick"
-      >
+      <div :class="className" :style="styleProps" @click="handleClick">
         <!-- @click="handleClick" -->
         <input id="exp1" :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
-        <div :class="[baseClass + '-text']" :style="lineClampStyle">
+        <div
+          :class="[baseClass + '-text']" 
+          :style="lineClampStyle"
+        >
           <label v-if="isCollapse && !$slots.suffix" :class="[baseClass + '-btn']" for="exp1"
             @click="() => { isChecked = !isChecked }"></label>
           <span :class="[baseClass + '-suffix']" v-if="$slots.suffix || newProps?.copyTxt || newProps?.edit?.show"
@@ -46,12 +55,13 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, ref, unref } from 'vue'
-import { Tooltip, message, Popover, Textarea } from 'ant-design-vue'
+import { defineComponent, computed, ref, unref, nextTick, onMounted } from 'vue'
+import { Tooltip, message, Popover, Popconfirm } from 'ant-design-vue'
 import { useClipboard } from '@vueuse/core'
 
 import { basePrefixCls } from '../../../constant'
 import { ScButton } from '../../button'
+import { ScInput } from '../../input'
 //@ts-ignore
 import { ellipsisProps } from './type'
 import { isBoolean, isObject, buildUUID } from '../../../utils'
@@ -62,18 +72,21 @@ export default defineComponent({
   components: {
     Tooltip,
     Popover,
-    Textarea,
-    ScButton
+    ScInput,
+    ScButton,
+    Popconfirm
   },
   props: ellipsisProps(),
   emits: ['editConfirm'],
-  setup(props, { attrs, emit }) {
+  setup(props, { attrs, emit, expose }) {
     const baseClass = basePrefixCls + 'Ellipsis'
     const isCollapse = ref(props.isCollapse)
     const isChecked = ref(false)
     const popoverVisible = ref(false)
     const textareaValue = ref()
     const uuid = basePrefixCls + buildUUID()
+
+    const isDefaultTooltip = ref(true)
 
     const styleProps = computed(() => {
       return {
@@ -88,7 +101,7 @@ export default defineComponent({
         baseClass,
         props.lineClamp ? baseClass + '-lineClamp' : '',
         props.hoverSuffix || popoverVisible.value ? baseClass + '-hoverSuffix' : '',
-        props.hrefLink ?  baseClass + '-href--link' : ''
+        props.hrefLink ? baseClass + '-href--link' : ''
       ]
     })
 
@@ -127,11 +140,12 @@ export default defineComponent({
       if (props.expandTrigger === 'click') {
         isChecked.value = !unref(isChecked)
       }
-      const { edit } = props
-      textareaValue.value = edit.text
-      if (edit && edit.show) {
-        return false
-      }
+      // const { edit } = props
+      // console.log('edit: ', edit);
+      // textareaValue.value = edit.text
+      // if (edit && edit.show) {
+      // return false
+      // }
       window?.requestAnimationFrame(() => {
         popoverVisible.value = false
       })
@@ -153,8 +167,39 @@ export default defineComponent({
 
     const handleEdit = (event: Event) => {
       event.stopPropagation()
-      popoverVisible.value = !popoverVisible.value
+      const { edit } = props
+      textareaValue.value = edit.text
+      if (edit && edit.show) {
+        popoverVisible.value = !popoverVisible.value
+        return false
+      }
     }
+
+    const computedWidth = () => {
+      const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement
+      const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
+      const contentDom = document.createElement('p')
+      contentDom.style.display = 'inline-block'
+      const maxWidth = containerDom.style.maxWidth || window.getComputedStyle(textDom).width
+      contentDom.innerText = textDom?.innerText || ''
+      document.body.append(contentDom)
+      const contentWidth = window.getComputedStyle(contentDom).width
+      // console.log('contentWidht: ', contentWidth);
+      document.body.removeChild(contentDom)
+      isDefaultTooltip.value = parseInt(maxWidth) > parseInt(contentWidth)
+    }
+
+
+    onMounted(() => {
+      nextTick(() => {
+        computedWidth()
+      })
+    })
+
+
+    expose({
+      computedWidth
+    })
 
     return {
       className,
@@ -168,6 +213,7 @@ export default defineComponent({
       newProps,
       popoverVisible,
       textareaValue,
+      isDefaultTooltip,
 
       handleEntry,
       handleClose,

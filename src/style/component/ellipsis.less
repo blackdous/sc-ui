@@ -41,9 +41,18 @@
     line-height: 22px;
     height: 22px;
     border-radius: 4px;
-    color:  @primary-color;
+    // color:  @primary-color;
+    color: @text-color;
     cursor: pointer;
     /* margin-top: -30px; */
+  }
+  &-btn {
+    color: @primary-color;
+  }
+  &-suffix{
+    &:hover {
+      color: @primary-color;
+    }
   }
   &-btn::before{
     content:'展开'

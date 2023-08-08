@@ -9,6 +9,7 @@ export interface EditType {
   confirmLoading?: boolean
   align?: string
   text?: string
+  showMaxLength?: boolean
   [key: string]: any
 }
 
