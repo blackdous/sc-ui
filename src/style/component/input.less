@@ -92,15 +92,21 @@
   }
 }
 .ant-input-textarea-show-count {
-  // position: relative;
+  position: relative;
   &::after {
-    // position: absolute;
-    // right: 10px;
-    // bottom: 2px;
+    position: absolute;
+    right: 8px;
+    bottom: 1px;
     font-size: 12px;
     font-weight: 400;
     line-height: 22px;
     color: @text-color-secondary;
+    width: calc(100% - 16px);
+    background: @white-color;
+  }
+  .ant-input {
+    padding-bottom: 24px;
+    min-height: 46px;
   }
 }
 .ant-input-group-addon {

@@ -13,7 +13,7 @@
       showCount
       placeholder="请输入内容(0~50字符)"
       v-model:value="inputValueLengthRef"
-      :maxlength="50"
+      :maxlength="500"
     >
     </Textarea>
   </div>

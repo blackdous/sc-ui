@@ -4,12 +4,20 @@
       <slot v-if="$slots.tooltip" name="tooltip"></slot>
       <slot v-if="!$slots.tooltip && !isDefaultTooltip" name="default"></slot>
     </template>
-    <Popover v-model:visible="popoverVisible" :title="null" trigger="click" overlayClassName="scEllipsis-popover"
-      placement="bottomLeft">
+    <Popover 
+      v-model:visible="popoverVisible" 
+      :title="null" 
+      trigger="click" 
+      :overlayClassName="`scEllipsis-popover ${uuid}`"
+      placement="bottomLeft"
+      destroyTooltipOnHide
+    >
       <template #content>
         <ScInput 
+          ref="scInputRef"
           v-model:value="textareaValue" 
           v-bind="newProps.edit"
+          @change="handleEditChange"
         >
           <template #suffix v-if="newProps.edit.showMaxLength">
             {{ (textareaValue + '').length }}/{{ newProps.edit.maxLength }}
@@ -77,7 +85,7 @@ export default defineComponent({
     Popconfirm
   },
   props: ellipsisProps(),
-  emits: ['editConfirm'],
+  emits: ['editConfirm', 'editInputChange'],
   setup(props, { attrs, emit, expose }) {
     const baseClass = basePrefixCls + 'Ellipsis'
     const isCollapse = ref(props.isCollapse)
@@ -85,6 +93,7 @@ export default defineComponent({
     const popoverVisible = ref(false)
     const textareaValue = ref()
     const uuid = basePrefixCls + buildUUID()
+    const scInputRef = ref()
 
     const isDefaultTooltip = ref(true)
 
@@ -100,7 +109,7 @@ export default defineComponent({
         uuid,
         baseClass,
         props.lineClamp ? baseClass + '-lineClamp' : '',
-        props.hoverSuffix || popoverVisible.value ? baseClass + '-hoverSuffix' : '',
+        props.hoverSuffix ? baseClass + '-hoverSuffix' : '',
         props.hrefLink ? baseClass + '-href--link' : ''
       ]
     })
@@ -171,6 +180,11 @@ export default defineComponent({
       textareaValue.value = edit.text
       if (edit && edit.show) {
         popoverVisible.value = !popoverVisible.value
+        nextTick(() => {
+          const editInputDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper input`) as HTMLInputElement
+          editInputDom?.focus()
+
+        })
         return false
       }
     }
@@ -187,6 +201,10 @@ export default defineComponent({
       // console.log('contentWidht: ', contentWidth);
       document.body.removeChild(contentDom)
       isDefaultTooltip.value = parseInt(maxWidth) > parseInt(contentWidth)
+    }
+
+    const handleEditChange = (val:string) => {
+      emit('editInputChange', val)
     }
 
 
@@ -214,12 +232,15 @@ export default defineComponent({
       popoverVisible,
       textareaValue,
       isDefaultTooltip,
+      scInputRef,
+      uuid,
 
       handleEntry,
       handleClose,
       handleCopy,
       handleEdit,
-      handleClick
+      handleClick,
+      handleEditChange
     }
   }
 })

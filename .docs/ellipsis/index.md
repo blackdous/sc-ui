@@ -103,6 +103,7 @@ interface EditType {
 | 事件           | 回调参数                  | 说明               |
 | -------------- | ------------------------- | ------------------ |
 | editConfirm          | `(inputValue: string, close: function)`               | 输入内容、关闭方法 |
+| editInputChange          | `(value: string)`               | input框输入内容 |
 
 ## slots
 

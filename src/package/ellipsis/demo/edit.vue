@@ -6,6 +6,7 @@
     line-clamp="3"
     :edit="editProps"
     @edit-confirm="handleConfirm"
+    @edit-input-change="handleInputChange"
   >
     正如我们前面提到的那样，
     当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。
@@ -25,8 +26,8 @@ const editProps = reactive({
   maxLength: 160,
   confirmLoading: false,
   showMaxLength: true,
-  disabled: true,
-  confirmDisabled: true,
+  disabled: false,
+  confirmDisabled: false,
   text: 'Aa123456'
 })
 
@@ -44,7 +45,9 @@ const handleConfirm = (val: string, closeFnc: () => any) => {
     editProps.confirmLoading = true
     setTimeout(() => {
       editProps.confirmLoading = false
-      closeFnc()
+      setTimeout(() => {
+        closeFnc()
+      }, 1000)
       message.success({
         content: '修改成功',
         duration: 1.5
@@ -56,5 +59,12 @@ const handleConfirm = (val: string, closeFnc: () => any) => {
       duration: 1.5
     })
   }
+}
+
+const handleInputChange = () => {
+  editProps.confirmDisabled = true
+  setTimeout(() => {
+    editProps.confirmDisabled = false
+  }, 1500)
 }
 </script>
