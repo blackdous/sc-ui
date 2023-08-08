@@ -5,6 +5,28 @@ map:
 
 # 变更记录
 
+## [0.0.157](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.156...0.0.157) (2023-08-08)
+
+### Bug Fixes
+
+* 调整ScTable setColumns 方法名字 ([4b84f1f](http://gitlab.voneyun.com/frontend/sc-ui/commit/4b84f1f8fa48ebb2b0f7e8b8d6a398ca9a6e9765))
+
+### Features
+
+* 更新 ScEllipsis 组件 edit 功能 ([18011f1](http://gitlab.voneyun.com/frontend/sc-ui/commit/18011f1c9679907b2c6a76a1e195afe22d8a35bd))
+
+## [0.0.156](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.155...0.0.156) (2023-08-07)
+
+### Bug Fixes
+
+* 修复 ScSelect 组件 tooltip 显示不准问题 ([aeba501](http://gitlab.voneyun.com/frontend/sc-ui/commit/aeba50189b49ee79711107808a4c6248e8e06ede))
+
+### Features
+
+* 1. 修改ScTable fixed + scroll.y 冲突问题 2. 调整 cascader 样式问题 ([82a91fd](http://gitlab.voneyun.com/frontend/sc-ui/commit/82a91fdee9e1d48a784ca61c08fa3d4d32d6b513))
+* 更新 ScDescription ScCascader 组件样式 ([87c0af8](http://gitlab.voneyun.com/frontend/sc-ui/commit/87c0af870399ead02c2297237b310682925ea693))
+* scEllipsis 组件 新增 hrefLink 属性 ([0c1f820](http://gitlab.voneyun.com/frontend/sc-ui/commit/0c1f820e984e0493f82efb120f10bd08bb6a8c80))
+
 ## [0.0.155](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.154...0.0.155) (2023-08-04)
 
 ### Bug Fixes

@@ -11,6 +11,11 @@
       浮动元素是如何定位的
     </ScEllipsis>
   </div>
+  <div class="mt20">
+    <ScEllipsis style="width: 240px">
+      浮动元素是如何定位的
+    </ScEllipsis>
+  </div>
 </template>
 
 <script lang='ts' setup>

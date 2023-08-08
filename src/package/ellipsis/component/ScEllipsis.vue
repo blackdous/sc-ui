@@ -180,7 +180,7 @@ export default defineComponent({
       const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
       const contentDom = document.createElement('p')
       contentDom.style.display = 'inline-block'
-      const maxWidth = containerDom.style.maxWidth || window.getComputedStyle(textDom).width
+      const maxWidth = containerDom.style.maxWidth || containerDom.style.width || window.getComputedStyle(textDom).width
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
       const contentWidth = window.getComputedStyle(contentDom).width
