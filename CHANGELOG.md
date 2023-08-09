@@ -1,4 +1,22 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.157...0.0.2) (2023-08-08)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.159...0.0.2) (2023-08-09)
+
+
+
+## [0.0.159](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.158...0.0.159) (2023-08-09)
+
+
+### Features
+
+* 调整 ScEllipsis 组件,嵌套 Form表单 ([16a1dd0](http://gitlab.voneyun.com/frontend/sc-ui/commit/16a1dd06635e29c72fd5b207d4bf2431eb9190ec))
+
+
+
+## [0.0.158](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.157...0.0.158) (2023-08-08)
+
+
+### Features
+
+* 更新 ScEllipsis 组件 抛出 input 输入事件 ([7126799](http://gitlab.voneyun.com/frontend/sc-ui/commit/7126799d586882d89d068b89554be7c203d5f979))
 
 
 
