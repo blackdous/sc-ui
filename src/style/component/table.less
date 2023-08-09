@@ -55,6 +55,12 @@
   .ant-table-thead > tr > th {
     white-space: nowrap;
   }
+  .ant-table-thead>tr:first-child>th:first-child,
+  .ant-table-thead>tr:first-child>th:last-child
+  {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
   .ant-table.ant-table-middle > .ant-table-content > .ant-table-scroll > .ant-table-body > table > .ant-table-tbody > tr > td,
   .ant-table.ant-table-middle > .ant-table-content > .ant-table-body > table > .ant-table-tbody > tr > td
   {
@@ -506,7 +512,7 @@
     line-height: 22px;
     text-align: center;
     color: fade(@color-000, 40);
-    padding-top: 16px;
+    margin-top: -8px;
   }
 }
 

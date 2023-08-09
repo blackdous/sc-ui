@@ -82,7 +82,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, ref, unref, nextTick, onMounted, reactive } from 'vue'
+import { defineComponent, computed, ref, unref, nextTick, onMounted, reactive, watch } from 'vue'
 import { Tooltip, message, Popover, Popconfirm, Form, FormItem } from 'ant-design-vue'
 import { useClipboard } from '@vueuse/core'
 
@@ -92,6 +92,7 @@ import { ScInput } from '../../input'
 //@ts-ignore
 import { ellipsisProps } from './type'
 import { isBoolean, isObject, buildUUID } from '../../../utils'
+// import { waitElementReady } from '../../../utils/dom/waitElementReady'
 import useLocale from '../../../hooks/useLocale'
 
 export default defineComponent({
@@ -160,6 +161,12 @@ export default defineComponent({
       return props
     })
 
+    watch(() => popoverVisible.value, (val) => {
+      if (!val) {
+        editFormRef?.value?.resetFields()
+      }
+    })
+
     const handleClose = () => {
       formState.name = ''
       popoverVisible.value = false
@@ -206,11 +213,18 @@ export default defineComponent({
       if (edit && edit.show) {
         popoverVisible.value = !popoverVisible.value
         if (popoverVisible.value) {
+          // const popoverDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper > .ant-input`) as HTMLElement
+          // waitElementReady(popoverDom, (val) => {
+          //   console.log('val: ', val);
+            
+          //   // console.log('editFormRef.value: ', editFormRef.value);
+          //   // editFormRef?.value?.resetFields()
+          // })
           const timer = setTimeout(() => {
             const editInputDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper > .ant-input`) as HTMLInputElement
             editInputDom?.focus()
             clearTimeout(timer)
-          }, 200)
+          }, 150)
         }
         return false
       }
@@ -222,25 +236,15 @@ export default defineComponent({
       const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
       // eslint-disable-next-line no-unsafe-optional-chaining
       const { width, paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = window?.getComputedStyle(containerDom?.parentNode as HTMLElement)
-      // console.log('borderLeftWidth: ', borderLeftWidth);
-      // console.log('borderRightWidth: ', borderRightWidth);
-      // console.log('paddingRight: ', paddingRight);
-      // console.log('paddingLeft: ', paddingLeft);
-      // console.log('width: ', width);
       const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
-      // console.log('isInheritParentWidth: ', isInheritParentWidth);
-      // console.log('parentDomWidth: ', parentDomWidth);
       const contentDom = document.createElement('p')
       const suffixDom =  document.querySelector(`.${uuid} .scEllipsis-suffix`) as HTMLElement
-      // console.log('suffixDom: ', suffixDom);
       contentDom.style.display = 'inline-block'
       const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
-      // console.log('maxWidth: ', maxWidth);
 
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
       const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + (suffixDom ? parseInt(window?.getComputedStyle(suffixDom)?.width || '0') : 0)
-      // console.log('contentWidth: ', contentWidth);
       document.body.removeChild(contentDom)
       isDefaultTooltip.value = parseInt(maxWidth) > contentWidth
     }
