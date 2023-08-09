@@ -78,6 +78,7 @@ map:
 | tooltip | 是否显示tooltip；tooltip配置属性 | [boolean , TooltipProps] |  false  |  |
 | hoverSuffix | 是否hover状态显示；suffix 模块 | boolean |  false  |  |
 | isCollapse | 是否可以展开/隐藏 | boolean |  -  |  |
+| isInheritParentWidth | 是否继承父级元素宽度(只外层一级元素) | boolean | true |  |
 | copyTxt | copy 内容; 默认在文本最后补充icon| string |  -  |  |
 | edit | 启用edit模式，使用popConfirm弹出修改内容和事件 | EditType |  -  |  |
 | hrefLink | 启用hrefLink 样式 | false |  -  |  |
@@ -90,9 +91,13 @@ interface EditType {
   placeholder?: string
   maxLength?: number
   describe?: string
+  info?: string,
   confirmLoading?: boolean
   align?: string
   text?: string
+  showMaxLength?: boolean
+  getPopupContainer?: HTMLElement
+  rules?: FormRules
   [key: string]: any
 }
 ```
@@ -101,8 +106,16 @@ interface EditType {
 
 | 事件           | 回调参数                  | 说明               |
 | -------------- | ------------------------- | ------------------ |
-| editConfirm          | `(inputValue: string, close: function)`               | 输入内容、关闭方法 |
+| editConfirm          | `(inputValue: string, close: function, editFormRef)`               | 输入内容、关闭方法、form表单实例 |
 | editInputChange          | `(value: string)`               | input框输入内容 |
+
+## expose
+
+| 名字 | 说明 | 参数 | 版本 |
+| --- | --- | --- | --- |
+| computedWidth | 触发当前宽度计算；是否默认显示tooltip |  -  | |
+| editForm | 自定义tooltip 显示内容 |  -  | |
+| suffix | 后准显示内容 |  -  | |
 
 ## slots
 

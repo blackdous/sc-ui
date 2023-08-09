@@ -2,8 +2,8 @@
   <ScEllipsis 
     style="max-width: 240px" 
     hoverSuffix
-    :tooltip="false"
     line-clamp="3"
+    :tooltip="false"
     :edit="editProps"
     @edit-confirm="handleConfirm"
     @edit-input-change="handleInputChange"
@@ -19,24 +19,28 @@ import { reactive } from 'vue'
 import { ScEllipsis } from 'sc-ui'
 import { message } from 'ant-design-vue'
 
+const rules = {
+  name: [
+    { required: true, message: 'Please input Activity name', trigger: 'change' },
+    { min: 8, max: 16, message: 'Length should be 3 to 5', trigger: 'change' },
+  ]
+}
+
 const editProps = reactive({
   show: true,
   placeholder: '请输入内容',
-  describe: '长度为8-16个字符，以大小字母或中文开头，可包含数字、下划线(-)和连字。',
+  describe: '长度为1-128个字符，以大小字母或中文开头，可包含数字、下划线(-)和连字。',
   maxLength: 160,
   confirmLoading: false,
-  showMaxLength: true,
   disabled: false,
   confirmDisabled: false,
-  text: 'Aa123456'
+  text: '',
+  rules
 })
 
-const handleConfirm = (val: string, closeFnc: () => any) => {
+const handleConfirm = (val: string, closeFnc: () => any, editFormRef: object) => {
+  console.log('editFormRef: ', editFormRef);
   if (!val) {
-    message.warning({
-      content: '请输入内容',
-      duration: 1.5
-    })
     return false
   }
 
@@ -54,10 +58,10 @@ const handleConfirm = (val: string, closeFnc: () => any) => {
       })
     }, 1500)
   } else {
-    message.warning({
-      content: '输入的内容不符合规则',
-      duration: 1.5
-    })
+    // message.warning({
+    //   content: '输入的内容不符合规则',
+    //   duration: 1.5
+    // })
   }
 }
 

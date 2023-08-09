@@ -1,11 +1,11 @@
 import { PropType } from "vue"
 // import { TooltipProps } from "ant-design-vue"
-
 export interface EditType {
   show?: boolean
   placeholder?: string
   maxLength?: number
   describe?: string
+  info?: string,
   confirmLoading?: boolean
   align?: string
   text?: string
@@ -32,10 +32,16 @@ export const ellipsisProps = () => ({
       return false
     }
   },
-  hoverSuffix: {
+  isInheritParentWidth: {
     type: Boolean,
     default () {
       return false
+    }
+  },
+  hoverSuffix: {
+    type: Boolean,
+    default () {
+      return true
     }
   },
   edit: {

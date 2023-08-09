@@ -10,22 +10,39 @@
       trigger="click" 
       :overlayClassName="`scEllipsis-popover ${uuid}`"
       placement="bottomLeft"
-      destroyTooltipOnHide
+      :getPopupContainer="newProps.edit.getPopupContainer"
     >
       <template #content>
-        <ScInput 
-          ref="scInputRef"
-          v-model:value="textareaValue" 
-          v-bind="newProps.edit"
-          @change="handleEditChange"
+        <Form
+          ref="editFormRef"
+          :model="formState"
+          :rules="newProps.edit.rules"
         >
-          <template #suffix v-if="newProps.edit.showMaxLength">
-            {{ (textareaValue + '').length }}/{{ newProps.edit.maxLength }}
-          </template>
-        </ScInput>
-        <div :class="[baseClass + '-actives']" :style="{
-          textAlign: newProps?.edit?.align || 'right'
-        }">
+          <FormItem
+            label=""
+            name="name"
+          >
+            <ScInput 
+              v-model:value="formState.name" 
+              v-bind="newProps.edit"
+              :describe="''"
+              @change="handleEditChange"
+            >
+              <template #suffix v-if="newProps.edit.showMaxLength">
+                {{ (formState.name + '').length }}/{{ newProps.edit.maxLength }}
+              </template>
+            </ScInput>
+          </FormItem>
+          <p class="input-describe">
+            {{ newProps.edit.describe }}
+          </p>
+        </Form>
+        <div 
+          :class="[baseClass + '-actives']" 
+          :style="{
+            textAlign: newProps?.edit?.align || 'right'
+          }"
+        >
           <ScButton status="info" size="small" @click="handleClose">
             取消
           </ScButton>
@@ -49,8 +66,10 @@
         >
           <label v-if="isCollapse && !$slots.suffix" :class="[baseClass + '-btn']" for="exp1"
             @click="() => { isChecked = !isChecked }"></label>
-          <span :class="[baseClass + '-suffix']" v-if="$slots.suffix || newProps?.copyTxt || newProps?.edit?.show"
-            :style="{ visibility: popoverVisible ? 'visible' : '' }">
+          <span 
+            v-if="$slots.suffix || newProps?.copyTxt || newProps?.edit?.show"
+            :class="[baseClass + '-suffix']" 
+          >
             <slot name="suffix"></slot>
             <i v-if="newProps?.copyTxt" class="sc-ui sc-file-copy" @click="handleCopy"></i>
             <i v-if="newProps?.edit?.show" class="sc-ui sc-Frame2" @click="handleEdit"></i>
@@ -63,8 +82,8 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, ref, unref, nextTick, onMounted } from 'vue'
-import { Tooltip, message, Popover, Popconfirm } from 'ant-design-vue'
+import { defineComponent, computed, ref, unref, nextTick, onMounted, reactive } from 'vue'
+import { Tooltip, message, Popover, Popconfirm, Form, FormItem } from 'ant-design-vue'
 import { useClipboard } from '@vueuse/core'
 
 import { basePrefixCls } from '../../../constant'
@@ -82,7 +101,9 @@ export default defineComponent({
     Popover,
     ScInput,
     ScButton,
-    Popconfirm
+    Popconfirm,
+    Form,
+    FormItem
   },
   props: ellipsisProps(),
   emits: ['editConfirm', 'editInputChange'],
@@ -91,9 +112,12 @@ export default defineComponent({
     const isCollapse = ref(props.isCollapse)
     const isChecked = ref(false)
     const popoverVisible = ref(false)
-    const textareaValue = ref()
     const uuid = basePrefixCls + buildUUID()
-    const scInputRef = ref()
+    const editFormRef = ref()
+
+    const formState = reactive({
+      name: ''
+    })
 
     const isDefaultTooltip = ref(true)
 
@@ -137,12 +161,13 @@ export default defineComponent({
     })
 
     const handleClose = () => {
-      textareaValue.value = ''
+      formState.name = ''
       popoverVisible.value = false
     }
 
     const handleEntry = () => {
-      emit('editConfirm', textareaValue.value, handleClose)
+      // editFromRef?.value?.validateFields()
+      emit('editConfirm', formState.name, handleClose, editFormRef.value)
     }
 
     const handleClick = () => {
@@ -177,30 +202,47 @@ export default defineComponent({
     const handleEdit = (event: Event) => {
       event.stopPropagation()
       const { edit } = props
-      textareaValue.value = edit.text
+      formState.name = edit.text || ''
       if (edit && edit.show) {
         popoverVisible.value = !popoverVisible.value
-        nextTick(() => {
-          const editInputDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper input`) as HTMLInputElement
-          editInputDom?.focus()
-
-        })
+        if (popoverVisible.value) {
+          const timer = setTimeout(() => {
+            const editInputDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper > .ant-input`) as HTMLInputElement
+            editInputDom?.focus()
+            clearTimeout(timer)
+          }, 200)
+        }
         return false
       }
     }
 
     const computedWidth = () => {
+      const { isInheritParentWidth } = props
       const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement
       const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
+      // eslint-disable-next-line no-unsafe-optional-chaining
+      const { width, paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = window?.getComputedStyle(containerDom?.parentNode as HTMLElement)
+      // console.log('borderLeftWidth: ', borderLeftWidth);
+      // console.log('borderRightWidth: ', borderRightWidth);
+      // console.log('paddingRight: ', paddingRight);
+      // console.log('paddingLeft: ', paddingLeft);
+      // console.log('width: ', width);
+      const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
+      // console.log('isInheritParentWidth: ', isInheritParentWidth);
+      // console.log('parentDomWidth: ', parentDomWidth);
       const contentDom = document.createElement('p')
+      const suffixDom =  document.querySelector(`.${uuid} .scEllipsis-suffix`) as HTMLElement
+      // console.log('suffixDom: ', suffixDom);
       contentDom.style.display = 'inline-block'
-      const maxWidth = containerDom.style.maxWidth || containerDom.style.width || window.getComputedStyle(textDom).width
+      const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
+      // console.log('maxWidth: ', maxWidth);
+
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
-      const contentWidth = window.getComputedStyle(contentDom).width
-      // console.log('contentWidht: ', contentWidth);
+      const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + (suffixDom ? parseInt(window?.getComputedStyle(suffixDom)?.width || '0') : 0)
+      // console.log('contentWidth: ', contentWidth);
       document.body.removeChild(contentDom)
-      isDefaultTooltip.value = parseInt(maxWidth) > parseInt(contentWidth)
+      isDefaultTooltip.value = parseInt(maxWidth) > contentWidth
     }
 
     const handleEditChange = (val:string) => {
@@ -216,7 +258,8 @@ export default defineComponent({
 
 
     expose({
-      computedWidth
+      computedWidth,
+      editFormRef
     })
 
     return {
@@ -230,10 +273,10 @@ export default defineComponent({
       isChecked,
       newProps,
       popoverVisible,
-      textareaValue,
       isDefaultTooltip,
-      scInputRef,
       uuid,
+      formState,
+      editFormRef,
 
       handleEntry,
       handleClose,
