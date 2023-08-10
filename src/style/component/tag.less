@@ -2,7 +2,7 @@
 .tag-filter {
   background: #ECF2FE;
   border: none;
-  border-radius: 20px;
+  border-radius: 3px;
   padding: 2px 8px;
   margin-bottom: 8px;
   color: @primary-color;
@@ -14,6 +14,7 @@
     color: @primary-color;
     font-size: 12px;
     &::after {
+      font-size: 14px;
       color: @primary-color;
     }
   }
@@ -273,5 +274,10 @@
     height: 24px;
     line-height: 24px;
     overflow: hidden;
+  }
+  .anticon-close {
+    &::after {
+      font-size: 14px;
+    }
   }
 }

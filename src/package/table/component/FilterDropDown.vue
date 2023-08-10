@@ -31,7 +31,13 @@
                     :aria-label="subItem.label"
                     :key="subItem.key"
                   >
-                    {{ subItem.label }}
+                    <ScEllipsis
+                      is-inherit-parent-width
+                      style="max-width: 182px;"
+                    >
+                      {{ subItem.label }}
+                    </ScEllipsis>
+                    <!-- {{ subItem.label }} -->
                   </MenuItem>
                 </SubMenu>
               </template>
@@ -51,7 +57,12 @@
                   </Tooltip>
                 </template>
                 <template v-else>
-                  {{ item.label }}
+                  <ScEllipsis
+                    is-inherit-parent-width
+                    style="max-width: 182px;"
+                  >
+                    {{ item.label }}
+                  </ScEllipsis>
                 </template>
               </MenuItem>
             </template>
@@ -70,6 +81,7 @@ import { ScLoading } from '../../loading'
 import { scFilterProps, FilterItem } from '../types/column'
 import { basePrefixCls } from '../../../constant'
 import { findNode } from '../../../utils/treeHelper'
+import { ScEllipsis } from '../../ellipsis'
 
 // export interface 
 const { cloneDeep } = lodash
@@ -77,7 +89,16 @@ const { cloneDeep } = lodash
 export default defineComponent({
   name: 'ScTableFilterDropDown',
   inheritAttrs: false,
-  components: { Dropdown, Menu, MenuItem, SubMenu, Tooltip, ScLoading, Spin },
+  components: {
+    Dropdown,
+    Menu,
+    MenuItem,
+    SubMenu,
+    Tooltip,
+    ScLoading,
+    Spin,
+    ScEllipsis
+  },
   props: scFilterProps(),
   setup (props, { emit }) {
     const visible = ref<boolean>(true)
@@ -89,6 +110,7 @@ export default defineComponent({
     const overlayClassName = computed(() => {
       return props.overlayClassName
     })
+
 
     const filterList = computed(() => {
       return props.filterList?.map((item: FilterItem) => {
@@ -142,6 +164,7 @@ export default defineComponent({
       menuKeys,
       filterLoading,
       indicator,
+
       handle,
       handleDeselect
     }

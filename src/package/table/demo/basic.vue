@@ -179,7 +179,7 @@ const list = ref([
     tooltipDes: '一级选项111111111',
     children: [
       {
-        label: '二级选项',
+        label: '二级选项二级选项二级选项二级选项二级选项',
         isShow: true,
         isDisabled: false,
         loading: true,
