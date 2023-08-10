@@ -1,4 +1,20 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.159...0.0.2) (2023-08-09)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.160...0.0.2) (2023-08-10)
+
+
+
+## [0.0.160](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.159...0.0.160) (2023-08-10)
+
+
+### Bug Fixes
+
+* 调整ScTable FilterDropdown 二级目录超出出现tooltip ([b9b5537](http://gitlab.voneyun.com/frontend/sc-ui/commit/b9b5537b16a89162a7a25ff2e289797e26530869))
+* 修复 ScSelect 滚动条间距样式问题 ([57a4eb9](http://gitlab.voneyun.com/frontend/sc-ui/commit/57a4eb9d8cfb55d355d23bdac51f611d0656129a))
+
+
+### Features
+
+* 调整ScTable FilterDropdown 文本超出隐藏 ([a335387](http://gitlab.voneyun.com/frontend/sc-ui/commit/a3353870e28c3ddf6520d863d5d619d6f9756936))
+* scEllipsis 组件 完善 default solt 更新 监听触发 重新计算 是否默认显示tooltip ([63cdfba](http://gitlab.voneyun.com/frontend/sc-ui/commit/63cdfbac46869cb924c4fe34cbbad4096833a7b1))
 
 
 
