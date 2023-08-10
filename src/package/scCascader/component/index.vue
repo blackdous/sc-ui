@@ -34,7 +34,6 @@
           nsCascader + '-' + realSize,
           isDisabled ? 'isDisabled' : '',
           // nsCascader.is('disabled', isDisabled),
-          $attrs.class,
           multiple ? 'isMultiple' : ''
         ]"
         :style="$attrs.style"

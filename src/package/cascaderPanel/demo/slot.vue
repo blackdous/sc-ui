@@ -7,8 +7,10 @@
       @expandChange="handleExpandChange"
     >
       <template #default="{ node, data }">
-        <span>{{ data.label }}</span>
-        <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+        <div class="test-div">
+          <span class="test-name">{{ data.label }}</span>
+          <span class="test-other" v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+        </div>
       </template>
     </ScCascaderPanel>
   </div>
@@ -28,46 +30,8 @@ const handleExpandChange = (val:any) => {
 const options = [
   {
     value: 'guide',
-    label: 'Guide',
-    children: [
-      {
-        value: 'disciplines',
-        label: 'Disciplines',
-        children: [
-          {
-            value: 'consistency',
-            label: 'Consistency',
-            disabled: true
-          },
-          {
-            value: 'feedback',
-            label: 'Feedback',
-          },
-          {
-            value: 'efficiency',
-            label: 'Efficiency',
-          },
-          {
-            value: 'controllability',
-            label: 'Controllability',
-          },
-        ],
-      },
-      {
-        value: 'navigation',
-        label: 'Navigation',
-        children: [
-          {
-            value: 'side nav',
-            label: 'Side Navigation',
-          },
-          {
-            value: 'top nav',
-            label: 'Top Navigation',
-          },
-        ],
-      },
-    ],
+    label: 'Guide'
+    
   },
   {
     value: 'component',
@@ -304,5 +268,10 @@ const options = [
 <style scoped>
 .mt20 {
   margin-top: 20px;
+}
+.test-div {
+  /* text-align: justify; */
+  display: flex;
+  justify-content: space-between;
 }
 </style>

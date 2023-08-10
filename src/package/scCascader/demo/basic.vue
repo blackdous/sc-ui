@@ -1,7 +1,14 @@
 <template>
   <div class="mt-20">
     <p>展开子节点click(默认)</p>
-    <ScCascaderNew v-model="value" :options="options" @change="handleChange" popupClassName="bbbb" popperClass="aaaa" />
+    <ScCascaderNew 
+      v-model="value" 
+      :options="options" 
+      @change="handleChange" 
+      popupClassName="bbbb"
+      popperClass="aaaa" 
+      class="testClass"
+    />
   </div>
   <div class="mt-20">
     <p>展开子节点hover</p>
@@ -306,4 +313,11 @@ const options = [
 .mt-20 {
   margin-top: 20px;
 }
+.testClass {
+  color: rgb(0, 0, 0, 0.9);
+}
+</style>
+
+<style>
+
 </style>

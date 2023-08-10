@@ -33,7 +33,7 @@
               </template>
             </ScInput>
           </FormItem>
-          <p class="input-describe">
+          <p v-if="newProps.edit.describe" class="input-describe">
             {{ newProps.edit.describe }}
           </p>
         </Form>
@@ -82,7 +82,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, computed, ref, unref, nextTick, onMounted, reactive, watch } from 'vue'
+import { defineComponent, computed, ref, unref, nextTick, onMounted, reactive, watch, onUnmounted } from 'vue'
 import { Tooltip, message, Popover, Popconfirm, Form, FormItem } from 'ant-design-vue'
 import { useClipboard } from '@vueuse/core'
 
@@ -115,6 +115,7 @@ export default defineComponent({
     const popoverVisible = ref(false)
     const uuid = basePrefixCls + buildUUID()
     const editFormRef = ref()
+    const animationId = ref()
 
     const formState = reactive({
       name: ''
@@ -161,6 +162,38 @@ export default defineComponent({
       return props
     })
 
+    /**
+     * 1. 计算传入元素宽度
+     * 2. 对比父级或者当前元素最大宽度
+     * 3. 是否自动出现tooltip
+     */
+    const computedWidth = () => {
+      const { isInheritParentWidth, lineClamp } = props
+      const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement
+      const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
+      // eslint-disable-next-line no-unsafe-optional-chaining
+      const { width, paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = window?.getComputedStyle(containerDom?.parentNode as HTMLElement)
+      const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
+      const contentDom = document.createElement('p')
+      const suffixDom =  document.querySelector(`.${uuid} .scEllipsis-suffix`) as HTMLElement
+      contentDom.style.display = 'inline-block'
+      const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
+
+      contentDom.innerText = textDom?.innerText || ''
+      document.body.append(contentDom)
+      const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + (suffixDom ? parseInt(window?.getComputedStyle(suffixDom)?.width || '0') : 0)
+      // const contentHeight = parseInt(window.getComputedStyle(contentDom).height || '0')
+      // console.log('contentHeight: ', contentHeight);
+      // contentHeight
+      document.body.removeChild(contentDom)
+      isDefaultTooltip.value = (parseInt(maxWidth) * parseInt((lineClamp || '') + '' || '1')) > contentWidth
+    }
+
+    const observer1 = new MutationObserver(() => {
+      computedWidth()
+    })
+
+
     watch(() => popoverVisible.value, (val) => {
       if (!val) {
         editFormRef?.value?.resetFields()
@@ -177,19 +210,16 @@ export default defineComponent({
       emit('editConfirm', formState.name, handleClose, editFormRef.value)
     }
 
+    const closePopover = () => {
+      popoverVisible.value = false
+    }
+
     const handleClick = () => {
       if (props.expandTrigger === 'click') {
         isChecked.value = !unref(isChecked)
       }
-      // const { edit } = props
-      // console.log('edit: ', edit);
-      // textareaValue.value = edit.text
-      // if (edit && edit.show) {
-      // return false
-      // }
-      window?.requestAnimationFrame(() => {
-        popoverVisible.value = false
-      })
+      window?.cancelAnimationFrame(animationId.value)
+      animationId.value = window?.requestAnimationFrame(closePopover)
     }
     const { copy, copied } = useClipboard({
       legacy: true
@@ -213,12 +243,8 @@ export default defineComponent({
       if (edit && edit.show) {
         popoverVisible.value = !popoverVisible.value
         if (popoverVisible.value) {
-          // const popoverDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper > .ant-input`) as HTMLElement
           // waitElementReady(popoverDom, (val) => {
           //   console.log('val: ', val);
-            
-          //   // console.log('editFormRef.value: ', editFormRef.value);
-          //   // editFormRef?.value?.resetFields()
           // })
           const timer = setTimeout(() => {
             const editInputDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper > .ant-input`) as HTMLInputElement
@@ -230,25 +256,6 @@ export default defineComponent({
       }
     }
 
-    const computedWidth = () => {
-      const { isInheritParentWidth } = props
-      const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement
-      const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
-      // eslint-disable-next-line no-unsafe-optional-chaining
-      const { width, paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = window?.getComputedStyle(containerDom?.parentNode as HTMLElement)
-      const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
-      const contentDom = document.createElement('p')
-      const suffixDom =  document.querySelector(`.${uuid} .scEllipsis-suffix`) as HTMLElement
-      contentDom.style.display = 'inline-block'
-      const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
-
-      contentDom.innerText = textDom?.innerText || ''
-      document.body.append(contentDom)
-      const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + (suffixDom ? parseInt(window?.getComputedStyle(suffixDom)?.width || '0') : 0)
-      document.body.removeChild(contentDom)
-      isDefaultTooltip.value = parseInt(maxWidth) > contentWidth
-    }
-
     const handleEditChange = (val:string) => {
       emit('editInputChange', val)
     }
@@ -257,7 +264,14 @@ export default defineComponent({
     onMounted(() => {
       nextTick(() => {
         computedWidth()
+        const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
+        observer1.observe(containerDom, { attributes: true, childList: true, characterData: true, subtree: true })
       })
+    })
+
+    onUnmounted(() => {
+      observer1.disconnect()
+      window?.cancelAnimationFrame(animationId.value)
     })
 
 
