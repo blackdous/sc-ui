@@ -12,8 +12,12 @@
       <span :class="[baseClass + '-prefix']" v-if="isPrefixIcon">
         <slot name="prefixIcon"></slot>
       </span>
-      <Select :class="[isPrefixIcon ? 'is-prefix' : '']" v-bind="vBind" v-model:value="initValue"
-        :disabled="newProps.disabled" :dropdownClassName="dropdownClassName"
+      <Select 
+        v-model:value="initValue"
+        v-bind="vBind" 
+        :class="[isPrefixIcon ? 'is-prefix' : '']" 
+        :disabled="newProps.disabled" 
+        :dropdownClassName="dropdownClassName"
         @dropdownVisibleChange="handleDropdownVisibleChange">
         <template #[item]="data"
           v-for="item in Object.keys($slots).filter(item => !['clearIcon', 'suffixIcon'].includes(item))" :key="item">
@@ -149,14 +153,6 @@ export default defineComponent({
             if (tooltip) {
               showTooltip()
             }
-            nextTick(() => {
-              const doc = document.querySelector(`.${uuid}.scSelectDropdown .rc-virtual-list-scrollbar-show`) as HTMLElement
-              if (doc) {
-                const docu = document.querySelector(`.${uuid}.selectDropdown`)
-                docu && (docu.className.includes('isSelectScroll') ? '' : docu.className = docu.className + ' isSelectScroll')
-
-              }
-            })
           })
 
         })
