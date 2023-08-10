@@ -21,10 +21,17 @@
             >
               <template v-if="item?.children && item?.children?.length">
                 <SubMenu 
-                  :title="item.label"
                   :disabled="!!item.isDisabled"
                   popupClassName="filterDropdown-subMenu"
                 >
+                  <template #title>
+                    <ScEllipsis
+                      is-inherit-parent-width
+                      style="max-width: 162px;"
+                    >
+                      {{ item.label }}
+                    </ScEllipsis>
+                  </template>
                   <MenuItem
                     v-for="(subItem) in item.children"
                     :disabled="!!subItem.isDisabled"
