@@ -211,6 +211,17 @@
     background: @cancel-btn-color;
   }
 }
+.ant-btn-link.underlineLink-hover {
+  &:hover {
+    color: @primary-color;
+  }
+  & > span {
+    &:hover,&:active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+}
 
 .ant-btn-shadow {
   position: relative;

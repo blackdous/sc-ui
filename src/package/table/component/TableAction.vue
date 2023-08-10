@@ -15,6 +15,7 @@
         </template>
         <Button 
           type="link"
+          class="underlineLink-hover"
           :disabled="!!item.isDisabled"
           :loading="!!(!item.isDisabled && item.loading)"
           @click="handle(item)"
@@ -25,6 +26,7 @@
       <Button 
         v-else
         type="link"
+        class="underlineLink-hover"
         :disabled="!!item.isDisabled"
         :loading="!!(!item.isDisabled && item.loading)"
         @click="handle(item)"
