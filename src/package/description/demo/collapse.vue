@@ -37,7 +37,8 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { ScDescription, ScTag } from 'sc-ui'
+import { ScDescription, ScEllipsis } from 'sc-ui'
+import { Tooltip } from 'ant-design-vue'
 
 const mockData: Recordable = {
     username: 'test',
@@ -52,16 +53,19 @@ const mockData: Recordable = {
     tag: 'orange',
   };
   const renderTitle = h('span', { class: '' }, [h('span', { innerHTML: '使用h函数' }), h('i', { class: 'sc-ui sc-question-circle' })])
+  const renderInnerTitle = h('span',['用户名', h(Tooltip, {
+    title: () => 'tooltip'
+  }, [ h('i', { class: 'sc-ui sc-question-circle' })])] )
   const schema: DescItem[] = [
     {
       field: 'username',
-      label: h(ScTag, { border: false, type: 'outline', tooltipDes: '提示内容' }, ['用户名']),
+      label: renderInnerTitle
     },
     {
       field: 'nickName',
       label: '昵称',
       render: (curVal, data) => {
-        return h('span', { class: '' }, [curVal + '--' + data.username, h('i', { class: 'sc-ui sc-file-copy copy' })])
+        return h(ScEllipsis, { hoverSuffix: true, copyTxt: '复制内容', tooltip: false }, curVal + '--' + data.username)
       },
     },
     {

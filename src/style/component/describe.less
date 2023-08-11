@@ -34,8 +34,11 @@
     line-height: 24px;
     color: @heading-color;
     .sc-question-circle {
-      color: @primary-color;
+      color: @text-color;
       cursor: pointer;
+      &:hover {
+        color: @primary-color;
+      }
     }
     &__text {
       padding-right: 4px;
@@ -116,12 +119,14 @@
     i.sc-ui, i.iconfont, .anticon {
       cursor: pointer;
       margin-left: 4px;
-      color: @primary-color;
+      color: @text-color;
       &:hover {
-        color: @link-color1;
+        // color: @link-color1;
+        color: @primary-color;
       }
       &:active {
-        color: @link-color;
+        color: @primary-color;
+        // color: @link-color;
       }
     }
     i.sc-ui, i.iconfont {
