@@ -2,82 +2,68 @@
   <Tooltip v-bind="tooltipProps">
     <template #title v-if="isTooltip && !tooltipProps.title">
       <slot v-if="$slots.tooltip" name="tooltip"></slot>
-      <slot v-if="!$slots.tooltip && !isDefaultTooltip" name="default"></slot>
+      <slot v-if="!$slots.tooltip && (!isDefaultTooltip || isHeightOver)" name="default"></slot>
     </template>
-    <Popover 
-      v-model:visible="popoverVisible" 
-      :title="null" 
-      trigger="click" 
-      :overlayClassName="`scEllipsis-popover ${uuid}`"
-      placement="bottomLeft"
-      :getPopupContainer="newProps.edit.getPopupContainer"
-    >
-      <template #content>
-        <Form
-          ref="editFormRef"
-          :model="formState"
-          :rules="newProps.edit.rules"
+
+    <div :class="className" :style="styleProps" @click="handleClick">
+      <!-- @click="handleClick" -->
+      <input id="exp1" :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
+      <div :class="[baseClass + '-text', isChecked ? 'isCheck' : '']" :style="lineClampStyle">
+        <span
+          :class="[baseClass + '-suffix-container', !isDefaultTooltip || isHeightOver ? isChecked ? '' : 'showEllipsisTxt' : '']"
         >
-          <FormItem
-            label=""
-            name="name"
+          <label
+            v-if="isCollapse && !$slots.suffix" 
+            :class="[baseClass + '-btn']" 
+            for="exp1"
+            @click="() => { isChecked = !isChecked }"
           >
-            <ScInput 
-              v-model:value="formState.name" 
-              v-bind="newProps.edit"
-              :describe="''"
-              @change="handleEditChange"
-            >
-              <template #suffix v-if="newProps.edit.showMaxLength">
-                {{ (formState.name + '').length }}/{{ newProps.edit.maxLength }}
-              </template>
-            </ScInput>
-          </FormItem>
-          <p v-if="newProps.edit.describe" class="input-describe">
-            {{ newProps.edit.describe }}
-          </p>
-        </Form>
-        <div 
-          :class="[baseClass + '-actives']" 
-          :style="{
-            textAlign: newProps?.edit?.align || 'right'
-          }"
-        >
-          <ScButton status="info" size="small" @click="handleClose">
-            取消
-          </ScButton>
-          <ScButton
-            type="primary"
-            size="small"
-            :loading="newProps?.edit?.confirmLoading"
-            :disabled="newProps?.edit?.confirmDisabled"
-            @click="handleEntry"
-          >
-            确定
-          </ScButton>
-        </div>
-      </template>
-      <div :class="className" :style="styleProps" @click="handleClick">
-        <!-- @click="handleClick" -->
-        <input id="exp1" :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
-        <div
-          :class="[baseClass + '-text']" 
-          :style="lineClampStyle"
-        >
-          <label v-if="isCollapse && !$slots.suffix" :class="[baseClass + '-btn']" for="exp1"
-            @click="() => { isChecked = !isChecked }"></label>
-          <span 
-            v-if="$slots.suffix || newProps?.copyTxt || newProps?.edit?.show"
-            :class="[baseClass + '-suffix']" 
+          </label>
+          <span
+            v-if="$slots.suffix || newProps?.copyTxt || newProps?.edit?.show" 
+            :class="[baseClass + '-suffix']"
           >
             <slot name="suffix"></slot>
             <i v-if="newProps?.copyTxt" class="sc-ui sc-file-copy" @click="handleCopy"></i>
-            <i v-if="newProps?.edit?.show" class="sc-ui sc-Frame2" @click="handleEdit"></i>
+            <Popover
+              v-model:visible="popoverVisible" 
+              :title="null" trigger="click"
+              :overlayClassName="`scEllipsis-popover ${uuid}`" 
+              placement="bottomRight"
+              :getPopupContainer="newProps.edit.getPopupContainer">
+              <template #content>
+                <Form ref="editFormRef" :model="formState" :rules="newProps.edit.rules">
+                  <FormItem label="" name="name">
+                    <ScInput v-model:value="formState.name" v-bind="newProps.edit" :describe="''"
+                      @change="handleEditChange">
+                      <template #suffix v-if="newProps.edit.showMaxLength">
+                        {{ (formState.name + '').length }}/{{ newProps.edit.maxLength }}
+                      </template>
+                    </ScInput>
+                  </FormItem>
+                  <p v-if="newProps.edit.describe" class="input-describe">
+                    {{ newProps.edit.describe }}
+                  </p>
+                </Form>
+                <div :class="[baseClass + '-actives']" :style="{
+                  textAlign: newProps?.edit?.align || 'right'
+                }">
+                  <ScButton status="info" size="small" @click="handleClose">
+                    取消
+                  </ScButton>
+                  <ScButton type="primary" size="small" :loading="newProps?.edit?.confirmLoading"
+                    :disabled="newProps?.edit?.confirmDisabled" @click="handleEntry">
+                    确定
+                  </ScButton>
+                </div>
+              </template>
+              <i v-if="newProps?.edit?.show" class="sc-ui sc-Frame2" @click="handleEdit"></i>
+            </Popover>
           </span>
-          <slot name="default"></slot>
-        </div>
+        </span>
+        <slot name="default"></slot>
       </div>
-    </Popover>
+    </div>
   </Tooltip>
 </template>
 
@@ -115,7 +101,8 @@ export default defineComponent({
     const popoverVisible = ref(false)
     const uuid = basePrefixCls + buildUUID()
     const editFormRef = ref()
-    const animationId = ref()
+    const isHeightOver = ref(false)
+    // const animationId = ref()
 
     const formState = reactive({
       name: ''
@@ -144,6 +131,7 @@ export default defineComponent({
       const cssOss = Object.create({})
       if (props.lineClamp) {
         cssOss["-webkit-line-clamp"] = isChecked.value ? '999' : props.lineClamp
+        cssOss["max-height"] = isChecked.value ? '999px' : parseInt(props.lineClamp + '') * 22 + 'px'
       }
       return {
         ...cssOss
@@ -175,15 +163,20 @@ export default defineComponent({
       const { width, paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = window?.getComputedStyle(containerDom?.parentNode as HTMLElement)
       const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
       const contentDom = document.createElement('p')
-      const suffixDom =  document.querySelector(`.${uuid} .scEllipsis-suffix`) as HTMLElement
+      const suffixDom = document.querySelector(`.${uuid} .scEllipsis-suffix-container`) as HTMLElement
       contentDom.style.display = 'inline-block'
+      contentDom.style.whiteSpace = 'nowrap'
       const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
 
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
       const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + (suffixDom ? parseInt(window?.getComputedStyle(suffixDom)?.width || '0') : 0)
-      // const contentHeight = parseInt(window.getComputedStyle(contentDom).height || '0')
+      const contentHeight = parseInt(window.getComputedStyle(contentDom).height || '0')
+      const maxHeight = parseInt((lineClamp || '') + '' || '1') * 22
+      isHeightOver.value = contentHeight > maxHeight
+      // console.log('contentHeight: ', contentHeight > maxHeight);
       // console.log('contentHeight: ', contentHeight);
+      // console.log('maxHeight: ', maxHeight);
       // contentHeight
       document.body.removeChild(contentDom)
       isDefaultTooltip.value = (parseInt(maxWidth) * parseInt((lineClamp || '') + '' || '1')) > contentWidth
@@ -210,16 +203,19 @@ export default defineComponent({
       emit('editConfirm', formState.name, handleClose, editFormRef.value)
     }
 
-    const closePopover = () => {
-      popoverVisible.value = false
-    }
+    // const closePopover = () => {
+    //   popoverVisible.value = false
+    // }
 
-    const handleClick = () => {
+    const handleClick = (event: Event) => {
       if (props.expandTrigger === 'click') {
         isChecked.value = !unref(isChecked)
       }
-      window?.cancelAnimationFrame(animationId.value)
-      animationId.value = window?.requestAnimationFrame(closePopover)
+      event.stopPropagation()
+      event.preventDefault()
+      // window?.cancelAnimationFrame(animationId.value)
+      // animationId.value = window?.requestAnimationFrame(closePopover)
+      
     }
     const { copy, copied } = useClipboard({
       legacy: true
@@ -256,7 +252,7 @@ export default defineComponent({
       }
     }
 
-    const handleEditChange = (val:string) => {
+    const handleEditChange = (val: string) => {
       emit('editInputChange', val)
     }
 
@@ -271,7 +267,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       observer1.disconnect()
-      window?.cancelAnimationFrame(animationId.value)
+      // window?.cancelAnimationFrame(animationId.value)
     })
 
 
@@ -295,6 +291,7 @@ export default defineComponent({
       uuid,
       formState,
       editFormRef,
+      isHeightOver,
 
       handleEntry,
       handleClose,

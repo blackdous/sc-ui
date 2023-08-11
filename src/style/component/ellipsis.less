@@ -11,16 +11,22 @@
     text-align: justify;
     word-break: break-all;
     overflow-wrap: break-word;
-    /* display: flex; */
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+    // display: -webkit-box;
+    // -webkit-line-clamp: 1;
+    // -webkit-box-orient: vertical;
+    // position: relative;
     position: relative;
+    line-height: 1.5;
+    max-height: 22px;
+    // max-height: 4.5em;
   }
   &-text::before {
     content: '';
     height: calc(100% - 22px);
     float: right;
+  }
+  &-text.isCheck::before {
+    height: calc(100% - 21px);
   }
   &-text::after {
     content: '';
@@ -31,7 +37,8 @@
     margin-left: -100px;
     pointer-events: none;
   }
-  &-btn, &-suffix{
+  &-suffix-container{
+    position: relative;
     float: right;
     clear: both;
     // margin-left: 10px;
@@ -46,6 +53,7 @@
     cursor: pointer;
     /* margin-top: -30px; */
   }
+  
   &-btn {
     color: @primary-color;
   }
@@ -54,7 +62,7 @@
       color: @primary-color;
     }
   }
-  &-btn::before{
+  &-btn::after{
     content:'展开'
   }
   &-exp{
@@ -63,8 +71,20 @@
   &-exp:checked + &-text::after{
     visibility: hidden;
   }
-  &-exp:checked + &-text &-btn::before{
+  &-exp:checked + &-text &-btn::after{
     content:'收起'
+  }
+  .showEllipsisTxt{
+    margin-left: 12px;
+    &::before{
+      content: '...';
+      position: absolute;
+      left: 0;
+      color: inherit;
+      transform: translateX(-100%);
+      
+      // background: #fff;
+    }
   }
   &-hoverSuffix {
     .@{ellipsisScope}-suffix {
@@ -122,6 +142,11 @@
       // right: 0;
       text-decoration: underline;
       text-underline-offset: 4px;
+    }
+    .showEllipsisTxt {
+      &::before {
+        color: @primary-color;
+      }
     }
   }
 }
