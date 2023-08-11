@@ -10,7 +10,7 @@
       <input id="exp1" :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
       <div :class="[baseClass + '-text', isChecked ? 'isCheck' : '']" :style="lineClampStyle">
         <span
-          :class="[baseClass + '-suffix-container', !isDefaultTooltip || isHeightOver ? isChecked ? '' : 'showEllipsisTxt' : '']"
+          :class="[baseClass + '-suffix-container', (!isDefaultTooltip || isHeightOver) ? isChecked ? '' : 'showEllipsisTxt' : '']"
         >
           <label
             v-if="isCollapse && !$slots.suffix" 
@@ -30,7 +30,7 @@
               :title="null" trigger="click"
               :overlayClassName="`scEllipsis-popover ${uuid}`" 
               placement="bottomRight"
-              :getPopupContainer="newProps.edit.getPopupContainer">
+              :getPopupContainer="getPopupContainer">
               <template #content>
                 <Form ref="editFormRef" :model="formState" :rules="newProps.edit.rules">
                   <FormItem label="" name="name">
@@ -61,7 +61,9 @@
             </Popover>
           </span>
         </span>
-        <slot name="default"></slot>
+        <span :class="[baseClass + '-text-default']">
+          <slot name="default"></slot>
+        </span>
       </div>
     </div>
   </Tooltip>
@@ -77,7 +79,7 @@ import { ScButton } from '../../button'
 import { ScInput } from '../../input'
 //@ts-ignore
 import { ellipsisProps } from './type'
-import { isBoolean, isObject, buildUUID } from '../../../utils'
+import { isBoolean, isObject, buildUUID, isFunction } from '../../../utils'
 // import { waitElementReady } from '../../../utils/dom/waitElementReady'
 import useLocale from '../../../hooks/useLocale'
 
@@ -108,7 +110,7 @@ export default defineComponent({
       name: ''
     })
 
-    const isDefaultTooltip = ref(true)
+    const isDefaultTooltip = ref(false)
 
     const styleProps = computed(() => {
       return {
@@ -150,6 +152,14 @@ export default defineComponent({
       return props
     })
 
+    const getPopupContainer = (target: HTMLElement) => {
+      const { edit } = props
+      if (edit?.getPopupContainer && isFunction(edit?.getPopupContainer)) {
+        return edit?.getPopupContainer(target)?.parentNode?.parentNode?.parentNode?.parentNode
+      }
+      return document.body
+    }
+
     /**
      * 1. 计算传入元素宽度
      * 2. 对比父级或者当前元素最大宽度
@@ -164,20 +174,19 @@ export default defineComponent({
       const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
       const contentDom = document.createElement('p')
       const suffixDom = document.querySelector(`.${uuid} .scEllipsis-suffix-container`) as HTMLElement
+      const suffixDomWidth = suffixDom ? isNaN(parseInt(window?.getComputedStyle(suffixDom)?.width || '0')) ? 0: parseInt(window?.getComputedStyle(suffixDom)?.width || '0') : 0
       contentDom.style.display = 'inline-block'
-      contentDom.style.whiteSpace = 'nowrap'
+      // contentDom.style.whiteSpace = 'nowrap'
       const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
 
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
-      const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + (suffixDom ? parseInt(window?.getComputedStyle(suffixDom)?.width || '0') : 0)
+      // console.log('parseInt(window.getComputedStyle(contentDom).width || ', parseInt(window.getComputedStyle(contentDom).width || '0'));
+      // console.log('parseInt(window?.getComputedStyle(suffixDom)?.width || ', window?.getComputedStyle(suffixDom)?.width, parseInt(window?.getComputedStyle(suffixDom)?.width || '0'));
+      const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + suffixDomWidth
       const contentHeight = parseInt(window.getComputedStyle(contentDom).height || '0')
       const maxHeight = parseInt((lineClamp || '') + '' || '1') * 22
       isHeightOver.value = contentHeight > maxHeight
-      // console.log('contentHeight: ', contentHeight > maxHeight);
-      // console.log('contentHeight: ', contentHeight);
-      // console.log('maxHeight: ', maxHeight);
-      // contentHeight
       document.body.removeChild(contentDom)
       isDefaultTooltip.value = (parseInt(maxWidth) * parseInt((lineClamp || '') + '' || '1')) > contentWidth
     }
@@ -260,7 +269,7 @@ export default defineComponent({
     onMounted(() => {
       nextTick(() => {
         computedWidth()
-        const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
+        const containerDom = document.querySelector(`.${uuid} .scEllipsis-text-default`) as HTMLElement
         observer1.observe(containerDom, { attributes: true, childList: true, characterData: true, subtree: true })
       })
     })
@@ -293,6 +302,7 @@ export default defineComponent({
       editFormRef,
       isHeightOver,
 
+      getPopupContainer,
       handleEntry,
       handleClose,
       handleCopy,

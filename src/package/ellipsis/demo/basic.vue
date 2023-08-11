@@ -21,6 +21,16 @@
       浮动元素是如何定位的
     </ScEllipsis>
   </div>
+  <div class="mt20">
+    <ScEllipsis
+      style="width: 240px" 
+      copy-txt="1111111111"
+    >
+      <span @click="handleClick">
+        浮动元素是如何定位的
+      </span>
+    </ScEllipsis>
+  </div>
 </template>
 
 <script lang='ts' setup>
@@ -35,8 +45,13 @@ const editProps = reactive({
   showMaxLength: true,
   disabled: false,
   confirmDisabled: false,
+  getPopupContainer: (target: HTMLElement) => { return target.parentNode?.parentNode },
   text: 'Aa123456'
 })
+
+const handleClick = () => {
+  window.location.href = '/tabs/'
+}
 </script>
 <style>
   .mt20 {
