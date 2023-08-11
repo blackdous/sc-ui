@@ -207,12 +207,12 @@ export default defineComponent({
     //   popoverVisible.value = false
     // }
 
-    const handleClick = (event: Event) => {
+    const handleClick = () => {
       if (props.expandTrigger === 'click') {
         isChecked.value = !unref(isChecked)
       }
-      event.stopPropagation()
-      event.preventDefault()
+      // event.stopPropagation()
+      // event.preventDefault()
       // window?.cancelAnimationFrame(animationId.value)
       // animationId.value = window?.requestAnimationFrame(closePopover)
       
