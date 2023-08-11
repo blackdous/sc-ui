@@ -28,7 +28,7 @@
         }"
         :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
         :loading="loading"
-        :scroll="{ x: true, y: 300 }"
+        :scroll="{ x: '100%', y: 300 }"
         @change="handleChange"
       >
         <!-- <template #expandIcon="props">
