@@ -10,7 +10,7 @@
       rowKey="id"
       :loading="false"
       :pagination="pagination"
-      :api="demoListApi"
+      :data-source="dataSource"
       :before-fetch="beforeFetch"
       :actionsOptions="actionProps"
       :activeOptions="{
@@ -99,6 +99,41 @@ const pagination = reactive({
   size: 'default',
   defaultPageSize: 10,
 })
+
+const dataSource = ref([])
+
+setInterval(() => {
+  const arr: any = []
+  for (let index = 0; index < parseInt((Math.random() * 100) + ''); index++) {
+    arr.push({
+      id: `${index}`,
+      name: 'John Brown' + index,
+      name1: 'name01--' + index,
+      name2: 'name02--' + index,
+      name3: 'name03--' + index,
+      name4: 'name04--' + index,
+      name5: 'name05--' + index,
+      name6: 'name06--' + index,
+      name7: 'name07--' + index,
+      name8: 'name08--' + index,
+      radio1: `选项${index + 1}`,
+      radio2: `选项${index + 1}`,
+      radio3: `选项${index + 1}`,
+      age: `1${index}`,
+      no: `${index + 10}`,
+      avatar: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      // imgArr: getRandomPics(Math.ceil(Math.random() * 3) + 1),
+      // imgs: getRandomPics(Math.ceil(Math.random() * 3) + 1),
+      address: 'New York No. 1 Lake ParkNew York No. 1 Lake Park',
+      beginTime: new Date().toLocaleString(),
+      endTime: new Date().toLocaleString(),
+      date: `2022-05-06`,
+      time: `12:07`,
+      status: 1,
+    });
+  }
+  dataSource.value = arr
+}, 10000)
 
 // const filtered = filteredInfo.value || {};
 const sorted = sortedInfo.value || {};

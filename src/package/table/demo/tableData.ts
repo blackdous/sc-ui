@@ -1,7 +1,8 @@
 const demoList = () => {
+
   const data: any = (() => {
     const arr: any = [];
-    for (let index = 0; index < 100; index++) {
+    for (let index = 0; index < parseInt((Math.random() * 100) + ''); index++) {
       arr.push({
         id: `${index}`,
         name: 'John Brown' + index,
@@ -29,8 +30,11 @@ const demoList = () => {
         status: 1,
       });
     }
+    // console.log('arr: ', arr);
     return arr;
   })();
+
+  console.log('data: ', data);
   return data;
 };
 function getRandomPics(count = 10): string[] {

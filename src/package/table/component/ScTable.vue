@@ -286,6 +286,13 @@ export default defineComponent({
     const newProps = computed(() => {
       return { ...props, ...unref(innerPropsRef) } as TableProps;
     })
+
+    watch(() => props.columns, (val) => {
+      console.log('val: column', val);
+
+    }, {
+      immediate: true
+    })
     
     const visible = ref(false);
 
@@ -384,7 +391,7 @@ export default defineComponent({
       setFilterColumnRef,
       setFilterColumnChecked,
       setFilterColumnDisabled
-    } = useColumn(newProps, fetchParams)
+    } = useColumn(ref({ ...unref(newProps), dataSource: null }), fetchParams)
     showSortTitle(newProps, uuid)
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);

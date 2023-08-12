@@ -29,7 +29,7 @@
               v-model:visible="popoverVisible" 
               :title="null" trigger="click"
               :overlayClassName="`scEllipsis-popover ${uuid}`" 
-              placement="bottomRight"
+              placement="bottomLeft"
               :getPopupContainer="getPopupContainer">
               <template #content>
                 <Form ref="editFormRef" :model="formState" :rules="newProps.edit.rules">
@@ -104,6 +104,8 @@ export default defineComponent({
     const uuid = basePrefixCls + buildUUID()
     const editFormRef = ref()
     const isHeightOver = ref(false)
+    // const maxWidthValue = ref()
+    // const contentWidthValue = ref()
     // const animationId = ref()
 
     const formState = reactive({
@@ -181,13 +183,12 @@ export default defineComponent({
 
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
-      // console.log('parseInt(window.getComputedStyle(contentDom).width || ', parseInt(window.getComputedStyle(contentDom).width || '0'));
-      // console.log('parseInt(window?.getComputedStyle(suffixDom)?.width || ', window?.getComputedStyle(suffixDom)?.width, parseInt(window?.getComputedStyle(suffixDom)?.width || '0'));
       const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + suffixDomWidth
       const contentHeight = parseInt(window.getComputedStyle(contentDom).height || '0')
       const maxHeight = parseInt((lineClamp || '') + '' || '1') * 22
       isHeightOver.value = contentHeight > maxHeight
       document.body.removeChild(contentDom)
+      // maxWidthValue.value = (parseInt(maxWidth) * parseInt((lineClamp || '') + '' || '1'))
       isDefaultTooltip.value = (parseInt(maxWidth) * parseInt((lineClamp || '') + '' || '1')) > contentWidth
     }
 
@@ -263,6 +264,10 @@ export default defineComponent({
             const editInputDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper > .ant-input`) as HTMLInputElement
             editInputDom?.focus()
             editInputDom?.setSelectionRange((formState.name + '').length, (formState.name + '').length)
+            // if (isDefaultTooltip.value) {
+            //   const popoverDom = document.querySelector('.scEllipsis-popover') as HTMLElement
+            //   popoverDom.style.transform = `translateX`
+            // }
             clearTimeout(timer)
           }, 150)
         }
@@ -310,6 +315,8 @@ export default defineComponent({
       formState,
       editFormRef,
       isHeightOver,
+      // maxWidthValue,
+      // contentWidthValue,
 
       getPopupContainer,
       handleEntry,

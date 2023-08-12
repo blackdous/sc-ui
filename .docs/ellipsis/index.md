@@ -106,6 +106,9 @@ interface EditType {
    * @returns Boolean 返回true 自动关闭弹窗 返回false 不执行操作
    */
   cancel?: (closeFnc:() => {}) => boolean
+  /**
+   * 用于form表单 正则校验
+   */
   rules?: FormRules
   [key: string]: any
 }
