@@ -83,6 +83,7 @@ realPath: src/package/ellipsis/index.zh-CN.md
 | copyTxt | copy 内容; 默认在文本最后补充icon| string |  -  |  |
 | edit | 启用edit模式，使用popConfirm弹出修改内容和事件 | EditType |  -  |  |
 | hrefLink | 启用hrefLink 样式 | false |  -  |  |
+| getPopupContainer | edit弹窗要显示在父级 | () => dom |  -  |  |
 
 ## EditType
 
@@ -98,6 +99,13 @@ interface EditType {
   text?: string
   showMaxLength?: boolean
   getPopupContainer?: HTMLElement
+  /**
+   * 关闭函数
+   * 1. 支持异步
+   * @params Function closeFunc 关闭操作
+   * @returns Boolean 返回true 自动关闭弹窗 返回false 不执行操作
+   */
+  cancel?: (closeFnc:() => {}) => boolean
   rules?: FormRules
   [key: string]: any
 }

@@ -202,9 +202,17 @@ export default defineComponent({
       }
     })
 
-    const handleClose = () => {
-      formState.name = ''
-      popoverVisible.value = false
+    const handleClose = async() => {
+      const { edit } = props
+      if (edit?.cancel && isFunction(edit?.cancel)) {
+        const result = await edit?.cancel(() => { popoverVisible.value = false })
+        if (result) {
+          popoverVisible.value = false
+        }
+      } else {
+        formState.name = ''
+        popoverVisible.value = false
+      }
     }
 
     const handleEntry = () => {
@@ -254,6 +262,7 @@ export default defineComponent({
           const timer = setTimeout(() => {
             const editInputDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper > .ant-input`) as HTMLInputElement
             editInputDom?.focus()
+            editInputDom?.setSelectionRange((formState.name + '').length, (formState.name + '').length)
             clearTimeout(timer)
           }, 150)
         }
