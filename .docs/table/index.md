@@ -14,7 +14,7 @@ realPath: src/package/table/index.zh-CN.md
   desc="基础表格"
   >
 </demo> -->
-<!-- ## 基础组件
+## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -940,7 +940,7 @@ export interface ActionsOptions {
     // 列排序状态
     sorter: {}
   }
-``` -->
+```
 
 ## 汇总
 
@@ -951,11 +951,11 @@ export interface ActionsOptions {
   >
 </demo>
 
-<!-- ## 指定rowSelected值
+## 指定rowSelected值
 
 <demo src="./demo/refRowSelected.vue"
   language="vue"
   title="指定rowSelected值"
   desc="指定rowSelected值"
   >
-</demo> -->
+</demo>

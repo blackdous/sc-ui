@@ -286,13 +286,6 @@ export default defineComponent({
     const newProps = computed(() => {
       return { ...props, ...unref(innerPropsRef) } as TableProps;
     })
-
-    watch(() => props.columns, (val) => {
-      console.log('val: column', val);
-
-    }, {
-      immediate: true
-    })
     
     const visible = ref(false);
 
