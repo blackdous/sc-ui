@@ -6,6 +6,31 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.163](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.162...0.0.163) (2023-08-12)
+
+### Bug Fixes
+
+* 修复 ScEllipsis 点击 死循环问题 ([2c96c9f](http://gitlab.voneyun.com/frontend/sc-ui/commit/2c96c9f3cdc0426232156dcd478839e23ce2b80b))
+* scTable修复 更新dataSoruce 值 刷新columns 选中状态 ([ccc249c](http://gitlab.voneyun.com/frontend/sc-ui/commit/ccc249cf4ea4fb1bd79a40b17541cb9d7f9d1046))
+
+### Features
+
+* 更新 ScDescripation 组件 交互 ([7635bd7](http://gitlab.voneyun.com/frontend/sc-ui/commit/7635bd74884ff1cb3120e97a4b3abea2a0ed683a))
+* 完善ScEllipsis 组件 功能 ([dd45280](http://gitlab.voneyun.com/frontend/sc-ui/commit/dd4528087f2d8343403b0471535c41b69089fd68))
+* scEllipsis 组件对齐方式 ([d3cd658](http://gitlab.voneyun.com/frontend/sc-ui/commit/d3cd658c0f96ecfa746d8b28a41592f80c0246e6))
+
+## [0.0.162](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.161...0.0.162) (2023-08-11)
+
+### Bug Fixes
+
+* 修复 ScEllipsis 组件 事件阻止问题 ([5476a55](http://gitlab.voneyun.com/frontend/sc-ui/commit/5476a5509846ca12c11e355c1ee486075d49471d))
+
+## [0.0.161](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.160...0.0.161) (2023-08-11)
+
+### Bug Fixes
+
+* scEllipsis 组件 兼容sfari 浏览器 ([e354322](http://gitlab.voneyun.com/frontend/sc-ui/commit/e35432205899fabab8d83d27f4577d08e2e06c99))
+
 ## [0.0.160](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.159...0.0.160) (2023-08-10)
 
 ### Bug Fixes
