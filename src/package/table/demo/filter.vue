@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref } from 'vue'
+import { ref, unref, computed } from 'vue'
 import { ScTable } from 'sc-ui'
 
 const scTableRef = ref()
@@ -95,62 +95,132 @@ const list = ref([
 //   console.log('error: ', error);
 // })
 const filtersList = ref([])
-const filtersList1 = ref([])
-// @ts-ignore
-const columns = ref([
-  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', 
-    // slots: {
-    //   filterDropdown: 'filterDropdown',
-    //   filterIcon: 'filterIcon'
-    // },
-    filtered: true,
-    filterMultiple: true,
-    filterList: filtersList1,
-    filterLoading: true,
-    filteredValue: ['ee', '4444']
-  },
-  { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
-    sorter: (a: DataItem, b: DataItem) => a.age - b.ge,
-  },
-  {
-    title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
-    // slots: {
-    //   filterDropdown: 'filterDropdown',
-    //   filterIcon: 'filterIcon'
-    // },
-    // filterMultiple: false,
-    // filterList: () => list,
-    // filters: list,
-    filters: filtersList,
-    type: {
-      componentName: 'tdEllipsis',
-      props: {
-        lineheigth: 2
+const filtersList1 = ref({
+  filterList: [],
+  filterList2: [],
+  filterList3: []
+})
+
+const getColumns = (filterListValue: any) => {
+  return [
+    { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', 
+      // slots: {
+      //   filterDropdown: 'filterDropdown',
+      //   filterIcon: 'filterIcon'
+      // },
+      filtered: true,
+      filterMultiple: false,
+      filters: filterListValue.filterList,
+      filterLoading: false,
+      filteredValue: []
+    },
+    { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
+      sorter: (a: DataItem, b: DataItem) => a.age - b.ge,
+    },
+    {
+      title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
+      // slots: {
+      //   filterDropdown: 'filterDropdown',
+      //   filterIcon: 'filterIcon'
+      // },
+      // filterMultiple: false,
+      // filterList: () => list,
+      // filters: list,
+      filters: filtersList,
+      type: {
+        componentName: 'tdEllipsis',
+        props: {
+          lineheigth: 2
+        }
       }
-    }
-    // type: {
-    //   componentName: 'copy',
-    //   props: {
-    //     successTxt: 'copy 成功',
-    //     errorText: ''
-    //   }
-    // }
-  },
-  { title: 'Column 2', dataIndex: 'age', key: '2', width: 160 },
-  { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
-]);
+      // type: {
+      //   componentName: 'copy',
+      //   props: {
+      //     successTxt: 'copy 成功',
+      //     errorText: ''
+      //   }
+      // }
+    },
+    { title: 'Column 2', dataIndex: 'age', key: '2', width: 160,  filtered: true,
+      filterMultiple: false,
+      filters: filterListValue.filterList3,
+      filterLoading: false,
+      filteredValue: ['4444'] },
+    { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
+  ]
+  // return filtersList1.value
+}
+// @ts-ignore
+// const columns = ref([
+//   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', 
+//     // slots: {
+//     //   filterDropdown: 'filterDropdown',
+//     //   filterIcon: 'filterIcon'
+//     // },
+//     filtered: true,
+//     filterMultiple: true,
+//     filterList: filtersList1,
+//     filterLoading: true,
+//     filteredValue: ['ee', '4444']
+//   },
+//   { title: 'Age', width: 60, dataIndex: 'age', key: 'age',
+//     sorter: (a: DataItem, b: DataItem) => a.age - b.ge,
+//   },
+//   {
+//     title: 'Column 1', dataIndex: 'address', key: '1', width: 160,
+//     // slots: {
+//     //   filterDropdown: 'filterDropdown',
+//     //   filterIcon: 'filterIcon'
+//     // },
+//     // filterMultiple: false,
+//     // filterList: () => list,
+//     // filters: list,
+//     filters: filtersList,
+//     type: {
+//       componentName: 'tdEllipsis',
+//       props: {
+//         lineheigth: 2
+//       }
+//     }
+//     // type: {
+//     //   componentName: 'copy',
+//     //   props: {
+//     //     successTxt: 'copy 成功',
+//     //     errorText: ''
+//     //   }
+//     // }
+//   },
+//   { title: 'Column 2', dataIndex: 'age', key: '2', width: 160 },
+//   { title: 'Column 3', dataIndex: 'age', key: '3', width: 160 }
+// ]);
+
+const columns = computed(() => {
+  return getColumns(filtersList1.value)
+})
 
 
 setTimeout(() => {
-  filtersList1.value = list
+  filtersList1.value.filterList = [
+    {text: '创建快照', value: 'aa'},
+    {text: '续费', value: 'bb'},
+    {text: '三级选项', value: 'ff'},
+    {text: '四级选项', value: '4444'}
+  ]
+  filtersList1.value.filterList3 = [
+    {text: '创建快照', value: 'aa'},
+    {text: '续费', value: 'bb'},
+    {text: '三级选项', value: 'ff'},
+    {text: '四级选项', value: '4444'}
+  ]
 }, 1500);
 
 setTimeout(() => {
   columns.value = unref(columns).map((item, index) => {
     // item.filterList = []
     if (index === 0) {
-      item.filterList = unref(list).slice(0, 4)
+      item.filters = unref(filtersList1.value.filterList).slice(0, 3)
       item.filterLoading = false
+      item.filteredValue = ['ff']
     }
     return item
   })

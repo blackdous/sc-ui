@@ -120,6 +120,7 @@ export default defineComponent({
 
 
     const filterList = computed(() => {
+      // console.log('props.filterList: ', props.filterList);
       return props.filterList?.map((item: FilterItem) => {
         if (item.text) {
           item.label = item.text

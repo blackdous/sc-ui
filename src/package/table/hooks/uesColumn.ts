@@ -1,4 +1,4 @@
-import { ref, Ref, unref, computed, toRaw, onMounted, nextTick, watchEffect } from 'vue'
+import { ref, Ref, unref, computed, toRaw, onMounted, nextTick, watchEffect, watch } from 'vue'
 // import cloneDeep from 'lodash/cloneDeep'
 import lodash from 'lodash'
 
@@ -15,7 +15,8 @@ export interface GetColumnsParams {
 
 export function useColumn (
   propsRef: Ref<Recordable>,
-  fetchParams?: Ref<Recordable>
+  fetchParams?: Ref<Recordable>,
+  props?: Ref<Recordable>
 ) {
   const customComponentKey = ref<string[]>(['tdCopy', 'tdHandle', 'tdEllipsis', 'tdStatus'])
   const customComponentHeaderKey = ref<string[]>(['thDescribe', 'thUnit'])
@@ -47,7 +48,7 @@ export function useColumn (
         item.filtered =  item.filtered ?? true
       }
       if (!item.filterList && item.filters && item.filters?.length) {
-        item.filterList = item.filters.map(item => {
+        item.filterList = (item.filters || [])?.map(item => {
           return {
             label: item.text,
             // value: item.value,
@@ -57,7 +58,7 @@ export function useColumn (
         item.slots = {
           ...item.slots,
           filterDropdown: 'filterDropdown',
-            filterIcon: 'filterIcon'
+          filterIcon: 'filterIcon'
         }
         item.filtered =  item.filtered ?? true
       }
@@ -73,15 +74,23 @@ export function useColumn (
     getColumnRef.value = newColumns
     return newColumns
   }
-  const filterColumn = ref(unref(propsRef).columnFilterList.length ? unref(propsRef).columnFilterList : unref(getColumnRef))
+  const filterColumn = ref(unref(propsRef).columnFilterList.length ? propsRef.value.columnFilterList : unref(getColumnRef))
   adapterColumnFunc(unref(columnsRef))
   const getFilterDropdownRef = computed(() => {
     return filterColumn.value
   })
-  watchEffect(() => {
-    columnsRef.value = propsRef.value.columns
-    filterColumn.value = propsRef.value.columns
-    adapterColumnFunc(unref(columnsRef))
+  // watchEffect(() => {
+  //   columnsRef.value = propsRef.value.columns
+  //   filterColumn.value = propsRef.value.columns
+  //   adapterColumnFunc(unref(columnsRef))
+  // })
+  watch(() => props.columns, (value) => {
+      columnsRef.value = propsRef.value.columns
+      filterColumn.value = propsRef.value.columns
+      adapterColumnFunc(unref(columnsRef))
+  }, {
+    deep: true,
+    immediate: true
   })
   function setFilterDropdownRef (column:Column, filterItem: FilterItem[]) {
     const columns = unref(filterColumn)?.map((item: Column) => {
