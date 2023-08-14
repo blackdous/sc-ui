@@ -176,9 +176,7 @@ export default defineComponent({
       const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement
       const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
       // eslint-disable-next-line no-unsafe-optional-chaining
-      // console.log('containerDom?.parentNode: ', containerDom?.parentNode);
-      // eslint-disable-next-line no-unsafe-optional-chaining
-      const { width, paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = window?.getComputedStyle(containerDom?.parentNode as HTMLElement)
+      const { width, paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = isInheritParentWidth ? window?.getComputedStyle(containerDom?.parentNode as HTMLElement) : { width: '0', paddingLeft: '0', paddingRight: '0', borderLeftWidth: '0', borderRightWidth: '0'}
       const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
       const contentDom = document.createElement('p')
       const suffixDom = document.querySelector(`.${uuid} .scEllipsis-suffix-container`) as HTMLElement
@@ -186,7 +184,6 @@ export default defineComponent({
       contentDom.style.display = 'inline-block'
       // contentDom.style.whiteSpace = 'nowrap'
       const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
-      console.log('maxWidth: ', maxWidth);
 
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
@@ -292,6 +289,7 @@ export default defineComponent({
         computedWidth()
         const containerDom = document.querySelector(`.${uuid} .scEllipsis-text-default`) as HTMLElement
         observer1.observe(containerDom || textDefaultRef.value, { attributes: true, childList: true, characterData: true, subtree: true })
+        // clearTimeout(timer)
       })
     })
 

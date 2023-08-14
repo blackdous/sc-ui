@@ -47,7 +47,7 @@ const mockData: Recordable = {
   const schema: DescItem[] = [
     {
       field: 'username',
-      label: renderInnerTitle
+      label: '用户名'
     },
     {
       field: 'nickName',

@@ -53,13 +53,11 @@ const mockData: Recordable = {
     tag: 'orange',
   };
   const renderTitle = h('span', { class: '' }, [h('span', { innerHTML: '使用h函数' }), h('i', { class: 'sc-ui sc-question-circle' })])
-  const renderInnerTitle = h('span',['用户名', h(Tooltip, {
-    title: () => 'tooltip'
-  }, [ h('i', { class: 'sc-ui sc-question-circle' })])] )
+  // const renderInnerTitle = h('span', {} )
   const schema: DescItem[] = [
     {
       field: 'username',
-      label: renderInnerTitle
+      label: '用户名'
     },
     {
       field: 'nickName',

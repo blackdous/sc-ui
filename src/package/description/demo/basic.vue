@@ -8,7 +8,17 @@
       :bordered="false"
       :useCollapse="false"
       >
-        <DescriptionsItem label="UserName">Zhou Maomao
+        <DescriptionsItem>
+          <template #label>
+            UserName
+            <Tooltip>
+              <template #title>
+                Tooltip
+              </template>
+              <i class="sc-ui sc-question-circle"></i>
+            </Tooltip>
+          </template>
+          Zhou Maomao
         </DescriptionsItem>
         <DescriptionsItem label="Telephone">
           18100000001
@@ -109,7 +119,7 @@
 <script setup lang="ts">
 import { h } from 'vue'
 import { ScDescription, ScLink, ScEllipsis } from 'sc-ui'
-import { DescriptionsItem } from 'ant-design-vue';
+import { DescriptionsItem, Tooltip } from 'ant-design-vue';
 
 const mockData: Recordable = {
     username: 'test',
