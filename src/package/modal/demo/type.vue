@@ -10,6 +10,16 @@
     :infoDes="info"
   >
     <div style="background-color: #fff;">我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度，我是文案限制长度</div>
+    <template #infoText v-if="type === 'warning'">
+      <div>
+        <p>
+          1.我是文案限制长度
+        </p>
+        <p>
+          2.我是文案限制长度
+        </p>
+      </div>
+    </template>
   </ScModal>
   <Space>
     <Button @click="() => { type = 'info'; openModal('infoinfoinfo') }">

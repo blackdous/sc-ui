@@ -6,9 +6,10 @@
     ref="modalRef"
     >
     <!-- :style="{'--model-width': getBindValue.width}" -->
+
     <template #[item]="data" v-for="item in ['default']">
       <div 
-        v-if="curProps.type" 
+        v-if="curProps.type && !$slots.infoText" 
         :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + curProps.type]"
       >
         <span v-if="props.type" :class="[modalPrefixCls + '-status-icon']">
@@ -17,25 +18,28 @@
           <ExclamationCircleFilled v-else-if="curProps.type === 'warning'" />
           <ExclamationCircleFilled v-else-if="curProps.type === 'error'" />
         </span>
+        <template
+          v-if="isArray(curProps.infoDes)"
+        >
         <div>
-          <template
-            v-if="isArray(curProps.infoDes)"
-          >
-            <p
-              :class="[modalPrefixCls + '-txt']"
-              v-for="item in (curProps.infoDes || [])"
-            >
-              {{ item }}
-            </p>
-          </template>
           <p
-            v-else
             :class="[modalPrefixCls + '-txt']"
+            v-for="item in (curProps.infoDes || [])"
           >
-            {{ curProps.infoDes }}
+            {{ item }}
           </p>
         </div>
+        </template>
+        <p
+          v-else
+          :class="[modalPrefixCls + '-txt']"
+        >
+          {{ curProps.infoDes }}
+        </p>
       </div>
+      <template v-else="$slots.infoText">
+          <slot name="infoText"></slot>
+        </template>
       <div :class="[modalPrefixCls + '-content']">
         <ScScrollbar
           ref="scrollBarRef"

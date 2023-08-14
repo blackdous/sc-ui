@@ -307,6 +307,7 @@ ScModal.changeConfirmLocale(zhCN)
 | ----------------- | ---------------- | -- |
 | insertFooter        | footer内部默认按钮左侧 | - |
 | afterFooter        | footer内部默认按钮右侧 | - |
+| infoText        | 文本内容插槽 | - |
 
 ## expose
 
