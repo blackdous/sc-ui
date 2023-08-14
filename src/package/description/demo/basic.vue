@@ -108,8 +108,8 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { ScDescription, ScLink, ScTag, ScEllipsis } from 'sc-ui'
-import { DescriptionsItem, Tooltip } from 'ant-design-vue';
+import { ScDescription, ScLink, ScEllipsis } from 'sc-ui'
+import { DescriptionsItem } from 'ant-design-vue';
 
 const mockData: Recordable = {
     username: 'test',
@@ -125,9 +125,24 @@ const mockData: Recordable = {
   };
   
   const renderTitle = h('span', { class: '' }, ['使用h函数'])
-  const renderInnerTitle = h('span',['用户名', h(Tooltip, {
-    title: () => 'tooltip'
-  }, [ h('i', { class: 'sc-ui sc-question-circle' })])] )
+  const renderInnerTitle = h(
+    // Tooltip,
+    // {
+    //   title: () => 'tooltip'
+    // },
+
+    'span',
+    {},
+    '用户名'
+    // h(
+    //   Tooltip, 
+    //   { 
+    //     title: () => 'tooltip'
+    //   },
+    //   () => ['用户名', h('i', { class: 'sc-ui sc-question-circle' })]
+    // )
+    
+  )
   const schema: DescItem[] = [
     {
       field: 'username',
@@ -137,7 +152,8 @@ const mockData: Recordable = {
       field: 'nickName',
       label: '昵称',
       render: (curVal, data) => {
-        return h(ScEllipsis, { hoverSuffix: true, copyTxt: '复制内容', tooltip: false }, curVal + '--' + data.username)
+        // return curVal + '--' + data.username
+        return h(ScEllipsis, { hoverSuffix: true, copyTxt: '复制内容', tooltip: false, isInheritParentWidth: true }, () => curVal + '--' + data.username)
       },
     },
     {

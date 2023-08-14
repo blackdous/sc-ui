@@ -61,7 +61,10 @@
             </Popover>
           </span>
         </span>
-        <span :class="[baseClass + '-text-default']">
+        <span
+          ref="textDefaultRef"
+          :class="[baseClass + '-text-default']"
+        >
           <slot name="default"></slot>
         </span>
       </div>
@@ -107,6 +110,7 @@ export default defineComponent({
     // const maxWidthValue = ref()
     // const contentWidthValue = ref()
     // const animationId = ref()
+    const textDefaultRef = ref()
 
     const formState = reactive({
       name: ''
@@ -172,6 +176,8 @@ export default defineComponent({
       const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement
       const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
       // eslint-disable-next-line no-unsafe-optional-chaining
+      // console.log('containerDom?.parentNode: ', containerDom?.parentNode);
+      // eslint-disable-next-line no-unsafe-optional-chaining
       const { width, paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = window?.getComputedStyle(containerDom?.parentNode as HTMLElement)
       const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
       const contentDom = document.createElement('p')
@@ -180,6 +186,7 @@ export default defineComponent({
       contentDom.style.display = 'inline-block'
       // contentDom.style.whiteSpace = 'nowrap'
       const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
+      console.log('maxWidth: ', maxWidth);
 
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
@@ -284,7 +291,7 @@ export default defineComponent({
       nextTick(() => {
         computedWidth()
         const containerDom = document.querySelector(`.${uuid} .scEllipsis-text-default`) as HTMLElement
-        observer1.observe(containerDom, { attributes: true, childList: true, characterData: true, subtree: true })
+        observer1.observe(containerDom || textDefaultRef.value, { attributes: true, childList: true, characterData: true, subtree: true })
       })
     })
 
@@ -315,6 +322,7 @@ export default defineComponent({
       formState,
       editFormRef,
       isHeightOver,
+      textDefaultRef,
       // maxWidthValue,
       // contentWidthValue,
 
