@@ -6,6 +6,27 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.165](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.164...0.0.165) (2023-08-15)
+
+### Bug Fixes
+
+* 修复 ScTable Filter 组件 输入框事件触发限制 ([05dceda](http://gitlab.voneyun.com/frontend/sc-ui/commit/05dcedaa5d03b4fc103b402fee1d7047a845489f))
+
+### Features
+
+* scEllipsis 组件新增 edit 弹框 位置计算;新增 baseHeight 属性 ([f3fc851](http://gitlab.voneyun.com/frontend/sc-ui/commit/f3fc851b0b1a271b1cd1a97da5523aaab3088a99))
+* scModal 组件 新增 slot = infoText 插槽 ([060edc1](http://gitlab.voneyun.com/frontend/sc-ui/commit/060edc131d2efa87580e96d1a8e4d0b21a476e59))
+
+## [0.0.164](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.163...0.0.164) (2023-08-14)
+
+### Bug Fixes
+
+* 修复 ScTable columns 监听链路问题 ([9ad6d3e](http://gitlab.voneyun.com/frontend/sc-ui/commit/9ad6d3e07471a411cb7c2fa13cc857fef3f8f430))
+
+### Features
+
+* scEllipsis 组件 样式调整 ([d0a6cd1](http://gitlab.voneyun.com/frontend/sc-ui/commit/d0a6cd1b671a3d2ff832bca59023f172bf6b303d))
+
 ## [0.0.163](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.162...0.0.163) (2023-08-12)
 
 ### Bug Fixes
