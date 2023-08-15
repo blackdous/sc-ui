@@ -26,6 +26,18 @@ export const ellipsisProps = () => ({
   lineClamp: {
     type: [Number, String]
   },
+  baseHeight: {
+    type: Number,
+    default () {
+      return 22
+    }
+  },
+  isComputedEditPopoverPosition: {
+    type: Boolean,
+    default () {
+      return true
+    }
+  },
   isCollapse: {
     type: Boolean,
     default (){

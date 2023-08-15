@@ -107,8 +107,8 @@ export default defineComponent({
     const uuid = basePrefixCls + buildUUID()
     const editFormRef = ref()
     const isHeightOver = ref(false)
-    // const maxWidthValue = ref()
-    // const contentWidthValue = ref()
+    const maxWidthValue = ref()
+    const contentWidthValue = ref()
     // const animationId = ref()
     const textDefaultRef = ref()
 
@@ -139,8 +139,9 @@ export default defineComponent({
       const cssOss = Object.create({})
       if (props.lineClamp) {
         cssOss["-webkit-line-clamp"] = isChecked.value ? '999' : props.lineClamp
-        cssOss["max-height"] = isChecked.value ? '999px' : parseInt(props.lineClamp + '') * 22 + 'px'
+        cssOss["max-height"] = isChecked.value ? '999px' : parseInt(props.lineClamp + '') * props.baseHeight + 'px'
       }
+      cssOss["--baseHeight"] = props.baseHeight + 'px'
       return {
         ...cssOss
       }
@@ -172,7 +173,7 @@ export default defineComponent({
      * 3. 是否自动出现tooltip
      */
     const computedWidth = () => {
-      const { isInheritParentWidth, lineClamp } = props
+      const { isInheritParentWidth, lineClamp, baseHeight } = props
       const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement
       const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
       // eslint-disable-next-line no-unsafe-optional-chaining
@@ -184,16 +185,20 @@ export default defineComponent({
       contentDom.style.display = 'inline-block'
       // contentDom.style.whiteSpace = 'nowrap'
       const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
-
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
       const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + suffixDomWidth
+      // console.log('contentWidth: ', contentWidth);
+      contentWidthValue.value = parseInt(window.getComputedStyle(contentDom).width || '0')
+      // console.log('contentWidthValue.value: ', contentWidthValue.value);
       const contentHeight = parseInt(window.getComputedStyle(contentDom).height || '0')
-      const maxHeight = parseInt((lineClamp || '') + '' || '1') * 22
+      const maxHeight = parseInt((lineClamp || '') + '' || '1') * baseHeight
       isHeightOver.value = contentHeight > maxHeight
       document.body.removeChild(contentDom)
-      // maxWidthValue.value = (parseInt(maxWidth) * parseInt((lineClamp || '') + '' || '1'))
+      maxWidthValue.value = parseInt(maxWidth) - suffixDomWidth
+      // console.log('maxWidthValue.value: ', maxWidthValue.value);
       isDefaultTooltip.value = (parseInt(maxWidth) * parseInt((lineClamp || '') + '' || '1')) > contentWidth
+      // console.log('isDefaultTooltip.value: ', isDefaultTooltip.value);
     }
 
     const observer1 = new MutationObserver(() => {
@@ -256,7 +261,7 @@ export default defineComponent({
 
     const handleEdit = (event: Event) => {
       event.stopPropagation()
-      const { edit } = props
+      const { edit, isComputedEditPopoverPosition } = props
       formState.name = edit.text || ''
       if (edit && edit.show) {
         popoverVisible.value = !popoverVisible.value
@@ -268,12 +273,17 @@ export default defineComponent({
             const editInputDom = document.querySelector(`.${uuid} .ant-popover-inner-content .ant-input-affix-wrapper > .ant-input`) as HTMLInputElement
             editInputDom?.focus()
             editInputDom?.setSelectionRange((formState.name + '').length, (formState.name + '').length)
-            // if (isDefaultTooltip.value) {
-            //   const popoverDom = document.querySelector('.scEllipsis-popover') as HTMLElement
-            //   popoverDom.style.transform = `translateX`
-            // }
+            if (isComputedEditPopoverPosition) {
+              const popoverDom = document.querySelector(`.${uuid} .ant-popover-content`) as HTMLElement
+              if (contentWidthValue.value > maxWidthValue.value) {
+                popoverDom.style.transform = `translateX(-${maxWidthValue.value}px)`
+              }
+              if (contentWidthValue.value < maxWidthValue.value) {
+                popoverDom.style.transform = `translateX(-${contentWidthValue.value}px)`
+              }
+            }
             clearTimeout(timer)
-          }, 150)
+          }, 50)
         }
         return false
       }

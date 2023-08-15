@@ -31,6 +31,18 @@
       </span>
     </ScEllipsis>
   </div>
+  <div class="mt20">
+    <ScEllipsis
+      style="width: 240px"
+      :base-height="26"
+      copy-txt="1111111111"
+      class="sp20"
+    >
+      <span @click="handleClick">
+        浮动元素是如何定位的 18px11111111111111111111
+      </span>
+    </ScEllipsis>
+  </div>
 </template>
 
 <script lang='ts' setup>
@@ -53,8 +65,13 @@ const handleClick = () => {
   window.location.href = '/tabs/'
 }
 </script>
-<style>
+<style lang="less">
   .mt20 {
     margin-top: 20px;
+  }
+  .sp20 {
+    .scEllipsis-text {
+      font-size: 20px;
+    }
   }
 </style>

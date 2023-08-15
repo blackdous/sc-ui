@@ -84,6 +84,8 @@ realPath: src/package/ellipsis/index.zh-CN.md
 | edit | 启用edit模式，使用popConfirm弹出修改内容和事件 | EditType |  -  |  |
 | hrefLink | 启用hrefLink 样式 | false |  -  |  |
 | getPopupContainer | edit弹窗要显示在父级 | () => dom |  -  |  |
+| baseHeight | 基础高度，适用于多行时 | number |  22  |  |
+| isComputedEditPopoverPosition | 是否强制修改edit 弹窗位置 | boolean |  true  |  |
 
 ## EditType
 
