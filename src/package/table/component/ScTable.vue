@@ -286,11 +286,9 @@ export default defineComponent({
     const newProps = computed(() => {
       return { ...props, ...unref(innerPropsRef) } as TableProps;
     })
-
-    const newColumns = computed(() => {
-      return props.columns
-    })
-    
+    // const newColumns = computed(() => {
+    //   return props.columns
+    // }) 
     const visible = ref(false);
 
     const { getLoading, setLoading } = useLoading(newProps);

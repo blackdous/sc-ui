@@ -22,7 +22,7 @@ map:
   >
 </demo>
 
-### 新增相关APi
+<!-- ### 新增相关APi
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -957,4 +957,4 @@ export interface ActionsOptions {
   title="指定rowSelected值"
   desc="指定rowSelected值"
   >
-</demo>
+</demo> -->

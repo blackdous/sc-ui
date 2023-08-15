@@ -1,4 +1,4 @@
-import { ref, Ref, unref, computed, toRaw, onMounted, nextTick, watchEffect, watch } from 'vue'
+import { ref, Ref, unref, computed, toRaw, onMounted, nextTick, watchEffect } from 'vue'
 // import cloneDeep from 'lodash/cloneDeep'
 import lodash from 'lodash'
 
@@ -74,24 +74,27 @@ export function useColumn (
     getColumnRef.value = newColumns
     return newColumns
   }
-  const filterColumn = ref(unref(propsRef).columnFilterList.length ? propsRef.value.columnFilterList : unref(getColumnRef))
+  const filterColumn = ref(unref(propsRef).columnFilterList.length ? unref(propsRef).columnFilterList : unref(getColumnRef))
   adapterColumnFunc(unref(columnsRef))
   const getFilterDropdownRef = computed(() => {
     return filterColumn.value
   })
-  // watchEffect(() => {
-  //   columnsRef.value = propsRef.value.columns
-  //   filterColumn.value = propsRef.value.columns
-  //   adapterColumnFunc(unref(columnsRef))
-  // })
-  watch(() => props.columns, (value) => {
-      columnsRef.value = propsRef.value.columns
-      filterColumn.value = propsRef.value.columns
-      adapterColumnFunc(unref(columnsRef))
-  }, {
-    deep: true,
-    immediate: true
+  watchEffect(() => {
+    columnsRef.value = propsRef.value.columns
+    filterColumn.value = propsRef.value.columns
+    adapterColumnFunc(unref(columnsRef))
   })
+  // if (isRef(props.columns) || isReactive(props.columns) || isProxy(props.columns)) {
+  // } else {
+  //   watch(() => props.columns, () => {
+  //     columnsRef.value = propsRef.value.columns
+  //     filterColumn.value = propsRef.value.columns
+  //     adapterColumnFunc(unref(columnsRef))
+  //   }, {
+  //     deep: true,
+  //     immediate: true
+  //   })
+  // }
   function setFilterDropdownRef (column:Column, filterItem: FilterItem[]) {
     const columns = unref(filterColumn)?.map((item: Column) => {
       if (item.dataIndex === column.dataIndex) {
