@@ -107,7 +107,7 @@ import { isFunction, deepMerge, transformPxtoRem } from '../../../utils'
 
 const tableHeaderPrefixClas = basePrefixCls + 'TableFilter'
 
-const { cloneDeep } = lodash
+const { cloneDeep, debounce } = lodash
 
 export const TableFilterProps = () => ({
   selectValue: String,
@@ -330,7 +330,7 @@ export default defineComponent({
       }
     }
 
-    const updateTextValue = () => {
+    const updateTextValue = debounce(() => {
       const { inputOptions } = unref(searchOptionsRef)
       if (['all', 'change'].includes(inputOptions?.validatorTrigger)) {
         if (unref(textValue)) {
@@ -343,7 +343,7 @@ export default defineComponent({
         }
       }
       emit('update:textValue', unref(textValue))
-    }
+    }, 150)
 
     const onSearch = (val:string) => {
       const { inputOptions } = unref(searchOptionsRef)
