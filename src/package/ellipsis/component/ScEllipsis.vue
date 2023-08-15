@@ -276,10 +276,10 @@ export default defineComponent({
             if (isComputedEditPopoverPosition) {
               const popoverDom = document.querySelector(`.${uuid} .ant-popover-content`) as HTMLElement
               if (contentWidthValue.value > maxWidthValue.value) {
-                popoverDom.style.transform = `translateX(-${maxWidthValue.value}px)`
+                popoverDom.style.transform = `translateX(-${maxWidthValue.value + 4}px)`
               }
               if (contentWidthValue.value < maxWidthValue.value) {
-                popoverDom.style.transform = `translateX(-${contentWidthValue.value}px)`
+                popoverDom.style.transform = `translateX(-${contentWidthValue.value + 4}px)`
               }
             }
             clearTimeout(timer)
