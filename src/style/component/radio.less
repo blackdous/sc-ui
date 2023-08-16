@@ -9,8 +9,15 @@
       border-left: 1px solid @radio-button-border;
       border-radius: @border-r-3;
       border: 1px solid @radio-button-border;
+      // min-width: 142px;
+      // padding-left: 8px;
+      // padding-right: 8px;
+      // text-align: center;
+      &:first-child {
+        margin-right: 8px;
+      }
       & + .ant-radio-button-wrapper {
-        margin-left: 8px;
+        margin-right: 8px;
       }
     }
     .ant-radio-button-wrapper:not(:first-child)::before {

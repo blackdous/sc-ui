@@ -259,6 +259,12 @@ export default defineComponent({
       }
     }
 
+    const closeEditPopover = (event: Event) => {
+      if (event?.target?.className.indexOf('scEllipsis-popover') > -1) {
+        popoverVisible.value = false
+      }
+    }
+
     const handleEdit = (event: Event) => {
       event.stopPropagation()
       const { edit, isComputedEditPopoverPosition } = props
@@ -275,6 +281,9 @@ export default defineComponent({
             editInputDom?.setSelectionRange((formState.name + '').length, (formState.name + '').length)
             if (isComputedEditPopoverPosition) {
               const popoverDom = document.querySelector(`.${uuid} .ant-popover-content`) as HTMLElement
+              const popoverContainerDom = document.querySelector(`.${uuid}.scEllipsis-popover`) as HTMLElement
+              popoverContainerDom?.removeEventListener('click', closeEditPopover)
+              popoverContainerDom?.addEventListener('click', closeEditPopover)
               if (contentWidthValue.value > maxWidthValue.value) {
                 popoverDom.style.transform = `translateX(-${maxWidthValue.value + 4}px)`
               }
@@ -283,7 +292,7 @@ export default defineComponent({
               }
             }
             clearTimeout(timer)
-          }, 50)
+          }, 0)
         }
         return false
       }
@@ -305,6 +314,8 @@ export default defineComponent({
 
     onUnmounted(() => {
       observer1.disconnect()
+      const popoverContainerDom = document.querySelector(`.${uuid}.scEllipsis-popover`) as HTMLElement
+      popoverContainerDom?.removeEventListener('click', closeEditPopover)
       // window?.cancelAnimationFrame(animationId.value)
     })
 
