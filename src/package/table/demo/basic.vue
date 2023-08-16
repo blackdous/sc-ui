@@ -17,7 +17,7 @@
         row-key="key"
         ref="scTableRef"
         :data-source="sourceData.list"
-        :columns="columns"
+        :columns="columns.list"
         :create-button-options="{
           show: false,
         }"
@@ -247,7 +247,8 @@ const onSelectChange = (selectedRowKeys: Key[]) => {
 };
 
 // @ts-ignore
-const columns = [
+const columns = reactive({
+  list: [
   { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', ellipsis: true},
   { 
     // title: 'age',
@@ -289,10 +290,11 @@ const columns = [
     onFilter: (value: string, record: DataItem) => record.name.includes(value),
     sorter: (a: DataItem, b: DataItem) => a.age - b.age,
   }
-];
+]
+});
 
 setTimeout(() => {
-  columns.push({ dataIndex: 'age2', key: 'age2', width: 180,
+  columns.list.push({ dataIndex: 'age2', key: 'age2', width: 180,
     titleType: {
       componentName: 'thUnit3',
       props: {
@@ -305,7 +307,7 @@ setTimeout(() => {
     },
     sorter: true
   })
-  columns.push({  dataIndex: 'age3', key: 'age3', width: 200,
+  columns.list.push({  dataIndex: 'age3', key: 'age3', width: 200,
     slots: {
       customRender: 'status'
     },
@@ -319,7 +321,7 @@ setTimeout(() => {
     handle: handleTd
     
   })
-  columns.push({  dataIndex: 'age5', key: 'age5', width: 160,
+  columns.list.push({  dataIndex: 'age5', key: 'age5', width: 160,
     type: {
       componentName: 'tdHandle',
       props: {
@@ -335,7 +337,7 @@ setTimeout(() => {
     handle: handleTd
     
   })
-  columns.push({  
+  columns.list.push({  
     dataIndex: 'age4', key: 'age4', width: 160,
     titleType: {
       componentName: 'thDescribe4',
