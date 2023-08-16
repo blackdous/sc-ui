@@ -10,7 +10,7 @@
         class="tag-filter"
         @close="onTagClose(columnItem)"
       >
-        {{ columnItem.title }}
+        {{ columnItem.title || columnItem?.titleType?.props?.text }}
         <span
           v-for="(filterItem, index) in (columnItem.filterSelected || [])"
           :key="filterItem.key"

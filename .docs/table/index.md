@@ -8,6 +8,12 @@ realPath: src/package/table/index.zh-CN.md
 
 基于[ant-design-vue table](https://2x.antdv.com/components/table-cn)基础上二次封装的table组件, 部分方法是从`vben`的table上拿过来的
 
+::: tip Columns 属性
+
+如传入**普通数组**，更新columns 值请使用实例方法setColumns; 传入响应式对象不受影响
+
+:::
+
 <!-- <demo src="./demo/serverPackageTable.vue"
   language="vue"
   title="基础表格table表格"
@@ -23,7 +29,7 @@ realPath: src/package/table/index.zh-CN.md
   >
 </demo>
 
-<!-- ### 新增相关APi
+### 新增相关APi
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -958,4 +964,4 @@ export interface ActionsOptions {
   title="指定rowSelected值"
   desc="指定rowSelected值"
   >
-</demo> -->
+</demo>
