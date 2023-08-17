@@ -38,6 +38,7 @@
           <Tooltip
             v-if="activeOptions?.reload?.show"
             overlayClassName="scTooltip-white"
+            destroyTooltipOnHide
           >
             <template #title v-if="activeOptions?.reload?.text">
               {{ activeOptions?.reload.text }}
@@ -53,6 +54,7 @@
           <Tooltip
             v-if="activeOptions?.columnDialog?.show"
             overlayClassName="scTooltip-white"
+            destroyTooltipOnHide
           >
             <template #title v-if="activeOptions?.columnDialog?.text">
               {{ activeOptions?.columnDialog.text }}
@@ -68,6 +70,7 @@
           <Tooltip
             v-if="activeOptions?.download?.show"
             overlayClassName="scTooltip-white"
+            destroyTooltipOnHide
           >
             <template #title v-if="activeOptions?.download?.text">
               {{ activeOptions?.download.text }}

@@ -2,6 +2,7 @@
   <Tooltip
     :overlayClassName="newProps.column.type.props.className"
     :id="`tb_${String(index)}_${key}_ellipsis`"
+    destroyTooltipOnHide
   >
     <template #title v-if="newProps.column.type.props.isShow ?? true">
       {{ isVNode(newProps.text) ? '' : newProps.text }}

@@ -2,6 +2,7 @@
   <Tooltip
     :id="`tb_${String(index)}_${key}_tooltip`"
     placement="top"
+    destroyTooltipOnHide
   >
     <template #title v-if="tooltipDes">
       {{ isVNode(tooltipDes) ? '' : tooltipDes}}

@@ -65,6 +65,7 @@
         <span v-if="curProps.showTooltip" :class="[modalPrefixCls + '-tooltip']">
           <Tooltip
             overlayClassName="scTooltip-white"
+            destroyTooltipOnHide
           >
             <template #title>
               {{ curProps.tooltipDes }}

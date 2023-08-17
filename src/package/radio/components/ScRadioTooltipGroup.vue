@@ -16,6 +16,7 @@
           v-bind="item.toolOptions"
           overlayClassName="scTooltip-white"
           :overlayStyle="{}"
+          destroyTooltipOnHide
         >
           <template #title>
             {{item.tooltipDes}}

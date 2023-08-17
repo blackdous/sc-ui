@@ -1,5 +1,8 @@
 <template>
-  <Tooltip v-bind="tooltipProps">
+  <Tooltip
+    v-bind="tooltipProps"
+    destroyTooltipOnHide
+  >
     <template #title v-if="isTooltip && !tooltipProps.title">
       <slot v-if="$slots.tooltip" name="tooltip"></slot>
       <slot v-if="!$slots.tooltip && (!isDefaultTooltip || isHeightOver)" name="default"></slot>
@@ -30,6 +33,7 @@
               :title="null" trigger="click"
               :overlayClassName="`scEllipsis-popover ${uuid}`" 
               placement="bottomLeft"
+              destroyTooltipOnHide
               :getPopupContainer="getPopupContainer">
               <template #content>
                 <Form ref="editFormRef" :model="formState" :rules="newProps.edit.rules">

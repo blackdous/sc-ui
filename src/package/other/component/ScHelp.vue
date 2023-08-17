@@ -75,6 +75,7 @@
             title={<div style={unref(getTooltipStyle)}>{renderTitle()}</div>}
             autoAdjustOverflow={true}
             overlayStyle={unref(getOverlayStyle)}
+            destroyTooltipOnHide={true}
             placement={props.placement as 'right'}
             getPopupContainer={() => getPopupContainer()}
           >

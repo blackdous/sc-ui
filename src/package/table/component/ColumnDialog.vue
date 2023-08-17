@@ -11,6 +11,7 @@
     :afterClose="handleCancel"
     @ok="handleOk"
     v-bind="getProps"
+    destroyOnClose
   >
     <CheckoutBtnVue
       :columnList="columnList"

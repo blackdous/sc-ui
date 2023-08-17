@@ -4,6 +4,7 @@
   >
     <Tooltip
       overlayClassName="scTooltip-white"
+      destroyTooltipOnHide
     >
       <template #title>
         {{isVNode(propsRef.describe) ? '' : propsRef.describe}}

@@ -56,6 +56,7 @@
                 <template v-if="item.isDisabled && item.tooltipDes">
                   <Tooltip
                     overlayClassName = 'scTooltip-white'
+                    destroyTooltipOnHide
                   >
                     <template #title>
                       {{ item.tooltipDes }}

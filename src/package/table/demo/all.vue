@@ -132,6 +132,7 @@ for (let index = 0; index < parseInt((Math.random() * 100) + ''); index++) {
   });
 }
 dataSource.value = arr
+pagination.total = arr.length
 
 // const filtered = filteredInfo.value || {};
 const sorted = sortedInfo.value || {};
