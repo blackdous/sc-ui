@@ -28,6 +28,9 @@
     cancel-text="取消"
     ok-text="确认"
     maskClosable
+    :scrollOptions="{
+      maxHeight: '300px'
+    }"
     >
     <div>22222是文案限制长度，我是文案限制长度</div>
     <div>22222是文案限制长度，我是文案限制长度</div>
