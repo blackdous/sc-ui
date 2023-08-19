@@ -23,6 +23,14 @@
       <RadioButton value="c">可用区C</RadioButton>
     </ScRadioGroup>
   </div>
+  <div class="mb20">
+    <ScRadioGroup @change="valChange" v-model:value="value1" styleMode="btnTabs">
+      <RadioButton value="random">随机</RadioButton>
+      <RadioButton value="a">可用</RadioButton>
+      <RadioButton value="b" disabled>可用</RadioButton>
+      <RadioButton value="c">可用</RadioButton>
+    </ScRadioGroup>
+  </div>
 </template>
 
 <script setup lang="ts">
