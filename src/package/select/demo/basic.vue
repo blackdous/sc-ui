@@ -4,6 +4,23 @@
       v-model:value="value"
       @change="handleChange"
       class="aaaa"
+      tooltip-align="left"
+    >
+      <SelectOption
+        v-for="item in list"
+        :key="item.label"
+        :disabled="item.value === 4"
+        :value="item.value"
+      >
+        {{item.label}}
+      </SelectOption>
+    </ScSelect>
+  </div>
+  <div class="mt20">
+    <ScSelect
+      v-model:value="value"
+      @change="handleChange"
+      class="aaaa"
     >
       <SelectOption
         v-for="item in list"

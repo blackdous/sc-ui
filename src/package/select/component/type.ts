@@ -13,6 +13,12 @@ export const props = () => ({
       return true
     }
   },
+  tooltipAlign: {
+    type: String,
+    default () {
+      return 'right'
+    }
+  },
   isAddTooltipScrollHeight: {
     type: Boolean,
     default () {

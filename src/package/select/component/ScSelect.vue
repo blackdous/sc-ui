@@ -176,20 +176,20 @@ export default defineComponent({
         return false
       }
       const rect = event?.target?.getBoundingClientRect()
-      const { isAddTooltipScrollHeight } = props
+      const { isAddTooltipScrollHeight, tooltipAlign } = props
       const bodyScrollLeft = isAddTooltipScrollHeight ? document.documentElement.scrollLeft : 0
       const bodyScrollTop = isAddTooltipScrollHeight ? document.documentElement.scrollTop : 0
       const scrollWidth = event?.target?.scrollWidth || event?.target?.clientWidth
       const clientWidth = event?.target?.clientWidth
       if (scrollWidth > clientWidth) {
-        const posLeft = rect.left + rect.width + bodyScrollLeft + 10
+        const posLeft = tooltipAlign === 'left' ? rect.left - 252 : rect.left + rect.width + bodyScrollLeft + 10
         const posTop = rect.top + bodyScrollTop
         // const posTop = rect.top + bodyScrollTop + (rect.height / 2) - (contentHeight / 2)
         const innerText = event?.target.innerText
         const tooltipHTML = `
-            <div>
+            <div style=>
               <!---->
-              <div class="ant-tooltip ant-tooltip-placement-right scSelect-tooltip" style="left: ${posLeft}px;top: ${posTop}px; /* display: none; */">
+              <div class="ant-tooltip ${tooltipAlign === 'left' ? 'ant-tooltip-placement-left' : 'ant-tooltip-placement-right'} scSelect-tooltip" style="left: ${posLeft}px;top: ${posTop}px; /* display: none; */">
                 <div class="ant-tooltip-content">
                   <div class="ant-tooltip-arrow">
                     <span class="ant-tooltip-arrow-content"></span>
