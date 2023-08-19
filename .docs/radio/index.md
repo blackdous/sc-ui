@@ -67,6 +67,7 @@ realPath: src/package/radio/index.zh-CN.md
 | style-mode | string | - | 'scLine' | styleMode 可选值为 'scLine'|
 | triggerMultiple | boolean | false | - | 是否多次触发change事件 |
 | options | 'Array[TooltipButtonProps]' | - | - | 要展示radioGroup |
+| size | string | - | 'large' | 设置组件大小 |
 
 ```ts
   export interface TooltipButtonProps {

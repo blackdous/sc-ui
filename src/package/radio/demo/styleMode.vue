@@ -1,6 +1,22 @@
 <template>
-  <div>
+  <div class="mb20">
     <ScRadioGroup @change="valChange" v-model:value="value1" styleMode="scLine">
+      <RadioButton value="random">随机可用区</RadioButton>
+      <RadioButton value="a">可用区A</RadioButton>
+      <RadioButton value="b" disabled>可用区B</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+    </ScRadioGroup>
+  </div>
+  <div class="mb20">
+    <ScRadioGroup @change="valChange" widthSize="large" v-model:value="value1" styleMode="scLine">
+      <RadioButton value="random">随机可用区</RadioButton>
+      <RadioButton value="a">可用区A</RadioButton>
+      <RadioButton value="b" disabled>可用区B</RadioButton>
+      <RadioButton value="c">可用区C</RadioButton>
+    </ScRadioGroup>
+  </div>
+  <div class="mb20">
+    <ScRadioGroup @change="valChange" class="radio-min-width142" v-model:value="value1" styleMode="scLine">
       <RadioButton value="random">随机可用区</RadioButton>
       <RadioButton value="a">可用区A</RadioButton>
       <RadioButton value="b" disabled>可用区B</RadioButton>
@@ -21,5 +37,7 @@ const valChange = (e:Event) => {
 }
 </script>
 <style scoped>
-/* @import 'comment'; */
+.mb20 {
+  margin-bottom: 20px;
+}
 </style>

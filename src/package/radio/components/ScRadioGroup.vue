@@ -24,12 +24,16 @@ export interface TabsProps {
   /**
    * styleMode 可选值为 `'scLine'`
    */
-  styleMode?: string
+  styleMode?: string,
+  widthSize?: string
 }
 const props = withDefaults(defineProps<TabsProps>(), {
 })
 const className = computed(() => {
-  const classNames = props.styleMode ? [props.styleMode] : []
-  return classNames
+  // const classNames = props.styleMode ? [props.styleMode] : []
+  return [
+    props.styleMode ? props.styleMode : undefined,
+    props.widthSize === 'large' ? 'radio-min-width142' : undefined
+  ]
 })
 </script>

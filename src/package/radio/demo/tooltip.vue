@@ -16,6 +16,24 @@
     >
     </ScRadioTooltipGroup>
   </div>
+  <div class="mb20">
+    <ScRadioTooltipGroup 
+    widthSize="large"
+      v-model:value="value2" 
+      :options="radioList"
+      @change="handleChange1"
+    >
+    </ScRadioTooltipGroup>
+  </div>
+  <div class="mb20">
+    <ScRadioTooltipGroup 
+      class="radio-min-width142"
+      v-model:value="value2" 
+      :options="radioList"
+      @change="handleChange1"
+    >
+    </ScRadioTooltipGroup>
+  </div>
 </template>
 
 <script setup lang="ts">

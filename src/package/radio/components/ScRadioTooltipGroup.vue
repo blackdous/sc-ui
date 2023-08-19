@@ -1,9 +1,10 @@
 <template>
   <ScRadioGroup 
     styleMode="scLine"
+    v-bind="$attrs"
     v-model:value="radioValue"
     @change="handleChange"
-    :class="[props.triggerMultiple ? 'triggerMultiple' : '']"
+    :class="[$attrs.class, props.triggerMultiple ? 'triggerMultiple' : '', props.widthSize === 'large' ? 'radio-min-width142' : undefined]"
   >
     <RadioButton
       v-for="item in props.options"
@@ -55,7 +56,8 @@ export interface TooltipButtonProps {
   label?: string,
   value?: string | number,
   disabled?: boolean,
-  overlayClassName?: string
+  overlayClassName?: string,
+  widthSize?: string
 }
 
 const props = defineProps({
@@ -72,7 +74,8 @@ const props = defineProps({
     default: () => {
       return false
     }
-  }
+  },
+  widthSize: String
 })
 
 const emits = defineEmits(['update:value', 'change', 'customChange'])

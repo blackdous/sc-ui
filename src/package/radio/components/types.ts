@@ -5,5 +5,6 @@ export interface TooltipButtonProps {
   tooltipDes?: string,
   label?: string,
   value?: string | number,
-  disabled?: boolean
+  disabled?: boolean,
+  size?: string
 }
