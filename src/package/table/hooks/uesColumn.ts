@@ -16,7 +16,7 @@ export interface GetColumnsParams {
 export function useColumn (
   propsRef: Ref<Recordable>,
   fetchParams?: Ref<Recordable>,
-  props?: Ref<Recordable>
+  props?: Recordable
 ) {
   const customComponentKey = ref<string[]>(['tdCopy', 'tdHandle', 'tdEllipsis', 'tdStatus'])
   const customComponentHeaderKey = ref<string[]>(['thDescribe', 'thUnit'])
@@ -330,7 +330,7 @@ export function useColumn (
     getFetchFilter,
     customComponentKey,
     customComponentHeaderKey,
-    showSortTitle,
+    // showSortTitle,
     getRowClassName,
     getTypeComponent,
     getTitleComponent,

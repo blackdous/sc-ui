@@ -7,12 +7,12 @@ const isBoolean = (source:any) => {
   return Object.prototype.toString.call(source) === '[object Boolean]'
 }
 
-export function usePagination(refProps: ComputedRef<Recordable>) {
+export function usePagination(refProps: ComputedRef<Recordable>, props: Recordable) {
   const configRef = ref<PaginationProps>({});
   const show = ref(true);
 
   watch(
-    () => unref(refProps).pagination,
+    () => props.pagination,
     (pagination) => {
       if (!isBoolean(pagination) && pagination) {
         configRef.value = {
@@ -28,7 +28,7 @@ export function usePagination(refProps: ComputedRef<Recordable>) {
   );
 
   const getPaginationInfo = computed((): PaginationProps | boolean => {
-    const { pagination } = unref(refProps);
+    const { pagination } = props;
 
     if (!unref(show) || (isBoolean(pagination) && !pagination)) {
       return false;

@@ -10,13 +10,15 @@ export function useFilter (
   selectedRowKeysRef?: Ref<Recordable[]>,
   fetchParams?: Ref<Recordable>,
   tableFilter?: ComputedRef<Recordable>,
-  getDataSourceRef?: Ref<Recordable>
+  getDataSourceRef?: Ref<Recordable>,
+  props?: Recordable
   ) {
   const createButtonOptions = ref<CreateButton>({})
   const multipleOptions = ref<Recordable>({})
   const searchOptions = ref<Recordable>({})
 
   function setMultipleAction (multipleAction: MultipleActionOptions) {
+    console.log('multipleAction: ', multipleAction);
     if (!multipleAction) {
       return multipleAction
     }
@@ -110,25 +112,25 @@ export function useFilter (
   })
 
   watch(
-    [() => selectedRowKeysRef, getDataSourceRef],
+    [() => selectedRowKeysRef?.value],
     () => {
       nextTick(() => {
-        setMultipleAction(unref(propsRef).multipleOptions as MultipleActionOptions)
+        setMultipleAction(props?.multipleOptions as MultipleActionOptions)
       })
     },
     { deep: true }
   )
 
   onMounted(() => {
-    setMultipleAction(unref(propsRef).multipleOptions as MultipleActionOptions)
+    setMultipleAction(props?.multipleOptions as MultipleActionOptions)
   })
 
   watchEffect(() => {
-    createButtonOptions.value = unref(propsRef).createButtonOptions
+    createButtonOptions.value = props?.createButtonOptions
   })
 
   watchEffect(() => {
-    setSearchOptions(unref(propsRef).searchOptions as SearchOptions)
+    setSearchOptions(props?.searchOptions as SearchOptions)
   })
 
   return {

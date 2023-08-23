@@ -148,6 +148,7 @@
             :fetchParams="fetchParams"
             v-bind="actionsOptions"
             :dataIndex="dataIndex"
+            :uuid="uuid"
             @onAction="(action) => { handle(action, record) }"
           />
         </template>
@@ -302,7 +303,7 @@ export default defineComponent({
       getPagination,
       setShowPagination,
       getShowPagination,
-    } = usePagination(newProps);
+    } = usePagination(newProps, props);
 
     const {
       expandIconFnc,
@@ -323,7 +324,7 @@ export default defineComponent({
       getSelectRowKeys,
       deleteSelectRowByKey,
       setSelectedRowKeys,
-    } = useRowSelection(newProps, tableData, emit)
+    } = useRowSelection(newProps, tableData, emit, props)
 
     const {
       actionsOptions
@@ -367,7 +368,7 @@ export default defineComponent({
       setSearchOptions,
       setMultipleAction,
       clearAll,
-    } = useFilter(newProps, selectedRowKeysRef, fetchParams, tableFilter.value, getDataSourceRef)
+    } = useFilter(newProps, selectedRowKeysRef, fetchParams, tableFilter.value, getDataSourceRef, props)
 
     const {
       customComponentKey,
@@ -377,7 +378,7 @@ export default defineComponent({
       getFilterDropdownRef,
       getFetchFilter,
       thColumn,
-      showSortTitle,
+      // showSortTitle,
       setColumns,
       getRowClassName,
       getColumns,
@@ -390,7 +391,7 @@ export default defineComponent({
       setFilterColumnChecked,
       setFilterColumnDisabled
     } = useColumn(newProps, fetchParams, props)
-    showSortTitle(newProps, uuid)
+    // showSortTitle(newProps, uuid)
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);
       fetchParams.value = {...unref(fetchParams), selectedRowKeysRef, selectedRowRef, setLoading, pagination: getPaginationInfo}

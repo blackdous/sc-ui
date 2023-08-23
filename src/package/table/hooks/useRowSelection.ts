@@ -12,12 +12,13 @@ export function useRowSelection(
   propsRef: ComputedRef<Recordable>,
   tableData: Ref<Recordable[]>,
   emit: EmitType,
+  props: Recordable
 ) {
   const selectedRowKeysRef = ref<string[]>([]);
   const selectedRowRef = ref<Recordable[]>([]);
 
   const getRowSelectionRef = computed((): TableRowSelection | null => {
-    const { rowSelection } = unref(propsRef);
+    const { rowSelection } = props;
     if (!rowSelection) {
       return null;
     }
@@ -25,7 +26,7 @@ export function useRowSelection(
     return {
       selectedRowKeys: unref(selectedRowKeysRef),
       onChange: (selectedRowKeys: string[]) => {
-        setSelectedRowKeys(selectedRowKeys);
+        setSelectedRowKeys(selectedRowKeys)
       },
       ...omit(rowSelection, ['onChange']),
     };
@@ -39,10 +40,10 @@ export function useRowSelection(
   // );
 
   watch(
-    () => unref(selectedRowKeysRef),
+    () => selectedRowKeysRef.value,
     () => {
       nextTick(() => {
-        const { rowSelection } = unref(propsRef);
+        const { rowSelection } = props;
         if (rowSelection) {
           const { onChange } = rowSelection;
           if (onChange && isFunction(onChange)) onChange(getSelectRowKeys(), getSelectRows());
@@ -57,11 +58,11 @@ export function useRowSelection(
   );
 
   const getAutoCreateKey = computed(() => {
-    return unref(propsRef).autoCreateKey && !unref(propsRef).rowKey;
+    return props.autoCreateKey && !props.rowKey;
   });
 
   const getRowKey = computed(() => {
-    const { rowKey } = unref(propsRef);
+    const { rowKey } = props;
     return unref(getAutoCreateKey) ? ROW_KEY : isFunction(rowKey) ? SELECTION_ROW_KEY : rowKey;
   });
 
@@ -71,7 +72,7 @@ export function useRowSelection(
       toRaw(unref(tableData)).concat(toRaw(unref(selectedRowRef))),
       (item) => rowKeys.includes(item[unref(getRowKey) as string]),
       {
-        children: propsRef.value.childrenColumnName ?? 'children',
+        children: props.childrenColumnName ?? 'children',
       },
     );
     const trueSelectedRows: any[] = [];
@@ -105,7 +106,7 @@ export function useRowSelection(
 
   function getSelectRows<T = Recordable>() {
     // const ret = toRaw(unref(selectedRowRef)).map((item) => toRaw(item));
-    const { rowKey } = unref(propsRef);
+    const { rowKey } = props;
     return unref(selectedRowRef).map((item: any) => {
       if (isFunction(rowKey)) {
         Reflect.deleteProperty(item, SELECTION_ROW_KEY)

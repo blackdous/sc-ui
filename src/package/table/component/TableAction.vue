@@ -9,7 +9,6 @@
         v-if="item.tooltipDes"
         overlayClassName = 'scTooltip-white'
         :disabled="item.isDisabled"
-        destroyTooltipOnHide
       >
         <template #title>
           {{ item.tooltipDes }}
@@ -40,6 +39,7 @@
         placement="bottomRight"
         v-bind="actionsOptions.dropdownProps"
         :overlayClassName="basePrefixCls + 'TableDropdown'"
+        @visibleChange="handleVisibleChange"
         >
         <!-- :visible="true" -->
         <Button
@@ -68,7 +68,6 @@
                     <template v-if="subItem.tooltipDes">
                       <Tooltip
                         overlayClassName = 'scTooltip-white'
-                        destroyTooltipOnHide
                       >
                         <template #title>
                           {{ subItem.tooltipDes }}
@@ -104,7 +103,6 @@
                 <template v-if="item.tooltipDes">
                   <Tooltip
                     overlayClassName = 'scTooltip-white'
-                    destroyTooltipOnHide
                   >
                     <template #title>
                       {{ item.tooltipDes }}
@@ -141,17 +139,10 @@
 </template>
 
 
-<script lang="ts">
-// @ts-nocheck
-export default {
-  name: 'ScTableAction',
-  inheritAttrs: false
-}
-</script>
 
 <script lang='ts' setup>
 // @ts-nocheck
-import { computed, defineProps, defineEmits, ref, unref, watch } from 'vue'
+import { computed, defineProps, defineEmits, ref, unref, watch, nextTick } from 'vue'
 import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 import type { DropdownProps } from 'ant-design-vue'
@@ -183,7 +174,8 @@ export interface ActionProps {
   record?: any,
   fetchParams?: any,
   data?: any
-  dropdownProps?: DropdownProps
+  dropdownProps?: DropdownProps,
+  uuid?: string
 }
 
 const props = withDefaults(defineProps<ActionProps>(), {
@@ -192,11 +184,15 @@ const props = withDefaults(defineProps<ActionProps>(), {
 
 const filterShow = ref([] as Array<ActionItemProps>)
 
+const defaultValue = ref(false)
+
 const actionsOptions = computed(() => {
   return props.record?.actionsOptions || { 
     showBtn: props.showBtn, 
     actions: props.actions,
-    dropdownProps: props.dropdownProps || {}
+    dropdownProps: { getPopupContainer: () => {
+      return document.querySelector(`.${props.uuid}`)
+    }, ...props.dropdownProps } || {}
   }
 })
 
@@ -205,6 +201,8 @@ const fetchParams = computed(() => {
 })
 
 const emits = defineEmits(['onAction'])
+
+const visibleRef = ref(false)
 
 const menuRef = ref()
 const placementRef = ref<string>('bottomRight')
@@ -239,7 +237,14 @@ function flapSetItem (actions: Array<ActionItemProps>) {
   return newActions
 }
 
-watch([() => props.data, () => props.actions], ([propsData, actions]) => {
+const handleVisibleChange = (visible: boolean) => {
+  visibleRef.value = visible
+  updateActionsStatus()
+}
+
+const updateActionsStatus = () => {
+  const { data, actions } = props
+  const propsData = data
   if (!actions || !propsData) {
     return false
   }
@@ -261,8 +266,14 @@ watch([() => props.data, () => props.actions], ([propsData, actions]) => {
     }})
   }
   filterShow.value = list?.filter(item => item.isShow)
+}
+
+watch([() => props.data, () => props.actions], () => {
+  if (!filterShow.value.length) {
+    updateActionsStatus()
+    defaultValue.value = true
+  }
 }, {
-  deep: true,
   immediate: true
 })
 
