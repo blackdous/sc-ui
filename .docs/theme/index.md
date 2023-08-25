@@ -13,6 +13,7 @@ realPath: src/package/theme/index.zh-CN.md
   .ant-table-fixed-header {
     .ant-table-scroll .ant-table-header {
       overflow: auto !important;
+      margin-bottom: 0!important; 
     }
   }
   .ant-table-fixed-header > .ant-table-content > .ant-table-scroll > .ant-table-body {

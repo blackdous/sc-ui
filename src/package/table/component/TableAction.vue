@@ -172,7 +172,6 @@ export interface ActionProps {
   record?: any,
   fetchParams?: any,
   data?: any
-  uuid?: any
   dropdownProps?: DropdownProps
 }
 
@@ -190,10 +189,7 @@ const actionsOptions = computed(() => {
 })
 
 const  dropdownProps = computed(() => {
-  return { getPopupContainer: () => {
-    const { uuid } = props
-      return document.querySelector(`.${uuid}`)
-    }, ...props.dropdownProps } || {}
+  return { ...props.dropdownProps } || {}
 })
 
 const fetchParams = computed(() => {

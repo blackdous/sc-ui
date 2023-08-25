@@ -148,7 +148,7 @@
             :fetchParams="fetchParams"
             v-bind="actionsOptions"
             :dataIndex="dataIndex"
-            :uuid="uuid"
+            :dropdownProps="dropdownProps"
             @onAction="(action) => { handle(action, record) }"
           />
         </template>
@@ -423,6 +423,12 @@ export default defineComponent({
       ];
       return classNames;
     });
+
+    const  dropdownProps = {
+      getPopupContainer: () => {
+          return document.querySelector(`.${uuid}`)
+        }
+    }
 
     const activeOptions = computed(() => {
       return props.activeOptions;
@@ -706,6 +712,7 @@ export default defineComponent({
       activeOptions,
       isAction,
       isRenderEmpty,
+      dropdownProps,
 
       getPaginationInfo,
       tableRef,

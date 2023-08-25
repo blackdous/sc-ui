@@ -69,7 +69,7 @@ export const ellipsisProps = () => ({
   isOnlyTips: {
     type: Boolean,
     default () {
-      return false
+      return true
     }
   },
   hrefLink: {

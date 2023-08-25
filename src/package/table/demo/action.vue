@@ -5,20 +5,28 @@
       :data-source="listData"
       :columns="columns"
       :loading="false"
-      :actionsOptions="actionProps"
       @change="handleChange"
       :create-button-options="{
         show: false
       }"
       >
       <!-- @onAction="handleAction" -->
+      <template  #action="record">
+        <TableAction
+          v-bind="actionProps"
+          :record="record"
+          :data="listData"
+        >
+
+        </TableAction>
+      </template>
     </ScTable>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ScTable } from 'sc-ui'
+import { ScTable, TableAction } from 'sc-ui'
 
 const scTableRef = ref()
 // @ts-ignore
@@ -56,9 +64,10 @@ const list = ref([
   {
     label: '创建快照',
     isShow: true,
-    loading: ({tableRef, selectedRowKeysRef}) => {
+    loading: ({record}) => {
+      // console.log('record: ', record);
       // console.log('selectedRowKeysRef: ', selectedRowKeysRef);
-      if (selectedRowKeysRef.length > 3) {
+      if (record.record.key > 13) {
         return true
       }
       return false
@@ -72,7 +81,7 @@ const list = ref([
     },
     tooltipDes: ({record}: {record: any}) => {
       // console.log('record: ', record);
-      if (record.status % 2 === 1) {
+      if (record.record.status % 2 === 1) {
         return '显示'
       }
     }
@@ -80,9 +89,10 @@ const list = ref([
   {
     label: '续费',
     isShow: true,
-    isDisabled: ({tableRef, selectedRowKeysRef}) => {
+    isDisabled: ({tableRef, record}) => {
+      // console.log('record: ', record);
       // console.log('selectedRowKeysRef: ', selectedRowKeysRef);
-      if (selectedRowKeysRef.length > 3) {
+      if (record.record.key > 15) {
         return true
       }
       return false
