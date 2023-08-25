@@ -19,7 +19,7 @@ import { ScEllipsis } from 'sc-ui'
 const str = ref<string>('1212312312312as da12312 3as dqwe 1231 12121')
 
 setTimeout(() => {
-  str.value = '1212312312312as da12312 3as dqwe 1231 1212112131231231'
+  str.value = '1212312312312as da12312 3as dqwe 1231 1212112131231231222'
 }, 3000)
 </script>
 <style>

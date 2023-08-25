@@ -66,6 +66,12 @@ export const ellipsisProps = () => ({
   copyTxt: {
     type: String
   },
+  isOnlyTips: {
+    type: Boolean,
+    default () {
+      return false
+    }
+  },
   hrefLink: {
     type: Boolean
   }

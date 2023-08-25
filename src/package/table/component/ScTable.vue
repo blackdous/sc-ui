@@ -184,7 +184,6 @@
       <template #renderEmpty>
         <EmptyVue v-if="!isRenderEmpty"></EmptyVue>
         <slot name="renderEmpty" v-else>
-          
         </slot>
       </template>
     </ConfigProvider>
@@ -730,6 +729,7 @@ export default defineComponent({
       isExpandIcon,
 
       getRowClassName,
+      setMultipleAction,
       isEmptyText,
       handleCloseAll,
       handle,

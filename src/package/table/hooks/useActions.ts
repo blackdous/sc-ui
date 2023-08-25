@@ -1,5 +1,5 @@
 
-import { ComputedRef, ref, onMounted, unref } from "vue"
+import { ComputedRef, ref, Ref, onMounted, unref, watch, nextTick } from "vue"
 
 // import { isArray, isFunction } from '../../../utils/is'
 import type { ActionProps as ActionOptions } from '../component/TableAction.vue'
@@ -12,6 +12,7 @@ const { cloneDeep } = lodash
 
 export function useActions (
   propsRef: ComputedRef<Recordable>,
+  selectedRowKeysRef?: Ref<Recordable[]>,
   ) {
     const actionsOptions = ref<Recordable>({})
 
@@ -23,15 +24,15 @@ export function useActions (
       // const newActions = flapSetItem(actions as Array<ActionItemProps>)
       actionsOptions.value = { ...Options, actions: actions }
     }
-    // watch(
-    //   [() => selectedRowKeysRef],
-    //   () => {
-    //     nextTick(() => {
-    //       setActionOptions(unref(propsRef).actionsOptions as ActionOptions)
-    //     })
-    //   },
-    //   { deep: true }
-    // )
+    watch(
+      [() => selectedRowKeysRef],
+      () => {
+        nextTick(() => {
+          setActionOptions(unref(propsRef).actionsOptions as ActionOptions)
+        })
+      },
+      { deep: true }
+    )
 
     onMounted(() => {
       setActionOptions(unref(propsRef).actionsOptions as ActionOptions)

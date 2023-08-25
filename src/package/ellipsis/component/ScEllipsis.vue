@@ -31,7 +31,7 @@
             <Popover
               v-model:visible="popoverVisible" 
               :title="null" trigger="click"
-              :overlayClassName="`scEllipsis-popover ${uuid}`" 
+              :overlayClassName="popoverClassName" 
               placement="bottomLeft"
               destroyTooltipOnHide
               :getPopupContainer="getPopupContainer">
@@ -138,6 +138,15 @@ export default defineComponent({
         props.hrefLink ? baseClass + '-href--link' : ''
       ]
     })
+
+    const popoverClassName = computed(() => {
+      return [
+        props.isOnlyTips ? baseClass + '-isOnlyTips' : '',
+        baseClass + '-popover',
+        uuid
+      ].join(' ')
+    })
+    
 
     const lineClampStyle = computed(() => {
       const cssOss = Object.create({})
@@ -289,10 +298,10 @@ export default defineComponent({
               popoverContainerDom?.removeEventListener('click', closeEditPopover)
               popoverContainerDom?.addEventListener('click', closeEditPopover)
               if (contentWidthValue.value > maxWidthValue.value) {
-                popoverDom.style.transform = `translateX(-${maxWidthValue.value + 4}px)`
+                popoverDom.style.transform = `translateX(-${maxWidthValue.value}px)`
               }
               if (contentWidthValue.value < maxWidthValue.value) {
-                popoverDom.style.transform = `translateX(-${contentWidthValue.value + 4}px)`
+                popoverDom.style.transform = `translateX(-${contentWidthValue.value}px)`
               }
             }
             clearTimeout(timer)
@@ -346,6 +355,7 @@ export default defineComponent({
       editFormRef,
       isHeightOver,
       textDefaultRef,
+      popoverClassName,
       // maxWidthValue,
       // contentWidthValue,
 

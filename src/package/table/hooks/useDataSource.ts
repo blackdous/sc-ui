@@ -364,9 +364,9 @@ export const useDataSource = (
     }, 16);
   });
 
-  // watchEffect(() => {
-  //   tableData.value = unref(dataSourceRef)
-  // })
+  watchEffect(() => {
+    tableData.value = unref(dataSourceRef)
+  })
   watch(
     () => unref(propsRef).dataSource,
     () => {
@@ -377,12 +377,6 @@ export const useDataSource = (
         }
         return item
       }));
-      !api && dataSource && (tableData.value = dataSource.map((item:any) => {
-        if (isFunction(rowKey)) {
-          item[SELECTION_ROW_KEY] = rowKey(item)
-        }
-        return item
-      }))
     },
     {
       immediate: true,

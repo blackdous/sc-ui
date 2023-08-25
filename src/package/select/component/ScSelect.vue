@@ -4,7 +4,7 @@
     uuid,
     vBind.widthSize ? baseClass + '-' + vBind.widthSize : '',
     newProps.disabled ? 'is-disabled' : '',
-    $attrs.class
+    $attrs.class,
   ]" :style="{ '--preWidth': prefixWidth || '7px', ...$attrs.style }">
     <div :class="[
       isPrefixIcon ? 'is-prefix' : ''
@@ -112,7 +112,7 @@ export default defineComponent({
       }
     })
     const dropdownClassName = computed(() => {
-      const dropdownClass = ['dropdown ' + uuid, 'scSelectDropdown', 'selectDropdown']
+      const dropdownClass = ['dropdown ' + uuid, 'scSelectDropdown', 'selectDropdown', props.tooltip ? 'is-tooltip' : '']
       if (attrs.size) {
         dropdownClass.push('dropdown-' + attrs.size)
       }

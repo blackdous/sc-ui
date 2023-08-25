@@ -43,7 +43,7 @@
     clear: both;
     // margin-left: 10px;
     font-size: 12px;
-    padding: 0 4px;
+    // padding: 0 4px;
     // background: #3F51B5;
     line-height: var(--baseHeight);
     height: 22px;
@@ -153,5 +153,10 @@
   &-text-default {
     display: block;
     overflow: hidden;
+  }
+}
+.scEllipsis-isOnlyTips {
+  .ant-form-item-has-error + .input-describe {
+    display: none;
   }
 }

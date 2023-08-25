@@ -140,8 +140,8 @@
   }
   .ant-transfer-list-content-item {
     position: relative;
-    padding: 6px 12px;
-    margin: 0 0 0 8px;
+    padding: 5px 12px;
+    margin: 0 0 2px 8px;
     border-radius: @border-r-3;
     color: @heading-color;
     .ant-checkbox-wrapper {
@@ -149,13 +149,14 @@
     }
     .ant-checkbox-wrapper-checked {
       z-index: 1;
+      color: @primary-color;
       &::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        bottom: 2px;
+        bottom: 0;
         background: @cascader-Menu-bg;
         border-radius: @border-r-3;
         pointer-events: none;
@@ -168,9 +169,20 @@
 
     }
     &:hover {
+      // background-color: transparent;
       .ant-checkbox-wrapper .ant-checkbox:not(.ant-checkbox-indeterminate):not(.ant-checkbox-checked) .ant-checkbox-inner {
         border-color: @primary-color;
       }
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   left: 0;
+      //   right: 0;
+      //   bottom: 2px;
+      //   top: 0;
+      //   background-color: @item-hover-bg;
+      //   z-index: -1;
+      // }
     }
     // .ant-checkbox-wrapper + .ant-transfer-list-content-item-text {
 

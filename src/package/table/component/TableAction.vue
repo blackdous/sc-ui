@@ -37,9 +37,8 @@
     <template v-if="filterShow.length > actionsOptions.showBtn">
       <Dropdown
         placement="bottomRight"
-        v-bind="actionsOptions.dropdownProps"
+        v-bind="dropdownProps"
         :overlayClassName="basePrefixCls + 'TableDropdown'"
-        @visibleChange="handleVisibleChange"
         >
         <!-- :visible="true" -->
         <Button
@@ -139,10 +138,9 @@
 </template>
 
 
-
 <script lang='ts' setup>
 // @ts-nocheck
-import { computed, defineProps, defineEmits, ref, unref, watch, nextTick } from 'vue'
+import { computed, defineProps, defineEmits, ref, unref, watch } from 'vue'
 import { Button, Dropdown, Menu, MenuItem, SubMenu, Tooltip } from 'ant-design-vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 import type { DropdownProps } from 'ant-design-vue'
@@ -174,8 +172,8 @@ export interface ActionProps {
   record?: any,
   fetchParams?: any,
   data?: any
-  dropdownProps?: DropdownProps,
-  uuid?: string
+  uuid?: any
+  dropdownProps?: DropdownProps
 }
 
 const props = withDefaults(defineProps<ActionProps>(), {
@@ -184,16 +182,18 @@ const props = withDefaults(defineProps<ActionProps>(), {
 
 const filterShow = ref([] as Array<ActionItemProps>)
 
-const defaultValue = ref(false)
-
 const actionsOptions = computed(() => {
   return props.record?.actionsOptions || { 
     showBtn: props.showBtn, 
-    actions: props.actions,
-    dropdownProps: { getPopupContainer: () => {
-      return document.querySelector(`.${props.uuid}`)
-    }, ...props.dropdownProps } || {}
+    actions: props.actions
   }
+})
+
+const  dropdownProps = computed(() => {
+  return { getPopupContainer: () => {
+    const { uuid } = props
+      return document.querySelector(`.${uuid}`)
+    }, ...props.dropdownProps } || {}
 })
 
 const fetchParams = computed(() => {
@@ -201,8 +201,6 @@ const fetchParams = computed(() => {
 })
 
 const emits = defineEmits(['onAction'])
-
-const visibleRef = ref(false)
 
 const menuRef = ref()
 const placementRef = ref<string>('bottomRight')
@@ -237,14 +235,7 @@ function flapSetItem (actions: Array<ActionItemProps>) {
   return newActions
 }
 
-const handleVisibleChange = (visible: boolean) => {
-  visibleRef.value = visible
-  updateActionsStatus()
-}
-
-const updateActionsStatus = () => {
-  const { data, actions } = props
-  const propsData = data
+watch([() => props.data, () => props.actions], ([propsData, actions]) => {
   if (!actions || !propsData) {
     return false
   }
@@ -266,14 +257,8 @@ const updateActionsStatus = () => {
     }})
   }
   filterShow.value = list?.filter(item => item.isShow)
-}
-
-watch([() => props.data, () => props.actions], () => {
-  if (!filterShow.value.length) {
-    updateActionsStatus()
-    defaultValue.value = true
-  }
 }, {
+  deep: true,
   immediate: true
 })
 

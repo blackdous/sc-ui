@@ -13,7 +13,7 @@
       is-inherit-parent-width
       :edit="editProps"
     >
-    浮动元素是如何定位的 浮动元111
+    浮动元素是如何定位的 浮动元1111
     </ScEllipsis>
   </div>
   <div class="mt20">
