@@ -33,7 +33,8 @@
       }"
       :multiple-options="{
         show: true,
-        options: radioList
+        options: radioList,
+        styleMode: 'btnLine'
       }"
       :search-options="{
         show: true,

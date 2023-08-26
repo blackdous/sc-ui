@@ -18,11 +18,11 @@ export function useFilter (
   const searchOptions = ref<Recordable>({})
 
   function setMultipleAction (multipleAction: MultipleActionOptions) {
-    console.log('multipleAction: ', multipleAction);
+    // console.log('multipleAction: ', multipleAction);
     if (!multipleAction) {
       return multipleAction
     }
-    const { show, options, triggerMultiple } = cloneDeep(multipleAction)
+    const { show, options, triggerMultiple, styleMode } = cloneDeep(multipleAction)
     if (!show) {
       multipleOptions.value = multipleAction
       return false
@@ -34,7 +34,7 @@ export function useFilter (
       }
       return item
     })
-    multipleOptions.value = { show, options: newmMutilpList, triggerMultiple }
+    multipleOptions.value = { show, options: newmMutilpList, triggerMultiple, styleMode }
   }
 
   function clearAll () {

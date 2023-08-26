@@ -2,6 +2,7 @@ import { h } from "vue";
 import type { ComputedRef, Ref } from 'vue';
 // import type { TableProps } from '../types/table';
 import { computed, unref, ref, toRaw } from 'vue';
+import { DoubleRightOutlined } from "@ant-design/icons-vue"
 
 const ROW_KEY = 'key'
 
@@ -67,8 +68,8 @@ export const useTableExpand = (
     const { isTreeTable } = unref(propsRef);
     if (isTreeTable) {
       if (record?.children?.length > 0 || record?.isShowExPandIcon) {
-        return h('i', {
-          class: `sc-ui sc-a-chevron-rightdouble ${expanded ? 'icon-downArrow' : 'icon-upArrow'}`,
+        return h(DoubleRightOutlined, {
+          class: `${expanded ? 'icon-downArrow' : 'icon-upArrow'}`,
           onClick: (event: Event) => {
             onExpand(record, event);
           }

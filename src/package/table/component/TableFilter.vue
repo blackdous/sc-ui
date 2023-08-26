@@ -28,6 +28,7 @@
         <ScRadioTooltipGroup
           v-model:value="multipleValue"
           :options="multipleActionOptions.options"
+          styleMode="btnLine"
           :triggerMultiple="multipleActionOptions.triggerMultiple"
           @change="radioHandle"
         />
@@ -262,6 +263,7 @@ export default defineComponent({
     })
     
     const multipleActionOptions = computed(() => {
+      console.log('props.multipleActionOptions: ', props.multipleActionOptions)
       return props.multipleActionOptions
     })
 

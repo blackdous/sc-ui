@@ -10,6 +10,16 @@
   </div>
   <div class="mb20">
     <ScRadioTooltipGroup 
+      v-model:value="value1" 
+      :options="radioList"
+      styleMode="btnLine"
+      triggerMultiple
+      @change="handleChange"
+    >
+    </ScRadioTooltipGroup>
+  </div>
+  <div class="mb20">
+    <ScRadioTooltipGroup 
       v-model:value="value2" 
       :options="radioList"
       @change="handleChange1"

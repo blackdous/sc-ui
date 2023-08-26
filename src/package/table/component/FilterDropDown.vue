@@ -28,6 +28,9 @@
                     <ScEllipsis
                       is-inherit-parent-width
                       style="max-width: 162px;"
+                      :tooltip="{
+                        placement: 'rightTop',
+                      }"
                     >
                       {{ item.label }}
                     </ScEllipsis>
@@ -41,6 +44,9 @@
                     <ScEllipsis
                       is-inherit-parent-width
                       style="max-width: 182px;"
+                      :tooltip="{
+                        placement: 'rightTop'
+                      }"
                     >
                       {{ subItem.label }}
                     </ScEllipsis>
@@ -68,6 +74,9 @@
                   <ScEllipsis
                     is-inherit-parent-width
                     style="max-width: 182px;"
+                    :tooltip="{
+                        placement: 'rightTop'
+                      }"
                   >
                     {{ item.label }}
                   </ScEllipsis>

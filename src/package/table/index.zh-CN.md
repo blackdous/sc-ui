@@ -19,7 +19,7 @@ map:
   desc="基础表格"
   >
 </demo> -->
-<!-- ## 基础组件
+## 基础组件
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -133,6 +133,7 @@ reload参数中的`action`方法，参数为`fetchParams`
 | --- | --- | --- | --- | --- |
 | show | 是否显示 | boolean | 无 | |
 | options | 展示文本 | ButtonType[] | 无 | |
+| styleMode | 用于控制radioGroup组件样式 | 'scline' / 'btnLine' | 无 | |
 
 ```ts
 interface ButtonType {
@@ -186,7 +187,7 @@ interface ButtonType {
 | 事件名称 | 说明   | 回调参数    |
 | --- | --- | --- |
 | selectChange | 搜索组件中的select组件选中时的回调 | Function(fetchPrams) |
-| searchClick | 搜索组件点击搜索icon时的回调 | Function(fetchPrams) | -->
+| searchClick | 搜索组件点击搜索icon时的回调 | Function(fetchPrams) |
 
 ## 自定义Action列
 
@@ -199,7 +200,7 @@ interface ButtonType {
   >
 </demo>
 
-<!-- ### table API
+### table API
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
@@ -963,4 +964,4 @@ export interface ActionsOptions {
   title="指定rowSelected值"
   desc="指定rowSelected值"
   >
-</demo> -->
+</demo>

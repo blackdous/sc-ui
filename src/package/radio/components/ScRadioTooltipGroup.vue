@@ -4,7 +4,7 @@
     v-bind="$attrs"
     v-model:value="radioValue"
     @change="handleChange"
-    :class="[$attrs.class, props.triggerMultiple ? 'triggerMultiple' : '', props.widthSize === 'large' ? 'radio-min-width142' : undefined]"
+    :class="[$attrs.class, props.styleMode,  props.triggerMultiple ? 'triggerMultiple' : '', props.widthSize === 'large' ? 'radio-min-width142' : undefined]"
   >
     <RadioButton
       v-for="item in props.options"
@@ -75,6 +75,7 @@ const props = defineProps({
       return false
     }
   },
+  styleMode: String,
   widthSize: String
 })
 
