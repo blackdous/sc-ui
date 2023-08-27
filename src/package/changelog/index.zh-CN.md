@@ -5,6 +5,68 @@ map:
 
 # 变更记录
 
+## [0.0.171](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.170...0.0.171) (2023-08-27)
+
+
+### Features
+
+* 更新 ScRadioGroup ScTable 样式 ([be356c5](http://gitlab.voneyun.com/frontend/sc-ui/commit/be356c51d4a6f342b711fbd6209c689724dc0105))
+* tableAction 组件单独使用 问题修复 ([064a686](http://gitlab.voneyun.com/frontend/sc-ui/commit/064a686e471ce4ee03e30937dd8230b45f3dcea1))
+
+
+
+## [0.0.170](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.169...0.0.170) (2023-08-25)
+
+
+### Features
+
+* 导出ScTable导出内部组件; 调整样式 ([1294799](http://gitlab.voneyun.com/frontend/sc-ui/commit/12947999346987881abf1439bea80e1c8129293a))
+
+
+
+## [0.0.169](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.168...0.0.169) (2023-08-23)
+
+
+### Features
+
+* 优化ScTable 组件; 更新版本到 0.0.169 ([a441114](http://gitlab.voneyun.com/frontend/sc-ui/commit/a441114f914055ede1f716fde80d367a6808caf6))
+
+
+
+## [0.0.168](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.167...0.0.168) (2023-08-21)
+
+
+### Features
+
+* scRadioGroup 组件新增 wdithSize 属性 ([f266c99](http://gitlab.voneyun.com/frontend/sc-ui/commit/f266c9958b11acd9a28aa9cb064261697090c044))
+* scRadioGroup 组件新增样式 ([285c117](http://gitlab.voneyun.com/frontend/sc-ui/commit/285c1178500b9b22e0ab97dcebe708f698c74544))
+* scSelect 新增 tooltipAlign 参数,调整tooltip 显示问题 ([2cb8288](http://gitlab.voneyun.com/frontend/sc-ui/commit/2cb8288f0b0858b3566d66216d38fd0232c8d0c6))
+
+
+
+## [0.0.167](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.166...0.0.167) (2023-08-17)
+
+
+### Bug Fixes
+
+* 修复 ScTable FilterTags 组件 自定义列标题 未显示问题 ([fd04e0a](http://gitlab.voneyun.com/frontend/sc-ui/commit/fd04e0a6282cb0098ffb5114a9cdc268f95aef9c))
+* scTable 修复columns 只支持传入 响应式对象值; 传入普通数组 请使用 setColumns 实例方法 ([c08990e](http://gitlab.voneyun.com/frontend/sc-ui/commit/c08990e3c355f6265c2fea94f43b8f34a5cda05b))
+
+
+### Features
+
+* 优化 所有 tooltip popver 组件; 不显示清除dom 结构 ([24d2007](http://gitlab.voneyun.com/frontend/sc-ui/commit/24d2007ad2c2c3d1637209b10e12a8796db043c1))
+* scEllipsis 组件调整edit 关闭 ([ab3e9bc](http://gitlab.voneyun.com/frontend/sc-ui/commit/ab3e9bcf061122243e1943a577e34b9404b58d4a))
+
+
+
+## [0.0.166](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.165...0.0.166) (2023-08-15)
+
+
+### Bug Fixes
+
+* 修复 ScTable columns 死循环问题 ([e46c03b](http://gitlab.voneyun.com/frontend/sc-ui/commit/e46c03b6fc2dae24bbc6bfc16179ebdf8d87b2fa))
+
 ## [0.0.165](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.164...0.0.165) (2023-08-15)
 
 ### Bug Fixes
