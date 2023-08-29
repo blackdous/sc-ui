@@ -151,7 +151,13 @@ export const useDataSource = (
         //@ts-ignore
         if (Reflect.has(record, field)) row[field] = record[field];
       }
-      return row;
+      for (const field in record) {
+        if (!Reflect.has(record, field)) {
+          //@ts-ignore
+          row[field] = record[field]
+        }
+      }
+      return row
     }
   }
 

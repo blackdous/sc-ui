@@ -5,6 +5,7 @@ import tableAction from "./component/TableAction.vue"
 import columnDialog from "./component/ColumnDialog.vue"
 import empty from "./component/Empty.vue"
 import filterTags from "./component/FilterTags.vue"
+import filterDropDown from "./component/FilterDropDown.vue"
 
 export * from './types/table'
 export * from './types/pagination'
@@ -17,3 +18,4 @@ export const Copy = withInstall(TdCopy)
 export const ColumnDialog = withInstall(columnDialog)
 export const Empty = withInstall(empty)
 export const FilterTags = withInstall(filterTags)
+export const FilterDropDown = withInstall(filterDropDown)

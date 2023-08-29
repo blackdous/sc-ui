@@ -8,7 +8,7 @@ import { ScTabs } from './package/tabs'
 import { ScRadioGroup, ScRadioTooltipGroup } from './package/radio'
 import { ScAlert } from './package/alert'
 import { ScModal, useModalContext, useModal, useModalInner } from './package/modal'
-import { ScTable, useTable, Copy, TableAction, ColumnDialog, Empty, FilterTags } from './package/table'
+import { ScTable, useTable, Copy, TableAction, ColumnDialog, Empty, FilterTags, FilterDropDown } from './package/table'
 import { ScLoading, useLoading } from './package/loading'
 import { ScButton } from './package/button'
 import { ScInputNumber } from './package/inputNumber'
@@ -82,6 +82,7 @@ const components = [
 
   ScTable,
   FilterTags,
+  FilterDropDown,
   Copy,
   TableAction,
   ColumnDialog,
@@ -158,6 +159,7 @@ export {
 
   ScTable,
   FilterTags,
+  FilterDropDown,
   
   Copy,
   TableAction,
