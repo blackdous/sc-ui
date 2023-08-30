@@ -9,7 +9,7 @@
     :show-cancel-btn="false"
     @ok="handleOk1"
     @cancel="handleCancel"
-    :loading="false"
+    :loading="true"
     maskClosable
 
   >
