@@ -1,6 +1,6 @@
 <template>
   <span @click="handle">
-    {{ isEmptyText(newProps.text) ? '--' : newProps.column.statusChange(newProps.text) }}
+    {{ isEmptyText(newProps.text) ? '-' : newProps.column.statusChange(newProps.text) }}
   </span>
 </template>
 

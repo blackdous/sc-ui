@@ -26,7 +26,7 @@ import { computed, defineComponent, isVNode } from 'vue'
 import { Tooltip } from 'ant-design-vue'
 
 import TdCopy from './TdCopy.vue'
-// import { isEmptyText } from '../../../../utils/is'
+import { isEmptyText } from '../../../../utils/is'
 
 const props = () =>({
   column: {
@@ -78,10 +78,12 @@ export default defineComponent({
       return names
     })
 
+    console.log('isEmptyText(props.text): ', isEmptyText(props.text));
     const newProps = computed(() => {
       return {
         ...props,
-        copyText: String(props.text) || props.text
+        copyText: String(props.text) || props.text,
+        text: !isEmptyText(props.text) ? '-' : props.text
       }
     })
 

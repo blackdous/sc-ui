@@ -1,72 +1,47 @@
 <template>
-  <Modal
-    :class="className"
-    v-bind="getBindValue"
-    v-model:visible="visibleRef"
-    ref="modalRef"
-    >
+  <Modal :class="className" v-bind="getBindValue" v-model:visible="visibleRef" ref="modalRef">
     <!-- :style="{'--model-width': getBindValue.width}" -->
 
     <template #[item]="data" v-for="item in ['default']">
-      <div 
-        v-if="curProps.type && !$slots.infoText" 
-        :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + curProps.type]"
-      >
+      <div v-if="curProps.type && !$slots.infoText"
+        :class="[modalPrefixCls + '-status', modalPrefixCls + '-' + curProps.type]">
         <span v-if="props.type" :class="[modalPrefixCls + '-status-icon']">
           <InfoCircleFilled v-if="curProps.type === 'info'" />
           <CheckCircleFilled v-else-if="curProps.type === 'success'" />
           <ExclamationCircleFilled v-else-if="curProps.type === 'warning'" />
           <ExclamationCircleFilled v-else-if="curProps.type === 'error'" />
         </span>
-        <template
-          v-if="isArray(curProps.infoDes)"
-        >
-        <div>
-          <p
-            :class="[modalPrefixCls + '-txt']"
-            v-for="item in (curProps.infoDes || [])"
-          >
-            {{ item }}
-          </p>
-        </div>
+        <template v-if="isArray(curProps.infoDes)">
+          <div>
+            <p :class="[modalPrefixCls + '-txt']" v-for="item in (curProps.infoDes || [])">
+              {{ item }}
+            </p>
+          </div>
         </template>
-        <p
-          v-else
-          :class="[modalPrefixCls + '-txt']"
-        >
+        <p v-else :class="[modalPrefixCls + '-txt']">
           {{ curProps.infoDes }}
         </p>
       </div>
       <template v-else="$slots.infoText">
-          <slot name="infoText"></slot>
-        </template>
-      <div :class="[modalPrefixCls + '-content']">
-        <ScScrollbar
-          ref="scrollBarRef"
-          v-bind="scrollbarProps"
-          :fullscreen="false"
-          :loading-tip="getBindValue.loadingText || '加载中...'"
+        <slot name="infoText"></slot>
+      </template>
+      <div :class="[modalPrefixCls + '-content']" v-loading="getBindValue.loading" :loading-tip="getBindValue.loadingText || '加载中...'">
+        <ScScrollbar ref="scrollBarRef" v-bind="scrollbarProps" :fullscreen="false"
         >
-          <slot :name="item" v-bind="data || {}" ></slot>
+          <slot :name="item" v-bind="data || {}"></slot>
         </ScScrollbar>
       </div>
     </template>
-    
+
     <template #title>
-      <header
-        ref="modalTitleRef"
-        :class="{'draggable-event': curProps?.isDraggable}"
-        v-if="curProps.title || isSlotTitle"
-      >
+      <header ref="modalTitleRef" :class="{ 'draggable-event': curProps?.isDraggable }"
+        v-if="curProps.title || isSlotTitle">
         <slot name="title" v-if="isSlotTitle"></slot>
         <span v-else>
           {{ curProps.title }}
         </span>
         <span v-if="curProps.showTooltip" :class="[modalPrefixCls + '-tooltip']">
-          <Tooltip
-            overlayClassName="scTooltip-white"
-            destroyTooltipOnHide
-          >
+          <Tooltip overlayClassName="scTooltip-white" destroyTooltipOnHide>
             <template #title>
               {{ curProps.tooltipDes }}
             </template>
@@ -79,30 +54,18 @@
     <template #footer v-if="curProps.footer !== null">
       <div :class="footerClassName" v-if="!isSlotFooter">
         <slot name="insertFooter"></slot>
-        <ScButton
-          v-if="curProps.showCancelBtn"
-          :class="[modalPrefixCls + '-footer__cancel']"
-          status="info"
-          v-bind="{
-            ...curProps.cancelButtonProps, 
-            type: undefined, 
-            disabled: curProps?.cancelButtonProps?.disabled || curProps?.onCancelDisable || curProps.confirmLoading
-          }"
-          title=""
-          @click="closeVisible"
-        >
+        <ScButton v-if="curProps.showCancelBtn" :class="[modalPrefixCls + '-footer__cancel']" status="info" v-bind="{
+          ...curProps.cancelButtonProps,
+          type: undefined,
+          disabled: curProps?.cancelButtonProps?.disabled || curProps?.onCancelDisable || curProps.confirmLoading
+        }" title="" @click="closeVisible">
           {{ curProps.cancelText }}
         </ScButton>
-        <ScButton
-          v-if="curProps.showOkBtn"
-          :loading="loadingRef || curProps.confirmLoading"
+        <ScButton v-if="curProps.showOkBtn" :loading="loadingRef || curProps.confirmLoading"
           :class="[modalPrefixCls + '-footer__ok']"
-          v-bind="{...curProps.okButtonProps, type: undefined, disabled: curProps?.okButtonProps?.disabled || curProps?.onOkDisable}"
-          type="primary"
-          title=""
-          @click="$event => handleOk()"
-        >
-          {{curProps.okText}}
+          v-bind="{ ...curProps.okButtonProps, type: undefined, disabled: curProps?.okButtonProps?.disabled || curProps?.onOkDisable }"
+          type="primary" title="" @click="$event => handleOk()">
+          {{ curProps.okText }}
         </ScButton>
         <slot name="afterFooter"></slot>
       </div>
@@ -110,17 +73,10 @@
     </template>
 
     <template #closeIcon>
-      <i 
-        :class="['sc-ui', 'sc-guanbi', curProps.confirmLoading || loadingRef ? 'not-allow' : '']" 
-        v-if="!isClose"
-        @click="closeVisible"
-      >
+      <i :class="['sc-ui', 'sc-guanbi', curProps.confirmLoading || loadingRef ? 'not-allow' : '']" v-if="!isClose"
+        @click="closeVisible">
       </i>
-      <span 
-        v-else
-        :class="[curProps.confirmLoading || loadingRef ? 'not-allow' : '']"
-        @click="closeVisible"
-      >
+      <span v-else :class="[curProps.confirmLoading || loadingRef ? 'not-allow' : '']" @click="closeVisible">
         <slot name="closeIcon"></slot>
       </span>
     </template>
@@ -169,14 +125,14 @@ export default defineComponent({
   directives: {
     loading: LoadingDirective
   },
-  setup (props, { slots, attrs, emit, expose}) {
+  setup(props, { slots, attrs, emit, expose }) {
     const modalPrefixCls = basePrefixCls + 'Modal'
     const uuid = modalPrefixCls + buildUUID()
     // const emit = defineemit(['update:visible', 'dragChange', 'register', 'visible-change', 'cancel'])
     const vBind = computed(() => {
       return props
     })
-    
+
     const visibleRef = ref(false)
     const propsRef = ref()
     const scrollbarRef = ref()
@@ -195,7 +151,7 @@ export default defineComponent({
       }
     })
     const getBindValue = computed((): Recordable => {
-      const filterKey =  ['title', 'footer', 'cancelButtonProps', 'okButtonProps','cancelText', 'okText']
+      const filterKey = ['title', 'footer', 'cancelButtonProps', 'okButtonProps', 'cancelText', 'okText']
       const newProps = Object.entries(unref(curProps)).reduce((pre, next) => {
         if (filterKey.includes(next[0])) {
           return {
@@ -218,10 +174,10 @@ export default defineComponent({
       };
       const { footer, showCancelBtn, showOkBtn, title } = unref(curProps)
       if (
-          footer === null ||
-          footer === 'null' ||
-          (!showCancelBtn && !showOkBtn)
-        ) {
+        footer === null ||
+        footer === 'null' ||
+        (!showCancelBtn && !showOkBtn)
+      ) {
         attr.footer = null
       }
       if (
@@ -237,7 +193,7 @@ export default defineComponent({
           // @ts-ignore
           attr.width = pxToRem(newProps.width)
           // @ts-ignore
-        } else if (String(newProps.width).includes('%')){
+        } else if (String(newProps.width).includes('%')) {
           // @ts-ignore
           attr.width = newProps.width
         } else {
@@ -253,7 +209,7 @@ export default defineComponent({
       return {
         ...scrollOptions,
         // @ts-ignore
-        maxHeight: scrollOptions?.maxHeight ? scrollOptions?.maxHeight :  maxHeight.value,
+        maxHeight: scrollOptions?.maxHeight ? scrollOptions?.maxHeight : maxHeight.value,
         // @ts-ignore
         // height: scrollOptions?.maxHeight ? scrollOptions?.maxHeight :  maxHeight.value
       }
@@ -270,7 +226,7 @@ export default defineComponent({
 
     const footerClassName = computed(() => {
       const footerClassNames = [modalPrefixCls + '-footer']
-      switch(unref(vBind).footerAlign) {
+      switch (unref(vBind).footerAlign) {
         case 'left':
           footerClassNames.push('text-left')
           break;
@@ -331,9 +287,9 @@ export default defineComponent({
       try {
         if (onOk && isFunction(onOk)) {
           const ret = onOk()
-          if(ret && ret.then) {
+          if (ret && ret.then) {
             loadingRef.value = true
-            ret.then((res:any) => {
+            ret.then((res: any) => {
               loadingRef.value = false
               if (isConfirm) {
                 visibleRef.value = false
@@ -344,8 +300,8 @@ export default defineComponent({
             })
           } else {
             if (isConfirm) {
-                visibleRef.value = false
-              }
+              visibleRef.value = false
+            }
           }
         } else {
           if (isConfirm) {
@@ -370,10 +326,10 @@ export default defineComponent({
 
     const updateMaxHeight = () => {
       if (window) {
-        const headerHeight:number = document.querySelector('.' + uuid + ' .ant-modal-header')?.scrollHeight || 0
-        const footerHeight:number = document.querySelector('.' + uuid + ' .ant-modal-footer')?.scrollHeight || 0
-        const alertHeight:number = (document.querySelector('.' + uuid + ' .scModal-status')?.scrollHeight || 0) + 4
-        const innerHeightView:number = (window && window?.innerHeight) || 0
+        const headerHeight: number = document.querySelector('.' + uuid + ' .ant-modal-header')?.scrollHeight || 0
+        const footerHeight: number = document.querySelector('.' + uuid + ' .ant-modal-footer')?.scrollHeight || 0
+        const alertHeight: number = (document.querySelector('.' + uuid + ' .scModal-status')?.scrollHeight || 0) + 4
+        const innerHeightView: number = (window && window?.innerHeight) || 0
         maxHeight.value = innerHeightView - headerHeight - footerHeight - alertHeight - 88 + 'px'
       }
     }
@@ -418,7 +374,7 @@ export default defineComponent({
       setModalProps,
       scrollbarRef
     })
-    
+
     return {
       uuid,
       className,

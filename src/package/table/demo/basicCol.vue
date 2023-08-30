@@ -103,7 +103,7 @@ for(let i = 10; i < 12; i++) {
     age: i,
     age2: i,
     age3: i,
-    address: 'New London',
+    address: '',
   })
 }
 

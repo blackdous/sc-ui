@@ -15,7 +15,7 @@
     <span
       v-else
       type="text"
-      >--</span
+      >-</span
     >
   </span>
 </template>
