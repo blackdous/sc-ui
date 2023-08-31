@@ -338,6 +338,9 @@ function PickerPanel<DateType>() {
               onChange?.[1]?.(date);
             }
             if (isFunction(onChange)) {
+              if (pickerType === 'rangePicker') {
+                return false
+              }
               onChange(date);
             }
             // onChange(date);
@@ -475,6 +478,7 @@ function PickerPanel<DateType>() {
           onPanelChange: onInternalPanelChange,
           disabledDate,
         };
+        // if (props.pickerType === '')
         delete pickerProps.onChange;
         delete pickerProps.onSelect;
         switch (mergedMode.value) {

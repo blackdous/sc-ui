@@ -23,8 +23,6 @@
       <p>日期区间选择器 -- 日</p>
       <ScRangePicker
         v-model:value="dateReactive.date"
-        picker="year"
-        @change="onChange"
       >
       </ScRangePicker>
     </div>
