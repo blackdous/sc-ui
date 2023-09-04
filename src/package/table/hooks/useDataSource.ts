@@ -386,6 +386,7 @@ export const useDataSource = (
     },
     {
       immediate: true,
+      deep: true
     },
   )
   return {

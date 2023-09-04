@@ -414,6 +414,22 @@ for(let i = 10; i < 21; i++) {
   })
 }
 
+setTimeout(() => {
+  sourceData.list.push({
+    key: '222222222211111111',
+    name: 'John Brown222222222211111111',
+    age: '222222222211111111',
+    tagOptions: {
+      type: 'light',
+      status: 'warning',
+      tooltipDes: 'New London LondonNew London London'
+    },
+    statusStr: 2,
+    address: 'New London London',
+    addressDesc: 'New London London London LondonNew London LondonNew London LondonNew London London'
+  })
+}, 1500)
+
 
 const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
   {
