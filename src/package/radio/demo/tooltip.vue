@@ -4,6 +4,16 @@
       v-model:value="value1" 
       :options="radioList"
       triggerMultiple
+      radioType="Radio"
+      @change="handleChange"
+    >
+    </ScRadioTooltipGroup>
+  </div>
+  <div class="mb20">
+    <ScRadioTooltipGroup 
+      v-model:value="value1" 
+      :options="radioList"
+      triggerMultiple
       @change="handleChange"
     >
     </ScRadioTooltipGroup>
@@ -70,7 +80,6 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
   },
   {
     toolOptions: {},
-    tooltipDes: "测试tooltip",
     label: '按钮C',
     value: 'c'
   }

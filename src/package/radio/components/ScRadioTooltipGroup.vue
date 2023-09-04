@@ -4,35 +4,66 @@
     v-bind="$attrs"
     v-model:value="radioValue"
     @change="handleChange"
-    :class="[$attrs.class, props.styleMode,  props.triggerMultiple ? 'triggerMultiple' : '', props.widthSize === 'large' ? 'radio-min-width142' : undefined]"
+    :class="[$attrs.class, props.styleMode, 'is' + props.radioType,  props.triggerMultiple ? 'triggerMultiple' : '', props.widthSize === 'large' ? 'radio-min-width142' : undefined]"
   >
-    <RadioButton
-      v-for="item in props.options"
-      :key="item.value"
-      :value="item.value"
-      :disabled="item.disabled"
-    >
-      <template v-if="item.tooltipDes">
-        <Tooltip 
-          v-bind="item.toolOptions"
-          overlayClassName="scTooltip-white"
-          :overlayStyle="{}"
-          destroyTooltipOnHide
-        >
-          <template #title>
-            {{item.tooltipDes}}
-          </template>
+    <template v-if="props.radioType === 'RadioButton'">
+      <RadioButton
+        v-for="item in props.options"
+        :key="item.value"
+        :value="item.value"
+        :disabled="item.disabled"
+      >
+        <template v-if="item.tooltipDes">
+          <Tooltip 
+            v-bind="item.toolOptions"
+            overlayClassName="scTooltip-white"
+            :overlayStyle="{}"
+            destroyTooltipOnHide
+          >
+            <template #title>
+              {{item.tooltipDes}}
+            </template>
+            <span class="triggerMultiple-item" @click="() => { handleClick(item) }">
+              {{item.label}}
+            </span>
+          </Tooltip>
+        </template>
+        <template v-else>
           <span class="triggerMultiple-item" @click="() => { handleClick(item) }">
             {{item.label}}
           </span>
-        </Tooltip>
-      </template>
-      <template v-else>
-        <span class="triggerMultiple-item" @click="() => { handleClick(item) }">
-          {{item.label}}
-        </span>
-      </template>
-    </RadioButton>
+        </template>
+      </RadioButton>
+    </template>
+    <template v-else>
+      <Radio
+        v-for="item in props.options"
+        :key="item.value"
+        :value="item.value"
+        :disabled="item.disabled"
+      >
+        <template v-if="item.tooltipDes">
+          <Tooltip 
+            v-bind="item.toolOptions"
+            overlayClassName="scTooltip-white"
+            :overlayStyle="{}"
+            destroyTooltipOnHide
+          >
+            <template #title>
+              {{item.tooltipDes}}
+            </template>
+            <span class="isRadioTooltip" @click="() => { handleClick(item) }">
+              {{item.label}}
+            </span>
+          </Tooltip>
+        </template>
+        <template v-else>
+          <span @click="() => { handleClick(item) }">
+            {{item.label}}
+          </span>
+        </template>
+      </Radio>
+    </template>
   </ScRadioGroup>
 </template>
 
@@ -45,7 +76,7 @@ export default {
 <script lang='ts' setup name="ScRadioTooltipGroup">
 import { ref, defineProps, defineEmits, watch } from 'vue'
 import type { Ref } from 'vue'
-import { RadioButton, Tooltip } from 'ant-design-vue'
+import { RadioButton, Tooltip, Radio } from 'ant-design-vue'
 import type { TooltipProps } from 'ant-design-vue'
 
 import ScRadioGroup from './ScRadioGroup.vue'
@@ -73,6 +104,12 @@ const props = defineProps({
     type: Boolean,
     default: () => {
       return false
+    }
+  },
+  radioType: {
+    type: String,
+    default: () => {
+      return 'RadioButton'
     }
   },
   styleMode: String,
