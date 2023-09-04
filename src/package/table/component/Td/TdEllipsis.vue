@@ -78,7 +78,6 @@ export default defineComponent({
       return names
     })
 
-    console.log('isEmptyText(props.text): ', isEmptyText(props.text));
     const newProps = computed(() => {
       return {
         ...props,

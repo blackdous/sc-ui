@@ -153,6 +153,12 @@ export default defineComponent({
             if (tooltip) {
               showTooltip()
             }
+            nextTick(() => {
+              const virtualListDom = document.querySelector(`.${uuid} .rc-virtual-list-holder div`)
+              if (virtualListDom?.style?.height) {
+                virtualListDom.style.marginRight = '4px'
+              }
+            })
           })
 
         })

@@ -10,7 +10,7 @@ realPath: src/package/transfer/index.zh-CN.md
 
 ## 组件类型
 
-### 1. 默认状态
+## 默认状态
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -19,7 +19,7 @@ realPath: src/package/transfer/index.zh-CN.md
   >
 </demo>
 
-### 2. 带搜索框
+## 带搜索框
 
 <demo src="./demo/search.vue"
   language="vue"
@@ -28,7 +28,7 @@ realPath: src/package/transfer/index.zh-CN.md
   >
 </demo>
 
-### 3. 结合树结构使用
+## 结合树结构使用
 
 <demo src="./demo/tree.vue"
   language="vue"
@@ -37,11 +37,20 @@ realPath: src/package/transfer/index.zh-CN.md
   >
 </demo>
 
-### 4. Describe 组件
+## Describe 组件
 
 <demo src="./demo/describe.vue"
   language="vue"
   title="Describe 组件"
   desc="Describe 组件"
+  >
+</demo>
+
+## Radio 组件
+
+<demo src="./demo/radio.vue"
+  language="vue"
+  title="Radio 组件"
+  desc="Radio 组件"
   >
 </demo>

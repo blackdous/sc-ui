@@ -154,13 +154,40 @@
   min-height: 20px;
   line-height: 20px;
   font-weight: 400;
+  padding-bottom: 4px;
 }
 .ant-form-item-explain.ant-form-item-explain-error {
   color: #E34D59;
 }
-.ant-form-item-has-error .ant-input, 
-.ant-form-item-has-error .ant-input-affix-wrapper, 
-.ant-form-item-has-error .ant-input:hover, 
-.ant-form-item-has-error .ant-input-affix-wrapper:hover {
-  border-color: #E34D59;
+// .ant-form-item-has-error .ant-input, 
+// .ant-form-item-has-error .ant-input-affix-wrapper, 
+// .ant-form-item-has-error .ant-input:hover, 
+// .ant-form-item-has-error .ant-input-affix-wrapper:hover {
+//   border-color: #E34D59;
+// }
+.ant-form-item-has-error {
+  .ant-input,
+  .ant-input-affix-wrapper,
+  .ant-input:hover,
+  .ant-input-affix-wrapper:hover {
+    border-color: #E34D59;
+  }
+  .ant-select-arrow {
+    color: #E34D59;
+    &:hover,
+    &:focus {
+      .sc-you {
+        color: #E34D59;
+      }
+    }
+    .sc-you {
+      color: #E34D59;
+    }
+  }
+  .ant-select:not(.ant-pagination-options-size-changer).ant-select:not(.ant-select-disabled):hover .ant-select-arrow .sc-you {
+    color: #E34D59;
+  }
+  .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+    box-shadow: 0 0 0 2px rgba(227,77,89,.2);
+  }
 }

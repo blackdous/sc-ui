@@ -69,7 +69,8 @@ export const useTableExpand = (
     if (isTreeTable) {
       if (record?.children?.length > 0 || record?.isShowExPandIcon) {
         return h(DoubleRightOutlined, {
-          class: `${expanded ? 'icon-downArrow' : 'icon-upArrow'}`,
+          // class: `${expanded ? 'icon-downArrow' : 'icon-upArrow'}`,
+          class: `${expanded ? 'icon-upArrow' : ''}`,
           onClick: (event: Event) => {
             onExpand(record, event);
           }

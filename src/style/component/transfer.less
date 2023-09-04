@@ -173,25 +173,48 @@
       .ant-checkbox-wrapper .ant-checkbox:not(.ant-checkbox-indeterminate):not(.ant-checkbox-checked) .ant-checkbox-inner {
         border-color: @primary-color;
       }
-      // &::after {
-      //   content: '';
-      //   position: absolute;
-      //   left: 0;
-      //   right: 0;
-      //   bottom: 2px;
-      //   top: 0;
-      //   background-color: @item-hover-bg;
-      //   z-index: -1;
-      // }
     }
-    // .ant-checkbox-wrapper + .ant-transfer-list-content-item-text {
-
-    // }
   }
-  .ant-tree li {
-    // padding: 6px 0;
+  .ant-tree {
     .ant-tree-node-content-wrapper.ant-tree-node-selected {
-      background-color: @cascader-Menu-bg;
+      position: relative;
+      &::before {
+        background-color: @cascader-Menu-bg;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -24px;
+        right: 0;
+        height: 100%;
+        z-index: 0;
+        border-radius: 3px;
+      }
+      & > .ant-tree-title {
+        position: relative;
+        z-index: 1;
+      }
+    }
+    .ant-tree-checkbox {
+      z-index: 1;
+    }
+    li .ant-tree-node-content-wrapper:hover {
+      position: relative;
+      background-color: transparent;
+      &::before {
+        background-color: #f5f5f5;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -24px;
+        right: 0;
+        height: 100%;
+        z-index: 0;
+        border-radius: 3px ;
+      }
+      & > .ant-tree-title {
+        position: relative;
+        z-index: 1;
+      }
     }
   }
   &.ant-transfer-customize-list {
