@@ -186,6 +186,9 @@
         <slot name="renderEmpty" v-else>
         </slot>
       </template>
+      <div class="scTable-footer--info" v-if="$slots.footerInfo">
+        <slot name="footerInfo"></slot>
+      </div>
     </ConfigProvider>
   </div>
 </template>
@@ -412,14 +415,15 @@ export default defineComponent({
       }
     })
     const className = computed(() => {
-      const { scroll } = newProps.value
+      const { scroll, pagination } = newProps.value
       // console.log('scroll: ', scroll, scroll.y);
       const classNames = [
         tablePrefixCls,
         uuid,
         scroll?.y ? 'not-table-scroll-empty' : '',
         tableScrollHeaderClass.value,
-        (antLocale || {}).locale === 'zh-cn' ? `${tablePrefixCls}-zh`: ''
+        (antLocale || {}).locale === 'zh-cn' ? `${tablePrefixCls}-zh`: '',
+        slots?.footerInfo && pagination !== false ? 'isFooterInfo' : ''
       ];
       return classNames;
     });

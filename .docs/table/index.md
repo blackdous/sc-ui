@@ -862,9 +862,11 @@ export interface ActiveOptions {
 | ----------------- | ---------------- | -- |
 | createButton        | 表格顶部左侧创建按钮|  |
 | multipleBtns           | 表格顶部左侧侧区域 |  |
+| multipleBtns           | 表格顶部左侧侧区域 |  |
 | search | 表格顶部右侧区域 搜索组件      |  |
 | tableActive | 表格顶部右侧区域 刷新、自定义列组件      |  |
-| renderEmpty | 表格空数据状态组件     |  | 
+| renderEmpty | 表格空数据状态组件     |  |
+| footerInfo | 底部信息栏显示内容     |  |
 
 ## 组件
 

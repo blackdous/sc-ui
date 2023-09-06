@@ -6,6 +6,19 @@
 
 .@{tableScope} {
   padding: @space-6;
+  &.isFooterInfo {
+    position: relative;
+    .scTable-footer--info {
+      position: absolute;
+      left: 0;
+      bottom: 20px;
+      padding: 0;
+    }
+  }
+  .scTable-footer--info {
+    padding: 10px 0;
+    line-height: 30px;
+  }
 }
 // .disFlex {
 //   & + .ant-table-wrapper {

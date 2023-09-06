@@ -94,6 +94,9 @@
             {{ record.statusStr === 0 ? '成功' : record.statusStr === 1 ? '错误' : '警告' }}
           </ScTag>
         </template>
+        <template #footerInfo>
+          111111111111
+        </template>
       </ScTable>
     <!-- </ConfigProvider> -->
   </div>

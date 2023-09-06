@@ -3,6 +3,7 @@
     <ScSelect
       v-model:value="value"
       @change="handleChange"
+      :placeholder="'请输入1111'"
       class="aaaa"
       tooltip-align="left"
     >
@@ -42,7 +43,7 @@
     </ScSelect>
   </div>
   <div class="mt20">
-    <ScSelect
+    <Select
       v-model:value="valueAsync"
       :allow-clear="true"
       @change="handleChange"
@@ -50,7 +51,7 @@
       <SelectOption v-for="item in listAsync" :value="item.value" :key="item.key">
         {{item.label}}
       </SelectOption>
-    </ScSelect>
+    </Select>
     <Select
       v-model:value="valueAsync"
       @change="handleChange"
@@ -76,7 +77,7 @@ import { ref, unref, onMounted, watch } from 'vue'
 import { SelectOption, Select } from 'ant-design-vue'
 import { ScSelect } from 'sc-ui'
 
-const value = ref('jack1')
+const value = ref(undefined)
 const valueAsync = ref()
 
 const handleChange = (val:string) => {
