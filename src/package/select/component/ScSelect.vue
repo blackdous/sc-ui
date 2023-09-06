@@ -170,8 +170,12 @@ export default defineComponent({
     }
 
     const computePrefixWidth = () => {
+      const selectDom = document.querySelector(`.${uuid} .ant-select-selector`) as HTMLElement
+      selectDom && (selectDom.style.display = 'none')
       const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
       prefixWidth.value = pxToRem(String((prefixDom && (prefixDom.offsetWidth || prefixDom.clientWidth || prefixDom.scrollWidth) + 24) || 0))
+      selectDom && (selectDom.style.paddingLeft = prefixWidth.value)
+      selectDom && (selectDom.style.display = 'inline-block')
     }
 
     const mouseoverEvent = (event: any) => {
@@ -241,7 +245,7 @@ export default defineComponent({
 
       const prefixDom = document.querySelector(`.${uuid} .scSelect-prefix`) as HTMLElement
       waitElementReady(prefixDom, () => {
-        computePrefixWidth()
+        Object.keys(slots).includes('prefixIcon') && computePrefixWidth()
       })
     })
 
