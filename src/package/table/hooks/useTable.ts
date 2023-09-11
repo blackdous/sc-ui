@@ -1,9 +1,11 @@
 import type { TableProps, TableActionType, FetchParams, BasicColumn, SearchOptions, MultipleActionOptions } from '../types/table'
 import type { Column } from '../types/column'
+import { FilterItem } from '../types/column'
 import type { PaginationProps } from '../types/pagination'
 import type { DynamicProps } from '../../../../types/utils'
 import type { WatchStopHandle } from 'vue'
-import { getDynamicProps } from '../../../utils'
+import { getDynamicProps, isFunction, isArray } from '../../../utils'
+import { findNode } from '../../../utils/treeHelper'
 import { ref, onUnmounted, unref, watch, toRaw } from 'vue'
 
 type Props = Partial<DynamicProps<TableProps>>;
@@ -43,7 +45,59 @@ export function useTable(tableProps?: Props): [
     stopWatch = watch(
       () => tableProps,
       () => {
-        tableProps && instance.setProps(getDynamicProps(tableProps));
+        const newTableProps = {
+          ...tableProps
+        }
+        if (tableProps?.columns) {
+          newTableProps.columns = tableProps?.columns?.map((item:any) => {
+            if (item?.type?.componentName) {
+              item.slots = {
+                ...item.slots,
+                customRender: item.type.componentName
+              }
+            }
+            if (item?.titleType?.componentName) {
+              item.slots = {
+                ...item.slots,
+                title: item.titleType.componentName
+              }
+            }
+            if (item.filterList) {
+              if (isFunction(item.filterList)) {
+                item.filterList = item.filterList({ propsRef: {}, fetchParams: {} })
+              }
+              item.slots = {
+                ...item.slots,
+                filterDropdown: 'filterDropdown',
+                filterIcon: 'filterIcon',
+              }
+              item.filtered =  item.filtered ?? true
+            }
+            if (!item.filterList && item.filters && item.filters?.length) {
+              item.filterList = (item.filters || [])?.map(item => {
+                return {
+                  label: item.text,
+                  // value: item.value,
+                  key: item.value
+                }
+              })
+              item.slots = {
+                ...item.slots,
+                filterDropdown: 'filterDropdown',
+                filterIcon: 'filterIcon'
+              }
+              item.filtered =  item.filtered ?? true
+            }
+            if (item.filteredValue && isArray(item?.filterList)) {
+              item.filterSelected = item?.filteredValue?.map((_item: any) => {
+                const newItem = findNode(item?.filterList || [], (node:FilterItem) => node.key === _item, { key: 'key' })
+                return newItem ? newItem : {}
+              })
+            }
+            return item
+          })
+        }
+        tableProps && instance.setProps(getDynamicProps(newTableProps));
       },
       {
         immediate: true,

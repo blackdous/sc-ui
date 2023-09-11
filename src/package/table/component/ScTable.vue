@@ -7,6 +7,7 @@
   <!-- :locale="newProps.langLocale" -->
     <ConfigProvider 
       :transformCellText="({ text }) => isEmptyText(text) ? text : '-'"
+      :get-popup-container="dropdownProps.getPopupContainer"
     >
       <TableFilter
         v-if="isShowFilter || (Object.keys($slots).filter((item) => ['createButton', 'search', 'multipleBtns', 'tableActive'].includes(item))).length"
@@ -460,6 +461,9 @@ export default defineComponent({
       innerPropsRef.value = { ...unref(innerPropsRef), ...props };
       if (props.multipleOptions) {
         setMultipleAction(props.multipleOptions)
+      }
+      if (props.columns) {
+        setColumns(props.columns, true)
       }
     }
 

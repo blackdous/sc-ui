@@ -125,8 +125,11 @@ export function useColumn (
     return filter
   })
 
-  function setColumns (columns: Column[]) {
+  function setColumns (columns: Column[], isSetFilter?: boolean) {
     columnsRef.value = columns
+    if (isSetFilter) {
+      filterColumn.value = columns
+    }
   }
 
   function getRowClassName(record: any, index: number) {
