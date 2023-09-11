@@ -51,6 +51,8 @@
             dropdownClassName="scDropdown"
             :placeholder="searchOptions.selectOptions?.placeholder"
             :loading="searchOptions.loading"
+            :getPopupContainer="newProps.dropdownProps?.getPopupContainer"
+
           >
             <SelectOption
               v-for="optionsItem in searchOptions.typeList"
@@ -151,7 +153,8 @@ export const TableFilterProps = () => ({
       return {
       }
     }
-  }
+  },
+  dropdownProps: Object
 })
 
 export default defineComponent({

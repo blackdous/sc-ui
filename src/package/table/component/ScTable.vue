@@ -19,6 +19,7 @@
         :filterRightStyle="newProps.filterRightStyle"
         :multipleActionOptions="multipleOptions"
         :searchOptions="searchOptions"
+        :dropdownProps="dropdownProps"
         @createClick="createHandle"
         @multipleChange="multipleChangeHandle"
         @searchClick="searchClickHandle"
@@ -166,6 +167,7 @@
             :column="column"
             :filterLoading="column.filterLoading"
             :filterSelected="column.filterSelected"
+            :dropdownProps="dropdownProps"
             @filter="(item: FilterItem[], keys: string[]) => { filterDropDownClick(item, keys, confirm, column) }"
           >
           </FilterDropDownVue>

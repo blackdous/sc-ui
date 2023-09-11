@@ -19,6 +19,7 @@ export const scFilterProps = () => ({
   overlayClassName: String,
   column: Object as PropType<Column>,
   filterSelected: Array as PropType<FilterItem[]>,
+  dropdownProps: Object,
   filterLoading: {
     type: Boolean,
     default () {

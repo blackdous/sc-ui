@@ -4,6 +4,7 @@
       :class="basePrefixCls + 'TableDropdown'"
       :visible="visible"
       :overlayClassName="overlayClassName"
+      :get-popup-container="dropdownProps?.getPopupContainer"
       >
         <Spin v-if="filterLoading"
           :indicator="indicator"
@@ -128,6 +129,10 @@ export default defineComponent({
       return props.overlayClassName
     })
 
+    const dropdownProps = computed(() => {
+      return props.dropdownProps
+    })
+
 
     const filterList = computed(() => {
       // console.log('props.filterList: ', props.filterList);
@@ -182,6 +187,7 @@ export default defineComponent({
       menuKeys,
       filterLoading,
       indicator,
+      dropdownProps,
 
       handle,
       handleDeselect
