@@ -1,4 +1,51 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.171...0.0.2) (2023-08-27)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.174...0.0.2) (2023-09-11)
+
+
+### Bug Fixes
+
+* 修复 ScSelect 组件 prefixSolt 抖动问题 ([feeb724](http://gitlab.voneyun.com/frontend/sc-ui/commit/feeb724009a0b66f22d07deb752869c29796d6d2))
+* 修复 ScTable 内置组件默认设置getPopupContainer为当前表格 ([a8149aa](http://gitlab.voneyun.com/frontend/sc-ui/commit/a8149aa30f26b4d74abc5254b8b46902ce6eeeba))
+* 修复ScTable dataSource 数组 push 不触发更新问题 ([4ba1e72](http://gitlab.voneyun.com/frontend/sc-ui/commit/4ba1e72ea89a0b2c15e55d28087af0a21987b1b7))
+* 修复useTable 方法,columns 更新无效 问题 ([85b778d](http://gitlab.voneyun.com/frontend/sc-ui/commit/85b778d708a4b7891ddfd3e3eaa591ee47962b97))
+
+
+### Features
+
+* scTable 新增 footerInfo 自定义内容 ([4ac61ff](http://gitlab.voneyun.com/frontend/sc-ui/commit/4ac61fffb87ac3992dbc939a37eb7e45b63537cf))
+
+
+
+## [0.0.174](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.173...0.0.174) (2023-09-04)
+
+
+### Bug Fixes
+
+* 修复 ScRangePicker 组件 v-model:value 值警告问题 ([8e097f5](http://gitlab.voneyun.com/frontend/sc-ui/commit/8e097f5783933292bfad4978f07687f40c2e9a64))
+
+
+### Features
+
+* 1. 调整多个组件样式 2. 调整ScTable 站看icon 交互 3. 调整ScSelect 滚动条 间距 ([5841518](http://gitlab.voneyun.com/frontend/sc-ui/commit/58415180fa3c6b63a00994c598da00d4c1346825))
+* scRadioTooltipGroup 组件, 新增 radioType 属性 ([6aff91b](http://gitlab.voneyun.com/frontend/sc-ui/commit/6aff91b5f733a7210747a27bb2ceed7e6bff3890))
+
+
+
+## [0.0.173](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.172...0.0.173) (2023-08-30)
+
+
+### Features
+
+* 调整 ScModal 新增loading 状态 ([e82ed13](http://gitlab.voneyun.com/frontend/sc-ui/commit/e82ed13379e2e2943b6bb2624d76d6a7a5e3cac8))
+* 更新版本到 0.0.173 ([9a9fe28](http://gitlab.voneyun.com/frontend/sc-ui/commit/9a9fe28ece192b30249b3d66389f6a3d7f2c4204))
+
+
+
+## [0.0.172](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.171...0.0.172) (2023-08-29)
+
+
+### Features
+
+* 调整ScTable 单条更新 值逻辑; 修改组件样式 ([c685f2a](http://gitlab.voneyun.com/frontend/sc-ui/commit/c685f2a59c2b74e5d513cd9312d23244c0ed03b5))
 
 
 

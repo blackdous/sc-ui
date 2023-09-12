@@ -17,8 +17,13 @@
     </ScEllipsis>
   </div>
   <div class="mt20">
-    <ScEllipsis style="width: 240px">
+    <ScEllipsis style="width: 40px">
       浮动元素是如何定位的
+    </ScEllipsis>
+  </div>
+  <div class="mt20">
+    <ScEllipsis style="max-width: 80px">
+      浮动元abd素 浮动元abd素
     </ScEllipsis>
   </div>
   <div class="mt20">
@@ -27,7 +32,7 @@
       copy-txt="1111111111"
     >
       <span @click="handleClick">
-        浮动元素是如何定位的
+        浮动元素是如何定位的 浮动元素是如何定位的
       </span>
     </ScEllipsis>
   </div>

@@ -1,83 +1,88 @@
 <template>
   <div class="mt-20">
-    <p>去除第一行checkbox</p>
-    <ScCascaderNew 
-      v-model="value4" 
-      allowClear
-      :props="props"
-      :options="options" 
-      popupClassName="notFirstColumnCheckbox"
-      @change="handleChange" 
-    />
+    <p>展开子节点click(默认)</p>
+    <Form
+      :model="formReactive"
+      :rules="rules"
+      ref="formRef"
+    >
+      <FormItem label="Activity type" name="type">
+        <ScCascaderNew 
+          v-model="formReactive.type" 
+          :options="options" 
+          :props="props"
+          @change="handleChange" 
+          popupClassName="bbbb"
+          popperClass="aaaa" 
+          class="testClass"
+        />
+
+      </FormItem>
+      <FormItem>
+        <Button type="primary" @click="onSubmit">submit</Button>
+      </FormItem>
+    </Form>
   </div>
-  <div class="mt-20">
-    <p>普通多选</p>
-    <ScCascaderNew 
-      v-model="value" 
-      allowClear
-      :props="{...props, emitPath: false}"
-      :options="options" 
-      @change="handleChange" 
-    />
-  </div>
-  <div class="mt-20">
-    <p>只展示最后一级多选</p>
-    <ScCascaderNew 
-      v-model="value1" 
-      allowClear
-      placeholder="只展示最后一级多选"
-      :props="props"
+  <!-- <div class="mt-20">
+    <p>展开子节点hover</p>
+    <ScCascaderNew
+      v-model="value1"
       :options="options"
-      :showAllLevels="false"
-      @change="handleChange" 
-    />
-  </div>
-  <div class="mt-20">
-    <p>只展示最后一级多选，折叠选中</p>
-    <ScCascaderNew 
-      v-model="value2" 
-      allowClear
       :props="props"
-      :options="options"
-      style="width: 300px;"
-      collapse-tags
-      @change="handleChange" 
+      @change="handleChange1"
     />
-      <!-- :showAllLevels="false" -->
-  </div>
-  <div class="mt-20">
-    <p>只展示最后一级多选，折叠选中，使用tooltip显示</p>
-    <ScCascaderNew 
-      v-model="value3" 
-      allowClear
-      :props="props"
-      :options="options"
-      collapse-tags
-      collapseTagsTooltip
-      style="width: 300px;"
-      @change="handleChange" 
-    />
-      <!-- :showAllLevels="false" -->
-  </div>
+  </div> -->
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 
-import { ScCascaderNew } from 'sc-ui';
+import { ScCascaderNew } from 'sc-ui'
+import { Form, FormItem, Button } from 'ant-design-vue'
 
-const value = ref(["table","tag","docs"])
+const value = ref(['component', 'form', 'checkbox'])
 const value1 = ref([])
-const value2 = ref([])
-const value3 = ref([])
-const value4 = ref([])
+const formRef = ref()
+
+const formReactive = reactive({
+  type: []
+})
 
 const props = {
   multiple: true
 }
 
+const rules = {
+  type: [
+    {
+      type: 'array',
+      required: true,
+      message: 'Please select at least one activity type',
+      trigger: 'change',
+    }
+  ]
+}
+
+// const props = {
+//   expandTrigger: 'hover' as const,
+// }
+
 const handleChange = (value:any) => {
-  console.log(JSON.stringify(value))
+  console.log(value)
+}
+const onSubmit = () => {
+  formRef.value
+    .validate()
+    .then(() => {
+      console.log('values', formState, toRaw(formState));
+    })
+    .catch((error: ValidateErrorEntity<FormState>) => {
+      console.log('error', error);
+    });
+};
+
+const handleChange1 = (value:any) => {
+  console.log(value)
 }
 
 const options = [
@@ -88,7 +93,6 @@ const options = [
       {
         value: 'disciplines',
         label: 'Disciplines',
-        disabled: true,
         children: [
           {
             value: 'consistency',
@@ -115,7 +119,6 @@ const options = [
           {
             value: 'side nav',
             label: 'Side Navigation',
-            disabled: true,
           },
           {
             value: 'top nav',
@@ -148,7 +151,6 @@ const options = [
           {
             value: 'icon',
             label: 'Icon',
-            disabled: true,
           },
           {
             value: 'button',
@@ -356,4 +358,11 @@ const options = [
 .mt-20 {
   margin-top: 20px;
 }
+.testClass {
+  color: rgb(0, 0, 0, 0.9);
+}
+</style>
+
+<style>
+
 </style>

@@ -1,7 +1,7 @@
 <template>
   <ScEllipsis
     style="max-width: 240px"
-    hoverSuffix
+    :hoverSuffix="false"
   >
     浮动元素是如何定位的
 <!-- 正如我们前面提到的那样，当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。

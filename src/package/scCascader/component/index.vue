@@ -93,7 +93,7 @@
             :closable="tag.closable"
             :class="[tag.isCollapseTag ? 'isTooltipTag' : '']"
             disable-transitions
-            @close="deleteTag(tag)"
+            @close="(event) => { event.stopPropagation(); deleteTag(tag); }"
           >
             <template v-if="tag.isCollapseTag === false">
               <span >{{ tag.text }}</span>
@@ -131,7 +131,7 @@
                           :hit="tag2.hitState"
                           :closable="tag2.closable"
                           disable-transitions
-                          @close="deleteTag(tag2)"
+                          @close="(event) => { event.stopPropagation(); deleteTag(tag2); }"
                         >
                           <span>{{ tag2.text }}</span>
                         </ScTag>
@@ -147,7 +147,7 @@
             v-model="searchInputValue"
             type="text"
             :class="nsCascader + '-search-input'"
-            :placeholder="presentText ? '' : inputPlaceholder"
+            :placeholder="presentText || presentTags.length ? '' : inputPlaceholder"
             @input="(e) => handleInput(searchInputValue, e)"
             @click.stop="togglePopperVisible(true)"
             @keydown.delete="handleDelete"
@@ -274,7 +274,7 @@ import type {
 
 import type { ComponentSize } from './type'
 
-const { cloneDeep, debounce } = lodash
+const { cloneDeep, debounce, dropWhile, isEqual } = lodash
 
 type cascaderPanelType = InstanceType<typeof ElCascaderPanel>
 type tooltipType = InstanceType<typeof ElTooltip>
@@ -546,9 +546,22 @@ export default defineComponent({
 
     const deleteTag = (tag: TagType) => {
       const node = tag.node as CascaderNode
-      node.doCheck(false)
-      panel.value?.calculateCheckedValue()
-      emit('remove-tag', node.valueByOption)
+      if (panel.value && panel.value.calculateCheckedValue) {
+        node.doCheck(false)
+        panel.value?.calculateCheckedValue()
+        emit('remove-tag', node.valueByOption)
+      } else {
+        const { emitPath } = props.props
+        const currentValue = emitPath === false ? node.value : node.pathValues
+        const newData = dropWhile(props.modelValue, (val:any) => {
+          if (emitPath) {
+            return currentValue === val
+          }
+          return isEqual(val, currentValue)
+        })
+        emit(UPDATE_MODEL_EVENT, newData)
+        emit(CHANGE_EVENT, newData)
+      }
     }
 
     const calculatePresentTags = () => {

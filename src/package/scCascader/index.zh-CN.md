@@ -5,6 +5,12 @@ map:
 
 # 新scCascader
 
+<!-- <demo src="./demo/form.vue"
+  language="vue"
+  title="form"
+  >
+</demo> -->
+
 ## 组件类型
 
 **特殊class**
