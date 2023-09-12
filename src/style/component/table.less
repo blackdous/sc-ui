@@ -220,6 +220,12 @@
         flex: auto;
       }
     }
+    .active-btn + .active-btn {
+      margin-left: 8px;
+    }
+    .ant-input-group + .scTableFilter-active {
+      margin-left: 8px;
+    }
     .ant-btn {
       line-height: 22px;
       padding: 4px 7px;
@@ -227,9 +233,9 @@
       i {
         color: @text-color-secondary;
       }
-      &:not(.ant-btn-primary) {
-        margin-left: 8px;
-      }
+      // &:not(.ant-btn-primary) {
+      //   margin-left: 8px;
+      // }
       // &:not(.ant-btn-primary):visited, &:not(.ant-btn-primary):link {
       //   border-color: @primary-color;
       //   color: @primary-color;
@@ -285,7 +291,7 @@
     display: flex;
     // flex: 1;
   }
-  .ant-btn:not(.ant-btn-primary) {
+  .ant-btn:not(.ant-btn-primary):not([disabled]) {
     &:hover, &:active {
       color: @primary-color;
       i {

@@ -17,7 +17,7 @@
         row-key="key"
         ref="scTableRef"
         :data-source="sourceData.list"
-        :columns="columns.list"
+        :columns="getColumns()"
         :create-button-options="{
           show: false,
         }"
@@ -295,6 +295,52 @@ const columns = reactive({
   }
 ]
 });
+
+const getColumns = () => {
+  return [
+  { title: 'Full Name', width: 150, dataIndex: 'name', key: 'name', fixed: 'left', ellipsis: true},
+  { 
+    // title: 'age',
+    width: 200,
+    dataIndex: 'age', 
+    key: 'age',
+    disabled: true,
+    slots: {
+      customRender: 'status1'
+    },
+    titleType: {
+      componentName: 'thUnit2',
+      props: {
+        text: 'Column 2111',
+        unit: '(元)'
+      }
+    },
+    sorter: true
+  },
+  {
+    dataIndex: 'address', key: 'address', width: 180,
+    type: {
+      componentName: 'tdTooltip',
+      props: {
+        // lineheigth: 3,
+        tooltipDesKey: 'addressDesc'
+        // copy: true
+      }
+    },
+    titleType: {
+      componentName: 'thDescribe1',
+      props: {
+        text: 'Column 1',
+        describe: h('div', {}, ['提示内容提示内容提示内容', h('span', { style: { color: '#FF7D00' }}, 'Column 1Column 1'), '提示内容提示内容提示内容'])
+      }
+    },
+    filterList: list,
+    filtered: true,
+    onFilter: (value: string, record: DataItem) => record.name.includes(value),
+    sorter: (a: DataItem, b: DataItem) => a.age - b.age,
+  }
+]
+}
 
 setTimeout(() => {
   columns.list.push({ dataIndex: 'age2', key: 'age2', width: 180,

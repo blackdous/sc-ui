@@ -22,6 +22,7 @@
           text: '刷新',
           show: true,
           showTooltip: true,
+          isDisabled: true,
           action: refresh
         },
         columnDialog: {

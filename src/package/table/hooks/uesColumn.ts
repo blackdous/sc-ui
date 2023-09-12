@@ -219,12 +219,12 @@ export function useColumn (
   }
 
   const thColumn = computed(() => {
-    const newColumn = cloneDeep(unref(getFilterColumnRef).filter((item:Column) => !!item.titleType))
+    const newColumn = cloneDeep(unref(getFilterColumnRef)?.filter((item:Column) => !!item.titleType))
     return newColumn
   })
 
   const getColumnsRef = computed(() => {
-    const columns = cloneDeep(unref(getFilterColumnRef)).filter((item: Column) => item.checked)
+    const columns = cloneDeep(unref(getFilterColumnRef))?.filter((item: Column) => item.checked)
     // console.log('filterColumn: ', columns);
     return columns
   })

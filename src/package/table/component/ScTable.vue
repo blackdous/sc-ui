@@ -41,49 +41,58 @@
             v-if="activeOptions?.reload?.show"
             overlayClassName="scTooltip-white"
             destroyTooltipOnHide
+            trigger="hover"
           >
             <template #title v-if="activeOptions?.reload?.text">
               {{ activeOptions?.reload.text }}
             </template>
-            <Button
-              :disabled="activeOptions?.reload?.isDisabled"
-              :loading="activeOptions?.reload?.loading"
-              @click="refresh"
-            >
-              <i class="sc-ui sc-sync"></i>
-            </Button>
+            <span class="active-btn reload-btn">
+              <Button
+                :disabled="activeOptions?.reload?.isDisabled"
+                :loading="activeOptions?.reload?.loading"
+                @click="refresh"
+              >
+                <i class="sc-ui sc-sync"></i>
+              </Button>
+            </span>
           </Tooltip>
           <Tooltip
             v-if="activeOptions?.columnDialog?.show"
             overlayClassName="scTooltip-white"
             destroyTooltipOnHide
+            trigger="hover"
           >
             <template #title v-if="activeOptions?.columnDialog?.text">
               {{ activeOptions?.columnDialog.text }}
             </template>
-            <Button
-              :disabled="activeOptions?.columnDialog?.isDisabled"
-              :loading="activeOptions?.columnDialog?.loading"
-              @click="handleModal"
-            >
-              <i class="sc-ui sc-setting"></i>
-            </Button>
+            <span class="active-btn setting-btn">
+              <Button
+                :disabled="activeOptions?.columnDialog?.isDisabled"
+                :loading="activeOptions?.columnDialog?.loading"
+                @click="handleModal"
+              >
+                <i class="sc-ui sc-setting"></i>
+              </Button>
+            </span>
           </Tooltip>
           <Tooltip
             v-if="activeOptions?.download?.show"
             overlayClassName="scTooltip-white"
             destroyTooltipOnHide
+            trigger="hover"
           >
             <template #title v-if="activeOptions?.download?.text">
               {{ activeOptions?.download.text }}
             </template>
-            <Button
-              :disabled="activeOptions?.download?.isDisabled"
-              :loading="activeOptions?.columnDialog?.loading"
-              @click="handleDownload"
-            >
-              <i class="sc-ui sc-download"></i>
-            </Button>
+            <span class="active-btn download-btn">
+              <Button
+                :disabled="activeOptions?.download?.isDisabled"
+                :loading="activeOptions?.columnDialog?.loading"
+                @click="handleDownload"
+              >
+                <i class="sc-ui sc-download"></i>
+              </Button>
+            </span>
           </Tooltip>
         </template>
         <template #tableActive v-else>
