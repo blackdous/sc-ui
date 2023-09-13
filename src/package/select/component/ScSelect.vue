@@ -1,11 +1,13 @@
 <template>
   <div :class="[
-    baseClass,
-    uuid,
-    vBind.widthSize ? baseClass + '-' + vBind.widthSize : '',
-    newProps.disabled ? 'is-disabled' : '',
-    $attrs.class,
-  ]" :style="{ '--preWidth': prefixWidth || '7px', ...$attrs.style }">
+      baseClass,
+      uuid,
+      vBind.widthSize ? baseClass + '-' + vBind.widthSize : '',
+      newProps.disabled ? 'is-disabled' : '',
+      $attrs.class,
+    ]" 
+    :style="{ '--preWidth': prefixWidth || '7px', ...$attrs.style }
+  ">
     <div :class="[
       isPrefixIcon ? 'is-prefix' : ''
     ]">

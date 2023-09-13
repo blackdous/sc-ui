@@ -55,6 +55,7 @@ export const sidebar = {
         { text: 'Transfer', link: '/en/transfer/' },
         { text: 'DatePicker', link: '/en/datePicker/' },
         { text: 'TimePicker', link: '/en/timePicker/' },
+        { text: 'AutoComplete', link: '/en/autoComplete/' }
       ]
     },
     {
@@ -152,6 +153,7 @@ export const sidebar = {
         { text: '穿梭框 Transfer', link: '/transfer/' },
         { text: '日期选择框 DatePicker', link: '/datePicker/' },
         { text: '时间选择框 TimePicker', link: '/timePicker/' },
+        { text: '自动完成 AutoComplete', link: '/autoComplete/' },
       ]
     },
     {

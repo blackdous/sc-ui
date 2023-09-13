@@ -53,6 +53,7 @@ import {
 import { ScIp } from './package/formIp'
 import { ScDrawer, useDrawer, useDrawerInner } from './package/drawer'
 import { ScEllipsis } from './package/ellipsis'
+import { ScAutoComplete } from './package/autoComplete'
 
 // 指令
 import { installGlobalDirectives } from './directives'
@@ -79,6 +80,7 @@ const components = [
   ScModal,
   ScDrawer,
   ScEllipsis,
+  ScAutoComplete,
 
   ScTable,
   FilterTags,
@@ -156,6 +158,7 @@ export {
   ScModal,
   ScDrawer,
   ScEllipsis,
+  ScAutoComplete,
 
   ScTable,
   FilterTags,
