@@ -4,6 +4,7 @@
     v-model:value="value"
     @dropdownVisibleChange="handleDropdownVisibleChange"
   >
+    <!-- @focus="handleFocus" -->
     <template #[item]="data" v-for="item in slotsKeys" :key="item">
       <slot :name="item" v-bind="data || {}"></slot>
     </template>
@@ -70,7 +71,7 @@
 </template> 
 
 <script lang='ts'>
-import { defineComponent, ref, computed, nextTick, onBeforeUnmount } from 'vue'
+import { defineComponent, ref, computed, nextTick, onBeforeUnmount, onMounted } from 'vue'
 import { AutoComplete, Input, SelectOption, SelectOptGroup, Divider } from 'ant-design-vue'
 import { SearchOutlined } from '@ant-design/icons-vue'
 import { props, AutoCompleteOptionsItem } from './type'
@@ -88,7 +89,7 @@ export default defineComponent({
     SelectOptGroup,
     Divider
   },
-  emits: ['update:value', 'dropdownVisibleChange'],
+  emits: ['update:value', 'dropdownVisibleChange', 'focus'],
   props: props(),
   setup (props, { slots, attrs, emit }) {
 
@@ -185,7 +186,9 @@ export default defineComponent({
       openRef.value = val
       emit('dropdownVisibleChange', val)
     }
-
+    onMounted(() => {
+      searchText.value = ''
+    })
     onBeforeUnmount(() => {
       window.cancelAnimationFrame(frameId)
     })
