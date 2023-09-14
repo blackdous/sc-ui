@@ -2,6 +2,7 @@
   <AutoComplete
     v-bind="newProps"
     v-model:value="value"
+    :allowClear="false"
     @dropdownVisibleChange="handleDropdownVisibleChange"
   >
     <!-- @focus="handleFocus" -->
@@ -58,13 +59,10 @@
       <slot name="options"></slot>
     </template>
     <slot name="default" v-if="!$slots.default">
-      <Input
-        style="width: 100%"
-      > 
-        <template #suffix>
-          <search-outlined class="certain-category-icon" />
-        </template>
-      </Input>
+      <InputSearch
+        :allowClear="newProps.allowClear"
+      >
+      </InputSearch>
     </slot>
     <slot name="default" v-if="$slots.default"></slot>
   </AutoComplete>
@@ -72,7 +70,7 @@
 
 <script lang='ts'>
 import { defineComponent, ref, computed, nextTick, onBeforeUnmount, onMounted } from 'vue'
-import { AutoComplete, Input, SelectOption, SelectOptGroup, Divider } from 'ant-design-vue'
+import { AutoComplete, InputSearch, SelectOption, SelectOptGroup, Divider } from 'ant-design-vue'
 import { SearchOutlined } from '@ant-design/icons-vue'
 import { props, AutoCompleteOptionsItem } from './type'
 import { isFunction, buildUUID } from '../../../utils'
@@ -83,7 +81,7 @@ export default defineComponent({
   inheritAttrs: false,
   components: {
     AutoComplete,
-    Input,
+    InputSearch,
     SearchOutlined,
     SelectOption,
     SelectOptGroup,

@@ -28,7 +28,7 @@
         </SelectOption>
       </template>
     </template>
-    <InputSearch @search="handleSearch" />
+    <InputSearch @search="handleSearch" allowClear />
   </ScAutoComplete>
 </template>
 
