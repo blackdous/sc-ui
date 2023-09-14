@@ -1,16 +1,27 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.174...0.0.2) (2023-09-11)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.175...0.0.2) (2023-09-14)
+
+
+
+## [0.0.175](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.174...0.0.175) (2023-09-14)
 
 
 ### Bug Fixes
 
+* 修复 ScCascader 组件 多选模式下; 单个关闭 无效问题 ([21ad6d6](http://gitlab.voneyun.com/frontend/sc-ui/commit/21ad6d63c352ea563c7a032f3dd122dea9cb2ca0))
+* 修复 ScModal.confirm 组件 ok 按钮样式问题 ([1705d7e](http://gitlab.voneyun.com/frontend/sc-ui/commit/1705d7ed2e709bdc0e147168c592f251d91595ce))
 * 修复 ScSelect 组件 prefixSolt 抖动问题 ([feeb724](http://gitlab.voneyun.com/frontend/sc-ui/commit/feeb724009a0b66f22d07deb752869c29796d6d2))
 * 修复 ScTable 内置组件默认设置getPopupContainer为当前表格 ([a8149aa](http://gitlab.voneyun.com/frontend/sc-ui/commit/a8149aa30f26b4d74abc5254b8b46902ce6eeeba))
+* 修复 ScTable 组件 刷新按钮 tooltip 有几率不消失问题 ([e06c41f](http://gitlab.voneyun.com/frontend/sc-ui/commit/e06c41f93936c6092040bfc22bfa4719091a89c3))
+* 修复ScAutoComplete 组件 聚焦 未显示全量数据问题 ([2e12858](http://gitlab.voneyun.com/frontend/sc-ui/commit/2e12858c85ba6a1c6169320a21c399aa399df95e))
 * 修复ScTable dataSource 数组 push 不触发更新问题 ([4ba1e72](http://gitlab.voneyun.com/frontend/sc-ui/commit/4ba1e72ea89a0b2c15e55d28087af0a21987b1b7))
 * 修复useTable 方法,columns 更新无效 问题 ([85b778d](http://gitlab.voneyun.com/frontend/sc-ui/commit/85b778d708a4b7891ddfd3e3eaa591ee47962b97))
 
 
 ### Features
 
+* 调整 ScAutoComplete 组件 清除功能 ([f1dfe7a](http://gitlab.voneyun.com/frontend/sc-ui/commit/f1dfe7af584080b1637eb70b95c7453db066b921))
+* 新增组件 ScAutoComplete 支持 普通搜索\ 类目搜索 ([9384f05](http://gitlab.voneyun.com/frontend/sc-ui/commit/9384f05b695a4aa497c9550cf1e18a9da8628481))
+* formIp 组件 新增 tooltip提示信息功能 ([c04107b](http://gitlab.voneyun.com/frontend/sc-ui/commit/c04107bb119b57536251dfbe2b8ec8f2abededbe))
 * scTable 新增 footerInfo 自定义内容 ([4ac61ff](http://gitlab.voneyun.com/frontend/sc-ui/commit/4ac61fffb87ac3992dbc939a37eb7e45b63537cf))
 
 
