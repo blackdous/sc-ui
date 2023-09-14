@@ -4,6 +4,7 @@
     <ScIp
       v-model:value="valueRef"
       @change="handleChange"
+      :inputNumberOptions="inputNumberOptions"
       :disabled-index="disabledIndex"
       >
       <!-- :copyDisabled="true" -->
@@ -30,7 +31,7 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, watch } from 'vue'
+import { ref, watch, h } from 'vue'
 import { ScIp, ScButton } from 'sc-ui'
 
 const valueRef = ref(null)
@@ -38,6 +39,15 @@ const valueRef2 = ref(null)
 const valueRef1 = ref('12.3.4.266')
 
 const disabledIndex = ref([2, 4])
+const inputNumberOptions = ref([
+  {
+    tooltipDes: 'tooltip11111',
+    tooltipTrigger: ['hover']
+  }, {}, {},
+  {
+    tooltipDes: h('span', { style: { color: 'red' } }, 'tooltip444444')
+  }
+])
 
 watch(() => valueRef.value, (val) => {
   console.log('val: valueRef', val);

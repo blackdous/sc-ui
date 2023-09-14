@@ -16,23 +16,31 @@
         </span>
         <slot v-else name="labelSeparator"></slot>
       </span>
-      <input
-        :class="[baseClass + '-input', 'ant-input']"
-        :ref="refList[index as number]"
-        v-model="item.value"
-        v-bind="{...item}"
-        @input="($event) => checkIpVal(index as number)"
-        @blur="($event) => setVal(index as number)"
-        @keydown="($event) => handleKeyboardDelete(index as number, $event)"
-        @keyup="($event) => turnIpPOS(index as number, $event)"
+      <Tooltip
+        :trigger="item.tooltipTrigger || ['hover', 'focus']"
       >
+        <template #title v-if="item.tooltipDes">
+          <component :is='item.tooltipDes' v-if="isVNode(item.tooltipDes)"></component>
+          <span v-else class="formIp-tooltip">{{ item.tooltipDes }}</span>
+        </template>
+        <input
+          :class="[baseClass + '-input', 'ant-input']"
+          :ref="refList[index as number]"
+          v-model="item.value"
+          v-bind="{...item}"
+          @input="($event) => checkIpVal(index as number)"
+          @blur="($event) => setVal(index as number)"
+          @keydown="($event) => handleKeyboardDelete(index as number, $event)"
+          @keyup="($event) => turnIpPOS(index as number, $event)"
+        >
+      </Tooltip>
     </template>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, watch, reactive, unref, onMounted, nextTick } from 'vue'
-import { message } from 'ant-design-vue'
+import { defineComponent, ref, computed, watch, reactive, unref, onMounted, nextTick, isVNode } from 'vue'
+import { message, Tooltip } from 'ant-design-vue'
 
 import { scIpProps, IpItemType } from './type'
 import { basePrefixCls } from '../../../constant'
@@ -43,6 +51,9 @@ export default defineComponent({
   name: 'ScIp',
   emits: ['update:value', 'change'],
   props: scIpProps(),
+  components: {
+    Tooltip
+  },
   setup (props, { slots, emit }) {
     const ipListSourceRef = ref(props.modalValue)
 
@@ -172,7 +183,7 @@ export default defineComponent({
         jumpLeft(index - 1)
       } else {
         const ipRef = unref(refList)[index - 1]
-        ipRef?.value[0].focus()
+        ipRef?.value[0]?.focus()
         ipRef?.value[0].setSelectionRange((value + '').length, (value + '').length)
       }
     }
@@ -298,6 +309,7 @@ export default defineComponent({
       ipListSourceRef,
       isLabelSeparatorSlot,
       refList,
+      isVNode,
 
       setVal,
       checkIpVal,

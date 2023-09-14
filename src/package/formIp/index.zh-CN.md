@@ -33,6 +33,14 @@ map:
 | inputNumberOptions      | ScInputNumberProps、Array(ScInputNumberProps)            | `{ max: 255, min: 0 }` |  -  |  配置所有Input，或者配置当个输入框Input |
 | needDefault      | boolean            | true |  -  |  是否需要自动填充`0` |
 | copyDisabled      | boolean            | false |  -  |  粘贴是否填充disabled中的值 |
+
+```js
+// InputNumberOptions 继承 ScInputNumberProps 基础上新增 tooltipDes、tooltipTrigger参数
+interface InputNumberOptions {
+  tooltipDes: string | vnode,
+  tooltipTrigger: string | ['hover', 'focus']
+}
+```
 <!-- | parseType      | string              | 'ipv4' |  'ipv4'、‘ipv6’     |  切换默认值`...`、`......` | -->
 
 ## 事件
