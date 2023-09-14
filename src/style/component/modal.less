@@ -93,6 +93,14 @@
   .@{modalScope}-footer .@{modalScope}-footer__ok {
     background: @primary-color;
     .btnPrimary();
+    &:focus {
+      border-color: @primary-color;
+      background: @primary-color;
+    }
+    &:focus:hover {
+      background: @btn-hover-color;
+      border-color: @btn-hover-color;
+    }
   }
   &-status {
     display: flex;
@@ -251,4 +259,18 @@
     background-color: transparent;
   }
   
+}
+.ant-modal-confirm {
+  .ant-modal-confirm-btns {
+    .ant-btn-primary {
+      &:focus {
+        background: @primary-color;
+        border-color: @primary-color;
+      }
+      &:focus:hover {
+        background: @btn-hover-color;
+        border-color: @btn-hover-color;
+      }
+    }
+  }
 }

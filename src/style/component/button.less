@@ -4,6 +4,10 @@
 .ant-btn{
   border-radius: @border-r-3;
   color: @heading-color;
+  &:focus {
+    color: @heading-color;
+    border-color: rgb(231, 231, 231);
+  }
   // padding: 4px 16px;
   .scButton-icon {
     // margin-right: 6px;
@@ -21,7 +25,6 @@
       color: @btn-hover-color;
     }
   
-    &:focus,
     &:active {
       color: @primary-color;
       border-color: @primary-color;
@@ -39,11 +42,14 @@
       border-color: @border-color-base;
       color: @primary-color;
     }
-    &:active,
-    &:focus {
+    &:active, &:focus {
       border-color: @primary-color;
       color: @primary-color;
     }
+    // &:focus {
+    //   border-color: rgb(220,220,220);
+    //   color: @text-color-secondary;
+    // }
   }
   // line-height: 22px;
   &-success {
