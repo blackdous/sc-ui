@@ -4,7 +4,7 @@
 .ant-btn{
   border-radius: @border-r-3;
   color: @heading-color;
-  &:focus {
+  &::not(.ant-btn-link):focus {
     color: @heading-color;
     border-color: rgb(231, 231, 231);
   }
@@ -212,6 +212,9 @@
 .ant-btn-link.link-hover {
   &:hover {
     background: @select-hover-bg;
+  }
+  &:focus {
+    color: @primary-color;
   }
   &:active {
     background: @cancel-btn-color;
