@@ -26,7 +26,7 @@ realPath: src/package/modal/index.zh-CN.md
   >
 </demo> -->
 
-<!-- ## 默认对话框
+## 默认对话框
 
 <demo src="./demo/basic.vue"
   language="vue"
@@ -88,7 +88,7 @@ realPath: src/package/modal/index.zh-CN.md
   language="vue"
   title="status对话框"
   >
-</demo> -->
+</demo>
 
 ## ScModal.confirm
 
@@ -98,7 +98,7 @@ realPath: src/package/modal/index.zh-CN.md
   >
 </demo>
 
-<!-- ## 可拖拽的
+## 可拖拽的
 
 <demo src="./demo/draggable.vue"
   language="vue"
@@ -316,4 +316,4 @@ ScModal.changeConfirmLocale(zhCN)
 | --- | --- | --- | --- |
 | scrollbarRef | 导出ScScrollbar实例，可以通过实例方法`update`更新滚动条状态 | -  | |
 | setModalProps | 设置当前ScModal的props | -  | |
-| updateMaxHeight | 触发一次计算内容高度方法 | -  | | -->
+| updateMaxHeight | 触发一次计算内容高度方法 | -  | |

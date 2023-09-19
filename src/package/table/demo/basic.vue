@@ -166,7 +166,7 @@ const list = ref([
     tooltipDes: '续费续费续费续费续费'
   },
   {
-    label: '一级选项一级选项一级选项一级选项一级选项',
+    label: '一级选项一级选项',
     isShow: ({tableRef, selectedRowKeysRef}) => {
       console.log('selectedRowKeysRef: ', selectedRowKeysRef);
       if (selectedRowKeysRef.length > 3) {
@@ -182,7 +182,7 @@ const list = ref([
     tooltipDes: '一级选项111111111',
     children: [
       {
-        label: '二级选项二级选项二级选项二级选项二级选项',
+        label: '二级选项二级选项二级选项二级选项',
         isShow: true,
         isDisabled: false,
         loading: true,

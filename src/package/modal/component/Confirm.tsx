@@ -7,7 +7,7 @@ import { destroyFns } from '../index'
 import Omit from 'omit.js'
 
 const confirm = (config: ModalFuncProps) => {
-  console.log('config: ', config);
+  
   const div = document.createElement('div')
   document.body.appendChild(div)
   let currentConfig = {
@@ -55,7 +55,7 @@ const confirm = (config: ModalFuncProps) => {
     }
   }
   const Wrapper = (p:any) => {
-    console.log('p: ', p);
+    
     return p.vIf ? <ConfirmDialog {...p}></ConfirmDialog> : null
   };
   function render(props: ModalFuncProps) {

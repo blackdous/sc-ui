@@ -5,6 +5,8 @@
 @tableFilterDropdown: ~'@{prefixCls}filterDropDown';
 
 .@{tableScope} {
+  // position: relative;
+  // overflow-x: hidden;
   padding: @space-6;
   &.isFooterInfo {
     position: relative;
@@ -152,6 +154,27 @@
   }
   .ant-menu-item, .ant-menu-submenu-title {
     white-space: unset;
+  }
+  .scTableDropdown {
+    max-height: 230px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      width: 4px;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.16);
+      transition: all .2s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.26);
+      }
+    }
   }
 }
 .@{tableDropdown} {
