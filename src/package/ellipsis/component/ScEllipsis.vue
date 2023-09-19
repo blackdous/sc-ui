@@ -238,9 +238,13 @@ export default defineComponent({
       }
     }
 
-    const handleEntry = () => {
+    const handleEntry = async() => {
       // editFromRef?.value?.validateFields()
       emit('editConfirm', formState.name, handleClose, editFormRef.value)
+      const { afterCallback } = props
+      if (isFunction(afterCallback)) {
+        await afterCallback?.()
+      }
     }
 
     // const closePopover = () => {
@@ -262,6 +266,10 @@ export default defineComponent({
     })
     const handleCopy = async () => {
       const copyText = unref(newProps).copyTxt
+      const { beforeCallback, afterCallback } = props
+      if (isFunction(beforeCallback)) {
+        await beforeCallback?.()
+      }
       await copy(String(copyText))
       const { curLocale } = useLocale()
       if (copied && curLocale?.copy?.successMessage) {
@@ -269,6 +277,9 @@ export default defineComponent({
           content: curLocale?.copy?.successMessage,
           duration: 1.5
         })
+      }
+      if (isFunction(afterCallback)) {
+        await afterCallback?.()
       }
     }
 
@@ -278,10 +289,13 @@ export default defineComponent({
       }
     }
 
-    const handleEdit = (event: Event) => {
+    const handleEdit = async (event: Event) => {
       event.stopPropagation()
-      const { edit, isComputedEditPopoverPosition } = props
+      const { edit, isComputedEditPopoverPosition, beforeCallback } = props
       formState.name = edit.text || ''
+      if (isFunction(beforeCallback)) {
+        await beforeCallback?.()
+      }
       if (edit && edit.show) {
         popoverVisible.value = !popoverVisible.value
         if (popoverVisible.value) {

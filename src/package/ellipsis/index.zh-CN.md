@@ -85,6 +85,8 @@ map:
 | getPopupContainer | edit弹窗要显示在父级 | () => dom |  -  |  |
 | baseHeight | 基础高度，适用于多行时 | number |  22  |  |
 | isComputedEditPopoverPosition | 是否强制修改edit 弹窗位置 | boolean |  true  |  |
+| beforeCallback | 点击操作按钮内置方法前面执行callback | function |  -  |  |
+| afterCallback | 点击操作按钮内置方法后面执行callback | function |  -  |  |
 
 ## EditType
 

@@ -66,6 +66,8 @@ export const ellipsisProps = () => ({
   copyTxt: {
     type: String
   },
+  beforeCallback: Function,
+  afterCallback: Function,
   isOnlyTips: {
     type: Boolean,
     default () {

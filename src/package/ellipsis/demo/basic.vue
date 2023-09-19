@@ -30,6 +30,8 @@
     <ScEllipsis
       style="width: 240px" 
       copy-txt="1111111111"
+      :beforeCallback="beforeCallback"
+      :afterCallback="afterCallback"
     >
       <span @click="handleClick">
         浮动元素是如何定位的 浮动元素是如何定位的
@@ -68,6 +70,13 @@ const editProps = reactive({
 
 const handleClick = () => {
   window.location.href = '/tabs/'
+}
+
+const beforeCallback = () => {
+  console.log('copy: beforeCallback')
+}
+const afterCallback = () => {
+  console.log('copy: afterCallback')
 }
 </script>
 <style lang="less">
