@@ -5,6 +5,22 @@ map:
 
 # 变更记录
 
+## [0.0.177](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.176...0.0.177) (2023-09-19)
+
+### Bug Fixes
+
+* 调整 ScTable Filter 筛选项样式 调整 条目过多时出现滚动条 ([151af8a](http://gitlab.voneyun.com/frontend/sc-ui/commit/151af8ab58dc54c2461088a548a4ee4a51d0a5ac))
+
+### Features
+
+* scEllipsis 组件新增 beforeCallback afterCallback 方法,用于回调点击内置按钮默认事件前后执行 ([81947e4](http://gitlab.voneyun.com/frontend/sc-ui/commit/81947e42ff2ed6c5b001245a48c0ec5835935274))
+
+## [0.0.176](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.175...0.0.176) (2023-09-15)
+
+### Features
+
+* 因vue3.3.x 不兼容 vue 3.2.x的 complie 不兼容; 升级vue版本到 最新稳定版 ([1ddf5b3](http://gitlab.voneyun.com/frontend/sc-ui/commit/1ddf5b35f62a6576b1a406704c93af850a36296f))
+
 ## [0.0.175](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.174...0.0.175) (2023-09-14)
 
 ### Bug Fixes
@@ -48,7 +64,9 @@ map:
 ### Features
 
 * 调整ScTable 单条更新 值逻辑; 修改组件样式 ([c685f2a](http://gitlab.voneyun.com/frontend/sc-ui/commit/c685f2a59c2b74e5d513cd9312d23244c0ed03b5))
+
 ## [0.0.171](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.170...0.0.171) (2023-08-27)
+
 ### Features
 
 * 更新 ScRadioGroup ScTable 样式 ([be356c5](http://gitlab.voneyun.com/frontend/sc-ui/commit/be356c51d4a6f342b711fbd6209c689724dc0105))

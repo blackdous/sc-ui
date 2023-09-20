@@ -1,4 +1,27 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.175...0.0.2) (2023-09-14)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.177...0.0.2) (2023-09-20)
+
+
+
+## [0.0.177](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.176...0.0.177) (2023-09-19)
+
+
+### Bug Fixes
+
+* 调整 ScTable Filter 筛选项样式 调整 条目过多时出现滚动条 ([151af8a](http://gitlab.voneyun.com/frontend/sc-ui/commit/151af8ab58dc54c2461088a548a4ee4a51d0a5ac))
+
+
+### Features
+
+* scEllipsis 组件新增 beforeCallback afterCallback 方法,用于回调点击内置按钮默认事件前后执行 ([81947e4](http://gitlab.voneyun.com/frontend/sc-ui/commit/81947e42ff2ed6c5b001245a48c0ec5835935274))
+
+
+
+## [0.0.176](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.175...0.0.176) (2023-09-15)
+
+
+### Features
+
+* 因vue3.3.x 不兼容 vue 3.2.x的 complie 不兼容; 升级vue版本到 最新稳定版 ([1ddf5b3](http://gitlab.voneyun.com/frontend/sc-ui/commit/1ddf5b35f62a6576b1a406704c93af850a36296f))
 
 
 
