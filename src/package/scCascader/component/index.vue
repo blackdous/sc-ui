@@ -83,7 +83,7 @@
           </template>
         </ScInput>
 
-        <div v-if="multiple" ref="tagWrapper" :class="nsCascader + '-tags'">
+        <div v-if="multiple" ref="tagWrapper" :class="[nsCascader + '-tags', collapseTags ? 'isCollapseTags' : '']">
           <ScTag
             v-for="tag in presentTags"
             :key="tag.key"
@@ -434,6 +434,7 @@ export default defineComponent({
       ['small'].includes(realSize.value) ? 'small' : 'default'
     )
     const multiple = computed(() => !!props.props.multiple)
+    const collapseTags = computed(() => !!props.collapseTags)
     const readonly = computed(() => !props.filterable || multiple.value)
     const searchKeyword = computed(() =>
       multiple.value ? searchInputValue.value : inputValue.value
@@ -875,6 +876,7 @@ export default defineComponent({
       multipleOptionRef,
       isPrefixIcon,
       searchHeight,
+      collapseTags,
 
       // t,
       togglePopperVisible,

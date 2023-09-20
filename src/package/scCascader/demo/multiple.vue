@@ -39,7 +39,7 @@
       allowClear
       :props="props"
       :options="options"
-      style="width: 300px;"
+      :show-all-levels="false"
       collapse-tags
       @change="handleChange" 
     />
@@ -53,8 +53,8 @@
       :props="props"
       :options="options"
       collapse-tags
+      :show-all-levels="false"
       collapseTagsTooltip
-      style="width: 300px;"
       @change="handleChange" 
     />
       <!-- :showAllLevels="false" -->

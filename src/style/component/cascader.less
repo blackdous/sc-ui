@@ -143,7 +143,7 @@ div.ant-cascader-menu {
   &-tags {
     position: absolute;
     left: 0;
-    right: 30px;
+    right: 24px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -166,7 +166,8 @@ div.ant-cascader-menu {
     .scTag {
       &.isTooltipTag {
         min-width: 32px;
-        margin-left: 4px;
+        margin-left: 2px;
+        margin-right: 0;
       }
       & + .scCascaderNew-search-input {
         height: 22px;
@@ -221,6 +222,10 @@ div.ant-cascader-menu {
     }
     .scInput {
       max-width: 100%;
+    }
+    .scCascaderNew-tags.isCollapseTags {
+      right: 24px;
+      flex-wrap: nowrap;
     }
   }
   &-suggestion {
