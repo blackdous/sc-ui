@@ -239,7 +239,6 @@ watch([() => props.data, () => props.actions], ([propsData, actions]) => {
   let actionsOptions = cloneDeep(actions) as Array<ActionItemProps>
   let list:Array<ActionItemProps> = []
   const isCustomActionsOptions = !!record.actionsOptions
-  console.log('isCustomActionsOptions: ', isCustomActionsOptions);
   if (isCustomActionsOptions) {
     list = flapSetItem(cloneDeep(record.actionsOptions.actions))
   } else {

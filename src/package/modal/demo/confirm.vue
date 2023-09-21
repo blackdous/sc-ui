@@ -28,7 +28,8 @@ const handleClick = () => {
   ScModal.confirm({
     type: 'warning',
     title: '111111',
-    closable: true
+    closable: true,
+    footer: null
   })
 }
 const handleClickModal = () => {
@@ -37,7 +38,8 @@ const handleClickModal = () => {
   Modal.confirm({
     type: 'warning',
     title: '111111',
-    closable: true
+    closable: true,
+    footer: null
   })
 }
 </script>

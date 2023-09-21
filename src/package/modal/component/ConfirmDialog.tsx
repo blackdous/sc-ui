@@ -33,6 +33,7 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
     showCancelBtn,
     showOkBtn,
     tooltipDes,
+    footer
   } = props
 
   const okType = props.okType || 'primary';
@@ -109,6 +110,7 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
       okButtonProps={Object.assign(okButtonProps || {}, { type: okType })}
       cancelButtonProps={cancelButtonProps}
       footerAlign={footerAlign}
+      footer={footer}
     >
       <div class={`${contentPrefixCls}-body-wrapper`}>
         <div class={`${contentPrefixCls}-body`}>
