@@ -4,6 +4,7 @@
       placeholder="请输入内容"
       v-model:value="inputValueRef"
       allowClear
+      disabled
       @allowClear="handleClear"
       @input="handleInput"
     >

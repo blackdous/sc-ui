@@ -9,8 +9,8 @@ dependencies:
     specifier: ^4.0.0
     version: 4.0.0(vue@3.2.25)
   '@vue/shared':
-    specifier: ^3.3.4
-    version: 3.3.4
+    specifier: ^3.2.37
+    version: 3.2.41
   deepmerge:
     specifier: ^4.2.2
     version: 4.2.2
@@ -2140,10 +2140,10 @@ packages:
 
   /@vue/shared@3.2.41:
     resolution: {integrity: sha512-W9mfWLHmJhkfAmV+7gDjcHeAWALQtgGT3JErxULl0oz6R6+3ug91I7IErs93eCFhPCZPHBs4QJS7YWEV7A3sxw==}
-    dev: true
 
   /@vue/shared@3.3.4:
     resolution: {integrity: sha512-7OjdcV8vQ74eiz1TZLzZP4JwqM5fA94K6yntPS5Z25r9HDuGNzaGdgvwKYq6S+MxwF0TFRwe50fIR/MYnakdkQ==}
+    dev: true
 
   /@vueuse/core@9.4.0(vue@3.2.25):
     resolution: {integrity: sha512-JzgenGj1ZF2BHOen5rsFiAyyI9sXAv7aKhNLlm9b7SwYQeKTcxTWdhudonURCSP3Egl9NQaRBzes2lv/1JUt/Q==}

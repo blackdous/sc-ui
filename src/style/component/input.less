@@ -31,7 +31,12 @@
   border-color: @border-color-base;
   padding: 4px 8px;
   color: @heading-color;
-  &:hover, &:focus, &:active {
+  &:hover:not(.ant-input-affix-wrapper-disabled), 
+  &:focus:not(.ant-input-affix-wrapper-disabled), 
+  &:active:not(.ant-input-affix-wrapper-disabled) {
+    border-color: @primary-color;
+  }
+  &.ant-input-affix-wrapper-focused {
     border-color: @primary-color;
   }
   &.isSuccess {
