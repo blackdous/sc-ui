@@ -156,6 +156,11 @@
   .ant-radio-inner {
     border-color: @primary-color;
     background-color: @bg-color;
+    &::after {
+      top: 50%;
+      left: 50%;
+      transform: scale(1) translate(-50%, -50%);
+    }
   }
 }
 .ant-radio-wrapper {

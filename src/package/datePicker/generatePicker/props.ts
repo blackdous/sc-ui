@@ -225,6 +225,7 @@ function rangePickerProps<DateType>() {
     onOk: {
       type: Function as PropType<(dates: RangeValue<DateType> | RangeValue<string>) => void>,
     },
+    immediateCalendarChangeDateRangePicker: Boolean
   };
 }
 
@@ -260,6 +261,7 @@ export interface RangePickerProps<DateType> {
     modes: [PanelMode, PanelMode],
   ) => void;
   onOk?: (dates: RangeValue<DateType> | RangeValue<string>) => void;
+  immediateCalendarChangeDateRangePicker?: boolean
 }
 
 export type ExtraDatePickerProps<DateType> = {

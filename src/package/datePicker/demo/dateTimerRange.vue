@@ -6,7 +6,10 @@
       <ScRangePicker
         v-model:value="value"
         show-time
+        format="YYYY-MM-DD HH:mm"
         @change="onChange"
+        immediateCalendarChangeDateRangePicker
+        @calendarChange="onCalendarChange"
         @ok="onOk"
       >
       </ScRangePicker>
@@ -37,10 +40,15 @@ export default defineComponent({
       console.log('onOk: ', value);
     };
 
+    const onCalendarChange = (data:any) => {
+      console.log('data: onCalendarChange', data);
+    }
+
     return {
       value,
       onChange,
       onOk,
+      onCalendarChange
     }
   }
 })

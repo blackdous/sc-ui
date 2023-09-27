@@ -120,6 +120,7 @@ export type RangePickerSharedProps<DateType> = {
   activePickerIndex?: 0 | 1;
   dateRender?: RangeDateRender<DateType>;
   panelRender?: (originPanel: VueNode) => VueNode;
+  immediateCalendarChangeDateRangePicker?: boolean
 };
 
 type OmitPickerProps<Props> = Omit<
@@ -235,6 +236,7 @@ function RangerPicker<DateType>() {
       'direction',
       'activePickerIndex',
       'autocomplete',
+      'immediateCalendarChangeDateRangePicker'
     ] as any,
     setup(props, { attrs, expose }) {
       const needConfirmButton = computed(
@@ -961,8 +963,35 @@ function RangerPicker<DateType>() {
       }
 
       const onContextSelect = (date: DateType, type: 'key' | 'mouse' | 'submit') => {
+        const {
+          immediateCalendarChangeDateRangePicker,
+          showTime,
+          onCalendarChange,
+          generateConfig,
+          locale, 
+        } = props
         const values = updateValues(selectedValue.value, date, mergedActivePickerIndex.value);
-
+        // console.log('values: ', values);
+        if (immediateCalendarChangeDateRangePicker && showTime) {
+          const startStr =
+          values && values[0]
+              ? formatValue(values[0], { generateConfig, locale, format: formatList.value[0] })
+              : '';
+          const endStr =
+            values && values[1]
+              ? formatValue(values[1], { generateConfig, locale, format: formatList.value[0] })
+              : '';
+          if (onCalendarChange) {
+            // const info: RangeInfo = { range: date[0] ? 'start' : 'end' };
+            if (isFunction(onCalendarChange)) {
+              onCalendarChange(values, [startStr, endStr], info);
+            }
+            if (isArray(onCalendarChange)) {
+              onCalendarChange?.[1]?.(values, [startStr, endStr]);
+            }
+          }
+        }
+        // console.log('type === ', type === 'submit' || (type !== 'key' && !needConfirmButton.value));
         if (type === 'submit' || (type !== 'key' && !needConfirmButton.value)) {
           // triggerChange will also update selected values
           // console.log('values, mergedActivePickerIndex.value: ', values, mergedActivePickerIndex.value);

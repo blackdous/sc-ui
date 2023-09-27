@@ -98,6 +98,7 @@ export type PickerSharedProps<DateType> = {
   direction?: 'ltr' | 'rtl';
   showToday?: boolean;
   showTime?: boolean | SharedTimeProps<DateType>;
+  immediateCalendarChangeDateRangePicker?: boolean;
 };
 
 type OmitPanelProps<Props> = Omit<
@@ -188,6 +189,7 @@ function Picker<DateType>() {
       'autocomplete',
       'showToday',
       'renderExtraFooter',
+      'immediateCalendarChangeDateRangePicker',
       'dateRender',
     ] as any,
     // slots: [

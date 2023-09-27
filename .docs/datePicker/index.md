@@ -221,6 +221,7 @@ export default defineComponent({
 | showTime | 增加时间选择功能 | Object\|boolean | [TimePicker Options] |  |
 | showTime.defaultValue | 设置用户选择日期时默认的时分秒，[例子](#components-date-picker-demo-disabled-date) | [dayjs](https://day.js.org/)\[] | \[dayjs(), dayjs()] |  |
 | value(v-model) | 日期 | [dayjs](https://day.js.org/)\[] | - |  |
+| immediateCalendarChangeDateRangePicker | 是否立即出发calendarChange事件 | boolean | - |  |
 
 ### RangePicker 事件
 

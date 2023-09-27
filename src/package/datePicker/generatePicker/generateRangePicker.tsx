@@ -222,6 +222,7 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             onPanelChange={onPanelChange}
             onOk={onOk}
             onCalendarChange={onCalendarChange}
+            immediateCalendarChangeDateRangePicker={props.immediateCalendarChangeDateRangePicker}
           />
         );
       };
