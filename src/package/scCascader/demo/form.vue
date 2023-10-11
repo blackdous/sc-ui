@@ -11,6 +11,9 @@
           v-model="formReactive.type" 
           :options="options" 
           :props="props"
+          collapseTags
+          collapseTagsTooltip
+          filterable
           @change="handleChange" 
           popupClassName="bbbb"
           popperClass="aaaa" 
@@ -93,6 +96,7 @@ const options = [
       {
         value: 'disciplines',
         label: 'Disciplines',
+        disabled: true,
         children: [
           {
             value: 'consistency',
@@ -119,6 +123,7 @@ const options = [
           {
             value: 'side nav',
             label: 'Side Navigation',
+            disabled: true,
           },
           {
             value: 'top nav',
@@ -151,6 +156,7 @@ const options = [
           {
             value: 'icon',
             label: 'Icon',
+            disabled: true,
           },
           {
             value: 'button',
@@ -353,6 +359,33 @@ const options = [
     ],
   },
 ]
+for(let i = 0; i < 50; i++){
+  options.unshift({
+value: 'radio' + i,
+label: 'Radio' + i,
+children: []
+})
+  options.unshift({
+value: 'checkbox' + i,
+label: 'Checkbox' + i,
+children: []
+})
+  options.unshift({
+value: 'input' + i,
+label: 'input' + i,
+children: []
+})
+  options.unshift({
+value: 'sketch' + i,
+label: 'Sketch Templates' + i,
+children: []
+})
+  options.unshift({
+value: 'card' + i,
+label: 'Card' + i,
+children: []
+})
+}
 </script>
 <style scoped>
 .mt-20 {

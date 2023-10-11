@@ -33,10 +33,19 @@
 import { ref } from 'vue'
 import { ScSelect } from 'sc-ui'
 
-const options = [...Array(6)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1), label: (i + 10).toString(36) + (i + 1) }))
+// const options = [...Array(6)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1), label: (i + 10).toString(36) + (i + 1) }))
 
 const value = ref('a1')
 
+const options:any[] = []
+
+for(let i = 0; i< 100; i++) {
+  options.push({
+    label: 'JackJackJackJackJackJackJackJackJackJackJackJackJackJack' + i,
+    value: i,
+    key: 'Jack' + i
+  })
+}
 
 </script>
 <style scoped>
@@ -48,5 +57,8 @@ const value = ref('a1')
 }
 .flexCon {
   display: flex;
+}
+.test11 {
+  width: 216px;
 }
 </style>

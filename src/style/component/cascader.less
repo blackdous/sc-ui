@@ -157,8 +157,9 @@ div.ant-cascader-menu {
       max-width: 100%;
       text-overflow: ellipsis;
       margin: 0 0 0 8px;
-      & > span {
-        max-width: 90%;
+      & > span:not(.anticon-close) {
+        // max-width: 90%;
+        max-width: calc(100% - 12px);
         text-overflow: ellipsis;
         overflow: hidden;
       }
@@ -226,6 +227,8 @@ div.ant-cascader-menu {
     .scCascaderNew-tags.isCollapseTags {
       right: 24px;
       flex-wrap: nowrap;
+      // .scTag.ant-tag > span + .anticon {
+      // }
     }
   }
   &-suggestion {
