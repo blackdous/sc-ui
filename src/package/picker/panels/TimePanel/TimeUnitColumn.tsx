@@ -2,6 +2,7 @@ import { scrollTo, waitElementReady } from '../../utils/uiUtil';
 import { useInjectPanel } from '../../PanelContext';
 import classNames from '../../../../utils/classNames';
 import { ref, onBeforeUnmount, watch, defineComponent, nextTick, onMounted } from 'vue';
+import { debounce } from 'lodash';
 
 export type Unit = {
   label: any;
@@ -49,34 +50,61 @@ export default defineComponent<TimeUnitColumnProps>({
       scrollRef.value?.();
     });
 
+    const scrollUrl = debounce((event: any) => {
+      const { onSelect } = props;
+      const ulRefOffsetTop = event?.target?.scrollTop || 0
+      // console.log('ulRefOffsetTop: ', ulRefOffsetTop);
+      if (!notScroll && !isDefault) {
+        let keyValue = props.value
+        const oldKeyValue = props.value
+        // let lastOffsetTop = 0
+        liRefs.value && liRefs.value.forEach((liRef: any) => {
+          const liRefOffsetTop = liRef.offsetTop - 100
+          if ((liRefOffsetTop - 15) < ulRefOffsetTop &&  ulRefOffsetTop < (liRefOffsetTop + 15)) {
+            keyValue = parseInt(liRef.textContent)
+          }
+          // lastOffsetTop = liRef.offsetTop - 100
+        })
+        // console.log('lastOffsetTop: ', lastOffsetTop)
+        if (oldKeyValue === keyValue) {
+          scrollTo(ulRef.value!, (keyValue || 1) * 30, 120)
+        } else {
+          onSelect?.(keyValue)
+        }
+      }
+    }, 100)
+
     onMounted(() => {
       waitElementReady(ulRef.value, () => {
-        const { onSelect } = props;
-        ulRef.value.addEventListener('scroll', (event) => {
-          const ulRefOffsetTop = event?.target?.scrollTop || 0
-          // console.log('ulRefOffsetTop: ', ulRefOffsetTop);
-          if (!ticking && !notScroll && !isDefault) {
-            window?.requestAnimationFrame(() => {
-              // console.log(liRefs.value)
-              let keyValue = props.value
-              liRefs.value && liRefs.value.forEach((liRef: any) => {
-                const liRefOffsetTop = liRef.offsetTop - 100
-                // console.log('liRefOffsetTop: ', liRefOffsetTop);
-                if ((liRefOffsetTop - 15) < ulRefOffsetTop &&  ulRefOffsetTop < (liRefOffsetTop + 15)) {
-                  // console.log('liRef.textContent: ', liRef.textContent);
-                  keyValue = parseInt(liRef.textContent)
-                }
-              })
-              onSelect!(keyValue)
-              ticking = false
-              const li = liRefs.value.get(props.value!);
-              if (li && open.value !== false) {
-                scrollTo(ulRef.value!, li.offsetTop - 100, 120);
-              }
-            })
-            ticking = true;
-          }
+        ulRef.value.addEventListener('scroll', scrollUrl, {
+          
         })
+        // ulRef.value.addEventListener('scroll', (event) => {
+        //   const ulRefOffsetTop = event?.target?.scrollTop || 0
+        //   // console.log('ulRefOffsetTop: ', ulRefOffsetTop);
+        //   if (!ticking && !notScroll && !isDefault) {
+        //     window?.requestAnimationFrame(() => {
+        //       // console.log(liRefs.value)
+        //       let keyValue = props.value
+        //       liRefs.value && liRefs.value.forEach((liRef: any) => {
+        //         const liRefOffsetTop = liRef.offsetTop - 100
+        //         // console.log('liRefOffsetTop: ', liRefOffsetTop);
+        //         if ((liRefOffsetTop - 15) < ulRefOffsetTop &&  ulRefOffsetTop < (liRefOffsetTop + 15)) {
+        //           // console.log('liRef.textContent: ', liRef.textContent);
+        //           keyValue = parseInt(liRef.textContent)
+        //         }
+        //       })
+        //       console.log('keyValue: ', keyValue);
+        //       onSelect?.(keyValue)
+        //       ticking = false
+        //       // const li = liRefs.value.get(props.value!);
+        //       // if (li && open.value !== false) {
+        //       //   scrollTo(ulRef.value!, li.offsetTop - 100, 120);
+        //       // }
+        //     })
+        //     ticking = true;
+        //   }
+        // })
       })
     })
     
