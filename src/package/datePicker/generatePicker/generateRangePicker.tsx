@@ -30,6 +30,8 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
       ...commonProps<DateType>(),
       ...rangePickerProps<DateType>(),
       ...extraProps,
+      onChange: [Function, Array],
+      onBlur: [Function, Array],
     },
     slots: [
       'suffixIcon',

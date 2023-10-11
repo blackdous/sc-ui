@@ -7,7 +7,7 @@
   
       </ScTimePicker>
     </div>
-    <div>
+    <!-- <div>
       <ScTimePicker
         v-model:value="strValue"
         value-format="HH:mm:ss"
@@ -23,7 +23,7 @@
       >
   
       </ScTimePicker>
-    </div>
+    </div> -->
   </Space>
 </template>
 
