@@ -50,7 +50,7 @@
     <ScCascaderNew 
       v-model="value3" 
       allowClear
-      :props="props"
+      :props="{...props, emitPath: false}"
       :options="options"
       collapse-tags
       :show-all-levels="false"
@@ -69,7 +69,7 @@ import { ScCascaderNew } from 'sc-ui';
 const value = ref(["table","tag","docs"])
 const value1 = ref([])
 const value2 = ref([])
-const value3 = ref([])
+const value3 = ref(["table","tag","docs"])
 const value4 = ref([])
 
 const props = {

@@ -131,7 +131,8 @@
                           :hit="tag2.hitState"
                           :closable="tag2.closable"
                           disable-transitions
-                          @close="(event) => { event.stopPropagation(); deleteTag(tag2); }"
+                          @close="(event) => {  event.stopPropagation(); deleteTag(tag2); }"
+                          @click.stop="togglePopperVisible()"
                         >
                           <span>{{ tag2.text }}</span>
                         </ScTag>
@@ -182,7 +183,6 @@
         :options="options"
         :props="props"
         :border="false"
-        :render-label="$slots.default"
         @expand-change="handleExpandChange"
         @close="$nextTick(() => togglePopperVisible(false))"
       />
@@ -514,12 +514,14 @@ export default defineComponent({
       }
 
       nextTick(() => {
-        const timer = setTimeout(() => {
-          const cascaderPanelPop = document && document.querySelector('.'+uuid)
-          popperPaneRef.value = cascaderPanelPop
-          multipleOptionRef.value = suggestionPanel.value?.wrapRef
-          clearTimeout(timer)
-        }, 100)
+        // const timer = setTimeout(() => {
+          //   clearTimeout(timer)
+          // }, 100)
+          const timer = window.requestAnimationFrame(() => {
+            const cascaderPanelPop = document && document.querySelector('.'+uuid)
+            popperPaneRef.value = cascaderPanelPop
+            multipleOptionRef.value = suggestionPanel.value?.wrapRef
+        })
       })
     }
 
@@ -554,11 +556,11 @@ export default defineComponent({
       } else {
         const { emitPath } = props.props
         const currentValue = emitPath === false ? node.value : node.pathValues
-        const newData = dropWhile(props.modelValue, (val:any) => {
-          if (emitPath) {
-            return currentValue === val
+        const newData = (props.modelValue || []).filter((val:any) => {
+          if (!emitPath) {
+            return currentValue !== val
           }
-          return isEqual(val, currentValue)
+          return !isEqual(val, currentValue)
         })
         emit(UPDATE_MODEL_EVENT, newData)
         emit(CHANGE_EVENT, newData)
