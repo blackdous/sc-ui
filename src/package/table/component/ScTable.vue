@@ -442,7 +442,7 @@ export default defineComponent({
 
     const  dropdownProps = {
       getPopupContainer: () => {
-          return document.querySelector(`.${uuid}`)
+          return document.querySelector(`.${uuid} .ant-table`)
         }
     }
 
