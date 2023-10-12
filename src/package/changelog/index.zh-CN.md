@@ -5,6 +5,35 @@ map:
 
 # 变更记录
 
+## [0.0.180](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.179...0.0.180) (2023-10-11)
+
+### Bug Fixes
+
+* 修复 ScCascader 组件 第一次打开面板抖动问题 ([1e37b9a](http://gitlab.voneyun.com/frontend/sc-ui/commit/1e37b9a81e3231b7c43527140ac5820a8aa7d73b))
+* 修复 ScRangePicker 外层嵌套form 警告问题 ([51b6d0d](http://gitlab.voneyun.com/frontend/sc-ui/commit/51b6d0d47c04431e8c6db79eaec561d20a3abef7))
+* 修复 ScTable 内部出现滚动条问题 ([3106718](http://gitlab.voneyun.com/frontend/sc-ui/commit/3106718b7a634a31a1a4935f1f6bc2c9b9523894))
+
+### Features
+
+* 更新版本到 0.0.180 ([016be2e](http://gitlab.voneyun.com/frontend/sc-ui/commit/016be2ebf9f67ddaf8795ced59c68d67a88b704b))
+
+## [0.0.179](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.178...0.0.179) (2023-09-27)
+
+### Features
+
+* scRangePicker 组件 新增 immediateCalendarChangeDateRangePicker 参数; ([1faf418](http://gitlab.voneyun.com/frontend/sc-ui/commit/1faf4188cf7d7fcb6e106345554c86e06701d435))
+
+## [0.0.178](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.177...0.0.178) (2023-09-22)
+
+### Bug Fixes
+
+* 修复 ScModal.confirm 组件 footer 为 null 底部按钮 未消失问题 ([960ad96](http://gitlab.voneyun.com/frontend/sc-ui/commit/960ad96324e31fc575e76d38a78d75596aa7c4da))
+* ScCascader 组件多选模式;折叠选项换行问题修复 ([0120a55](http://gitlab.voneyun.com/frontend/sc-ui/commit/0120a55eef41aa275e02d79577727f4b32e627c1))
+
+### Features
+
+* 调整 input 交互方式 ([2af549a](http://gitlab.voneyun.com/frontend/sc-ui/commit/2af549aa0255a1ae9f62754137a6a489639ca993))
+
 ## [0.0.177](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.176...0.0.177) (2023-09-19)
 
 ### Bug Fixes
