@@ -2,7 +2,10 @@ import { scrollTo, waitElementReady } from '../../utils/uiUtil';
 import { useInjectPanel } from '../../PanelContext';
 import classNames from '../../../../utils/classNames';
 import { ref, onBeforeUnmount, watch, defineComponent, nextTick, onMounted } from 'vue';
-import { debounce } from 'lodash';
+// import { debounce } from 'lodash';
+import lodash from 'lodash'
+
+const { debounce } = lodash
 
 export type Unit = {
   label: any;
