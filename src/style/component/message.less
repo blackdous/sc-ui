@@ -1,10 +1,12 @@
 .ant-message {
   .ant-message-notice-content {
     padding: 0;
-    border-radius: @border-r-3;
+    border-radius: @border-r-6;
+    border: 0.5px solid #DCDCDC;
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.08), 0px 16px 24px 2px rgba(0, 0, 0, 0.04), 0px 6px 30px 5px rgba(0, 0, 0, 0.05);
   }
   .ant-message-custom-content {
-    padding: 13px 16px 13px 26px;
+    padding: 13px 16px;
     // box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     font-style: normal;
     font-weight: 400;
@@ -14,31 +16,31 @@
       font-size: 18px;
     }
     &.ant-message-success {
-      background-color: @success-bg-color;
+      // background-color: @success-bg-color;
       .anticon {
         color: @success-color;
       }
       i {
         color: @success-color;
       }
-      span:last-child {
-        color: @success-color;
-      }
+      // span:last-child {
+      //   color: @success-color;
+      // }
     }
     &.ant-message-info, &.ant-message-loading {
-      background-color: @info-bg-color;
+      // background-color: @info-bg-color;
       .anticon {
         color: @primary-color;
       }
       i {
         color: @primary-color;
       }
-      span:last-child {
-        color: @primary-color;
-      }
+      // span:last-child {
+      //   color: @primary-color;
+      // }
     }
     &.ant-message-warning {
-      background-color: @warning-bg-color;
+      // background-color: @warning-bg-color;
       .anticon {
         color: @warning-color;
         display: inline-block;
@@ -47,26 +49,26 @@
       i {
         color: @warning-color;
       }
-      span:last-child {
-        color: @warning-color;
-      }
+      // span:last-child {
+      //   color: @warning-color;
+      // }
     }
     &.ant-message-error {
-      background-color: @error-bg-color;
+      // background-color: @error-bg-color;
       .anticon {
         color: @error-color;
       }
       i {
         color: @error-color;
       }
-      span:last-child {
-        color: @error-color;
-      }
+      // span:last-child {
+      //   color: @error-color;
+      // }
     }
     .loading-transition {
       display: inline-block;
-      height: 16px;
-      width: 16px;
+      height: 18px;
+      width: 18px;
       vertical-align: middle;
       margin-right: 10px;
     }

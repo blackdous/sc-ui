@@ -48,7 +48,7 @@ const successHandle = () => {
 const errorHandle = () => {
   message.error({
     content: '用于表示普通操作信息提示，可关闭，通常信息较长',
-    duration: 300,
+    duration: 3,
     icon: h(ExclamationCircleFilled, { class: 'sc-ui sc-warning-circle-fill', style: { fontSize: '18px', marginRight: '8px' } })
   })
 }
@@ -61,7 +61,7 @@ const infoHandle = () => {
 const warningHandle = () => {
   message.warning({
     content: '用于表示普通操作信息提示，可关闭，通常信息较长',
-    duration: 300
+    duration: 3
   })
 }
 const loadingHandle = () => {
