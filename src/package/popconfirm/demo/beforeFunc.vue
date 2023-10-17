@@ -9,6 +9,7 @@
       :isShowIcon="false"
       :okBeforeFun="okBeforeFunc"
       :cancelBeforeFun="cancelBeforeFunc"
+      @confirm="handleConfirm"
     >
       <ScButton>
         基础气泡确认框
@@ -41,6 +42,10 @@ const cancelBeforeFunc = async() => {
   })
 
   return await promise1;
+}
+
+const handleConfirm = (e:Event) => {
+  console.log('e: ', e);
 }
 
 </script>

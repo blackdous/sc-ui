@@ -73,6 +73,7 @@ export default defineComponent({
     Popconfirm,
     ScButton
   },
+  emits: ['visibleChange', 'update:visible', 'cancel'],
   setup (props, { attrs, slots, emit }) {
 
     const visibleRef = ref(false)
@@ -96,6 +97,7 @@ export default defineComponent({
 
     const handleVisibleChange = (bool: boolean) => {
       visibleRef.value = bool
+      emit('visibleChange', bool)
     }
 
     const baseClass = basePrefixCls + 'Popconfirm'
@@ -114,12 +116,21 @@ export default defineComponent({
     })
 
     const handleOkText = async (e:Event) => {
+      const { onConfirm } = attrs
       e.stopPropagation();
       if (isFunction(getProps.value?.okBeforeFun)) {
         const isClose = await getProps.value?.okBeforeFun()
         visibleRef.value = isClose
+        if (isFunction(onConfirm)) {
+          await onConfirm(e)
+        }
         return
+      } else {
+        if (isFunction(onConfirm)) {
+          await onConfirm(e)
+        }
       }
+      emit('visibleChange', false)
       visibleRef.value = false
     }
 
@@ -130,6 +141,8 @@ export default defineComponent({
         visibleRef.value = isClose
         return
       }
+      emit('visibleChange', false)
+      emit('cancel', e)
       visibleRef.value = false
     }
 
@@ -144,9 +157,11 @@ export default defineComponent({
         visible: unref(visibleRef),
         title: undefined,
         okText: undefined,
-        cancelText: undefined
+        cancelText: undefined,
+        onVisibleChange: undefined
       }
     })
+    console.log('bindValue: ', bindValue);
     return {
       baseClass,
       getProps,
