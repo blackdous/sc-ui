@@ -19,6 +19,9 @@ export const props = () => ({
       return 'right'
     }
   },
+  infoTooltip: {
+    type: String
+  },
   isAddTooltipScrollHeight: {
     type: Boolean,
     default () {

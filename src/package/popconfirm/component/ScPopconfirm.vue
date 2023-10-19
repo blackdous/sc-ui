@@ -161,7 +161,6 @@ export default defineComponent({
         onVisibleChange: undefined
       }
     })
-    console.log('bindValue: ', bindValue);
     return {
       baseClass,
       getProps,

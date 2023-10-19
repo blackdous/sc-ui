@@ -17,7 +17,7 @@
       <Select 
         v-model:value="initValue"
         v-bind="vBind" 
-        :class="[isPrefixIcon ? 'is-prefix' : '']" 
+        :class="[isPrefixIcon ? 'is-prefix' : '', newProps.infoTooltip ? 'is-info' : '']" 
         :disabled="newProps.disabled" 
         :dropdownClassName="dropdownClassName"
         @dropdownVisibleChange="handleDropdownVisibleChange">
@@ -27,7 +27,18 @@
         </template>
 
         <template #suffixIcon>
-          <i v-if="!isSuffixIcon" class="sc-ui sc-you" />
+          <i v-if="!isSuffixIcon && !newProps.infoTooltip" class="sc-ui sc-you" />
+          <span :class="[newProps.infoTooltip ? 'is-info--icon' : '']" v-else-if="newProps.infoTooltip">
+            <i class="sc-ui sc-you" />
+            <Tooltip>
+              <template #title>
+                {{ newProps.infoTooltip }}
+              </template>
+              <!-- <QuestionCircleOutlined /> -->
+              <i class="sc-ui sc-question-circle"></i>
+            </Tooltip>
+            <slot slot="suffixIcon" />
+          </span>
           <slot v-else slot="suffixIcon" />
         </template>
         <template #clearIcon>
@@ -38,6 +49,14 @@
           </span>
         </template>
       </Select>
+      <!-- <span :class="[baseClass + '-suffix']" v-if="newProps.infoTooltip">
+        <Tooltip>
+          <template #title>
+            {{ newProps.infoTooltip }}
+          </template>
+          <QuestionCircleOutlined />
+        </Tooltip>
+      </span> -->
     </div>
   </div>
 </template>
@@ -46,7 +65,7 @@
 
 import { computed, defineComponent, unref, onMounted, onBeforeUnmount, ref, watch, nextTick } from 'vue'
 import { Select, Tooltip, SelectOption } from 'ant-design-vue'
-import { CloseCircleFilled } from '@ant-design/icons-vue'
+import { CloseCircleFilled, QuestionCircleOutlined } from '@ant-design/icons-vue'
 // import cloneDeep from 'lodash/cloneDeep'
 import lodash from 'lodash'
 
@@ -67,6 +86,7 @@ export default defineComponent({
     Select,
     SelectOption,
     CloseCircleFilled,
+    QuestionCircleOutlined,
     Tooltip
   },
   setup(props, { emit, slots, attrs, expose }) {

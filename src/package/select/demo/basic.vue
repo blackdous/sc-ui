@@ -6,6 +6,7 @@
       :placeholder="'请输入1111'"
       class="aaaa"
       tooltip-align="left"
+      info-tooltip="1111111111"
     >
       <SelectOption
         v-for="item in list"

@@ -5,6 +5,7 @@
       @change="handleChange"
       show-search
       :show-arrow="false"
+      info-tooltip="1111111111"
     >
       <SelectOption
         v-for="item in list"
