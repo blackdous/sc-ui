@@ -120,6 +120,7 @@ realPath: src/package/scCascader/index.zh-CN.md
 | popupStyle | 自定义浮层样式 | object | - | - | |
 | popupPlacement | 浮层预设位置：bottomLeft bottomRight topLeft topRight | Enum | - | - | |
 | getPopupContainer | 菜单渲染父节点。默认渲染到 body 上，如果你遇到菜单滚动定位问题，试试修改为滚动的区域，并相对其定位。 | Function(triggerNode) | () => document.body | - | |
+| infoTooltip      | string                                            | -  |  -     |  是否显示提示信息按钮;有提示内容时显示 |
 
 ## Events
 

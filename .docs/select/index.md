@@ -67,6 +67,7 @@ realPath: src/package/select/index.zh-CN.md
 | prefixIcon      | slot                                            | -  |  -      |  支持自定义slot传入，通过`template='prefixIcon'` 来使用|
 | widthSize      | string                                            | `x`  |  `'l', 'xs', 'x', 'md', 'xl'`      |  控制select 宽度|
 | tooltip      | boolean                                            | true  |  -     |  文字长处最大宽度出现。。。,是否显示tooltip显示 |
+| infoTooltip      | string                                            | -  |  -     |  是否显示提示信息按钮;有提示内容时显示 |
 | tooltipAlign      | string                                            | 'right'  |  'left'/'right'   |  提示框显示在左侧或者右侧 |
 | isAddTooltipScrollHeight      | boolean                                            | true  |  -     |  tooltip 显示位置是否增加滚动条高度；防止fixed 定位时 错位问题 |
 
