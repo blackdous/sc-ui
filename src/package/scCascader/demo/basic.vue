@@ -8,6 +8,7 @@
       popupClassName="bbbb"
       popperClass="aaaa" 
       class="testClass"
+      infoTooltip="1111111111"
     />
   </div>
   <div class="mt-20">

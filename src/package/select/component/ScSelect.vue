@@ -30,11 +30,11 @@
           <i v-if="!isSuffixIcon && !newProps.infoTooltip" class="sc-ui sc-you" />
           <span :class="[newProps.infoTooltip ? 'is-info--icon' : '']" v-else-if="newProps.infoTooltip">
             <i class="sc-ui sc-you" />
-            <Tooltip>
+            <Tooltip
+            >
               <template #title>
                 {{ newProps.infoTooltip }}
               </template>
-              <!-- <QuestionCircleOutlined /> -->
               <i class="sc-ui sc-question-circle"></i>
             </Tooltip>
             <slot slot="suffixIcon" />

@@ -80,6 +80,15 @@
               @click.stop="togglePopperVisible()"
             >
             </i>
+            <template v-if="isInfoTooltip">
+              <Tooltip
+              >
+                <template #title>
+                  {{ infoTooltip }}
+                </template>
+                <i class="sc-ui sc-question-circle"></i>
+              </Tooltip>
+            </template>
           </template>
         </ScInput>
 
@@ -274,7 +283,7 @@ import type {
 
 import type { ComponentSize } from './type'
 
-const { cloneDeep, debounce, dropWhile, isEqual } = lodash
+const { cloneDeep, debounce, isEqual } = lodash
 
 type cascaderPanelType = InstanceType<typeof ElCascaderPanel>
 type tooltipType = InstanceType<typeof ElTooltip>
@@ -367,6 +376,7 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    infoTooltip: String
   },
 
   emits: [
@@ -439,6 +449,8 @@ export default defineComponent({
     const searchKeyword = computed(() =>
       multiple.value ? searchInputValue.value : inputValue.value
     )
+    const isInfoTooltip = computed(() => !!props.infoTooltip)
+    const infoTooltip = computed(() => props.infoTooltip)
     const checkedNodes: ComputedRef<CascaderNode[]> = computed(
       () => {
         return panel.value?.checkedNodes || panel1.value?.checkedNodes || []
@@ -843,6 +855,8 @@ export default defineComponent({
     // const overlayClassName = [nsCascader + '-dropdown', popperClass, uuid].
 
     return {
+      isInfoTooltip,
+      infoTooltip,
       popperOptions,
       tooltipRef,
       popperPaneRef,

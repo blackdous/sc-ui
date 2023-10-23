@@ -37,6 +37,7 @@
         width: auto;
         height: 16px;
         transform: translateY(-2px);
+        pointer-events: unset;
         .sc-you {
           transform: rotate(90deg);
         }
@@ -44,11 +45,17 @@
           display: flex;
           align-items: center;
           .sc-question-circle {
+            cursor: pointer;
             font-size: 16px;
             color: @text-color-secondary;
             padding: 0 0 0 8px;
             border-left: 1px solid @border-color-base;
             margin-left: 6px;
+            &:hover {
+              &::before {
+                color: @primary-color;
+              }
+            }
           }
         }
       }
@@ -70,6 +77,12 @@
       .sc-you {
         color: @primary-color;
       }
+      // .sc-question-circle {
+      //   color: @primary-color;
+      //   &::before {
+      //     color: @primary-color;
+      //   }
+      // }
     }
   }
   &.ant-select:not(.ant-select-disabled):focus {
