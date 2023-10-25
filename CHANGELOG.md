@@ -1,4 +1,30 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.180...0.0.2) (2023-10-12)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.182...0.0.2) (2023-10-25)
+
+
+### Features
+
+* 调整 ScTable 弹出框抖动问题 样式 \ ScEllipis 交互样式 ([3002445](http://gitlab.voneyun.com/frontend/sc-ui/commit/3002445bdc36d37509eb0b896e66f037dc034c20))
+
+
+
+## [0.0.182](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.181...0.0.182) (2023-10-23)
+
+
+### Bug Fixes
+
+* 修复 文档打包 报错 ([cd5ea59](http://gitlab.voneyun.com/frontend/sc-ui/commit/cd5ea59985af4ccf4ea3f97bd6438f92db844d76))
+* 修复 ScPopConfirm组件confirm事件 无效问题 ([acd61c1](http://gitlab.voneyun.com/frontend/sc-ui/commit/acd61c1675d547beb13557b98d74e43b553ec1d2))
+
+
+### Features
+
+* 调整message 组件最新UI交互样式 ([93fd986](http://gitlab.voneyun.com/frontend/sc-ui/commit/93fd986a9ed8f4b23f4072bd2e33f5f454e06cfb))
+* 新增 ScSelect 组件新增infoTooltip 属性 ([b833be0](http://gitlab.voneyun.com/frontend/sc-ui/commit/b833be0e5f7d1ca8c6b1ee5c419f3e89359aa977))
+* scCascader 组件 新增提示内容字段 infoTooltip ([be74bef](http://gitlab.voneyun.com/frontend/sc-ui/commit/be74bef49de553787a0c972c82bb228e94e3828b))
+
+
+
+## [0.0.181](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.180...0.0.181) (2023-10-12)
 
 
 ### Bug Fixes
