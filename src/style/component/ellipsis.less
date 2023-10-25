@@ -137,14 +137,11 @@
   }
   &-href--link {
     color: @primary-color;
-    // position: relative;
-    .scEllipsis-text:hover {
-      // content: '';
-      // position: absolute;
-      // left: 0;
-      // right: 0;
-      text-decoration: underline;
-      text-underline-offset: 4px;
+    .scEllipsis-text {
+      .scEllipsis-text-default:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
     }
     .showEllipsisTxt {
       &::before {
