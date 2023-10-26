@@ -9,7 +9,12 @@
       popperClass="aaaa" 
       class="testClass"
       infoTooltip="1111111111"
-    />
+      allowClear
+    >
+    <template #prefixIcon>
+      前缀
+    </template>
+    </ScCascaderNew>
   </div>
   <div class="mt-20">
     <p>展开子节点hover</p>

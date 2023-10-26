@@ -91,82 +91,162 @@
             </template>
           </template>
         </ScInput>
-
-        <div v-if="multiple" ref="tagWrapper" :class="[nsCascader + '-tags', collapseTags ? 'isCollapseTags' : '']">
-          <ScTag
-            v-for="tag in presentTags"
-            :key="tag.key"
-            :type="tagType"
-            :size="tagSize"
-            :hit="tag.hitState"
-            :closable="tag.closable"
-            :class="[tag.isCollapseTag ? 'isTooltipTag' : '']"
-            disable-transitions
-            @close="(event) => { event.stopPropagation(); deleteTag(tag); }"
-          >
-            <template v-if="tag.isCollapseTag === false">
-              <span >{{ tag.text }}</span>
-            </template>
-            <template v-else>
-              <template v-if="collapseTagsTooltip === false">
-                  <span>{{ tag.text }}</span>
+        <div v-if="multiple" ref="tagWrapper" :class="[nsCascader + '-tags', collapseTags ? 'isCollapseTags' : '', multiple && isPrefixIcon ? 'isMultiple-prefixIcon-tags' : '']">
+          <div v-if="multiple && isPrefixIcon" class="isMultiple-prefixIcon">
+            <slot name="prefixIcon"></slot>
+          </div>
+          <div v-if="isPrefixIcon" class="isMultiple-prefixIcon-tags__container">
+            <ScTag
+              v-for="tag in presentTags"
+              :key="tag.key"
+              :type="tagType"
+              :size="tagSize"
+              :hit="tag.hitState"
+              :closable="tag.closable"
+              :class="[tag.isCollapseTag ? 'isTooltipTag' : '']"
+              disable-transitions
+              @close="(event) => { event.stopPropagation(); deleteTag(tag); }"
+            >
+              <template v-if="tag.isCollapseTag === false">
+                <span >{{ tag.text }}</span>
               </template>
               <template v-else>
-                <Tooltip
-                  :disabled="popperVisible || !collapseTagsTooltip"
-                  :fallback-placements="['bottom', 'top', 'right', 'left']"
-                  placement="bottom"
-                  overlay-class-name="isTooltipTag-pd0"
-                  effect="light"
-                >
-                  <template #default>
+                <template v-if="collapseTagsTooltip === false">
                     <span>{{ tag.text }}</span>
-                  </template>
-                  <template #title>
-                    <ScScrollbar
-                      :max-height="searchHeight"
-                      :view-class="nsCascader + '-collapse-tags'"
-                    >
-                      <div
-                        v-for="(tag2, idx) in allPresentTags.slice(1)"
-                        :key="idx"
-                        :class="nsCascader + '-collapse-tag'"
+                </template>
+                <template v-else>
+                  <Tooltip
+                    :disabled="popperVisible || !collapseTagsTooltip"
+                    :fallback-placements="['bottom', 'top', 'right', 'left']"
+                    placement="bottom"
+                    overlay-class-name="isTooltipTag-pd0"
+                    effect="light"
+                  >
+                    <template #default>
+                      <span>{{ tag.text }}</span>
+                    </template>
+                    <template #title>
+                      <ScScrollbar
+                        :max-height="searchHeight"
+                        :view-class="nsCascader + '-collapse-tags'"
                       >
-                        <ScTag
-                          :key="tag2.key"
-                          :class="['in-tooltip']"
-                          :type="tagType"
-                          :size="tagSize"
-                          :hit="tag2.hitState"
-                          :closable="tag2.closable"
-                          disable-transitions
-                          @close="(event) => {  event.stopPropagation(); deleteTag(tag2); }"
-                          @click.stop="togglePopperVisible()"
+                        <div
+                          v-for="(tag2, idx) in allPresentTags.slice(1)"
+                          :key="idx"
+                          :class="nsCascader + '-collapse-tag'"
                         >
-                          <span>{{ tag2.text }}</span>
-                        </ScTag>
-                      </div>
-                    </ScScrollbar>
-                  </template>
-                </Tooltip>
+                          <ScTag
+                            :key="tag2.key"
+                            :class="['in-tooltip']"
+                            :type="tagType"
+                            :size="tagSize"
+                            :hit="tag2.hitState"
+                            :closable="tag2.closable"
+                            disable-transitions
+                            @close="(event) => {  event.stopPropagation(); deleteTag(tag2); }"
+                            @click.stop="togglePopperVisible()"
+                          >
+                            <span>{{ tag2.text }}</span>
+                          </ScTag>
+                        </div>
+                      </ScScrollbar>
+                    </template>
+                  </Tooltip>
+                </template>
               </template>
-            </template>
-          </ScTag>
-          <input
-            v-if="filterable && !isDisabled"
-            v-model="searchInputValue"
-            type="text"
-            :class="nsCascader + '-search-input'"
-            :placeholder="presentText || presentTags.length ? '' : inputPlaceholder"
-            @input="(e) => handleInput(searchInputValue, e)"
-            @click.stop="togglePopperVisible(true)"
-            @keydown.delete="handleDelete"
-            @focus="(e) => $emit('focus', e)"
-            @blur="(e) => $emit('blur', e)"
-            @compositionstart="handleComposition"
-            @compositionupdate="handleComposition"
-            @compositionend="handleComposition"
-          />
+            </ScTag>
+            <input
+              v-if="filterable && !isDisabled"
+              v-model="searchInputValue"
+              type="text"
+              :class="nsCascader + '-search-input'"
+              :placeholder="presentText || presentTags.length ? '' : inputPlaceholder"
+              @input="(e) => handleInput(searchInputValue, e)"
+              @click.stop="togglePopperVisible(true)"
+              @keydown.delete="handleDelete"
+              @focus="(e) => $emit('focus', e)"
+              @blur="(e) => $emit('blur', e)"
+              @compositionstart="handleComposition"
+              @compositionupdate="handleComposition"
+              @compositionend="handleComposition"
+            />
+          </div>
+          <template v-else>
+            <ScTag
+              v-for="tag in presentTags"
+              :key="tag.key"
+              :type="tagType"
+              :size="tagSize"
+              :hit="tag.hitState"
+              :closable="tag.closable"
+              :class="[tag.isCollapseTag ? 'isTooltipTag' : '']"
+              disable-transitions
+              @close="(event) => { event.stopPropagation(); deleteTag(tag); }"
+            >
+              <template v-if="tag.isCollapseTag === false">
+                <span >{{ tag.text }}</span>
+              </template>
+              <template v-else>
+                <template v-if="collapseTagsTooltip === false">
+                    <span>{{ tag.text }}</span>
+                </template>
+                <template v-else>
+                  <Tooltip
+                    :disabled="popperVisible || !collapseTagsTooltip"
+                    :fallback-placements="['bottom', 'top', 'right', 'left']"
+                    placement="bottom"
+                    overlay-class-name="isTooltipTag-pd0"
+                    effect="light"
+                  >
+                    <template #default>
+                      <span>{{ tag.text }}</span>
+                    </template>
+                    <template #title>
+                      <ScScrollbar
+                        :max-height="searchHeight"
+                        :view-class="nsCascader + '-collapse-tags'"
+                      >
+                        <div
+                          v-for="(tag2, idx) in allPresentTags.slice(1)"
+                          :key="idx"
+                          :class="nsCascader + '-collapse-tag'"
+                        >
+                          <ScTag
+                            :key="tag2.key"
+                            :class="['in-tooltip']"
+                            :type="tagType"
+                            :size="tagSize"
+                            :hit="tag2.hitState"
+                            :closable="tag2.closable"
+                            disable-transitions
+                            @close="(event) => {  event.stopPropagation(); deleteTag(tag2); }"
+                            @click.stop="togglePopperVisible()"
+                          >
+                            <span>{{ tag2.text }}</span>
+                          </ScTag>
+                        </div>
+                      </ScScrollbar>
+                    </template>
+                  </Tooltip>
+                </template>
+              </template>
+            </ScTag>
+            <input
+              v-if="filterable && !isDisabled"
+              v-model="searchInputValue"
+              type="text"
+              :class="nsCascader + '-search-input'"
+              :placeholder="presentText || presentTags.length ? '' : inputPlaceholder"
+              @input="(e) => handleInput(searchInputValue, e)"
+              @click.stop="togglePopperVisible(true)"
+              @keydown.delete="handleDelete"
+              @focus="(e) => $emit('focus', e)"
+              @blur="(e) => $emit('blur', e)"
+              @compositionstart="handleComposition"
+              @compositionupdate="handleComposition"
+              @compositionend="handleComposition"
+            />
+          </template>
         </div>
 
         <div v-if="!isDefaultValue" style="height: 0; opacity: 0; width: 0; overflow: hidden; position: relative;">

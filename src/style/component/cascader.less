@@ -241,6 +241,18 @@ div.ant-cascader-menu {
       // .scTag.ant-tag > span + .anticon {
       // }
     }
+    .isMultiple {
+      &-prefixIcon {
+        padding: 0 4px 8px;
+        visibility: hidden;
+        &-tags {
+          flex-wrap: nowrap;
+          &__container {
+            max-width: calc(100% - 24px);
+          }
+        }
+      }
+    }
   }
   &-suggestion {
     &-panel {

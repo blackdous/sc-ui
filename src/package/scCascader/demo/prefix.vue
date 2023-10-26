@@ -5,6 +5,7 @@
       v-model:value="value"
       :defaultValue="['zhejiang', 'hangzhou', 'xihu']"
       :options="options"
+      :props="props"
       @change="handleChange"
       class="test11111"
     >
@@ -74,6 +75,10 @@ interface Option {
   value: string;
   label: string;
   children?: Option[];
+}
+
+const props = {
+  multiple: true
 }
 const options = [
   {
