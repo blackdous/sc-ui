@@ -3,7 +3,7 @@
     <p>展开子节点click(默认)</p>
     <ScCascaderNew 
       v-model="value" 
-      :options="options" 
+      :options="[]" 
       @change="handleChange" 
       popupClassName="bbbb"
       popperClass="aaaa" 
@@ -14,6 +14,9 @@
     <template #prefixIcon>
       前缀
     </template>
+    <!-- <template #empty>
+      11111111
+    </template> -->
     </ScCascaderNew>
   </div>
   <div class="mt-20">

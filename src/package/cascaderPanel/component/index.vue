@@ -9,7 +9,11 @@
       :ref="(item) => (menuList[index] = item)"
       :index="index"
       :nodes="[...menu]"
-    />
+    >
+      <template #empty v-if="$slots.empty">
+        <slot name="empty"></slot>
+      </template>
+    </ScCascaderMenu>
   </div>
 </template>
 

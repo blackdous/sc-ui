@@ -274,7 +274,11 @@
         :border="false"
         @expand-change="handleExpandChange"
         @close="$nextTick(() => togglePopperVisible(false))"
-      />
+      >
+        <template #empty v-if="$slots.empty">
+          <slot name="empty"></slot>
+        </template>
+      </ScCascaderPanel>
       <ScScrollbar
         v-if="filterable"
         v-show="filtering"
@@ -305,10 +309,11 @@
           </li>
         </template>
         <slot v-else name="empty">
-          <li :class="nsCascader + '-empty-text'">
+          <li :class="nsCascader + '-empty-text'" v-if="!$slots.empty">
             <!-- {{ t('el.cascader.noMatch') }} -->
             暂无数据
           </li>
+          <slot name="empty"></slot>
         </slot>
       </ScScrollbar>
     </template>

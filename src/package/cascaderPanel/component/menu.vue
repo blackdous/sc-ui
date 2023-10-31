@@ -20,8 +20,8 @@
       <span class="loading-transition"></span>
     </div>
     <div v-else-if="isEmpty" :class="ns + '-empty-text'">
-      <!-- {{ t('el.cascader.noData') }} -->
-      no data
+      <Empty v-if="!$slots.empty"></Empty>
+      <slot v-else name="empty"></slot>
     </div>
     <svg
       v-else-if="panel?.isHoverMenu"
@@ -39,6 +39,7 @@ import ScCascaderNode from './node.vue'
 import { CASCADER_PANEL_INJECTION_KEY } from './types'
 import { generateId } from '../utils'
 import { basePrefixCls } from '../../../constant'
+import { Empty } from '../../table'
 
 import type { default as CascaderNode } from './node'
 import type { PropType, Ref } from 'vue'
@@ -50,6 +51,7 @@ export default defineComponent({
   components: {
     ScScrollbar,
     ScCascaderNode,
+    Empty,
   },
 
   props: {
