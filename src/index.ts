@@ -54,6 +54,7 @@ import { ScIp } from './package/formIp'
 import { ScDrawer, useDrawer, useDrawerInner } from './package/drawer'
 import { ScEllipsis } from './package/ellipsis'
 import { ScAutoComplete } from './package/autoComplete'
+import { ScNotification } from './package/notification'
 
 // 指令
 import { installGlobalDirectives } from './directives'
@@ -130,6 +131,7 @@ const components = [
   ApiTree,
   ApiRadioGroup,
   ApiCascader,
+  ScNotification,
 
   // 未修改的组件
   message
@@ -209,6 +211,7 @@ export {
   ApiTree,
   ApiRadioGroup,
   ApiCascader,
+  ScNotification,
 
   // 未修改的组件
   message
