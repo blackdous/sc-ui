@@ -39,7 +39,6 @@
       allowClear
       :props="props"
       :options="options"
-      :show-all-levels="false"
       collapse-tags
       @change="handleChange" 
     />
@@ -53,7 +52,6 @@
       :props="{...props, emitPath: false}"
       :options="options"
       collapse-tags
-      :show-all-levels="false"
       collapseTagsTooltip
       @change="handleChange" 
     />

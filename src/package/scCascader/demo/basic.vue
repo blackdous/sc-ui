@@ -3,7 +3,7 @@
     <p>展开子节点click(默认)</p>
     <ScCascaderNew 
       v-model="value" 
-      :options="[]" 
+      :options="options" 
       @change="handleChange" 
       popupClassName="bbbb"
       popperClass="aaaa" 

@@ -166,7 +166,7 @@ div.ant-cascader-menu {
     }
     .scTag {
       &.isTooltipTag {
-        min-width: 32px;
+        min-width: 38px;
         margin-left: 2px;
         margin-right: 0;
       }
@@ -238,15 +238,25 @@ div.ant-cascader-menu {
     .scCascaderNew-tags.isCollapseTags {
       right: 24px;
       flex-wrap: nowrap;
-      // .scTag.ant-tag > span + .anticon {
+      &.isMultiple-prefixIcon-tags {
+        right: 32px;
+        padding-right: 24px;
+        .isMultiple-prefixIcon-tags__container {
+          max-width: calc(100% - 32px);
+        }
+      }
+      // &.isMultiple-prefixIcon-tags {
+      //   padding-right: 24px;
       // }
     }
+    
     .isMultiple {
       &-prefixIcon {
         padding: 0 4px 8px;
         visibility: hidden;
         height: 24px;
-        overflow: hidden;
+        // overflow-y: hidden;
+        white-space: nowrap;
         &-tags {
           flex-wrap: nowrap;
           &__container {
