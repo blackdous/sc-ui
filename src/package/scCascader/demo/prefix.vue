@@ -6,6 +6,7 @@
       :defaultValue="['zhejiang', 'hangzhou', 'xihu']"
       :options="options"
       :props="props"
+      collapse-tags
       @change="handleChange"
       class="test11111"
     >

@@ -6,6 +6,18 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.183](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.182...0.0.183) (2023-10-31)
+
+### Bug Fixes
+
+* 修复 ScCascader 组件 多选模式下 Prefix 覆盖问题 ([78a1b8b](http://gitlab.voneyun.com/frontend/sc-ui/commit/78a1b8b6b88917ca8c49899ff11e594f09f7299a))
+* 修复 ScCascader 组件 empty slot无效问题 ([6e6f38c](http://gitlab.voneyun.com/frontend/sc-ui/commit/6e6f38c6b7705cce4c5af6e7f34aad1792899690))
+
+### Features
+
+* 调整 ScTable 弹出框抖动问题 样式 \ ScEllipis 交互样式 ([3002445](http://gitlab.voneyun.com/frontend/sc-ui/commit/3002445bdc36d37509eb0b896e66f037dc034c20))
+* 新增 ScNotification 组件 ([dc8d4d0](http://gitlab.voneyun.com/frontend/sc-ui/commit/dc8d4d08d9c0a0253f35d50eb82fc556cbdde16e))
+
 ## [0.0.182](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.181...0.0.182) (2023-10-23)
 
 ### Bug Fixes

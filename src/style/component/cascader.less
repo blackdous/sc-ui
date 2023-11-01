@@ -245,12 +245,20 @@ div.ant-cascader-menu {
       &-prefixIcon {
         padding: 0 4px 8px;
         visibility: hidden;
+        height: 24px;
+        overflow: hidden;
         &-tags {
           flex-wrap: nowrap;
           &__container {
             max-width: calc(100% - 24px);
           }
         }
+      }
+    }
+    .isCollapseTags {
+      .isMultiple-prefixIcon-tags__container {
+        display: flex;
+        flex-wrap: nowrap;
       }
     }
   }
