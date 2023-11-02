@@ -5,6 +5,7 @@
 </template>
 <script lang="ts" setup>
 import { ScButton, ScNotification } from 'sc-ui'
+import type { ScNotificationProps } from 'sc-ui'
 
 const cancelProps = {
   loading: false
@@ -12,26 +13,35 @@ const cancelProps = {
 const confirmProps = {
   loading: false
 }
+
+const notificationConfig = {
+  message: 'Notification Title',
+  description: 'basic notification',
+  duration: 4000,
+  placement: 'topLeft',
+  key: 'test111',
+  edit: true,
+  cancelProps,
+  confirmProps,
+  cancelCb: (e: Event) => {
+    console.log('e: cancelCb', e);
+  },
+  confirmCb: (e: Event) => {
+    console.log('e: confirmCb', e);
+  }
+}
 const openNotification = () => {
-  ScNotification.open ({
-    message: 'Notification Title',
-    description: 'basic notification',
-    duration: 4000,
-    placement: 'topLeft',
-    edit: true,
-    cancelProps,
-    confirmProps,
-    cancelCb: (e: Event) => {
-      console.log('e: ', e);
-    },
-    confirmCb: (e: Event) => {
-      console.log('e: ', e);
-      confirmProps.loading = true
-      setTimeout(() => {
-        confirmProps.loading = false
-      }, 1000)
-    }
-  })
+  ScNotification.open (notificationConfig as ScNotificationProps)
+  cancelProps.loading = true
+  confirmProps.loading = true
+  setTimeout(() => {
+    ScNotification.open (notificationConfig as ScNotificationProps)
+    setTimeout(() => {
+      cancelProps.loading = false
+      confirmProps.loading = false
+      ScNotification.open (notificationConfig as ScNotificationProps)
+    }, 1000)
+  }, 1500)
 }
 
 // setTimeout(() => {

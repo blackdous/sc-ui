@@ -9,9 +9,9 @@ import {
 } from '@ant-design/icons-vue'
 
 import { ScButton } from '../../button'
-import { isFunction } from "../../../utils/is"
+import { isFunction } from "../../../utils"
 
-interface ScNotificationProps extends NotificationArgsProps {
+export interface ScNotificationProps extends NotificationArgsProps {
   closeBtn?: boolean;
   edit?: boolean;
   cancelText?: string;

@@ -1,3 +1,5 @@
-import scNotification from './component/ScNotification'
+import scNotification, { ScNotificationProps as scNotificationProps } from './component/ScNotification'
+export const ScNotification = new scNotification()
 
-export  const ScNotification = new scNotification()
+export type ScNotificationProps = scNotificationProps
+

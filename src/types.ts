@@ -1,3 +1,4 @@
+export type { ScNotificationProps } from './package/notification';
 export type { ModalProps } from './package/modal'
 export type { StepsPropType, StepPropType } from './package/steps/index'
 export type { TooltipButtonPropsType } from './package/radio/index'
