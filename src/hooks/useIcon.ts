@@ -6,7 +6,7 @@ export default function useIcon<ExtraCommonProps extends { [key: string]: any } 
   extraCommonProps: ExtraCommonProps
 ) {
 
-  let scriptUrl = '//at.alicdn.com/t/c/font_3690753_sngogv5u3ts.js'
+  let scriptUrl = '//at.alicdn.com/t/c/font_3690753_eb2vxb8uhuc.js'
   if (isBrowser()) {
     if (window?.iconfontUrl) {
       scriptUrl = window.iconfontUrl

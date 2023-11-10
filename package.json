@@ -119,15 +119,16 @@
     "windicss": "^3.5.6"
   },
   "dependencies": {
-    "vue3-useanimations": "^0.0.34",
     "@iconify/vue": "^4.0.0",
+    "@sincerecloud/sc-utils": "^0.0.6",
     "@vue/shared": "^3.2.37",
     "deepmerge": "^4.2.2",
     "dom-align": "^1.12.4",
     "fflate": "^0.7.4",
     "lottie-web": "^5.11.0",
     "patch-vue-directive-ssr": "^0.0.1",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "vue3-useanimations": "^0.0.34"
   },
   "husky": {
     "pre-commit": "yarn build && yarn site:build"

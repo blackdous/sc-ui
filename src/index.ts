@@ -55,6 +55,7 @@ import { ScDrawer, useDrawer, useDrawerInner } from './package/drawer'
 import { ScEllipsis } from './package/ellipsis'
 import { ScAutoComplete } from './package/autoComplete'
 import { ScNotification } from './package/notification'
+import { createSensitiveOperationsModal, useSensitiveOperationsModal } from './package/sensitiveOperations'
 
 // 指令
 import { installGlobalDirectives } from './directives'
@@ -233,7 +234,9 @@ export {
   useForm,
   useIcon,
   useDrawer, 
-  useDrawerInner
+  useDrawerInner,
+  useSensitiveOperationsModal,
+  createSensitiveOperationsModal
 }
 
 export default ScUi;
