@@ -120,7 +120,7 @@
   },
   "dependencies": {
     "@iconify/vue": "^4.0.0",
-    "@sincerecloud/sc-utils": "^0.0.6",
+    "@sincerecloud/sc-utils": "^0.0.7",
     "@vue/shared": "^3.2.37",
     "deepmerge": "^4.2.2",
     "dom-align": "^1.12.4",
@@ -138,7 +138,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-git"
+      "path": "cz-conventional-changelog"
     }
   },
   "pnpm": {

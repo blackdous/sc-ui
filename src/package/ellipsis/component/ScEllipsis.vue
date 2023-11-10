@@ -197,7 +197,7 @@ export default defineComponent({
       const suffixDomWidth = suffixDom ? isNaN(parseInt(window?.getComputedStyle(suffixDom)?.width || '0')) ? 0: parseInt(window?.getComputedStyle(suffixDom)?.width || '0') : 0
       contentDom.style.display = 'inline-block'
       // contentDom.style.whiteSpace = 'nowrap'
-      const maxWidth = (parentDomWidth + '') || containerDom.style.maxWidth || containerDom.style.width || window?.getComputedStyle(containerDom)?.width || window?.getComputedStyle(textDom)?.width
+      const maxWidth = (parentDomWidth + '') || containerDom?.style?.maxWidth || containerDom?.style?.width || (containerDom ? window?.getComputedStyle(containerDom)?.width : containerDom) || (textDom ? window?.getComputedStyle(textDom)?.width : textDom)
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
       const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + suffixDomWidth
@@ -334,7 +334,9 @@ export default defineComponent({
       nextTick(() => {
         computedWidth()
         const containerDom = document.querySelector(`.${uuid} .scEllipsis-text-default`) as HTMLElement
-        observer1.observe(containerDom || textDefaultRef.value, { attributes: true, childList: true, characterData: true, subtree: true })
+        if (containerDom || textDefaultRef.value) {
+          observer1.observe(containerDom || textDefaultRef.value, { attributes: true, childList: true, characterData: true, subtree: true })
+        }
         // clearTimeout(timer)
       })
     })
