@@ -19,9 +19,9 @@
       <Tooltip
         :trigger="item.tooltipTrigger || ['hover', 'focus']"
       >
-        <template #title v-if="item.tooltipDes">
-          <component :is='item.tooltipDes' v-if="isVNode(item.tooltipDes)"></component>
-          <span v-else class="formIp-tooltip">{{ item.tooltipDes }}</span>
+        <template #title v-if="newInputNumberOptions[index]?.tooltipDes">
+          <component :is='item.tooltipDes' v-if="isVNode(newInputNumberOptions[index].tooltipDes)"></component>
+          <span v-else class="formIp-tooltip">{{ newInputNumberOptions[index].tooltipDes }}</span>
         </template>
         <input
           :class="[baseClass + '-input', 'ant-input']"
@@ -177,6 +177,10 @@ export default defineComponent({
       immediate: true
     })
 
+    const newInputNumberOptions = computed(() => {
+      return props.inputNumberOptions || []
+    })
+
     const jumpLeft = (index: number) => {
       const { disabled, value } = ipListRec.list[index - 1]
       if (disabled) {
@@ -309,8 +313,9 @@ export default defineComponent({
       ipListSourceRef,
       isLabelSeparatorSlot,
       refList,
-      isVNode,
+      newInputNumberOptions,
 
+      isVNode,
       setVal,
       checkIpVal,
       handleKeyboardDelete,

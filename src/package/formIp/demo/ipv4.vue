@@ -53,9 +53,12 @@ watch(() => valueRef.value, (val) => {
   console.log('val: valueRef', val);
 })
 
-// setTimeout(() => {
-//   valueRef.value = '10.12.255.255'
-// }, 1500)
+setTimeout(() => {
+  console.log('setTimeout: ', 11111);
+  // valueRef.value = '10.12.255.255'
+  inputNumberOptions.value[0].tooltipDes = 'tooltip22222'
+  console.log('inputNumberOptions: ', inputNumberOptions.value)
+}, 1500)
 const handleChange = (val:any) => {
   console.log('val: handleChange', val);
 }
