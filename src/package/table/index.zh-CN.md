@@ -765,6 +765,19 @@ export interface ActiveOptions {
   }
 ```
 
+## 自适应高度计算
+
+| 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
+| ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
+| maxHeight      |  number                                               | -   | -      | 表格最大高度 |
+| resizeHeightOffset      |  number                                               | -   | -      | 表格头部偏移量 |
+| isCanResizeParent      |  boolean                                               | false  | -      | 是否继承父级高度 |
+| canResize      |  boolean                                               | false   | -      | 是否开启自适应表格高度 |
+
+### expose
+
+导出`redoHeight` 方法；用于主动触发表格高度计算;
+
 ## Column
 
 除 参考官方 [Column 配置](https://2x.antdv.com/components/table-cn/#Column)外，扩展以下参数

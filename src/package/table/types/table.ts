@@ -244,6 +244,13 @@ export interface LocaleProps {
   emptyText?: string | VNode
 }
 export const tableProps = () => ({
+  maxHeight: Number,
+  resizeHeightOffset: {
+    type: Number,
+    default: 114
+  },
+  isCanResizeParent: { type: Boolean, default: false },
+  canResize: { type: Boolean, default: false },
   filterLeftStyle: Object as PropType<CSSProperties>,
   filterRightStyle: Object as PropType<CSSProperties>,
   createButtonOptions: {
@@ -444,6 +451,10 @@ export const tableProps = () => ({
 })
 
 export interface TableProps {
+  maxHeight: number,
+  resizeHeightOffset: number,
+  isCanResizeParent: boolean,
+  canResize: boolean,
   filterLeftStyle: CSSProperties,
   filterRightStyle: CSSProperties,
   upTitle: string,

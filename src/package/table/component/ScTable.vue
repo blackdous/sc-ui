@@ -235,6 +235,7 @@ import { useLoading } from '../hooks/useLoading'
 import { useDataSource } from '../hooks/useDataSource'
 import { useActions } from '../hooks/useActions'
 import { useColumn } from '../hooks/uesColumn'
+import { useTableScroll } from '../hooks/useTableScroll'
 import { createTableContext } from '../hooks/useTableContext'
 // import isFunction from 'lodash/isFunction'
 import lodash from 'lodash'
@@ -405,6 +406,15 @@ export default defineComponent({
       setFilterColumnChecked,
       setFilterColumnDisabled
     } = useColumn(newProps, fetchParams, props)
+
+    const { getScrollRef, redoHeight } = useTableScroll(
+      newProps,
+      tableRef,
+      getColumnsRef,
+      getRowSelectionRef,
+      getDataSourceRef,
+      wrapRef,
+    )
     // showSortTitle(newProps, uuid)
     const tableBindValue = computed(() => {
       const dataSource = unref(getDataSourceRef);
@@ -412,6 +422,7 @@ export default defineComponent({
       return {
         ...attrs,
         ...unref(newProps),
+        scroll: unref(getScrollRef),
         columns: toRaw(unref(getColumnsRef)),
         rowSelection: unref(getRowSelectionRef),
         rowKey: unref(getRowKey),
@@ -711,6 +722,7 @@ export default defineComponent({
     expose({
       ...tableAction,
       fetch,
+      redoHeight,
       getAutoCreateKey,
       resetFilterInputValue
     })
