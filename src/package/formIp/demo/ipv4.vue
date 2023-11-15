@@ -38,7 +38,7 @@ const valueRef = ref(null)
 const valueRef2 = ref(null)
 const valueRef1 = ref('12.3.4.266')
 
-const disabledIndex = ref([2, 4])
+const disabledIndex = ref([1, 3])
 const inputNumberOptions = ref([
   {
     tooltipDes: 'tooltip11111',

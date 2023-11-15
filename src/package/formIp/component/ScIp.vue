@@ -109,21 +109,6 @@ export default defineComponent({
       ]
     })
 
-
-    // watch(() => ipListRec.list.map((item:any) => item.value), val => {
-    //   // console.log('val: ', val);
-    //   const { joinSeparator, disabled } = props
-    //   const curValue = val?.join(joinSeparator)
-    //   if (!disabled && !isProps.value) {
-    //     emit('update:value', curValue)
-    //     emit('change', curValue)
-    //     isDefaultValue.value = false
-    //     isProps.value = false
-    //   }
-    // }, {
-    //   deep: true
-    // })
-
     watch(() => props.disabledIndex, (val: number[]) => {
       const { disabled } = props
       ipListRec.list.forEach((item: any, index: number) => {
@@ -182,7 +167,7 @@ export default defineComponent({
     })
 
     const jumpLeft = (index: number) => {
-      const { disabled, value } = ipListRec.list[index - 1]
+      const { disabled, value } = ipListRec.list[index - 1] || {}
       if (disabled) {
         jumpLeft(index - 1)
       } else {
@@ -193,7 +178,8 @@ export default defineComponent({
     }
 
     const jumpRight = (index: number) => {
-      const { disabled, value } = ipListRec.list[index + 1]
+      const { disabled, value } = ipListRec.list[index + 1] || {}
+      console.log('disabled: ', disabled);
       if (disabled) {
         jumpRight(index + 1)
       } else {
