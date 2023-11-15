@@ -5,6 +5,30 @@ map:
 
 # 变更记录
 
+## [0.0.185](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.184...0.0.185) (2023-11-14)
+
+### Bug Fixes
+
+* 修复 样式问题; ScIp 组件 options 数组增加侦听 ([054d077](http://gitlab.voneyun.com/frontend/sc-ui/commit/054d07775c07ce765c2dc8c3f28cac35333579bb))
+* 修复 ScEllipsis 组件在 h 函数中使用报错问题 ([82ac343](http://gitlab.voneyun.com/frontend/sc-ui/commit/82ac3433b23cc8900dca3092ff0eb897c0df0bc7))
+
+### Features
+
+* 更新 版本到 0.0.185 ([22c3ffc](http://gitlab.voneyun.com/frontend/sc-ui/commit/22c3ffc6748a544ee8e99c59f89a8ff864d45550))
+* 新增 表格自动计算高度功能 ([47788ca](http://gitlab.voneyun.com/frontend/sc-ui/commit/47788cac66b408452145c47b914cfad8203ac941))
+* useSensitiveOperationsModal 初始版本 ([34b3e58](http://gitlab.voneyun.com/frontend/sc-ui/commit/34b3e580ac0471f9287f86dfd45ce979b1c9e3ad))
+
+## [0.0.184](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.183...0.0.184) (2023-11-02)
+
+### Bug Fixes
+
+* 修复ScCascader 组件样式 问题 ([ef0610a](http://gitlab.voneyun.com/frontend/sc-ui/commit/ef0610a79d06492896e0ac53c04ffe134816d80a))
+
+### Features
+
+* 调整ScCascader 组件样式 ([1a6525e](http://gitlab.voneyun.com/frontend/sc-ui/commit/1a6525eb0367ce4cffa74004e8adab787308448f))
+* 完善 notification 功能 ([ef5e915](http://gitlab.voneyun.com/frontend/sc-ui/commit/ef5e91595a8dda3b10ea15440cff87871255cabf))
+
 ## [0.0.183](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.182...0.0.183) (2023-10-31)
 
 ### Bug Fixes

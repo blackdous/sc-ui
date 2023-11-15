@@ -13,7 +13,7 @@
         <template #title>
           {{ item.tooltipDes }}
         </template>
-        <Button 
+        <Button
           type="link"
           class="underlineLink-hover"
           :disabled="!!item.isDisabled"
@@ -38,6 +38,7 @@
       <Dropdown
         placement="bottomRight"
         v-bind="dropdownProps"
+        :trigger="['click', 'hover']"
         :overlayClassName="basePrefixCls + 'TableDropdown'"
         >
         <!-- :visible="true" -->
@@ -66,7 +67,9 @@
                   >
                     <template v-if="subItem.tooltipDes">
                       <Tooltip
-                        overlayClassName = 'scTooltip-white'
+                        overlayClassName= 'scTooltip-white'
+                        placement="left"
+                        :getPopupContainer="tooltipGetPopupContainer"
                       >
                         <template #title>
                           {{ subItem.tooltipDes }}
@@ -102,6 +105,8 @@
                 <template v-if="item.tooltipDes">
                   <Tooltip
                     overlayClassName = 'scTooltip-white'
+                    :getPopupContainer="tooltipGetPopupContainer"
+                    placement="left"
                   >
                     <template #title>
                       {{ item.tooltipDes }}
@@ -191,6 +196,10 @@ const actionsOptions = computed(() => {
 const  dropdownProps = computed(() => {
   return { ...props.dropdownProps } || {}
 })
+
+const tooltipGetPopupContainer = (target) => {
+  return target?.parentNode?.parentNode
+}
 
 const fetchParams = computed(() => {
   return props.fetchParams
