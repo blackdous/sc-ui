@@ -1,4 +1,18 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.185...0.0.2) (2023-11-14)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.186...0.0.2) (2023-11-16)
+
+
+
+## [0.0.186](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.185...0.0.186) (2023-11-16)
+
+
+### Bug Fixes
+
+* 修复 ScIp 组件 自动跳转下一个输入框报错问题 ([d403c83](http://gitlab.voneyun.com/frontend/sc-ui/commit/d403c832f504b08fd2783e65de67919505ad0866))
+
+
+### Features
+
+* 调整 table 操作框显示位置为左侧 ([fd06bce](http://gitlab.voneyun.com/frontend/sc-ui/commit/fd06bceeafb24fbac2de88a37f0a66ea8a0be663))
 
 
 
