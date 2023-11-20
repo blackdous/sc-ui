@@ -62,7 +62,7 @@ export default defineComponent<TimeUnitColumnProps>({
         const oldKeyValue = props.value
         // let lastOffsetTop = 0
         liRefs.value && liRefs.value.forEach((liRef: any) => {
-          const liRefOffsetTop = liRef.offsetTop - 100
+          const liRefOffsetTop = liRef?.offsetTop - 100
           if ((liRefOffsetTop - 15) < ulRefOffsetTop &&  ulRefOffsetTop < (liRefOffsetTop + 15)) {
             keyValue = parseInt(liRef.textContent)
           }
