@@ -375,8 +375,3 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="less">
-.color-warning {
-  color: #FF7D00;
-}
-</style>

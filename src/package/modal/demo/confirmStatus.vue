@@ -95,6 +95,9 @@ const openModal = (infoDes: string) => {
         // cancelText: '取消',
         // okText: '确认',
         footerAlign: 'center',
+        closeFunc: () => {
+          return true
+        },
         onCancel () {
           console.log('cancel');
         },

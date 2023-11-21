@@ -20,6 +20,7 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
     footerAlign = 'center',
     onOk,
     onCancel,
+    closeFunc,
     closable = false,
     zIndex,
     // afterClose,
@@ -85,6 +86,7 @@ const ConfirmDialog:FunctionalComponent<ModalFuncProps> = props => {
       prefixCls={prefixCls}
       wrapClassName={classString}
       onCancel={onCancel}
+      closeFunc={closeFunc}
       onOk={onOk}
       visible={visible}
       title={null}
