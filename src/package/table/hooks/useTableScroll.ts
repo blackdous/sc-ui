@@ -212,7 +212,7 @@ export function useTableScroll(
     const tableHeight = unref(tableHeightRef);
     const { canResize, scroll } = unref(propsRef);
     return {
-      x: unref(getScrollX),
+      x: scroll?.x ? unref(getScrollX) : null,
       y: canResize ? tableHeight : null,
       scrollToFirstRowOnChange: false,
       ...scroll,
