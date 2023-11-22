@@ -6,6 +6,19 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.188](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.187...0.0.188) (2023-11-22)
+
+### Bug Fixes
+
+* 修复 ScTable 未设置 scroll.x 值时;不自动计算宽度 ([8024b79](http://gitlab.voneyun.com/frontend/sc-ui/commit/8024b79ac75b206c75941edbf555bf7d00412450))
+
+## [0.0.187](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.186...0.0.187) (2023-11-21)
+
+### Bug Fixes
+
+* 修复日历组件 Time 组件报错问题 ([9c576fe](http://gitlab.voneyun.com/frontend/sc-ui/commit/9c576fe5827c41464acab3c113772fa251d9dc70))
+* scModel.confirm 组件 closeFunc 参数未穿透问题 ([e785b70](http://gitlab.voneyun.com/frontend/sc-ui/commit/e785b7006d7ca1a46029fb838845a584a3a0e057))
+
 ## [0.0.186](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.185...0.0.186) (2023-11-16)
 
 ### Bug Fixes
