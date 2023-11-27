@@ -29,6 +29,7 @@ import { ScIcon } from './package/icon'
 import { ScLink } from './package/link'
 import { ScTag } from './package/tag'
 import { ScBadge } from './package/badge'
+import { ScImage } from './package/image'
 import useIcon from './hooks/useIcon'
 import ScDatePicker, {
   ScMonthPicker,
@@ -95,6 +96,7 @@ const components = [
   ScLink,
   ScTag,
   ScBadge,
+  ScImage,
   ScIp,
 
   ScLoading,
@@ -175,6 +177,7 @@ export {
   ScLink,
   ScTag,
   ScBadge,
+  ScImage,
   ScIp,
 
   ScLoading,

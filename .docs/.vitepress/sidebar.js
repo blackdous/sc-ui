@@ -23,6 +23,7 @@ export const sidebar = {
         { text: 'Button', link: '/en/button/' },
         { text: 'Loading', link: '/en/loading/' },
         { text: 'Scrollbar', link: '/en/scrollbar/' },
+        { text: 'Image', link: '/en/image/' },
       ]
     },
     {
@@ -113,6 +114,7 @@ export const sidebar = {
         { text: '按钮 Button', link: '/button/' },
         { text: '加载动画 Loading', link: '/loading/' },
         { text: '滚动条 Scrollbar', link: '/scrollbar/' },
+        { text: '图片加载 Image', link: '/image/' },
       ]
     },
     {
