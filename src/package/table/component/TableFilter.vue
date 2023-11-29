@@ -240,7 +240,7 @@ export default defineComponent({
         if (!props.selectValue && typeList) {
           selectedItem.value = typeList[0]
         }
-        if (!props.selectValue && !loading && typeList.length) {
+        if (!props.selectValue && !loading && typeList && typeList?.length) {
           selectedItem.value = typeList.find((item:any) => item.value === defaultValue)
         }
         return props.selectValue || (!loading ? (defaultValue) : undefined) || typeList[0]?.value
