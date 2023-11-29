@@ -1,7 +1,7 @@
 <template>
   <ScImage
     :src="srcRef"
-    width="100"
+    class="img111"
   ></ScImage>
 </template>
 
@@ -17,3 +17,10 @@ setTimeout(() => {
   
 }, 1500)
 </script>
+
+<style>
+.img111 {
+  width: 230px;
+  height: 330px;
+}
+</style>
