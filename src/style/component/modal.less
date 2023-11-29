@@ -1,11 +1,5 @@
 @modalScope: ~'@{prefixCls}Modal';
-// .ant-modal-wrap {
-//   .@{modalScope} {
-//     width: var(--model-width, width) !important;
-//   }
-// }
 .@{modalScope}, .ant-modal {
-  // padding-top: 24px;
   .scTable {
     padding: 0;
     .tableEmpty {
@@ -134,6 +128,9 @@
       & > .scScrollbar {
         margin-right: -32px;
         padding-right: 32px;
+        .ant-form {
+          padding: 2px 2px 0 0;
+        }
       }
     }
   }
