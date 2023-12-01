@@ -78,7 +78,7 @@ import { ref, unref, onMounted, watch } from 'vue'
 import { SelectOption, Select } from 'ant-design-vue'
 import { ScSelect } from 'sc-ui'
 
-const value = ref(undefined)
+const value = ref('')
 const valueAsync = ref()
 
 const handleChange = (val:string) => {

@@ -71,7 +71,7 @@ export function useLocaleReceiver<T extends LocaleComponentName>(
   const componentLocale = computed<Locale[T]>(() => {
     const { antLocale } = JSON.parse(JSON.stringify(localeData));
     let localeLang:string | Nullable<undefined> = antLocale?.locale
-    if (localeLang) {
+    if (localeLang && localeLang.indexOf('-') !== -1){
       const localLangArr = (localeLang || '').split('-')
       localeLang = localLangArr[0] + '_' + localLangArr[1].toUpperCase()
     }
