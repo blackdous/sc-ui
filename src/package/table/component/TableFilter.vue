@@ -243,7 +243,7 @@ export default defineComponent({
         if (!props.selectValue && !loading && typeList && typeList?.length) {
           selectedItem.value = typeList.find((item:any) => item.value === defaultValue)
         }
-        return props.selectValue || (!loading ? (defaultValue) : undefined) || typeList[0]?.value
+        return props.selectValue || (!loading ? (defaultValue) : undefined) || typeList?.[0]?.value
       },
       set: (val) => {
         const { clearInput } = props?.searchOptions?.selectOptions || {}
