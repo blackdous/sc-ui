@@ -7,6 +7,7 @@
     <div>
       <ScButton @click="handleUpdateRecord">updateTableDataRecord</ScButton>
       <ScButton @click="handleUpdate">updateTableData</ScButton>
+      <ScButton @click="handleClearFilter">ClearFilter</ScButton>
     </div>
     <!-- <ConfigProvider
       :locale="enUS"
@@ -234,6 +235,15 @@ const handleUpdateRecord = () => {
 const handleUpdate = () => {
   const { updateTableData } = scTableRef.value
   updateTableData(3, 'name', 'updateTableData John Brown John Brown John Brown')
+}
+
+const handleClearFilter = () => {
+  const { clearFilter, clearAll, clearFilterAllDropdownRef, clearFilterDropdownRef } = scTableRef.value
+  console.log('clearFilterDropdownRef: ', clearFilterDropdownRef);
+  console.log('clearFilterAllDropdownRef: ', clearFilterAllDropdownRef);
+  console.log('clearAll: ', clearAll);
+  console.log('clearFilter: ', clearFilter);
+  clearFilter()
 }
 
 const state = reactive<{

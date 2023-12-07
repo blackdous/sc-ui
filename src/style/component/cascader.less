@@ -141,7 +141,7 @@ div.ant-cascader-menu {
     display: flex;
   }
   .scTag {
-    padding: 1px 8px;
+    padding: 2px 8px;
   }
   &-tags {
     position: absolute;
@@ -157,6 +157,7 @@ div.ant-cascader-menu {
     .scTag:not(.isTooltipTag) {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       max-width: 100%;
       text-overflow: ellipsis;
       margin: 0 0 0 4px;
@@ -177,8 +178,13 @@ div.ant-cascader-menu {
         height: 22px;
       }
     }
-    .scTag + .scTag:not(.isTooltipTag) {
-      margin-top: 2px;
+    .scTag + .scTag {
+      margin-top: 1px;
+      margin-bottom: 1px;
+    }
+    .scTag:first-child {
+      margin-top: 1px;
+      margin-bottom: 1px;
     }
   }
   &-dropdown {

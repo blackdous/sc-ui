@@ -382,8 +382,7 @@ export default defineComponent({
       searchOptions,
       setSearchOptions,
       setMultipleAction,
-      clearAll,
-    } = useFilter(newProps, selectedRowKeysRef, fetchParams, tableFilter.value, getDataSourceRef, props)
+    } = useFilter(newProps, selectedRowKeysRef, fetchParams, tableFilter, getDataSourceRef, props)
 
     const {
       customComponentKey,
@@ -707,8 +706,8 @@ export default defineComponent({
       expandRows,
       collapseAll,
       
-      clearFilter: clearAll,
-      clearFilterDropdownRef,
+      clearFilter: clearFilterAllDropdownRef,
+      clearFilterDropdownRef: clearFilterDropdownRef,
       setSearchOptions,
       setMultipleAction,
       setFilterColumnRef,

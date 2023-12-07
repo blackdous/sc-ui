@@ -6,6 +6,7 @@
       allowClear
       :props="props"
       :options="options" 
+      :show-all-levels="false"
       popupClassName="notFirstColumnCheckbox"
       @change="handleChange" 
     />
@@ -13,9 +14,11 @@
   <div class="mt-20">
     <p>普通多选</p>
     <ScCascaderNew 
+      style="width: 700px;"
       v-model="value" 
       allowClear
       :props="{...props, emitPath: false}"
+      :show-all-levels="false"
       :options="options" 
       @change="handleChange" 
     />
@@ -28,7 +31,6 @@
       placeholder="只展示最后一级多选"
       :props="props"
       :options="options"
-      :showAllLevels="false"
       @change="handleChange" 
     />
   </div>
