@@ -70,6 +70,7 @@ export interface DrawerFooterProps {
   footerHeight: string | number;
 }
 export interface DrawerProps extends DrawerFooterProps {
+  transformTop?: number;
   loading?: boolean;
   visible?: boolean;
   /**

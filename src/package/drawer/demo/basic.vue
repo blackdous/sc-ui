@@ -31,6 +31,7 @@
       :loading="loadingRef"
       :widthSize="widthSize"
       :width="widthRef"
+      :transform-top="100"
       :alert-options="{
         message: '被授权主体支持用户、用户组、角色',
         type: 'info',

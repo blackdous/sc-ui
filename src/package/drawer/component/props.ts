@@ -28,6 +28,7 @@ export const footerProps = {
   }
 };
 export const basicProps = {
+  transformTop: [Number, String],
   title: { type: String, default: '' },
   loadingText: { type: String },
   helpInfo: { type: String },
@@ -36,6 +37,7 @@ export const basicProps = {
   alertOptions: {
     type: Object as PropType<AlertProps>
   },
+  drawerStyle: Object,
   minusDefaultMaxHeight: {
     type: Number,
     default () {

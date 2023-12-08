@@ -3,6 +3,7 @@
     v-bind="vBind"
     v-model:visible="visibleRef"
     :class="className"
+    :style="drawerStyle"
     ref="drawerRef"
   >
     <!-- <template template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
@@ -107,7 +108,7 @@ import { ScScrollbar } from '../../scrollbar'
 import { ScButton } from '../../button'
 import { basePrefixCls } from '../../../constant'
 import { optimizedResize } from '../../../utils/dom/addEventListener'
-import { buildUUID, isFunction, deepMerge } from '../../../utils'
+import { buildUUID, isFunction, deepMerge, pxToRem } from '../../../utils'
 import { basicProps } from './props'
 import { DrawerMethods, DrawerProps } from './typing'
 import LoadingDirective from '../../../directives/loading'
@@ -148,8 +149,14 @@ export default defineComponent({
         title: undefined,
         width: width ? width : (widthSize === 'middle' ? 500 : widthSize === 'large' ? 760 : 300),
         closable: false,
-        maskClosable: confirmLoading ? false : maskClosable
+        maskClosable: confirmLoading ? false : maskClosable,
       }
+    })
+    
+    const drawerStyle = computed(() => {
+      // @ts-ignore
+      const transformTop = props.transformTop ?  { height: `calc(100% - ${pxToRem(props.transformTop)})`, top: pxToRem(props.transformTop) } : {}
+      return transformTop
     })
     const className = computed(() => {
       const classNames = [baseClass, uuid]
@@ -291,6 +298,8 @@ export default defineComponent({
       cancelLoadingRef,
       scrollbarRef,
       alertRef,
+      drawerStyle,
+      
       handleClose,
       handleOk
     }
