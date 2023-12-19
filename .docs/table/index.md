@@ -786,6 +786,7 @@ export interface ActiveOptions {
 | 属性               | 类型                                                      | 默认值  | 可选值 | 说明                     |
 | ------------------ | --------------------------------------------------------- | ------- | ------ | ------------------------ |
 | filterList      | `FilterItem[]`                                                 | -   | -      | 每列筛选的数据源 |
+| enWidth      |  string                                                | -   | -      |  英文状态下使用的宽度 |
 | filterSelected      | `FilterItem[]`                                                 | -   | -      | 每列已经筛选的数据项 |
 | type      | `Type`                                                 | -   | `tdStatus 、 tdCopy 、 tdEllipsis 、tdTooltip 、tdHandle`     | 每列使用内置组件配置 |
 | filtered      | boolean                                           | -   |   -    | 选中之后filtericon 会高亮 |

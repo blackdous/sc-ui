@@ -20,7 +20,7 @@ export default function useLocale ():LocaleDataType {
       curLocale: zh_CN
     }
   }
-  const curLocale = antLocale.Locale === 'en' ? en_US : zh_CN
+  const curLocale = (antLocale.locale === 'en' || antLocale.Locale === 'en') ? en_US : zh_CN
   return {
     antLocale,
     curLocale

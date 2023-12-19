@@ -99,6 +99,7 @@ export interface FilterDropdownProps {
 export declare type CustomRenderFunction<T> = (record: RecordProps<T>) => VNodeChild | JSX.Element;
 
 export interface Column {
+  enWidth?: string,
   filterLoading?: boolean,
   label?: string,
   value?: [string, number],

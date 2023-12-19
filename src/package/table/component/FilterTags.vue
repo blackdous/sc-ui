@@ -20,7 +20,7 @@
         </span>
       </Tag>
     </template>
-    <span v-if="isFilter" class="clearAll" @click="closeAll">清除</span>
+    <span v-if="isFilter" class="clearAll" @click="closeAll">{{clearText}}</span>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ import { defineComponent, computed, PropType } from 'vue'
 import { Tag } from 'ant-design-vue'
 
 import { Column } from '../types/column'
+import useLocale from '../../../hooks/useLocale'
 
 const FilterTagsProps = () => ({
   columns: {
@@ -61,9 +62,14 @@ export default defineComponent({
       return flag
     })
 
+    const { curLocale } = useLocale()
+    const clearText = computed(() => {
+      return curLocale?.clearText || "清除"
+    })
     return {
       filterList,
       isFilter,
+      clearText,
       onTagClose,
       closeAll
     }
