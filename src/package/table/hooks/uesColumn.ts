@@ -24,6 +24,7 @@ export function useColumn (
   const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<Column[]>
   const getColumnRef = ref()
   const { antLocale } = useLocale()
+  console.log('antLocale: ', antLocale)
   const adapterColumnFunc = (columns: Column[]) => {
     const newColumns = columns?.map((item) => {
       if (item?.type?.componentName) {

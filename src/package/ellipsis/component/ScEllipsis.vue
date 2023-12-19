@@ -264,6 +264,7 @@ export default defineComponent({
     const { copy, copied } = useClipboard({
       legacy: true
     })
+    const { curLocale } = useLocale()
     const handleCopy = async () => {
       const copyText = unref(newProps).copyTxt
       const { beforeCallback, afterCallback } = props
@@ -271,7 +272,6 @@ export default defineComponent({
         await beforeCallback?.()
       }
       await copy(String(copyText))
-      const { curLocale } = useLocale()
       if (copied && curLocale?.copy?.successMessage) {
         message.success({
           content: curLocale?.copy?.successMessage,

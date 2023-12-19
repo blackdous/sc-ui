@@ -20,7 +20,7 @@
         </span>
       </Tag>
     </template>
-    <span v-if="isFilter" class="clearAll" @click="closeAll">{{clearText}}</span>
+    <span v-if="isFilter" class="clearAll" @click="closeAll">{{curLocale?.cleanUp}}</span>
   </div>
 </template>
 
@@ -63,13 +63,11 @@ export default defineComponent({
     })
 
     const { curLocale } = useLocale()
-    const clearText = computed(() => {
-      return curLocale?.clearText || "清除"
-    })
+    console.log('curLocale: ', curLocale);
     return {
       filterList,
       isFilter,
-      clearText,
+      curLocale,
       onTagClose,
       closeAll
     }
