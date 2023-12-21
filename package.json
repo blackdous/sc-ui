@@ -21,7 +21,7 @@
   },
   "scripts": {
     "dev": "initial-scan docs && vitepress dev .docs --host",
-    "build": "rimraf rm -f dist && yarn build:umd && yarn build:es",
+    "build": "rimraf rm -f dist && yarn build:umd &&  yarn build:es",
     "build:es": "cross-env build=es vite build",
     "build:umd": "cross-env build=umd vite build",
     "site:build": "cross-env NODE_ENV=production vitepress build .docs",
@@ -120,7 +120,7 @@
   },
   "dependencies": {
     "@iconify/vue": "^4.0.0",
-    "@sincerecloud/sc-utils": "^0.0.7",
+    "@sincerecloud/sc-utils": "^0.0.16",
     "@vue/shared": "^3.2.37",
     "deepmerge": "^4.2.2",
     "dom-align": "^1.12.4",

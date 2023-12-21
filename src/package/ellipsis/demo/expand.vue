@@ -1,8 +1,11 @@
 <template>
   <div class="mt20">
-    <ScEllipsis expand-trigger="click" line-clamp="2" :tooltip="false">
+    <ScEllipsis v-if="true" isCollapse line-clamp="5" :tooltip="false">
       电灯熄灭 物换星移 泥牛入海<br>
       黑暗好像 一颗巨石 按在胸口<br>
+      独脚大盗 百万富翁 摸爬滚打<br>
+      独脚大盗 百万富翁 摸爬滚打<br>
+      独脚大盗 百万富翁 摸爬滚打<br>
       独脚大盗 百万富翁 摸爬滚打<br>
       黑暗好像 一颗巨石 按在胸口
     </ScEllipsis>

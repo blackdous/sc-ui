@@ -10,7 +10,7 @@
 
     <div :class="className" :style="styleProps" @click="handleClick">
       <!-- @click="handleClick" -->
-      <input id="exp1" :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
+      <input :class="[baseClass + '-exp']" type="checkbox" :checked="isChecked">
       <div :class="[baseClass + '-text', isChecked ? 'isCheck' : '']" :style="lineClampStyle">
         <span
           :class="[baseClass + '-suffix-container', (!isDefaultTooltip || isHeightOver) ? isChecked ? '' : 'showEllipsisTxt' : '']"
