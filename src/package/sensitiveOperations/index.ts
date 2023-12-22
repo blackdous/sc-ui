@@ -9,7 +9,6 @@ const { debounce } = lodash
 
 export const createSensitiveOperationsModal = debounce(async (option:SensitiveOperationProps) => {
   const { loadingFun, verificationValid, catchFun, finallyFun, sensitiveOperationId, forcePass } = option
-  console.log('forcePass: ', forcePass);
   try {
     isFunction(loadingFun) && loadingFun(true)
     const pass = isFunction(verificationValid) ?  await verificationValid({ sensitiveOperationId: sensitiveOperationId }) : undefined

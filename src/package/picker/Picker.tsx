@@ -283,7 +283,7 @@ function Picker<DateType>() {
 
         if (onChange && !isEqual(generateConfig, mergedValue.value, newValue)) {
           if (isArray(onChange)) {
-            onChange?.[1]?.(
+            onChange?.[onChange.length - 1]?.(
               newValue,
               newValue
                 ? formatValue(newValue, { generateConfig, locale, format: formatList.value[0] })

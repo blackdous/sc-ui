@@ -8,15 +8,15 @@ realPath: src/package/datePicker/index.zh-CN.md
 
 用于选择某一具体日期或某一段日期区间。
 
-<!-- ## basic copy 2
+## basic copy 2
 
 <demo src="./demo/basic copy 2.vue"
   language="vue"
   title="basic copy 2"
   >
-</demo> -->
+</demo>
 
-## 通过ConfigProvider设置国际化
+<!-- ## 通过ConfigProvider设置国际化
 
 ```vue
 <template>
@@ -229,4 +229,4 @@ export default defineComponent({
 | --- | --- | --- |
 | calendarChange | 待选日期发生变化的回调 | function(dates: \[dayjs, dayjs] \| \[string, string], dateStrings: \[string, string], info: { range:`start`\|`end` }) |
 | change | 日期范围发生变化的回调 | function(dates: \[dayjs, dayjs] \| \[string, string], dateStrings: \[string, string]) |
-| ok | 点击确定按钮的回调 | function(dates: \[dayjs, dayjs] \| \[string, string]) |
+| ok | 点击确定按钮的回调 | function(dates: \[dayjs, dayjs] \| \[string, string]) | -->

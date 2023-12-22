@@ -31,7 +31,6 @@ export default defineComponent<TimeUnitColumnProps>({
     const ulRef = ref<HTMLUListElement>(null);
     const liRefs = ref<Map<number, HTMLElement | null>>(new Map());
     const scrollRef = ref<Function>();
-    let ticking = false; 
     let notScroll = false;
     let isDefault = true;
 
@@ -40,7 +39,9 @@ export default defineComponent<TimeUnitColumnProps>({
       () => {
         const li = liRefs.value.get(props.value!);
         notScroll = true
+        //@ts-ignore
         if (li && open.value !== false) {
+          //@ts-ignore
           scrollTo(ulRef.value!, li.offsetTop - 100, 120);
         }
         const timer = setTimeout(() => {
@@ -70,17 +71,19 @@ export default defineComponent<TimeUnitColumnProps>({
         })
         // console.log('lastOffsetTop: ', lastOffsetTop)
         if (oldKeyValue === keyValue) {
+          // @ts-ignore
           scrollTo(ulRef.value!, (keyValue || 1) * 30, 120)
         } else {
+          // @ts-ignore
           onSelect?.(keyValue)
         }
       }
-    }, 100)
-
+    }, 60)
+    
     onMounted(() => {
+      // @ts-ignore
       waitElementReady(ulRef.value, () => {
         ulRef.value.addEventListener('scroll', scrollUrl, {
-          
         })
         // ulRef.value.addEventListener('scroll', (event) => {
         //   const ulRefOffsetTop = event?.target?.scrollTop || 0
@@ -111,16 +114,18 @@ export default defineComponent<TimeUnitColumnProps>({
       })
     })
     
-
+    //@ts-ignore
     watch(
       open,
       () => {
         scrollRef.value?.();
         nextTick(() => {
+          // @ts-ignore
           if (open.value) {
             const li = liRefs.value.get(props.value!);
             if (li) {
               scrollRef.value = waitElementReady(li, () => {
+                // @ts-ignore
                 scrollTo(ulRef.value!, li.offsetTop - 100, 0)
               });
             }
@@ -163,6 +168,7 @@ export default defineComponent<TimeUnitColumnProps>({
                     return;
                   }
                   notScroll = true
+                  // @ts-ignore
                   onSelect!(unit.value);
                   const timer = setTimeout(() => {
                     notScroll = false

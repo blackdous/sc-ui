@@ -63,7 +63,6 @@ export default defineComponent({
     })
 
     const { curLocale } = useLocale()
-    console.log('curLocale: ', curLocale);
     return {
       filterList,
       isFilter,

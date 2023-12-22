@@ -526,7 +526,7 @@ function RangerPicker<DateType>() {
               onChange(values, [startStr, endStr]);
             }
             if (isArray(onChange)) {
-              onChange?.[1]?.(values, [startStr, endStr]);
+              onChange?.[onChange.length - 1]?.(values, [startStr, endStr]);
             }
             // onChange(values, [startStr, endStr]);
           }

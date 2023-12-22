@@ -266,7 +266,6 @@ export default defineComponent({
     })
     
     const multipleActionOptions = computed(() => {
-      console.log('props.multipleActionOptions: ', props.multipleActionOptions)
       return props.multipleActionOptions
     })
 

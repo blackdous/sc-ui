@@ -179,7 +179,6 @@ export default defineComponent({
 
     const jumpRight = (index: number) => {
       const { disabled, value } = ipListRec.list[index + 1] || {}
-      console.log('disabled: ', disabled);
       if (disabled) {
         jumpRight(index + 1)
       } else {
