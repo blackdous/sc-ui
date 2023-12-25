@@ -5,6 +5,66 @@ map:
 
 # 变更记录
 
+## [0.0.195](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.194...0.0.195) (2023-12-25)
+
+### Bug Fixes
+
+* 修复 ScDatePicker 嵌套 form 表单 ;返回值 未转换格式问题 ([deb62c3](http://gitlab.voneyun.com/frontend/sc-ui/commit/deb62c322d2becac58d672f395de92b3c6ac4e14))
+
+## [0.0.194](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.193...0.0.194) (2023-12-21)
+
+### Bug Fixes
+
+* 修复 ScEllipsis 组件 样式问题 ([511d4bf](http://gitlab.voneyun.com/frontend/sc-ui/commit/511d4bf7d92885250682205f0d884921a72771b6))
+
+## [0.0.193](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.192...0.0.193) (2023-12-19)
+
+### Features
+
+* 处理 组件库 中英文配置 ([3ad1972](http://gitlab.voneyun.com/frontend/sc-ui/commit/3ad1972e497badfd1711c86227b9e2d4d3ed5b4d))
+* 更新 package.json 文件,锁定 vue 版本 ([14f64c4](http://gitlab.voneyun.com/frontend/sc-ui/commit/14f64c491746b4eeb5d3b50c96eb71a665029fbf))
+* scTable Column 对象新增 enWidth 字段, 表格适应 英文版 ([79ab64a](http://gitlab.voneyun.com/frontend/sc-ui/commit/79ab64ab121afe3eb83be72a485d791dbc7978c0))
+
+## [0.0.192](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.191...0.0.192) (2023-12-13)
+
+### Bug Fixes
+
+* 修复 ScModal 嵌套 Form 组件 样式问题 ([fc2a415](http://gitlab.voneyun.com/frontend/sc-ui/commit/fc2a4154834cca3ef868f501e513bf4971eb2dc0))
+
+## [0.0.191](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.190...0.0.191) (2023-12-08)
+
+### Bug Fixes
+
+* 去除 ScTable Filter 组件 报错 ([5494e6a](http://gitlab.voneyun.com/frontend/sc-ui/commit/5494e6afb3f3b65cb3270e9db7e242f13dc13974))
+* 修复ScTable clearFilter 方法无效问题 ([e1884fc](http://gitlab.voneyun.com/frontend/sc-ui/commit/e1884fc6ccfbc7683509516ccedc1a336188ef72))
+
+### Features
+
+* scDrawer 新增 transformTop 属性 ([9e9f618](http://gitlab.voneyun.com/frontend/sc-ui/commit/9e9f6182f228ba7c0f9d0f4bbac555796b82f687))
+
+## [0.0.190](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.189...0.0.190) (2023-12-01)
+
+### Bug Fixes
+
+* 修复 ScDatePicker 多语言包报错问题 ([931494b](http://gitlab.voneyun.com/frontend/sc-ui/commit/931494bc7198b457dee95db28600dbe2345c8cfa))
+
+### Features
+
+* 更新 message 组件样式 ([4fc00bb](http://gitlab.voneyun.com/frontend/sc-ui/commit/4fc00bb7d94e677448a940e7cc3601d83836a49b))
+
+## [0.0.189](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.188...0.0.189) (2023-11-29)
+
+### Bug Fixes
+
+* 调整 modal 样式 ([134d0a7](http://gitlab.voneyun.com/frontend/sc-ui/commit/134d0a7b5e3fdf46e38c7267532110784195b1e0))
+* 去除 ScTable 报错 ([9c1e1ed](http://gitlab.voneyun.com/frontend/sc-ui/commit/9c1e1ed04768910b90e56b51488f3af6ea838d5c))
+
+### Features
+
+* 调整 form 组件样式 ([fbb542e](http://gitlab.voneyun.com/frontend/sc-ui/commit/fbb542e325500e94d0620523d450c1d43a3a60e5))
+* 调整ScImage 组件样式 ([c7f2bef](http://gitlab.voneyun.com/frontend/sc-ui/commit/c7f2bef17c631c78ddfa11d56eee585fc09f5937))
+* 新增 ScImage 组件 ([c8ee49f](http://gitlab.voneyun.com/frontend/sc-ui/commit/c8ee49f1d961ec25755d8240ee9b479496f243f9))
+
 ## [0.0.188](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.187...0.0.188) (2023-11-22)
 
 ### Bug Fixes
