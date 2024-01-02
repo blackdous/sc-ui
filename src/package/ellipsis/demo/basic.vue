@@ -1,4 +1,5 @@
 <template>
+  <!-- <ConfigProvider :locale="enUS"> -->
   <div class="mt20">
     <div style="max-width: 240px">
       <ScEllipsis>
@@ -50,11 +51,17 @@
       </span>
     </ScEllipsis>
   </div>
+  <!-- </ConfigProvider> -->
 </template>
 
 <script lang='ts' setup>
 import { reactive } from 'vue'
 import { ScEllipsis } from 'sc-ui'
+// import { ConfigProvider } from 'ant-design-vue'
+
+// import enUS from 'ant-design-vue/es/locale/en_US'
+// import zhCN from 'ant-design-vue/es/locale/zh_CN'
+
 const editProps = reactive({
   show: true,
   placeholder: '请输入内容',

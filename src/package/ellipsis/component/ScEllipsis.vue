@@ -49,15 +49,18 @@
                     {{ newProps.edit.describe }}
                   </p>
                 </Form>
-                <div :class="[baseClass + '-actives']" :style="{
-                  textAlign: newProps?.edit?.align || 'right'
-                }">
+                <div 
+                  :class="[baseClass + '-actives']" 
+                  :style="{
+                    textAlign: newProps?.edit?.align || 'right'
+                  }"
+                >
                   <ScButton status="info" size="small" @click="handleClose">
-                    取消
+                    {{  antLocale?.Modal?.cancelText || '取消' }}
                   </ScButton>
                   <ScButton type="primary" size="small" :loading="newProps?.edit?.confirmLoading"
                     :disabled="newProps?.edit?.confirmDisabled" @click="handleEntry">
-                    确定
+                    {{  antLocale?.Modal?.okText || '取消' }}
                   </ScButton>
                 </div>
               </template>
@@ -264,7 +267,8 @@ export default defineComponent({
     const { copy, copied } = useClipboard({
       legacy: true
     })
-    const { curLocale } = useLocale()
+    const { curLocale, antLocale } = useLocale()
+
     const handleCopy = async () => {
       const copyText = unref(newProps).copyTxt
       const { beforeCallback, afterCallback } = props
@@ -372,6 +376,7 @@ export default defineComponent({
       isHeightOver,
       textDefaultRef,
       popoverClassName,
+      antLocale,
       // maxWidthValue,
       // contentWidthValue,
 

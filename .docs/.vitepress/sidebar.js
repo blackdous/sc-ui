@@ -84,7 +84,7 @@ export const sidebar = {
       text: 'From',
       items: [
         { text: 'Password', link: '/en/password/' },
-        { text: 'SensitiveOperations', link: '/sensitiveOperations/' }
+        { text: 'SensitiveOperations(废弃)', link: '/sensitiveOperations/' }
       ]
     },
     {
@@ -176,7 +176,7 @@ export const sidebar = {
       text: '表单',
       items: [
         { text: '密码框 Password', link: '/password/' },
-        { text: '敏感操作 SensitiveOperations', link: '/sensitiveOperations/' }
+        { text: '敏感操作 SensitiveOperations(废弃)', link: '/sensitiveOperations/' }
       ]
     },
     {

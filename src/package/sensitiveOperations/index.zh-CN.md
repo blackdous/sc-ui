@@ -3,7 +3,9 @@ map:
   path: /sensitiveOperations
 ---
 
-# 敏感操作验证
+# ~~敏感操作验证~~
+
+**当前组件已废弃，请使用 `@sincerecloud/sc-common-components` 组件中的 `SensitiveOperationsModal` [组件](http://sc-component.voneyun.com/sensitiveOperations/)。**
 
 ## 基础用法
 
