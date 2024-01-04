@@ -1,9 +1,13 @@
 <template>
   <!-- <ConfigProvider :locale="enUS"> -->
   <div class="mt20">
-    <div style="max-width: 240px">
-      <ScEllipsis>
-          浮动元素是如何定位的
+    <div style="max-width: 240px; padding: 11px 16px; font-weight: bold;">
+      <ScEllipsis
+        style="max-width: 240px;"
+        :edit="editProps"
+      >
+        <!-- 1123334441211112 12311221233 -->
+        <!-- data_disk_1702348175692222 -->
         正如我们前面提到的那样，当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。
         在下面的图片中，有三个红色的正方形。其中有两个向左浮动，一个向右浮动。要注意到第二个向左浮动的正方形被放在第一个向左浮动的正方形的右边。如果还有更多的正方形这样浮动，它们会继续向右堆放，直到填满容器一整行，之后换行至下一行。
       </ScEllipsis>
@@ -72,7 +76,7 @@ const editProps = reactive({
   disabled: false,
   confirmDisabled: false,
   getPopupContainer: (target: HTMLElement) => { return target.parentNode?.parentNode },
-  text: 'Aa123456'
+  text: 'data_disk_1703644711112223344'
 })
 
 const handleClick = () => {
