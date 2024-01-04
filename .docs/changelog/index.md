@@ -6,6 +6,23 @@ realPath: src/package/changelog/index.zh-CN.md
 
 # 变更记录
 
+## [0.0.197](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.196...0.0.197) (2024-01-04)
+
+### Features
+
+* 修复 ScEllipsis 组件; 父级无宽度时,对比宽度 使用正常宽度 ([21b34cd](http://gitlab.voneyun.com/frontend/sc-ui/commit/21b34cda82e13da9f2c2753ef299c7be6cc3088c))
+
+## [0.0.196](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.195...0.0.196) (2024-01-04)
+
+### Bug Fixes
+
+* 修复 ScEllipsis 组件 计算宽度问题 ([21c8a59](http://gitlab.voneyun.com/frontend/sc-ui/commit/21c8a595f353b0db47098a5353e1913e177fcaa5))
+
+### Features
+
+* 适配ScEllipsis  多语言 切换 ([f6cca13](http://gitlab.voneyun.com/frontend/sc-ui/commit/f6cca13339135109c47e1ae315cebc0c1a4f0857))
+* 替换ScTable 内部筛选组件 Select 为 ScSelect ([5cc45d7](http://gitlab.voneyun.com/frontend/sc-ui/commit/5cc45d71991c773551b5ae5d2697b9a457a0facf))
+
 ## [0.0.195](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.194...0.0.195) (2023-12-25)
 
 ### Bug Fixes
