@@ -214,7 +214,7 @@ export default defineComponent({
       // contentDom.style.whiteSpace = 'nowrap'
       // 1. 如果设置自动获取父级宽度；则使用父级元素宽度
       // 2. 如果设置最大宽度；最大宽度大于父级真实宽度；则使用父级真实宽度
-      const maxWidth = isInheritParentWidth ? parentDomWidth + '' : (parseInt(containerDomWidth) > parentDomWidth) ? parentDomWidth + '' : containerDomWidth
+      const maxWidth = isInheritParentWidth ? (parentDomWidth === 0 ? containerDomWidth + '' : parentDomWidth + '') : (parseInt(containerDomWidth) > parentDomWidth && parentDomWidth !== 0) ? parentDomWidth + '' : containerDomWidth
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
       const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + suffixDomWidth

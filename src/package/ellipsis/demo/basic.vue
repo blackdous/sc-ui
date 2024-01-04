@@ -1,7 +1,7 @@
 <template>
   <!-- <ConfigProvider :locale="enUS"> -->
-  <div class="mt20">
-    <div style="max-width: 240px; padding: 11px 16px; font-weight: bold;">
+  <div class="mt20" style="min-width: 100px">
+    <div style="">
       <ScEllipsis
         style="max-width: 240px;"
         :edit="editProps"
