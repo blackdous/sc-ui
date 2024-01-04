@@ -44,10 +44,13 @@
     >
       <template v-if="!isSearch && searchOptions.show">
         <InputGroup>
-          <Select
+          <ScSelect
             v-model:value="selectValue"
             v-if="searchOptions.showSelect"
-            :style="{width: transformPxtoRem(searchOptions.selectOptions?.width) || transformPxtoRem('120px')}"
+            :style="{ 
+              width: transformPxtoRem(searchOptions.selectOptions?.width) || transformPxtoRem('120px'), 
+              minWidth: transformPxtoRem(searchOptions.selectOptions?.width) || transformPxtoRem('120px')
+            }"
             dropdownClassName="scDropdown"
             :placeholder="searchOptions.selectOptions?.placeholder"
             :loading="searchOptions.loading"
@@ -62,7 +65,7 @@
             >
               {{ optionsItem.label }}
             </SelectOption>
-          </Select>
+          </ScSelect>
           <div class="scSearchInput">
             <InputSearch
               v-model:value="textValue"
@@ -97,6 +100,7 @@
 <script lang='ts'>
 import { computed, defineComponent, PropType, ref, unref, CSSProperties, watch } from 'vue'
 import { Button, Select, SelectOption, Tooltip, InputSearch, InputGroup } from 'ant-design-vue'
+import { ScSelect } from '../../select'
 import { PlusOutlined } from '@ant-design/icons-vue'
 import lodash from 'lodash'
 // import cloneDeep from 'lodash/cloneDeep'
@@ -165,6 +169,7 @@ export default defineComponent({
     Button,
     ScRadioTooltipGroup,
     Select,
+    ScSelect,
     Tooltip,
     SelectOption,
     PlusOutlined,
