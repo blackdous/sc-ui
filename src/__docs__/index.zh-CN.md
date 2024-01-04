@@ -7,7 +7,7 @@ map:
 
 ant-design-vue vue3 ts ui
 
-**最新版本0.0.195**
+**最新版本0.0.196**
 
 [文档地址](http://sc-ui.voneyun.com/)
 
