@@ -211,9 +211,16 @@ export default defineComponent({
       const { isAddTooltipScrollHeight, tooltipAlign } = props
       const bodyScrollLeft = isAddTooltipScrollHeight ? document.documentElement.scrollLeft : 0
       const bodyScrollTop = isAddTooltipScrollHeight ? document.documentElement.scrollTop : 0
-      const scrollWidth = event?.target?.scrollWidth || event?.target?.clientWidth
+      const newPDom = document.createElement("div")
+      document.body.appendChild(newPDom)
+      newPDom.className = 'ant-select-item-option-content'
+      newPDom.style.display = 'inline-block'
+      newPDom.style.position = 'absolute'
+      newPDom.style.height = '0'
+      newPDom.innerHTML = event?.target?.innerHTML
       const clientWidth = event?.target?.clientWidth
-      if (scrollWidth > clientWidth) {
+      const scrollWidth = (newPDom?.clientWidth + 16) ||  event?.target?.scrollWidth || event?.target?.clientWidth
+      if (scrollWidth >= clientWidth) {
         const posLeft = tooltipAlign === 'left' ? rect.left - 252 : rect.left + rect.width + bodyScrollLeft + 10
         const posTop = rect.top + bodyScrollTop
         // const posTop = rect.top + bodyScrollTop + (rect.height / 2) - (contentHeight / 2)
@@ -237,6 +244,7 @@ export default defineComponent({
       } else {
         divDom.innerHTML = ``
       }
+      document.body.removeChild(newPDom)
     }
 
     const showTooltip = () => {

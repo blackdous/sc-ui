@@ -35,7 +35,7 @@
         action: searchHanle,
         selectOptions: {
           placeholder: '请选择',
-          width: '100px',
+          width: '120px',
           defaultValue: 'bb',
           clearInput: false
         },
@@ -138,7 +138,7 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
 ])
 const list = ref([
   {
-    label: '创建快照',
+    label: 'Instance Name',
     isShow: true,
     loading: false,
     key: 'aa',

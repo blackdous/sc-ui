@@ -22,7 +22,7 @@
     <ScSelect
       v-model:value="value"
       @change="handleChange"
-      class="aaaa"
+      style="min-width: 120px;"
     >
       <SelectOption
         v-for="item in list"
@@ -117,7 +117,7 @@ const mockFetch = () => {
 
 for (let i = 0;i < 100;  i++) {
   list.value = [...unref(list), {
-    label: 'JackJackJackJackJackJackJackJackJackJackJackJackJackJack' + i,
+    label: 'Instance N111',
     value: i,
     key: 'Jack' + i
   }]
@@ -144,7 +144,7 @@ onMounted(() => {
 </style>
 <style scoped>
 .aaaa {
-  width: 100px;
+  width: 120px;
 }
 .mt20 {
   margin-top: 20px;
