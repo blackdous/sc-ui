@@ -1,4 +1,14 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.197...0.0.2) (2024-01-04)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.198...0.0.2) (2024-01-10)
+
+
+
+## [0.0.198](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.197...0.0.198) (2024-01-10)
+
+
+### Bug Fixes
+
+* 修复 ScCascaderNew change 方法参数问题; 自定义节点 穿透问题; 补充实例方法 ([eb6d316](http://gitlab.voneyun.com/frontend/sc-ui/commit/eb6d31636d425a2df6f3be709f8a8e856b6670ff))
+* 修复 ScSelect 组件 类目 超出显示tooltip 不准问题 ([103d918](http://gitlab.voneyun.com/frontend/sc-ui/commit/103d9183839275df89aa15e082a2a4cc99694f9d))
 
 
 
