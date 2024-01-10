@@ -833,6 +833,10 @@ export interface ActiveOptions {
     // 使用的组件名 `thDescribe`、 `thUnit`
     componentName: string,
     props: {
+      // thDescribe 控制tooltip 样式
+      overlayClassName: '',
+      // thDescribe 控制tooltip 样式
+      overlayStyle: '',
       // 设置column 名称
       text: 'columnName',
       // tooltip提示框

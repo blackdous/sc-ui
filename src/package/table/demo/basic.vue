@@ -341,6 +341,8 @@ const getColumns = () => {
       componentName: 'thDescribe1',
       props: {
         text: 'Column 1',
+        overlayClassName: 'dctooltip',
+        overlayStyle: { maxWidth: '500px' },
         describe: h('div', {}, ['提示内容提示内容提示内容', h('span', { style: { color: '#FF7D00' }}, 'Column 1Column 1'), '提示内容提示内容提示内容'])
       }
     },
@@ -553,5 +555,8 @@ const searchHanle = (data) => {
 
 </script>
 <style scoped>
+/* .dctooltip {
+  max-width: 400px;
+} */
 /* @import 'comment'; */
 </style>

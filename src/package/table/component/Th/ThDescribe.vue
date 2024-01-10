@@ -3,8 +3,9 @@
     :class="[preFixClass]"
   >
     <Tooltip
-      overlayClassName="scTooltip-white"
-      destroyTooltipOnHide
+      :overlayClassName="propsRef.overlayClassName"
+      :overlayStyle="propsRef.overlayStyle"
+      :defaultVisible="true"
     >
       <template #title>
         {{isVNode(propsRef.describe) ? '' : propsRef.describe}}
@@ -38,7 +39,9 @@ const props = () =>({
   text: {
     type: [String, Number],
     default: ''
-  }
+  },
+  overlayClassName: String,
+  overlayStyle: Object
 })
 
 export default defineComponent({
