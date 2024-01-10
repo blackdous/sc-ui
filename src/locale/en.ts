@@ -8,7 +8,9 @@ const en_US:LocaleType = {
     successMessage: 'Successfully Copied'
   },
   cleanUp: 'clean up',
-  noData: 'no Data'
+  noData: 'no Data',
+  total: 'Total',
+  item: 'item'
 }
 
 export default en_US

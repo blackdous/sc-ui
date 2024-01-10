@@ -2,6 +2,7 @@ import type { PaginationProps } from '../types/pagination';
 // import type { TableProps } from '../types/table';
 import { computed, unref, ref, ComputedRef, watch, h } from 'vue';
 import { PAGE_SIZE } from '../../../constant';
+import useLocale from '../../../hooks/useLocale'
 
 const isBoolean = (source:any) => {
   return Object.prototype.toString.call(source) === '[object Boolean]'
@@ -26,7 +27,7 @@ export function usePagination(refProps: ComputedRef<Recordable>, props: Recordab
       deep: true
     }
   );
-
+  const { curLocale } = useLocale()
   const getPaginationInfo = computed((): PaginationProps | boolean => {
     const { pagination } = props;
 
@@ -39,7 +40,7 @@ export function usePagination(refProps: ComputedRef<Recordable>, props: Recordab
       pageSize: PAGE_SIZE,
       size: 'default',
       defaultPageSize: PAGE_SIZE,
-      showTotal: (total) => `共 ${total} 条`,
+      showTotal: (total) => `${curLocale?.total || '共'} ${total} ${curLocale?.item || '条'}`,
       itemRender: ({type, originalElement}) => {
         if (type === 'prev') {
           return h('i', { class: 'sc-ui sc-you' })

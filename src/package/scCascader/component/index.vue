@@ -278,6 +278,9 @@
         <template #empty v-if="$slots.empty">
           <slot name="empty"></slot>
         </template>
+        <template #default="{ node, data }" v-if="$slots.default">
+          <slot name="default" v-bind="{ node, data}"></slot>
+        </template>
       </ScCascaderPanel>
       <ScScrollbar
         v-if="filterable"
@@ -568,7 +571,10 @@ export default defineComponent({
       },
       set(val) {
         emit(UPDATE_MODEL_EVENT, val)
-        emit(CHANGE_EVENT, val)
+        const newCheckedNodes = checkedNodes.value?.map(item => {
+          return {...item, ...item.data}
+        })
+        emit(CHANGE_EVENT, val, newCheckedNodes)
         if (props.validateEvent) {
           // formItem?.validate('change').catch((err) => debugWarn(err))
         }
@@ -769,6 +775,10 @@ export default defineComponent({
 
     const getCheckedNodes = (leafOnly: boolean) => {
       return panel?.value?.getCheckedNodes(leafOnly)
+    }
+
+    const getCheckedNodeKeys = (leafOnly: boolean) => {
+      return panel?.value?.getCheckedNodeKeys(leafOnly)
     }
 
     const handleExpandChange = (value: CascaderValue) => {
@@ -978,6 +988,7 @@ export default defineComponent({
       isPrefixIcon,
       searchHeight,
       collapseTags,
+      cascaderPanelRef: panel,
 
       // t,
       togglePopperVisible,
@@ -985,6 +996,7 @@ export default defineComponent({
       deleteTag,
       focusFirstNode,
       getCheckedNodes,
+      getCheckedNodeKeys,
       handleExpandChange,
       handleKeyDown,
       handleComposition,
