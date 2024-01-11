@@ -5,7 +5,6 @@
     <Tooltip
       :overlayClassName="propsRef.overlayClassName"
       :overlayStyle="propsRef.overlayStyle"
-      :defaultVisible="true"
     >
       <template #title>
         {{isVNode(propsRef.describe) ? '' : propsRef.describe}}
