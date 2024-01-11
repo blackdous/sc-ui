@@ -18,25 +18,42 @@ import { ref } from 'vue'
 import { ScCascaderNew } from 'sc-ui';
 // import { Cascader } from 'ant-design-vue';
 
-const value1 = ref(['3', 'all222'])
+const value1 = ref([['3', 'all222']])
+// '3', 'all222'
 
 const ScCascaderNewRef = ref()
 
 const props = {
-  multiple: true
+  multiple: true,
+	// emitPath: false
 }
 
-const handleChange1 = (value:any, options:any) => {
-  console.log('options: ', options);
-  const diffParentValueIndex = value.findIndex((item:any, index:number) => {
-    if (index === 0) {
-      return false
-    }
-    return item[0] !== value[index - 1][0]
-  })
-  if (diffParentValueIndex !== -1) {
-    value1.value = value.slice(diffParentValueIndex)
+const handleChange1 = (val:any, option:any) => {
+	console.log('value: ', val, val.length);
+  console.log('options: ', option);
+	if (!val.length || !option) {
+    return false
   }
+  const diffParentValueIndex = val.findIndex((item:any, index:number) => {
+		if (index === 0) {
+			return false
+    }
+    return item[0] !== val[index - 1][0]
+  })
+	let firstOption = option[0]
+  if (diffParentValueIndex !== -1) {	
+		value1.value = val.slice(diffParentValueIndex)
+		const newOptions = option.slice(diffParentValueIndex)
+		firstOption = newOptions[0]
+  }
+	if (!firstOption.unit) {
+		const parent = firstOption.parent || {}
+		firstOption = {
+			...parent.data || {},
+			...firstOption
+		}
+	}
+	console.log('firstOption: ', firstOption);
 }
 
 const options =  [{

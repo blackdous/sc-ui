@@ -344,7 +344,7 @@ import ClickOutside from '../../../directives/clickOutside'
 import {
   focusNode,
   getSibling,
-  isKorean,
+  isKorean
 } from './utils'
 
 import {
@@ -358,7 +358,7 @@ import {
 import type { Options } from './type'
 import { tagProps } from './type'
 
-import { pxToRem } from '../../../utils'
+import { pxToRem, isArray } from '../../../utils'
 
 import { buildUUID } from '../../../utils/uuid'
 
@@ -661,6 +661,9 @@ export default defineComponent({
         const currentValue = emitPath === false ? node.value : node.pathValues
         const newData = (props.modelValue || []).filter((val:any) => {
           if (!emitPath) {
+            if (isArray(val) || isArray(currentValue)) {
+              return !isEqual(val, currentValue)
+            } 
             return currentValue !== val
           }
           return !isEqual(val, currentValue)

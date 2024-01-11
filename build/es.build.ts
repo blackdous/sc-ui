@@ -3,7 +3,7 @@ export const esBuild = {
   outDir: 'dist',
   lib: {
     entry: resolve(__dirname, '../src/index.ts'),
-    name: 'sc-ui',
+    name: 'ScUi',
   },
   
   sourcemap: true,

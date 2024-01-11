@@ -2,7 +2,7 @@ import { resolve } from "path"
 export const umdBuild = {
   lib: {
     entry: resolve(__dirname, '../src/index.ts'),
-    name: 'sc-ui',
+    name: 'ScUi',
     formats: ['es', 'umd'],
     fileName: (format) => `build.${format}.ts`,
   },
