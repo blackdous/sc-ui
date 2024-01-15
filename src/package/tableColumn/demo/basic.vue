@@ -1,19 +1,25 @@
 <template>
-  <ColumnDialog 
-    v-model:visible="visible"
-    @okModal="handleChange"
-    @cancelModal="handleCancel"
-    :columnList="checkList"
-  >
-  </ColumnDialog>
-  <ScButton @click="openModal">
-    打开
-  </ScButton>
+  <!-- <ConfigProvider
+    :locale="enUS"
+  > -->
+    <ColumnDialog 
+      v-model:visible="visible"
+      @okModal="handleChange"
+      @cancelModal="handleCancel"
+      :columnList="checkList"
+    >
+    </ColumnDialog>
+    <ScButton @click="openModal">
+      打开
+    </ScButton>
+  <!-- </ConfigProvider> -->
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { Ref } from 'vue'
+// import { ConfigProvider } from 'ant-design-vue'
+// import enUS from 'ant-design-vue/es/locale/en_US'
 
 import { ColumnDialog, ScButton } from 'sc-ui'
 

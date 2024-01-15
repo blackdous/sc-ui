@@ -92,7 +92,6 @@ import { ellipsisProps } from './type'
 import { isBoolean, isObject, buildUUID, isFunction } from '../../../utils'
 // import { waitElementReady } from '../../../utils/dom/waitElementReady'
 import useLocale from '../../../hooks/useLocale'
-import { parse } from 'path'
 
 export default defineComponent({
   name: 'ScEllipsis',
@@ -184,6 +183,15 @@ export default defineComponent({
       return document.body
     }
 
+    const getPaddingBorderWidth = (target: HTMLElement) => {
+      return {
+        paddingLeft: target?.style?.paddingLeft || window?.getComputedStyle(target)?.paddingLeft || '0',
+        paddingRight: target?.style?.paddingRight || window?.getComputedStyle(target)?.paddingRight || '0',
+        borderLeftWidth: target?.style?.borderLeftWidth || window?.getComputedStyle(target)?.borderLeftWidth || '0',
+        borderRightWidth: target?.style?.borderRightWidth || window?.getComputedStyle(target)?.borderRightWidth || '0'
+      }
+    }
+
     /**
      * 1. 计算传入元素宽度
      * 2. 对比父级或者当前元素最大宽度
@@ -198,7 +206,7 @@ export default defineComponent({
       const parentDom = containerDom.parentNode as HTMLElement
       // eslint-disable-next-line no-unsafe-optional-chaining
       // 获取父级元素 padding border 宽度
-      const { paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = parentDom?.style || {}
+      const { paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = getPaddingBorderWidth(parentDom)
       // 计算父级元素宽度 (盒子宽度 - padding - border)
       const parentDomWidth = parseInt((parentDom?.clientWidth + '') || '0') - parseInt(borderRightWidth || '0') - parseInt(borderLeftWidth || '0') - parseInt(paddingRight || '0') - parseInt(paddingLeft || '0')
       // const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
@@ -214,7 +222,7 @@ export default defineComponent({
       // contentDom.style.whiteSpace = 'nowrap'
       // 1. 如果设置自动获取父级宽度；则使用父级元素宽度
       // 2. 如果设置最大宽度；最大宽度大于父级真实宽度；则使用父级真实宽度
-      const maxWidth = isInheritParentWidth ? (parentDomWidth === 0 ? containerDomWidth + '' : parentDomWidth + '') : (parseInt(containerDomWidth) > parentDomWidth && parentDomWidth !== 0) ? parentDomWidth + '' : containerDomWidth
+      const maxWidth = isInheritParentWidth ? (parentDomWidth === 0 ? containerDomWidth + '' : parentDomWidth + '') : (parseInt(containerDomWidth) > parentDomWidth && (parentDomWidth !== 0)) ? parentDomWidth + '' : containerDomWidth
       contentDom.innerText = textDom?.innerText || ''
       document.body.append(contentDom)
       const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + suffixDomWidth

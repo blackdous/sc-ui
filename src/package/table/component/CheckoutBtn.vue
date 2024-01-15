@@ -31,7 +31,7 @@
         @change="onCheckAllChange"
         :indeterminate="indeterminate"
         >
-        全部
+        {{AllLang}}
       </Checkbox>
     </div>
     <CheckboxGroup
@@ -51,6 +51,7 @@ import { CheckboxGroup, Checkbox } from 'ant-design-vue'
 import { useChecked } from '../hooks/uesDialog'
 // @ts-ignore
 import { Column, ColumnModal, FilterItem } from '../types/column'
+import useLocale from '../../../hooks/useLocale'
 
 export default defineComponent({
   name: 'CheckoutBtn',
@@ -70,6 +71,9 @@ export default defineComponent({
     checkedListKeys.value = getCheckedKeys()
     checkedItems.value = getCheckedItems()
 
+    const { antLocale } = useLocale()
+    
+    const AllLang = (antLocale?.locale?.includes('en') || antLocale?.Locale?.includes('en')) ? 'All' : '全部'
     watch(() => props.columnList, (val) => {
       sourceList.value = val
       const { getCheckedKeys, getCheckedItems } = useChecked(val as Array<Column>)
@@ -113,6 +117,7 @@ export default defineComponent({
       emit('change', { keys: unref(keys), checkedList: unref(checkedList), list: unref(list) })
     }
     return {
+      AllLang,
       checkAll,
       checkedListKeys,
       sourceList,

@@ -1,11 +1,9 @@
 <template>
   <ScModal
     v-model:visible="visible"
-    title="自定义列表字段"
+    :title="title"
     type="info"
-    :infoDes="`请选择您想显示的列表详细信息。您已勾选${checkInfo}个。`"
-    cancelText="取消"
-    okText="确认"
+    :infoDes="infoDesCompute"
     :width="840"
     maskClosable
     :afterClose="handleCancel"
@@ -29,6 +27,9 @@ import lodash from 'lodash'
 import ScModal from '../../modal/component/ScModal.vue'
 import { ColumnModal, Column } from '../types/column'
 import CheckoutBtnVue from './CheckoutBtn.vue'
+import enUSLocale from "../../../locale/en"
+import zhCNLocale from "../../../locale/zh"
+import useLocale from '../../../hooks/useLocale'
 
 interface CheckParams {
   keys: string[],
@@ -48,6 +49,10 @@ export default defineComponent({
   props: ColumnModal(),
   setup (props, { emit, attrs }) {
     const checkInfo = ref<string>('')
+    const { antLocale } = useLocale()
+    const curCookie = document.cookie
+    const isEn = (curCookie.includes('en-US'))
+    const curLocale = isEn ? { ...enUSLocale } : { ...zhCNLocale }
     // const sourceList = ref()
     const delItemKeys = ref()
     const columnList = computed(() => {
@@ -89,7 +94,17 @@ export default defineComponent({
     const handleOk = () => {
       emit('okModal',  { keys: unref(curKeys), checkedList: unref(curCheckedList), delItemKeys: unref(delItemKeys) })
     }
+
+    const title = curLocale?.customListFields || '自定义列表字段'
+
+    const infoDesCompute = computed(() => {
+      return `${curLocale?.selectItem || '请选择您想显示的列表详细信息。您已勾选'}${checkInfo.value}${isEn ? '' : '个'}。`
+    })
     return {
+      curLocale,
+      antLocale,
+      infoDesCompute,
+      title,
       visible,
       columnList,
       checkInfo,
