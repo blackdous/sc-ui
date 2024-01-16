@@ -33,8 +33,7 @@
       dotCircle
       :max="obj1.max"
       :min="obj1.min"
-      :interval="50"
-      :step="50"
+      :step="'10'"
       v-model:value="valueRef.size"
       @change="handleChange"
       @blur="handleBlur"
@@ -79,12 +78,12 @@ const handleChange = (val:number) => {
 }
 
 const obj1 = reactive({
-  max: 500,
-  min: 150
+  max: '100',
+  min: '0'
 })
 
 const valueRef = reactive({
-  size: 50
+  size: 1
 })
 
 watch(() => valueRef.size, (val) => {
@@ -93,9 +92,9 @@ watch(() => valueRef.size, (val) => {
 
 const handleMin = () => {
   setTimeout(() => {
-    obj1.min = 30
-    obj1.max = 500
-    valueRef.size = 40
+    obj1.min = '30'
+    obj1.max = '500'
+    valueRef.size = '40'
     console.log('valueRef: ', JSON.parse(JSON.stringify(valueRef)));
   }, 500)
 }

@@ -148,6 +148,12 @@ export default defineComponent({
   },
   emits: ['change', 'update:value', 'blur', 'focus'],
   setup (props, { slots, attrs, emit }) {
+    // const curProps = {
+    //   ...props,
+    //   // min: parseFloat(props.min + '' || '0'),
+    //   // max: parseFloat(props.max + '' || '100')
+    // }
+    // const isNull
     const valueRef = ref(props.value)
     const valueSliderRef = ref(props.value)
     const uuid = basePrefixCls + buildUUID()
@@ -156,7 +162,10 @@ export default defineComponent({
 
     const newProps = computed(() => {
       return {
-        ...props
+        ...props,
+        min: Number.isNaN(parseFloat(props.min + '')) ? 0 : parseFloat(props.min + ''),
+        max: Number.isNaN(parseFloat(props.max + '')) ? 100 : parseFloat(props.max + ''),
+        step: Number.isNaN(parseFloat(props.step + '')) ? 10 : parseFloat(props.step + '')
       }
     })
 
@@ -195,8 +204,8 @@ export default defineComponent({
       }
     })
     watch(() => props.value, () => {
-      const value = Number(props.value) > props.max ? props.max : Number(props.value) < props.min ? props.min : props.value
-      valueRef.value = unref(newProps).inputNumberOptions ? Number(props.value) : props.value
+      const value = Number(unref(newProps).value) > unref(newProps).max ? unref(newProps).max : Number(unref(newProps).value) < unref(newProps).min ? unref(newProps).min : unref(newProps).value
+      valueRef.value = unref(newProps).inputNumberOptions ? Number(props.value) : Number(props.value)
       valueSliderRef.value = value
     }, {
       deep: true,
