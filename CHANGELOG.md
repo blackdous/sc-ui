@@ -1,4 +1,36 @@
-## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.198...0.0.2) (2024-01-10)
+## [0.0.2](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.201...0.0.2) (2024-01-16)
+
+
+
+## [0.0.201](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.200...0.0.201) (2024-01-15)
+
+
+### Bug Fixes
+
+* 修复 ScEllipsis 组件 计算问题; 补充columnDialog 多语言 ([aec248e](http://gitlab.voneyun.com/frontend/sc-ui/commit/aec248e20e244034a149b2f4c9348774ba13ad08))
+
+
+
+## [0.0.200](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.199...0.0.200) (2024-01-11)
+
+
+### Features
+
+* 去除无用调试代码 ([68d053d](http://gitlab.voneyun.com/frontend/sc-ui/commit/68d053d8e4d0cad2016ffd142beeeeda158bf80a))
+
+
+
+## [0.0.199](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.198...0.0.199) (2024-01-11)
+
+
+### Bug Fixes
+
+* 修复 ScCascadernew 组件; 多选模式下 有默认值 第一次清除 问题 ([7207429](http://gitlab.voneyun.com/frontend/sc-ui/commit/7207429a7a7348faa9ae2d1af2739994d0144f76))
+
+
+### Features
+
+* scTable thDescrible 组件新增 控制样式属性 ([e9d5361](http://gitlab.voneyun.com/frontend/sc-ui/commit/e9d53618e83edc533d9eb2b3426f7d97157574d8))
 
 
 

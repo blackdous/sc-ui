@@ -4,11 +4,11 @@ export const props = () => ({
     default: 0
   },
   min: {
-    type: Number,
+    type: [Number, String],
     default: 0
   },
   max: {
-    type: Number,
+    type: [Number, String],
     default: 100
   },
   mode: {
@@ -39,7 +39,7 @@ export const props = () => ({
   size: String,
   stepStrictly: Boolean,
   step: {
-    type: Number,
+    type: [Number, String],
     default: 1
   },
   disabled: {

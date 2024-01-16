@@ -13,9 +13,10 @@
       ref="inputNumberRef"
       v-model:value="text"
       :disabled="newProps.disabled"
-      :min="min"
-      :max="max"
       v-bind="vBind"
+      :min="newProps.min"
+      :max="newProps.max"
+      :step="newProps.step"
       @blur="handleBlur"
       @focus="handleFocus"
       @change="handleChange"
@@ -61,21 +62,29 @@ export default defineComponent({
     const isBlur = ref(false)
     const isProps = ref(false)
 
-    const maxDisabled = computed(() => {
-      return text.value >= props.max
-    })
-    const minDisabled = computed(() => {
-      return text.value <= props.min
-    })
-
+    
     const newProps = computed(() => {
-      return props
+      return {
+        ...props,
+        min: Number.isNaN(parseFloat(props.min + '')) ? 0 : parseFloat(props.min + ''),
+        max: Number.isNaN(parseFloat(props.max + '')) ? 100 : parseFloat(props.max + ''),
+        step: Number.isNaN(parseFloat(props.step + '')) ? 10 : parseFloat(props.step + '')
+      }
     })
-
+    console.log('newProps: ', newProps);
+    
     const vBind = computed(() => {
       return {
         ...attrs,
       }
+    })
+    console.log('vBind: ', vBind);
+
+    const maxDisabled = computed(() => {
+      return text.value >= unref(newProps).max
+    })
+    const minDisabled = computed(() => {
+      return text.value <= unref(newProps).min
     })
 
     const classNames = computed(() => {
@@ -92,13 +101,14 @@ export default defineComponent({
       () => props.value,
       (val) => {
         const { needDefault } = props
+        const { max, min } = unref(newProps)
         if (needDefault) {
-          if (val < props.min) {
-            text.value = props.min
+          if (val < min) {
+            text.value = min
             return
           }
-          if (val > props.max) {
-            text.value = props.max
+          if (val > max) {
+            text.value = max
             return
           }
           if (val !== text.value) {
@@ -162,20 +172,20 @@ export default defineComponent({
     }
     
     const changeVal = (type: any) => {
-      const { stepStrictly, min } = unref(newProps)
+      const { stepStrictly, min, max, step } = unref(newProps)
       if (stepStrictly) {
         // isBlur.value = true
         debounceStepStrictly(true)
       }
       if (type === 'add') {
-        text.value += props.step || 1
-        if (text.value > props.max) {
-          text.value = props.max
+        text.value += step || 1
+        if (text.value > max) {
+          text.value = max
         }
       } else {
-        text.value -= props.step || 1
-        if (text.value < props.min) {
-          text.value = props.min
+        text.value -= step || 1
+        if (text.value < min) {
+          text.value = min
         }
       }
       isProps.value = false
