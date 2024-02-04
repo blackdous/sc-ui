@@ -25,6 +25,7 @@
     "build:es": "cross-env build=es vite build",
     "build:umd": "cross-env build=umd vite build",
     "site:build": "cross-env NODE_ENV=production vitepress build .docs",
+    "build:dev": "rimraf rm -f dist && cross-env NODE_ENV=production vitepress build .docs && cp -r ./.docs/.vitepress/dist ./dist && yarn --version",
     "serve": "vitepress serve .docs --host",
     "deploy": "gh-pages -d .docs/.vitepress/dist -t true",
     "docs-build-deploy": "yarn docs-build && yarn docs-deploy",

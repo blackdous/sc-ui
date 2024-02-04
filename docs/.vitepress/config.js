@@ -3,6 +3,7 @@ import { applyPlugins } from '@ruabick/md-demo-plugins';
 import { genTemp } from '@ruabick/vite-plugin-gen-temp';
 import { genApiDoc } from '@ruabick/vite-plugin-gen-api-doc';
 import vueJsx from "@vitejs/plugin-vue-jsx";
+// import copy from './copy';
 import { sidebar } from './sidebar.js';
 import { resolve } from 'path';
 import { themeVariables } from '../../build/theme/index.js';
@@ -63,6 +64,7 @@ export default defineConfig({
   vite: {
     mode: 'production',
     plugins: [genTemp(), genApiDoc(),vueJsx()],
+    // plugins: [genTemp(), genApiDoc(), vueJsx(), copy()],
     resolve: {
       alias: [
         {
