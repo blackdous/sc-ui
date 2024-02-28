@@ -22,11 +22,7 @@
         :create-button-options="{
           show: false,
         }"
-        :multiple-options="{
-          show: true,
-          triggerMultiple: true,
-          options: radioList
-        }"
+        :multiple-options="multipleOptions"
         :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
         :loading="loading"
         :scroll="{ x: '100%' }"
@@ -126,7 +122,6 @@ const searchValue = ref()
 const onSearch = (val:any) => {
   console.log('val: ', val);
 }
-
 
 const list = ref([
   {
@@ -526,6 +521,21 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
     value: 'c'
   }
 ])
+
+const multipleOptions = ref({
+  show: true,
+  triggerMultiple: true,
+  options: radioList
+})
+
+setTimeout(() => {
+  multipleOptions.value.show = false
+  console.log('multipleOptions: ', multipleOptions.value.show);
+  setTimeout(() => {
+    multipleOptions.value.show = true
+    console.log('multipleOptions: 2222222', multipleOptions.value.show);
+  }, 1000)
+}, 1000)
 
 const promiseTypelist = new Promise ((resolve) => {
     setTimeout(() => {

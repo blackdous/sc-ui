@@ -147,7 +147,7 @@ export default defineComponent({
         ...unref(vBind),
         ...propsRef.value,
         okText: okText || antLocale?.Modal?.okText || '确认',
-        cancelText: cancelText || antLocale?.Modal.cancelText || '取消'
+        cancelText: cancelText || antLocale?.Modal?.cancelText || '取消'
       }
     })
     const getBindValue = computed((): Recordable => {

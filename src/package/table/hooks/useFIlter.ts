@@ -121,6 +121,10 @@ export function useFilter (
     { deep: true }
   )
 
+  watch(() => props?.multipleOptions?.show, () => {
+    setMultipleAction(props?.multipleOptions as MultipleActionOptions)
+  })
+
   onMounted(() => {
     setMultipleAction(props?.multipleOptions as MultipleActionOptions)
   })
