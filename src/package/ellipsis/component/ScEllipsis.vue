@@ -202,8 +202,11 @@ export default defineComponent({
       const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement
       // 获取本身元素
       const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
+      if (!containerDom) {
+        return false
+      }
       // 获取父级元素
-      const parentDom = containerDom.parentNode as HTMLElement
+      const parentDom = containerDom?.parentNode as HTMLElement
       // eslint-disable-next-line no-unsafe-optional-chaining
       // 获取父级元素 padding border 宽度
       const { paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = getPaddingBorderWidth(parentDom)
