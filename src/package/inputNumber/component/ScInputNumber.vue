@@ -71,14 +71,12 @@ export default defineComponent({
         step: Number.isNaN(parseFloat(props.step + '')) ? 10 : parseFloat(props.step + '')
       }
     })
-    console.log('newProps: ', newProps);
     
     const vBind = computed(() => {
       return {
         ...attrs,
       }
     })
-    console.log('vBind: ', vBind);
 
     const maxDisabled = computed(() => {
       return text.value >= unref(newProps).max
