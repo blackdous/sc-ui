@@ -437,12 +437,13 @@ export default defineComponent({
       }
     })
     const className = computed(() => {
-      const { scroll, pagination } = newProps.value
+      // const { scroll, pagination } = newProps.value
+      const { pagination } = newProps.value
       // console.log('scroll: ', scroll, scroll.y);
       const classNames = [
         tablePrefixCls,
         uuid,
-        scroll?.y ? 'not-table-scroll-empty' : '',
+        // scroll?.y ? 'not-table-scroll-empty' : '',
         tableScrollHeaderClass.value,
         (antLocale || {}).locale === 'zh-cn' ? `${tablePrefixCls}-zh`: '',
         slots?.footerInfo && pagination !== false ? 'isFooterInfo' : ''
