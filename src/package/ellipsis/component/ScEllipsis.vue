@@ -192,51 +192,85 @@ export default defineComponent({
       }
     }
 
+    const getFontSize = (target: HTMLElement) => {
+      return target?.style?.fontSize || window?.getComputedStyle(target)?.fontSize || '0';
+    }
+
     /**
      * 1. 计算传入元素宽度
      * 2. 对比父级或者当前元素最大宽度
      * 3. 是否自动出现tooltip
      */
     const computedWidth = () => {
-      const { isInheritParentWidth, lineClamp, baseHeight } = props
-      const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement
+      const { isInheritParentWidth, lineClamp, baseHeight, textFontStyle } = props;
+      const textDom = document.querySelector(`.${uuid} .scEllipsis-text`) as HTMLElement;
+      const newTextFontStyle = { lineHeight: baseHeight + 'px', fontSize: '14px' || getFontSize(textDom), fontFamily: 'var(--vxe-font-family)', whiteSpace: 'pre', ...textFontStyle }
       // 获取本身元素
-      const containerDom = document.querySelector(`.${uuid}`) as HTMLElement
+      const containerDom = document.querySelector(`.${uuid}`) as HTMLElement;
       if (!containerDom) {
-        return false
+        return false;
       }
       // 获取父级元素
-      const parentDom = containerDom?.parentNode as HTMLElement
+      const parentDom = containerDom.parentNode as HTMLElement;
       // eslint-disable-next-line no-unsafe-optional-chaining
       // 获取父级元素 padding border 宽度
-      const { paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } = getPaddingBorderWidth(parentDom)
+      const { paddingLeft, paddingRight, borderLeftWidth, borderRightWidth } =
+        getPaddingBorderWidth(parentDom);
+      // const fontSize = textFontStyle?.fontSize || getFontSize(textDom);
       // 计算父级元素宽度 (盒子宽度 - padding - border)
-      const parentDomWidth = parseInt((parentDom?.clientWidth + '') || '0') - parseInt(borderRightWidth || '0') - parseInt(borderLeftWidth || '0') - parseInt(paddingRight || '0') - parseInt(paddingLeft || '0')
+      const parentDomWidth =
+        parseInt(parentDom?.clientWidth + '' || '0') -
+        parseInt(borderRightWidth || '0') -
+        parseInt(borderLeftWidth || '0') -
+        parseInt(paddingRight || '0') -
+        parseInt(paddingLeft || '0');
       // const parentDomWidth = (isInheritParentWidth && !containerDom.style.maxWidth && !containerDom.style.maxWidth) ? parseInt(width) - parseInt(borderRightWidth) - parseInt(borderLeftWidth) - parseInt(paddingRight) - parseInt(paddingLeft) : ''
       // 创建虚拟元素；用于计算元素元素整体宽度
-      const contentDom = document.createElement('p')
+      const contentDom = document.createElement('p');
       // 获取操作位元素
-      const suffixDom = document.querySelector(`.${uuid} .scEllipsis-suffix-container`) as HTMLElement
+      const suffixDom = document.querySelector(
+        `.${uuid} .scEllipsis-suffix-container`,
+      ) as HTMLElement;
       // 获取操作位元素宽度
-      const suffixDomWidth = suffixDom ? isNaN(parseInt(window?.getComputedStyle(suffixDom)?.width || '0')) ? 0: parseInt(window?.getComputedStyle(suffixDom)?.width || '0') : 0
-      contentDom.style.display = 'inline-block'
+      const suffixDomWidth = suffixDom
+        ? isNaN(parseInt(window?.getComputedStyle(suffixDom)?.width || '0'))
+          ? 0
+          : parseInt(window?.getComputedStyle(suffixDom)?.width || '0')
+        : 0;
+      contentDom.style.display = 'inline-block';
+      Object.keys(newTextFontStyle || {})?.forEach((StyleKey) => {
+        //@ts-ignore
+        contentDom.style![StyleKey] = newTextFontStyle[StyleKey];
+      })
       // 获取本身元素宽度
-      const containerDomWidth = containerDom?.style?.maxWidth || containerDom?.style?.width || (containerDom ? window?.getComputedStyle(containerDom)?.width : containerDom) || (textDom ? window?.getComputedStyle(textDom)?.width : textDom)
+      const containerDomWidth =
+        containerDom?.style?.maxWidth ||
+        containerDom?.style?.width ||
+        (containerDom ? window?.getComputedStyle(containerDom)?.width : containerDom) ||
+        (textDom ? window?.getComputedStyle(textDom)?.width : textDom);
       // contentDom.style.whiteSpace = 'nowrap'
       // 1. 如果设置自动获取父级宽度；则使用父级元素宽度
       // 2. 如果设置最大宽度；最大宽度大于父级真实宽度；则使用父级真实宽度
-      const maxWidth = isInheritParentWidth ? (parentDomWidth === 0 ? containerDomWidth + '' : parentDomWidth + '') : (parseInt(containerDomWidth) > parentDomWidth && (parentDomWidth !== 0)) ? parentDomWidth + '' : containerDomWidth
-      contentDom.innerText = textDom?.innerText || ''
-      document.body.append(contentDom)
-      const contentWidth = parseInt(window.getComputedStyle(contentDom).width || '0') + suffixDomWidth
-      contentWidthValue.value = parseInt(window.getComputedStyle(contentDom).width || '0')
-      const contentHeight = parseInt(window.getComputedStyle(contentDom).height || '0')
-      const maxHeight = parseInt((lineClamp || '') + '' || '1') * baseHeight
-      isHeightOver.value = contentHeight > maxHeight
-      document.body.removeChild(contentDom)
-      maxWidthValue.value = parseInt(maxWidth) - suffixDomWidth
-      isDefaultTooltip.value = (parseInt(maxWidth) * parseInt((lineClamp || '') + '' || '1')) > contentWidth
-    }
+      const maxWidth = isInheritParentWidth
+        ? parentDomWidth === 0
+          ? containerDomWidth + ''
+          : parentDomWidth + ''
+        : parseInt(containerDomWidth) > parentDomWidth && parentDomWidth !== 0
+          ? parentDomWidth + ''
+          : containerDomWidth;
+      contentDom.innerText = textDom?.innerText || '';
+      document.body.append(contentDom);
+      const contentWidth =
+        parseInt(window.getComputedStyle(contentDom).width || '0') + suffixDomWidth;
+      contentWidthValue.value = parseInt(window.getComputedStyle(contentDom).width || '0');
+      const contentHeight = parseInt(window.getComputedStyle(contentDom).height || '0');
+      const maxHeight = parseInt((lineClamp || '') + '' || '1') * baseHeight;
+      isHeightOver.value = contentHeight > maxHeight;
+      document.body.removeChild(contentDom);
+      maxWidthValue.value = parseInt(maxWidth) - suffixDomWidth;
+      isDefaultTooltip.value =
+      parseInt(maxWidth) * parseInt((lineClamp || '') + '' || '1') > (contentWidth + (2 * parseInt((lineClamp || '') + '' || '1')));
+    };
 
     const observer1 = new MutationObserver(() => {
       computedWidth()

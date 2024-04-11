@@ -32,6 +32,15 @@ export const ellipsisProps = () => ({
       return 22
     }
   },
+  textFontStyle: {
+    type: Object,
+    default () {
+      return {
+        fontSize: '14px',
+        whiteSpace: 'pre'
+      }
+    }
+  },
   isComputedEditPopoverPosition: {
     type: Boolean,
     default () {

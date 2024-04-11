@@ -96,6 +96,7 @@ realPath: src/package/ellipsis/index.zh-CN.md
 | isComputedEditPopoverPosition | 是否强制修改edit 弹窗位置 | boolean |  true  |  |
 | beforeCallback | 点击操作按钮内置方法前面执行callback | function |  -  |  |
 | afterCallback | 点击操作按钮内置方法后面执行callback | function |  -  |  |
+| textFontStyle | 文本样式属性(用于保持文本样式统一) | object |  '{ fontSize: '14px', whiteSpace: 'pre' }'  |  |
 
 ## EditType
 
