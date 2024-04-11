@@ -1,3 +1,26 @@
 .text-align($align) {
   text-align: $align;
 }
+
+.create_scrollbar(@baseClass, @scrollbarWidth, @scrollbarHeight, @scrollbarRadius, @scrollThumbColor, @scrollThumbHoverColor) {
+  .scrollbar@{baseClass} {
+    scrollbar-width: auto;
+    &::-webkit-scrollbar {
+      width: @scrollbarWidth;
+      height: @scrollbarHeight;
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      width: @scrollbarWidth;
+      border-radius: @scrollbarRadius;
+      background-color: @scrollThumbColor;
+      transition: all .2s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        background-color: @scrollThumbHoverColor;
+      }
+    }
+  }
+}
