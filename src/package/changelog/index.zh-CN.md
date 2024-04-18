@@ -5,6 +5,78 @@ map:
 
 # 变更记录
 
+## [0.0.207](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.206...0.0.207) (2024-04-18)
+
+### Features
+
+* 新增 nodeEllipsis 参数,指定 ScCascader 组件内部node元素是否嵌套 ScEllipsis 元素 ([1ab6480](http://gitlab.voneyun.com/frontend/sc-ui/commit/1ab64800dceb8ca4160bca03cda64a7ae95d4384))
+
+## [0.0.206](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.205...0.0.206) (2024-04-11)
+
+### Features
+
+* 调整全局滚动条 兼容最新 chrome ([97fec1a](http://gitlab.voneyun.com/frontend/sc-ui/commit/97fec1af0692d0d7892cbdf4870472118ef193d4))
+* 调整ScEllipsis 组件 计算规则, 包含空格 ([4cff5b0](http://gitlab.voneyun.com/frontend/sc-ui/commit/4cff5b067d7f63a97c6e0268fcf186f14f57a877))
+
+## [0.0.205](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.204...0.0.205) (2024-04-08)
+
+### Bug Fixes
+
+* 调整 ScCascaderNew 组件 多选模式下 高度变化问题 ([56c27ac](http://gitlab.voneyun.com/frontend/sc-ui/commit/56c27acca90c1b277d9ea06621db01b92cbac35e))
+
+### Features
+
+* scTable 去除 not-table-scroll-empty class 自动添加 ([2cad847](http://gitlab.voneyun.com/frontend/sc-ui/commit/2cad847d0c1290353b74206a1b77f967855bd8c3))
+
+## [0.0.204](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.203...0.0.204) (2024-04-03)
+
+### Bug Fixes
+
+* 修复 ScElipsis 组件通过 Jsx\Tsx 调用是 报错 ([734de60](http://gitlab.voneyun.com/frontend/sc-ui/commit/734de60539cdd84f0046a5759f1a2050be6155a9))
+
+### Features
+
+* 去除无用代码 ([156aa92](http://gitlab.voneyun.com/frontend/sc-ui/commit/156aa923a1e0dd4c1a8ad380763dbc5a3788f0ba))
+
+## [0.0.203](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.202...0.0.203) (2024-02-29)
+
+### Bug Fixes
+
+* 修复table 多选按钮 属性监听失效问题 ([b05af13](http://gitlab.voneyun.com/frontend/sc-ui/commit/b05af1384acca0a985f12d52a5a01ddcd86a3350))
+
+### Features
+
+* 调整 ScEllipsis 组件 中文兼容换行问题 ([60e2165](http://gitlab.voneyun.com/frontend/sc-ui/commit/60e2165c8702cfb71e33aee1dc9c61a8b07c7cda))
+
+## [0.0.202](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.201...0.0.202) (2024-01-16)
+
+### Features
+
+* scInputNumber 组件 max min step 值兼容 string 类型 ([54dbc33](http://gitlab.voneyun.com/frontend/sc-ui/commit/54dbc3325fa36abfd75bf0a7f4ae012e50ad40b1))
+* scSlider 组件 兼容 min max step 属性为 string 类型 ([2c0535f](http://gitlab.voneyun.com/frontend/sc-ui/commit/2c0535ff2134f226571fa6794fb55a4f6a075635))
+
+## [0.0.201](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.200...0.0.201) (2024-01-15)
+
+### Bug Fixes
+
+* 修复 ScEllipsis 组件 计算问题; 补充columnDialog 多语言 ([aec248e](http://gitlab.voneyun.com/frontend/sc-ui/commit/aec248e20e244034a149b2f4c9348774ba13ad08))
+
+## [0.0.200](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.199...0.0.200) (2024-01-11)
+
+### Features
+
+* 去除无用调试代码 ([68d053d](http://gitlab.voneyun.com/frontend/sc-ui/commit/68d053d8e4d0cad2016ffd142beeeeda158bf80a))
+
+## [0.0.199](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.198...0.0.199) (2024-01-11)
+
+### Bug Fixes
+
+* 修复 ScCascadernew 组件; 多选模式下 有默认值 第一次清除 问题 ([7207429](http://gitlab.voneyun.com/frontend/sc-ui/commit/7207429a7a7348faa9ae2d1af2739994d0144f76))
+
+### Features
+
+* scTable thDescrible 组件新增 控制样式属性 ([e9d5361](http://gitlab.voneyun.com/frontend/sc-ui/commit/e9d53618e83edc533d9eb2b3426f7d97157574d8))
+
 ## [0.0.198](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.197...0.0.198) (2024-01-10)
 
 ### Bug Fixes
