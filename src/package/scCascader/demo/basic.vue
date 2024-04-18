@@ -5,6 +5,11 @@
       v-model="value" 
       :options="options" 
       @change="handleChange" 
+      :props="{
+        nodeEllipsis: {
+          open: true
+        }
+      }"
       popupClassName="bbbb"
       popperClass="aaaa" 
       class="testClass"
@@ -14,9 +19,6 @@
     <template #prefixIcon>
       前缀
     </template>
-    <!-- <template #empty>
-      11111111
-    </template> -->
     </ScCascaderNew>
   </div>
   <div class="mt-20">
@@ -40,6 +42,12 @@ const value1 = ref([])
 
 const props = {
   expandTrigger: 'hover' as const,
+  nodeEllipsis: {
+    open: true,
+    maxWidth: '300px',
+    width: '300px'
+  }
+
 }
 
 const handleChange = (value:any) => {
@@ -52,11 +60,11 @@ const handleChange1 = (value:any) => {
 const options = [
   {
     value: 'guide',
-    label: 'Guide',
+    label: 'GuideGuideGuideGuideGuideGuideGuideGuideGuideGuideGuideGuideGuideGuideGuideGuideGuideGuideGuide',
     children: [
       {
         value: 'disciplines',
-        label: 'Disciplines',
+        label: 'DisciplinesDisciplinesDisciplinesDisciplinesDisciplinesDisciplinesDisciplinesDisciplinesDisciplinesDisciplines',
         children: [
           {
             value: 'consistency',

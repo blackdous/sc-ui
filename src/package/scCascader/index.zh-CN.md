@@ -172,3 +172,4 @@ map:
 | disabled | 指定选项的子选项为选项对象的某个属性值 | string  | 'disabled' | - | |
 | leaf | 指定选项的叶子节点的标志位为选项对象的某个属性值 | string  | 'leaf' | - | |
 | hoverThreshold | hover 时展开菜单的灵敏度阈值 | number  | 500 | - | |
+| nodeEllipsis | 指定node节点是否签到ScEllipsis组件 | object | `nodeEllipsis: { open: false, maxWidth: '240px', width: '240px' }` | - | |

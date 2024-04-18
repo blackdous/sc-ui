@@ -26,7 +26,11 @@ export interface CascaderOption extends Record<string, unknown> {
   disabled?: boolean
   leaf?: boolean
 }
-
+export type NodeEllipsis = {
+  maxWidth?: string,
+  width?: string,
+  open?: boolean,
+}
 export interface CascaderProps {
   expandTrigger?: ExpandTrigger
   multiple?: boolean
@@ -39,7 +43,8 @@ export interface CascaderProps {
   children?: string
   disabled?: string | isDisabled
   leaf?: string | isLeaf
-  hoverThreshold?: number
+  hoverThreshold?: number,
+  nodeEllipsis?: NodeEllipsis
 }
 
 export type Nullable<T> = null | T

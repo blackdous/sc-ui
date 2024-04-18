@@ -36,6 +36,7 @@
           // nsCascader.is('disabled', isDisabled),
           multiple ? 'isMultiple' : ''
         ]"
+        ref="cascaderRef"
         :style="$attrs.style"
         @click="() => togglePopperVisible(readonly ? undefined : true)"
         @keydown="handleKeyDown"
@@ -491,6 +492,7 @@ export default defineComponent({
 
     const tooltipRef: Ref<tooltipType | null> = ref(null)
     const input: Ref<inputType | null> = ref(null)
+    const cascaderRef = ref(null)
     const tagWrapper = ref(null)
     const panel: Ref<cascaderPanelType | null> = ref(null)
     const panel1: Ref<cascaderPanelType | null> = ref(null)
@@ -586,6 +588,12 @@ export default defineComponent({
         const timer = setTimeout(() => {
           isDefaultValue.value = true
           clearTimeout(timer)
+        })
+      }
+      if (val) {
+        const inputDom = cascaderRef?.value?.querySelector('.scInput input');
+        inputDom.addEventListener('mousedown', (e: MouseEvent) => {
+          e.preventDefault()
         })
       }
     })
@@ -992,6 +1000,7 @@ export default defineComponent({
       searchHeight,
       collapseTags,
       cascaderPanelRef: panel,
+      cascaderRef,
 
       // t,
       togglePopperVisible,

@@ -25,7 +25,11 @@ export interface ShowSearch {
   matchInputWidth?: boolean;
   limit?: number | false;
 }
-
+export type NodeEllipsis = {
+  maxWidth?: string,
+  width?: string,
+  open?: boolean,
+}
 export interface CascaderProps {
   allowClear: boolean,
   autofocus: boolean,
@@ -57,7 +61,8 @@ export interface CascaderProps {
   size: SizeEnum,
   suffixIcon: VNode | Slot,
   tagRender: Slot,
-  value: string | number | string[] | number[]
+  value: string | number | string[] | number[],
+  nodeEllipsis?: NodeEllipsis
 }
 
 export const tagProps = () => ({

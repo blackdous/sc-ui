@@ -8,7 +8,9 @@
     >
       <template #default="{ node, data }">
         <div class="test-div">
-          <span class="test-name">{{ data.label }}</span>
+          <ScEllipsis style="max-width: 300px;">
+            <span class="test-name">{{ data.label }}</span>
+          </ScEllipsis>
           <span class="test-other" v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
         </div>
       </template>
@@ -18,7 +20,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ScCascaderPanel } from 'sc-ui'
+import { ScCascaderPanel, ScEllipsis } from 'sc-ui'
 const value = ref()
 const handleChange = (val:any) => {
   console.log('val: handleChange', val);
@@ -30,12 +32,12 @@ const handleExpandChange = (val:any) => {
 const options = [
   {
     value: 'guide',
-    label: 'Guide'
+    label: 'Guideguideguideguideguideguideguideguideguideguideguideguide'
     
   },
   {
     value: 'component',
-    label: 'Component',
+    label: 'ComponentComponentComponentComponentComponentComponentComponentComponentComponentComponentComponentComponentComponentComponentComponentComponentComponentComponent',
     children: [
       {
         value: 'basic',

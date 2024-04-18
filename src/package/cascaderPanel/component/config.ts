@@ -34,6 +34,11 @@ export const DefaultProps: CascaderConfig = {
   leaf: 'leaf',
   disabled: 'disabled',
   hoverThreshold: 500,
+  nodeEllipsis: {
+    open: false,
+    maxWidth: '240px',
+    width: '240px'
+  }
 }
 
 export const useCascaderConfig = (props: { props: CascaderProps }) => {

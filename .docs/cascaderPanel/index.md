@@ -95,6 +95,7 @@ export interface OptionsItem {
 | children | 指定选项的子选项为选项对象的某个属性值 | string | 'children' | - | |
 | disabled | 指定选项的禁用为选项对象的某个属性值 | string | 'disabled' | - | |
 | leaf | 指定选项的叶子节点的标志位为选项对象的某个属性值 | string | 'leaf' | - | |
+| nodeEllipsis | 指定node节点是否签到ScEllipsis组件 | object | `nodeEllipsis: { open: false, maxWidth: '240px', width: '240px' }` | - | |
 
 ## expose 方法
 
