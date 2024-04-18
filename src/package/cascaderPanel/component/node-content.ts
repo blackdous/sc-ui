@@ -21,13 +21,11 @@ export default defineComponent({
           maxWidth: nodeEllipsis?.maxWidth || '240px',
           width: nodeEllipsis?.width || '240px'
         }
-      }, [
-        h(
-          'span',
-          { class: ns + '-label' },
-          renderLabelFn ? renderLabelFn({ node, data }) : label
-        )
-      ]
+      }, { default: () => h(
+        'span',
+        { class: ns + '-label' },
+        renderLabelFn ? renderLabelFn({ node, data }) : label
+      )}
     ) : h(
       'span',
       { class: ns + '-label' },
