@@ -21,6 +21,9 @@
     padding: 10px 0;
     line-height: 30px;
   }
+  .tag-filter {
+    margin-bottom: 16px;
+  }
 }
 // .disFlex {
 //   & + .ant-table-wrapper {
@@ -202,14 +205,17 @@
   // padding-bottom: @space-4;
   justify-content: space-between;
   white-space: nowrap;
+  flex-wrap: wrap;
 
-  & + .ant-table-wrapper {
-    margin-top: 16px;
-  }
-  & + .disFlex {
-    margin-top: 8px;
-  }
+  // & + .ant-table-wrapper {
+  //   margin-top: 16px;
+  // }
+  // & + .disFlex {
+  //   margin-top: 16px;
+  // }
   &-left {
+    display: flex;
+    margin-bottom: 16px;
     & > div:last-child {
       margin-left: @space-2;
     }
@@ -227,6 +233,8 @@
   }
   &-right {
     display: flex;
+    margin-bottom: 16px;
+    margin-left: auto;
     &.isOnlyRight {
       width: 100%;
       justify-content: flex-end;

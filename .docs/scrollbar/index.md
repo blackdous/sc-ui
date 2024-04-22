@@ -59,7 +59,7 @@ realPath: src/package/scrollbar/index.zh-CN.md
 | wrap-class      | string                                              | -  |  -    |  包裹容器的自定义类名 |
 | view-style      | string / object                                             | -  |  -    |  视图的自定义样式 |
 | view-class      | string                                             | -  |  -    |  视图的自定义类名 |
-| noresize     | string                                             | false  |  -    |  不响应容器尺寸变化，如果容器尺寸不会发生变化，最好设置它可以优化性能 |
+| noresize     | boolean                                             | false  |  -    |  不响应容器尺寸变化，如果容器尺寸不会发生变化，最好设置它可以优化性能 |
 | tag      | string                                             | div  |  -    |  视图的元素标签 |
 | always     | boolean                                             | false  |  -    |  滚动条总是显示 |
 | min-size     | number                                             | 20  |  -    |  滚动条最小尺寸 |
