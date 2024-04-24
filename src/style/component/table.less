@@ -438,6 +438,7 @@
 .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters:hover .ant-table-filter-icon{
   background: @table-header-bg;
 }
+
 .ant-table-thead > tr > th .ant-table-header-column .ant-table-column-sorters:hover::before {
   background: transparent;
 }
@@ -669,6 +670,44 @@
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+    }
+  }
+}
+
+.ant-table-column-has-filters {
+  .ant-table-filter-icon {
+    background: #e8f3ff !important;
+
+    .anticon-search {
+      width: 12px;
+      height: 12px;
+
+      & > svg {
+        display: none;
+      }
+    }
+    .anticon-search::after {
+      content: '\e663';
+      // color: #008cd3;
+      color: @text-color-secondary;
+      font-family: sc-ui !important;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      font-style: normal;
+    }
+
+    &.ant-table-filter-open {
+      .anticon-search::after {
+        color: @primary-color;
+      }
+    }
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    .anticon-search::after {
+      color: @primary-color;
     }
   }
 }
