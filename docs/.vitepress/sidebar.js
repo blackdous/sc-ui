@@ -77,7 +77,8 @@ export const sidebar = {
         { text: 'Popconfirm', link: '/en/popconfirm/' },
         { text: 'Message', link: '/en/message/' },
         { text: 'Drawer', link: '/en/drawer/' },
-        { text: 'Notification ', link: '/en/notification/' }
+        { text: 'Notification', link: '/en/notification/' },
+        { text: 'Progress', link: '/en/progress/' }
       ]
     },
     {
@@ -169,7 +170,8 @@ export const sidebar = {
         { text: '气泡确认框 Popconfirm', link: '/popconfirm/' },
         { text: '全局提示 Message', link: '/message/' },
         { text: '抽屉 Drawer', link: '/drawer/' },
-        { text: '通知提醒框 Notification ', link: '/notification/' }
+        { text: '通知提醒框 Notification', link: '/notification/' },
+        { text: '进度条 Progress ', link: '/progress/' }
       ]
     },
     {

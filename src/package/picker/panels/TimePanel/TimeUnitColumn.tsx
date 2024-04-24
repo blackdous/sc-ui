@@ -57,60 +57,67 @@ export default defineComponent<TimeUnitColumnProps>({
     const scrollUrl = debounce((event: any) => {
       const { onSelect } = props;
       const ulRefOffsetTop = event?.target?.scrollTop || 0
-      // console.log('ulRefOffsetTop: ', ulRefOffsetTop);
       if (!notScroll && !isDefault) {
         let keyValue = props.value
         const oldKeyValue = props.value
         // let lastOffsetTop = 0
+        let lastValue = 0
+        const ulHeight = ulRef.value.scrollHeight - 196 - 96 - 20
+        // console.log('ulRefOffsetTop > ulHeight: ', ulRefOffsetTop > ulHeight);
+        // if (ulRefOffsetTop > ulHeight) {
+        //   // @ts-ignore
+        //   const lastLiRef = (Array?.from(liRefs.value).pop())?.[1] as HTMLElement
+        //   // @ts-ignore
+        //   const lastValue = parseInt(lastLiRef?.textContent)
+        //   notScroll = true
+        //   const timer = setTimeout(() => {
+        //     //@ts-ignore
+        //     scrollTo(ulRef.value!, (lastValue || 1) * 30, 40)
+        //     //@ts-ignore
+        //     notScroll = false
+        //     clearTimeout(timer)
+        //   }, 300)
+        //   return false
+        // }
+        // // console.log('ulHeight: ', ulHeight);
         liRefs.value && liRefs.value.forEach((liRef: any) => {
           const liRefOffsetTop = liRef?.offsetTop - 100
           if ((liRefOffsetTop - 15) < ulRefOffsetTop &&  ulRefOffsetTop < (liRefOffsetTop + 15)) {
             keyValue = parseInt(liRef.textContent)
           }
+          lastValue = parseInt(liRef.textContent)
           // lastOffsetTop = liRef.offsetTop - 100
         })
-        // console.log('lastOffsetTop: ', lastOffsetTop)
         if (oldKeyValue === keyValue) {
-          // @ts-ignore
-          scrollTo(ulRef.value!, (keyValue || 1) * 30, 120)
+          if (ulRefOffsetTop > ulHeight) {
+            notScroll = true
+            // @ts-ignore
+            scrollTo(ulRef.value!, (lastValue || 1) * 30, 80)
+            notScroll = false
+            return false
+          }
+          if (oldKeyValue !== -1 && keyValue !== -1) {
+            // @ts-ignore
+            scrollTo(ulRef.value!, (keyValue || 1) * 30, 80)
+          }
         } else {
+          // console.log('ulRefOffsetTop > ulHeight: ', ulRefOffsetTop > ulHeight);
+          if (ulRefOffsetTop > ulHeight) {
+            // @ts-ignore
+            onSelect?.(lastValue)
+            return false
+          }
           // @ts-ignore
           onSelect?.(keyValue)
         }
       }
-    }, 60)
+    }, 88)
     
     onMounted(() => {
       // @ts-ignore
       waitElementReady(ulRef.value, () => {
         ulRef.value.addEventListener('scroll', scrollUrl, {
         })
-        // ulRef.value.addEventListener('scroll', (event) => {
-        //   const ulRefOffsetTop = event?.target?.scrollTop || 0
-        //   // console.log('ulRefOffsetTop: ', ulRefOffsetTop);
-        //   if (!ticking && !notScroll && !isDefault) {
-        //     window?.requestAnimationFrame(() => {
-        //       // console.log(liRefs.value)
-        //       let keyValue = props.value
-        //       liRefs.value && liRefs.value.forEach((liRef: any) => {
-        //         const liRefOffsetTop = liRef.offsetTop - 100
-        //         // console.log('liRefOffsetTop: ', liRefOffsetTop);
-        //         if ((liRefOffsetTop - 15) < ulRefOffsetTop &&  ulRefOffsetTop < (liRefOffsetTop + 15)) {
-        //           // console.log('liRef.textContent: ', liRef.textContent);
-        //           keyValue = parseInt(liRef.textContent)
-        //         }
-        //       })
-        //       console.log('keyValue: ', keyValue);
-        //       onSelect?.(keyValue)
-        //       ticking = false
-        //       // const li = liRefs.value.get(props.value!);
-        //       // if (li && open.value !== false) {
-        //       //   scrollTo(ulRef.value!, li.offsetTop - 100, 120);
-        //       // }
-        //     })
-        //     ticking = true;
-        //   }
-        // })
       })
     })
     
