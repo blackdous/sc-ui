@@ -17,6 +17,26 @@
         display: none;
       }
     }
+    &.native-scrollbar-small::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    &.native-scrollbar-large::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    &.scrollbar-small ~ .is-horizontal {
+      height: 4px;
+    }
+    &.scrollbar-small ~ .is-vertical {
+      width: 4px;
+    }
+    &.scrollbar-large ~ .is-horizontal {
+      height: 8px;
+    }
+    &.scrollbar-large ~ .is-vertical {
+      width: 8px;
+    }
   }
   &-bar {
     position: absolute;

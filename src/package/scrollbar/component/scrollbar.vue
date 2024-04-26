@@ -79,6 +79,7 @@ const wrapKls = computed(() => {
   return [
     props.wrapClass,
     baseClass + '-wrap',
+    props.scrollbarSize ? (props.native ? `native-scrollbar-` + props.scrollbarSize : `scrollbar-` + props.scrollbarSize) : '',
     { [baseClass + '-wrap__hidden-default']: !props.native },
   ]
 })

@@ -63,6 +63,7 @@ realPath: src/package/scrollbar/index.zh-CN.md
 | tag      | string                                             | div  |  -    |  视图的元素标签 |
 | always     | boolean                                             | false  |  -    |  滚动条总是显示 |
 | min-size     | number                                             | 20  |  -    |  滚动条最小尺寸 |
+| scrollbar-size     | string                                             | -  |  ['small', 'medium', 'large']    |  滚动条大小；small 4px medium 6px large 8px |
 
 ## 事件
 

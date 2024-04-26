@@ -74,6 +74,10 @@ export const scrollbarProps = () => ({
     type: Number,
     default: 20,
   },
+  scrollbarSize: {
+    type: String,
+    validator: (v: string) => ['small', 'medium', 'large'].includes(v)
+  }
 } as const)
 export type ScrollbarProps = ExtractPropTypes<typeof scrollbarProps>
 
