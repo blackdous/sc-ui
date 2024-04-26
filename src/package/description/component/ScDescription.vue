@@ -6,7 +6,7 @@
   import { isFunction, getSlot } from '../../../utils'
   import { useAttrs } from '../../../hooks'
   import { basePrefixCls } from '../../../constant'
-  import { defineComponent, computed, ref, unref, toRefs } from 'vue'
+  import { defineComponent, computed, ref, unref, toRefs, isReactive, isReadonly } from 'vue'
   import lodash from 'lodash'
   // import get from 'lodash/get'
   import CollapseContainer from './CollapseContainer.vue'
@@ -112,11 +112,13 @@
             }
             const getContent = () => {
               const _data = unref(getProps)?.data;
+              // console.log('_data: ', _data);
               if (!_data) {
                 return null;
               }
               const getField = get(_data, field);
-              if (getField && !toRefs(_data).hasOwnProperty(field)) {
+              const isProxy = isReactive(_data) || isReadonly(_data);
+              if (getField && (!(isProxy ? toRefs(_data) : _data).hasOwnProperty(field))) {
                 return isFunction(render) ? render('', _data) : '';
               }
               return isFunction(render) ? render(getField, _data) : getField ?? '';

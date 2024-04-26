@@ -163,7 +163,7 @@ const mockData: Recordable = {
       label: '昵称',
       render: (curVal, data) => {
         // return curVal + '--' + data.username
-        return h(ScEllipsis, { hoverSuffix: true, copyTxt: '复制内容', tooltip: false, isInheritParentWidth: true }, () => curVal + '--' + data.username)
+        return h(ScEllipsis, { hoverSuffix: true, copyTxt: '复制内容', tooltip: false, isInheritParentWidth: true }, {default : () => curVal + '--' + data.username})
       },
     },
     {
