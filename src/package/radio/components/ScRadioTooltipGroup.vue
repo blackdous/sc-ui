@@ -4,7 +4,7 @@
     v-bind="$attrs"
     v-model:value="radioValue"
     @change="handleChange"
-    :class="[$attrs.class, props.styleMode, 'is' + props.radioType,  props.triggerMultiple ? 'triggerMultiple' : '', props.widthSize === 'large' ? 'radio-min-width142' : undefined]"
+    :class="[$attrs.class, props.isNotChecked ? 'isNotChecked' : '', props.styleMode, 'is' + props.radioType,  props.triggerMultiple ? 'triggerMultiple' : '', props.widthSize === 'large' ? 'radio-min-width142' : undefined]"
   >
     <template v-if="props.radioType === 'RadioButton'">
       <RadioButton
@@ -12,6 +12,7 @@
         :key="item.value"
         :value="item.value"
         :disabled="item.disabled"
+        @click="() => { handleClick(item) }"
       >
         <template v-if="item.tooltipDes">
           <Tooltip 
@@ -23,13 +24,13 @@
             <template #title>
               {{item.tooltipDes}}
             </template>
-            <span class="triggerMultiple-item" @click="() => { handleClick(item) }">
+            <span class="triggerMultiple-item">
               {{item.label}}
             </span>
           </Tooltip>
         </template>
         <template v-else>
-          <span class="triggerMultiple-item" @click="() => { handleClick(item) }">
+          <span class="triggerMultiple-item">
             {{item.label}}
           </span>
         </template>
@@ -41,6 +42,7 @@
         :key="item.value"
         :value="item.value"
         :disabled="item.disabled"
+        @click="() => { handleClick(item) }"
       >
         <template v-if="item.tooltipDes">
           <Tooltip 
@@ -52,13 +54,13 @@
             <template #title>
               {{item.tooltipDes}}
             </template>
-            <span class="isRadioTooltip" @click="() => { handleClick(item) }">
+            <span class="isRadioTooltip" >
               {{item.label}}
             </span>
           </Tooltip>
         </template>
         <template v-else>
-          <span @click="() => { handleClick(item) }">
+          <span>
             {{item.label}}
           </span>
         </template>
@@ -80,7 +82,6 @@ import { RadioButton, Tooltip, Radio } from 'ant-design-vue'
 import type { TooltipProps } from 'ant-design-vue'
 
 import ScRadioGroup from './ScRadioGroup.vue'
-
 export interface TooltipButtonProps {
   toolOptions?: TooltipProps,
   tooltipDes?: string,
@@ -101,6 +102,12 @@ const props = defineProps({
     default: () => []
   },
   triggerMultiple: {
+    type: Boolean,
+    default: () => {
+      return false
+    }
+  },
+  isNotChecked: {
     type: Boolean,
     default: () => {
       return false

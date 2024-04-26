@@ -65,6 +65,7 @@ map:
 | --- | --- | --- | --- | --- |
 | style-mode | string | - | 'scLine' | styleMode 可选值为 'scLine'|
 | triggerMultiple | boolean | false | - | 是否多次触发change事件 |
+| isNotCheck | boolean | false | - | 是否显示选中样式 |
 | options | 'Array[TooltipButtonProps]' | - | - | 要展示radioGroup |
 | size | string | - | 'large' | 设置组件大小 |
 
