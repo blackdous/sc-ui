@@ -5,6 +5,26 @@ map:
 
 # 变更记录
 
+## [0.0.209](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.208...0.0.209) (2024-04-26)
+
+### Bug Fixes
+
+* 修复 ScDescription 组件 内部警告 ([a0e40ed](http://gitlab.voneyun.com/frontend/sc-ui/commit/a0e40edc6a4bc39a6ece5a16ecc9a0b779218c59))
+* 修复 ScRadioTooltipGroup 多次单选模式下,去除 选中样式 ([bf2f1e1](http://gitlab.voneyun.com/frontend/sc-ui/commit/bf2f1e1b7ebfb3fed151ee88e50d5b4bbb9fcc9d))
+
+### Features
+
+* scScrollbar 新增 size 属性 ([404a528](http://gitlab.voneyun.com/frontend/sc-ui/commit/404a52831ce3e39e102a2f5ba6e396d8f98ad180))
+
+## [0.0.208](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.207...0.0.208) (2024-04-24)
+
+### Bug Fixes
+
+* 调整 ScTable 样式 ([7569f7f](http://gitlab.voneyun.com/frontend/sc-ui/commit/7569f7f9b68190fba6ba7b4ea85ba8e4149814e0))
+* 调整CasCader 组件样式 ([490540c](http://gitlab.voneyun.com/frontend/sc-ui/commit/490540c8f1f97dd896840c3e1525c8867715b626))
+* 去除 ScCascader 组件 警告 ([8c9c440](http://gitlab.voneyun.com/frontend/sc-ui/commit/8c9c4407fc6b830451b7e602d29ef0f69e5da819))
+* 修复 时间选择组件 弹性滚动问题 ([a7b5545](http://gitlab.voneyun.com/frontend/sc-ui/commit/a7b55455565223af279f4b597a04bfcdc4dee33b))
+
 ## [0.0.207](http://gitlab.voneyun.com/frontend/sc-ui/compare/0.0.206...0.0.207) (2024-04-18)
 
 ### Features
