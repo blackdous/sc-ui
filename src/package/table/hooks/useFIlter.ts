@@ -108,7 +108,7 @@ export function useFilter (
     const isShow = (unref(propsRef)?.activeOptions?.reload?.show 
     || unref(propsRef)?.activeOptions?.columnDialog?.show
     || unref(propsRef)?.activeOptions?.download?.show)
-    return isShow
+    return isShow ?? false
   })
 
   watch(

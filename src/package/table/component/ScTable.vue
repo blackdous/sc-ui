@@ -15,6 +15,7 @@
         v-model:textValue="textValue"
         :createButtonOptions="createButtonOptions"
         :isActiveFilter="isActiveFilter"
+        :isTableActive="isTableActive"
         :filterLeftStyle="newProps.filterLeftStyle"
         :filterRightStyle="newProps.filterRightStyle"
         :multipleActionOptions="multipleOptions"
@@ -383,7 +384,7 @@ export default defineComponent({
       setSearchOptions,
       setMultipleAction,
     } = useFilter(newProps, selectedRowKeysRef, fetchParams, tableFilter, getDataSourceRef, props)
-
+    
     const {
       customComponentKey,
       customComponentHeaderKey,

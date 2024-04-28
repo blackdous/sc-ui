@@ -195,9 +195,25 @@
     text-underline-offset: 4px;
   }
 }
-.ant-radio-group-outline.ant-radio-group.btnLine.isNotChecked {
-  .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
-    border-color: #ebeef2;
-    color: @text-color;
+.ant-radio-group-outline.ant-radio-group.isNotChecked {
+  &.btnLine{
+    .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+      border-color: #ebeef2;
+      color: @text-color;
+      font-weight: 400;
+      &:hover {
+        border-color: @primary-color;
+        color: @primary-color;
+      }
+    }
+  }
+  &.isRadioButton{
+    .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+      color: @text-color;
+      font-weight: 400;
+      &:hover {
+        color: #008CD3;
+      }
+    }
   }
 }

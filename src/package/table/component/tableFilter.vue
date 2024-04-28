@@ -90,7 +90,7 @@
       <template v-else>
         <slot name="search"></slot>
       </template>
-      <div :class="[className + '-active']">
+      <div v-if="isActiveFilterRef || isTableActiveRef" :class="[className + '-active']">
         <slot name="tableActive"></slot>
       </div>
     </div>
@@ -158,6 +158,12 @@ export const TableFilterProps = () => ({
       }
     }
   },
+  isActiveFilter: {
+    type: Boolean
+  },
+  isTableActive: {
+    type: Boolean
+  },
   dropdownProps: Object
 })
 
@@ -183,12 +189,23 @@ export default defineComponent({
     const isDefaultValue = ref(false)
     const searchOptionsRef = ref()
     const selectedItem = ref()
+    const isActiveFilterRef = ref()
+    const isTableActiveRef = ref()
 
     const validatorResult = ref({
       result: true,
       tip: ''
     })
-
+    watch(() => props.isActiveFilter, (val) => {
+      isActiveFilterRef.value = val
+    }, {
+      immediate: true
+    })
+    watch(() => props.isTableActive, (val) => {
+      isTableActiveRef.value = val
+    }, {
+      immediate: true
+    })
     watch(() => props?.searchOptions?.inputOptions?.defaultValue, (val) => {
       if (!unref(isDefaultValue) && !unref(textValue)) {
         textValue.value = val || props?.searchOptions?.inputOptions?.defaultValue || ''
@@ -386,6 +403,8 @@ export default defineComponent({
       searchOptions,
       searchOptionsRef,
       isSearch,
+      isActiveFilterRef,
+      isTableActiveRef,
       isCreateButton,
       isMutilpBtns,
       className,
