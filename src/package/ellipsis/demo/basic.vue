@@ -1,4 +1,12 @@
 <template>
+  <div style="max-width: 240px;padding: 6px;">
+    <!-- {{ScText1}} -->
+    <component :is='ScText1'></component>
+  </div>
+  <div>
+    <!-- {{ScText1}} -->
+    <component :is='ScText2'></component>
+  </div>
   <!-- <ConfigProvider :locale="enUS"> -->
   <div class="mt20" style="min-width: 100px">
     <Input v-model:value="inputValue" />
@@ -62,7 +70,7 @@
 </template>
 
 <script lang='ts' setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, createVNode } from 'vue'
 import { ScEllipsis } from 'sc-ui'
 import { Input } from 'ant-design-vue'
 // import { ConfigProvider } from 'ant-design-vue'
@@ -70,6 +78,27 @@ import { Input } from 'ant-design-vue'
 // import enUS from 'ant-design-vue/es/locale/en_US'
 // import zhCN from 'ant-design-vue/es/locale/zh_CN'
 
+const ScText1 = createVNode(
+  ScEllipsis,
+  {
+    hrefLink: true,
+    lineClamp: 2,
+    hoverSuffix: false,
+    isInheritParentWidth: true,
+    style: { 'max-width': '240px' },
+  },
+  { default: () => createVNode('p', { style: { 'whiteSpace': 'pre-wrap' }}, {default: () => 'A          1asdasdasdasdaasdasdasdasdasdasdasdadsadsada'})}
+)
+const ScText2 = createVNode(
+  ScEllipsis,
+  {
+    hrefLink: true,
+    lineClamp: 2,
+    hoverSuffix: false,
+    style: { 'max-width': '240px' },
+  },
+  { default: () => createVNode('p', { 'whiteSpace': 'pre-wrap' }, {default: () => `测试模型导入各参数校验100个字符内……&**%￥@*（（（（））））））delete * where 1=1`})}
+)
 const inputValue = ref('');
 
 const editProps = reactive({

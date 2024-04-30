@@ -123,6 +123,7 @@ export const multipleActionOptions = () => ({
   // 是否展示
   show: { type: Boolean, default: true },
   triggerMultiple: { type: Boolean, default: false },
+  isNotCheck: { type: Boolean, default: false },
   styleMode: String,
   // 操作列表
   options: {

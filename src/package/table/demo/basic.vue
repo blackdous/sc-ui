@@ -525,7 +525,8 @@ const radioList:Ref<Array<TooltipButtonPropsType>> = ref([
 const multipleOptions = ref({
   show: true,
   triggerMultiple: true,
-  options: radioList
+  options: radioList,
+  isNotChecked: true
 })
 
 setTimeout(() => {

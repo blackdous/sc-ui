@@ -23,13 +23,13 @@
       <template v-else>
         <slot name="createButton"></slot>
       </template>
-
       <template v-if="!isMutilpBtns && multipleActionOptions.show">
         <ScRadioTooltipGroup
           v-model:value="multipleValue"
           :options="multipleActionOptions.options"
           styleMode="btnLine"
           :triggerMultiple="multipleActionOptions.triggerMultiple"
+          :isNotChecked="multipleActionOptions.isNotChecked"
           @change="radioHandle"
         />
       </template>
